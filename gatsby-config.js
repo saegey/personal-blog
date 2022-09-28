@@ -1,15 +1,15 @@
 module.exports = {
   pathPrefix: `/personal-blog`,
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `Adam Saegebarth`,
     author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      name: `Adam Saegebarth`,
+      summary: `who lives and works in Seattle and likes making things.`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    description: `A blog about software, bike rides, etc.`,
+    siteUrl: `https://saegey.github.io/personal-blog/`,
     social: {
-      twitter: `kylemathews`,
+      instagram: `saegey`,
     },
   },
   plugins: [
