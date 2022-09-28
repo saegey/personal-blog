@@ -8,7 +8,9 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "dependencies": {
+    "@fontsource/ibm-plex-mono": "^4.5.11",
     "@fontsource/ibm-plex-sans": "^4.5.12",
+    "add": "^2.0.6",
     "gatsby": "^4.24.0",
     "gatsby-plugin-feed": "^4.24.0",
     "gatsby-plugin-image": "^2.24.0",

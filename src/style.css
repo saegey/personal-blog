@@ -331,3 +331,8 @@ a:focus {
     list-style-position: inside;
   }
 }
+
+code[class*="language-"], pre[class*="language-"] {
+	font-family: "IBM Plex Mono",
+		monospace !important;
+}
