@@ -1,3 +1,11 @@
+const GatsbyRemarkEmbedderOptions = {
+  services: {
+    Instagram: {
+      accessToken: process.env.INSTAGRAM_ACCESS_TOKEN,
+    },
+  },
+}
+
 module.exports = {
   pathPrefix: `/personal-blog`,
   siteMetadata: {
@@ -13,6 +21,7 @@ module.exports = {
     },
   },
   plugins: [
+    `gatsby-plugin-instagram-embed`,
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
