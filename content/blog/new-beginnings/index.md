@@ -2,14 +2,20 @@
 title: Middlefork Chill Ride
 date: "2022-09-24T22:40:32.169Z"
 description: Middlefork chill road ride via North Bend, Washington
+recommendedTire: 25c+
+headerImage: "../new-beginnings/DSC_0479.jpeg"
 ---
+
+![Group Photo](./DSC_0479.jpeg)
 
 Far far away, behind the word mountains, far from the countries Vokalia and
 Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
 right at the coast of the Semantics, a large language ocean. A small river named
 Duden flows by their place and supplies it with the necessary regelialia.
 
-## On deer horse aboard tritely yikes and much
+<iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="175" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/karma-police/165821778?i=165822315"></iframe>
+
+### On deer horse aboard tritely yikes and much
 
 The Big Oxmox advised her not to do so, because there were thousands of bad
 Commas, wild Question Marks and devious Semikoli, but the Little Blind Text
@@ -26,6 +32,8 @@ view back on the skyline of her hometown _Bookmarksgrove_, the headline of
 [Alphabet Village](http://google.com) and the subline of her own road, the Line
 Lane. Pityful a rhetoric question ran over her cheek, then she continued her
 way. On her way she met a copy.
+
+![Group Photo](./DSC_0488.jpeg)
 
 ### Overlaid the jeepers uselessly much excluding
 
