@@ -251,7 +251,9 @@ a:focus {
 }
 
 .global-header {
-  margin-bottom: var(--spacing-12);
+	max-width: var(--maxWidth-wrapper);
+	margin: var(--spacing-0) auto;
+	padding: var(--spacing-10) var(--spacing-5);
 }
 
 .main-heading {
@@ -318,6 +320,20 @@ a:focus {
 .gatsby-highlight {
   margin-bottom: var(--spacing-8);
 }
+
+.header-image {
+	height: 400px;
+}
+
+@media (min-width: 50rem) {
+	.header-image { height: 400px; }
+}
+
+/* @media (min-width: 80rem) {
+	.header-image {
+		height: 800px;
+	}
+} */
 
 /* Media queries */
 

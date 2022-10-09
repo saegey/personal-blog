@@ -21,13 +21,24 @@ const BlogPostTemplate = ({
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
-          {/* <span>{post.frontMatter.date}</span> */}
-          <p>Recommended Tire: {post.frontmatter.recommendedTire}</p>
-          <GatsbyImage image={image} alt={`Alt text`} />
+          <GatsbyImage
+            image={image}
+            alt={`Alt text`}
+            layout="fullWidth"
+            className="header-image"
+          />
+          <div className="global-wrapper">
+            <h1 itemProp="headline">{post.frontmatter.title}</h1>
+          </div>
+          <div className="global-wrapper">
+            <p>{post.frontmatter.date}</p>
+            {post.frontmatter.recommendedTire && (
+              <p>Recommended Tire: {post.frontmatter.recommendedTire}</p>
+            )}
+          </div>
         </header>
         <section
+          className="global-wrapper"
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
         />
@@ -36,7 +47,7 @@ const BlogPostTemplate = ({
           <Bio />
         </footer>
       </article>
-      <nav className="blog-post-nav">
+      <nav className="blog-post-nav global-wrapper">
         <ul
           style={{
             display: `flex`,
@@ -99,11 +110,7 @@ export const pageQuery = graphql`
         recommendedTire
         headerImage {
           childImageSharp {
-            gatsbyImageData(
-              width: 1000
-              placeholder: BLURRED
-              formats: [AUTO, WEBP, AVIF]
-            )
+            gatsbyImageData(placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
           }
         }
       }

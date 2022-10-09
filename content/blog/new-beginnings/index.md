@@ -6,7 +6,7 @@ recommendedTire: 25c+
 headerImage: "../new-beginnings/DSC_0479.jpeg"
 ---
 
-![Group Photo](./DSC_0479.jpeg)
+<!-- ![Group Photo](./DSC_0479.jpeg) -->
 
 Far far away, behind the word mountains, far from the countries Vokalia and
 Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
