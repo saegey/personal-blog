@@ -89,12 +89,14 @@ const Layout = ({ location, title, children }) => {
     <div data-is-root-path={isRootPath}>
       <header className="main-header">
         <Menu styles={styles}>
-          <a id="home" className="bmItemList" href="/">
+          {/* <a id="home" className="bmItemList" href="/">
             Home
           </a>
           <a id="about" className="bmItemList" href="/about">
             About
-          </a>
+          </a> */}
+          <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
         </Menu>
         {header}
         <div></div>
