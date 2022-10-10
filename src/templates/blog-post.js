@@ -20,23 +20,23 @@ const BlogPostTemplate = ({
         itemScope
         itemType="http://schema.org/Article"
       >
-        <header>
-          <GatsbyImage
-            image={image}
-            alt={`Alt text`}
-            layout="fullWidth"
-            className="header-image"
-          />
-          <div className="global-wrapper">
-            <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          </div>
-          <div className="global-wrapper">
-            <p>{post.frontmatter.date}</p>
-            {post.frontmatter.recommendedTire && (
-              <p>Recommended Tire: {post.frontmatter.recommendedTire}</p>
-            )}
-          </div>
-        </header>
+        {/* <header> */}
+        <GatsbyImage
+          image={image}
+          alt={`Alt text`}
+          layout="fullWidth"
+          className="header-image"
+        />
+        <div className="global-wrapper">
+          <h1 itemProp="headline">{post.frontmatter.title}</h1>
+        </div>
+        <div className="global-wrapper">
+          <p>{post.frontmatter.date}</p>
+          {post.frontmatter.recommendedTire && (
+            <p>Recommended Tire: {post.frontmatter.recommendedTire}</p>
+          )}
+        </div>
+        {/* </header> */}
         <section
           className="global-wrapper"
           dangerouslySetInnerHTML={{ __html: post.html }}

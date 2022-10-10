@@ -10,8 +10,8 @@ const Layout = ({ location, title, children }) => {
       position: "fixed",
       width: "36px",
       height: "30px",
-      left: "36px",
-      top: "36px",
+      left: "30px",
+      top: "30px",
     },
     bmBurgerBars: {
       background: "#373a47",
@@ -24,11 +24,12 @@ const Layout = ({ location, title, children }) => {
       width: "24px",
     },
     bmCross: {
-      background: "#bdc3c7",
+      background: "#444",
     },
     bmMenuWrap: {
       position: "fixed",
       height: "100%",
+      left: "0",
     },
     bmMenu: {
       background: "#e1e1e1",
@@ -55,34 +56,49 @@ const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
   const isRootPath = location.pathname === rootPath
   let header
+  const logoStyle = {
+    top: "30px",
+    display: "flex",
+    alignItems: "center",
+    position: "fixed",
+    display: "flex",
+    // justifyContent: "center",
+  }
+
+  const headerStyle = {
+    justifyContent: "space-evenly",
+    display: "flex",
+    height: "90px",
+  }
 
   if (isRootPath) {
     header = (
-      <div>
-        <Link to="/">
-          <Logo />
-        </Link>
-      </div>
+      <Link className="link-style" to="/">
+        <Logo styles={logoStyle} border={false} />
+      </Link>
     )
   } else {
     header = (
-      <Link className="header-link-home" to="/">
-        <Logo border={false} />
+      <Link className="header-link-home link-style" to="/">
+        <Logo styles={logoStyle} border={false} />
       </Link>
     )
   }
 
   return (
     <div data-is-root-path={isRootPath}>
-      <Menu styles={styles}>
-        <a id="home" className="bmItemList" href="/">
-          Home
-        </a>
-        <a id="about" className="bmItemList" href="/about">
-          About
-        </a>
-      </Menu>
-      <header className="global-header">{header}</header>
+      <header className="main-header">
+        <Menu styles={styles}>
+          <a id="home" className="bmItemList" href="/">
+            Home
+          </a>
+          <a id="about" className="bmItemList" href="/about">
+            About
+          </a>
+        </Menu>
+        {header}
+        <div></div>
+      </header>
       <main>{children}</main>
       <footer className="global-wrapper">
         © {new Date().getFullYear()}, Built with

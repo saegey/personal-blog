@@ -325,8 +325,33 @@ a:focus {
 	height: 400px;
 }
 
+.header-custom {
+	display: flex;
+	justify-content: center;
+}
+
 @media (min-width: 50rem) {
 	.header-image { height: 400px; }
+}
+
+.main-header {
+	justify-content: space-evenly;
+	display: flex;
+	height: 90px;
+	background: pink;
+	position: fixed;
+	width: 100%;
+	z-index: 10000000;
+}
+
+main {
+	position: absolute;
+	top: 90px;
+}
+
+.link-style {
+	display: flex;
+	justify-content: center;
 }
 
 /* @media (min-width: 80rem) {
