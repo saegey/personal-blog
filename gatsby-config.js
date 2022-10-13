@@ -12,16 +12,51 @@ module.exports = {
     title: `Adam Saegebarth`,
     author: {
       name: `Adam Saegebarth`,
-      summary: `who lives and works in Seattle and likes making things.`,
+      summary: `who lives in Seattle and likes to ride his bike.`,
     },
-    description: `A blog about software, bike rides, etc.`,
+    description: `A blog about software, art, bike rides, etc.`,
     siteUrl: `https://saegey.github.io/personal-blog/`,
     social: {
       instagram: `saegey`,
+      twitter: `saegey`,
+      github: `saegey`,
     },
   },
   plugins: [
+    {
+      resolve: "gatsby-plugin-theme-ui",
+      options: {
+        preset: require("./src/theme"),
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 590,
+            },
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/posts`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-page-creator`,
+      options: {
+        path: `${__dirname}/src/posts`,
+      },
+    },
     `gatsby-plugin-instagram-embed`,
+
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,

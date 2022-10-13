@@ -1,9 +1,41 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const { report } = require("process")
 
-exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { createPage } = actions
+const createMdxPages = async (graphql, createPage, reporter) => {
+  const postTemplate = path.resolve("./src/templates/post-template.js")
 
+  const result = await graphql(`
+    {
+      allMdx {
+        nodes {
+          fields {
+            slug
+          }
+          internal {
+            contentFilePath
+          }
+        }
+      }
+    }
+  `)
+
+  if (result.errors)
+    reporter.panic(`Error loading posts`, JSON.stringify(result.errors))
+
+  const data = result.data.allMdx.nodes
+
+  data.forEach(node => {
+    createPage({
+      path: node.fields.slug,
+      component: `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
+      context: {
+        slug: node.fields.slug,
+      },
+    })
+  })
+}
+const createRemarkPages = async (graphql, createPage, reporter) => {
   // Define a template for blog post
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
 
@@ -58,10 +90,28 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 }
 
+exports.createPages = async ({ graphql, actions, reporter }) => {
+  const { createPage } = actions
+  await createRemarkPages(graphql, createPage, reporter)
+  await createMdxPages(graphql, createPage, reporter)
+}
+
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
+    const value = createFilePath({ node, getNode })
+    const directory = node.fileAbsolutePath.split("/").reverse()[2]
+
+    createNodeField({
+      name: `slug`,
+      node,
+      value: node.frontmatter.slug || `/${directory}${value}`,
+    })
+  }
+
+  if (node.internal.type === "Mdx") {
+    const parent = getNode(node.parent)
     const value = createFilePath({ node, getNode })
 
     createNodeField({
@@ -98,6 +148,11 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type MarkdownRemark implements Node {
+      frontmatter: Frontmatter
+      fields: Fields
+    }
+
+		type Mdx implements Node {
       frontmatter: Frontmatter
       fields: Fields
     }

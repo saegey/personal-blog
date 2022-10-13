@@ -1,19 +1,21 @@
-import * as React from "react"
-import { Link, graphql } from "gatsby"
+/** @jsx jsx */
+import { jsx } from "theme-ui"
+import { graphql } from "gatsby"
 
-import Layout from "../components/layout"
 import Seo from "../components/seo"
 
 const AboutIndex = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
-
   return (
-    <Layout location={location} title={siteTitle}>
-      <div className="global-wrapper">
-        <h1>About page placeholder</h1>
-      </div>
-    </Layout>
+    <h1
+      sx={{
+        fontFamily: "body",
+        fontSize: "6",
+        fontWeight: "heavy",
+        letterSpacing: "0",
+      }}
+    >
+      About page placeholder
+    </h1>
   )
 }
 

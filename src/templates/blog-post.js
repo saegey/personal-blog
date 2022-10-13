@@ -3,18 +3,16 @@ import { Link, graphql } from "gatsby"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 import Bio from "../components/bio"
-import Layout from "../components/layout"
 import Seo from "../components/seo"
 
 const BlogPostTemplate = ({
   data: { previous, next, site, markdownRemark: post },
   location,
 }) => {
-  const siteTitle = site.siteMetadata?.title || `Title`
   const image = getImage(post.frontmatter.headerImage)
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <div>
       <article
         className="blog-post"
         itemScope
@@ -29,8 +27,6 @@ const BlogPostTemplate = ({
         />
         <div className="global-wrapper">
           <h1 itemProp="headline">{post.frontmatter.title}</h1>
-        </div>
-        <div className="global-wrapper">
           <p>{post.frontmatter.date}</p>
           {post.frontmatter.recommendedTire && (
             <p>Recommended Tire: {post.frontmatter.recommendedTire}</p>
@@ -73,7 +69,7 @@ const BlogPostTemplate = ({
           </li>
         </ul>
       </nav>
-    </Layout>
+    </div>
   )
 }
 
