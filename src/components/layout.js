@@ -15,8 +15,6 @@ import {
 import Logo from "../components/logo"
 
 const Layout = ({ location, title, children }) => {
-  // const canonicalUrl = data.site.siteMetadata.siteURL + location.pathname
-  console.log(location.pathname)
   const [menuOpen, setMenuOpen] = useState(false)
   const [colorMode, setColorMode] = useColorMode()
 
@@ -133,7 +131,7 @@ const Layout = ({ location, title, children }) => {
           background: "headerColor",
           top: 0,
           // zIndex: -100,
-          // zIndex: 100,
+          zIndex: "101",
         }}
       >
         <Button

@@ -1,8 +1,11 @@
-import * as React from "react"
-import { Link, graphql } from "gatsby"
+/** @jsx jsx */
+import { graphql } from "gatsby"
+import { jsx, Container } from "theme-ui"
+import { getImage } from "gatsby-plugin-image"
 
 import Bio from "../components/bio"
 import Seo from "../components/seo"
+import PostCard from "../components/postCard"
 
 const BlogIndex = ({ data, location }) => {
   const posts = data.allMdx.nodes
@@ -10,7 +13,6 @@ const BlogIndex = ({ data, location }) => {
 
   if (posts.length === 0) {
     return (
-      // <Layout location={location} title={siteTitle}>
       <div>
         <Bio />
         <p>
@@ -19,43 +21,20 @@ const BlogIndex = ({ data, location }) => {
           gatsby-config.js).
         </p>
       </div>
-      // </Layout>
     )
   }
 
   return (
-    <ol className="global-wrapper" style={{ listStyle: `none` }}>
-      {posts.map(post => {
-        const title = post.frontmatter.title || post.fields.slug
+    <Container sx={{ padding: "0px" }} bg="muted">
+      <ol sx={{ p: 0 }}>
+        {posts.map(post => {
+          const image = getImage(post.frontmatter.headerImage)
+          const title = post.frontmatter.title || post.fields.slug
 
-        return (
-          <li key={post.fields.slug}>
-            <article
-              className="post-list-item"
-              itemScope
-              itemType="http://schema.org/Article"
-            >
-              <header>
-                <h2>
-                  <Link to={post.fields.slug} itemProp="url">
-                    <span itemProp="headline">{title}</span>
-                  </Link>
-                </h2>
-                <small>{post.frontmatter.date}</small>
-              </header>
-              <section>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: post.frontmatter.description || post.excerpt,
-                  }}
-                  itemProp="description"
-                />
-              </section>
-            </article>
-          </li>
-        )
-      })}
-    </ol>
+          return <PostCard post={post} title={title} image={image} />
+        })}
+      </ol>
+    </Container>
   )
 }
 
@@ -84,6 +63,12 @@ export const pageQuery = graphql`
         frontmatter {
           title
           date(formatString: "YYYY MMMM DD")
+          tags
+          headerImage {
+            childImageSharp {
+              gatsbyImageData(placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
+            }
+          }
         }
       }
     }
