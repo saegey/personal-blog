@@ -1,10 +1,10 @@
 /** @jsx jsx */
-import { jsx, Container, Text, Card, Flex, Badge, Image, Box } from "theme-ui"
-import { Link as GatsbyLink, graphql } from "gatsby"
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
-import { Link } from "theme-ui"
+import { jsx, Container } from "theme-ui"
+import { graphql } from "gatsby"
+import { getImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo"
+import PostCard from "../components/postCard"
 
 const BlogIndex = ({ data, location }) => {
   // const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -21,7 +21,6 @@ const BlogIndex = ({ data, location }) => {
       </div>
     )
   }
-  console.log(posts)
   return (
     <Container sx={{ padding: "0px" }} bg="muted">
       <ol sx={{ p: 0 }}>
@@ -29,62 +28,7 @@ const BlogIndex = ({ data, location }) => {
           const image = getImage(post.frontmatter.headerImage)
           const title = post.frontmatter.title || post.fields.slug
 
-          return (
-            <Card
-              sx={{
-                // maxWidth: 256,
-                padding: 0,
-                borderRadius: 4,
-                boxShadow:
-                  "0 8px 16px -4px rgba(0,0,0,.1), 0 0 8px -3px rgba(0,0,0,.1)",
-                marginBottom: "20px",
-                backgroundColor: "cardBackground",
-              }}
-            >
-              <Flex>
-                <Link
-                  to={post.fields.slug}
-                  itemProp="url"
-                  sx={{ textDecoration: "none" }}
-                  as={GatsbyLink}
-                >
-                  <Image
-                    image={image}
-                    alt={`Alt text`}
-                    as={GatsbyImage}
-                    sx={{ width: "200px" }}
-                  />
-                </Link>
-                <Box sx={{ margin: "10px" }}>
-                  <Link
-                    to={post.fields.slug}
-                    itemProp="url"
-                    sx={{ textDecoration: "none" }}
-                    as={GatsbyLink}
-                  >
-                    <Text as="h2" variant="subHeadline">
-                      {title}
-                    </Text>
-                  </Link>
-                  <Box sx={{ marginBottom: "20px" }}>
-                    <Text
-                      sx={{
-                        fontSize: "1",
-                        fontFamily: "body",
-                      }}
-                    >
-                      {post.frontmatter.date}
-                    </Text>
-                  </Box>
-                  <Flex>
-                    <Badge mr={1} variant="listSection">
-                      Gravel
-                    </Badge>
-                  </Flex>
-                </Box>
-              </Flex>
-            </Card>
-          )
+          return <PostCard post={post} title={title} image={image} />
         })}
       </ol>
     </Container>
@@ -102,7 +46,10 @@ export const Head = () => <Seo title="All posts" />
 
 export const pageQuery = graphql`
   query SITE_INDEX_QUERY {
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { type: { eq: "race-recap" } } }
+    ) {
       nodes {
         fields {
           slug
@@ -111,6 +58,7 @@ export const pageQuery = graphql`
         frontmatter {
           title
           date(formatString: "YYYY MMMM DD")
+          tags
           headerImage {
             childImageSharp {
               gatsbyImageData(placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])

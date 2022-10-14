@@ -23,7 +23,10 @@ module.exports = {
       marginBottom: 3,
     },
     blockquote: {
-      backgroundColor: "#e1e1e1",
+      backgroundColor: "aliceblue",
+      paddingX: "20px",
+      paddingY: "10px",
+      margin: "0",
     },
     p: {
       fontFamily: "body",
@@ -95,7 +98,7 @@ module.exports = {
   links: {
     menu: {
       fontSize: "5",
-      fontWeight: "heavy",
+      fontWeight: "900",
       lineHeight: "1.5",
       margin: "0",
       fontFamily: "body",
