@@ -45,25 +45,11 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `pages`,
+        name: `posts`,
         path: `${__dirname}/src/posts`,
       },
     },
-    {
-      resolve: `gatsby-plugin-page-creator`,
-      options: {
-        path: `${__dirname}/src/posts`,
-      },
-    },
-    `gatsby-plugin-instagram-embed`,
     `gatsby-plugin-image`,
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     path: `${__dirname}/content/blog`,
-    //     name: `blog`,
-    //   },
-    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

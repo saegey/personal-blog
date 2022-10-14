@@ -77,9 +77,13 @@ const BlogIndex = ({ data, location }) => {
                     </Text>
                   </Box>
                   <Flex>
-                    <Badge mr={1} variant="listSection">
-                      Gravel
-                    </Badge>
+                    {post.frontmatter.tags.map(tag => {
+                      return (
+                        <Badge mr={1} variant="listSection">
+                          {tag}
+                        </Badge>
+                      )
+                    })}
                   </Flex>
                 </Box>
               </Flex>
@@ -111,6 +115,7 @@ export const pageQuery = graphql`
         frontmatter {
           title
           date(formatString: "YYYY MMMM DD")
+          tags
           headerImage {
             childImageSharp {
               gatsbyImageData(placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])

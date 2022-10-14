@@ -21,8 +21,10 @@ const createMdxPages = async (graphql, createPage, reporter) => {
     }
   `)
 
-  if (result.errors)
+  if (result.errors) {
     reporter.panic(`Error loading posts`, JSON.stringify(result.errors))
+    throw result.errors
+  }
 
   const data = result.data.allMdx.nodes
 
@@ -30,7 +32,7 @@ const createMdxPages = async (graphql, createPage, reporter) => {
     createPage({
       path: node.fields.slug,
       component: `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
-      context: { id: node.id },
+      context: { slug: node.fields.slug, id: node.id },
     })
   })
 }
@@ -90,6 +92,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       title: String
       description: String
       date: Date @dateformat
+			tags: [String!]!
     }
 
     type Fields {

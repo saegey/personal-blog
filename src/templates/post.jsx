@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Text } from "theme-ui"
 import { graphql } from "gatsby"
-import { Box, Flex } from "theme-ui"
+import { Box, Flex, Badge } from "theme-ui"
 
 export default function PostTemplate({ data, children }) {
   const {
@@ -23,17 +23,28 @@ export default function PostTemplate({ data, children }) {
       >
         {title}
       </Text>
+      <Flex sx={{ marginTop: "10px", marginBottom: "20px" }}>
+        {data.mdx.frontmatter.tags.map(tag => {
+          return (
+            <Badge mr={1} variant="listSection">
+              {tag}
+            </Badge>
+          )
+        })}
+      </Flex>
       {children}
     </>
   )
 }
 
 export const query = graphql`
-  query ($id: String) {
+  query ($id: String!) {
     mdx(id: { eq: $id }) {
+      id
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         title
+        tags
       }
     }
   }
