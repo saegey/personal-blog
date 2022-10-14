@@ -1,6 +1,8 @@
 /** @jsx jsx */
-import { jsx, Container, Text } from "theme-ui"
-import { Link, graphql } from "gatsby"
+import { jsx, Container, Text, Card, Flex, Badge, Image, Box } from "theme-ui"
+import { Link as GatsbyLink, graphql } from "gatsby"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { Link } from "theme-ui"
 
 import Seo from "../components/seo"
 
@@ -19,39 +21,69 @@ const BlogIndex = ({ data, location }) => {
       </div>
     )
   }
-
+  console.log(posts)
   return (
-    <Container p={4} bg="muted">
+    <Container sx={{ padding: "0px" }} bg="muted">
       <ol sx={{ p: 0 }}>
         {posts.map(post => {
+          const image = getImage(post.frontmatter.headerImage)
           const title = post.frontmatter.title || post.fields.slug
 
           return (
-            <li key={post.frontmatter.slug}>
-              <article
-                className="post-list-item"
-                itemScope
-                itemType="http://schema.org/Article"
-              >
+            <Card
+              sx={{
+                // maxWidth: 256,
+                padding: 0,
+                borderRadius: 4,
+                boxShadow:
+                  "0 8px 16px -4px rgba(0,0,0,.1), 0 0 8px -3px rgba(0,0,0,.1)",
+                marginBottom: "20px",
+                backgroundColor: "cardBackground",
+              }}
+            >
+              <Flex>
                 <Link
                   to={post.fields.slug}
                   itemProp="url"
                   sx={{ textDecoration: "none" }}
+                  as={GatsbyLink}
                 >
-                  <Text variant="subHeadline" as="h2">
-                    {title}
-                  </Text>
+                  <Image
+                    image={image}
+                    alt={`Alt text`}
+                    as={GatsbyImage}
+                    sx={{ width: "200px" }}
+                  />
                 </Link>
-
-                <small
-                  sx={{
-                    fontFamily: "body",
-                  }}
-                >
-                  {post.frontmatter.date}
-                </small>
-              </article>
-            </li>
+                <Box sx={{ margin: "10px" }}>
+                  <Link
+                    to={post.fields.slug}
+                    itemProp="url"
+                    sx={{ textDecoration: "none" }}
+                    as={GatsbyLink}
+                  >
+                    <Text as="h2" variant="subHeadline">
+                      {title}
+                    </Text>
+                  </Link>
+                  <Box sx={{ marginBottom: "20px" }}>
+                    <Text
+                      sx={{
+                        fontSize: "1",
+                        fontFamily: "body",
+                      }}
+                    >
+                      {post.frontmatter.date}
+                    </Text>
+                  </Box>
+                  <Flex>
+                    <Badge mr={1} variant="listSection">
+                      Gravel
+                    </Badge>
+                  </Flex>
+                </Box>
+              </Flex>
+            </Card>
           )
         })}
       </ol>
@@ -78,7 +110,12 @@ export const pageQuery = graphql`
         excerpt(pruneLength: 250)
         frontmatter {
           title
-          date(formatString: "YYYY MMMM Do")
+          date(formatString: "YYYY MMMM DD")
+          headerImage {
+            childImageSharp {
+              gatsbyImageData(placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
+            }
+          }
         }
       }
     }

@@ -11,6 +11,7 @@ module.exports = {
       fontFamily: "headline",
       fontWeight: "headline",
       lineHeight: "headline",
+      fontSize: ["3", "4", "5"],
       marginTop: 0,
       marginBottom: 3,
     },
@@ -21,9 +22,12 @@ module.exports = {
       marginTop: 0,
       marginBottom: 3,
     },
+    blockquote: {
+      backgroundColor: "#e1e1e1",
+    },
     p: {
       fontFamily: "body",
-      lineHeight: "1.3",
+      lineHeight: "1.8",
     },
     a: {
       color: "primary",
@@ -32,19 +36,23 @@ module.exports = {
       },
       textDecoration: "none",
     },
+    li: {
+      fontFamily: "body",
+      lineHeight: "2",
+    },
     // more styles can be added as needed
   },
   fontSizes: [10, 13, 18, 21, 26, 34, 48],
   fonts: {
-    body: '"Merriweather", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-    headline: "Merriweather Sans",
+    body: '"Inconsolata", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+    headline: "Inconsolata",
   },
   sizes: {
     container: 768,
   },
   text: {
     headline: {
-      fontFamily: "body",
+      fontFamily: "headline",
       fontSize: "6",
       fontWeight: "heavy",
       // lineHeight: "0",
@@ -52,8 +60,8 @@ module.exports = {
       color: "text",
     },
     subHeadline: {
-      fontFamily: "body",
-      fontSize: "5",
+      fontFamily: "headline",
+      fontSize: ["3", "4", "4"],
       fontWeight: "heavy",
       // lineHeight: "0",
       letterSpacing: "0",
@@ -67,6 +75,21 @@ module.exports = {
       fontFamily: "body",
       textDecoration: "none",
       color: "text",
+    },
+  },
+  badges: {
+    listSection: {
+      fontFamily: "headline",
+      padding: "5px",
+      fontSize: ["0", "1", "1"],
+      color: "background",
+      textTransform: "uppercase",
+      marginRight: "5px",
+    },
+  },
+  containers: {
+    default: {
+      padding: ["2", "3", "4"],
     },
   },
   links: {
@@ -87,16 +110,18 @@ module.exports = {
   colors: {
     text: "#000",
     background: "#fff",
-    primary: "#07c",
+    primary: "olivedrab",
     headerColor: "pink",
     headerForeground: "rgb(255, 116, 139)",
     menuBackground: "#F8F7FC",
+    cardBackground: "#fffbf5",
     modes: {
       dark: {
         headerColor: "#000",
         text: "#fff",
         background: "#444",
-        primary: "#07c",
+        cardBackground: "#565656",
+        primary: "cornsilk",
         menuBackground: "#000",
         headerForeground: "aquamarine",
       },

@@ -54,7 +54,7 @@ const Layout = ({ location, title, children }) => {
               }}
               sx={{ backgroundColor: "transparent" }}
             >
-              <Close ml="auto" mr={-2} />
+              <Close ml="auto" mr={-2} sx={{ color: "text" }} />
             </Button>
           </div>
           <div
@@ -241,13 +241,28 @@ const Layout = ({ location, title, children }) => {
         </div>
       </header>
       <main>
-        <Container p={4} bg="muted">
+        <Container p={["10px", "20px", "32px"]} bg="muted">
           {children}
         </Container>
       </main>
-      <footer className="global-wrapper">
-        © {new Date().getFullYear()}, Built with // {` `}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>{" "}
+      <footer>
+        <Container p={4} bg="muted">
+          <Text sx={{ fontFamily: "body", fontSize: "1" }}>
+            © {new Date().getFullYear()}, Built with // {` `}
+          </Text>
+          <Link
+            href="https://www.gatsbyjs.com"
+            sx={{
+              textDecoration: "none",
+              color: "text",
+              fontWeight: 700,
+              fontFamily: "body",
+              fontSize: "1",
+            }}
+          >
+            Gatsby
+          </Link>{" "}
+        </Container>
       </footer>
     </div>
   )

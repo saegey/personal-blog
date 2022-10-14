@@ -3,12 +3,13 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 const { report } = require("process")
 
 const createMdxPages = async (graphql, createPage, reporter) => {
-  const postTemplate = path.resolve("./src/templates/post-template.js")
+  const postTemplate = path.resolve("./src/templates/post.jsx")
 
   const result = await graphql(`
     {
       allMdx {
         nodes {
+          id
           fields {
             slug
           }
@@ -29,86 +30,19 @@ const createMdxPages = async (graphql, createPage, reporter) => {
     createPage({
       path: node.fields.slug,
       component: `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
-      context: {
-        slug: node.fields.slug,
-      },
+      context: { id: node.id },
     })
   })
-}
-const createRemarkPages = async (graphql, createPage, reporter) => {
-  // Define a template for blog post
-  const blogPost = path.resolve(`./src/templates/blog-post.js`)
-
-  // Get all markdown blog posts sorted by date
-  const result = await graphql(
-    `
-      {
-        allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: ASC }
-          limit: 1000
-        ) {
-          nodes {
-            id
-            fields {
-              slug
-            }
-          }
-        }
-      }
-    `
-  )
-
-  if (result.errors) {
-    reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
-      result.errors
-    )
-    return
-  }
-
-  const posts = result.data.allMarkdownRemark.nodes
-
-  // Create blog posts pages
-  // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
-  // `context` is available in the template as a prop and as a variable in GraphQL
-
-  if (posts.length > 0) {
-    posts.forEach((post, index) => {
-      const previousPostId = index === 0 ? null : posts[index - 1].id
-      const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
-
-      createPage({
-        path: post.fields.slug,
-        component: blogPost,
-        context: {
-          id: post.id,
-          previousPostId,
-          nextPostId,
-        },
-      })
-    })
-  }
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
-  await createRemarkPages(graphql, createPage, reporter)
+  // await createRemarkPages(graphql, createPage, reporter)
   await createMdxPages(graphql, createPage, reporter)
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
-
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
-    const directory = node.fileAbsolutePath.split("/").reverse()[2]
-
-    createNodeField({
-      name: `slug`,
-      node,
-      value: node.frontmatter.slug || `/${directory}${value}`,
-    })
-  }
 
   if (node.internal.type === "Mdx") {
     const parent = getNode(node.parent)
@@ -145,11 +79,6 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type Social {
       twitter: String
-    }
-
-    type MarkdownRemark implements Node {
-      frontmatter: Frontmatter
-      fields: Fields
     }
 
 		type Mdx implements Node {
