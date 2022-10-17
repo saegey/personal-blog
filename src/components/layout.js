@@ -13,6 +13,7 @@ import {
 } from "theme-ui"
 
 import Logo from "../components/logo"
+import Menu from "./menu"
 
 const Layout = ({ location, title, children }) => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -21,102 +22,11 @@ const Layout = ({ location, title, children }) => {
   return (
     <div
       sx={{
-        // overflowY: menuOpen ? "hidden" : "visible",
-        position: menuOpen ? "fixed" : "relative",
+        overflowY: menuOpen ? "hidden" : "visible",
+        // position: menuOpen ? "fixed" : "relative",
       }}
     >
-      {menuOpen && (
-        <div
-          sx={{
-            backgroundColor: "menuBackground",
-            position: "absolute",
-            opacity: "0.95",
-            visibility: "visible",
-            height: "100vh",
-            width: "100%",
-            zIndex: 10000,
-          }}
-        >
-          <div
-            sx={{
-              display: "flex",
-              paddingRight: "10px",
-              paddingTop: "10px",
-              justifyContent: "right",
-              variant: "styles.header",
-            }}
-          >
-            <Button
-              onClick={() => {
-                setMenuOpen(false)
-              }}
-              sx={{ backgroundColor: "transparent" }}
-            >
-              <Close ml="auto" mr={-2} sx={{ color: "text" }} />
-            </Button>
-          </div>
-          <div
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              height: "100vh",
-            }}
-          >
-            <ul
-              sx={{
-                listStyleType: "none",
-                paddingLeft: "45px",
-                transition: "all .2s ease-in-out",
-                top: 0,
-                left: 0,
-                ".active": {
-                  color: "headerForeground",
-                },
-              }}
-            >
-              <li>
-                <Link
-                  to="/about"
-                  variant="menu"
-                  activeClassName="active"
-                  as={GatsbyLink}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/"
-                  activeClassName="active"
-                  onClick={() => {
-                    console.log("closed menu")
-                    setMenuOpen(false)
-                  }}
-                  as={GatsbyLink}
-                  variant="menu"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/race-recaps"
-                  onClick={() => {
-                    console.log("closed menu")
-                    setMenuOpen(false)
-                  }}
-                  activeClassName="active"
-                  as={GatsbyLink}
-                  variant="menu"
-                >
-                  Race Recaps
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      )}
+      <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
       <header
         sx={{
@@ -127,7 +37,7 @@ const Layout = ({ location, title, children }) => {
           py: "10px",
           alignItems: "center",
           variant: "styles.header",
-          position: "sticky",
+          // position: "sticky",
           background: "headerColor",
           top: 0,
           // zIndex: -100,
@@ -153,7 +63,7 @@ const Layout = ({ location, title, children }) => {
             },
           }}
           onClick={() => {
-            console.log("open menu")
+            // console.log("open menu")
             setMenuOpen(true)
           }}
         >
@@ -161,7 +71,6 @@ const Layout = ({ location, title, children }) => {
             xmlns="http://www.w3.org/2000/svg"
             width="36"
             height="36"
-            // fill="rgb(255, 116, 139)"
             viewBox="0 0 36 36"
             sx={{
               display: "block",
@@ -181,10 +90,10 @@ const Layout = ({ location, title, children }) => {
         >
           <div
             sx={{
-              width: "180px",
+              width: ["120px", "150px", "180px"],
             }}
           >
-            <Logo border={false} width={175} />
+            <Logo border={false} />
           </div>
         </div>
         <div
@@ -243,24 +152,60 @@ const Layout = ({ location, title, children }) => {
           {children}
         </Container>
       </main>
-      <footer>
-        <Container p={4} bg="muted">
-          <Text sx={{ fontFamily: "body", fontSize: "1" }}>
-            © {new Date().getFullYear()}, Built with // {` `}
+      <footer
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          p: 2,
+          variant: "styles.footer",
+          fontFamily: "body",
+          marginY: "30px",
+          marginX: "20px",
+        }}
+      >
+        <Box
+          sx={{
+            display: "grid",
+            marginBottom: "10px",
+          }}
+        >
+          <Text as="div" sx={{ fontWeight: "900", fontSize: "2" }}>
+            Saegey
           </Text>
-          <Link
-            href="https://www.gatsbyjs.com"
-            sx={{
-              textDecoration: "none",
-              color: "text",
-              fontWeight: 700,
-              fontFamily: "body",
-              fontSize: "1",
-            }}
-          >
-            Gatsby
-          </Link>{" "}
-        </Container>
+
+          <Box>
+            <Link
+              href="http://instagram.com/saegey"
+              sx={{ variant: "styles.navlink", paddingRight: 3 }}
+            >
+              Instagram
+            </Link>
+            <Link
+              href="http://github.com/saegey"
+              sx={{ variant: "styles.navlink", paddingRight: 3 }}
+            >
+              Github
+            </Link>
+            <Link
+              href="http://twitter.com/saegey"
+              sx={{ variant: "styles.navlink", paddingRight: 3 }}
+            >
+              Twitter
+            </Link>
+          </Box>
+        </Box>
+        <div sx={{ mx: "auto" }} />
+        <div
+          sx={{
+            p: 2,
+            fontFamily: "body",
+            // position: "absolute",
+            bottom: 0,
+          }}
+        >
+          © {new Date().getFullYear()} Adam Saegebarth
+        </div>
       </footer>
     </div>
   )

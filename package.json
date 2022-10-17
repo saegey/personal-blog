@@ -17,6 +17,7 @@
     "@theme-ui/presets": "^0.15.1",
     "add": "^2.0.6",
     "chart.js": "^3.9.1",
+    "fs": "0.0.1-security",
     "gatsby": "^4.24.0",
     "gatsby-plugin-feed": "^4.24.0",
     "gatsby-plugin-image": "^2.24.0",

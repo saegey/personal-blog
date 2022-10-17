@@ -23,10 +23,11 @@ module.exports = {
       marginBottom: 3,
     },
     blockquote: {
-      backgroundColor: "aliceblue",
+      backgroundColor: "blockquoteBg",
       paddingX: "20px",
-      paddingY: "10px",
+      paddingY: "20px",
       margin: "0",
+      color: "text",
     },
     p: {
       fontFamily: "body",
@@ -118,6 +119,7 @@ module.exports = {
     headerForeground: "rgb(255, 116, 139)",
     menuBackground: "#F8F7FC",
     cardBackground: "#fffbf5",
+    blockquoteBg: "aliceblue",
     modes: {
       dark: {
         headerColor: "#000",
@@ -126,6 +128,7 @@ module.exports = {
         cardBackground: "#565656",
         primary: "cornsilk",
         menuBackground: "#000",
+        blockquoteBg: "#565656",
         headerForeground: "aquamarine",
       },
     },

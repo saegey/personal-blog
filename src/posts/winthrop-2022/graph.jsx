@@ -1,6 +1,5 @@
 // install (please make sure versions match peerDependencies)
 // yarn add @nivo/core @nivo/line
-import { jsx } from "theme-ui"
 import * as React from "react"
 import { ResponsiveLine } from "@nivo/line"
 import { useThemeUI } from "theme-ui"
