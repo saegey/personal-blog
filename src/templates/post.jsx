@@ -46,6 +46,12 @@ export const query = graphql`
         title
         tags
       }
+      gpxData {
+        id
+        fields {
+          gpx
+        }
+      }
     }
   }
 `

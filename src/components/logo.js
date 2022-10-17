@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Box } from "theme-ui"
 
-const Logo = ({ border, width }) => {
+const Logo = ({ border }) => {
   return (
     <Box
       as="svg"
