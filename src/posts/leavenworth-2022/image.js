@@ -4,7 +4,7 @@ import { StaticImage } from "gatsby-plugin-image"
 const SampleImage1 = () => {
   return (
     <StaticImage
-      src="./1.jpeg"
+      src="./l1.jpeg"
       quality={95}
       alt="Profile picture"
       placeholder="blurred"

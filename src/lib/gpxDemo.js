@@ -35,6 +35,7 @@ const calcBestPowers = (times, powers) => {
   response["entire"] = averagePower
 
   times.forEach(time => {
+    if (time > powers.length) return
     response[time] = Math.round(
       calcPowerSlices(powers, time).slice(-1)[0] / time
     )

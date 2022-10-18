@@ -7,15 +7,16 @@ export default function PostTemplate({ data, children }) {
   const {
     frontmatter: { title, date },
   } = data.mdx
-  // console.log(data)
 
   return (
     <>
       <Flex sx={{ marginBottom: "30px" }}>
-        <Box sx={{ fontFamily: "headline", flex: "1 1 auto", fontSize: 2 }}>
+        <Box
+          sx={{ fontFamily: "headline", flex: "1 1 auto", fontSize: [1, 2, 2] }}
+        >
           {date}
         </Box>
-        <Box sx={{ fontFamily: "headline", fontSize: 2 }}>
+        <Box sx={{ fontFamily: "headline", fontSize: [1, 2, 2] }}>
           Author • Adam Saegebarth
         </Box>
       </Flex>

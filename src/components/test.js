@@ -2,7 +2,7 @@
 
 import React from "react"
 import calcBestPowers from "../lib/gpxDemo"
-import { Text, Box } from "theme-ui"
+import { Text, Box, Grid } from "theme-ui"
 import length from "@turf/length"
 
 function dateDiff(dateFrom, dateTo) {
@@ -17,7 +17,6 @@ function dateDiff(dateFrom, dateTo) {
     minutes: seconds / 60,
     hours: seconds / 3600,
     days: seconds / (3600 * 24),
-    // formatted: new Date(seconds * 1000).toISOString().substr(11, 8),
   }
 }
 
@@ -29,16 +28,7 @@ const calcElevationGain = coordinates => {
       coordinates[index + 1][2] - coordinates[index][2]
     if (elevationDifference > 0) elevation += elevationDifference
   })
-  return elevation * 3.280839895
-  // const elevationDifferences = []
-  // for (var i = 0; i < coordinates.length - 1; i++) {
-  //   const diff = coordinates[i + 1][2] - coordinates[i][2]
-  //   if (diff > 0) {
-  //     elevationDifferences.push(diff)
-  //   }
-  // }
-
-  // return elevationDifferences.reduce((pv, cv) => pv + cv, 0)
+  return elevation
 }
 
 const calcStoppage = (coordinates, times) => {
@@ -69,6 +59,23 @@ const calcStoppage = (coordinates, times) => {
   return seconds
 }
 
+const StatCard = ({ title, value }) => {
+  return (
+    <>
+      <Text sx={{ fontFamily: "body" }}>{title}</Text>
+      <Box
+        sx={{
+          fontFamily: "body",
+          fontSize: ["3", "4", "4"],
+          fontWeight: "700",
+        }}
+      >
+        {value}
+      </Box>
+    </>
+  )
+}
+
 const fileName = data => {
   const parsedData = JSON.parse(data.data)
   const { powers, heart, times, atemps, cads } =
@@ -76,29 +83,14 @@ const fileName = data => {
 
   const { coordinates } = parsedData.geometry
   const elevationGain = calcElevationGain(coordinates)
+  const defaultTimeWindows = [5, 10, 15, 30, 60, 120, 300, 600]
 
-  const powerAnalysis = calcBestPowers(
-    [5, 10, 15, 30, 60, 120, 300, 600],
-    powers
-  )
-  const tempAnalysis = calcBestPowers(
-    [5, 10, 15, 30, 60, 120, 300, 600],
-    atemps
-  )
-
-  const heartAnalysis = calcBestPowers(
-    [5, 10, 15, 30, 60, 120, 300, 600],
-    heart
-  )
-
-  const cadenceAnalysis = calcBestPowers(
-    [5, 10, 15, 30, 60, 120, 300, 600],
-    cads
-  )
+  const powerAnalysis = calcBestPowers(defaultTimeWindows, powers)
+  const tempAnalysis = calcBestPowers(defaultTimeWindows, atemps)
+  const heartAnalysis = calcBestPowers(defaultTimeWindows, heart)
+  const cadenceAnalysis = calcBestPowers(defaultTimeWindows, cads)
 
   const stoppageTime = calcStoppage(coordinates, times)
-  console.log(stoppageTime)
-
   const distance = length(parsedData)
 
   const elapsedTime = dateDiff(new Date(times[0]), new Date(times.at(-1)))
@@ -106,95 +98,77 @@ const fileName = data => {
   // {"5":543,"10":446,"15":402,"30":375,"60":309,"120":298,"300":288,"600":282,"entire":171}
   return (
     <>
-      <div
+      <Grid
+        gap={2}
+        columns={[2, 2, 3]}
         sx={{
-          marginY: "20px",
-          display: "grid",
-          gridGap: 3,
-          gridTemplateColumns: `repeat(auto-fit, minmax(128px, 1fr))`,
+          backgroundColor: "blockquoteBg",
+          paddingY: "20px",
+          paddingX: "20px",
+          marginBottom: "20px",
+          borderRadius: "4px",
         }}
       >
-        <div>
-          <Text sx={{ fontFamily: "body" }}>Avg Power</Text>
-          <Box sx={{ fontFamily: "body", fontSize: "5", fontWeight: "700" }}>
-            {powerAnalysis.entire} watts
-          </Box>
-        </div>
-        <div>
-          <Text sx={{ fontFamily: "body" }}>Avg Heart Rate</Text>
-          <Box sx={{ fontFamily: "body", fontSize: "5", fontWeight: "700" }}>
-            {heartAnalysis.entire} bpm
-          </Box>
-        </div>
-        <div>
-          <Text sx={{ fontFamily: "body" }}>Distance</Text>
-          <Box sx={{ fontFamily: "body", fontSize: "5", fontWeight: "700" }}>
-            {(distance * 0.621371).toFixed()} miles
-          </Box>
-        </div>
-      </div>
-      <div
-        sx={{
-          marginY: "20px",
-          display: "grid",
-          gridGap: 3,
-          gridTemplateColumns: `repeat(auto-fit, minmax(128px, 1fr))`,
-        }}
-      >
-        <div>
-          <Text sx={{ fontFamily: "body" }}>Elapsed Time</Text>
-          <Box sx={{ fontFamily: "body", fontSize: "4", fontWeight: "700" }}>
-            {new Date(elapsedTime.seconds * 1000).toISOString().substr(11, 8)}
-          </Box>
-        </div>
-        <div>
-          <Text sx={{ fontFamily: "body" }}>Elevation Gain</Text>
-          <Box sx={{ fontFamily: "body", fontSize: "4", fontWeight: "700" }}>
-            {elevationGain.toLocaleString(undefined, {
+        <Box>
+          <StatCard title="Avg Power" value={`${powerAnalysis.entire} watts`} />
+        </Box>
+        <Box>
+          <StatCard
+            title="Avg Heart Rate"
+            value={`${heartAnalysis.entire} bpm`}
+          />
+        </Box>
+        <Box>
+          <StatCard
+            title="Distance"
+            value={`${(distance * 0.621371).toFixed()} miles`}
+          />
+        </Box>
+        <Box>
+          <StatCard
+            title="Elapsed Time"
+            value={`${new Date(elapsedTime.seconds * 1000)
+              .toISOString()
+              .substr(11, 8)}`}
+          />
+        </Box>
+        <Box>
+          <StatCard
+            title="Elevation Gain"
+            value={`${(elevationGain * 3.280839895).toLocaleString(undefined, {
               minimumFractionDigits: 0,
               maximumFractionDigits: 0,
-            })}{" "}
-            ft
-          </Box>
-        </div>
-        <div>
-          <Text sx={{ fontFamily: "body" }}>Average Temp</Text>
-          <Box sx={{ fontFamily: "body", fontSize: "4", fontWeight: "700" }}>
-            {tempAnalysis.entire * (9 / 5) + 32}&#176;
-          </Box>
-        </div>
-      </div>
-      <div
-        sx={{
-          marginY: "20px",
-          display: "grid",
-          gridGap: 3,
-          gridTemplateColumns: `repeat(auto-fit, minmax(128px, 1fr))`,
-        }}
-      >
-        <div>
-          <Text sx={{ fontFamily: "body" }}>Stoppage Time</Text>
-          <Box sx={{ fontFamily: "body", fontSize: "4", fontWeight: "700" }}>
-            {new Date(stoppageTime * 1000).toISOString().substr(11, 8)}
-          </Box>
-        </div>
-        <div>
-          <Text sx={{ fontFamily: "body" }}>Avg Cadence</Text>
-          <Box sx={{ fontFamily: "body", fontSize: "4", fontWeight: "700" }}>
-            {cadenceAnalysis.entire} rpm
-          </Box>
-        </div>
-        <div>
-          <Text sx={{ fontFamily: "body" }}>Avg Speed</Text>
-          <Box sx={{ fontFamily: "body", fontSize: "4", fontWeight: "700" }}>
-            {(
+            })} ft`}
+          />
+        </Box>
+        <Box>
+          <StatCard
+            title="Average Temp"
+            value={tempAnalysis.entire * (9 / 5) + 32 + "°"}
+          />
+        </Box>
+        <Box>
+          <StatCard
+            title="Time Stopped"
+            value={new Date(stoppageTime * 1000).toISOString().substr(11, 8)}
+          />
+        </Box>
+        <Box>
+          <StatCard
+            title="Avg Cadence"
+            value={`${cadenceAnalysis.entire} rpm`}
+          />
+        </Box>
+        <Box>
+          <StatCard
+            title="Avg Speed"
+            value={`${(
               (distance / (elapsedTime.seconds - stoppageTime)) *
               2236.9362920544
-            ).toFixed(2)}{" "}
-            mph
-          </Box>
-        </div>
-      </div>
+            ).toFixed(2)} mph`}
+          />
+        </Box>
+      </Grid>
     </>
   )
 }

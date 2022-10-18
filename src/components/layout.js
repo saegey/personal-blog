@@ -148,7 +148,7 @@ const Layout = ({ location, title, children }) => {
         </div>
       </header>
       <main>
-        <Container p={["10px", "20px", "32px"]} bg="muted">
+        <Container p={["20px", "20px", "32px"]} bg="muted">
           {children}
         </Container>
       </main>
