@@ -15,6 +15,7 @@
     "@nivo/line": "^0.80.0",
     "@theme-ui/mdx": "^0.15.1",
     "@theme-ui/presets": "^0.15.1",
+    "@turf/length": "^6.5.0",
     "add": "^2.0.6",
     "chart.js": "^3.9.1",
     "fs": "0.0.1-security",
