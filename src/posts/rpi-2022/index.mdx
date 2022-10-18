@@ -14,6 +14,7 @@ import RaceImage from "../../components/raceImage"
 import { StaticImage } from "gatsby-plugin-image"
 import { SampleImage1, SampleImage2 } from "./image.js"
 import Test from "../../components/test.js"
+import Graph from "../../components/graph.jsx"
 // import PowerAnalysis from "./powerAnalysis.js"
 
 <Test data={props.data.mdx.gpxData.fields.gpx} />
@@ -26,6 +27,10 @@ This stage was a true sufferfest of a stage. On paper the the stats don't seem e
   - Well uncritical so misled
     - this is very interesting
 - Goodness much until that fluid owl
+
+<Box sx={{ height: "400px", fontFamily: "Inconsolata" }}>
+  <Graph data={props.data.mdx.gpxData.fields.gpx} />
+</Box>
 
 1. So baboon this
 2. Mounted militant weasel gregariously admonishingly straightly hey
