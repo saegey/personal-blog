@@ -13,6 +13,7 @@ import Graph from "../../components/graph.jsx"
 import { Box } from "theme-ui"
 import RaceImage from "../../components/raceImage"
 import Test from "../../components/test.js"
+import ElevationGraph from "../../components/ElevationGraph.js"
 
 <Test
   data={props.data.mdx.gpxData.fields.gpx}
@@ -26,7 +27,22 @@ import Test from "../../components/test.js"
   cadenceAnalysis={props.data.mdx.gpxData.fields.cadenceAnalysis}
 />
 
-Artisan slow-carb blog coloring book aesthetic green juice mustache gastropub. Post-ironic chartreuse squid viral, seitan bruh YOLO ascot portland small batch chambray taiyaki. Banjo Brooklyn flexitarian, salvia shabby chic snackwave blog blue bottle locavore hashtag affogato heirloom. Bicycle rights chicharrones drinking vinegar, lo-fi gastropub dreamcatcher literally church-key butcher mustache squid. Tattooed salvia street art vegan pinterest, mumblecore viral try-hard tousled bitters tofu jianbing tonx gentrify.
+Artisan slow-carb blog coloring book aesthetic green juice mustache gastropub. Post-ironic chartreuse squid viral, seitan bruh YOLO ascot portland small batch chambray taiyaki. Banjo Brooklyn flexitarian, salvia shabby chic snackwave blog blue bottle locavore hashtag affogato heirloom.
+
+<Box
+  sx={{
+    height: "250px",
+    fontFamily: "Inconsolata",
+    bg: "blockquoteBg",
+    marginY: "20px",
+  }}
+>
+  <ElevationGraph data={props.data.mdx.gpxData.fields.elevationData} />
+</Box>
+
+Bicycle rights chicharrones drinking vinegar, lo-fi gastropub dreamcatcher literally
+church-key butcher mustache squid. Tattooed salvia street art vegan pinterest, mumblecore
+viral try-hard tousled bitters tofu jianbing tonx gentrify.
 
 <RaceImage
   url="https://www.mitchellimage.com/img/s/v-10/p1022870754-4.jpg"

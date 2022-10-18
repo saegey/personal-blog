@@ -22,6 +22,17 @@ const dateDiff = (dateFrom, dateTo) => {
   }
 }
 
+const downsampleElevation = (coordinates, rate) => {
+  const downsampled = []
+  coordinates.forEach((d, index) => {
+    if (index % rate === 0 || index === 0) {
+      downsampled.push({ x: index, y: (d[2] * 3.28084).toFixed(0) })
+    }
+  })
+
+  return downsampled
+}
+
 const calcPowerSlices = (powers, length) => {
   const powerSums = []
   for (var i = 0; i < powers.length; i++) {
@@ -96,3 +107,4 @@ exports.calcBestPowers = calcBestPowers
 exports.calcElevationGain = calcElevationGain
 exports.calcStoppage = calcStoppage
 exports.dateDiff = dateDiff
+exports.downsampleElevation = downsampleElevation

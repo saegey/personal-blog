@@ -63,6 +63,10 @@ export const query = graphql`
             minutes
             seconds
           }
+          elevationData {
+            x
+            y
+          }
           heartAnalysis
           powerCurve
           tempAnalysis

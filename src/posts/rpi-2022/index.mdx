@@ -1,5 +1,5 @@
 ---
-title: Rebecca's Private Idaho
+title: Rebecca's Private Idaho - Stage 3
 date: 2022-09-05
 headerImage: "./1.jpeg"
 tags:
@@ -15,6 +15,7 @@ import { StaticImage } from "gatsby-plugin-image"
 import { SampleImage1, SampleImage2 } from "./image.js"
 import Test from "../../components/test.js"
 import Graph from "../../components/graph.jsx"
+import ElevationGraph from "../../components/ElevationGraph.js"
 // import PowerAnalysis from "./powerAnalysis.js"
 
 <Test
@@ -56,4 +57,14 @@ This stage was a true sufferfest of a stage. On paper the the stats don't seem e
 
 <Box p={4} color="background" bg="primary">
   Beep
+</Box>
+<Box
+  sx={{
+    height: "250px",
+    fontFamily: "Inconsolata",
+    bg: "blockquoteBg",
+    marginY: "20px",
+  }}
+>
+  <ElevationGraph data={props.data.mdx.gpxData.fields.elevationData} />
 </Box>

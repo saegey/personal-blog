@@ -11,6 +11,7 @@ const {
   calcElevationGain,
   calcStoppage,
   dateDiff,
+  downsampleElevation,
 } = require("./src/lib/gpxDemo")
 
 const defaultTimeWindows = [5, 10, 15, 30, 60, 120, 300, 600]
@@ -269,6 +270,12 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
               name: `elapsedTime`,
               node,
               value: dateDiff(new Date(times[0]), new Date(times.at(-1))),
+            })
+
+            createNodeField({
+              name: `elevationData`,
+              node,
+              value: downsampleElevation(coordinates, 60),
             })
 
             // const nodeId = createNodeId(`feature-${feature.properties.name}`)
