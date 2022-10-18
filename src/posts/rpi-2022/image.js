@@ -11,6 +11,7 @@ const SampleImage1 = () => {
       placeholder="blurred"
       // width="100%"
       // height="100%"
+      style={{ borderRadius: "4px" }}
     />
   )
 }
@@ -23,7 +24,7 @@ const SampleImage2 = () => {
       quality={95}
       alt="Profile picture"
       placeholder="blurred"
-
+      style={{ borderRadius: "4px" }}
       // onClick={() => {
       //   setMenuOpen(true)
       // }}

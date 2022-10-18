@@ -139,35 +139,6 @@ const MyResponsiveLine = data => {
           tableCell: {},
           tableCellValue: {},
         },
-        annotations: {
-          text: {
-            fontSize: 13,
-            fill: "blue",
-            outlineWidth: 2,
-            outlineColor: "red",
-            outlineOpacity: 1,
-          },
-          link: {
-            stroke: "#000000",
-            strokeWidth: 1,
-            outlineWidth: 2,
-            outlineColor: "red",
-            outlineOpacity: 1,
-          },
-          outline: {
-            stroke: "#000000",
-            strokeWidth: 2,
-            outlineWidth: 2,
-            outlineColor: "red",
-            outlineOpacity: 1,
-          },
-          symbol: {
-            fill: "#000000",
-            outlineWidth: 2,
-            outlineColor: "red",
-            outlineOpacity: 1,
-          },
-        },
         grid: {
           line: {
             stroke: graphColor,

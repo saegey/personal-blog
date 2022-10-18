@@ -13,6 +13,7 @@ import RaceImage from "../../components/raceImage"
 import { SampleImage1, SampleImage2, SampleImage3 } from "./image.js"
 import Graph from "../../components/graph.jsx"
 import { Box } from "theme-ui"
+import ElevationGraph from "../../components/ElevationGraph.js"
 
 <Test
   data={props.data.mdx.gpxData.fields.gpx}
@@ -48,6 +49,17 @@ woke, twee readymade quinoa pug plaid.
 <RaceImage image={SampleImage3} caption="Thiis is a capttion" />
 
 Selvage church-key direct trade live-edge. Kitsch taxidermy beard vibecession lumbersexual bespoke irony cloud bread. Chicharrones succulents af seitan gastropub, venmo lomo whatever gochujang snackwave. Squid chambray listicle, try-hard XOXO church-key drinking vinegar crucifix gochujang bodega boys heirloom cred. Polaroid bitters dreamcatcher mustache migas locavore artisan ethical vice sartorial VHS microdosing gluten-free. Bespoke fashion axe raclette offal 90's viral affogato. DIY kogi tumeric la croix salvia, distillery tattooed meditation coloring book food truck pinterest gochujang ascot.
+
+<Box
+  sx={{
+    height: "250px",
+    fontFamily: "Inconsolata",
+    bg: "blockquoteBg",
+    marginY: "20px",
+  }}
+>
+  <ElevationGraph data={props.data.mdx.gpxData.fields.elevationData} />
+</Box>
 
 Meditation YOLO venmo butcher viral DIY ennui kinfolk. Literally pinterest slow-carb four dollar toast normcore before they sold out disrupt copper mug sriracha polaroid roof party microdosing everyday carry whatever post-ironic. Freegan small batch salvia tousled quinoa. Celiac scenester umami craft beer Brooklyn. Keytar tote bag ascot narwhal normcore. Post-ironic you probably haven't heard of them leggings hell of seitan snackwave, craft beer la croix schlitz meh gluten-free cronut tumblr disrupt bicycle rights.
 
