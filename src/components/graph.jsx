@@ -29,104 +29,14 @@ const formatTime = value => {
 }
 
 const MyResponsiveLine = data => {
-  const parsedData = JSON.parse(data.data)
-  const { powers } = parsedData.properties.coordinateProperties
   const { theme } = useThemeUI()
-  const powerAnalysis = calcBestPowers(
-    [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      20,
-      25,
-      30,
-      35,
-      40,
-      45,
-      50,
-      55,
-      60,
-      70,
-      80,
-      90,
-      100,
-      110,
-      120,
-      180,
-      240,
-      300,
-      360,
-      420,
-      480,
-      540,
-      600,
-      660,
-      720,
-      780,
-      840,
-      900,
-      960,
-      1020,
-      1080,
-      1140,
-      1200,
-      1500,
-      1800,
-      2100,
-      2400,
-      2700,
-      3000,
-      3300,
-      3600,
-      4200,
-      4800,
-      5400,
-      6000,
-      6600,
-      7200,
-      7800,
-      8400,
-      9000,
-      9600,
-      10200,
-      10800,
-      12000,
-      13200,
-      14400,
-      15600,
-      16800,
-      18000,
-      19200,
-      20400,
-      21600,
-      powers.length,
-    ],
-    powers
-  )
-  const points = []
-  Object.keys(powerAnalysis).forEach(key => {
-    if (key === "entire") return
-    points.push({ x: key, y: powerAnalysis[key] })
-  })
-  console.log("pointst", points)
+  const powerCurve = JSON.parse(data.data)
 
   const formattedData = [
     {
-      id: "france",
+      id: "power",
       color: "hsl(260, 70%, 50%)",
-      data: points,
+      data: powerCurve,
     },
   ]
 

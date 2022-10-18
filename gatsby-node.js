@@ -1,9 +1,19 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const { report } = require("process")
-// const fs = require("fs")
 const tj = require("@tmcw/togeojson")
 const DOMParser = require("xmldom").DOMParser
+var length = require("@turf/length")
+console.log(length.default)
+
+const {
+  calcBestPowers,
+  calcElevationGain,
+  calcStoppage,
+  dateDiff,
+} = require("./src/lib/gpxDemo")
+
+const defaultTimeWindows = [5, 10, 15, 30, 60, 120, 300, 600]
 
 const createMdxPages = async (graphql, createPage, reporter) => {
   const postTemplate = path.resolve("./src/templates/post.jsx")
@@ -104,6 +114,13 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
     const content = await loadNodeContent(node)
     const gpxData = new DOMParser().parseFromString(content)
     const data = tj.gpx(gpxData)
+
+    createNodeField({
+      name: `distance`,
+      node,
+      value: length.default(data),
+    })
+
     if (data.type && data.type === "FeatureCollection") {
       if (data.features) {
         // const { createNode } = boundActionCreators
@@ -114,6 +131,146 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
             feature.properties &&
             feature.properties.name
           ) {
+            const { powers, heart, times, atemps, cads } =
+              feature.properties.coordinateProperties
+            const { coordinates } = feature.geometry
+            const powerAnalysis = calcBestPowers(
+              [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                20,
+                25,
+                30,
+                35,
+                40,
+                45,
+                50,
+                55,
+                60,
+                70,
+                80,
+                90,
+                100,
+                110,
+                120,
+                180,
+                240,
+                300,
+                360,
+                420,
+                480,
+                540,
+                600,
+                660,
+                720,
+                780,
+                840,
+                900,
+                960,
+                1020,
+                1080,
+                1140,
+                1200,
+                1500,
+                1800,
+                2100,
+                2400,
+                2700,
+                3000,
+                3300,
+                3600,
+                4200,
+                4800,
+                5400,
+                6000,
+                6600,
+                7200,
+                7800,
+                8400,
+                9000,
+                9600,
+                10200,
+                10800,
+                12000,
+                13200,
+                14400,
+                15600,
+                16800,
+                18000,
+                19200,
+                20400,
+                21600,
+                powers.length,
+              ],
+              powers
+            )
+            const points = []
+            Object.keys(powerAnalysis).forEach(key => {
+              if (key === "entire") return
+              points.push({ x: key, y: powerAnalysis[key] })
+            })
+
+            createNodeField({
+              name: `powerCurve`,
+              node,
+              value: JSON.stringify(points),
+            })
+
+            createNodeField({
+              name: `powerAnalysis`,
+              node,
+              value: JSON.stringify(calcBestPowers(defaultTimeWindows, powers)),
+            })
+
+            createNodeField({
+              name: `tempAnalysis`,
+              node,
+              value: JSON.stringify(calcBestPowers(defaultTimeWindows, atemps)),
+            })
+
+            createNodeField({
+              name: `heartAnalysis`,
+              node,
+              value: JSON.stringify(calcBestPowers(defaultTimeWindows, heart)),
+            })
+
+            createNodeField({
+              name: `cadenceAnalysis`,
+              node,
+              value: JSON.stringify(calcBestPowers(defaultTimeWindows, cads)),
+            })
+
+            createNodeField({
+              name: `elevationGain`,
+              node,
+              value: calcElevationGain(coordinates),
+            })
+
+            createNodeField({
+              name: `stoppedTime`,
+              node,
+              value: calcStoppage(coordinates, times),
+            })
+
+            createNodeField({
+              name: `elapsedTime`,
+              node,
+              value: dateDiff(new Date(times[0]), new Date(times.at(-1))),
+            })
+
             // const nodeId = createNodeId(`feature-${feature.properties.name}`)
 
             createNodeField({
@@ -165,8 +322,14 @@ exports.createSchemaCustomization = ({ actions }) => {
       tags: [String!]!
     }
 
+    type Coordinate {
+      x: String,
+      y: String
+    }
+
     type Fields {
       slug: String
     }
+
   `)
 }

@@ -52,7 +52,20 @@ export const query = graphql`
       gpxData {
         id
         fields {
-          gpx
+          elevationGain
+          stoppedTime
+          distance
+          powerAnalysis
+          cadenceAnalysis
+          elapsedTime {
+            days
+            hours
+            minutes
+            seconds
+          }
+          heartAnalysis
+          powerCurve
+          tempAnalysis
         }
       }
     }
