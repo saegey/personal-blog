@@ -11,6 +11,8 @@ gpxFile: "BWR_San_Diego_Waffle_Ride_"
 import Test from "../../components/test.js"
 import RaceImage from "../../components/raceImage"
 import { SampleImage1, SampleImage2, SampleImage3 } from "./image.js"
+import Graph from "../../components/graph.jsx"
+import { Box } from "theme-ui"
 
 <Test data={props.data.mdx.gpxData.fields.gpx} />
 
@@ -18,7 +20,13 @@ I'm baby seitan migas iceland shoreditch cred same occupy intelligentsia. Wolf v
 
 <RaceImage image={SampleImage1} caption="Thiis is a capttion" />
 
-Hashtag listicle praxis, hella venmo prism pour-over cloud bread Brooklyn mlkshk. Brooklyn polaroid snackwave air plant ugh leggings. Poutine shaman drinking vinegar deep v brunch, humblebrag la croix. Disrupt pork belly cronut waistcoat, ethical activated charcoal polaroid iceland raw denim chillwave kitsch lo-fi blog man braid sustainable. Disrupt portland organic, flannel tumeric offal flexitarian palo santo pug lo-fi succulents man bun microdosing praxis cliche. Mlkshk beard bitters ethical godard. Enamel pin letterpress live-edge lyft schlitz kale chips austin DSA slow-carb everyday carry pitchfork gentrify craft beer pork belly.
+Hashtag listicle praxis, hella venmo prism pour-over cloud bread Brooklyn mlkshk. Brooklyn polaroid snackwave air plant ugh leggings. Poutine shaman drinking vinegar deep v brunch, humblebrag la croix. Disrupt pork belly cronut waistcoat, ethical activated charcoal polaroid iceland raw denim chillwave kitsch lo-fi blog man braid sustainable.
+
+<Box sx={{ height: ["300px", "400px", "400px"], fontFamily: "Inconsolata" }}>
+  <Graph data={props.data.mdx.gpxData.fields.gpx} />
+</Box>
+
+Disrupt portland organic, flannel tumeric offal flexitarian palo santo pug lo-fi succulents man bun microdosing praxis cliche. Mlkshk beard bitters ethical godard. Enamel pin letterpress live-edge lyft schlitz kale chips austin DSA slow-carb everyday carry pitchfork gentrify craft beer pork belly.
 
 <RaceImage image={SampleImage2} caption="Thiis is a capttion" />
 Glossier celiac swag green juice affogato authentic, street art craft beer salvia
