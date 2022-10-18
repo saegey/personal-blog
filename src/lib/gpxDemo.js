@@ -7,6 +7,21 @@
 //   fs.readFileSync("./RPI_Queen_Stage_3_Baked_.gpx", "utf8")
 // )
 
+const dateDiff = (dateFrom, dateTo) => {
+  let seconds = -1
+  if (dateFrom != undefined && dateTo != undefined) {
+    var dif = dateFrom.getTime() - dateTo.getTime()
+    seconds = Math.abs(dif / 1000)
+  }
+
+  return {
+    seconds: seconds,
+    minutes: seconds / 60,
+    hours: seconds / 3600,
+    days: seconds / (3600 * 24),
+  }
+}
+
 const calcPowerSlices = (powers, length) => {
   const powerSums = []
   for (var i = 0; i < powers.length; i++) {
@@ -21,16 +36,11 @@ const calcPowerSlices = (powers, length) => {
 const calcBestPowers = (times, powers) => {
   let initialValue = 0
   powers.reduce((previous, p) => {
-    // console.log(p)
     const val = p ? p : 0
     initialValue = initialValue + val
   })
   const averagePower = Math.round(initialValue / powers.length)
-  // const averagePower = Math.round(initialValue / powers.length)
 
-  // console.log(initialValue)
-  // console.log(`total values: ${powers.length}`)
-  // console.log(`Average Power: ${averagePower}`)
   const response = {}
   response["entire"] = averagePower
 
@@ -43,4 +53,46 @@ const calcBestPowers = (times, powers) => {
   return response
 }
 
-export default calcBestPowers
+const calcElevationGain = coordinates => {
+  let elevation = 0
+  coordinates.forEach((coord, index) => {
+    if (index === coordinates.length - 1) return // stop 1 point early since comparison requires 2 points
+    const elevationDifference =
+      coordinates[index + 1][2] - coordinates[index][2]
+    if (elevationDifference > 0) elevation += elevationDifference
+  })
+  return elevation
+}
+
+const calcStoppage = (coordinates, times) => {
+  let seconds = 0
+  // coordinates.forEach((coord, index) => {
+  //   if (index === coordinates.length - 1 || index === 0) return // stop 1 point early since comparison requires 2 points
+
+  //   if (
+  //     coord[0] === coordinates[index - 1][0] &&
+  //     coord[1] === coordinates[index - 1][1]
+  //   ) {
+  //     // console.log(coord[0], coordinates[index - 1][0])
+  //     // console.log(coord[1], coordinates[index - 1][1])
+  //     // console.log(times[index], times[index - 1])
+  //     seconds += 1
+  //   }
+  // })
+
+  times.forEach((time, index) => {
+    if (index === coordinates.length - 1 || index === 0) return
+    const output = dateDiff(new Date(time), new Date(times[index + 1]))
+    if (output.seconds > 1) {
+      seconds += output.seconds
+      // console.log(new Date(time), new Date(times[index + 1]), output.seconds)
+    }
+  })
+
+  return seconds
+}
+
+exports.calcBestPowers = calcBestPowers
+exports.calcElevationGain = calcElevationGain
+exports.calcStoppage = calcStoppage
+exports.dateDiff = dateDiff

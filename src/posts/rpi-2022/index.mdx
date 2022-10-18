@@ -17,7 +17,17 @@ import Test from "../../components/test.js"
 import Graph from "../../components/graph.jsx"
 // import PowerAnalysis from "./powerAnalysis.js"
 
-<Test data={props.data.mdx.gpxData.fields.gpx} />
+<Test
+  data={props.data.mdx.gpxData.fields.gpx}
+  elevationGain={props.data.mdx.gpxData.fields.elevationGain}
+  stoppedTime={props.data.mdx.gpxData.fields.stoppedTime}
+  distance={props.data.mdx.gpxData.fields.distance}
+  elapsedTime={props.data.mdx.gpxData.fields.elapsedTime}
+  heartAnalysis={props.data.mdx.gpxData.fields.heartAnalysis}
+  tempAnalysis={props.data.mdx.gpxData.fields.tempAnalysis}
+  powerAnalysis={props.data.mdx.gpxData.fields.powerAnalysis}
+  cadenceAnalysis={props.data.mdx.gpxData.fields.cadenceAnalysis}
+/>
 
 This stage was a true sufferfest of a stage. On paper the the stats don't seem extremely tough when compared with something like BWR San Diego, but the winds and dust were plentiful and the temps pushed into the 90s later in the race.
 
@@ -29,7 +39,7 @@ This stage was a true sufferfest of a stage. On paper the the stats don't seem e
 - Goodness much until that fluid owl
 
 <Box sx={{ height: "400px", fontFamily: "Inconsolata" }}>
-  <Graph data={props.data.mdx.gpxData.fields.gpx} />
+  <Graph data={props.data.mdx.gpxData.fields.powerCurve} />
 </Box>
 
 1. So baboon this

@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react"
-import calcBestPowers from "../lib/gpxDemo"
+import { calcBestPowers } from "../lib/gpxDemo"
 import { Text, Box, Grid } from "theme-ui"
 import length from "@turf/length"
 
@@ -18,45 +18,6 @@ function dateDiff(dateFrom, dateTo) {
     hours: seconds / 3600,
     days: seconds / (3600 * 24),
   }
-}
-
-const calcElevationGain = coordinates => {
-  let elevation = 0
-  coordinates.forEach((coord, index) => {
-    if (index === coordinates.length - 1) return // stop 1 point early since comparison requires 2 points
-    const elevationDifference =
-      coordinates[index + 1][2] - coordinates[index][2]
-    if (elevationDifference > 0) elevation += elevationDifference
-  })
-  return elevation
-}
-
-const calcStoppage = (coordinates, times) => {
-  let seconds = 0
-  // coordinates.forEach((coord, index) => {
-  //   if (index === coordinates.length - 1 || index === 0) return // stop 1 point early since comparison requires 2 points
-
-  //   if (
-  //     coord[0] === coordinates[index - 1][0] &&
-  //     coord[1] === coordinates[index - 1][1]
-  //   ) {
-  //     // console.log(coord[0], coordinates[index - 1][0])
-  //     // console.log(coord[1], coordinates[index - 1][1])
-  //     // console.log(times[index], times[index - 1])
-  //     seconds += 1
-  //   }
-  // })
-
-  times.forEach((time, index) => {
-    if (index === coordinates.length - 1 || index === 0) return
-    const output = dateDiff(new Date(time), new Date(times[index + 1]))
-    if (output.seconds > 1) {
-      seconds += output.seconds
-      // console.log(new Date(time), new Date(times[index + 1]), output.seconds)
-    }
-  })
-
-  return seconds
 }
 
 const StatCard = ({ title, value }) => {
@@ -76,26 +37,22 @@ const StatCard = ({ title, value }) => {
   )
 }
 
-const fileName = data => {
-  const parsedData = JSON.parse(data.data)
-  const { powers, heart, times, atemps, cads } =
-    parsedData.properties.coordinateProperties
+const fileName = ({
+  data,
+  elevationGain,
+  distance,
+  stoppedTime,
+  elapsedTime,
+  heartAnalysis,
+  tempAnalysis,
+  cadenceAnalysis,
+  powerAnalysis,
+}) => {
+  const powerAnalysisData = JSON.parse(powerAnalysis)
+  const tempAnalysisData = JSON.parse(tempAnalysis)
+  const heartAnalysisData = JSON.parse(heartAnalysis)
+  const cadenceAnalysisData = JSON.parse(cadenceAnalysis)
 
-  const { coordinates } = parsedData.geometry
-  const elevationGain = calcElevationGain(coordinates)
-  const defaultTimeWindows = [5, 10, 15, 30, 60, 120, 300, 600]
-
-  const powerAnalysis = calcBestPowers(defaultTimeWindows, powers)
-  const tempAnalysis = calcBestPowers(defaultTimeWindows, atemps)
-  const heartAnalysis = calcBestPowers(defaultTimeWindows, heart)
-  const cadenceAnalysis = calcBestPowers(defaultTimeWindows, cads)
-
-  const stoppageTime = calcStoppage(coordinates, times)
-  const distance = length(parsedData)
-
-  const elapsedTime = dateDiff(new Date(times[0]), new Date(times.at(-1)))
-
-  // {"5":543,"10":446,"15":402,"30":375,"60":309,"120":298,"300":288,"600":282,"entire":171}
   return (
     <>
       <Grid
@@ -110,12 +67,15 @@ const fileName = data => {
         }}
       >
         <Box>
-          <StatCard title="Avg Power" value={`${powerAnalysis.entire} watts`} />
+          <StatCard
+            title="Avg Power"
+            value={`${powerAnalysisData.entire} watts`}
+          />
         </Box>
         <Box>
           <StatCard
             title="Avg Heart Rate"
-            value={`${heartAnalysis.entire} bpm`}
+            value={`${heartAnalysisData.entire} bpm`}
           />
         </Box>
         <Box>
@@ -144,26 +104,26 @@ const fileName = data => {
         <Box>
           <StatCard
             title="Average Temp"
-            value={tempAnalysis.entire * (9 / 5) + 32 + "°"}
+            value={tempAnalysisData.entire * (9 / 5) + 32 + "°"}
           />
         </Box>
         <Box>
           <StatCard
             title="Time Stopped"
-            value={new Date(stoppageTime * 1000).toISOString().substr(11, 8)}
+            value={new Date(stoppedTime * 1000).toISOString().substr(11, 8)}
           />
         </Box>
         <Box>
           <StatCard
             title="Avg Cadence"
-            value={`${cadenceAnalysis.entire} rpm`}
+            value={`${cadenceAnalysisData.entire} rpm`}
           />
         </Box>
         <Box>
           <StatCard
             title="Avg Speed"
             value={`${(
-              (distance / (elapsedTime.seconds - stoppageTime)) *
+              (distance / (elapsedTime.seconds - stoppedTime)) *
               2236.9362920544
             ).toFixed(2)} mph`}
           />
