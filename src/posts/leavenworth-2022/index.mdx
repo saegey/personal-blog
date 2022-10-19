@@ -6,13 +6,19 @@ tags:
   - gravel
 type: race-recap
 gpxFile: "Gran_Fondo_Leavenworth"
+images:
+  - "./l1.jpeg"
+  - "./2.jpeg"
 ---
 
-import RaceImage from "../../components/raceImage"
-import { SampleImage1, SampleImage2 } from "./image.js"
+import { Box, Image } from "theme-ui"
+import { getImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
+
 import Test from "../../components/test.js"
-import { Box } from "theme-ui"
 import Graph from "../../components/graph.jsx"
+import ElevationGraph from "../../components/ElevationGraph.js"
+import ImageWrapper from "../../components/imageWrapper.js"
 
 <Test
   data={props.data.mdx.gpxData.fields.gpx}
@@ -34,8 +40,19 @@ Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis 
 
 Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
 
-<RaceImage image={SampleImage1} caption="Thiis is a capttion" />
+<ImageWrapper image={props.data.mdx.frontmatter.images[0]} />
 
-Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral. Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
+Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
-<RaceImage image={SampleImage2} caption="Thiis is a capttion" />
+<Box
+  sx={{
+    height: "250px",
+    marginY: "20px",
+  }}
+>
+  <ElevationGraph data={props.data.mdx.gpxData.fields.elevationData} />
+</Box>
+
+Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
+
+<ImageWrapper image={props.data.mdx.frontmatter.images[1]} />

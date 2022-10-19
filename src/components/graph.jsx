@@ -5,28 +5,13 @@ import { ResponsiveLine } from "@nivo/line"
 import { useThemeUI } from "theme-ui"
 import calcBestPowers from "../lib/gpxDemo"
 import { colors } from "../theme"
+import { formatSeconds, formatTime } from "../lib/formatters"
 
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const formatSeconds = value => {
-  if (value >= 3600) {
-    return `${value / 60 / 60}h`
-  } else if (value >= 60) {
-    return `${value / 60}m`
-  }
-
-  return `${value}s`
-}
-
-const formatTime = value => {
-  if (value < 3600) {
-    return new Date(value * 1000).toISOString().substr(14, 5)
-  }
-  return new Date(value * 1000).toISOString().substr(11, 8)
-}
 
 const MyResponsiveLine = data => {
   const { theme } = useThemeUI()

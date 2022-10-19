@@ -6,18 +6,19 @@ tags:
   - gravel
 type: race-recap
 gpxFile: "Gran_fondo_ephrata"
+images:
+  - ./1.jpeg
+  - ./2.jpg
+  - ./3.jpg
+  - ./4.jpg
 ---
 
 import { Button, Alert, Close, Box } from "theme-ui"
+
 import Test from "../../components/test.js"
-import {
-  SampleImage1,
-  SampleImage2,
-  SampleImage3,
-  SampleImage4,
-} from "./image.js"
-import RaceImage from "../../components/raceImage"
 import Graph from "../../components/graph.jsx"
+import ElevationGraph from "../../components/ElevationGraph.js"
+import ImageWrapper from "../../components/imageWrapper.js"
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral. Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
 
@@ -33,7 +34,7 @@ Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis 
   cadenceAnalysis={props.data.mdx.gpxData.fields.cadenceAnalysis}
 />
 
-<RaceImage image={SampleImage2} caption="Photo by FinisherPix" />
+<ImageWrapper image={props.data.mdx.frontmatter.images[1]} />
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
@@ -41,10 +42,23 @@ Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis 
   <Graph data={props.data.mdx.gpxData.fields.powerCurve} />
 </Box>
 
+Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over.
+
+<Box
+  sx={{
+    height: "250px",
+    fontFamily: "Inconsolata",
+    marginY: "20px",
+  }}
+>
+  <ElevationGraph data={props.data.mdx.gpxData.fields.elevationData} />
+</Box>
+
+Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
+
+<ImageWrapper image={props.data.mdx.frontmatter.images[2]} />
+
 Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix
 seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
 
-<RaceImage image={SampleImage3} caption="Photo by FinisherPix" />
-Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix
-seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
-<RaceImage image={SampleImage1} caption="Photo by FinisherPix" />
+<ImageWrapper image={props.data.mdx.frontmatter.images[0]} />
