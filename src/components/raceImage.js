@@ -5,7 +5,6 @@ import { Text, Image, Box } from "theme-ui"
 
 const RaceImage = ({ image: SampleImage, url, largeUrl, caption }) => {
   const [menuOpen, setMenuOpen] = useState(false)
-  // console.log(image)
   return (
     <>
       {SampleImage ? (

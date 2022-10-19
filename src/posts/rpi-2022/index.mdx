@@ -6,17 +6,23 @@ tags:
   - gravel
 type: race-recap
 gpxFile: "rpi-2022"
+images:
+  - ./6.jpeg
+  - ./4.jpeg
+  - ./2.jpeg
+  - ./3.jpeg
+  - ./5.jpeg
+  - ./7.jpeg
 ---
 
 import { Button, Alert, Close, Box } from "theme-ui"
 import { Link } from "gatsby"
-import RaceImage from "../../components/raceImage"
-import { StaticImage } from "gatsby-plugin-image"
-import { SampleImage1, SampleImage2 } from "./image.js"
 import Test from "../../components/test.js"
 import Graph from "../../components/graph.jsx"
 import ElevationGraph from "../../components/ElevationGraph.js"
-// import PowerAnalysis from "./powerAnalysis.js"
+import ImageWrapper from "../../components/imageWrapper.js"
+
+This stage was a true sufferfest of a stage. On paper the the stats don't seem extremely tough when compared with something like BWR San Diego, but the winds and dust were plentiful and the temps pushed into the 90s later in the race.
 
 <Test
   data={props.data.mdx.gpxData.fields.gpx}
@@ -29,15 +35,14 @@ import ElevationGraph from "../../components/ElevationGraph.js"
   powerAnalysis={props.data.mdx.gpxData.fields.powerAnalysis}
   cadenceAnalysis={props.data.mdx.gpxData.fields.cadenceAnalysis}
 />
-
-This stage was a true sufferfest of a stage. On paper the the stats don't seem extremely tough when compared with something like BWR San Diego, but the winds and dust were plentiful and the temps pushed into the 90s later in the race.
-
-<RaceImage image={SampleImage1} caption="Photo by FinisherPix" />
+<ImageWrapper image={props.data.mdx.frontmatter.images[1]} />
 
 - This however showed weasel
   - Well uncritical so misled
     - this is very interesting
 - Goodness much until that fluid owl
+
+<ImageWrapper image={props.data.mdx.frontmatter.images[0]} />
 
 <Box sx={{ height: "400px", fontFamily: "Inconsolata" }}>
   <Graph data={props.data.mdx.gpxData.fields.powerCurve} />
@@ -48,7 +53,7 @@ This stage was a true sufferfest of a stage. On paper the the stats don't seem e
 3. Dear foresaw hungry and much some overhung
 4. Rash opossum less because less some amid besides yikes jeepers frenetic impassive fruitlessly shut
 
-<RaceImage image={SampleImage2} caption="This is another caption" />
+<ImageWrapper image={props.data.mdx.frontmatter.images[3]} />
 
 > The copy warned the Little Blind Text, that where it came from it would have
 > been rewritten a thousand times and everything that was left from its origin
@@ -58,11 +63,13 @@ This stage was a true sufferfest of a stage. On paper the the stats don't seem e
 <Box p={4} color="background" bg="primary">
   Beep
 </Box>
+
+<ImageWrapper image={props.data.mdx.frontmatter.images[5]} />
+
 <Box
   sx={{
     height: "250px",
-    fontFamily: "Inconsolata",
-    bg: "blockquoteBg",
+    fontFamily: "body",
     marginY: "20px",
   }}
 >

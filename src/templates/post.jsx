@@ -48,6 +48,11 @@ export const query = graphql`
         date(formatString: "MMMM DD, YYYY")
         title
         tags
+        images {
+          childImageSharp {
+            gatsbyImageData(placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
+          }
+        }
       }
       gpxData {
         id

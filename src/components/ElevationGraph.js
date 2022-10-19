@@ -2,6 +2,11 @@ import React from "react"
 import { render } from "react-dom"
 import { ResponsiveLine } from "@nivo/line"
 import { useThemeUI } from "theme-ui"
+import {
+  formatSeconds,
+  generateElevatioinTickValues,
+  generateTimeTickValues,
+} from "../lib/formatters"
 
 const styles = {
   fontFamily: "sans-serif",
@@ -9,17 +14,23 @@ const styles = {
 }
 
 const ElevationGraph = ({ data }) => {
-  console.log(data)
+  //console.log(data)
   const { theme } = useThemeUI()
   const graphColor = theme.colors.text
+  const yTickValues = generateElevatioinTickValues("y", data, 1000)
   return (
     <ResponsiveLine
       yScale={{
         type: "linear",
-        min: "auto",
-        max: "auto",
+        min: Math.min(...data.map(o => o.y)) - 500,
+        max: Math.max(...data.map(o => o.y)),
         stacked: true,
         reverse: false,
+      }}
+      xScale={{
+        type: "linear",
+        min: "auto",
+        max: "auto",
       }}
       margin={{ top: 50, right: 20, bottom: 50, left: 70 }}
       curve="natural"
@@ -28,29 +39,31 @@ const ElevationGraph = ({ data }) => {
       enableSlices="x"
       colors={[theme.colors.text]}
       axisBottom={{
+        format: formatSeconds,
         orient: "bottom",
-        tickSize: 2,
+        tickSize: 0,
         tickPadding: 5,
         tickRotation: 0,
         legend: "time",
         legendOffset: 30,
         legendPosition: "middle",
-        tickCount: 5,
-        tickValues: [3600, 10800, 21600],
+        // tickCount: 5,
+        tickValues: generateTimeTickValues("x", data, 3600),
       }}
       axisLeft={{
         orient: "left",
-        tickSize: 5,
+        tickSize: 0,
         tickPadding: 5,
         tickRotation: 0,
-        tickCount: 3,
+        // tickCount: 3,
         legend: "elevation",
         legendOffset: -50,
         legendPosition: "middle",
-        // tickValues: [0, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000],
+        // tickValues: [0, 1000, 2000],
+        tickValues: yTickValues,
       }}
       theme={{
-        // background: "red",
+        // background: "white",
         fontFamily: "Inconsolata",
         fontSize: 15,
         tooltip: {
