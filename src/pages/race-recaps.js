@@ -57,7 +57,7 @@ export const pageQuery = graphql`
         excerpt(pruneLength: 250)
         frontmatter {
           title
-          date(formatString: "YYYY MMMM DD")
+          date(formatString: "MMMM DD, YYYY")
           tags
           headerImage {
             childImageSharp {

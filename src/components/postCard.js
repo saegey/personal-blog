@@ -67,8 +67,13 @@ const PostCard = ({ post, title, image }) => {
             >
               <Text
                 as="h2"
-                variant="subHeadline"
-                sx={{ fontSize: ["3", "3", "4"] }}
+                // variant="subHeadline"
+                sx={{
+                  fontSize: ["2", "3", "3"],
+                  fontFamily: "serif",
+                  fontWeight: "600",
+                  color: "text",
+                }}
               >
                 {title}
               </Text>
@@ -76,9 +81,10 @@ const PostCard = ({ post, title, image }) => {
             <Box sx={{ marginBottom: "20px" }}>
               <Text
                 sx={{
-                  fontSize: ["2", "2", "2"],
-                  fontFamily: "body",
+                  fontSize: ["14px", "2", "2"],
+                  fontFamily: "serif",
                   fontWeight: 300,
+                  color: "text",
                 }}
               >
                 {post.frontmatter.date}
@@ -87,7 +93,18 @@ const PostCard = ({ post, title, image }) => {
             <Flex sx={{ display: ["none", "inherit", "inherit"] }}>
               {post.frontmatter.tags.map(tag => {
                 return (
-                  <Badge mr={1} variant="listSection">
+                  <Badge
+                    mr={1}
+                    sx={{
+                      fontFamily: "body",
+                      padding: "5px",
+                      fontSize: ["0", "1", "1"],
+                      color: "background",
+                      textTransform: "uppercase",
+                      marginRight: "5px",
+                      fontWeight: "600",
+                    }}
+                  >
                     {tag}
                   </Badge>
                 )
