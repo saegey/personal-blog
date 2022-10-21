@@ -11,7 +11,6 @@ const RaceImage = ({ image: SampleImage, url, largeUrl, caption }) => {
         <Box
           sx={{ width: "100%" }}
           onClick={() => {
-            // console.log("clicked on tthis ")
             setMenuOpen(true)
           }}
         >
@@ -33,6 +32,7 @@ const RaceImage = ({ image: SampleImage, url, largeUrl, caption }) => {
           margin: 0,
           fontSize: "1",
           color: "primary",
+          fontFamily: "serif",
         }}
       >
         {caption}
@@ -57,7 +57,6 @@ const RaceImage = ({ image: SampleImage, url, largeUrl, caption }) => {
                 <Box
                   sx={{ width: "1000px" }}
                   onClick={() => {
-                    // console.log("clicked on tthis ")
                     setMenuOpen(false)
                   }}
                 >
@@ -76,7 +75,7 @@ const RaceImage = ({ image: SampleImage, url, largeUrl, caption }) => {
             <Text
               as="em"
               sx={{
-                fontFamily: "body",
+                fontFamily: "serif",
                 margin: 0,
                 fontSize: "1",
                 color: "primary",

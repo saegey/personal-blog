@@ -27,6 +27,7 @@ function parse(file) {
   lines.forEach(l => {
     // console.log(l)
     const place = getPlace(l)
+    if (place === "") return
     results.push({
       place,
       name: place !== "DNF" ? getName(l) : getName(l).split("-")[0].trim(),

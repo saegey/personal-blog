@@ -16,7 +16,7 @@ results:
   provider: "webscorer"
 ---
 
-import { Button, Alert, Close, Box } from "theme-ui"
+import { Button, Alert, Close, Box, Divider } from "theme-ui"
 
 import Test from "../../components/test.js"
 import Graph from "../../components/graph.jsx"
@@ -42,12 +42,17 @@ Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis 
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
-<Box sx={{ height: "400px", fontFamily: "Inconsolata" }}>
+<Divider />
+
+<Box sx={{ height: ["250px", "400px", "400px"], fontFamily: "Inconsolata" }}>
   <Graph data={props.data.mdx.gpxData.fields.powerCurve} />
 </Box>
 
+<Divider />
+
 Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over.
 
+<Divider />
 <Box
   sx={{
     height: "250px",
@@ -57,6 +62,8 @@ Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over.
 >
   <ElevationGraph data={props.data.mdx.gpxData.fields.elevationData} />
 </Box>
+
+<Divider />
 
 Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
 

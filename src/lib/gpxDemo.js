@@ -77,26 +77,12 @@ const calcElevationGain = coordinates => {
 
 const calcStoppage = (coordinates, times) => {
   let seconds = 0
-  // coordinates.forEach((coord, index) => {
-  //   if (index === coordinates.length - 1 || index === 0) return // stop 1 point early since comparison requires 2 points
-
-  //   if (
-  //     coord[0] === coordinates[index - 1][0] &&
-  //     coord[1] === coordinates[index - 1][1]
-  //   ) {
-  //     // console.log(coord[0], coordinates[index - 1][0])
-  //     // console.log(coord[1], coordinates[index - 1][1])
-  //     // console.log(times[index], times[index - 1])
-  //     seconds += 1
-  //   }
-  // })
 
   times.forEach((time, index) => {
     if (index === coordinates.length - 1 || index === 0) return
     const output = dateDiff(new Date(time), new Date(times[index + 1]))
     if (output.seconds > 1) {
       seconds += output.seconds
-      // console.log(new Date(time), new Date(times[index + 1]), output.seconds)
     }
   })
 

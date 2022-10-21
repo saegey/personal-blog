@@ -1,4 +1,16 @@
 // example theme file
+const colors = {
+  cultured: "#f8f9faff",
+  cultured2: "#e9ecefff",
+  gainsboro: "#dee2e6ff",
+  lightGray: "#ced4daff",
+  cadetBlueCrayola: "#adb5bdff",
+  sonicSilver: "#6c757dff",
+  davysGrey: "#495057ff",
+  onyx: "#343a40ff",
+  eerieBlack: "#212529ff",
+}
+
 module.exports = {
   config: {
     initialColorModeName: "light",
@@ -8,15 +20,16 @@ module.exports = {
     h1: {
       // the style object for each element
       // can reference other values in the theme
-      fontFamily: "headline",
+      fontFamily: "serif",
       fontWeight: "headline",
       lineHeight: "headline",
       fontSize: ["3", "4", "5"],
       marginTop: 0,
       marginBottom: 3,
+      letterSpacing: "1px",
     },
     h2: {
-      fontFamily: "headline",
+      fontFamily: "serif",
       fontWeight: "headline",
       lineHeight: "headline",
       marginTop: 0,
@@ -29,9 +42,15 @@ module.exports = {
       margin: "0",
       color: "text",
     },
+    hr: {
+      color: "dividerColor",
+    },
     p: {
-      fontFamily: "body",
+      fontFamily: "serif",
       lineHeight: "1.8",
+      fontSize: [16, 18, 18],
+      letterSpacing: ".4px",
+      fontWeight: "400",
     },
     a: {
       color: "primary",
@@ -41,8 +60,9 @@ module.exports = {
       textDecoration: "none",
     },
     li: {
-      fontFamily: "body",
+      fontFamily: "serif",
       lineHeight: "2",
+      letterSpacing: ".4px",
     },
     // more styles can be added as needed
   },
@@ -50,6 +70,7 @@ module.exports = {
   fonts: {
     body: '"Inconsolata", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
     headline: "Inconsolata",
+    serif: '"Source Serif Pro", serif',
   },
   sizes: {
     container: 768,
@@ -96,6 +117,11 @@ module.exports = {
       padding: ["2", "3", "4"],
     },
   },
+  // dividers: {
+  //   default: {
+  //     color: "dividerColor",
+  //   },
+  // },
   links: {
     menu: {
       fontSize: "5",
@@ -103,30 +129,35 @@ module.exports = {
       lineHeight: "1.5",
       margin: "0",
       fontFamily: "body",
-      color: "text",
+      color: "headerForeground",
       "&:active": {
-        color: "headerForeground",
+        color: "activeMenuLink",
       },
     },
   },
   colors: {
-    text: "#000",
+    text: colors.eerieBlack,
     background: "#fff",
-    primary: "olivedrab",
-    headerColor: "pink",
-    headerForeground: "rgb(255, 116, 139)",
-    menuBackground: "#F8F7FC",
-    cardBackground: "#fffbf5",
-    blockquoteBg: "aliceblue",
+    primary: colors.sonicSilver,
+    headerColor: colors.davysGrey,
+    // headerForeground: "rgb(255, 116, 139)",
+    headerForeground: colors.onyx,
+    menuBackground: colors.lightGray,
+    cardBackground: colors.cultured,
+    blockquoteBg: colors.cultured,
+    activeMenuLink: colors.cadetBlueCrayola,
+    dividerColor: colors.gainsboro,
+    highlightColor: "#e8ff50c7",
     modes: {
       dark: {
-        headerColor: "#000",
-        text: "#fff",
-        background: "#444",
-        cardBackground: "#565656",
-        primary: "cornsilk",
-        menuBackground: "#000",
-        blockquoteBg: "#565656",
+        headerColor: colors.eerieBlack,
+        dividerColor: colors.sonicSilver,
+        text: colors.cultured,
+        background: colors.eerieBlack,
+        cardBackground: colors.onyx,
+        primary: colors.gainsboro,
+        menuBackground: colors.eerieBlack,
+        blockquoteBg: colors.davysGrey,
         headerForeground: "aquamarine",
       },
     },

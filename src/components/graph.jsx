@@ -3,6 +3,7 @@
 import * as React from "react"
 import { ResponsiveLine } from "@nivo/line"
 import { useThemeUI } from "theme-ui"
+import { useResponsiveValue } from "@theme-ui/match-media"
 
 import { formatSeconds, formatTime } from "../lib/formatters"
 
@@ -16,21 +17,24 @@ const MyResponsiveLine = data => {
   const { theme } = useThemeUI()
   const powerCurve = JSON.parse(data.data)
 
-  const formattedData = [
-    {
-      id: "power",
-      color: "hsl(260, 70%, 50%)",
-      data: powerCurve,
-    },
-  ]
-
   const graphColor = theme.colors.text
+  const yAxes = useResponsiveValue([
+    [100, 300, 500, 700],
+    [100, 200, 300, 400, 500, 600, 700],
+    [100, 200, 300, 400, 500, 600, 700],
+  ])
 
   return (
     // <div style={{ fontFamily: "Inconsolata" }}>
     <ResponsiveLine
-      data={formattedData}
-      margin={{ top: 50, right: 60, bottom: 50, left: 60 }}
+      data={[
+        {
+          id: "power",
+          color: "hsl(260, 70%, 50%)",
+          data: powerCurve,
+        },
+      ]}
+      margin={{ top: 50, right: 0, bottom: 50, left: 45 }}
       xScale={{
         type: "log",
         base: 2,
@@ -49,7 +53,6 @@ const MyResponsiveLine = data => {
             style={{
               background: theme.colors.headerColor,
               padding: "9px 12px",
-              borderColor: "red",
             }}
           >
             {slice.points.map(point => {
@@ -76,26 +79,25 @@ const MyResponsiveLine = data => {
       axisBottom={{
         format: formatSeconds,
         orient: "bottom",
-        tickSize: 2,
+        tickSize: 0,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "time",
-        legendOffset: 20,
+        legend: "TIME",
+        legendOffset: 35,
         legendPosition: "middle",
         tickCount: 100,
-        tickValues: [15, 60, 600, 3600, 10800, 21600],
+        tickValues: [15, 60, 300, 1200, 3600, 10800, 21600],
       }}
-      // gridXValues={[15, 100, 1000, 1000]}
       axisLeft={{
         orient: "left",
-        tickSize: 5,
+        tickSize: 0,
         tickPadding: 5,
         tickRotation: 0,
         tickCount: 3,
-        legend: "watts",
+        legend: "WATTS",
         legendOffset: -40,
         legendPosition: "middle",
-        tickValues: [100, 200, 300, 400, 500, 600, 700],
+        tickValues: yAxes,
       }}
       colors={[theme.colors.text, theme.colors.headerForeground]}
       pointSize={0}
@@ -108,8 +110,7 @@ const MyResponsiveLine = data => {
       useMesh={true}
       enableSlices="x"
       theme={{
-        // background: "red",
-        fontFamily: "Inconsolata",
+        fontFamily: theme.fonts.body,
         fontSize: 15,
         tooltip: {
           container: {
@@ -158,30 +159,29 @@ const MyResponsiveLine = data => {
             text: {
               fontSize: 18,
               fill: graphColor,
-              fontFamily: "Inconsolata",
+              fontFamily: theme.fonts.body,
             },
           },
           text: {
             fontSize: 18,
             fill: graphColor,
-            fontFamily: "Inconsolata",
+            fontFamily: theme.fonts.body,
           },
           ticks: {
             line: {},
             text: {
               fontSize: 18,
               fill: graphColor,
-              fontFamily: "Inconsolata",
+              fontFamily: theme.fonts.body,
             },
           },
         },
         ticks: {
-          text: { fontSize: 18, fontFamily: "Inconsolata" },
+          text: { fontSize: 18, fontFamily: theme.fonts.body },
         },
       }}
       legends={[]}
     />
-    // </div>
   )
 }
 export default MyResponsiveLine

@@ -36,7 +36,6 @@ const generateElevatioinTickValues = (axis, data, intervalSecs) => {
   const ticks = []
 
   while (currentTick < max) {
-    console.log(currentTick)
     currentTick += intervalSecs
     if (currentTick < max) {
       ticks.push(currentTick)

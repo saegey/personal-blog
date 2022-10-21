@@ -29,7 +29,7 @@ const Layout = ({ location, title, children }) => {
           alignItems: "center",
           variant: "styles.header",
           // position: "sticky",
-          background: "headerColor",
+          // background: "headerColor",
           top: 0,
           // zIndex: -100,
           zIndex: "101",
@@ -54,7 +54,6 @@ const Layout = ({ location, title, children }) => {
             },
           }}
           onClick={() => {
-            // console.log("open menu")
             setMenuOpen(true)
           }}
         >
@@ -81,7 +80,7 @@ const Layout = ({ location, title, children }) => {
         >
           <div
             sx={{
-              width: ["120px", "150px", "180px"],
+              width: ["100px", "110px", "130px"],
             }}
           >
             <Logo border={false} />
