@@ -3,8 +3,7 @@
 import * as React from "react"
 import { ResponsiveLine } from "@nivo/line"
 import { useThemeUI } from "theme-ui"
-import calcBestPowers from "../lib/gpxDemo"
-import { colors } from "../theme"
+
 import { formatSeconds, formatTime } from "../lib/formatters"
 
 // make sure parent container have a defined height when using
@@ -71,7 +70,7 @@ const MyResponsiveLine = data => {
         )
       }}
       // yFormat=" >-.2f"
-      curve="natural"
+      curve="basis"
       axisTop={null}
       axisRight={null}
       axisBottom={{

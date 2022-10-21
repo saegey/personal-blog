@@ -103,9 +103,7 @@ module.exports = {
       lineHeight: "1.5",
       margin: "0",
       fontFamily: "body",
-      textDecoration: "none",
       color: "text",
-      textDecoration: "none",
       "&:active": {
         color: "headerForeground",
       },

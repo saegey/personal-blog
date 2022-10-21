@@ -21,6 +21,7 @@ import Test from "../../components/test.js"
 import Graph from "../../components/graph.jsx"
 import ElevationGraph from "../../components/ElevationGraph.js"
 import ImageWrapper from "../../components/imageWrapper.js"
+import PortraitImage from "../../components/PortraitImage.js"
 
 This stage was a true sufferfest of a stage. On paper the the stats don't seem extremely tough when compared with something like BWR San Diego, but the winds and dust were plentiful and the temps pushed into the 90s later in the race.
 
@@ -42,7 +43,7 @@ This stage was a true sufferfest of a stage. On paper the the stats don't seem e
     - this is very interesting
 - Goodness much until that fluid owl
 
-<ImageWrapper image={props.data.mdx.frontmatter.images[0]} />
+<PortraitImage image={props.data.mdx.frontmatter.images[0]} />
 
 <Box sx={{ height: "400px", fontFamily: "Inconsolata" }}>
   <Graph data={props.data.mdx.gpxData.fields.powerCurve} />
@@ -53,7 +54,10 @@ This stage was a true sufferfest of a stage. On paper the the stats don't seem e
 3. Dear foresaw hungry and much some overhung
 4. Rash opossum less because less some amid besides yikes jeepers frenetic impassive fruitlessly shut
 
-<ImageWrapper image={props.data.mdx.frontmatter.images[3]} />
+<PortraitImage
+  image={props.data.mdx.frontmatter.images[3]}
+  widthPercentage="45%"
+/>
 
 > The copy warned the Little Blind Text, that where it came from it would have
 > been rewritten a thousand times and everything that was left from its origin
@@ -64,7 +68,7 @@ This stage was a true sufferfest of a stage. On paper the the stats don't seem e
   Beep
 </Box>
 
-<ImageWrapper image={props.data.mdx.frontmatter.images[5]} />
+<PortraitImage image={props.data.mdx.frontmatter.images[5]} />
 
 <Box
   sx={{
