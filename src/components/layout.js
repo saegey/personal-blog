@@ -147,11 +147,12 @@ const Layout = ({ location, title, children }) => {
           display: "flex",
           flexWrap: "wrap",
           alignItems: "center",
-          p: 2,
           variant: "styles.footer",
           fontFamily: "body",
-          marginY: "30px",
+          marginTop: "30px",
+          marginBottom: "0px",
           marginX: "20px",
+          padding: "0px",
         }}
       >
         <Box
@@ -160,26 +161,29 @@ const Layout = ({ location, title, children }) => {
             marginBottom: "10px",
           }}
         >
-          <Text as="div" sx={{ fontWeight: "900", fontSize: "2" }}>
-            Saegey
+          <Text
+            as="div"
+            sx={{ fontWeight: "900", fontSize: "2", marginBottom: "10px" }}
+          >
+            SAEGEY
           </Text>
 
           <Box>
             <Link
               href="http://instagram.com/saegey"
-              sx={{ variant: "styles.navlink", paddingRight: 3 }}
+              sx={{ textDecoration: "underline", paddingRight: 3 }}
             >
               Instagram
             </Link>
             <Link
               href="http://github.com/saegey"
-              sx={{ variant: "styles.navlink", paddingRight: 3 }}
+              sx={{ textDecoration: "underline", paddingRight: 3 }}
             >
               Github
             </Link>
             <Link
               href="http://twitter.com/saegey"
-              sx={{ variant: "styles.navlink", paddingRight: 3 }}
+              sx={{ textDecoration: "underline", paddingRight: 3 }}
             >
               Twitter
             </Link>
@@ -188,13 +192,15 @@ const Layout = ({ location, title, children }) => {
         <div sx={{ mx: "auto" }} />
         <div
           sx={{
-            p: 2,
+            p: 0,
             fontFamily: "body",
             // position: "absolute",
             bottom: 0,
+            marginTop: "auto",
+            marginBottom: "10px",
           }}
         >
-          © {new Date().getFullYear()} Adam Saegebarth
+          © {new Date().getFullYear()}
         </div>
       </footer>
     </div>

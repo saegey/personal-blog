@@ -68,9 +68,10 @@ module.exports = {
   },
   fontSizes: [10, 13, 18, 21, 26, 34, 48],
   fonts: {
-    body: '"Inconsolata", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+    body: '"Source Sans Pro", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
     headline: "Inconsolata",
     serif: '"Source Serif Pro", serif',
+    mono: "Inconsolata",
   },
   sizes: {
     container: 768,
