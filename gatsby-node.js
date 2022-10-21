@@ -3,8 +3,10 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 const { report } = require("process")
 const tj = require("@tmcw/togeojson")
 const DOMParser = require("xmldom").DOMParser
+const { parse } = require("./src/lib/raceResults")
+const { parseTSV } = require("./src/lib/webscorer")
+
 var length = require("@turf/length")
-console.log(length.default)
 
 const {
   calcBestPowers,
@@ -67,7 +69,6 @@ exports.createResolvers = async ({ createResolvers }) => {
       gpxData: {
         type: "File",
         resolve: async (source, args, context) => {
-          // console.log(source.frontmatter)
           if (source.frontmatter.gpxFile) {
             const results = await context.nodeModel.runQuery({
               query: {
@@ -80,10 +81,33 @@ exports.createResolvers = async ({ createResolvers }) => {
               type: "File",
               firstOnly: true,
             })
-            // console.log(results.fields.gpx)
             return results
           } else {
             return null
+          }
+        },
+      },
+      results: {
+        type: "File",
+        resolve: async (source, args, context) => {
+          if (source.frontmatter.results) {
+            try {
+              const results = await context.nodeModel.runQuery({
+                query: {
+                  filter: {
+                    name: {
+                      eq: source.frontmatter.results.file,
+                    },
+                  },
+                },
+                type: "File",
+                firstOnly: true,
+              })
+              return results
+            } catch (e) {
+              console.log("error", e)
+            }
+            // console.log(source.frontmatter.results.file)
           }
         },
       },
@@ -108,6 +132,30 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
       node,
       value,
     })
+  }
+
+  if (node.internal.mediaType === "text/plain") {
+    console.log(node.internal)
+    const content = await loadNodeContent(node)
+    const type = node.internal.description
+      .split(" ")[1]
+      .split("/")
+      .slice(-2, -1)[0]
+    if (type === "raceresults") {
+      createNodeField({
+        name: `data`,
+        node,
+        value: parse(content),
+      })
+    }
+
+    if (type === "webscorer") {
+      createNodeField({
+        name: `data`,
+        node,
+        value: parseTSV(content),
+      })
+    }
   }
 
   if (node.internal.mediaType === "application/gpx+xml") {
@@ -277,8 +325,6 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
               node,
               value: downsampleElevation(coordinates, 60),
             })
-
-            // const nodeId = createNodeId(`feature-${feature.properties.name}`)
 
             createNodeField({
               name: `gpx`,

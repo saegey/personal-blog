@@ -1,0 +1,161 @@
+﻿Place	Bib	Name	First name	Last name	Team name	Category	Time	Difference	% Back	% Winning	% Average	% Median
+1	29	Walker Bohannan	Walker	Bohannan	Premier Racing	Grande	4:27:35.0	-	-	100%	22.84%	20.71%
+2	284	Kenneth Rizer	Kenneth	Rizer	Premier Racing	Grande	4:27:35.5	+0:00.5	+0.00%	100.00%	22.84%	20.71%
+3	246	Sam Owens	Sam	Owens	Premier Racing	Grande	4:27:35.7	+0:00.7	+0.00%	100.00%	22.84%	20.71%
+4	174	Mark Laughery	Mark	Laughery	a cycling team	Grande	4:30:35.1	+3:00.1	+1.12%	98.89%	21.98%	19.82%
+5	130	Scout Hollister	Scout	Hollister	Gene Johnson Cycling Team	Grande	4:33:23.7	+5:48.7	+2.17%	97.87%	21.17%	18.99%
+6	280	Jackson Rich	Jackson	Rich		Grande	4:33:49.8	+6:14.8	+2.33%	97.72%	21.04%	18.86%
+7	134	Thomas Horan	Thomas	Horan	Fell Swoop	Grande	4:34:58.5	+7:23.5	+2.76%	97.31%	20.71%	18.52%
+8	317	Ryan Smolinsky	Ryan	Smolinsky	Ridge Cyclesports	Grande	4:34:59.4	+7:24.4	+2.77%	97.31%	20.71%	18.52%
+9	262	Tony Pletcher	Tony	Pletcher	Tenspeed Hero West	Grande	4:40:13.2	+12:38.2	+4.72%	95.49%	19.20%	16.97%
+10	372	Xiaohan Zhang	Xiaohan	Zhang	a cycling team	Grande	4:44:35.1	+17:00.1	+6.35%	94.03%	17.94%	15.67%
+11	111	Pete Groblewski	Pete	Groblewski	Keller Rohrback	Grande	4:49:26.6	+21:51.6	+8.17%	92.45%	16.54%	14.23%
+12	96	Austin Foxley	Austin	Foxley	Fount Cycling Guild	Grande	4:49:28.5	+21:53.5	+8.18%	92.44%	16.53%	14.22%
+13	207	Ryan McShane	Ryan	McShane	Vashon Bikes	Grande	4:49:55.1	+22:20.1	+8.35%	92.30%	16.40%	14.09%
+14	51	Douglas Carlton	Douglas	Carlton	Keller Rohrback	Grande	4:51:50.0	+24:15.0	+9.06%	91.69%	15.85%	13.53%
+15	216	Nikos Mills	Nikos	Mills	Dropbar Racing	Grande	4:54:24.3	+26:49.3	+10.02%	90.89%	15.11%	12.76%
+16	293	Adam Saegebarth	Adam	Saegebarth		Grande	4:54:25.0	+26:50.0	+10.03%	90.89%	15.11%	12.76%
+17	38	Andreas Broxson	Andreas	Broxson	Gene Johnson Cycling Team	Grande	4:55:06.5	+27:31.5	+10.29%	90.67%	14.91%	12.56%
+18	318	Calvin Spranger	Calvin	Spranger		Grande	4:55:17.2	+27:42.2	+10.35%	90.62%	14.86%	12.50%
+19	148	Kris Jensen	Kris	Jensen	Alki Velo club	Grande	4:55:18.3	+27:43.3	+10.36%	90.61%	14.85%	12.50%
+20	135	Matthew Hornland	Matthew	Hornland	MIGHTY CYCLING	Grande	4:55:18.9	+27:43.9	+10.36%	90.61%	14.85%	12.49%
+21	368	Chris Wood	Chris	Wood		Grande	4:55:19.6	+27:44.6	+10.37%	90.61%	14.85%	12.49%
+22	349	Rachel Urban	Rachel	Urban	Gene Johnson Cycling Team	Grande	4:57:48.1	+30:13.1	+11.29%	89.85%	14.13%	11.76%
+23	298	Scott Sawyer	Scott	Sawyer	Fount Cycling Guild	Grande	4:57:56.0	+30:21.0	+11.34%	89.81%	14.09%	11.72%
+24	90	Dalton Fayad	Dalton	Fayad	Okanagan Bike and Ski	Grande	4:58:06.3	+30:31.3	+11.41%	89.76%	14.04%	11.67%
+25	350	Stephen Ushy	Stephen	Ushy	Kelowna Cycle	Grande	4:58:22.4	+30:47.4	+11.51%	89.68%	13.97%	11.59%
+26	5	Osama Aljawad	Osama	Aljawad	Alki Velo club	Grande	4:59:23.1	+31:48.1	+11.88%	89.38%	13.68%	11.29%
+27	113	Michael Grundmann	Michael	Grundmann	Zevenbergen	Grande	4:59:32.1	+31:57.1	+11.94%	89.33%	13.63%	11.24%
+28	177	Patrick Leonard	Patrick	Leonard	Soft Like Kitten	Grande	5:00:35.6	+33:00.6	+12.34%	89.02%	13.33%	10.93%
+29	361	Alan Wiley	Alan	Wiley		Grande	5:00:36.5	+33:01.5	+12.34%	89.01%	13.32%	10.93%
+30	95	Dieter Fox	Dieter	Fox	Fount Cycling Guild	Grande	5:00:39.0	+33:04.0	+12.36%	89.00%	13.31%	10.91%
+31	339	Leigh Thurgood	Leigh	Thurgood	Tenspeed Hero	Grande	5:02:25.2	+34:50.2	+13.02%	88.48%	12.80%	10.39%
+32	3	Chris Adolf	Chris	Adolf	Dropbar Racing	Grande	5:03:52.0	+36:17.0	+13.56%	88.06%	12.38%	9.96%
+33	204	Patrick McLean	Patrick	McLean	SET Coaching	Grande	5:04:12.9	+36:37.9	+13.69%	87.96%	12.28%	9.86%
+34	323	Josh Stough	Josh	Stough	Ridge Cyclesport	Grande	5:04:50.3	+37:15.3	+13.92%	87.78%	12.10%	9.67%
+35	153	David Karman	David	Karman		Grande	5:05:41.0	+38:06.0	+14.24%	87.54%	11.86%	9.42%
+36	198	Patrick McAuliffe	Patrick	McAuliffe		Grande	5:05:41.7	+38:06.7	+14.24%	87.53%	11.86%	9.42%
+37	191	Randy Manion	Randy	Manion	Zevenbergen	Grande	5:06:25.6	+38:50.6	+14.52%	87.32%	11.64%	9.20%
+38	363	Jason Williams	Jason	Williams	Team SCH	Grande	5:06:53.8	+39:18.8	+14.69%	87.19%	11.51%	9.06%
+39	39	Michael Broxson	Michael	Broxson	Ridge Cyclesport	Grande	5:07:02.2	+39:27.2	+14.74%	87.15%	11.47%	9.02%
+40	346	Dwaine Trummert	Dwaine	Trummert	Fell Swoop Racing	Grande	5:09:08.7	+41:33.7	+15.53%	86.56%	10.86%	8.40%
+41	264	Jonathan Popescu	Jonathan	Popescu	Zevenbergen	Grande	5:10:20.5	+42:45.5	+15.98%	86.22%	10.52%	8.04%
+42	341	Corey Towle	Corey	Towle	Gear West Cycling Team	Grande	5:11:07.2	+43:32.2	+16.27%	86.01%	10.29%	7.81%
+43	87	Brian Estocapio	Brian	Estocapio	Fount Cycling Guild	Grande	5:12:03.1	+44:28.1	+16.62%	85.75%	10.02%	7.54%
+44	89	Jesse Favia	Jesse	Favia		Grande	5:12:03.4	+44:28.4	+16.62%	85.75%	10.02%	7.53%
+45	181	Dalton L'heureux	Dalton	L'Heureux	Gene Johnson	Grande	5:12:04.3	+44:29.3	+16.63%	85.74%	10.02%	7.53%
+46	311	Nolan Sigurdson	Nolan	Sigurdson	Unavita Racing	Grande	5:13:50.4	+46:15.4	+17.29%	85.26%	9.51%	7.01%
+47	252	Jacob Paul	Jacob	Paul	Okanagan Bike and Ski	Grande	5:14:34.3	+46:59.3	+17.56%	85.06%	9.30%	6.79%
+48	9	Brian Atwood	Brian	Atwood		Grande	5:14:34.6	+46:59.6	+17.56%	85.06%	9.29%	6.79%
+49	287	Julie Robertson Zivin	Julie	Robertson Zivin	PNW Colavita HelloFresh	Grande	5:15:01.1	+47:26.1	+17.73%	84.94%	9.17%	6.66%
+50	45	Mike Burris	Mike	Burris	Fell Swoop	Grande	5:15:01.7	+47:26.7	+17.73%	84.94%	9.16%	6.65%
+51	309	Andrew Shirey	Andrew	Shirey	Zevenbergen	Grande	5:15:02.7	+47:27.7	+17.74%	84.93%	9.16%	6.65%
+52	118	Elias Harkins	Elias	Harkins	a cycling team	Grande	5:18:14.5	+50:39.5	+18.93%	84.08%	8.24%	5.70%
+53	139	Todd Hunt	Todd	Hunt	Recycled Cycles	Grande	5:18:19.7	+50:44.7	+18.96%	84.06%	8.21%	5.68%
+54	100	Mimmo Futia	Mimmo	Futia	NW MTB Coaching	Grande	5:18:38.2	+51:03.2	+19.08%	83.98%	8.12%	5.58%
+55	268	Eli Prochaska	Eli	Prochaska	Project Bike	Grande	5:19:12.3	+51:37.3	+19.29%	83.83%	7.96%	5.42%
+56	308	Chris Sexton	Chris	Sexton	Taco Time NW	Grande	5:19:22.9	+51:47.9	+19.36%	83.78%	7.91%	5.36%
+57	260	Sean Phillips	Sean	Phillips	Dropbar Racing	Grande	5:19:32.0	+51:57.0	+19.41%	83.74%	7.87%	5.32%
+58	131	Jens Holsten	Jens	Holsten		Grande	5:21:55.9	+54:20.9	+20.31%	83.12%	7.17%	4.61%
+59	56	Tom Clements	Tom	Clements		Grande	5:22:28.4	+54:53.4	+20.51%	82.98%	7.02%	4.45%
+60	167	Jason Kramer	Jason	Kramer		Grande	5:22:31.3	+54:56.3	+20.53%	82.97%	7.00%	4.43%
+61	14	Justin Bannerman	Justin	Bannerman	Bicycle Barn/Livit Coffee	Grande	5:23:18.6	+55:43.6	+20.83%	82.76%	6.78%	4.20%
+62	194	Maguire Manthey	Maguire	Manthey	Grit City Health	Grande	5:23:29.8	+55:54.8	+20.90%	82.72%	6.72%	4.14%
+63	74	Tom Dotson	Tom	Dotson		Grande	5:23:30.3	+55:55.3	+20.90%	82.71%	6.72%	4.14%
+64	243	Zachary Oster	Zachary	Oster	Gene Johnson Cycling Team	Grande	5:24:43.4	+57:08.4	+21.35%	82.40%	6.37%	3.78%
+65	13	Emanuela Bandol	Emanuela	Bandol	Okanagan Bike and Ski Cycling Club	Grande	5:24:43.7	+57:08.7	+21.36%	82.40%	6.37%	3.78%
+66	212	Noah Meyerhans	Noah	Meyerhans	Zevenbergen	Grande	5:25:24.9	+57:49.9	+21.61%	82.23%	6.17%	3.58%
+67	218	Nikki Mohrbacher	Nikki	Mohrbacher	Gene Johnson Cycling Team	Grande	5:25:25.8	+57:50.8	+21.62%	82.22%	6.17%	3.57%
+68	279	Jason Reid	Jason	Reid		Grande	5:26:52.4	+59:17.4	+22.16%	81.86%	5.75%	3.14%
+69	138	Ron Huebner	Ron	Huebner	Gene Johnson Cycling Team	Grande	5:27:44.9	+1:00:09.9	+22.48%	81.64%	5.50%	2.88%
+70	25	James C Birkenbuel	James C	Birkenbuel	MIGHTY CYCLING	Grande	5:27:56.2	+1:00:21.2	+22.55%	81.60%	5.44%	2.83%
+71	259	Hau Phan	Hau	Phan		Grande	5:28:40.3	+1:01:05.3	+22.83%	81.41%	5.23%	2.61%
+72	171	John Kugler	John	Kugler	Alki Velo club	Grande	5:29:54.6	+1:02:19.6	+23.29%	81.11%	4.87%	2.24%
+73	316	Clark Smithson	Clark	Smithson	Tenspeed Hero	Grande	5:30:22.4	+1:02:47.4	+23.47%	80.99%	4.74%	2.11%
+74	117	Geordan Hankinson	Geordan	Hankinson	MIGHTY CYCLING	Grande	5:31:07.8	+1:03:32.8	+23.75%	80.81%	4.52%	1.88%
+75	172	Hal Kussick	Hal	Kussick	Dyna Racing p/b Fischer Plumbing	Grande	5:32:33.8	+1:04:58.8	+24.28%	80.46%	4.11%	1.46%
+76	158	Caroline Kenning	Caroline	Kenning	MIGHTY CYCLING	Grande	5:35:22.7	+1:07:47.7	+25.34%	79.79%	3.30%	0.62%
+77	52	Dylan Carney	Dylan	Carney	Soft Like Kitten	Grande	5:35:24.7	+1:07:49.7	+25.35%	79.78%	3.29%	0.61%
+78	304	Erik Scott	Erik	Scott	adequate	Grande	5:36:12.0	+1:08:37.0	+25.64%	79.59%	3.06%	0.38%
+79	116	Ben Hambleton	Ben	Hambleton		Grande	5:38:45.8	+1:11:10.8	+26.60%	78.99%	2.32%	-0.38%
+80	282	Aaron Riggs	Aaron	Riggs	Discount Gravel	Grande	5:38:49.7	+1:11:14.7	+26.63%	78.97%	2.30%	-0.40%
+81	119	Cosmo Harrigan	Cosmo	Harrigan		Grande	5:39:33.8	+1:11:58.8	+26.90%	78.80%	2.09%	-0.62%
+82	180	Robert Lewis	Robert	Lewis		Grande	5:39:36.4	+1:12:01.4	+26.92%	78.79%	2.08%	-0.63%
+83	348	Rick Uhlrich	Rick	Uhlrich		Grande	5:41:55.8	+1:14:20.8	+27.78%	78.26%	1.41%	-1.32%
+84	32	Chris Brooks	Chris	Brooks		Grande	5:43:07.0	+1:15:32.0	+28.23%	77.99%	1.07%	-1.67%
+85	319	Kathryn Staver	Kathryn	Staver	Breakfast Cycling Team	Grande	5:43:09.2	+1:15:34.2	+28.24%	77.98%	1.06%	-1.68%
+86	306	Michael Segers	Michael	Segers	Tacoma Bike	Grande	5:46:20.3	+1:18:45.3	+29.43%	77.26%	0.14%	-2.62%
+87	65	Martin Criminale	Martin	Criminale	Hammer Nutrition	Grande	5:47:08.1	+1:19:33.1	+29.73%	77.08%	-0.09%	-2.86%
+88	154	Gregory Kauper	Gregory	Kauper	Drop Bar Racing	Grande	5:47:08.5	+1:19:33.5	+29.73%	77.08%	-0.09%	-2.86%
+89	104	Katrina Go	Katrina	Go	Breakfast Racing Team	Grande	5:47:08.9	+1:19:33.9	+29.73%	77.08%	-0.10%	-2.86%
+90	66	Joshua Crutcher	Joshua	Crutcher	Big Sky Bandits	Grande	5:47:09.8	+1:19:34.8	+29.74%	77.08%	-0.10%	-2.87%
+91	81	Peter Eby	Peter	Eby	Alki Velo Hotwire Racing	Grande	5:47:12.7	+1:19:37.7	+29.76%	77.07%	-0.12%	-2.88%
+92	37	Mike Brown	Mike	Brown	Fell Swoop	Grande	5:51:04.7	+1:23:29.7	+31.20%	76.22%	-1.23%	-4.03%
+93	356	Ryan Wade	Ryan	Wade		Grande	5:51:12.9	+1:23:37.9	+31.25%	76.19%	-1.27%	-4.07%
+94	132	Brian Holtzclaw	Brian	Holtzclaw	Vertical World Cycling Team	Grande	5:51:44.9	+1:24:09.9	+31.45%	76.07%	-1.42%	-4.23%
+95	40	Tom Broxson	Tom	Broxson		Grande	5:54:11.3	+1:26:36.3	+32.37%	75.55%	-2.13%	-4.95%
+96	64	Adam Crane	Adam	Crane	Soft Like Kitten	Grande	5:56:46.9	+1:29:11.9	+33.33%	75.00%	-2.87%	-5.72%
+97	274	Kellen Rack	Kellen	Rack		Grande	5:57:45.0	+1:30:10.0	+33.70%	74.80%	-3.15%	-6.01%
+98	271	Elizabeth Putnam	Elizabeth	Putnam	PNW Colavita HelloFresh	Grande	5:57:51.2	+1:30:16.2	+33.74%	74.77%	-3.18%	-6.04%
+99	173	James Laudolff	James	Laudolff		Grande	5:57:53.4	+1:30:18.4	+33.75%	74.77%	-3.19%	-6.05%
+100	296	Robin Sarner	Robin	Sarner		Grande	5:59:17.9	+1:31:42.9	+34.28%	74.47%	-3.60%	-6.46%
+101	211	Marcus Meyer	Marcus	Meyer	Alki Velo club	Grande	6:02:10.9	+1:34:35.9	+35.35%	73.88%	-4.43%	-7.32%
+102	92	Caislin Firth	Caislin	Firth	Breakfast Racing Team	Grande	6:02:12.1	+1:34:37.1	+35.36%	73.88%	-4.44%	-7.32%
+103	297	Todd Saunders	Todd	Saunders	Soft Like Kitten	Grande	6:03:18.0	+1:35:43.0	+35.77%	73.65%	-4.75%	-7.65%
+104	190	Kevin Maloy	Kevin	Maloy		Grande	6:04:03.6	+1:36:28.6	+36.05%	73.50%	-4.97%	-7.88%
+105	203	Joey McGuire	Joey	McGuire		Grande	6:04:52.7	+1:37:17.7	+36.36%	73.33%	-5.21%	-8.12%
+106	303	Jennifer Schulz	Jennifer	Schulz	Fresh Air Concept Kelowna	Grande	6:04:56.1	+1:37:21.1	+36.38%	73.32%	-5.23%	-8.13%
+107	161	William Kingman	William	Kingman	Eliel Factory Team	Grande	6:06:54.3	+1:39:19.3	+37.12%	72.93%	-5.79%	-8.72%
+108	72	Luke Distelhorst	Luke	Distelhorst		Grande	6:06:59.4	+1:39:24.4	+37.15%	72.91%	-5.82%	-8.74%
+109	235	Jim Nau	Jim	Nau		Grande	6:10:45.9	+1:43:10.9	+38.56%	72.17%	-6.91%	-9.86%
+110	270	Cole Pugliano	Cole	Pugliano		Grande	6:12:16.1	+1:44:41.1	+39.12%	71.88%	-7.34%	-10.31%
+111	6	Brandy Allen	Brandy	Allen	Breakfast Racing Team	Grande	6:13:14.8	+1:45:39.8	+39.49%	71.69%	-7.62%	-10.60%
+112	267	Terry Prime	Terry	Prime		Grande	6:13:46.3	+1:46:11.3	+39.68%	71.59%	-7.77%	-10.75%
+113	366	John Wong	John	Wong		Grande	6:15:33.8	+1:47:58.8	+40.35%	71.25%	-8.29%	-11.28%
+114	214	Mike Miller	Mike	Miller		Grande	6:15:38.6	+1:48:03.6	+40.38%	71.23%	-8.31%	-11.31%
+115	182	Larry Lieberman	Larry	Lieberman		Grande	6:15:42.8	+1:48:07.8	+40.41%	71.22%	-8.33%	-11.33%
+116	337	Katie Thompson	Katie	Thompson	Raise the Bar	Grande	6:15:46.0	+1:48:11.0	+40.43%	71.21%	-8.35%	-11.34%
+117	27	Nathan Black	Nathan	Black		Grande	6:17:50.7	+1:50:15.7	+41.21%	70.82%	-8.95%	-11.96%
+118	342	Austin Treloar	Austin	Treloar	Recycled Cycles Racing	Grande	6:22:59.9	+1:55:24.9	+43.13%	69.87%	-10.43%	-13.49%
+119	98	John Frias	John	Frias	CBC Racing	Grande	6:23:00.6	+1:55:25.6	+43.14%	69.86%	-10.44%	-13.49%
+120	4	Giovanni Alfano	Giovanni	Alfano	jubilee Racing	Grande	6:26:08.8	+1:58:33.8	+44.31%	69.30%	-11.34%	-14.42%
+121	208	Mark Meadows	Mark	Meadows	FSV/McLeod Construction	Grande	6:27:41.1	+2:00:06.1	+44.88%	69.02%	-11.79%	-14.88%
+122	221	Paul Monie	Paul	Monie	Chinook Racing Development	Grande	6:28:17.8	+2:00:42.8	+45.11%	68.91%	-11.96%	-15.06%
+123	166	Stephen Kraakmo	Stephen	Kraakmo		Grande	6:28:18.0	+2:00:43.0	+45.11%	68.91%	-11.96%	-15.06%
+124	234	Thomas Nash	Thomas	Nash		Grande	6:28:18.3	+2:00:43.3	+45.12%	68.91%	-11.96%	-15.06%
+125	11	Jesus Avila	Jesus	Avila		Grande	6:28:18.6	+2:00:43.6	+45.12%	68.91%	-11.97%	-15.06%
+126	31	Nick Brewe	Nick	Brewe		Grande	6:28:19.0	+2:00:44.0	+45.12%	68.91%	-11.97%	-15.06%
+127	334	Jessie Templeton	Jessie	Templeton		Grande	6:30:25.2	+2:02:50.2	+45.91%	68.54%	-12.57%	-15.69%
+128	333	Adam Templeton	Adam	Templeton		Grande	6:30:25.6	+2:02:50.6	+45.91%	68.54%	-12.58%	-15.69%
+129	144	Brandon Jacobson	Brandon	Jacobson		Grande	6:31:07.1	+2:03:32.1	+46.17%	68.41%	-12.78%	-15.89%
+130	254	Armando Paz	Armando	Paz	Fell Swoop	Grande	6:31:07.8	+2:03:32.8	+46.17%	68.41%	-12.78%	-15.90%
+131	83	Travis Elliott	Travis	Elliott	Dyna	Grande	6:31:18.5	+2:03:43.5	+46.24%	68.38%	-12.83%	-15.95%
+132	82	Larry Elliott	Larry	Elliott	Dyna Racing	Grande	6:31:19.2	+2:03:44.2	+46.24%	68.38%	-12.83%	-15.95%
+133	189	Cameron Mallory	Cameron	Mallory		Grande	6:41:11.7	+2:13:36.7	+49.93%	66.70%	-15.68%	-18.88%
+134	327	Nigel Stuke	Nigel	Stuke		Grande	6:41:15.2	+2:13:40.2	+49.95%	66.69%	-15.70%	-18.90%
+135	114	Nicole Gunton	Nicole	Gunton	NW MTB Coaching	Grande	6:48:45.5	+2:21:10.5	+52.76%	65.46%	-17.86%	-21.12%
+136	121	David Hecht	David	Hecht	Dropbar	Grande	6:51:03.6	+2:23:28.6	+53.62%	65.10%	-18.53%	-21.80%
+137	142	Megan Hutchison	Megan	Hutchison	Breakfast Racing Team	Grande	6:51:04.3	+2:23:29.3	+53.62%	65.09%	-18.53%	-21.81%
+138	227	Julia Moran	Julia	Moran		Grande	6:51:04.7	+2:23:29.7	+53.63%	65.09%	-18.53%	-21.81%
+139	224	Joe Moore	Joe	Moore	N/A	Grande	6:51:05.3	+2:23:30.3	+53.63%	65.09%	-18.53%	-21.81%
+140	367	Andrew Wood	Andrew	Wood		Grande	6:53:25.8	+2:25:50.8	+54.51%	64.72%	-19.21%	-22.50%
+141	53	Jacob Carvitto	Jacob	Carvitto	Vandelay Industries	Grande	6:54:03.8	+2:26:28.8	+54.74%	64.62%	-19.39%	-22.69%
+142	175	Charlie Lee	Charlie	Lee		Grande	7:02:56.6	+2:35:21.6	+58.06%	63.27%	-21.95%	-25.32%
+143	103	Jonathan Gleason	Jonathan	Gleason		Grande	7:06:16.7	+2:38:41.7	+59.31%	62.77%	-22.91%	-26.31%
+144	266	Mark Postle	Mark	Postle		Grande	7:06:18.4	+2:38:43.4	+59.32%	62.77%	-22.92%	-26.32%
+145	258	Sam Petrini	Sam	Petrini		Grande	7:06:43.2	+2:39:08.2	+59.47%	62.71%	-23.04%	-26.44%
+146	12	Andrew Babcock	Andrew	Babcock	Cascadia Wheel Co.	Grande	7:10:31.5	+2:42:56.5	+60.89%	62.15%	-24.14%	-27.57%
+147	67	Loren Curtis	Loren	Curtis		Grande	7:13:44.8	+2:46:09.8	+62.10%	61.69%	-25.07%	-28.52%
+148	42	Paul Brunton	Paul	Brunton		Grande	7:16:58.7	+2:49:23.7	+63.31%	61.23%	-26.00%	-29.48%
+149	229	Sebastien Morvan	Sebastien	Morvan		Grande	7:26:05.3	+2:58:30.3	+66.71%	59.98%	-28.63%	-32.18%
+150	245	Philip Ouellette	Philip	Ouellette		Grande	7:39:33.4	+3:11:58.4	+71.74%	58.23%	-32.51%	-36.17%
+151	176	Joel Lemus	Joel	Lemus		Grande	7:39:35.0	+3:12:00.0	+71.75%	58.22%	-32.52%	-36.18%
+152	110	Robert Gresham	Robert	Gresham		Grande	7:41:27.2	+3:13:52.2	+72.45%	57.99%	-33.06%	-36.73%
+153	62	Paul Conrad	Paul	Conrad		Grande	7:41:27.7	+3:13:52.7	+72.46%	57.99%	-33.06%	-36.74%
+154	355	Ricardo Villalobos	Ricardo	Villalobos		Grande	7:46:14.8	+3:18:39.8	+74.24%	57.39%	-34.44%	-38.15%
+155	295	Diego Salazar	Diego	Salazar		Grande	7:46:15.2	+3:18:40.2	+74.25%	57.39%	-34.44%	-38.16%
+156	248	Joel Park	Joel	Park		Grande	7:48:24.8	+3:20:49.8	+75.05%	57.13%	-35.06%	-38.80%
+-	70	Brian Decker	Brian	Decker	Squadra Cervezza	Grande	DNF	-	-	-	-	-
+-	195	Mike Marino	Mike	Marino		Grande	DNF	-	-	-	-	-
+-	200	Jason McClurg	Jason	McClurg	Ride like the winded	Grande	DNF	-	-	-	-	-
+-	360	Martin Wilcox	Martin	Wilcox		Grande	DNF	-	-	-	-	-

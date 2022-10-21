@@ -1,23 +1,18 @@
 import React from "react"
-import { render } from "react-dom"
 import { ResponsiveLine } from "@nivo/line"
 import { useThemeUI } from "theme-ui"
+
 import {
   formatSeconds,
   generateElevatioinTickValues,
   generateTimeTickValues,
 } from "../lib/formatters"
 
-const styles = {
-  fontFamily: "sans-serif",
-  textAlign: "center",
-}
-
 const ElevationGraph = ({ data }) => {
-  //console.log(data)
   const { theme } = useThemeUI()
   const graphColor = theme.colors.text
   const yTickValues = generateElevatioinTickValues("y", data, 1000)
+
   return (
     <ResponsiveLine
       yScale={{

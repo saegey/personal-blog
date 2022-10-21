@@ -1,7 +1,6 @@
 /** @jsxImportSource theme-ui */
 
 import React from "react"
-import { calcBestPowers } from "../lib/gpxDemo"
 import { Text, Box, Grid } from "theme-ui"
 import length from "@turf/length"
 

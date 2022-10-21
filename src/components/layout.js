@@ -1,16 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React, { useState } from "react"
-import { Link as GatsbyLink } from "gatsby"
-import {
-  Container,
-  Button,
-  Close,
-  useColorMode,
-  Text,
-  Link,
-  Box,
-} from "theme-ui"
+import { Container, Button, useColorMode, Text, Link, Box } from "theme-ui"
 
 import Logo from "../components/logo"
 import Menu from "./menu"

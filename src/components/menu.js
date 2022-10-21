@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import * as React from "react"
-import { jsx, Text, Close, Link, Button, Box } from "theme-ui"
+import { Close, Link, Button } from "theme-ui"
 import { Link as GatsbyLink } from "gatsby"
 
 const MenuLink = ({ location, title, setMenuOpen }) => {
