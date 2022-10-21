@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React, { useState } from "react"
-import { Text, Flex, Box, Divider, Button } from "theme-ui"
+import { Text, Flex, Box, Divider, Button, Close } from "theme-ui"
 
 import { formatTime } from "../lib/formatters"
 
@@ -33,9 +33,9 @@ const ViewAllResults = ({ data, setShouldShowResults }) => {
     >
       <Box
         sx={{
-          backgroundColor: "white",
-          margin: "5% auto",
-          padding: "20px",
+          backgroundColor: "background",
+          margin: ["0% auto", "5% auto", "5% auto"],
+          padding: "0px",
           width: "100%",
           maxWidth: "706px",
           fontFamily: "body",
@@ -45,10 +45,28 @@ const ViewAllResults = ({ data, setShouldShowResults }) => {
           event.stopPropagation()
         }}
       >
-        <Text as="h2" sx={{ lineHeight: "30px" }}>
-          Results
-        </Text>
-        <ListResults data={data} />
+        <Flex
+          sx={{ position: "sticky", top: "0px", backgroundColor: "background" }}
+        >
+          <Box sx={{ p: "20px" }}>
+            <Text as="h2" sx={{ lineHeight: "30px" }}>
+              Results
+            </Text>
+          </Box>
+          <Box sx={{ marginLeft: "auto", p: "20px" }}>
+            <Button
+              onClick={() => {
+                setShouldShowResults(false)
+              }}
+              sx={{ backgroundColor: "transparent", p: 0 }}
+            >
+              <Close ml="auto" mr={-2} sx={{ color: "text" }} />
+            </Button>
+          </Box>
+        </Flex>
+        <Box sx={{ paddingX: "20px" }}>
+          <ListResults data={data} />
+        </Box>
       </Box>
     </Box>
   )
@@ -118,7 +136,6 @@ const RaceResults = ({ data, numbersToHighlight, distance }) => {
       d.isMe = false
     }
   })
-  // 48 / ("04:03:40".split(":").reduce((acc, time) => 60 * acc + +time) / 60 / 60)
 
   const highlights = []
   numbersToHighlight.forEach(n => highlights.push(data[n]))
@@ -144,6 +161,12 @@ const RaceResults = ({ data, numbersToHighlight, distance }) => {
           </Box>
           <Box sx={{ marginLeft: "auto" }}>
             <Button
+              sx={{
+                color: "background",
+                marginRight: 0,
+                paddingX: "10px",
+                paddingY: "5px",
+              }}
               mr={2}
               onClick={() => {
                 setShouldShowResults(true)
