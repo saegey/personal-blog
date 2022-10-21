@@ -10,6 +10,7 @@ const MenuLink = ({ location, title, setMenuOpen }) => {
       <Link
         to={location}
         variant="menu"
+        sx={{ textDecoration: "none" }}
         activeClassName="active"
         as={GatsbyLink}
         onClick={() => setMenuOpen(false)}
@@ -49,7 +50,7 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
             }}
             sx={{ backgroundColor: "transparent" }}
           >
-            <Close ml="auto" mr={-2} sx={{ color: "text" }} />
+            <Close ml="auto" mr={-2} sx={{ color: "headerForeground" }} />
           </Button>
         </div>
         <div

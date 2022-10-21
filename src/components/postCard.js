@@ -84,7 +84,7 @@ const PostCard = ({ post, title, image }) => {
                 {post.frontmatter.date}
               </Text>
             </Box>
-            <Flex>
+            <Flex sx={{ display: ["none", "inherit", "inherit"] }}>
               {post.frontmatter.tags.map(tag => {
                 return (
                   <Badge mr={1} variant="listSection">

@@ -9,7 +9,6 @@ import PostCard from "../components/postCard"
 
 const BlogIndex = ({ data, location }) => {
   const posts = data.allMdx.nodes
-  // console.log(posts)
 
   if (posts.length === 0) {
     return (

@@ -10,9 +10,11 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@fontsource/inconsolata": "^4.5.8",
+    "@fontsource/source-serif-pro": "^4.5.9",
     "@mdx-js/react": "^2.1.4",
     "@nivo/core": "^0.80.0",
     "@nivo/line": "^0.80.0",
+    "@theme-ui/match-media": "^0.15.3",
     "@theme-ui/mdx": "^0.15.1",
     "@theme-ui/presets": "^0.15.1",
     "@turf/length": "^6.5.0",

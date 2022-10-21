@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React, { useState } from "react"
-import { Text, Flex, Box, Divider, Button, Close } from "theme-ui"
+import { Text, Flex, Box, Divider, Button, Close, Grid } from "theme-ui"
 
 import { formatTime } from "../lib/formatters"
 
@@ -49,7 +49,15 @@ const ViewAllResults = ({ data, setShouldShowResults }) => {
           sx={{ position: "sticky", top: "0px", backgroundColor: "background" }}
         >
           <Box sx={{ p: "20px" }}>
-            <Text as="h2" sx={{ lineHeight: "30px" }}>
+            <Text
+              as="h2"
+              sx={{
+                lineHeight: "30px",
+                lineHeight: "30px",
+                fontFamily: "serif",
+                letterSpacing: ".6px",
+              }}
+            >
               Results
             </Text>
           </Box>
@@ -76,31 +84,72 @@ const ListResults = ({ data }) => {
   return (
     <>
       {data.map((item, index) => {
+        // 			text-decoration: underline;
+        // text-decoration-color: var(--h);
+        // text-decoration-skip-ink: none;
+        // text-decoration-thickness: 0.3rem;
+        // text-underline-offset: -0.15rem;
+        // transition: text-decoration .3s;
         return (
-          <Flex
-            sx={{
-              height: ["35px", "35px", "35px"],
-              backgroundColor: item.isMe ? "blockquoteBg" : "",
-            }}
-          >
-            <Box sx={{ width: "5%" }}>
-              <ResultText>
-                <strong>{item.place}</strong>
-              </ResultText>
+          <>
+            <Box
+              sx={{
+                marginBottom: "10px",
+                fontFamily: "body",
+              }}
+            >
+              <Flex sx={{ display: ["flex", "none", "none"] }}>
+                <Box sx={{ width: "10%" }}>{item.place}</Box>
+                <Box>
+                  <Text
+                    sx={{
+                      textDecoration: item.isMe ? "underline" : "",
+                      textDecorationColor: item.isMe ? "highlightColor" : "",
+                      textDecorationThickness: item.isMe ? "10px" : "",
+                      textUnderlineOffset: item.isMe ? "-7px" : "",
+                      textDecorationSkipInk: item.isMe ? "none" : "",
+                    }}
+                  >
+                    {item.name}
+                  </Text>
+                </Box>
+                <Box sx={{ marginLeft: "auto" }}>{item.time}</Box>
+              </Flex>
+              <Flex sx={{ display: ["flex", "none", "none"] }}>
+                <Box sx={{ width: "10%" }}></Box>
+                <Box sx={{ color: "primary" }}>{item.speed}</Box>
+                <Box sx={{ marginLeft: "auto", color: "primary" }}>
+                  {item.timeBehind}
+                </Box>
+              </Flex>
             </Box>
-            <Box sx={{ width: "40%" }}>
-              <ResultText>{item.name}</ResultText>
-            </Box>
-            <Box sx={{ width: "20%" }}>
-              <ResultText>{item.time}</ResultText>
-            </Box>
-            <Box sx={{ width: "20%" }}>
-              <ResultText>{item.speed}</ResultText>
-            </Box>
-            <Box sx={{ width: "15%", textAlign: "right" }}>
-              <ResultText>{item.timeBehind}</ResultText>
-            </Box>
-          </Flex>
+            <Flex
+              sx={{
+                height: ["35px", "35px", "35px"],
+                backgroundColor: item.isMe ? "blockquoteBg" : "",
+                display: ["none", "flex", "flex"],
+                fontFamily: "body",
+              }}
+            >
+              <Box sx={{ width: "5%" }}>
+                <ResultText>
+                  <strong>{item.place}</strong>
+                </ResultText>
+              </Box>
+              <Box sx={{ width: "40%" }}>
+                <ResultText>{item.name}</ResultText>
+              </Box>
+              <Box sx={{ width: "20%" }}>
+                <ResultText>{item.time}</ResultText>
+              </Box>
+              <Box sx={{ width: "20%" }}>
+                <ResultText>{item.speed}</ResultText>
+              </Box>
+              <Box sx={{ width: "15%", textAlign: "right" }}>
+                <ResultText>{item.timeBehind}</ResultText>
+              </Box>
+            </Flex>
+          </>
         )
       })}
     </>
@@ -139,7 +188,6 @@ const RaceResults = ({ data, numbersToHighlight, distance }) => {
 
   const highlights = []
   numbersToHighlight.forEach(n => highlights.push(data[n]))
-  console.log(highlights)
 
   return (
     <>
@@ -152,10 +200,17 @@ const RaceResults = ({ data, numbersToHighlight, distance }) => {
         ""
       )}
 
-      <Box sx={{ fontFamily: "body" }}>
+      <Box>
         <Flex>
-          <Box>
-            <Text as="h2" sx={{ lineHeight: "30px" }}>
+          <Box sx={{ marginBottom: ["10px", "0px", "0px"] }}>
+            <Text
+              as="h2"
+              sx={{
+                lineHeight: "30px",
+                fontFamily: "serif",
+                letterSpacing: ".6px",
+              }}
+            >
               Results
             </Text>
           </Box>
@@ -166,6 +221,7 @@ const RaceResults = ({ data, numbersToHighlight, distance }) => {
                 marginRight: 0,
                 paddingX: "10px",
                 paddingY: "5px",
+                fontFamily: "body",
               }}
               mr={2}
               onClick={() => {
@@ -176,9 +232,7 @@ const RaceResults = ({ data, numbersToHighlight, distance }) => {
             </Button>
           </Box>
         </Flex>
-        <Divider />
         <ListResults data={highlights} />
-        <Divider />
       </Box>
     </>
   )

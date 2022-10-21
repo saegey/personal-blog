@@ -42,9 +42,8 @@ function camelize(str) {
 
 const parseTSV = data => {
   const rawData = tsvJSON(data)
-  // const blah = typeof rawDatac
-  console.log(rawData)
   const formattedData = []
+
   rawData.forEach(r => {
     formattedData.push({
       place: r["Place"],

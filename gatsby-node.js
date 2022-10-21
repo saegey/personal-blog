@@ -107,7 +107,6 @@ exports.createResolvers = async ({ createResolvers }) => {
             } catch (e) {
               console.log("error", e)
             }
-            // console.log(source.frontmatter.results.file)
           }
         },
       },
@@ -135,12 +134,12 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
   }
 
   if (node.internal.mediaType === "text/plain") {
-    console.log(node.internal)
     const content = await loadNodeContent(node)
     const type = node.internal.description
       .split(" ")[1]
       .split("/")
       .slice(-2, -1)[0]
+
     if (type === "raceresults") {
       createNodeField({
         name: `data`,
@@ -159,7 +158,6 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
   }
 
   if (node.internal.mediaType === "application/gpx+xml") {
-    // console.log("inside the loop", node.internal.type)
     const content = await loadNodeContent(node)
     const gpxData = new DOMParser().parseFromString(content)
     const data = tj.gpx(gpxData)

@@ -12,21 +12,34 @@ export default function PostTemplate({ data, children }) {
     <>
       <Flex sx={{ marginBottom: "30px" }}>
         <Box
-          sx={{ fontFamily: "headline", flex: "1 1 auto", fontSize: [1, 2, 2] }}
+          sx={{ fontFamily: "serif", flex: "1 1 auto", fontSize: [1, 2, 2] }}
         >
           {date}
         </Box>
-        <Box sx={{ fontFamily: "headline", fontSize: [1, 2, 2] }}>
+        <Box sx={{ fontFamily: "serif", fontSize: [1, 2, 2] }}>
           Author • Adam Saegebarth
         </Box>
       </Flex>
       <Text
         as="h1"
-        sx={{ fontFamily: "body", fontWeight: 900, fontStyle: "normal" }}
+        sx={{
+          fontFamily: "serif",
+          fontWeight: 900,
+          fontStyle: "normal",
+          fontSize: ["4", "5", "5"],
+          marginBottom: ["20px", "0", "0"],
+          letterSpacing: [".6px", "1px", "1px"],
+        }}
       >
         {title}
       </Text>
-      <Flex sx={{ marginTop: "10px", marginBottom: "20px" }}>
+      <Flex
+        sx={{
+          marginTop: "10px",
+          marginBottom: "20px",
+          display: ["none", "inherit", "inherit"],
+        }}
+      >
         {data.mdx.frontmatter.tags.map(tag => {
           return (
             <Badge mr={1} variant="listSection">

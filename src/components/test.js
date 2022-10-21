@@ -22,10 +22,19 @@ function dateDiff(dateFrom, dateTo) {
 const StatCard = ({ title, value }) => {
   return (
     <>
-      <Text sx={{ fontFamily: "body" }}>{title}</Text>
+      <Text
+        sx={{
+          fontFamily: "serif",
+          color: "primary",
+          // textTransform: "uppercase",
+          fontSize: [1],
+        }}
+      >
+        {title}
+      </Text>
       <Box
         sx={{
-          fontFamily: "body",
+          fontFamily: "serif",
           fontSize: ["3", "4", "4"],
           fontWeight: "700",
         }}
@@ -37,7 +46,6 @@ const StatCard = ({ title, value }) => {
 }
 
 const fileName = ({
-  data,
   elevationGain,
   distance,
   stoppedTime,
@@ -58,9 +66,9 @@ const fileName = ({
         gap={2}
         columns={[2, 2, 3]}
         sx={{
-          backgroundColor: "blockquoteBg",
-          paddingY: "20px",
-          paddingX: "20px",
+          backgroundColor: ["", "blockquoteBg", "blockquoteBg"],
+          paddingY: ["0px", "20px", "20px"],
+          paddingX: ["0px", "20px", "20px"],
           marginBottom: "20px",
           borderRadius: "4px",
         }}
@@ -106,7 +114,7 @@ const fileName = ({
             value={tempAnalysisData.entire * (9 / 5) + 32 + "°"}
           />
         </Box>
-        <Box>
+        <Box sx={{ display: ["none", "none", "inherit"] }}>
           <StatCard
             title="Time Stopped"
             value={new Date(stoppedTime * 1000).toISOString().substr(11, 8)}

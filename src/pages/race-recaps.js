@@ -23,7 +23,7 @@ const BlogIndex = ({ data, location }) => {
   }
   return (
     <Container sx={{ padding: "0px" }} bg="muted">
-      <ol sx={{ p: 0 }}>
+      <ol sx={{ p: 0, marginTop: "0px" }}>
         {posts.map(post => {
           const image = getImage(post.frontmatter.headerImage)
           const title = post.frontmatter.title || post.fields.slug

@@ -13,18 +13,29 @@ images:
   - ./3.jpeg
   - ./5.jpeg
   - ./7.jpeg
+results:
+  file: "rpi-stage-3-results"
+  provider: "raceresults"
 ---
 
-import { Button, Alert, Close, Box } from "theme-ui"
+import { Button, Alert, Close, Box, Divider } from "theme-ui"
 import { Link } from "gatsby"
 import Test from "../../components/test.js"
 import Graph from "../../components/graph.jsx"
 import ElevationGraph from "../../components/ElevationGraph.js"
 import ImageWrapper from "../../components/imageWrapper.js"
 import PortraitImage from "../../components/PortraitImage.js"
+import RaceResults from "../../components/RaceResults.js"
 
 This stage was a true sufferfest of a stage. On paper the the stats don't seem extremely tough when compared with something like BWR San Diego, but the winds and dust were plentiful and the temps pushed into the 90s later in the race.
 
+<Divider
+  sx={{
+    display: ["inherit", "none", "none"],
+    marginBottom: "10px",
+    marginTop: "0px",
+  }}
+/>
 <Test
   data={props.data.mdx.gpxData.fields.gpx}
   elevationGain={props.data.mdx.gpxData.fields.elevationGain}
@@ -35,6 +46,13 @@ This stage was a true sufferfest of a stage. On paper the the stats don't seem e
   tempAnalysis={props.data.mdx.gpxData.fields.tempAnalysis}
   powerAnalysis={props.data.mdx.gpxData.fields.powerAnalysis}
   cadenceAnalysis={props.data.mdx.gpxData.fields.cadenceAnalysis}
+/>
+<Divider
+  sx={{
+    display: ["inherit", "none", "none"],
+    marginBottom: "20px",
+    marginTop: "0px",
+  }}
 />
 <ImageWrapper image={props.data.mdx.frontmatter.images[1]} />
 
@@ -54,22 +72,26 @@ This stage was a true sufferfest of a stage. On paper the the stats don't seem e
 3. Dear foresaw hungry and much some overhung
 4. Rash opossum less because less some amid besides yikes jeepers frenetic impassive fruitlessly shut
 
-<PortraitImage
-  image={props.data.mdx.frontmatter.images[3]}
-  widthPercentage="45%"
+<Box sx={{ paddingBottom: "20px" }}>
+  <PortraitImage
+    image={props.data.mdx.frontmatter.images[3]}
+    widthPercentage="45%"
+  />
+</Box>
+<Divider />
+<RaceResults
+  data={props.data.mdx.results.fields.data}
+  numbersToHighlight={[0, 1, 2, 19, 22, 29, 30, 67, 71]}
+  distance={props.data.mdx.gpxData.fields.distance}
 />
+<Divider />
 
 > The copy warned the Little Blind Text, that where it came from it would have
 > been rewritten a thousand times and everything that was left from its origin
 > would be the word "and" and the Little Blind Text should turn around and
 > return to its own, safe country.
 
-<Box p={4} color="background" bg="primary">
-  Beep
-</Box>
-
-<PortraitImage image={props.data.mdx.frontmatter.images[5]} />
-
+<Divider />
 <Box
   sx={{
     height: "250px",
@@ -79,3 +101,5 @@ This stage was a true sufferfest of a stage. On paper the the stats don't seem e
 >
   <ElevationGraph data={props.data.mdx.gpxData.fields.elevationData} />
 </Box>
+<Divider />
+<PortraitImage image={props.data.mdx.frontmatter.images[5]} />
