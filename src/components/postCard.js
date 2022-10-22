@@ -65,6 +65,19 @@ const PostCard = ({ post, title, image }) => {
               sx={{ textDecoration: "none" }}
               as={GatsbyLink}
             >
+              <Box sx={{ marginBottom: "10px" }}>
+                <Text
+                  sx={{
+                    fontSize: "16px",
+                    fontFamily: "body",
+                    textTransform: "uppercase",
+                    fontWeight: "600",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  {post.frontmatter.type}
+                </Text>
+              </Box>
               <Text
                 as="h2"
                 // variant="subHeadline"
@@ -81,10 +94,11 @@ const PostCard = ({ post, title, image }) => {
             <Box sx={{ marginBottom: "20px" }}>
               <Text
                 sx={{
-                  fontSize: ["14px", "2", "2"],
-                  fontFamily: "serif",
-                  fontWeight: 300,
-                  color: "text",
+                  fontSize: ["14px", "2", "16px"],
+                  fontFamily: "body",
+                  fontWeight: 400,
+                  color: "primary",
+                  letterSpacing: "0.3px",
                 }}
               >
                 {post.frontmatter.date}

@@ -38,7 +38,7 @@ const ViewAllResults = ({ data, setShouldShowResults }) => {
           padding: "0px",
           width: "100%",
           maxWidth: "706px",
-          fontFamily: "body",
+          fontFamily: "mono",
           overflowY: "scroll",
         }}
         onClick={event => {
@@ -56,6 +56,7 @@ const ViewAllResults = ({ data, setShouldShowResults }) => {
                 lineHeight: "30px",
                 fontFamily: "serif",
                 letterSpacing: ".6px",
+                fontWeight: "600",
               }}
             >
               Results
@@ -95,7 +96,7 @@ const ListResults = ({ data }) => {
             <Box
               sx={{
                 marginBottom: "10px",
-                fontFamily: "body",
+                fontFamily: "mono",
               }}
             >
               <Flex sx={{ display: ["flex", "none", "none"] }}>
@@ -128,7 +129,8 @@ const ListResults = ({ data }) => {
                 height: ["35px", "35px", "35px"],
                 backgroundColor: item.isMe ? "blockquoteBg" : "",
                 display: ["none", "flex", "flex"],
-                fontFamily: "body",
+                fontFamily: "mono",
+                letterSpacing: "-.3px",
               }}
             >
               <Box sx={{ width: "5%" }}>
@@ -209,6 +211,7 @@ const RaceResults = ({ data, numbersToHighlight, distance }) => {
                 lineHeight: "30px",
                 fontFamily: "serif",
                 letterSpacing: ".6px",
+                fontWeight: "600",
               }}
             >
               Results

@@ -27,9 +27,8 @@ const Layout = ({ location, title, children }) => {
           px: "10px",
           py: "10px",
           alignItems: "center",
-          variant: "styles.header",
-          // position: "sticky",
-          // background: "headerColor",
+          position: "sticky",
+          background: "headerColor",
           top: 0,
           // zIndex: -100,
           zIndex: "101",
@@ -163,7 +162,12 @@ const Layout = ({ location, title, children }) => {
         >
           <Text
             as="div"
-            sx={{ fontWeight: "900", fontSize: "2", marginBottom: "10px" }}
+            sx={{
+              fontWeight: "700",
+              fontSize: "2",
+              marginBottom: "10px",
+              letterSpacing: "1px",
+            }}
           >
             SAEGEY
           </Text>
@@ -171,19 +175,34 @@ const Layout = ({ location, title, children }) => {
           <Box>
             <Link
               href="http://instagram.com/saegey"
-              sx={{ textDecoration: "underline", paddingRight: 3 }}
+              sx={{
+                textDecoration: "underline",
+                textUnderlineOffset: "2.5px",
+                fontWeight: "300",
+                paddingRight: 3,
+              }}
             >
               Instagram
             </Link>
             <Link
               href="http://github.com/saegey"
-              sx={{ textDecoration: "underline", paddingRight: 3 }}
+              sx={{
+                textDecoration: "underline",
+                textUnderlineOffset: "2.5px",
+                paddingRight: 3,
+                fontWeight: "300",
+              }}
             >
               Github
             </Link>
             <Link
               href="http://twitter.com/saegey"
-              sx={{ textDecoration: "underline", paddingRight: 3 }}
+              sx={{
+                textDecoration: "underline",
+                textUnderlineOffset: "2.5px",
+                paddingRight: 3,
+                fontWeight: "300",
+              }}
             >
               Twitter
             </Link>
@@ -194,6 +213,7 @@ const Layout = ({ location, title, children }) => {
           sx={{
             p: 0,
             fontFamily: "body",
+            fontWeight: "300",
             // position: "absolute",
             bottom: 0,
             marginTop: "auto",

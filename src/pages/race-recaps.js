@@ -10,17 +10,6 @@ const BlogIndex = ({ data, location }) => {
   // const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMdx.nodes
 
-  if (posts.length === 0) {
-    return (
-      <div sx={{ p: 0 }}>
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
-      </div>
-    )
-  }
   return (
     <Container sx={{ padding: "0px" }} bg="muted">
       <ol sx={{ p: 0, marginTop: "0px" }}>
@@ -46,9 +35,18 @@ export const Head = () => <Seo title="All posts" />
 
 export const pageQuery = graphql`
   query SITE_INDEX_QUERY {
+    site {
+      siteMetadata {
+        author {
+          name
+          summary
+        }
+        description
+      }
+    }
     allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { type: { eq: "race-recap" } } }
+      filter: { frontmatter: { type: { eq: "Race Journal" } } }
     ) {
       nodes {
         fields {
@@ -57,6 +55,7 @@ export const pageQuery = graphql`
         excerpt(pruneLength: 250)
         frontmatter {
           title
+          type
           date(formatString: "MMMM DD, YYYY")
           tags
           headerImage {

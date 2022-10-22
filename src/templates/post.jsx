@@ -5,35 +5,71 @@ import { Box, Flex, Badge } from "theme-ui"
 
 export default function PostTemplate({ data, children }) {
   const {
-    frontmatter: { title, date },
+    frontmatter: { title, date, type, location },
   } = data.mdx
+
+  const { name } = data.site.siteMetadata.author
 
   return (
     <>
-      <Flex sx={{ marginBottom: "30px" }}>
+      {/* <Flex sx={{ marginBottom: "30px" }}>
         <Box
           sx={{ fontFamily: "serif", flex: "1 1 auto", fontSize: [1, 2, 2] }}
         >
           {date}
         </Box>
         <Box sx={{ fontFamily: "serif", fontSize: [1, 2, 2] }}>
-          Author • Adam Saegebarth
+          Author • {name}
         </Box>
+      </Flex> */}
+      <Flex sx={{ marginBottom: "20px" }}>
+        <Text
+          sx={{
+            marginX: "auto",
+            fontFamily: "body",
+            fontWeight: "600",
+            letterSpacing: "1px",
+            fontSize: "16px",
+            textTransform: "uppercase",
+            color: "#adb5bdff",
+          }}
+        >
+          {type}
+        </Text>
       </Flex>
-      <Text
-        as="h1"
-        sx={{
-          fontFamily: "serif",
-          fontWeight: 900,
-          fontStyle: "normal",
-          fontSize: ["4", "5", "5"],
-          marginBottom: ["20px", "0", "0"],
-          letterSpacing: [".6px", "1px", "1px"],
-        }}
-      >
-        {title}
-      </Text>
-      <Flex
+      <Flex>
+        <Text
+          as="h1"
+          sx={{
+            fontFamily: "serif",
+            fontWeight: 700,
+            fontStyle: "normal",
+            fontSize: ["4", "5", "5"],
+            marginBottom: ["20px", "20px", "20px"],
+            letterSpacing: [".6px", "1px", "1px"],
+            marginX: "auto",
+          }}
+        >
+          {title}
+        </Text>
+      </Flex>
+      <Flex>
+        <Text
+          sx={{
+            marginX: "auto",
+            marginX: "auto",
+            fontFamily: "body",
+            fontWeight: "400",
+            letterSpacing: "1px",
+            fontSize: "16px",
+            textTransform: "uppercase",
+            color: "#adb5bdff",
+          }}
+        >
+          {date} — {location}
+        </Text>
+      </Flex>
+      {/* <Flex
         sx={{
           marginTop: "10px",
           marginBottom: "20px",
@@ -47,7 +83,7 @@ export default function PostTemplate({ data, children }) {
             </Badge>
           )
         })}
-      </Flex>
+      </Flex> */}
       {children}
     </>
   )
@@ -55,12 +91,23 @@ export default function PostTemplate({ data, children }) {
 
 export const query = graphql`
   query ($id: String!) {
+    site {
+      siteMetadata {
+        author {
+          name
+          summary
+        }
+        description
+      }
+    }
     mdx(id: { eq: $id }) {
       id
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
+        location
         title
         tags
+        type
         images {
           childImageSharp {
             gatsbyImageData(placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
