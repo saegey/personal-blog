@@ -23,7 +23,6 @@ const ViewAllResults = ({ data, setShouldShowResults }) => {
         width: "100%",
         left: "0",
         backgroundColor: "rgba(0,0,0,0.8)",
-        cursor: "pointer",
         zIndex: 10000,
         display: "flex",
       }}
@@ -69,7 +68,11 @@ const ViewAllResults = ({ data, setShouldShowResults }) => {
               }}
               sx={{ backgroundColor: "transparent", p: 0 }}
             >
-              <Close ml="auto" mr={-2} sx={{ color: "text" }} />
+              <Close
+                ml="auto"
+                mr={-2}
+                sx={{ color: "text", cursor: "pointer" }}
+              />
             </Button>
           </Box>
         </Flex>
@@ -85,12 +88,6 @@ const ListResults = ({ data }) => {
   return (
     <>
       {data.map((item, index) => {
-        // 			text-decoration: underline;
-        // text-decoration-color: var(--h);
-        // text-decoration-skip-ink: none;
-        // text-decoration-thickness: 0.3rem;
-        // text-underline-offset: -0.15rem;
-        // transition: text-decoration .3s;
         return (
           <>
             <Box
@@ -225,6 +222,7 @@ const RaceResults = ({ data, numbersToHighlight, distance }) => {
                 paddingX: "10px",
                 paddingY: "5px",
                 fontFamily: "body",
+                cursor: "pointer",
               }}
               mr={2}
               onClick={() => {

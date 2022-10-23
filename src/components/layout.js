@@ -101,6 +101,7 @@ const Layout = ({ location, title, children }) => {
             height="24"
             width="24"
             sx={{
+              cursor: "pointer",
               backgroundColor: "transparent",
               p: "0",
               ".logo-solid": {

@@ -1,37 +1,62 @@
 /** @jsxImportSource theme-ui */
 import * as React from "react"
-import { Box } from "theme-ui"
+import { Box, Image } from "theme-ui"
 import { getImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import { convertToBgImage } from "gbimage-bridge"
 import BackgroundImage from "gatsby-background-image"
 import ImageWrapper from "./imageWrapper.js"
+import FullScreenIcon from "./FullScreenIcon"
 
-const PortraitImage = ({ image, widthPercentage }) => {
+const PortraitImage = ({ image, widthPercentage, caption }) => {
   const width = widthPercentage ? widthPercentage : "65%"
   const placeholderImage = getImage(image)
   const bgImage = convertToBgImage(placeholderImage)
 
   return (
-    <Box sx={{ marginTop: "20px", borderRadius: "4px", overflow: "hidden" }}>
-      <BackgroundImage
-        Tag="section"
-        // Spread bgImage into BackgroundImage:
-        {...bgImage}
-        preserveStackingContext
-      >
-        <Box sx={{ backdropFilter: "blur(10px)" }}>
+    <ImageWrapper image={image} caption={caption}>
+      <Box sx={{ marginTop: "20px", borderRadius: "4px", overflow: "hidden" }}>
+        <BackgroundImage
+          Tag="section"
+          // Spread bgImage into BackgroundImage:
+          {...bgImage}
+          preserveStackingContext
+        >
+          <Box sx={{ backdropFilter: "blur(10px)" }}>
+            <Box
+              sx={{
+                width: width,
+                margin: "auto",
+                display: "block",
+              }}
+            >
+              <Image
+                image={getImage(image)}
+                alt={"blah"}
+                as={GatsbyImage}
+                sx={{
+                  width: ["100%", "100%", "100%"],
+                  zIndex: "100",
+                  borderRadius: [0, 0, 0],
+                  backdropFilter: "blur(10px)",
+                }}
+              />
+            </Box>
+          </Box>
           <Box
             sx={{
-              width: width,
-              margin: "auto",
-              display: "block",
+              width: "40px",
+              position: "absolute",
+              right: "0",
+              top: "0",
+              zIndex: 10000,
             }}
           >
-            <ImageWrapper image={image} />
+            <FullScreenIcon />
           </Box>
-        </Box>
-      </BackgroundImage>
-    </Box>
+        </BackgroundImage>
+      </Box>
+    </ImageWrapper>
   )
 }
 
