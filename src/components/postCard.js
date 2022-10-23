@@ -7,33 +7,33 @@ import { GatsbyImage } from "gatsby-plugin-image"
 
 const PostCard = ({ post, title, image }) => {
   return (
-    <Card
-      sx={{
-        padding: 0,
-        borderRadius: 4,
-        boxShadow:
-          "0 8px 16px -4px rgba(0,0,0,.1), 0 0 8px -3px rgba(0,0,0,.1)",
-        marginBottom: "20px",
-        backgroundColor: "cardBackground",
-      }}
+    <Link
+      to={post.fields.slug}
+      itemProp="url"
+      sx={{ textDecoration: "none" }}
+      as={GatsbyLink}
     >
-      <div
+      <Card
         sx={{
-          display: "flex",
-          flexWrap: "wrap",
+          padding: 0,
+          borderRadius: 4,
+          boxShadow:
+            "0 8px 16px -4px rgba(0,0,0,.1), 0 0 8px -3px rgba(0,0,0,.1)",
+          marginBottom: "20px",
+          backgroundColor: "cardBackground",
         }}
       >
         <div
           sx={{
-            flexGrow: 1,
-            flexBasis: "sidebar",
+            display: "flex",
+            flexWrap: "wrap",
           }}
         >
-          <Link
-            to={post.fields.slug}
-            itemProp="url"
-            sx={{ textDecoration: "none" }}
-            as={GatsbyLink}
+          <div
+            sx={{
+              flexGrow: 1,
+              flexBasis: "sidebar",
+            }}
           >
             <Image
               layout="constrained"
@@ -49,22 +49,15 @@ const PostCard = ({ post, title, image }) => {
                 borderBottomLeftRadius: [0, 4, 4],
               }}
             />
-          </Link>
-        </div>
-        <main
-          sx={{
-            flexGrow: 99999,
-            flexBasis: 0,
-            minWidth: 320,
-          }}
-        >
-          <Box sx={{ margin: "10px" }}>
-            <Link
-              to={post.fields.slug}
-              itemProp="url"
-              sx={{ textDecoration: "none" }}
-              as={GatsbyLink}
-            >
+          </div>
+          <main
+            sx={{
+              flexGrow: 99999,
+              flexBasis: 0,
+              minWidth: 320,
+            }}
+          >
+            <Box sx={{ margin: "10px" }}>
               <Box sx={{ marginBottom: "10px" }}>
                 <Text
                   sx={{
@@ -90,21 +83,20 @@ const PostCard = ({ post, title, image }) => {
               >
                 {title}
               </Text>
-            </Link>
-            <Box sx={{ marginBottom: "20px" }}>
-              <Text
-                sx={{
-                  fontSize: ["14px", "2", "16px"],
-                  fontFamily: "body",
-                  fontWeight: 400,
-                  color: "primary",
-                  letterSpacing: "0.3px",
-                }}
-              >
-                {post.frontmatter.date}
-              </Text>
-            </Box>
-            <Flex sx={{ display: ["none", "inherit", "inherit"] }}>
+              <Box sx={{ marginBottom: "20px" }}>
+                <Text
+                  sx={{
+                    fontSize: ["14px", "2", "16px"],
+                    fontFamily: "body",
+                    fontWeight: 400,
+                    color: "primary",
+                    letterSpacing: "0.3px",
+                  }}
+                >
+                  {post.frontmatter.date}
+                </Text>
+              </Box>
+              {/* <Flex sx={{ display: ["none", "inherit", "inherit"] }}>
               {post.frontmatter.tags.map(tag => {
                 return (
                   <Badge
@@ -123,11 +115,12 @@ const PostCard = ({ post, title, image }) => {
                   </Badge>
                 )
               })}
-            </Flex>
-          </Box>
-        </main>
-      </div>
-    </Card>
+            </Flex> */}
+            </Box>
+          </main>
+        </div>
+      </Card>
+    </Link>
   )
 }
 

@@ -28,7 +28,7 @@ const LandscapeImage = ({ image, caption }) => {
             position: "absolute",
             right: "0",
             top: "0",
-            zIndex: 10000,
+            zIndex: 1000,
           }}
         >
           <FullScreenIcon />

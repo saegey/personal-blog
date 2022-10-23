@@ -27,8 +27,8 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
       <div
         sx={{
           backgroundColor: "menuBackground",
-          position: "absolute",
-          opacity: "0.95",
+          position: "fixed",
+          opacity: "1",
           visibility: "visible",
           height: "100vh",
           width: "100%",
