@@ -15,7 +15,7 @@ import { formatSeconds, formatTime } from "../lib/formatters"
 
 const MyResponsiveLine = data => {
   const { theme } = useThemeUI()
-  const powerCurve = JSON.parse(data.data)
+  const powerCurve = data.data
 
   const graphColor = theme.colors.text
   const yAxes = useResponsiveValue([

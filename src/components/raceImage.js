@@ -4,8 +4,6 @@ import React, { useState } from "react"
 import { Text, Image, Box } from "theme-ui"
 import { getImage, GatsbyImage } from "gatsby-plugin-image"
 
-import FullScreenIcon from "./FullScreenIcon"
-
 const RaceImage = ({ image, caption, children }) => {
   const [menuOpen, setMenuOpen] = useState(false)
   return (
@@ -19,7 +17,6 @@ const RaceImage = ({ image, caption, children }) => {
         <Text
           as="em"
           sx={{
-            fontFamily: "body",
             margin: 0,
             fontSize: "1",
             color: "primary",

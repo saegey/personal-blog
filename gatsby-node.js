@@ -273,31 +273,31 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
             createNodeField({
               name: `powerCurve`,
               node,
-              value: JSON.stringify(points),
+              value: points,
             })
 
             createNodeField({
               name: `powerAnalysis`,
               node,
-              value: JSON.stringify(calcBestPowers(defaultTimeWindows, powers)),
+              value: calcBestPowers(defaultTimeWindows, powers),
             })
 
             createNodeField({
               name: `tempAnalysis`,
               node,
-              value: JSON.stringify(calcBestPowers(defaultTimeWindows, atemps)),
+              value: calcBestPowers(defaultTimeWindows, atemps),
             })
 
             createNodeField({
               name: `heartAnalysis`,
               node,
-              value: JSON.stringify(calcBestPowers(defaultTimeWindows, heart)),
+              value: calcBestPowers(defaultTimeWindows, heart),
             })
 
             createNodeField({
               name: `cadenceAnalysis`,
               node,
-              value: JSON.stringify(calcBestPowers(defaultTimeWindows, cads)),
+              value: calcBestPowers(defaultTimeWindows, cads),
             })
 
             createNodeField({

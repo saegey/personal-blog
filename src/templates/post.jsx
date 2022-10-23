@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Text } from "theme-ui"
 import { graphql } from "gatsby"
-import { Box, Flex, Badge } from "theme-ui"
+import { Flex } from "theme-ui"
 
 export default function PostTemplate({ data, children }) {
   const {
@@ -130,8 +130,12 @@ export const query = graphql`
           elevationGain
           stoppedTime
           distance
-          powerAnalysis
-          cadenceAnalysis
+          powerAnalysis {
+            entire
+          }
+          cadenceAnalysis {
+            entire
+          }
           elapsedTime {
             days
             hours
@@ -142,9 +146,16 @@ export const query = graphql`
             x
             y
           }
-          heartAnalysis
-          powerCurve
-          tempAnalysis
+          heartAnalysis {
+            entire
+          }
+          powerCurve {
+            x
+            y
+          }
+          tempAnalysis {
+            entire
+          }
         }
       }
     }

@@ -343,5 +343,9 @@ summary {
 }
 
 /* text {
-	font-family: "Inconsolata" !important;
+  font-family: "Inconsolata" !important;
 } */
+
+.noScroll {
+  overflow-y: hidden;
+}
