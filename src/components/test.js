@@ -57,10 +57,10 @@ const fileName = ({
   cadenceAnalysis,
   powerAnalysis,
 }) => {
-  const powerAnalysisData = JSON.parse(powerAnalysis)
-  const tempAnalysisData = JSON.parse(tempAnalysis)
-  const heartAnalysisData = JSON.parse(heartAnalysis)
-  const cadenceAnalysisData = JSON.parse(cadenceAnalysis)
+  const powerAnalysisData = powerAnalysis
+  const tempAnalysisData = tempAnalysis
+  const heartAnalysisData = heartAnalysis
+  const cadenceAnalysisData = cadenceAnalysis
 
   return (
     <>

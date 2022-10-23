@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import * as React from "react"
-import { Text, Card, Flex, Badge, Image, Box, Link } from "theme-ui"
+import { Text, Card, Image, Link, Box } from "theme-ui"
 import { Link as GatsbyLink } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
