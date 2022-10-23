@@ -14,7 +14,7 @@ const Layout = ({ location, title, children }) => {
     <div
       sx={{
         overflowY: menuOpen ? "hidden" : "visible",
-        // position: menuOpen ? "fixed" : "relative",
+        position: menuOpen ? "fixed" : "relative",
       }}
     >
       <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />

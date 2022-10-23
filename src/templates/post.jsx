@@ -45,7 +45,7 @@ export default function PostTemplate({ data, children }) {
             fontWeight: 700,
             fontStyle: "normal",
             fontSize: ["4", "5", "5"],
-            marginBottom: ["20px", "20px", "20px"],
+            marginBottom: ["5px", "5px", "5px"],
             letterSpacing: [".6px", "1px", "1px"],
             marginX: "auto",
           }}
@@ -57,13 +57,13 @@ export default function PostTemplate({ data, children }) {
         <Text
           sx={{
             marginX: "auto",
-            marginX: "auto",
             fontFamily: "body",
             fontWeight: "400",
             letterSpacing: "1px",
             fontSize: "16px",
             textTransform: "uppercase",
             color: "#adb5bdff",
+            marginBottom: "20px",
           }}
         >
           {date} — {location}
@@ -103,7 +103,7 @@ export const query = graphql`
     mdx(id: { eq: $id }) {
       id
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "MMM DD, YYYY")
         location
         title
         tags

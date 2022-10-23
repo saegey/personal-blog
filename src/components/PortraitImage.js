@@ -49,7 +49,7 @@ const PortraitImage = ({ image, widthPercentage, caption }) => {
               position: "absolute",
               right: "0",
               top: "0",
-              zIndex: 10000,
+              zIndex: 100,
             }}
           >
             <FullScreenIcon />
