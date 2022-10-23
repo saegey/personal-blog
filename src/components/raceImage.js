@@ -2,41 +2,33 @@
 
 import React, { useState } from "react"
 import { Text, Image, Box } from "theme-ui"
+import { getImage, GatsbyImage } from "gatsby-plugin-image"
 
-const RaceImage = ({ image: SampleImage, url, largeUrl, caption }) => {
+import FullScreenIcon from "./FullScreenIcon"
+
+const RaceImage = ({ image, caption, children }) => {
   const [menuOpen, setMenuOpen] = useState(false)
   return (
     <>
-      {SampleImage ? (
-        <Box
-          sx={{ width: "100%" }}
-          onClick={() => {
-            setMenuOpen(true)
-          }}
-        >
-          <SampleImage />
-        </Box>
-      ) : (
-        <Image
-          src={url}
-          alt={`Alt text`}
-          onClick={() => {
-            setMenuOpen(true)
-          }}
-        />
-      )}
-      <Text
-        as="em"
-        sx={{
-          fontFamily: "body",
-          margin: 0,
-          fontSize: "1",
-          color: "primary",
-          fontFamily: "serif",
+      <Box
+        onClick={() => {
+          setMenuOpen(true)
         }}
       >
-        {caption}
-      </Text>
+        <Box sx={{ cursor: "pointer" }}>{children}</Box>
+        <Text
+          as="em"
+          sx={{
+            fontFamily: "body",
+            margin: 0,
+            fontSize: "1",
+            color: "primary",
+            fontFamily: "serif",
+          }}
+        >
+          {caption}
+        </Text>
+      </Box>
       {menuOpen ? (
         <Box
           sx={{
@@ -51,26 +43,42 @@ const RaceImage = ({ image: SampleImage, url, largeUrl, caption }) => {
             zIndex: 10000,
           }}
         >
-          <div sx={{ marginX: "auto", marginY: "auto" }}>
-            <Box sx={{ p: "20px" }}>
-              {SampleImage ? (
-                <Box
-                  sx={{ width: "1000px" }}
-                  onClick={() => {
-                    setMenuOpen(false)
-                  }}
-                >
-                  <SampleImage />
-                </Box>
-              ) : (
-                <Image
-                  src={largeUrl ? largeUrl : url}
-                  alt={`Alt text`}
-                  onClick={() => {
-                    setMenuOpen(false)
-                  }}
-                />
-              )}
+          <div
+            sx={{
+              marginX: "auto",
+              marginY: "auto",
+            }}
+          >
+            <Box
+              sx={{ p: "0px" }}
+              onClick={() => {
+                setMenuOpen(false)
+              }}
+            >
+              <Image
+                objectFit="contain"
+                image={getImage(image)}
+                alt={"blah"}
+                as={GatsbyImage}
+                sx={{
+                  // 							max-height: 100%;
+                  // width: auto;
+                  // margin: 0 auto;
+                  // padding: 0;
+                  // position: relative;
+                  // display: block;
+                  position: "relative",
+                  // width: "100vh",
+                  height: "100vh",
+                  maxHeight: "100%",
+
+                  // margin: "0 auto",
+                  // width: ["100%", "100%", "100%"],
+                  zIndex: "100",
+                  borderRadius: [4, 4, 4],
+                  // backdropFilter: "blur(10px)",
+                }}
+              />
             </Box>
             <Text
               as="em"
@@ -86,7 +94,8 @@ const RaceImage = ({ image: SampleImage, url, largeUrl, caption }) => {
             </Text>
           </div>
         </Box>
-      ) : null}
+      ) : // </Box>
+      null}
     </>
   )
 }

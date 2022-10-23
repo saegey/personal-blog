@@ -23,7 +23,6 @@ const ViewAllResults = ({ data, setShouldShowResults }) => {
         width: "100%",
         left: "0",
         backgroundColor: "rgba(0,0,0,0.8)",
-        cursor: "pointer",
         zIndex: 10000,
         display: "flex",
       }}
@@ -38,7 +37,7 @@ const ViewAllResults = ({ data, setShouldShowResults }) => {
           padding: "0px",
           width: "100%",
           maxWidth: "706px",
-          fontFamily: "body",
+          fontFamily: "mono",
           overflowY: "scroll",
         }}
         onClick={event => {
@@ -56,6 +55,7 @@ const ViewAllResults = ({ data, setShouldShowResults }) => {
                 lineHeight: "30px",
                 fontFamily: "serif",
                 letterSpacing: ".6px",
+                fontWeight: "600",
               }}
             >
               Results
@@ -68,7 +68,11 @@ const ViewAllResults = ({ data, setShouldShowResults }) => {
               }}
               sx={{ backgroundColor: "transparent", p: 0 }}
             >
-              <Close ml="auto" mr={-2} sx={{ color: "text" }} />
+              <Close
+                ml="auto"
+                mr={-2}
+                sx={{ color: "text", cursor: "pointer" }}
+              />
             </Button>
           </Box>
         </Flex>
@@ -84,18 +88,12 @@ const ListResults = ({ data }) => {
   return (
     <>
       {data.map((item, index) => {
-        // 			text-decoration: underline;
-        // text-decoration-color: var(--h);
-        // text-decoration-skip-ink: none;
-        // text-decoration-thickness: 0.3rem;
-        // text-underline-offset: -0.15rem;
-        // transition: text-decoration .3s;
         return (
           <>
             <Box
               sx={{
                 marginBottom: "10px",
-                fontFamily: "body",
+                fontFamily: "mono",
               }}
             >
               <Flex sx={{ display: ["flex", "none", "none"] }}>
@@ -128,7 +126,8 @@ const ListResults = ({ data }) => {
                 height: ["35px", "35px", "35px"],
                 backgroundColor: item.isMe ? "blockquoteBg" : "",
                 display: ["none", "flex", "flex"],
-                fontFamily: "body",
+                fontFamily: "mono",
+                letterSpacing: "-.3px",
               }}
             >
               <Box sx={{ width: "5%" }}>
@@ -209,6 +208,7 @@ const RaceResults = ({ data, numbersToHighlight, distance }) => {
                 lineHeight: "30px",
                 fontFamily: "serif",
                 letterSpacing: ".6px",
+                fontWeight: "600",
               }}
             >
               Results
@@ -222,6 +222,7 @@ const RaceResults = ({ data, numbersToHighlight, distance }) => {
                 paddingX: "10px",
                 paddingY: "5px",
                 fontFamily: "body",
+                cursor: "pointer",
               }}
               mr={2}
               onClick={() => {

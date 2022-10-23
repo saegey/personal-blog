@@ -24,9 +24,11 @@ const StatCard = ({ title, value }) => {
     <>
       <Text
         sx={{
-          fontFamily: "serif",
+          fontFamily: "body",
           color: "primary",
-          // textTransform: "uppercase",
+          fontWeight: "400",
+          letterSpacing: "1px",
+          textTransform: "uppercase",
           fontSize: [1],
         }}
       >
@@ -34,9 +36,9 @@ const StatCard = ({ title, value }) => {
       </Text>
       <Box
         sx={{
-          fontFamily: "serif",
+          fontFamily: "body",
           fontSize: ["3", "4", "4"],
-          fontWeight: "700",
+          fontWeight: "600",
         }}
       >
         {value}

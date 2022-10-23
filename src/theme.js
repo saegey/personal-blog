@@ -140,7 +140,7 @@ module.exports = {
     text: colors.eerieBlack,
     background: "#fff",
     primary: colors.sonicSilver,
-    headerColor: colors.davysGrey,
+    headerColor: "#e9ecefff",
     // headerForeground: "rgb(255, 116, 139)",
     headerForeground: colors.onyx,
     menuBackground: colors.lightGray,
