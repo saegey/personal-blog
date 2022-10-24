@@ -3,6 +3,9 @@ import { jsx, Text } from "theme-ui"
 import { graphql } from "gatsby"
 import { Flex } from "theme-ui"
 
+import Seo from "../components/seo"
+import SafariStyle from "../components/SafariStyle"
+
 export default function PostTemplate({ data, children }) {
   const {
     frontmatter: { title, date, type, location },
@@ -12,6 +15,7 @@ export default function PostTemplate({ data, children }) {
 
   return (
     <>
+      <SafariStyle />
       {/* <Flex sx={{ marginBottom: "30px" }}>
         <Box
           sx={{ fontFamily: "serif", flex: "1 1 auto", fontSize: [1, 2, 2] }}
@@ -88,6 +92,8 @@ export default function PostTemplate({ data, children }) {
     </>
   )
 }
+
+export const Head = () => <Seo title="All posts" />
 
 export const query = graphql`
   query ($id: String!) {
