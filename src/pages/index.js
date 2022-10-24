@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import * as React from "react"
 import { graphql } from "gatsby"
 import { jsx, Container } from "theme-ui"
 import { getImage } from "gatsby-plugin-image"
@@ -6,34 +7,25 @@ import { getImage } from "gatsby-plugin-image"
 import Bio from "../components/bio"
 import Seo from "../components/seo"
 import PostCard from "../components/postCard"
+import SafariStyle from "../components/SafariStyle"
 
 const BlogIndex = ({ data, location }) => {
   const posts = data.allMdx.nodes
 
-  if (posts.length === 0) {
-    return (
-      <div>
-        <Bio />
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
-      </div>
-    )
-  }
-
   return (
-    <Container sx={{ padding: "0px" }} bg="muted">
-      <ol sx={{ p: 0 }}>
-        {posts.map(post => {
-          const image = getImage(post.frontmatter.headerImage)
-          const title = post.frontmatter.title || post.fields.slug
+    <>
+      <SafariStyle />
+      <Container sx={{ padding: "0px" }} bg="muted">
+        <ol sx={{ p: 0 }}>
+          {posts.map(post => {
+            const image = getImage(post.frontmatter.headerImage)
+            const title = post.frontmatter.title || post.fields.slug
 
-          return <PostCard post={post} title={title} image={image} />
-        })}
-      </ol>
-    </Container>
+            return <PostCard post={post} title={title} image={image} />
+          })}
+        </ol>
+      </Container>
+    </>
   )
 }
 

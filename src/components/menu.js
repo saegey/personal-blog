@@ -48,7 +48,7 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
             width: "100%",
             zIndex: 10000,
             maxWidth: ["", "350px", "350px"],
-            left: menuOpen ? "0px" : "-400px",
+            left: menuOpen ? "0px" : "-600px",
             transition: "all .4s ease",
           }}
         >
