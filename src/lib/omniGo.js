@@ -1,5 +1,3 @@
-// const fs = require("fs")
-// import { formatTime } from "./formatters"
 const { formatTime } = require("./formatters")
 
 function tsvJSON(tsv) {
@@ -37,12 +35,6 @@ function camelize(str) {
     .replace(/\s+/g, "")
 }
 
-// const data = fs.readFileSync(
-//   "./content/results/webscorer/gfe-2022-results.txt",
-//   "utf8"
-// )
-const fs = require("fs")
-
 const parseTSV = data => {
   const rawData = tsvJSON(data)
   const formattedData = []
@@ -59,11 +51,6 @@ const parseTSV = data => {
     formattedData.push({
       place: r.place.replace(/\D/g, ""),
       name: r.name,
-      // time1: r.time,
-      // seconds: timeExplosion.reduce((accumulator, value) => {
-      //   return accumulator + value
-      // }, 0),
-      // blah: timeExplosion,
       time:
         r.time === "checkpoint missed"
           ? "00:00:00"
@@ -77,12 +64,5 @@ const parseTSV = data => {
 
   return formattedData
 }
-
-const data = fs.readFileSync(
-  "./content/results/omnigo/bwr-waffle-san-diego-2022.txt",
-  "utf8"
-)
-
-// console.log(JSON.stringify(parseTSV(data)))
 
 exports.parseOmniTSV = parseTSV
