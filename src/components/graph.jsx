@@ -34,16 +34,17 @@ const MyResponsiveLine = data => {
           data: powerCurve,
         },
       ]}
+      enableArea={true}
       margin={{ top: 50, right: 0, bottom: 50, left: 45 }}
       xScale={{
         type: "log",
         base: 2,
-        max: 20000,
+        max: Math.max(...powerCurve.map(o => o.x)),
       }}
       yScale={{
         type: "linear",
         min: "0",
-        max: "auto",
+        max: Math.max(...powerCurve.map(o => o.y)) + 50,
         stacked: true,
         reverse: false,
       }}
@@ -82,7 +83,7 @@ const MyResponsiveLine = data => {
         tickSize: 0,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "TIME",
+        // legend: "TIME",
         legendOffset: 35,
         legendPosition: "middle",
         tickCount: 100,
@@ -94,7 +95,7 @@ const MyResponsiveLine = data => {
         tickPadding: 5,
         tickRotation: 0,
         tickCount: 3,
-        legend: "WATTS",
+        // legend: "WATTS",
         legendOffset: -40,
         legendPosition: "middle",
         tickValues: yAxes,

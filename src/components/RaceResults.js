@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 
 import React, { useState } from "react"
-import { Text, Flex, Box, Divider, Button, Close, Grid } from "theme-ui"
+import { Text, Flex, Box, Button, Close } from "theme-ui"
 
 import { formatTime } from "../lib/formatters"
 
@@ -51,7 +51,6 @@ const ViewAllResults = ({ data, setShouldShowResults }) => {
             <Text
               as="h2"
               sx={{
-                lineHeight: "30px",
                 lineHeight: "30px",
                 fontFamily: "serif",
                 letterSpacing: ".6px",

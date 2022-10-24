@@ -7,6 +7,9 @@ tags:
 type: Race Journal
 gpxFile: "BWR_San_Diego_Waffle_Ride_"
 location: San Marcos, California
+results:
+  file: "bwr-waffle-san-diego-2022"
+  provider: "omnigo"
 images:
   - ./1.jpeg
   - ./2.jpeg
@@ -15,12 +18,13 @@ images:
   - ./5.jpeg
 ---
 
-import { Box } from "theme-ui"
+import { Box, Divider } from "theme-ui"
 
 import Test from "../../components/test.js"
 import Graph from "../../components/graph.jsx"
 import ElevationGraph from "../../components/ElevationGraph.js"
 import LandscapeImage from "../../components/LandscapeImage.js"
+import RaceResults from "../../components/RaceResults.js"
 
 I'm baby seitan migas iceland shoreditch cred same occupy intelligentsia. Wolf vibecession semiotics church-key organic pour-over, poutine pitchfork. DSA lo-fi man bun tote bag semiotics yr. Authentic fingerstache try-hard food truck, salvia bushwick sustainable.
 
@@ -52,7 +56,19 @@ Disrupt portland organic, flannel tumeric offal flexitarian palo santo pug lo-fi
 
 Glossier celiac swag green juice affogato authentic, street art craft beer salvia
 vibecession echo park drinking vinegar poke. Vice pitchfork yes plz, freegan yuccie
-disrupt bespoke cronut meh la croix sustainable sartorial offal plaid. Pok pok street
+disrupt bespoke cronut meh la croix sustainable sartorial offal plaid.
+
+<Divider />
+<Box sx={{ marginTop: "20px" }}>
+  <RaceResults
+    data={props.data.mdx.results.fields.data}
+    numbersToHighlight={[0, 1, 2, 3, 4, 35, 47, 315, 316]}
+    distance={props.data.mdx.gpxData.fields.distance}
+  />
+</Box>
+<Divider />
+
+Pok pok street
 art XOXO banjo pitchfork kinfolk gatekeep marfa viral. Affogato put a bird on it
 woke, twee readymade quinoa pug plaid.
 

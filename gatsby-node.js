@@ -5,6 +5,7 @@ const tj = require("@tmcw/togeojson")
 const DOMParser = require("xmldom").DOMParser
 const { parse } = require("./src/lib/raceResults")
 const { parseTSV } = require("./src/lib/webscorer")
+const { parseOmniTSV } = require("./src/lib/omniGo")
 
 var length = require("@turf/length")
 
@@ -153,6 +154,14 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
         name: `data`,
         node,
         value: parseTSV(content),
+      })
+    }
+
+    if (type === "omnigo") {
+      createNodeField({
+        name: `data`,
+        node,
+        value: parseOmniTSV(content),
       })
     }
   }

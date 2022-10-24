@@ -18,8 +18,9 @@ const ElevationGraph = ({ data }) => {
       yScale={{
         type: "linear",
         min: Math.min(...data.map(o => o.y)) - 500,
+        // min: "auto",
         max: Math.max(...data.map(o => o.y)),
-        stacked: true,
+        stacked: false,
         reverse: false,
       }}
       xScale={{
@@ -27,11 +28,13 @@ const ElevationGraph = ({ data }) => {
         min: "auto",
         max: "auto",
       }}
-      margin={{ top: 50, right: 20, bottom: 50, left: 70 }}
+      margin={{ top: 50, right: 20, bottom: 50, left: 45 }}
       curve="natural"
       pointSize={0}
       useMesh={true}
-      enableSlices="x"
+      enableArea={true}
+      areaBaselineValue={Math.min(...data.map(o => o.y)) - 500}
+      // enableSlices="x"
       colors={[theme.colors.text]}
       axisBottom={{
         format: formatSeconds,
@@ -51,7 +54,7 @@ const ElevationGraph = ({ data }) => {
         tickPadding: 5,
         tickRotation: 0,
         // tickCount: 3,
-        legend: "Elevation",
+        // legend: "Elevation",
         legendOffset: -50,
         legendPosition: "middle",
         // tickValues: [0, 1000, 2000],
@@ -59,7 +62,7 @@ const ElevationGraph = ({ data }) => {
       }}
       theme={{
         // background: "white",
-        fontFamily: "Inconsolata",
+        fontFamily: theme.fonts.body,
         fontSize: 15,
         tooltip: {
           container: {
@@ -108,25 +111,25 @@ const ElevationGraph = ({ data }) => {
             text: {
               fontSize: 18,
               fill: graphColor,
-              fontFamily: "Inconsolata",
+              fontFamily: theme.fonts.body,
             },
           },
           text: {
             fontSize: 18,
             fill: graphColor,
-            fontFamily: "Inconsolata",
+            fontFamily: theme.fonts.body,
           },
           ticks: {
             line: {},
             text: {
               fontSize: 18,
               fill: graphColor,
-              fontFamily: "Inconsolata",
+              fontFamily: theme.fonts.body,
             },
           },
         },
         ticks: {
-          text: { fontSize: 18, fontFamily: "Inconsolata" },
+          text: { fontSize: 18, fontFamily: theme.fonts.body },
         },
       }}
       // layers={['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends']}

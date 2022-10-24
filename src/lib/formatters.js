@@ -17,7 +17,6 @@ const formatTime = value => {
 
 const generateTimeTickValues = (axis, data, intervalSecs) => {
   const max = Math.max(...data.map(o => o.x))
-  const min = 0
   let currentTick = 0
   const ticks = []
 
@@ -44,7 +43,7 @@ const generateElevatioinTickValues = (axis, data, intervalSecs) => {
   return ticks
 }
 
-export {
+module.exports = {
   formatSeconds,
   formatTime,
   generateTimeTickValues,

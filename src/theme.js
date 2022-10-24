@@ -126,7 +126,7 @@ module.exports = {
   links: {
     menu: {
       fontSize: "5",
-      fontWeight: "900",
+      fontWeight: "700",
       lineHeight: "1.5",
       margin: "0",
       fontFamily: "body",
