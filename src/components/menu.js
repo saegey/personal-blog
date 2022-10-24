@@ -22,7 +22,7 @@ const MenuLink = ({ location, title, setMenuOpen }) => {
 }
 
 const Menu = ({ menuOpen, setMenuOpen }) => {
-  if (menuOpen) {
+  if (true) {
     return (
       <>
         <div
@@ -30,11 +30,12 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
             backgroundColor: "rgba(0, 0, 0, 0.7)",
             position: "fixed",
             opacity: "1",
-            visibility: "visible",
+            visibility: menuOpen ? "visible" : "hidden",
             height: "100%",
             width: "100%",
             zIndex: 10000,
             overflow: "hidden",
+            // transition: "all 2s fade",
           }}
         ></div>
         <div
@@ -47,6 +48,8 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
             width: "100%",
             zIndex: 10000,
             maxWidth: ["", "350px", "350px"],
+            left: menuOpen ? "0px" : "-400px",
+            transition: "all .4s ease",
           }}
         >
           <div

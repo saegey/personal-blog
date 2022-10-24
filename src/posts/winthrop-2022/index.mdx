@@ -11,14 +11,21 @@ location: Winthrop, Washington
 results:
   file: "gfw-2022-results"
   provider: "webscorer"
+images:
+  - ./p915086034-5.jpg
+  - ./p251988007-5.jpg
+  - ./p716921702-5.jpg
+  - ./p853319582-5.jpg
+  - ./p839702957-5.jpg
 ---
 
 import Graph from "../../components/graph.jsx"
 import { Box, Divider } from "theme-ui"
-import RaceImage from "../../components/raceImage"
+import PortraitImage from "../../components/PortraitImage.js"
 import Test from "../../components/test.js"
 import ElevationGraph from "../../components/ElevationGraph.js"
 import RaceResults from "../../components/RaceResults.js"
+import LandscapeImage from "../../components/LandscapeImage.js"
 
 <Test
   elevationGain={props.data.mdx.gpxData.fields.elevationGain}
@@ -33,15 +40,31 @@ import RaceResults from "../../components/RaceResults.js"
 
 Artisan slow-carb blog coloring book aesthetic green juice mustache gastropub. Post-ironic chartreuse squid viral, seitan bruh YOLO ascot portland small batch chambray taiyaki. Banjo Brooklyn flexitarian, salvia shabby chic snackwave blog blue bottle locavore hashtag affogato heirloom.
 
-<RaceImage
-  url="https://www.mitchellimage.com/img/s/v-10/p1022870754-4.jpg"
-  largeUrl="https://www.mitchellimage.com/img/s/v-10/p1022870754-5.jpg"
-  caption="Photo by Mitchell Image"
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[0]}
+  caption="Photo from Mitchell Image"
 />
 
 Bicycle rights chicharrones drinking vinegar, lo-fi gastropub dreamcatcher literally
 church-key butcher mustache squid. Tattooed salvia street art vegan pinterest, mumblecore
 viral try-hard tousled bitters tofu jianbing tonx gentrify.
+
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[2]}
+  caption="Photo by Mitchell Image"
+/>
+
+Artisan slow-carb blog coloring book aesthetic green juice mustache gastropub. Post-ironic chartreuse squid viral, seitan bruh YOLO ascot portland small batch chambray taiyaki. Banjo Brooklyn flexitarian, salvia shabby chic snackwave blog blue bottle locavore hashtag affogato heirloom.
+
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[4]}
+  caption="Photo by Mitchell Image"
+/>
+
+Artisan slow-carb blog coloring book aesthetic green juice mustache gastropub. Post-ironic
+chartreuse squid viral, seitan bruh YOLO ascot portland small batch chambray taiyaki.
+Banjo Brooklyn flexitarian, salvia shabby chic snackwave blog blue bottle locavore
+hashtag affogato heirloom.
 
 <Divider />
 <Box
@@ -70,16 +93,22 @@ Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis 
 Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
 
 <Divider />
-<Box sx={{ height: ["300px", "400px", "400px"], fontFamily: "Inconsolata" }}>
+<Box sx={{ height: ["300px", "400px", "400px"] }}>
   <Graph data={props.data.mdx.gpxData.fields.powerCurve} />
 </Box>
 <Divider />
 
-Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral. Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[3]}
+  caption="Photo by Mitchell Image"
+/>
 
-<RaceImage
-  url="https://www.mitchellimage.com/img/s/v-10/p853319582-4.jpg"
-  largeUrl="https://www.mitchellimage.com/img/s/v-10/p853319582-5.jpg"
+Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral. Dolor ramps mollit bitters fam locavore.
+
+Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
+
+<PortraitImage
+  image={props.data.mdx.frontmatter.images[1]}
   caption="Photo by Mitchell Image"
 />
 
@@ -90,9 +119,3 @@ Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do 
 > flexitarian.
 
 Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland
-
-<RaceImage
-  url="https://www.mitchellimage.com/img/s/v-10/p763622284-4.jpg"
-  largeUrl="https://www.mitchellimage.com/img/s/v-10/p763622284-5.jpg"
-  caption="Photo by Mitchell Image"
-/>

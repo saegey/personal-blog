@@ -1,3 +1,4 @@
+Place	Bib	Name	Team	Time
 1st	7	Alexey Vermeulen	Jukebox - ENVE	6h 34m 33.60s
 2nd	206	Matthew Beers	Toyota-Specialized	6h 40m 40.19s
 3rd	210	Griffin Easter	OpiCure Foundation p/b OrangeSeal Gravel Team	6h 40m 40.88s
