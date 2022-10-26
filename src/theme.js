@@ -28,6 +28,7 @@ module.exports = {
       marginBottom: 3,
       letterSpacing: "1px",
     },
+    em: { fontWeight: "500" },
     h2: {
       fontFamily: "serif",
       fontWeight: "headline",
@@ -57,12 +58,18 @@ module.exports = {
       ":hover, :focus": {
         color: "secondary",
       },
-      textDecoration: "none",
+      textDecoration: "underline",
+      color: "text",
     },
     li: {
       fontFamily: "serif",
       lineHeight: "2",
       letterSpacing: ".4px",
+      fontSize: [16, 18, 18],
+      paddingLeft: "10px",
+    },
+    ol: {
+      paddingInlineStart: "20px",
     },
     // more styles can be added as needed
   },
@@ -149,6 +156,7 @@ module.exports = {
     activeMenuLink: colors.cadetBlueCrayola,
     dividerColor: colors.gainsboro,
     highlightColor: "#e8ff50c7",
+    opacity: "0.3",
     modes: {
       dark: {
         headerColor: colors.eerieBlack,
@@ -160,6 +168,7 @@ module.exports = {
         menuBackground: colors.eerieBlack,
         blockquoteBg: colors.davysGrey,
         headerForeground: "aquamarine",
+        opacity: "0.1",
       },
     },
   },

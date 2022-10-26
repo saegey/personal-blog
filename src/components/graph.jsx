@@ -13,7 +13,7 @@ import { formatSeconds, formatTime } from "../lib/formatters"
 // website examples showcase many properties,
 // you'll often use just a few of them.
 
-const MyResponsiveLine = data => {
+const PowerCurveGraph = data => {
   const { theme } = useThemeUI()
   const powerCurve = data.data
 
@@ -24,8 +24,8 @@ const MyResponsiveLine = data => {
     [100, 200, 300, 400, 500, 600, 700],
   ])
 
+  console.log("max", Math.max(...powerCurve.map(o => o.x)))
   return (
-    // <div style={{ fontFamily: "Inconsolata" }}>
     <ResponsiveLine
       data={[
         {
@@ -35,11 +35,12 @@ const MyResponsiveLine = data => {
         },
       ]}
       enableArea={true}
-      margin={{ top: 50, right: 0, bottom: 50, left: 45 }}
+      margin={{ top: 0, right: 0, bottom: 25, left: 25 }}
       xScale={{
         type: "log",
         base: 2,
-        max: Math.max(...powerCurve.map(o => o.x)),
+        // max: 16384,
+        // max: Math.max(...powerCurve.map(o => o.x)),
       }}
       yScale={{
         type: "linear",
@@ -52,8 +53,11 @@ const MyResponsiveLine = data => {
         return (
           <div
             style={{
-              background: theme.colors.headerColor,
+              background: theme.colors.text,
               padding: "9px 12px",
+              fontFamily: theme.fonts.body,
+              letterSpacing: ".4px",
+              borderRadius: "4px",
             }}
           >
             {slice.points.map(point => {
@@ -61,12 +65,16 @@ const MyResponsiveLine = data => {
                 <div
                   key={point.id}
                   style={{
-                    color: theme.colors.text,
+                    color: theme.colors.background,
                     padding: "3px 0",
                   }}
                 >
-                  <div>{formatTime(point.data.x)}</div>
-                  {point.data.yFormatted} watts
+                  <div style={{ fontWeight: 300 }}>
+                    {formatTime(point.data.x)}
+                  </div>
+                  <div style={{ fontWeight: 600 }}>
+                    {point.data.yFormatted} watts
+                  </div>
                 </div>
               )
             })}
@@ -86,8 +94,8 @@ const MyResponsiveLine = data => {
         // legend: "TIME",
         legendOffset: 35,
         legendPosition: "middle",
-        tickCount: 100,
-        tickValues: [15, 60, 300, 1200, 3600, 10800, 21600],
+        // tickCount: 100,
+        tickValues: [5, 15, 60, 300, 1200, 3600, 10800],
       }}
       axisLeft={{
         orient: "left",
@@ -152,6 +160,7 @@ const MyResponsiveLine = data => {
             text: {
               fontSize: 14,
               fill: graphColor,
+              letterSpacing: ".1px",
             },
           },
         },
@@ -185,4 +194,4 @@ const MyResponsiveLine = data => {
     />
   )
 }
-export default MyResponsiveLine
+export default PowerCurveGraph

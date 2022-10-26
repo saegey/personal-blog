@@ -44,21 +44,23 @@ const calcPowerSlices = (powers, length) => {
   return powerSums
 }
 
-const calcBestPowers = (times, powers) => {
+const calcBestPowers = (times, powers, removeZeros = false) => {
   let initialValue = 0
-  powers.reduce((previous, p) => {
+  const filteredVals = removeZeros ? powers.filter(val => val !== 0) : powers
+
+  filteredVals.reduce((previous, p) => {
     const val = p ? p : 0
     initialValue = initialValue + val
   })
-  const averagePower = Math.round(initialValue / powers.length)
+  const averagePower = Math.round(initialValue / filteredVals.length)
 
   const response = {}
   response["entire"] = averagePower
 
   times.forEach(time => {
-    if (time > powers.length) return
+    if (time > filteredVals.length) return
     response[time] = Math.round(
-      calcPowerSlices(powers, time).slice(-1)[0] / time
+      calcPowerSlices(filteredVals, time).slice(-1)[0] / time
     )
   })
   return response

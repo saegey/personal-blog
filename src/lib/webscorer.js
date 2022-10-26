@@ -41,6 +41,7 @@ function camelize(str) {
 // )
 
 const parseTSV = data => {
+  console.log(data)
   const rawData = tsvJSON(data)
   const formattedData = []
 

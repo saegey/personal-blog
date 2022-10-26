@@ -17,7 +17,7 @@ results:
   provider: "race-results"
 ---
 
-import { Button, Alert, Close, Box } from "theme-ui"
+import { Box, Text, Divider } from "theme-ui"
 import { Link } from "gatsby"
 import Test from "../../components/test.js"
 import Graph from "../../components/graph.jsx"
@@ -54,34 +54,44 @@ Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis 
 bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis
 retro butcher dolore jean shorts viral. Dolor ramps mollit bitters fam locavore.
 
+<Divider />
 <RaceResults
   data={props.data.mdx.results.fields.data}
   numbersToHighlight={[0, 1, 2, 5, 58, 67]}
   distance={props.data.mdx.gpxData.fields.distance}
 />
+<Divider />
 
 Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin
 single-origin coffee portland do intelligentsia.
 
-<Box sx={{ height: "400px", fontFamily: "Inconsolata" }}>
+## Power Analysis
+
+<Box sx={{ height: ["300px", "400px", "400px"] }}>
   <Graph data={props.data.mdx.gpxData.fields.powerCurve} />
 </Box>
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral. Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
 
-<PortraitImage
-  image={props.data.mdx.frontmatter.images[2]}
-  widthPercentage="40%"
-/>
+<Box sx={{ marginBottom: "20px" }}>
+  <PortraitImage
+    image={props.data.mdx.frontmatter.images[2]}
+    widthPercentage="40%"
+  />
+</Box>
 
-1. So baboon this
+## What Went Well
+
+1. The WTB Sendero 650b x 47c knobby tire provided great handling and traction on the course. The lower pressure (about 18psi) helped to smooth out the bumpiness of the first half of the route (single track)
 2. Mounted militant weasel gregariously admonishingly straightly hey
 3. Dear foresaw hungry and much some overhung
 4. Rash opossum less because less some amid besides yikes jeepers frenetic impassive fruitlessly shut
 
+## Elevation Profile
+
 <Box
   sx={{
-    height: "250px",
+    height: ["250px", "300px", "300px"],
     fontFamily: "body",
     marginY: "20px",
   }}

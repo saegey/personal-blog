@@ -54,7 +54,7 @@ const ViewAllResults = ({ data, setShouldShowResults }) => {
                 lineHeight: "30px",
                 fontFamily: "serif",
                 letterSpacing: ".6px",
-                fontWeight: "600",
+                fontWeight: "700",
               }}
             >
               Results
@@ -87,16 +87,17 @@ const ListResults = ({ data }) => {
   return (
     <>
       {data.map((item, index) => {
+        if (item === undefined) return
         return (
           <>
             <Box
               sx={{
                 marginBottom: "10px",
-                fontFamily: "mono",
+                fontFamily: "body",
               }}
             >
               <Flex sx={{ display: ["flex", "none", "none"] }}>
-                <Box sx={{ width: "10%" }}>{item.place}</Box>
+                <Box sx={{ width: "10%" }}>{item && item.place}</Box>
                 <Box>
                   <Text
                     sx={{
@@ -125,8 +126,8 @@ const ListResults = ({ data }) => {
                 height: ["35px", "35px", "35px"],
                 backgroundColor: item.isMe ? "blockquoteBg" : "",
                 display: ["none", "flex", "flex"],
-                fontFamily: "mono",
-                letterSpacing: "-.3px",
+                fontFamily: "body",
+                letterSpacing: ".3px",
               }}
             >
               <Box sx={{ width: "5%" }}>
@@ -207,7 +208,7 @@ const RaceResults = ({ data, numbersToHighlight, distance }) => {
                 lineHeight: "30px",
                 fontFamily: "serif",
                 letterSpacing: ".6px",
-                fontWeight: "600",
+                fontWeight: "700",
               }}
             >
               Results
@@ -222,6 +223,12 @@ const RaceResults = ({ data, numbersToHighlight, distance }) => {
                 paddingY: "5px",
                 fontFamily: "body",
                 cursor: "pointer",
+                textTransform: "uppercase",
+                fontWeight: "600",
+                fontSize: "14px",
+                letterSpacing: ".5px",
+                paddingLeft: "20px",
+                paddingRight: "20px",
               }}
               mr={2}
               onClick={() => {
