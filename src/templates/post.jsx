@@ -52,6 +52,7 @@ export default function PostTemplate({ data, children }) {
             marginBottom: ["5px", "5px", "5px"],
             letterSpacing: [".6px", "1px", "1px"],
             marginX: "auto",
+            textAlign: "center",
           }}
         >
           {title}
@@ -66,8 +67,8 @@ export default function PostTemplate({ data, children }) {
             letterSpacing: "1px",
             fontSize: "16px",
             textTransform: "uppercase",
-            color: "#adb5bdff",
-            marginBottom: "20px",
+            color: "primary",
+            marginBottom: "40px",
           }}
         >
           {date} — {location}
@@ -93,7 +94,9 @@ export default function PostTemplate({ data, children }) {
   )
 }
 
-export const Head = () => <Seo title="All posts" />
+export const Head = ({ location, params, data, pageContext }) => (
+  <Seo title={data.mdx.frontmatter.title} />
+)
 
 export const query = graphql`
   query ($id: String!) {

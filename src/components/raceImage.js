@@ -20,7 +20,9 @@ const RaceImage = ({ image, caption, children }) => {
             margin: 0,
             fontSize: "1",
             color: "primary",
-            fontFamily: "serif",
+            fontFamily: "body",
+            fontStyle: "normal",
+            fontSize: "14px",
           }}
         >
           {caption}

@@ -1,0 +1,124 @@
+---
+title: MFG Magnuson Single Speed CX
+date: 2022-10-23
+headerImage: "./FB6A5023.jpg"
+location: "Seattle, Washington"
+tags:
+  - CX
+type: Race Journal
+gpxFile: "MFG_Magnuson_Single_Speed"
+images:
+  - ./FB6A5023.jpg
+  - ./FB6A4839-X5.jpg
+  - ./FB6A4789.jpg
+  - ./1.jpeg
+results:
+  file: "mfg-4-2022-1_45PM"
+  provider: "webscorer"
+---
+
+import { Box, Text, Divider } from "theme-ui"
+import { Link } from "gatsby"
+import { IKImage, IKVideo, IKContext } from "imagekitio-react"
+
+import Test from "../../components/test.js"
+import Graph from "../../components/graph.jsx"
+import ElevationGraph from "../../components/ElevationGraph.js"
+import PortraitImage from "../../components/PortraitImage.js"
+import LandscapeImage from "../../components/LandscapeImage.js"
+import RaceResults from "../../components/RaceResults.js"
+
+<Test
+  elevationGain={props.data.mdx.gpxData.fields.elevationGain}
+  stoppedTime={props.data.mdx.gpxData.fields.stoppedTime}
+  distance={props.data.mdx.gpxData.fields.distance}
+  elapsedTime={props.data.mdx.gpxData.fields.elapsedTime}
+  heartAnalysis={props.data.mdx.gpxData.fields.heartAnalysis}
+  tempAnalysis={props.data.mdx.gpxData.fields.tempAnalysis}
+  powerAnalysis={{ entire: "N/A" }}
+  cadenceAnalysis={{ entire: "N/A" }}
+/>
+
+This was my first race of the season and it was probably the first cylocross race in Seattle proper in over 3 years if you can believe it. The race venue for Sunday is [Magnuson Park](https://en.wikipedia.org/wiki/Magnuson_Park) in the Sand Point neighborhood. The [course](https://i0.wp.com/mfgcyclocross.bike/wp-content/uploads/2022/10/MAG_Course-Map.png?w=792&ssl=1) is described by most as a "roadie" course because it was not very technical and relatively flat.
+
+It can change quite a bit if it's muddy but that doesn't usually happen at Magnuson and there have only been a few muddy races here in the last decade.
+
+For this years race, the course was reversed which changed it up a bit. The barriers were placed on a steeper uphill segment that results in the remainder of the hill becoming a running section because it was too difficult to get momentum to remount.
+
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[0]}
+  caption="Photo courtesy of Woodinville Bicycle"
+/>
+
+The course was still prettty fast and the conditions pretty dry even with a few days of heavier rain leading up to race day. I have been postponing the start to my cross season partly because of the smoking and dry and dusty conditions. The condition were better today than they have been so the rain welcome this fall for once. I hope some muddy conditions are coming soon!
+
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[1]}
+  caption="Photo courtesy of Woodinville Bicycle"
+/>
+
+Around five seconds into the start of the race, a huge crash happened that I was unfortunately stuck behind but avoided being involved with. Some racers were tangled together so this spread out the field a bit and cost some crucial time and positioning. I am happy to just not be involved.
+
+After the crash cleared, the rest of the race was overall smooth and uneventul. I didn't have any slip ups for the entirety of the race. I pushed the speed in corners and felt some slippage from time to time but never anything that felt close to losing it.
+
+<Box sx={{ width: "100%", video: { borderRadius: "4px" } }}>
+  <IKContext
+    publicKey="public_0yo2SuC0X+YKHkXDmLUU4S18vcA="
+    urlEndpoint="https://ik.imagekit.io/hcbw4dyr5"
+    transformationPosition="path"
+  >
+    <IKVideo
+      path={"/1645BBBF-8744-48A3-BE01-A53C0E6FA614_jYty_L6hH.mov"}
+      width="100%"
+      controls={true}
+    />
+  </IKContext>
+</Box>
+My tires for today were the WTB Cross Boss 35c tires. I was not a fan of these last
+year in the races are used them for. The height of tire seems greater than other
+tires and last year my complaint with them was sliding out in tight corners.
+
+In this race, in corners at high speed felt like they wanted to roll off the rim and that felt pretty meh. I was running them around 19psi front and rear. If I run higher pressure, this side effect goes away but most likely with loss in traction and compliance.
+
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[2]}
+  caption="Photo courtesy of Woodinville Bicycle"
+/>
+
+The bike for single speed this year is a Transition Rapture that I purchased in October of 2015. It has been raced single speed cross in 2015 and 2016, but mostly used as a commuter bike since then. Last year, it was even setup 2x as a winter bike with fenders and 32c Gravel King slicks.
+
+For this season, it is the go to single speed CX bike and recently was upgrade to hydraulic disc brakes and is feeling pretty solid. Maybe some carbon wheels are in the future soon?
+
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[3]}
+  caption="Throwback to when I used to race the Transition - Magnuson Oct 16, 2016 on a muddy day "
+/>
+
+<Divider sx={{ marginTop: "20px", marginBottom: "20px" }} />
+
+<RaceResults
+  data={props.data.mdx.results.fields.data}
+  numbersToHighlight={[0, 1, 2, 26, 29, 31, 32]}
+  distance={props.data.mdx.gpxData.fields.distance}
+/>
+
+<Divider sx={{ marginTop: "20px", marginBottom: "20px" }} />
+
+## What Went Well
+
+1. **Consistent** lap times and cornering improved throughout the race. I was able to pick out some better lines as the race went on and it helped conserve some energy.
+2. **Strong effort** and kept the heart rate and suffering up through the whole race. After geting stuck behind the crash in the beginning and seeing some rivals ahead, I had to go hard or I would find my self in the back of the field. Single speed fields are big and traffic can be a real problem. I fueled up with GU Roctane Endurance, SKRATCH and gel before race which help keep me fueled.
+
+## What Went Poorly
+
+1. **Garmin pedals** 🚲 XC-100 got clapped out during 2nd pre ride when attempting to clear barriers. I switched Scarlett's Shimano SPD pedals before race start after noticing one side of the cleat interface had shifted making it impossible to clip in on one side of the pedal.
+
+   I actually switched these pedals on this bike the morning before and the battery ended up having issues and not working then they broke during a pre-ride. This same issue happened at RPI Stage 1 with a solid pedal strike to a rock. This time I didn't even notice the strike when it happened so way less impact I think.
+
+2. **Tires** 🛞 didn't perform as well as I wanted. I honestly was planning to change them a few days before to pair of [Specialized Terra Pro 33c](https://www.specialized.com/us/en/terra-pro-2bliss-ready/p/156520) and was too lazy to deal with it.
+
+   I think I have setup probably 20+ tires tubeless this year. The fatigue over the year can affect all aspects of cycling including maintenance. I hope to improve on this in the future.
+
+3. **Gear Ratio** ⚙️ was not optimal. I ran a 40 x 17 and that was a little too steep for the gravel climb and a couple short steep sections. I would prefer to spin a higher cadence and it would help accelerating out of the fast corners which Magnuson has a lot of.
+
+   As the race went on I noticed a little fatigue from the slow grinding cadence that was forced on some sections. I think a 38 x 17 or maybe 40 x 18 would have been best. I will never know what the actual cadence was since my Garmin pedals crapped out earlier that day. Also, it is a must to always travel with spare batteries for electronics to races because they can die at anytime. 🪫

@@ -6,12 +6,13 @@ import {
   formatSeconds,
   generateElevatioinTickValues,
   generateTimeTickValues,
+  formatTime,
 } from "../lib/formatters"
 
 const ElevationGraph = ({ data }) => {
   const { theme } = useThemeUI()
   const graphColor = theme.colors.text
-  const yTickValues = generateElevatioinTickValues("y", data, 1000)
+  const yTickValues = generateElevatioinTickValues(data, 1000)
 
   return (
     <ResponsiveLine
@@ -19,7 +20,7 @@ const ElevationGraph = ({ data }) => {
         type: "linear",
         min: Math.min(...data.map(o => o.y)) - 500,
         // min: "auto",
-        max: Math.max(...data.map(o => o.y)),
+        max: Math.floor(Math.max(...data.map(o => o.y)) / 500) * 500 + 500,
         stacked: false,
         reverse: false,
       }}
@@ -28,13 +29,13 @@ const ElevationGraph = ({ data }) => {
         min: "auto",
         max: "auto",
       }}
-      margin={{ top: 50, right: 20, bottom: 50, left: 45 }}
+      margin={{ top: 10, right: 0, bottom: 25, left: 40 }}
       curve="natural"
       pointSize={0}
       useMesh={true}
       enableArea={true}
       areaBaselineValue={Math.min(...data.map(o => o.y)) - 500}
-      // enableSlices="x"
+      areaOpacity={0.3}
       colors={[theme.colors.text]}
       axisBottom={{
         format: formatSeconds,
@@ -42,26 +43,59 @@ const ElevationGraph = ({ data }) => {
         tickSize: 0,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "Time",
+        // legend: "Time",
         legendOffset: 30,
         legendPosition: "middle",
         // tickCount: 5,
         tickValues: generateTimeTickValues("x", data, 3600),
       }}
+      enableSlices="x"
+      sliceTooltip={({ slice }) => {
+        return (
+          <div
+            style={{
+              background: theme.colors.text,
+              padding: "9px 12px",
+              fontFamily: theme.fonts.body,
+              letterSpacing: ".4px",
+              borderRadius: "4px",
+            }}
+          >
+            {slice.points.map(point => {
+              return (
+                <div
+                  key={point.id}
+                  style={{
+                    color: theme.colors.background,
+                    padding: "3px 0",
+                  }}
+                >
+                  <div style={{ fontWeight: 300 }}>
+                    {formatTime(point.data.x)}
+                  </div>
+                  <div style={{ fontWeight: 600 }}>
+                    {point.data.y.toLocaleString()} ft
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )
+      }}
       axisLeft={{
+        format: val => `${val / 1000}k`,
         orient: "left",
         tickSize: 0,
         tickPadding: 5,
         tickRotation: 0,
-        // tickCount: 3,
+        tickCount: 2,
         // legend: "Elevation",
-        legendOffset: -50,
+        legendOffset: 0,
         legendPosition: "middle",
         // tickValues: [0, 1000, 2000],
         tickValues: yTickValues,
       }}
       theme={{
-        // background: "white",
         fontFamily: theme.fonts.body,
         fontSize: 15,
         tooltip: {
@@ -80,6 +114,7 @@ const ElevationGraph = ({ data }) => {
           line: {
             stroke: graphColor,
             strokeWidth: 1,
+            zIndex: -100000,
           },
         },
         axis: {

@@ -20,26 +20,30 @@ const generateTimeTickValues = (axis, data, intervalSecs) => {
   let currentTick = 0
   const ticks = []
 
-  while (currentTick < max) {
+  while (currentTick < max - 3600) {
     currentTick += intervalSecs
     ticks.push(currentTick)
   }
   return ticks
 }
 
-const generateElevatioinTickValues = (axis, data, intervalSecs) => {
+const generateElevatioinTickValues = (data, intervalSecs) => {
   const max = Math.max(...data.map(o => o.y))
   const min = Math.min(...data.map(o => o.y))
 
+  // console.log(min, max)
   let currentTick = Math.floor(min / 500) * 500
+  console.log(currentTick, max)
   const ticks = []
 
   while (currentTick < max) {
-    currentTick += intervalSecs
     if (currentTick < max) {
       ticks.push(currentTick)
     }
+    currentTick += intervalSecs
   }
+  ticks.push(currentTick)
+  console.log(ticks)
   return ticks
 }
 
