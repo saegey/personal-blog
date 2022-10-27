@@ -13,8 +13,6 @@ import ThemeContext from "../context/ThemeContext"
 const ElevationGraph = ({ data, unit }) => {
   const { theme } = useThemeUI()
   const graphColor = theme.colors.text
-  // const yTickValues = generateElevatioinTickValues(data, 1000)
-  console.log(data)
 
   return (
     <ResponsiveLine
@@ -216,7 +214,6 @@ const ElevationGraphWrapper = ({ data }) => {
   return (
     <ThemeContext.Consumer>
       {theme => {
-        console.log(theme)
         return <ElevationGraph data={data} unit={theme.unitOfMeasure} />
       }}
     </ThemeContext.Consumer>

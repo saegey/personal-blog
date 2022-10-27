@@ -11,7 +11,6 @@ import ThemeContext from "../context/ThemeContext"
 const PowerCurveGraph = ({ data, unitOfMeasure }) => {
   const { theme } = useThemeUI()
   const powerCurve = data
-  console.log(unitOfMeasure)
 
   const graphColor = theme.colors.text
   const yAxes = useResponsiveValue([
