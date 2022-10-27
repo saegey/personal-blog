@@ -17,27 +17,29 @@ results:
   provider: "webscorer"
 ---
 
-import { Box, Text, Divider } from "theme-ui"
-import { Link } from "gatsby"
 import { IKImage, IKVideo, IKContext } from "imagekitio-react"
 
-import Test from "../../components/test.js"
 import Graph from "../../components/graph.jsx"
-import ElevationGraph from "../../components/ElevationGraph.js"
-import PortraitImage from "../../components/PortraitImage.js"
-import LandscapeImage from "../../components/LandscapeImage.js"
-import RaceResults from "../../components/RaceResults.js"
+import WoodinvilleLink from "../../components/WoodinvilleLink.js"
 
-<Test
-  elevationGain={props.data.mdx.gpxData.fields.elevationGain}
-  stoppedTime={props.data.mdx.gpxData.fields.stoppedTime}
-  distance={props.data.mdx.gpxData.fields.distance}
-  elapsedTime={props.data.mdx.gpxData.fields.elapsedTime}
-  heartAnalysis={props.data.mdx.gpxData.fields.heartAnalysis}
-  tempAnalysis={props.data.mdx.gpxData.fields.tempAnalysis}
-  powerAnalysis={{ entire: "N/A" }}
-  cadenceAnalysis={{ entire: "N/A" }}
+<RaceOverview
+  data={props.data.mdx.gpxData.fields}
+  selectedFields={[
+    "Elevation Gain",
+    "Avg Heart Rate",
+    "Distance",
+    "Elapsed Time",
+    "Avg Temperature",
+    "Avg Speed",
+  ]}
 />
+
+<Box sx={{ marginBottom: "20px" }}>
+  <LandscapeImage
+    image={props.data.mdx.frontmatter.images[0]}
+    caption={<WoodinvilleLink />}
+  />
+</Box>
 
 This was my first race of the season and it was probably the first cylocross race in Seattle proper in over 3 years if you can believe it. The race venue for Sunday is [Magnuson Park](https://en.wikipedia.org/wiki/Magnuson_Park) in the Sand Point neighborhood. The [course](https://i0.wp.com/mfgcyclocross.bike/wp-content/uploads/2022/10/MAG_Course-Map.png?w=792&ssl=1) is described by most as a "roadie" course because it was not very technical and relatively flat.
 
@@ -45,16 +47,11 @@ It can change quite a bit if it's muddy but that doesn't usually happen at Magnu
 
 For this years race, the course was reversed which changed it up a bit. The barriers were placed on a steeper uphill segment that results in the remainder of the hill becoming a running section because it was too difficult to get momentum to remount.
 
-<LandscapeImage
-  image={props.data.mdx.frontmatter.images[0]}
-  caption="Photo courtesy of Woodinville Bicycle"
-/>
-
 The course was still prettty fast and the conditions pretty dry even with a few days of heavier rain leading up to race day. I have been postponing the start to my cross season partly because of the smoking and dry and dusty conditions. The condition were better today than they have been so the rain welcome this fall for once. I hope some muddy conditions are coming soon!
 
 <LandscapeImage
   image={props.data.mdx.frontmatter.images[1]}
-  caption="Photo courtesy of Woodinville Bicycle"
+  caption={<WoodinvilleLink />}
 />
 
 Around five seconds into the start of the race, a huge crash happened that I was unfortunately stuck behind but avoided being involved with. Some racers were tangled together so this spread out the field a bit and cost some crucial time and positioning. I am happy to just not be involved.
@@ -104,12 +101,12 @@ For this season, it is the go to single speed CX bike and recently was upgrade t
 
 <Divider sx={{ marginTop: "20px", marginBottom: "20px" }} />
 
-## What Went Well
+## The Good
 
 1. **Consistent** lap times and cornering improved throughout the race. I was able to pick out some better lines as the race went on and it helped conserve some energy.
 2. **Strong effort** and kept the heart rate and suffering up through the whole race. After geting stuck behind the crash in the beginning and seeing some rivals ahead, I had to go hard or I would find my self in the back of the field. Single speed fields are big and traffic can be a real problem. I fueled up with GU Roctane Endurance, SKRATCH and gel before race which help keep me fueled.
 
-## What Went Poorly
+## Needs Improvement
 
 1. **Garmin pedals** 🚲 XC-100 got clapped out during 2nd pre ride when attempting to clear barriers. I switched Scarlett's Shimano SPD pedals before race start after noticing one side of the cleat interface had shifted making it impossible to clip in on one side of the pedal.
 

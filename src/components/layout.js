@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Container, Button, useColorMode, Text, Link, Box } from "theme-ui"
 import Helmet from "react-helmet"
 
@@ -8,8 +8,10 @@ import Logo from "../components/logo"
 import Menu from "./menu"
 
 const Layout = ({ location, title, children }) => {
+  const [unitOfMeasure, setUnitOfMeasure] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [colorMode, setColorMode] = useColorMode()
+
   const className = menuOpen ? "noScroll" : ""
 
   return (
@@ -36,7 +38,6 @@ const Layout = ({ location, title, children }) => {
             position: "sticky",
             background: "headerColor",
             top: 0,
-            // zIndex: -100,
             zIndex: "101",
           }}
         >

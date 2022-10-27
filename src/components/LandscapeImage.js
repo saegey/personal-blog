@@ -19,7 +19,6 @@ const LandscapeImage = ({ image, caption }) => {
             width: ["100%", "100%", "100%"],
             zIndex: "100",
             borderRadius: [4, 4, 4],
-            // backdropFilter: "blur(10px)",
           }}
         ></Image>
         <Box

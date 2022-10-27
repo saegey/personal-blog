@@ -19,16 +19,6 @@ results:
   provider: "raceresults"
 ---
 
-import { Button, Alert, Close, Box, Divider } from "theme-ui"
-import { Link } from "gatsby"
-import Test from "../../components/test.js"
-import Graph from "../../components/graph.jsx"
-import ElevationGraph from "../../components/ElevationGraph.js"
-import ImageWrapper from "../../components/imageWrapper.js"
-import PortraitImage from "../../components/PortraitImage.js"
-import RaceResults from "../../components/RaceResults.js"
-import LandscapeImage from "../../components/LandscapeImage.js"
-
 This stage was a true sufferfest of a stage. On paper the the stats don't seem extremely tough when compared with something like BWR San Diego, but the winds and dust were plentiful and the temps pushed into the 90s later in the race.
 
 <Divider
@@ -38,16 +28,19 @@ This stage was a true sufferfest of a stage. On paper the the stats don't seem e
     marginTop: "0px",
   }}
 />
-<Test
-  data={props.data.mdx.gpxData.fields.gpx}
-  elevationGain={props.data.mdx.gpxData.fields.elevationGain}
-  stoppedTime={props.data.mdx.gpxData.fields.stoppedTime}
-  distance={props.data.mdx.gpxData.fields.distance}
-  elapsedTime={props.data.mdx.gpxData.fields.elapsedTime}
-  heartAnalysis={props.data.mdx.gpxData.fields.heartAnalysis}
-  tempAnalysis={props.data.mdx.gpxData.fields.tempAnalysis}
-  powerAnalysis={props.data.mdx.gpxData.fields.powerAnalysis}
-  cadenceAnalysis={props.data.mdx.gpxData.fields.cadenceAnalysis}
+<RaceOverview
+  data={props.data.mdx.gpxData.fields}
+  selectedFields={[
+    "Avg Power",
+    "Avg Heart Rate",
+    "Distance",
+    "Elapsed Time",
+    "Elevation Gain",
+    "Avg Temperature",
+    "Time Stopped",
+    "Avg Cadence",
+    "Avg Speed",
+  ]}
 />
 <Divider
   sx={{
@@ -73,7 +66,7 @@ Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Cruc
 Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia. Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
 
 <Box sx={{ height: "400px", fontFamily: "Inconsolata" }}>
-  <Graph data={props.data.mdx.gpxData.fields.powerCurve} />
+  <PowerCurveGraph data={props.data.mdx.gpxData.fields.powerCurve} />
 </Box>
 
 1. So baboon this

@@ -8,12 +8,15 @@ const RaceImage = ({ image, caption, children }) => {
   const [menuOpen, setMenuOpen] = useState(false)
   return (
     <>
-      <Box
-        onClick={() => {
-          setMenuOpen(true)
-        }}
-      >
-        <Box sx={{ cursor: "pointer" }}>{children}</Box>
+      <Box>
+        <Box
+          sx={{ cursor: "pointer" }}
+          onClick={() => {
+            setMenuOpen(true)
+          }}
+        >
+          {children}
+        </Box>
         <Text
           as="em"
           sx={{
