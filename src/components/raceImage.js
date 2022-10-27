@@ -21,7 +21,6 @@ const RaceImage = ({ image, caption, children }) => {
           as="em"
           sx={{
             margin: 0,
-            fontSize: "1",
             color: "primary",
             fontFamily: "body",
             fontStyle: "normal",

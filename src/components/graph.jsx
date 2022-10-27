@@ -6,7 +6,6 @@ import { useThemeUI } from "theme-ui"
 import { useResponsiveValue } from "@theme-ui/match-media"
 
 import { formatSeconds, formatTime } from "../lib/formatters"
-import ThemeContext from "../context/ThemeContext"
 
 const PowerCurveGraph = ({ data, unitOfMeasure }) => {
   const { theme } = useThemeUI()

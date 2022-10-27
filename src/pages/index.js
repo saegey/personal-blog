@@ -4,7 +4,6 @@ import { graphql } from "gatsby"
 import { jsx, Container } from "theme-ui"
 import { getImage } from "gatsby-plugin-image"
 
-import Bio from "../components/bio"
 import Seo from "../components/seo"
 import PostCard from "../components/postCard"
 import SafariStyle from "../components/SafariStyle"

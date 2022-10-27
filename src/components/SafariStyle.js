@@ -1,7 +1,7 @@
 import * as React from "react"
 import Helmet from "react-helmet"
 
-export default function SafariStyle({}) {
+export default function SafariStyle() {
   return (
     <Helmet>
       <meta

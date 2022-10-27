@@ -33,21 +33,11 @@ export default function PostTemplate({ data, children }) {
     frontmatter: { title, date, type, location },
   } = data.mdx
 
-  const { name } = data.site.siteMetadata.author
+  // const { name } = data.site.siteMetadata.author
 
   return (
     <>
       <SafariStyle />
-      {/* <Flex sx={{ marginBottom: "30px" }}>
-        <Box
-          sx={{ fontFamily: "serif", flex: "1 1 auto", fontSize: [1, 2, 2] }}
-        >
-          {date}
-        </Box>
-        <Box sx={{ fontFamily: "serif", fontSize: [1, 2, 2] }}>
-          Author • {name}
-        </Box>
-      </Flex> */}
       <Flex sx={{ marginBottom: "20px" }}>
         <Text
           sx={{
@@ -96,21 +86,6 @@ export default function PostTemplate({ data, children }) {
           {date} — {location}
         </Text>
       </Flex>
-      {/* <Flex
-        sx={{
-          marginTop: "10px",
-          marginBottom: "20px",
-          display: ["none", "inherit", "inherit"],
-        }}
-      >
-        {data.mdx.frontmatter.tags.map(tag => {
-          return (
-            <Badge mr={1} variant="listSection">
-              {tag}
-            </Badge>
-          )
-        })}
-      </Flex> */}
       <MDXProvider components={shortcodes}>{children}</MDXProvider>
     </>
   )

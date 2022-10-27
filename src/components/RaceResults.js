@@ -95,7 +95,8 @@ const ListResults = ({ data }) => {
         return (
           <>
             {data.map((item, index) => {
-              if (item === undefined) return
+              if (item === undefined) return ""
+
               return (
                 <>
                   <Box
@@ -125,7 +126,11 @@ const ListResults = ({ data }) => {
                     </Flex>
                     <Flex sx={{ display: ["flex", "none", "none"] }}>
                       <Box sx={{ width: "10%" }}></Box>
-                      <Box sx={{ color: "primary" }}>{item.speed}</Box>
+                      <Box sx={{ color: "primary" }}>
+                        {theme.unitOfMeasure === "metric"
+                          ? item.speedMetric
+                          : item.speed}
+                      </Box>
                       <Box sx={{ marginLeft: "auto", color: "primary" }}>
                         {item.timeBehind}
                       </Box>
