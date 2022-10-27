@@ -2,7 +2,7 @@
 // yarn add @nivo/core @nivo/line
 import * as React from "react"
 import { ResponsiveLine } from "@nivo/line"
-import { useThemeUI } from "theme-ui"
+import { useThemeUI, Box } from "theme-ui"
 import { useResponsiveValue } from "@theme-ui/match-media"
 
 import { formatSeconds, formatTime } from "../lib/formatters"
@@ -19,7 +19,6 @@ const PowerCurveGraph = ({ data, unitOfMeasure }) => {
   ])
 
   return (
-    // <ThemeContext.Consumer>
     <ResponsiveLine
       data={[
         {
@@ -186,7 +185,14 @@ const PowerCurveGraph = ({ data, unitOfMeasure }) => {
       }}
       legends={[]}
     />
-    // </ThemeContext.Consumer>
   )
 }
-export default PowerCurveGraph
+
+const PowerCurveGraphWrapper = ({ data, unitOfMeasure }) => {
+  return (
+    <Box sx={{ height: ["200px", "400px", "400px"] }}>
+      <PowerCurveGraph data={data} unitOfMeasure={unitOfMeasure} />
+    </Box>
+  )
+}
+export default PowerCurveGraphWrapper
