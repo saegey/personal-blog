@@ -70,7 +70,7 @@ const RaceOverview = ({ data, selectedFields = [] }) => {
           },
           {
             title: "Avg Power",
-            value: `${powerAnalysis.entire} watts`,
+            value: powerAnalysis ? `${powerAnalysis.entire} watts` : "N/A",
           },
           {
             title: "Time Stopped",
@@ -78,7 +78,7 @@ const RaceOverview = ({ data, selectedFields = [] }) => {
           },
           {
             title: "Avg Cadence",
-            value: `${cadenceAnalysis.entire} rpm`,
+            value: cadenceAnalysis ? `${cadenceAnalysis.entire} rpm` : "N/A",
           },
         ]
 

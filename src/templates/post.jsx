@@ -13,6 +13,7 @@ import RaceOverview from "../components/RaceOverview.js"
 import LandscapeImage from "../components/LandscapeImage.js"
 import ElevationGraph from "../components/ElevationGraph.js"
 import { default as PowerCurveGraph } from "../components/graph"
+import { default as PowerCurveContextGraph } from "../components/PowerCurveContext"
 
 const shortcodes = {
   Box,
@@ -24,6 +25,7 @@ const shortcodes = {
   LandscapeImage,
   ElevationGraph,
   PowerCurveGraph,
+  PowerCurveContextGraph,
 }
 
 export default function PostTemplate({ data, children }) {

@@ -4,6 +4,7 @@ import React, { useState } from "react"
 import { Text, Flex, Box, Button, Close } from "theme-ui"
 
 import { formatTime } from "../lib/formatters"
+import ThemeContext from "../context/ThemeContext"
 
 const ResultText = ({ children }) => {
   return (
@@ -45,7 +46,11 @@ const ViewAllResults = ({ data, setShouldShowResults }) => {
         }}
       >
         <Flex
-          sx={{ position: "sticky", top: "0px", backgroundColor: "background" }}
+          sx={{
+            position: "sticky",
+            top: "0px",
+            backgroundColor: "background",
+          }}
         >
           <Box sx={{ p: "20px" }}>
             <Text
@@ -85,73 +90,85 @@ const ViewAllResults = ({ data, setShouldShowResults }) => {
 
 const ListResults = ({ data }) => {
   return (
-    <>
-      {data.map((item, index) => {
-        if (item === undefined) return
+    <ThemeContext.Consumer>
+      {theme => {
         return (
           <>
-            <Box
-              sx={{
-                marginBottom: "10px",
-                fontFamily: "body",
-              }}
-            >
-              <Flex sx={{ display: ["flex", "none", "none"] }}>
-                <Box sx={{ width: "10%" }}>{item && item.place}</Box>
-                <Box>
-                  <Text
+            {data.map((item, index) => {
+              if (item === undefined) return
+              return (
+                <>
+                  <Box
                     sx={{
-                      textDecoration: item.isMe ? "underline" : "",
-                      textDecorationColor: item.isMe ? "highlightColor" : "",
-                      textDecorationThickness: item.isMe ? "10px" : "",
-                      textUnderlineOffset: item.isMe ? "-7px" : "",
-                      textDecorationSkipInk: item.isMe ? "none" : "",
+                      marginBottom: "10px",
+                      fontFamily: "body",
                     }}
                   >
-                    {item.name}
-                  </Text>
-                </Box>
-                <Box sx={{ marginLeft: "auto" }}>{item.time}</Box>
-              </Flex>
-              <Flex sx={{ display: ["flex", "none", "none"] }}>
-                <Box sx={{ width: "10%" }}></Box>
-                <Box sx={{ color: "primary" }}>{item.speed}</Box>
-                <Box sx={{ marginLeft: "auto", color: "primary" }}>
-                  {item.timeBehind}
-                </Box>
-              </Flex>
-            </Box>
-            <Flex
-              sx={{
-                height: ["35px", "35px", "35px"],
-                backgroundColor: item.isMe ? "blockquoteBg" : "",
-                display: ["none", "flex", "flex"],
-                fontFamily: "body",
-                letterSpacing: ".3px",
-              }}
-            >
-              <Box sx={{ width: "5%" }}>
-                <ResultText>
-                  <strong>{item.place}</strong>
-                </ResultText>
-              </Box>
-              <Box sx={{ width: "40%" }}>
-                <ResultText>{item.name}</ResultText>
-              </Box>
-              <Box sx={{ width: "20%" }}>
-                <ResultText>{item.time}</ResultText>
-              </Box>
-              <Box sx={{ width: "20%" }}>
-                <ResultText>{item.speed}</ResultText>
-              </Box>
-              <Box sx={{ width: "15%", textAlign: "right" }}>
-                <ResultText>{item.timeBehind}</ResultText>
-              </Box>
-            </Flex>
+                    <Flex sx={{ display: ["flex", "none", "none"] }}>
+                      <Box sx={{ width: "10%" }}>{item && item.place}</Box>
+                      <Box>
+                        <Text
+                          sx={{
+                            textDecoration: item.isMe ? "underline" : "",
+                            textDecorationColor: item.isMe
+                              ? "highlightColor"
+                              : "",
+                            textDecorationThickness: item.isMe ? "10px" : "",
+                            textUnderlineOffset: item.isMe ? "-7px" : "",
+                            textDecorationSkipInk: item.isMe ? "none" : "",
+                          }}
+                        >
+                          {item.name}
+                        </Text>
+                      </Box>
+                      <Box sx={{ marginLeft: "auto" }}>{item.time}</Box>
+                    </Flex>
+                    <Flex sx={{ display: ["flex", "none", "none"] }}>
+                      <Box sx={{ width: "10%" }}></Box>
+                      <Box sx={{ color: "primary" }}>{item.speed}</Box>
+                      <Box sx={{ marginLeft: "auto", color: "primary" }}>
+                        {item.timeBehind}
+                      </Box>
+                    </Flex>
+                  </Box>
+                  <Flex
+                    sx={{
+                      height: ["35px", "35px", "35px"],
+                      backgroundColor: item.isMe ? "blockquoteBg" : "",
+                      display: ["none", "flex", "flex"],
+                      fontFamily: "body",
+                      letterSpacing: ".3px",
+                    }}
+                  >
+                    <Box sx={{ width: "5%" }}>
+                      <ResultText>
+                        <strong>{item.place}</strong>
+                      </ResultText>
+                    </Box>
+                    <Box sx={{ width: "40%" }}>
+                      <ResultText>{item.name}</ResultText>
+                    </Box>
+                    <Box sx={{ width: "20%" }}>
+                      <ResultText>{item.time}</ResultText>
+                    </Box>
+                    <Box sx={{ width: "20%" }}>
+                      <ResultText>
+                        {theme.unitOfMeasure === "metric"
+                          ? item.speedMetric
+                          : item.speed}
+                      </ResultText>
+                    </Box>
+                    <Box sx={{ width: "15%", textAlign: "right" }}>
+                      <ResultText>{item.timeBehind}</ResultText>
+                    </Box>
+                  </Flex>
+                </>
+              )
+            })}
           </>
         )
-      })}
-    </>
+      }}
+    </ThemeContext.Consumer>
   )
 }
 
@@ -168,6 +185,9 @@ const RaceResults = ({ data, numbersToHighlight, distance }) => {
       .reduce((acc, time) => 60 * acc + +time)
     // d.speed = distance / (timeSeconds / 3600)
     if (timeSeconds > 0) {
+      d.speedMetric = `${(((distance * 1000) / timeSeconds) * 3.6).toFixed(
+        2
+      )} km/h`
       d.speed = `${((distance / timeSeconds) * 2236.9362920544).toFixed(2)} mph`
     } else {
       d.speed = null

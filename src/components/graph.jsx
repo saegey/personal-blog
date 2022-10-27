@@ -6,16 +6,12 @@ import { useThemeUI } from "theme-ui"
 import { useResponsiveValue } from "@theme-ui/match-media"
 
 import { formatSeconds, formatTime } from "../lib/formatters"
+import ThemeContext from "../context/ThemeContext"
 
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
-
-const PowerCurveGraph = data => {
+const PowerCurveGraph = ({ data, unitOfMeasure }) => {
   const { theme } = useThemeUI()
-  const powerCurve = data.data
+  const powerCurve = data
+  console.log(unitOfMeasure)
 
   const graphColor = theme.colors.text
   const yAxes = useResponsiveValue([
@@ -24,8 +20,8 @@ const PowerCurveGraph = data => {
     [100, 200, 300, 400, 500, 600, 700],
   ])
 
-  console.log("max", Math.max(...powerCurve.map(o => o.x)))
   return (
+    // <ThemeContext.Consumer>
     <ResponsiveLine
       data={[
         {
@@ -192,6 +188,7 @@ const PowerCurveGraph = data => {
       }}
       legends={[]}
     />
+    // </ThemeContext.Consumer>
   )
 }
 export default PowerCurveGraph

@@ -26,7 +26,7 @@ const downsampleElevation = (coordinates, rate) => {
   const downsampled = []
   coordinates.forEach((d, index) => {
     if (index % rate === 0 || index === 0) {
-      downsampled.push({ x: index, y: (d[2] * 3.28084).toFixed(0) })
+      downsampled.push({ x: index, y: d[2].toFixed(0) })
     }
   })
 

@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { Container, Button, useColorMode, Text, Link, Box } from "theme-ui"
 import Helmet from "react-helmet"
 
