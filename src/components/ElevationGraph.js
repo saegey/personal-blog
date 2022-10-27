@@ -1,6 +1,6 @@
 import React from "react"
 import { ResponsiveLine } from "@nivo/line"
-import { useThemeUI } from "theme-ui"
+import { useThemeUI, Box } from "theme-ui"
 
 import {
   formatSeconds,
@@ -105,7 +105,11 @@ const ElevationGraph = ({ data, unit }) => {
         legendOffset: 0,
         legendPosition: "middle",
         // tickValues: [0, 1000, 2000],
-        tickValues: generateElevatioinTickValues(data, 1000, unit),
+        tickValues: generateElevatioinTickValues(
+          data,
+          unit === "metric" ? 500 : 1000,
+          unit
+        ),
       }}
       theme={{
         fontFamily: theme.fonts.body,
@@ -179,7 +183,6 @@ const ElevationGraph = ({ data, unit }) => {
           text: { fontSize: 18, fontFamily: theme.fonts.body },
         },
       }}
-      // layers={['grid', 'markers', 'axes', 'areas', 'crosshair', 'lines', 'points', 'slices', 'mesh', 'legends']}
       layers={[
         null,
         "markers",
@@ -214,7 +217,17 @@ const ElevationGraphWrapper = ({ data }) => {
   return (
     <ThemeContext.Consumer>
       {theme => {
-        return <ElevationGraph data={data} unit={theme.unitOfMeasure} />
+        return (
+          <Box
+            sx={{
+              height: ["150px", "100px", "150px"],
+              fontFamily: "body",
+              marginY: "20px",
+            }}
+          >
+            <ElevationGraph data={data} unit={theme.unitOfMeasure} />
+          </Box>
+        )
       }}
     </ThemeContext.Consumer>
   )

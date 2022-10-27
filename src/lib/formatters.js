@@ -38,8 +38,8 @@ const generateElevatioinTickValues = (data, intervalSecs, unit) => {
       : Math.min(...data.map(o => o.y)) * 3.280839895
 
   // console.log(min, max)
-  let currentTick = Math.floor(min / 500) * 500
-  console.log(currentTick, max)
+  let currentTick = (Math.floor(min / 1000) + 1) * 1000
+  // console.log(currentTick, max)
   const ticks = []
 
   while (currentTick < max) {
