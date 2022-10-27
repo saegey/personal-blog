@@ -8,19 +8,26 @@ import {
   generateTimeTickValues,
   formatTime,
 } from "../lib/formatters"
+import ThemeContext from "../context/ThemeContext"
 
-const ElevationGraph = ({ data }) => {
+const ElevationGraph = ({ data, unit }) => {
   const { theme } = useThemeUI()
   const graphColor = theme.colors.text
-  const yTickValues = generateElevatioinTickValues(data, 1000)
 
   return (
     <ResponsiveLine
       yScale={{
         type: "linear",
-        min: Math.min(...data.map(o => o.y)) - 500,
+        min:
+          unit === "metric"
+            ? Math.min(...data.map(o => o.y)) - 152.4
+            : Math.min(...data.map(o => o.y)) * 3.280839895 - 500,
         // min: "auto",
-        max: Math.floor(Math.max(...data.map(o => o.y)) / 500) * 500 + 500,
+        max:
+          unit === "metric"
+            ? Math.floor(Math.max(...data.map(o => o.y)) / 500) * 500 + 500
+            : (Math.floor(Math.max(...data.map(o => o.y)) / 500) * 500 + 500) *
+              3.280839895,
         stacked: false,
         reverse: false,
       }}
@@ -34,7 +41,11 @@ const ElevationGraph = ({ data }) => {
       pointSize={0}
       useMesh={true}
       enableArea={true}
-      areaBaselineValue={Math.min(...data.map(o => o.y)) - 500}
+      areaBaselineValue={
+        unit === "metric"
+          ? Math.min(...data.map(o => o.y)) - 152.4
+          : Math.min(...data.map(o => o.y)) * 3.280839895 - 500
+      }
       areaOpacity={0.3}
       colors={[theme.colors.text]}
       axisBottom={{
@@ -74,7 +85,8 @@ const ElevationGraph = ({ data }) => {
                     {formatTime(point.data.x)}
                   </div>
                   <div style={{ fontWeight: 600 }}>
-                    {point.data.y.toLocaleString()} ft
+                    {point.data.y.toLocaleString()}{" "}
+                    {unit === "metric" ? "m" : "ft"}
                   </div>
                 </div>
               )
@@ -83,7 +95,7 @@ const ElevationGraph = ({ data }) => {
         )
       }}
       axisLeft={{
-        format: val => `${val / 1000}k`,
+        format: val => `${val}`,
         orient: "left",
         tickSize: 0,
         tickPadding: 5,
@@ -93,7 +105,7 @@ const ElevationGraph = ({ data }) => {
         legendOffset: 0,
         legendPosition: "middle",
         // tickValues: [0, 1000, 2000],
-        tickValues: yTickValues,
+        tickValues: generateElevatioinTickValues(data, 1000, unit),
       }}
       theme={{
         fontFamily: theme.fonts.body,
@@ -183,11 +195,29 @@ const ElevationGraph = ({ data }) => {
       data={[
         {
           id: "elevation",
-          data: data,
+          data:
+            unit === "metric"
+              ? data
+              : data.map(d => {
+                  return {
+                    x: d.x,
+                    y: (d.y * 3.280839895).toFixed(0),
+                  }
+                }),
         },
       ]}
     />
   )
 }
 
-export default ElevationGraph
+const ElevationGraphWrapper = ({ data }) => {
+  return (
+    <ThemeContext.Consumer>
+      {theme => {
+        return <ElevationGraph data={data} unit={theme.unitOfMeasure} />
+      }}
+    </ThemeContext.Consumer>
+  )
+}
+
+export default ElevationGraphWrapper

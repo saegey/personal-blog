@@ -27,9 +27,15 @@ const generateTimeTickValues = (axis, data, intervalSecs) => {
   return ticks
 }
 
-const generateElevatioinTickValues = (data, intervalSecs) => {
-  const max = Math.max(...data.map(o => o.y))
-  const min = Math.min(...data.map(o => o.y))
+const generateElevatioinTickValues = (data, intervalSecs, unit) => {
+  const max =
+    unit === "metric"
+      ? Math.max(...data.map(o => o.y))
+      : Math.max(...data.map(o => o.y)) * 3.280839895
+  const min =
+    unit === "metric"
+      ? Math.min(...data.map(o => o.y))
+      : Math.min(...data.map(o => o.y)) * 3.280839895
 
   // console.log(min, max)
   let currentTick = Math.floor(min / 500) * 500
