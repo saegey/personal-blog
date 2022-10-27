@@ -18,26 +18,21 @@ images:
   - ./5.jpeg
 ---
 
-import { Box, Divider } from "theme-ui"
-
-import Test from "../../components/test.js"
-import Graph from "../../components/graph.jsx"
-import ElevationGraph from "../../components/ElevationGraph.js"
-import LandscapeImage from "../../components/LandscapeImage.js"
-import RaceResults from "../../components/RaceResults.js"
-
 I'm baby seitan migas iceland shoreditch cred same occupy intelligentsia. Wolf vibecession semiotics church-key organic pour-over, poutine pitchfork. DSA lo-fi man bun tote bag semiotics yr. Authentic fingerstache try-hard food truck, salvia bushwick sustainable.
 
-<Test
-  data={props.data.mdx.gpxData.fields.gpx}
-  elevationGain={props.data.mdx.gpxData.fields.elevationGain}
-  stoppedTime={props.data.mdx.gpxData.fields.stoppedTime}
-  distance={props.data.mdx.gpxData.fields.distance}
-  elapsedTime={props.data.mdx.gpxData.fields.elapsedTime}
-  heartAnalysis={props.data.mdx.gpxData.fields.heartAnalysis}
-  tempAnalysis={props.data.mdx.gpxData.fields.tempAnalysis}
-  powerAnalysis={props.data.mdx.gpxData.fields.powerAnalysis}
-  cadenceAnalysis={props.data.mdx.gpxData.fields.cadenceAnalysis}
+<RaceOverview
+  data={props.data.mdx.gpxData.fields}
+  selectedFields={[
+    "Avg Power",
+    "Avg Heart Rate",
+    "Distance",
+    "Elapsed Time",
+    "Elevation Gain",
+    "Avg Temperature",
+    "Time Stopped",
+    "Avg Cadence",
+    "Avg Speed",
+  ]}
 />
 
 Swag tonx cornhole gluten-free everyday carry. Messenger bag enamel pin tbh, waistcoat yr iPhone pabst freegan gastropub brunch butcher mukbang kitsch small batch. Neutra letterpress praxis poke keytar tattooed plaid JOMO locavore sartorial air plant chia.
@@ -47,7 +42,7 @@ Swag tonx cornhole gluten-free everyday carry. Messenger bag enamel pin tbh, wai
 Hashtag listicle praxis, hella venmo prism pour-over cloud bread Brooklyn mlkshk. Brooklyn polaroid snackwave air plant ugh leggings. Poutine shaman drinking vinegar deep v brunch, humblebrag la croix. Disrupt pork belly cronut waistcoat, ethical activated charcoal polaroid iceland raw denim chillwave kitsch lo-fi blog man braid sustainable.
 
 <Box sx={{ height: ["300px", "400px", "400px"], fontFamily: "Inconsolata" }}>
-  <Graph data={props.data.mdx.gpxData.fields.powerCurve} />
+  <PowerCurveGraph data={props.data.mdx.gpxData.fields.powerCurve} />
 </Box>
 
 Disrupt portland organic, flannel tumeric offal flexitarian palo santo pug lo-fi succulents man bun microdosing praxis cliche. Mlkshk beard bitters ethical godard. Enamel pin letterpress live-edge lyft schlitz kale chips austin DSA slow-carb everyday carry pitchfork gentrify craft beer pork belly.

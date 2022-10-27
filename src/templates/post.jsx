@@ -1,10 +1,30 @@
 /** @jsx jsx */
 import { jsx, Text } from "theme-ui"
 import { graphql } from "gatsby"
-import { Flex } from "theme-ui"
+import { Flex, Box, Divider } from "theme-ui"
+import { MDXProvider } from "@mdx-js/react"
 
 import Seo from "../components/seo"
 import SafariStyle from "../components/SafariStyle"
+import RaceStats from "../components/RaceStats"
+import PortraitImage from "../components/PortraitImage"
+import RaceResults from "../components/RaceResults.js"
+import RaceOverview from "../components/RaceOverview.js"
+import LandscapeImage from "../components/LandscapeImage.js"
+import ElevationGraph from "../components/ElevationGraph.js"
+import { default as PowerCurveGraph } from "../components/graph"
+
+const shortcodes = {
+  Box,
+  Divider,
+  RaceStats,
+  PortraitImage,
+  RaceResults,
+  RaceOverview,
+  LandscapeImage,
+  ElevationGraph,
+  PowerCurveGraph,
+}
 
 export default function PostTemplate({ data, children }) {
   const {
@@ -89,7 +109,7 @@ export default function PostTemplate({ data, children }) {
           )
         })}
       </Flex> */}
-      {children}
+      <MDXProvider components={shortcodes}>{children}</MDXProvider>
     </>
   )
 }
