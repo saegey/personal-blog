@@ -1,7 +1,6 @@
 /** @jsx jsx */
-import { jsx, Text } from "theme-ui"
+import { jsx, Text, Flex, Box, Divider, Link } from "theme-ui"
 import { graphql } from "gatsby"
-import { Flex, Box, Divider } from "theme-ui"
 import { MDXProvider } from "@mdx-js/react"
 
 import Seo from "../components/seo"
@@ -26,14 +25,14 @@ const shortcodes = {
   ElevationGraph,
   PowerCurveGraph,
   PowerCurveContextGraph,
+  Link,
+  Text,
 }
 
 export default function PostTemplate({ data, children }) {
   const {
     frontmatter: { title, date, type, location },
   } = data.mdx
-
-  // const { name } = data.site.siteMetadata.author
 
   return (
     <>

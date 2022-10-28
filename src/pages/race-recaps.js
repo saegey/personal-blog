@@ -9,19 +9,21 @@ import PostCard from "../components/postCard"
 import SafariStyle from "../components/SafariStyle"
 
 const BlogIndex = ({ data, location }) => {
-  // const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMdx.nodes
 
   return (
     <>
       <SafariStyle />
-      <Container sx={{ padding: "0px" }} bg="muted">
+      <Container sx={{ padding: "0px" }}>
         <ol sx={{ p: 0, marginTop: "0px" }}>
           {posts.map(post => {
-            const image = getImage(post.frontmatter.headerImage)
-            const title = post.frontmatter.title || post.fields.slug
-
-            return <PostCard post={post} title={title} image={image} />
+            return (
+              <PostCard
+                post={post}
+                title={post.frontmatter.title || post.fields.slug}
+                image={getImage(post.frontmatter.headerImage)}
+              />
+            )
           })}
         </ol>
       </Container>
