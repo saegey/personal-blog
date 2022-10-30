@@ -1,28 +1,19 @@
 /** @jsxImportSource theme-ui */
 
 import * as React from "react"
-import { Text, Card, Image, Link, Box } from "theme-ui"
+import { Text, Card, Image, Link, Box, Flex } from "theme-ui"
 import { Link as GatsbyLink } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
 const PostCard = ({ post, title, image }) => {
   return (
     <Link
-      to={post.fields.slug}
+      to={`/${post.fields.slug}`}
       itemProp="url"
       sx={{ textDecoration: "none" }}
       as={GatsbyLink}
     >
-      <Card
-        sx={{
-          padding: 0,
-          borderRadius: 4,
-          boxShadow:
-            "0 8px 16px -4px rgba(0,0,0,.1), 0 0 8px -3px rgba(0,0,0,.1)",
-          marginBottom: "20px",
-          backgroundColor: "cardBackground",
-        }}
-      >
+      <Card>
         <div
           sx={{
             display: "flex",
@@ -39,15 +30,9 @@ const PostCard = ({ post, title, image }) => {
               layout="constrained"
               image={image}
               objectFit="cover"
-              alt={`Alt text`}
+              alt={`${post.frontmatter.title} Photo`}
               as={GatsbyImage}
-              sx={{
-                width: ["100%", "200px", "200px"],
-                zIndex: "100",
-                borderTopLeftRadius: 4,
-                borderTopRightRadius: [4, 0, 0],
-                borderBottomLeftRadius: [0, 4, 4],
-              }}
+              variant="postCardImage"
             />
           </div>
           <main
@@ -57,65 +42,46 @@ const PostCard = ({ post, title, image }) => {
               minWidth: 320,
             }}
           >
-            <Box sx={{ margin: "10px" }}>
-              <Box sx={{ marginBottom: "10px" }}>
-                <Text
-                  sx={{
-                    fontSize: "16px",
-                    fontFamily: "body",
-                    textTransform: "uppercase",
-                    fontWeight: "600",
-                    letterSpacing: "1px",
-                  }}
-                >
-                  {post.frontmatter.type}
-                </Text>
-              </Box>
-              <Text
-                as="h2"
-                // variant="subHeadline"
+            <Box sx={{ height: "100%" }}>
+              <Flex
                 sx={{
-                  fontSize: ["2", "3", "3"],
-                  fontFamily: "serif",
-                  fontWeight: "600",
-                  color: "text",
+                  flexDirection: "column",
+                  height: "100%",
                 }}
               >
-                {title}
-              </Text>
-              <Box sx={{ marginBottom: "20px" }}>
-                <Text
-                  sx={{
-                    fontSize: ["14px", "2", "16px"],
-                    fontFamily: "body",
-                    fontWeight: 400,
-                    color: "primary",
-                    letterSpacing: "0.3px",
-                  }}
-                >
-                  {post.frontmatter.date}
-                </Text>
-              </Box>
-              {/* <Flex sx={{ display: ["none", "inherit", "inherit"] }}>
-              {post.frontmatter.tags.map(tag => {
-                return (
-                  <Badge
-                    mr={1}
-                    sx={{
-                      fontFamily: "body",
-                      padding: "5px",
-                      fontSize: ["0", "1", "1"],
-                      color: "background",
-                      textTransform: "uppercase",
-                      marginRight: "5px",
-                      fontWeight: "600",
-                    }}
-                  >
-                    {tag}
-                  </Badge>
-                )
-              })}
-            </Flex> */}
+                <Box sx={{ flex: "1" }}>
+                  <Box sx={{ marginTop: "20px", marginLeft: "20px" }}>
+                    <Text variant="postCardType">{post.frontmatter.type}</Text>
+                  </Box>
+                </Box>
+                <Box sx={{ flex: "1" }}>
+                  <Flex sx={{ height: "100%" }}>
+                    <Box sx={{ marginX: "20px", marginY: "auto" }}>
+                      <Text as="h2" variant="postCardTitle">
+                        {title}
+                      </Text>
+                      <Text variant="postCardSubtitle">
+                        {post.frontmatter.location}
+                      </Text>
+                    </Box>
+                  </Flex>
+                </Box>
+                <Box sx={{ flex: "1", marginTop: "auto" }}>
+                  <Flex sx={{ height: "100%" }}>
+                    <Box
+                      sx={{
+                        marginTop: "auto",
+                        marginBottom: "20px",
+                        marginX: "20px",
+                      }}
+                    >
+                      <Text variant="postCardBottom">
+                        {post.frontmatter.date}
+                      </Text>
+                    </Box>
+                  </Flex>
+                </Box>
+              </Flex>
             </Box>
           </main>
         </div>

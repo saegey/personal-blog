@@ -99,8 +99,8 @@ const Menu = ({ menuOpen, setMenuOpen, setUnitOfMeasure, unitOfMeasure }) => {
                   setMenuOpen={setMenuOpen}
                 />
                 <MenuLink
-                  location="/race-recaps"
-                  title="Race Recaps"
+                  location="/race-journal"
+                  title="Race Journal"
                   setMenuOpen={setMenuOpen}
                 />
                 <MenuLink

@@ -1,4 +1,7 @@
 module.exports = {
+  flags: {
+    FAST_REFRESH: true,
+  },
   pathPrefix: `/personal-blog`,
   siteMetadata: {
     title: `Adam Saegebarth`,
@@ -17,9 +20,6 @@ module.exports = {
   plugins: [
     {
       resolve: "gatsby-plugin-theme-ui",
-      options: {
-        preset: require("./src/theme"),
-      },
     },
     {
       resolve: `gatsby-plugin-mdx`,

@@ -11,7 +11,7 @@ const colors = {
   eerieBlack: "#212529ff",
 }
 
-module.exports = {
+const theme = {
   config: {
     initialColorModeName: "light",
   },
@@ -67,11 +67,28 @@ module.exports = {
       letterSpacing: ".4px",
       fontSize: [16, 18, 18],
       paddingLeft: "10px",
+      marginBottom: "10px",
     },
     ol: {
       paddingInlineStart: "20px",
     },
     // more styles can be added as needed
+  },
+  buttons: {
+    primary: {
+      color: "background",
+      marginRight: 0,
+      paddingX: "10px",
+      paddingY: "5px",
+      fontFamily: "body",
+      cursor: "pointer",
+      textTransform: "uppercase",
+      fontWeight: "600",
+      fontSize: "14px",
+      letterSpacing: ".5px",
+      paddingLeft: "20px",
+      paddingRight: "20px",
+    },
   },
   fontSizes: [10, 13, 18, 21, 26, 34, 48],
   fonts: {
@@ -83,6 +100,44 @@ module.exports = {
   sizes: {
     container: 768,
   },
+  cards: {
+    primary: {
+      padding: 0,
+      borderRadius: 4,
+      boxShadow: "0 8px 16px -4px rgba(0,0,0,.1), 0 0 8px -3px rgba(0,0,0,.1)",
+      marginBottom: "20px",
+      backgroundColor: "cardBackground",
+    },
+  },
+  box: {
+    faded: {
+      position: "fixed",
+      top: "0",
+      height: "100%",
+      width: "100%",
+      left: "0",
+      backgroundColor: "rgba(0,0,0,0.8)",
+      zIndex: 10000,
+      display: "flex",
+    },
+  },
+  images: {
+    postCardImage: {
+      width: ["100%", "200px", "300px"],
+      height: ["300px", "150px", "200px"],
+      zIndex: "100",
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: [4, 0, 0],
+      borderBottomLeftRadius: [0, 4, 4],
+    },
+    fullScreen: {
+      position: "relative",
+      height: "100vh",
+      maxHeight: "100%",
+      zIndex: "100",
+      borderRadius: [4, 4, 4],
+    },
+  },
   text: {
     headline: {
       fontFamily: "headline",
@@ -92,22 +147,62 @@ module.exports = {
       letterSpacing: "0",
       color: "text",
     },
-    subHeadline: {
-      fontFamily: "headline",
-      fontSize: ["3", "4", "4"],
-      fontWeight: "heavy",
-      // lineHeight: "0",
-      letterSpacing: "0",
-      color: "text",
-    },
-    menuItem: {
-      fontSize: "5",
-      fontWeight: "heavy",
-      lineHeight: "1.5",
-      margin: "0",
+    postCardType: {
+      fontSize: "16px",
       fontFamily: "body",
-      textDecoration: "none",
+      textTransform: "uppercase",
+      fontWeight: "600",
+      letterSpacing: "1px",
+      color: "mutedText",
+      // marginLeft: "20px",
+      // marginTop: "20px",
+      display: "block",
+    },
+    postCardTitle: {
+      fontSize: ["2", "3", "3"],
+      fontFamily: "serif",
+      fontWeight: "600",
       color: "text",
+      // marginLeft: "20px",
+    },
+    postCardSubtitle: {
+      fontSize: ["14px", "2", "16px"],
+      fontFamily: "body",
+      fontWeight: 400,
+      color: "mutedText",
+      letterSpacing: "0.3px",
+      // marginLeft: "20px",
+    },
+    postCardBottom: {
+      fontSize: ["14px", "2", "16px"],
+      fontFamily: "body",
+      fontWeight: 400,
+      color: "mutedText",
+      letterSpacing: "0.3px",
+      // marginLeft: "20px",
+      // marginTop: "auto",
+      // marginBottom: "5px",
+      height: "100%",
+      // position: "absolute",
+    },
+    resultsHeading: {
+      lineHeight: "30px",
+      fontFamily: "serif",
+      letterSpacing: ".6px",
+      fontWeight: "700",
+    },
+    resultsItem: {
+      fontSize: ["1", "2", "2"],
+      lineHeight: "35px",
+    },
+    caption: {
+      marginTop: "5px",
+      display: "block",
+      color: "primary",
+      fontFamily: "body",
+      fontStyle: "normal",
+      fontSize: "14px",
+      letterSpacing: ".1px",
     },
   },
   badges: {
@@ -132,7 +227,8 @@ module.exports = {
   // },
   links: {
     menu: {
-      fontSize: "5",
+      fontSize: "24px",
+      textTransform: "uppercase",
       fontWeight: "700",
       lineHeight: "1.5",
       margin: "0",
@@ -144,7 +240,8 @@ module.exports = {
     },
   },
   colors: {
-    text: colors.eerieBlack,
+    text: "#212529ff",
+    mutedText: "#495057ff",
     background: "#fff",
     primary: colors.sonicSilver,
     headerColor: "#e9ecefff",
@@ -157,19 +254,24 @@ module.exports = {
     dividerColor: colors.gainsboro,
     highlightColor: "#e8ff50c7",
     opacity: "0.3",
+    // @refresh reset
     modes: {
       dark: {
         headerColor: colors.eerieBlack,
         dividerColor: colors.sonicSilver,
         text: colors.cultured,
+        mutedText: "#6c757dff",
         background: colors.eerieBlack,
         cardBackground: colors.onyx,
         primary: colors.gainsboro,
         menuBackground: colors.eerieBlack,
         blockquoteBg: colors.davysGrey,
         headerForeground: "aquamarine",
+        highlightColor: "#6c757dff",
         opacity: "0.1",
       },
     },
   },
 }
+
+export default theme

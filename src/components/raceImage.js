@@ -4,8 +4,9 @@ import React, { useState } from "react"
 import { Text, Image, Box } from "theme-ui"
 import { getImage, GatsbyImage } from "gatsby-plugin-image"
 
-const RaceImage = ({ image, caption, children }) => {
+const RaceImage = ({ image, caption, children, altText }) => {
   const [menuOpen, setMenuOpen] = useState(false)
+
   return (
     <>
       <Box>
@@ -17,33 +18,12 @@ const RaceImage = ({ image, caption, children }) => {
         >
           {children}
         </Box>
-        <Text
-          as="em"
-          sx={{
-            margin: 0,
-            color: "primary",
-            fontFamily: "body",
-            fontStyle: "normal",
-            fontSize: "14px",
-          }}
-        >
+        <Text as="em" variant="caption">
           {caption}
         </Text>
       </Box>
-      {menuOpen ? (
-        <Box
-          sx={{
-            position: "fixed",
-            top: "0",
-            left: "0",
-            height: "100%",
-            width: "100%",
-            display: "flex",
-            backgroundColor: "rgba(0,0,0,0.8)",
-            cursor: "pointer",
-            zIndex: 10000,
-          }}
-        >
+      {menuOpen && (
+        <Box variant="box.faded">
           <div
             sx={{
               marginX: "auto",
@@ -59,44 +39,17 @@ const RaceImage = ({ image, caption, children }) => {
               <Image
                 objectFit="contain"
                 image={getImage(image)}
-                alt={"blah"}
+                alt={altText ? altText : ""}
                 as={GatsbyImage}
-                sx={{
-                  // 							max-height: 100%;
-                  // width: auto;
-                  // margin: 0 auto;
-                  // padding: 0;
-                  // position: relative;
-                  // display: block;
-                  position: "relative",
-                  // width: "100vh",
-                  height: "100vh",
-                  maxHeight: "100%",
-
-                  // margin: "0 auto",
-                  // width: ["100%", "100%", "100%"],
-                  zIndex: "100",
-                  borderRadius: [4, 4, 4],
-                  // backdropFilter: "blur(10px)",
-                }}
+                variant="fullScreen"
               />
             </Box>
-            <Text
-              as="em"
-              sx={{
-                fontFamily: "serif",
-                margin: 0,
-                fontSize: "1",
-                color: "primary",
-                display: "inline-block",
-              }}
-            >
+            <Text as="em" variant="caption">
               {caption}
             </Text>
           </div>
         </Box>
-      ) : // </Box>
-      null}
+      )}
     </>
   )
 }

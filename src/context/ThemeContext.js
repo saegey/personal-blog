@@ -14,7 +14,7 @@ const supportsDarkMode = () =>
 
 class ThemeProvider extends React.Component {
   state = {
-    unitOfMeasure: false,
+    unitOfMeasure: "imperial",
   }
 
   toggleUnit = () => {
@@ -31,9 +31,9 @@ class ThemeProvider extends React.Component {
 
   componentDidMount() {
     // Getting dark mode value from localStorage!
-    const lsDark = localStorage.getItem("unitOfMeasure")
-    if (lsDark) {
-      this.setState({ unitOfMeasure: lsDark })
+    const unit = localStorage.getItem("unitOfMeasure")
+    if (unit) {
+      this.setState({ unitOfMeasure: unit })
     } else if (supportsDarkMode()) {
       this.setState({ unitOfMeasure: "imperial" })
     }

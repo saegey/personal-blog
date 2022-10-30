@@ -18,6 +18,12 @@ const {
 } = require("./src/lib/gpxDemo")
 
 const defaultTimeWindows = [5, 10, 15, 30, 60, 120, 300, 600]
+const slugify = str => {
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)+/g, "")
+}
 
 const createMdxPages = async (graphql, createPage, reporter) => {
   const postTemplate = path.resolve("./src/templates/post.jsx")
@@ -29,6 +35,9 @@ const createMdxPages = async (graphql, createPage, reporter) => {
           id
           fields {
             slug
+          }
+          frontmatter {
+            type
           }
           internal {
             contentFilePath
@@ -58,13 +67,6 @@ const createMdxPages = async (graphql, createPage, reporter) => {
 }
 
 exports.createResolvers = async ({ createResolvers }) => {
-  //custom helper function to slugify a string
-  const slugify = str => {
-    return str
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)+/g, "")
-  }
   createResolvers({
     Mdx: {
       gpxData: {
@@ -125,12 +127,12 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
   const { createNode, createParentChildLink, createNodeField } = actions
 
   if (node.internal.type === "Mdx") {
-    const value = createFilePath({ node, getNode })
+    const slug = createFilePath({ node, getNode })
 
     createNodeField({
       name: `slug`,
       node,
-      value,
+      value: `${slugify(node.frontmatter.type)}${slug}`,
     })
   }
 

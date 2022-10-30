@@ -63,8 +63,9 @@ export const pageQuery = graphql`
         frontmatter {
           title
           type
-          date(formatString: "MMMM DD, YYYY")
+          date(formatString: "MMM DD, YYYY")
           tags
+          location
           headerImage {
             childImageSharp {
               gatsbyImageData(placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
