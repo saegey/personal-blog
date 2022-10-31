@@ -8,7 +8,7 @@ import Menu from "./menu"
 import Header from "./header"
 import Footer from "./footer"
 
-const Layout = ({ location, title, children }) => {
+const Layout = ({ children }) => {
   const [menuOpen, setMenuOpen] = useState(false)
   const className = menuOpen ? "noScroll" : ""
 

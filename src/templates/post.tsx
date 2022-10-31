@@ -1,8 +1,7 @@
-/** @jsx jsx */
 import { jsx, Text, Flex, Box, Divider, Link } from 'theme-ui'
 import { graphql } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 import Seo from '../components/seo'
 import SafariStyle from '../components/SafariStyle'
@@ -14,6 +13,7 @@ import LandscapeImage from '../components/LandscapeImage.js'
 import ElevationGraph from '../components/ElevationGraph.js'
 import { default as PowerCurveGraph } from '../components/graph'
 import { default as PowerCurveContextGraph } from '../components/PowerCurveContext'
+import React from 'react'
 
 const shortcodes = {
   Box,
@@ -56,35 +56,35 @@ const PostTemplate = ({ data, children }) => {
   )
 }
 
-PostTemplate.propTypes = {
-  data: PropTypes.shape({
-    mdx: PropTypes.shape({
-      frontmatter: PropTypes.shape({
-        title: PropTypes.string,
-        date: PropTypes.string,
-        location: PropTypes.string,
-        type: PropTypes.string,
-      }),
-    }),
-  }),
-  children: PropTypes.node,
-}
+// PostTemplate.propTypes = {
+//   data: PropTypes.shape({
+//     mdx: PropTypes.shape({
+//       frontmatter: PropTypes.shape({
+//         title: PropTypes.string,
+//         date: PropTypes.string,
+//         location: PropTypes.string,
+//         type: PropTypes.string,
+//       }),
+//     }),
+//   }),
+//   children: PropTypes.node,
+// }
 
 export default PostTemplate
 
 export const Head = ({ data }) => <Seo title={data.mdx.frontmatter.title} />
-Head.propTypes = {
-  data: PropTypes.shape({
-    mdx: PropTypes.shape({
-      frontmatter: PropTypes.shape({
-        title: PropTypes.string,
-        date: PropTypes.string,
-        location: PropTypes.string,
-        type: PropTypes.string,
-      }),
-    }),
-  }),
-}
+// Head.propTypes = {
+//   data: PropTypes.shape({
+//     mdx: PropTypes.shape({
+//       frontmatter: PropTypes.shape({
+//         title: PropTypes.string,
+//         date: PropTypes.string,
+//         location: PropTypes.string,
+//         type: PropTypes.string,
+//       }),
+//     }),
+//   }),
+// }
 
 export const query = graphql`
   query ($id: String!) {

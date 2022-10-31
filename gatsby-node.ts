@@ -18,7 +18,7 @@ const {
 } = require("./src/lib/gpxDemo")
 
 const defaultTimeWindows = [5, 10, 15, 30, 60, 120, 300, 600]
-const slugify = str => {
+const slugify = (str: string) => {
   return str
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
@@ -26,7 +26,7 @@ const slugify = str => {
 }
 
 const createMdxPages = async (graphql, createPage, reporter) => {
-  const postTemplate = path.resolve("./src/templates/post.jsx")
+  const postTemplate = path.resolve("./src/templates/post.tsx")
 
   const result = await graphql(`
     {

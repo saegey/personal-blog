@@ -1,0 +1,10 @@
+// .eslintrc
+
+// Gatsby's required rules
+{
+  "rules": {
+    "no-anonymous-exports-page-templates": "warn",
+    "limited-exports-page-templates": "warn",
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }]
+  }
+}

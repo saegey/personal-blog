@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Text, Box, Grid } from 'theme-ui'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 const RaceStats = ({ items }) => {
   return (
@@ -40,11 +40,11 @@ const RaceStats = ({ items }) => {
     </>
   )
 }
-RaceStats.propTypes = {
-  items: PropTypes.array({
-    title: PropTypes.string,
-    value: PropTypes.string,
-  }),
-}
+// RaceStats.propTypes = {
+//   items: PropTypes.array({
+//     title: PropTypes.string,
+//     value: PropTypes.string,
+//   }),
+// }
 
 export default RaceStats

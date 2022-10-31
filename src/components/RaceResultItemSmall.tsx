@@ -18,7 +18,7 @@ interface Props {
   }
 }
 
-function RaceResultItemSmall({ item, theme }: Props): React.ReactNode {
+const RaceResultItemSmall = ({ item, theme }: Props) => {
   return (
     <Box
       sx={{
@@ -46,11 +46,11 @@ function RaceResultItemSmall({ item, theme }: Props): React.ReactNode {
         <Box sx={{ width: '10%' }} />
         <Box sx={{ color: 'primary' }}>
           <Text variant="resultsItem">
-            {theme.unitOfMeasure === 'metric' ? item.speedMetric.toFixed(2) : item.speed.toFixed(2)}
+            {theme.unitOfMeasure === 'metric' ? item.speedMetric.toFixed(2) : item.speed}
           </Text>
         </Box>
         <Box sx={{ marginLeft: 'auto', color: 'primary' }}>
-          <Text variant="resultsItem">{item.timeBehind.toFixed()}</Text>
+          <Text variant="resultsItem">{item.timeBehind}</Text>
         </Box>
       </Flex>
     </Box>

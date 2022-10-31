@@ -1,13 +1,12 @@
-/** @jsx jsx */
 import * as React from "react"
-import { jsx, Box, Flex } from "theme-ui"
+import { Box, Flex } from "theme-ui"
 import { graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
 import SafariStyle from "../components/SafariStyle"
 import Seo from "../components/seo"
 
-const AboutIndex = ({ data, location }) => {
+const AboutIndex = () => {
   return (
     <>
       <SafariStyle />

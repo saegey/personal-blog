@@ -1,7 +1,7 @@
 /** @jsxImportSource theme-ui */
 import * as React from 'react'
 import { Label, Radio, Box, Text, Flex } from 'theme-ui'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 const UnitSelector = ({ unitOfMeasure }) => {
   return (
@@ -47,11 +47,11 @@ const UnitSelector = ({ unitOfMeasure }) => {
     </Flex>
   )
 }
-UnitSelector.propTypes = {
-  unitOfMeasure: PropTypes.shape({
-    unitOfMeasure: PropTypes.string,
-    toggleUnit: PropTypes.func,
-  }),
-}
+// UnitSelector.propTypes = {
+//   unitOfMeasure: PropTypes.shape({
+//     unitOfMeasure: PropTypes.string,
+//     toggleUnit: PropTypes.func,
+//   }),
+// }
 
 export default UnitSelector
