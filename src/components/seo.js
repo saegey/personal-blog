@@ -5,11 +5,11 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import * as React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import * as React from 'react'
+import PropTypes from 'prop-types'
+import { useStaticQuery, graphql } from 'gatsby'
 
-const Seo = ({ description, lang, title, children }) => {
+const Seo = ({ description, title, children }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -32,29 +32,30 @@ const Seo = ({ description, lang, title, children }) => {
   return (
     <>
       <title>{defaultTitle ? `${title} | ${defaultTitle}` : title}</title>
-      <meta name="description" content={metaDescription} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={metaDescription} />
-      <meta property="og:type" content="website" />
-      <meta name="twitter:card" content="summary" />
+      <meta name='description' content={metaDescription} />
+      <meta property='og:title' content={title} />
+      <meta property='og:description' content={metaDescription} />
+      <meta property='og:type' content='website' />
+      <meta name='twitter:card' content='summary' />
       <meta
-        name="twitter:creator"
-        content={site.siteMetadata?.social?.twitter || ``}
+        name='twitter:creator'
+        content={site.siteMetadata?.social?.twitter || ''}
       />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={metaDescription} />
+      <meta name='twitter:title' content={title} />
+      <meta name='twitter:description' content={metaDescription} />
       {children}
     </>
   )
 }
 
 Seo.defaultProps = {
-  description: ``,
+  description: '',
 }
 
 Seo.propTypes = {
   description: PropTypes.string,
   title: PropTypes.string.isRequired,
+  children: PropTypes.node,
 }
 
 export default Seo

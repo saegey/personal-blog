@@ -4,25 +4,10 @@ import * as React from "react"
 import { Close, Link, Button, Label, Radio, Box, Text, Flex } from "theme-ui"
 import { Link as GatsbyLink } from "gatsby"
 import ThemeContext from "../context/ThemeContext"
+import UnitSelector from "./UnitSelector"
+import NavigationItems from "./NavigationItems"
 
-const MenuLink = ({ title, location, setMenuOpen }) => {
-  return (
-    <li>
-      <Link
-        to={location}
-        variant="menu"
-        sx={{ textDecoration: "none" }}
-        activeClassName="active"
-        as={GatsbyLink}
-        onClick={() => setMenuOpen(false)}
-      >
-        {title}
-      </Link>
-    </li>
-  )
-}
-
-const Menu = ({ menuOpen, setMenuOpen, setUnitOfMeasure, unitOfMeasure }) => {
+const Menu = ({ menuOpen, setMenuOpen }) => {
   return (
     <ThemeContext.Consumer>
       {(unitOfMeasure, toggleUnit) => (
@@ -74,86 +59,8 @@ const Menu = ({ menuOpen, setMenuOpen, setUnitOfMeasure, unitOfMeasure }) => {
                 <Close ml="auto" mr={-2} sx={{ color: "headerForeground" }} />
               </Button>
             </div>
-            <div
-              sx={{
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <ul
-                sx={{
-                  listStyleType: "none",
-                  paddingLeft: "45px",
-                  transition: "all .2s ease-in-out",
-                  top: 0,
-                  left: 0,
-                  ".active": {
-                    color: "headerForeground",
-                  },
-                }}
-              >
-                <MenuLink location="/" title="Home" setMenuOpen={setMenuOpen} />
-                <MenuLink
-                  location="/about"
-                  title="About"
-                  setMenuOpen={setMenuOpen}
-                />
-                <MenuLink
-                  location="/race-journal"
-                  title="Race Journal"
-                  setMenuOpen={setMenuOpen}
-                />
-                <MenuLink
-                  location="/projects"
-                  title="Projects"
-                  setMenuOpen={setMenuOpen}
-                />
-              </ul>
-            </div>
-            <Flex sx={{ flexDirection: "column", flexFlow: "column", flex: 1 }}>
-              <Box
-                sx={{
-                  flex: "0 1 40px",
-                  marginTop: "auto",
-                  marginBottom: "20px",
-                  marginLeft: "45px",
-                  fontFamily: "body",
-                }}
-              >
-                <Text
-                  sx={{
-                    fontWeight: 600,
-                    fontSize: "18px",
-                    marginBottom: "10px",
-                    display: "block",
-                  }}
-                >
-                  Unit
-                </Text>
-                <Label sx={{ marginBottom: "5px" }}>
-                  <Radio
-                    name="unitOfMeasure"
-                    value="imperial"
-                    checked={
-                      unitOfMeasure.unitOfMeasure === "imperial" ? true : false
-                    }
-                    onClick={unitOfMeasure.toggleUnit}
-                  />
-                  <Text sx={{ marginY: "auto" }}>Imperial</Text>
-                </Label>
-                <Label sx={{ marginBottom: "5px" }}>
-                  <Radio
-                    name="unitOfMeasure"
-                    value="metric"
-                    onClick={unitOfMeasure.toggleUnit}
-                    checked={
-                      unitOfMeasure.unitOfMeasure === "metric" ? true : false
-                    }
-                  />
-                  <Text sx={{ marginY: "auto" }}>Metric</Text>
-                </Label>
-              </Box>
-            </Flex>
+            <NavigationItems setMenuOpen={setMenuOpen} />
+            <UnitSelector unitOfMeasure={unitOfMeasure} />
           </div>
         </>
       )}

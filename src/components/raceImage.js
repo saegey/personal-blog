@@ -1,8 +1,8 @@
 /** @jsxImportSource theme-ui */
 
-import React, { useState } from "react"
-import { Text, Image, Box } from "theme-ui"
-import { getImage, GatsbyImage } from "gatsby-plugin-image"
+import React, { useState } from 'react'
+import { Text, Image, Box } from 'theme-ui'
+import { getImage, GatsbyImage } from 'gatsby-plugin-image'
 
 const RaceImage = ({ image, caption, children, altText }) => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -11,7 +11,7 @@ const RaceImage = ({ image, caption, children, altText }) => {
     <>
       <Box>
         <Box
-          sx={{ cursor: "pointer" }}
+          sx={{ cursor: 'pointer' }}
           onClick={() => {
             setMenuOpen(true)
           }}
@@ -26,12 +26,12 @@ const RaceImage = ({ image, caption, children, altText }) => {
         <Box variant="box.faded">
           <div
             sx={{
-              marginX: "auto",
-              marginY: "auto",
+              marginX: 'auto',
+              marginY: 'auto',
             }}
           >
             <Box
-              sx={{ p: "0px" }}
+              sx={{ p: '0px' }}
               onClick={() => {
                 setMenuOpen(false)
               }}
@@ -39,7 +39,7 @@ const RaceImage = ({ image, caption, children, altText }) => {
               <Image
                 objectFit="contain"
                 image={getImage(image)}
-                alt={altText ? altText : ""}
+                alt={altText || ''}
                 as={GatsbyImage}
                 variant="fullScreen"
               />

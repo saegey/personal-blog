@@ -1,7 +1,8 @@
 /** @jsxImportSource theme-ui */
 
-import React from "react"
-import { Text, Box, Grid } from "theme-ui"
+import React from 'react'
+import { Text, Box, Grid } from 'theme-ui'
+import PropTypes from 'prop-types'
 
 const RaceStats = ({ items }) => {
   return (
@@ -10,34 +11,23 @@ const RaceStats = ({ items }) => {
         gap={2}
         columns={[2, 2, 3]}
         sx={{
-          backgroundColor: ["", "blockquoteBg", "blockquoteBg"],
-          paddingY: ["0px", "20px", "20px"],
-          paddingX: ["0px", "20px", "20px"],
-          marginBottom: "20px",
-          borderRadius: "4px",
+          backgroundColor: ['', 'blockquoteBg', 'blockquoteBg'],
+          paddingY: ['0px', '20px', '20px'],
+          paddingX: ['0px', '20px', '20px'],
+          marginBottom: '20px',
+          borderRadius: '4px',
         }}
       >
         {items.map((item, index) => {
           return (
-            <Box>
+            <Box key={index}>
               <>
-                <Text
-                  sx={{
-                    fontFamily: "body",
-                    color: "primary",
-                    fontWeight: "400",
-                    letterSpacing: "1px",
-                    textTransform: "uppercase",
-                    fontSize: [1],
-                  }}
-                >
-                  {item.title}
-                </Text>
+                <Text variant='raceStatHeading'>{item.title}</Text>
                 <Box
                   sx={{
-                    fontFamily: "body",
-                    fontSize: ["3", "4", "4"],
-                    fontWeight: "600",
+                    fontFamily: 'body',
+                    fontSize: ['3', '4', '4'],
+                    fontWeight: '600',
                   }}
                 >
                   {item.value}
@@ -49,6 +39,12 @@ const RaceStats = ({ items }) => {
       </Grid>
     </>
   )
+}
+RaceStats.propTypes = {
+  items: PropTypes.array({
+    title: PropTypes.string,
+    value: PropTypes.string,
+  }),
 }
 
 export default RaceStats

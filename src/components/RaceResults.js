@@ -1,28 +1,27 @@
 /** @jsxImportSource theme-ui */
 
-import React, { useState } from "react"
-import { Text, Flex, Box, Button, Close } from "theme-ui"
+import React, { useState } from 'react'
+import { Text, Flex, Box, Button, Close } from 'theme-ui'
 
-import { formatTime } from "../lib/formatters"
-import ThemeContext from "../context/ThemeContext"
-import RaceResultsList from "./RaceResultsList"
+import { formatTime } from '../lib/formatters'
+import RaceResultsList from './RaceResultsList'
 
 const ViewAllResults = ({ data, setShouldShowResults }) => {
   return (
     <Box
-      variant="box.faded"
+      variant='box.faded'
       onClick={event => {
         setShouldShowResults(false)
       }}
     >
       <Box
         sx={{
-          backgroundColor: "background",
-          margin: ["0% auto", "5% auto", "5% auto"],
-          padding: "0px",
-          width: "100%",
-          maxWidth: "706px",
-          overflowY: "scroll",
+          backgroundColor: 'background',
+          margin: ['0% auto', '5% auto', '5% auto'],
+          padding: '0px',
+          width: '100%',
+          maxWidth: '706px',
+          overflowY: 'scroll',
         }}
         onClick={event => {
           event.stopPropagation()
@@ -30,40 +29,40 @@ const ViewAllResults = ({ data, setShouldShowResults }) => {
       >
         <Flex
           sx={{
-            position: "sticky",
-            top: "0px",
-            backgroundColor: "background",
+            position: 'sticky',
+            top: '0px',
+            backgroundColor: 'background',
           }}
         >
-          <Box sx={{ p: "20px" }}>
+          <Box sx={{ p: '20px' }}>
             <Text
-              as="h2"
+              as='h2'
               sx={{
-                lineHeight: "30px",
-                fontFamily: "serif",
-                letterSpacing: ".6px",
-                fontWeight: "700",
+                lineHeight: '30px',
+                fontFamily: 'serif',
+                letterSpacing: '.6px',
+                fontWeight: '700',
               }}
             >
               Results
             </Text>
           </Box>
-          <Box sx={{ marginLeft: "auto", p: "20px" }}>
+          <Box sx={{ marginLeft: 'auto', p: '20px' }}>
             <Button
               onClick={() => {
                 setShouldShowResults(false)
               }}
-              sx={{ backgroundColor: "transparent", p: 0 }}
+              sx={{ backgroundColor: 'transparent', p: 0 }}
             >
               <Close
-                ml="auto"
+                ml='auto'
                 mr={-2}
-                sx={{ color: "text", cursor: "pointer" }}
+                sx={{ color: 'text', cursor: 'pointer' }}
               />
             </Button>
           </Box>
         </Flex>
-        <Box sx={{ paddingX: "20px" }}>
+        <Box sx={{ paddingX: '20px' }}>
           <RaceResultsList data={data} />
         </Box>
       </Box>
@@ -75,13 +74,13 @@ const RaceResults = ({ data, numbersToHighlight, distance, racerName }) => {
   const [shouldShowResults, setShouldShowResults] = useState(false)
 
   const firstPlaceTime = data[0].time
-    .split(":")
+    .split(':')
     .reduce((acc, time) => 60 * acc + +time)
 
   data.forEach(d => {
-    if (d.place === "") return
+    if (d.place === '') return
     const timeSeconds = d.time
-      .split(":")
+      .split(':')
       .reduce((acc, time) => 60 * acc + +time)
     // d.speed = distance / (timeSeconds / 3600)
     if (timeSeconds > 0) {
@@ -119,12 +118,12 @@ const RaceResults = ({ data, numbersToHighlight, distance, racerName }) => {
 
       <Box>
         <Flex>
-          <Box sx={{ marginBottom: ["10px", "0px", "0px"] }}>
-            <Text as="h2" variant="resultsHeading">
+          <Box sx={{ marginBottom: ['10px', '0px', '0px'] }}>
+            <Text as='h2' variant='resultsHeading'>
               Results
             </Text>
           </Box>
-          <Box sx={{ marginLeft: "auto" }}>
+          <Box sx={{ marginLeft: 'auto' }}>
             <Button
               onClick={() => {
                 setShouldShowResults(true)

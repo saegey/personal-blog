@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import * as React from "react"
-import { jsx, Box } from "theme-ui"
+import { jsx, Box, Flex } from "theme-ui"
 import { graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
@@ -12,6 +12,23 @@ const AboutIndex = ({ data, location }) => {
     <>
       <SafariStyle />
       <Box>
+        <Flex sx={{ width: "100%" }}>
+          <Box sx={{ marginX: "auto" }}>
+            <StaticImage
+              layout="constrained"
+              formats={["auto", "webp", "avif"]}
+              src="../images/profile-new.jpg"
+              objectFit="cover"
+              quality={95}
+              alt="Profile picture"
+              sx={{
+                borderRadius: "1000px",
+                height: ["200px", "300px", "300px"],
+                width: ["200px", "300px", "300px"],
+              }}
+            />
+          </Box>
+        </Flex>
         <p
           sx={{
             fontFamily: "serif",
@@ -23,16 +40,7 @@ const AboutIndex = ({ data, location }) => {
           Hi, I'm Adam. I'm a product designer, code tinkerer, and creative
           experimenter living the PNW life in Seattle.
         </p>
-        <Box sx={{ width: "100%" }}>
-          <StaticImage
-            layout="constrained"
-            formats={["auto", "webp", "avif"]}
-            src="../images/profile-pic-adam.jpeg"
-            objectFit="cover"
-            quality={95}
-            alt="Profile picture"
-          />
-        </Box>
+
         <p
           sx={{
             fontFamily: "serif",

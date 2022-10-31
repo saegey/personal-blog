@@ -1,12 +1,12 @@
 /** @jsx jsx */
-import * as React from "react"
-import { jsx, Container } from "theme-ui"
-import { graphql } from "gatsby"
-import { getImage } from "gatsby-plugin-image"
+import * as React from 'react'
+import { jsx, Container } from 'theme-ui'
+import { graphql } from 'gatsby'
+import { getImage } from 'gatsby-plugin-image'
 
-import Seo from "../components/seo"
-import PostCard from "../components/postCard"
-import SafariStyle from "../components/SafariStyle"
+import Seo from '../components/seo'
+import PostCard from '../components/postCard'
+import SafariStyle from '../components/SafariStyle'
 
 const BlogIndex = ({ data, location }) => {
   const posts = data.allMdx.nodes
@@ -14,11 +14,12 @@ const BlogIndex = ({ data, location }) => {
   return (
     <>
       <SafariStyle />
-      <Container sx={{ padding: "0px" }}>
-        <ol sx={{ p: 0, marginTop: "0px" }}>
-          {posts.map(post => {
+      <Container sx={{ padding: '0px' }}>
+        <ol sx={{ p: 0, marginTop: '0px' }}>
+          {posts.map((post, index) => {
             return (
               <PostCard
+                key={index}
                 post={post}
                 title={post.frontmatter.title || post.fields.slug}
                 image={getImage(post.frontmatter.headerImage)}

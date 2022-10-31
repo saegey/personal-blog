@@ -1,18 +1,19 @@
 /** @jsx jsx */
-import { jsx, Text, Flex, Box, Divider, Link } from "theme-ui"
-import { graphql } from "gatsby"
-import { MDXProvider } from "@mdx-js/react"
+import { jsx, Text, Flex, Box, Divider, Link } from 'theme-ui'
+import { graphql } from 'gatsby'
+import { MDXProvider } from '@mdx-js/react'
+import PropTypes from 'prop-types'
 
-import Seo from "../components/seo"
-import SafariStyle from "../components/SafariStyle"
-import RaceStats from "../components/RaceStats"
-import PortraitImage from "../components/PortraitImage"
-import RaceResults from "../components/RaceResults.js"
-import RaceOverview from "../components/RaceOverview.js"
-import LandscapeImage from "../components/LandscapeImage.js"
-import ElevationGraph from "../components/ElevationGraph.js"
-import { default as PowerCurveGraph } from "../components/graph"
-import { default as PowerCurveContextGraph } from "../components/PowerCurveContext"
+import Seo from '../components/seo'
+import SafariStyle from '../components/SafariStyle'
+import RaceStats from '../components/RaceStats'
+import PortraitImage from '../components/PortraitImage'
+import RaceResults from '../components/RaceResults.js'
+import RaceOverview from '../components/RaceOverview.js'
+import LandscapeImage from '../components/LandscapeImage.js'
+import ElevationGraph from '../components/ElevationGraph.js'
+import { default as PowerCurveGraph } from '../components/graph'
+import { default as PowerCurveContextGraph } from '../components/PowerCurveContext'
 
 const shortcodes = {
   Box,
@@ -29,7 +30,7 @@ const shortcodes = {
   Text,
 }
 
-export default function PostTemplate({ data, children }) {
+const PostTemplate = ({ data, children }) => {
   const {
     frontmatter: { title, date, type, location },
   } = data.mdx
@@ -37,51 +38,16 @@ export default function PostTemplate({ data, children }) {
   return (
     <>
       <SafariStyle />
-      <Flex sx={{ marginBottom: "20px" }}>
-        <Text
-          sx={{
-            marginX: "auto",
-            fontFamily: "body",
-            fontWeight: "600",
-            letterSpacing: "1px",
-            fontSize: "16px",
-            textTransform: "uppercase",
-            color: "#adb5bdff",
-          }}
-        >
-          {type}
-        </Text>
+      <Flex sx={{ marginBottom: '20px' }}>
+        <Text variant='postType'>{type}</Text>
       </Flex>
       <Flex>
-        <Text
-          as="h1"
-          sx={{
-            fontFamily: "serif",
-            fontWeight: 700,
-            fontStyle: "normal",
-            fontSize: ["4", "5", "5"],
-            marginBottom: ["5px", "5px", "5px"],
-            letterSpacing: [".6px", "1px", "1px"],
-            marginX: "auto",
-            textAlign: "center",
-          }}
-        >
+        <Text as='h1' variant='postTitle'>
           {title}
         </Text>
       </Flex>
       <Flex>
-        <Text
-          sx={{
-            marginX: "auto",
-            fontFamily: "body",
-            fontWeight: "400",
-            letterSpacing: "1px",
-            fontSize: "16px",
-            textTransform: "uppercase",
-            color: "primary",
-            marginBottom: "40px",
-          }}
-        >
+        <Text variant='postSubtitle'>
           {date} — {location}
         </Text>
       </Flex>
@@ -90,9 +56,35 @@ export default function PostTemplate({ data, children }) {
   )
 }
 
-export const Head = ({ location, params, data, pageContext }) => (
-  <Seo title={data.mdx.frontmatter.title} />
-)
+PostTemplate.propTypes = {
+  data: PropTypes.shape({
+    mdx: PropTypes.shape({
+      frontmatter: PropTypes.shape({
+        title: PropTypes.string,
+        date: PropTypes.string,
+        location: PropTypes.string,
+        type: PropTypes.string,
+      }),
+    }),
+  }),
+  children: PropTypes.node,
+}
+
+export default PostTemplate
+
+export const Head = ({ data }) => <Seo title={data.mdx.frontmatter.title} />
+Head.propTypes = {
+  data: PropTypes.shape({
+    mdx: PropTypes.shape({
+      frontmatter: PropTypes.shape({
+        title: PropTypes.string,
+        date: PropTypes.string,
+        location: PropTypes.string,
+        type: PropTypes.string,
+      }),
+    }),
+  }),
+}
 
 export const query = graphql`
   query ($id: String!) {
