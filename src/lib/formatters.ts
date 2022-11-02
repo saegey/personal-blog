@@ -1,4 +1,4 @@
-const formatSeconds = value => {
+const formatSeconds = (value: number) => {
   if (value >= 3600) {
     return `${value / 60 / 60}h`
   } else if (value >= 60) {
@@ -8,14 +8,19 @@ const formatSeconds = value => {
   return `${value}s`
 }
 
-const formatTime = value => {
+const formatTime = (value: number) => {
   if (value < 3600) {
     return new Date(value * 1000).toISOString().substr(14, 5)
   }
   return new Date(value * 1000).toISOString().substr(11, 8)
 }
 
-const generateTimeTickValues = (axis, data, intervalSecs) => {
+type GenerateTickValueProps = {
+	data: [{x: number, y: number}],
+	intervalSecs: number
+}
+
+const generateTimeTickValues = ({data, intervalSecs}: GenerateTickValueProps)  => {
   const max = Math.max(...data.map(o => o.x))
   let currentTick = 0
   const ticks = []
@@ -27,7 +32,13 @@ const generateTimeTickValues = (axis, data, intervalSecs) => {
   return ticks
 }
 
-const generateElevatioinTickValues = (data, intervalSecs, unit) => {
+type GenerateElevationTickValueProps = {
+	data: [{x: number, y: number}],
+	intervalSecs: number,
+	unit: string
+}
+
+const generateElevatioinTickValues = ({data, intervalSecs, unit}: GenerateElevationTickValueProps) => {
   const max =
     unit === "metric"
       ? Math.max(...data.map(o => o.y))
@@ -37,9 +48,7 @@ const generateElevatioinTickValues = (data, intervalSecs, unit) => {
       ? Math.min(...data.map(o => o.y))
       : Math.min(...data.map(o => o.y)) * 3.280839895
 
-  // console.log(min, max)
   let currentTick = (Math.floor(min / 1000) + 1) * 1000
-  // console.log(currentTick, max)
   const ticks = []
 
   while (currentTick < max) {
@@ -49,11 +58,11 @@ const generateElevatioinTickValues = (data, intervalSecs, unit) => {
     currentTick += intervalSecs
   }
   ticks.push(currentTick)
-  console.log(ticks)
+
   return ticks
 }
 
-module.exports = {
+export {
   formatSeconds,
   formatTime,
   generateTimeTickValues,

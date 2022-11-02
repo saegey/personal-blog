@@ -1,16 +1,23 @@
-/** @jsxImportSource theme-ui */
+import { Close } from "theme-ui"
 
-import * as React from "react"
-import { Close, Link, Button, Label, Radio, Box, Text, Flex } from "theme-ui"
-import { Link as GatsbyLink } from "gatsby"
 import ThemeContext from "../context/ThemeContext"
 import UnitSelector from "./UnitSelector"
 import NavigationItems from "./NavigationItems"
 
-const Menu = ({ menuOpen, setMenuOpen }) => {
+type Props = {
+  menuOpen: boolean,
+  setMenuOpen: (arg: boolean) => void,
+}
+
+type ThemeContextProps = {
+    unitOfMeasure: string,
+    toggleUnit: () => void
+}
+
+const Menu = ({ menuOpen, setMenuOpen }: Props) => {
   return (
     <ThemeContext.Consumer>
-      {(unitOfMeasure, toggleUnit) => (
+      {(unitOfMeasure: ThemeContextProps) => (
         <>
           <div
             sx={{
@@ -50,14 +57,9 @@ const Menu = ({ menuOpen, setMenuOpen }) => {
                 variant: "styles.header",
               }}
             >
-              <Button
-                onClick={() => {
-                  setMenuOpen(false)
-                }}
-                sx={{ backgroundColor: "transparent" }}
-              >
-                <Close ml="auto" mr={-2} sx={{ color: "headerForeground" }} />
-              </Button>
+              <Close ml="auto" mr={-2} sx={{ color: "headerForeground" }} onClick={() => {
+                setMenuOpen(false)
+              }} />
             </div>
             <NavigationItems setMenuOpen={setMenuOpen} />
             <UnitSelector unitOfMeasure={unitOfMeasure} />

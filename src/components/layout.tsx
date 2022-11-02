@@ -1,6 +1,4 @@
-/** @jsxImportSource theme-ui */
-
-import React, { useState } from "react"
+import { FunctionComponent, useState } from "react"
 import { Container } from "theme-ui"
 import Helmet from "react-helmet"
 
@@ -8,14 +6,18 @@ import Menu from "./menu"
 import Header from "./header"
 import Footer from "./footer"
 
-const Layout = ({ children }) => {
+type CardProps = {
+  children: JSX.Element
+}
+
+
+const Layout = ({ children }: CardProps) => {
   const [menuOpen, setMenuOpen] = useState(false)
-  const className = menuOpen ? "noScroll" : ""
 
   return (
     <>
       <Helmet>
-        <body className={className} />
+        <body className={menuOpen ? "noScroll" : ""} />
       </Helmet>
       <div
         sx={{

@@ -1,19 +1,38 @@
-/** @jsxImportSource theme-ui */
 import React from 'react'
 import { Text, Flex, Box } from 'theme-ui'
 
 import ThemeContext from '../context/ThemeContext'
 import RaceResultItemSmall from './RaceResultItemSmall'
 
-const RaceResultsList = ({ data, theme }) => {
+interface Props {
+  data: [
+    {
+      name: string,
+      time: string,
+      place: string,
+      speedMetric: number,
+      speed: number,
+      timeBehind: number,
+      isMe: boolean
+    }
+  ],
+}
+
+interface WrapperProps extends Props {
+	theme: {
+    unitOfMeasure: string
+  }
+}
+
+const RaceResultsList = ({ data, theme }: WrapperProps) => {
   return (
     <>
       {data.map((item, index) => {
         if (item === undefined) return ''
 
         return (
-          <>
-            <RaceResultItemSmall item={item} theme={theme} />
+          <Box key={index}>
+            <RaceResultItemSmall item={item} theme={theme} key={index} />
             <Flex
               sx={{
                 height: ['35px', '35px', '35px'],
@@ -48,14 +67,14 @@ const RaceResultsList = ({ data, theme }) => {
                 <Text variant='resultsItem'>{item.timeBehind}</Text>
               </Box>
             </Flex>
-          </>
+          </Box>
         )
       })}
     </>
   )
 }
 
-const RaceResultWrapper = ({ data }) => {
+const RaceResultWrapper = ({ data }: Props) => {
   return (
     <ThemeContext.Consumer>
       {theme => {

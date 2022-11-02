@@ -1,10 +1,15 @@
-/** @jsxImportSource theme-ui */
-
-import React from 'react'
 import { Text, Box, Grid } from 'theme-ui'
-// import PropTypes from 'prop-types'
 
-const RaceStats = ({ items }) => {
+interface Item {
+  title: string,
+  value: string
+}
+
+type Props = {
+  items: Item[]
+}
+
+const RaceStats = ({ items }: Props) => {
   return (
     <>
       <Grid
@@ -40,11 +45,5 @@ const RaceStats = ({ items }) => {
     </>
   )
 }
-// RaceStats.propTypes = {
-//   items: PropTypes.array({
-//     title: PropTypes.string,
-//     value: PropTypes.string,
-//   }),
-// }
 
 export default RaceStats

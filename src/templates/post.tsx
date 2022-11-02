@@ -1,19 +1,17 @@
-import { jsx, Text, Flex, Box, Divider, Link } from 'theme-ui'
+import { Text, Flex, Box, Divider, Link } from 'theme-ui'
 import { graphql } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
-// import PropTypes from 'prop-types'
 
 import Seo from '../components/seo'
 import SafariStyle from '../components/SafariStyle'
 import RaceStats from '../components/RaceStats'
 import PortraitImage from '../components/PortraitImage'
-import RaceResults from '../components/RaceResults.js'
-import RaceOverview from '../components/RaceOverview.js'
-import LandscapeImage from '../components/LandscapeImage.js'
-import ElevationGraph from '../components/ElevationGraph.js'
-import { default as PowerCurveGraph } from '../components/graph'
+import RaceResults from '../components/RaceResults'
+import RaceOverview from '../components/RaceOverview'
+import LandscapeImage from '../components/LandscapeImage'
+import ElevationGraph from '../components/ElevationGraph'
+import { default as PowerCurveGraph } from '../components/PowerCurveGraph'
 import { default as PowerCurveContextGraph } from '../components/PowerCurveContext'
-import React from 'react'
 
 const shortcodes = {
   Box,
@@ -55,20 +53,6 @@ const PostTemplate = ({ data, children }) => {
     </>
   )
 }
-
-// PostTemplate.propTypes = {
-//   data: PropTypes.shape({
-//     mdx: PropTypes.shape({
-//       frontmatter: PropTypes.shape({
-//         title: PropTypes.string,
-//         date: PropTypes.string,
-//         location: PropTypes.string,
-//         type: PropTypes.string,
-//       }),
-//     }),
-//   }),
-//   children: PropTypes.node,
-// }
 
 export default PostTemplate
 

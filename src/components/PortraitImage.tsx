@@ -1,11 +1,10 @@
-/** @jsxImportSource theme-ui */
-import * as React from "react"
 import { Box, Image } from "theme-ui"
 import { getImage } from "gatsby-plugin-image"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { convertToBgImage } from "gbimage-bridge"
 import BackgroundImage from "gatsby-background-image"
-import ImageWrapper from "./imageWrapper.js"
+
+import ImageWrapper from "./imageWrapper"
 import FullScreenIcon from "./FullScreenIcon"
 
 const PortraitImage = ({ image, widthPercentage, caption }) => {

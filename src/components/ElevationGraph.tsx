@@ -1,4 +1,3 @@
-import React from 'react';
 import { ResponsiveLine } from '@nivo/line';
 import { useThemeUI, Box } from 'theme-ui';
 
@@ -8,11 +7,12 @@ import {
   generateTimeTickValues,
   formatTime,
 } from '../lib/formatters';
+import { GraphProps } from '../common/types';
 import ThemeContext from '../context/ThemeContext';
 
-function ElevationGraph({ data, unit }) {
+const ElevationGraph = ({ data, unit }: GraphProps) => {
   const { theme } = useThemeUI();
-  const graphColor = theme.colors.text;
+  const graphColor = theme.colors.text
 
   return (
     <ResponsiveLine
@@ -60,7 +60,7 @@ function ElevationGraph({ data, unit }) {
         legendOffset: 30,
         legendPosition: 'middle',
         // tickCount: 5,
-        tickValues: generateTimeTickValues('x', data, 3600),
+        tickValues: generateTimeTickValues({ data, intervalSecs: 3600 }),
       }}
       enableSlices="x"
       sliceTooltip={({ slice }) => (
@@ -104,11 +104,11 @@ function ElevationGraph({ data, unit }) {
         legendOffset: 0,
         legendPosition: 'middle',
         // tickValues: [0, 1000, 2000],
-        tickValues: generateElevatioinTickValues(
+        tickValues: generateElevatioinTickValues({
           data,
-          unit === 'metric' ? 500 : 1000,
+          intervalSecs: unit === 'metric' ? 500 : 1000,
           unit,
-        ),
+        }),
       }}
       theme={{
         fontFamily: theme.fonts.body,
@@ -210,7 +210,7 @@ function ElevationGraph({ data, unit }) {
   );
 }
 
-function ElevationGraphWrapper({ data }) {
+const ElevationGraphWrapper = ({ data }: { data: GraphProps["data"]}) => {
   return (
     <ThemeContext.Consumer>
       {(theme) => (

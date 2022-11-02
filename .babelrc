@@ -1,0 +1,23 @@
+{
+  "plugins": [[
+    // "@babel/plugin-proposal-decorators",
+    // { "legacy": true },
+    "@babel/plugin-transform-react-jsx",
+    {
+      "throwIfNamespace": false, // defaults to true
+      "runtime": "automatic", // defaults to classic
+      "importSource": "theme-ui" // defaults to react
+    }
+  ]],
+  "presets": [
+    [
+      "babel-preset-gatsby",
+      {
+        "reactRuntime": "automatic",
+        "targets": {
+          "browsers": [">0.25%", "not dead"]
+        }
+      }
+    ]
+  ]
+}

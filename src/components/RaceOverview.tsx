@@ -1,11 +1,32 @@
-/** @jsxImportSource theme-ui */
-
-import React from "react"
-
 import ThemeContext from "../context/ThemeContext"
-import RaceStats from "../components/RaceStats.js"
+import RaceStats from "./RaceStats"
 
-const RaceOverview = ({ data, selectedFields = [] }) => {
+type Props = {
+  data: {
+    elevationGain: number,
+    distance: number,
+    heartAnalysis: {
+      entire: number
+    },
+    tempAnalysis: {
+      entire: number
+    },
+    powerAnalysis: {
+      entire: number
+    },
+    cadenceAnalysis: {
+      entire: number
+    },
+    elapsedTime: {
+      seconds: number
+    },
+    stoppedTime: number,
+
+  },
+  selectedFields: string[]
+}
+
+const RaceOverview = ({ data, selectedFields = [] }: Props) => {
   return (
     <ThemeContext.Consumer>
       {theme => {

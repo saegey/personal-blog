@@ -3,10 +3,13 @@ import React from "react"
 import Layout from "./src/components/layout"
 import { ThemeProvider } from "./src/context/ThemeContext"
 
-const rootWrapper = ({ element, props }) => {
+type Props = {
+	element: JSX.Element,
+}
+const rootWrapper = ({ element }: Props) => {
   return (
     <ThemeProvider>
-      <Layout {...props}>{element}</Layout>
+      <Layout>{element}</Layout>
     </ThemeProvider>
   )
 }

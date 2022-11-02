@@ -1,3 +1,5 @@
+import { Theme } from 'theme-ui'
+
 // example theme file
 // @refresh reset
 const colors = {
@@ -12,7 +14,7 @@ const colors = {
   eerieBlack: '#212529ff',
 }
 
-const theme = {
+const theme: Theme = {
   config: {
     initialColorModeName: 'light',
   },
@@ -72,6 +74,16 @@ const theme = {
     ol: {
       paddingInlineStart: '20px',
     },
+    faded: {
+      position: 'fixed',
+      top: '0',
+      height: '100%',
+      width: '100%',
+      left: '0',
+      backgroundColor: 'rgba(0,0,0,0.8)',
+      zIndex: 10000,
+      display: 'flex',
+    },
     // more styles can be added as needed
   },
   buttons: {
@@ -107,18 +119,6 @@ const theme = {
       boxShadow: '0 8px 16px -4px rgba(0,0,0,.1), 0 0 8px -3px rgba(0,0,0,.1)',
       marginBottom: '20px',
       backgroundColor: 'cardBackground',
-    },
-  },
-  box: {
-    faded: {
-      position: 'fixed',
-      top: '0',
-      height: '100%',
-      width: '100%',
-      left: '0',
-      backgroundColor: 'rgba(0,0,0,0.8)',
-      zIndex: 10000,
-      display: 'flex',
     },
   },
   images: {
@@ -255,16 +255,6 @@ const theme = {
       marginRight: '5px',
     },
   },
-  containers: {
-    default: {
-      padding: ['2', '3', '4'],
-    },
-  },
-  // dividers: {
-  //   default: {
-  //     color: "dividerColor",
-  //   },
-  // },
   links: {
     menu: {
       fontSize: '24px',

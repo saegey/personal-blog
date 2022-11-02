@@ -25,6 +25,8 @@ import "./src/normalize.css"
 // Highlighting for code blocks
 // import "prismjs/themes/prism.css"
 
+import type { GatsbyBrowser } from "gatsby"
+
 import rootWrapper from "./rootWrapper"
 
-export const wrapPageElement = rootWrapper
+export const wrapPageElement:  GatsbyBrowser["wrapPageElement"] = rootWrapper

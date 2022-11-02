@@ -1,11 +1,8 @@
-/** @jsxImportSource theme-ui */
-
-import React from "react"
-
 import ThemeContext from "../context/ThemeContext"
-import { default as PowerCurveGraph } from "../components/graph"
+import { default as PowerCurveGraph } from "./PowerCurveGraph"
+import  {GraphProps } from "../common/types"
 
-const PowerCurveContext = ({ data }) => {
+const PowerCurveContext = ({ data }: GraphProps) => {
   return (
     <ThemeContext.Consumer>
       {theme => {

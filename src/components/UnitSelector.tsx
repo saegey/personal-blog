@@ -1,9 +1,13 @@
-/** @jsxImportSource theme-ui */
-import * as React from 'react'
 import { Label, Radio, Box, Text, Flex } from 'theme-ui'
-// import PropTypes from 'prop-types'
 
-const UnitSelector = ({ unitOfMeasure }) => {
+type ThemeContextProps = {
+  unitOfMeasure: {
+    unitOfMeasure: string,
+    toggleUnit: () => void
+  }
+}
+
+const UnitSelector = ({ unitOfMeasure }: ThemeContextProps) => {
   return (
     <Flex sx={{ flexDirection: 'column', flexFlow: 'column', flex: 1 }}>
       <Box
@@ -30,7 +34,7 @@ const UnitSelector = ({ unitOfMeasure }) => {
             name='unitOfMeasure'
             value='imperial'
             checked={unitOfMeasure.unitOfMeasure === 'imperial'}
-            onClick={unitOfMeasure.toggleUnit}
+            onChange={unitOfMeasure.toggleUnit}
           />
           <Text sx={{ marginY: 'auto' }}>Imperial</Text>
         </Label>
@@ -38,7 +42,7 @@ const UnitSelector = ({ unitOfMeasure }) => {
           <Radio
             name='unitOfMeasure'
             value='metric'
-            onClick={unitOfMeasure.toggleUnit}
+            onChange={unitOfMeasure.toggleUnit}
             checked={unitOfMeasure.unitOfMeasure === 'metric'}
           />
           <Text sx={{ marginY: 'auto' }}>Metric</Text>
@@ -47,11 +51,5 @@ const UnitSelector = ({ unitOfMeasure }) => {
     </Flex>
   )
 }
-// UnitSelector.propTypes = {
-//   unitOfMeasure: PropTypes.shape({
-//     unitOfMeasure: PropTypes.string,
-//     toggleUnit: PropTypes.func,
-//   }),
-// }
 
 export default UnitSelector

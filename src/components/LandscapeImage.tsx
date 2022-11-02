@@ -1,17 +1,16 @@
-/** @jsxImportSource theme-ui */
-import * as React from "react"
 import { Image, Box } from "theme-ui"
-import { getImage } from "gatsby-plugin-image"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { getImage, GatsbyImage } from "gatsby-plugin-image"
 
-import ImageWrapper from "./imageWrapper.js"
+import ImageWrapper from "./imageWrapper"
 import FullScreenIcon from "./FullScreenIcon"
+import { RaceImageType, MyImageProps } from "../common/types"
+const MyImage = Image as any as (props: MyImageProps) => JSX.Element
 
-const LandscapeImage = ({ image, caption }) => {
+const LandscapeImage = ({ image, caption }: RaceImageType) => {
   return (
-    <ImageWrapper image={image} caption={caption}>
+    <ImageWrapper image={image} caption={caption} altText="">
       <Box sx={{ width: "100%", position: "relative" }}>
-        <Image
+        <MyImage
           image={getImage(image)}
           alt={"blah"}
           as={GatsbyImage}
@@ -19,8 +18,8 @@ const LandscapeImage = ({ image, caption }) => {
             width: ["100%", "100%", "100%"],
             zIndex: "100",
             borderRadius: [4, 4, 4],
-          }}
-        ></Image>
+            }}
+        />
         <Box
           sx={{
             width: "40px",

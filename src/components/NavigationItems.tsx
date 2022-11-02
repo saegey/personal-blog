@@ -1,13 +1,19 @@
-/** @jsxImportSource theme-ui */
-
-import * as React from "react"
 import { Link as GatsbyLink } from "gatsby"
-import { Close, Link, Button } from "theme-ui"
+import { Link } from "theme-ui"
+import { MyLinkProps} from "../common/types"
 
-const MenuLink = ({ title, location, setMenuOpen }) => {
+type MenuLinkProps = {
+  title: string,
+  location: any,
+  setMenuOpen: (arg: boolean) => void
+}
+
+const MyLink = Link as any as (props: MyLinkProps) => JSX.Element
+
+const MenuLink = ({ title, location, setMenuOpen }: MenuLinkProps) => {
   return (
     <li>
-      <Link
+      <MyLink
         to={location}
         variant="menu"
         sx={{ textDecoration: "none" }}
@@ -16,12 +22,16 @@ const MenuLink = ({ title, location, setMenuOpen }) => {
         onClick={() => setMenuOpen(false)}
       >
         {title}
-      </Link>
+      </MyLink>
     </li>
   )
 }
 
-const NavigationItems = ({ setMenuOpen }) => {
+type NavItemsProps = {
+	setMenuOpen: (arg: boolean) => void
+}
+
+const NavigationItems = ({ setMenuOpen }: NavItemsProps) => {
   return (
     <div
       sx={{

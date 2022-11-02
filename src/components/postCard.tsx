@@ -1,13 +1,20 @@
-/** @jsxImportSource theme-ui */
-
-import * as React from "react"
 import { Text, Card, Image, Link, Box, Flex } from "theme-ui"
 import { Link as GatsbyLink } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
+import { PostCardProps } from '../common/types'
+import { MyLinkProps, MyImageProps } from "../common/types"
 
-const PostCard = ({ post, title, image }) => {
+const MyLink = Link as any as (props: MyLinkProps) => JSX.Element
+
+const MyImage = Image as any as (props: MyImageProps) => JSX.Element
+
+const PostCard = ({ post, title, image }: PostCardProps) => {
+  if (!image) { return <></>}
+  if (!title) { return <></>}
+  if (!post || !post.fields || !post.fields.slug) { return <></> }
+
   return (
-    <Link
+    <MyLink
       to={`/${post.fields.slug}`}
       itemProp="url"
       sx={{ textDecoration: "none" }}
@@ -26,11 +33,11 @@ const PostCard = ({ post, title, image }) => {
               flexBasis: "sidebar",
             }}
           >
-            <Image
-              layout="constrained"
+            <MyImage
+              // layout="constrained"
               image={image}
               objectFit="cover"
-              alt={`${post.frontmatter.title} Photo`}
+              alt={`${title} Photo`}
               as={GatsbyImage}
               variant="postCardImage"
             />
@@ -86,7 +93,7 @@ const PostCard = ({ post, title, image }) => {
           </main>
         </div>
       </Card>
-    </Link>
+    </MyLink>
   )
 }
 

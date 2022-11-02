@@ -1,17 +1,16 @@
-// install (please make sure versions match peerDependencies)
-// yarn add @nivo/core @nivo/line
-import * as React from "react"
 import { ResponsiveLine } from "@nivo/line"
 import { useThemeUI, Box } from "theme-ui"
 import { useResponsiveValue } from "@theme-ui/match-media"
 
 import { formatSeconds, formatTime } from "../lib/formatters"
+import  {GraphProps } from "../common/types"
 
-const PowerCurveGraph = ({ data, unitOfMeasure }) => {
+const PowerCurveGraph = ({ data, unit }: GraphProps) => {
   const { theme } = useThemeUI()
   const powerCurve = data
 
   const graphColor = theme.colors.text
+
   const yAxes = useResponsiveValue([
     [100, 300, 500, 700],
     [100, 200, 300, 400, 500, 600, 700],
@@ -188,10 +187,10 @@ const PowerCurveGraph = ({ data, unitOfMeasure }) => {
   )
 }
 
-const PowerCurveGraphWrapper = ({ data, unitOfMeasure }) => {
+const PowerCurveGraphWrapper = ({ data, unit }: GraphProps) => {
   return (
     <Box sx={{ height: ["200px", "400px", "400px"] }}>
-      <PowerCurveGraph data={data} unitOfMeasure={unitOfMeasure} />
+      <PowerCurveGraph data={data} unit={unit} />
     </Box>
   )
 }

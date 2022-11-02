@@ -1,10 +1,12 @@
-/** @jsxImportSource theme-ui */
-
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Text, Image, Box } from 'theme-ui'
 import { getImage, GatsbyImage } from 'gatsby-plugin-image'
 
-const RaceImage = ({ image, caption, children, altText }) => {
+import { NestedRaceImageType, MyImageProps } from "../common/types"
+
+const MyImage = Image as any as (props: MyImageProps) => JSX.Element
+
+const RaceImage = ({ image, caption, children, altText }: NestedRaceImageType) => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
@@ -23,7 +25,7 @@ const RaceImage = ({ image, caption, children, altText }) => {
         </Text>
       </Box>
       {menuOpen && (
-        <Box variant="box.faded">
+        <Box variant="styles.faded">
           <div
             sx={{
               marginX: 'auto',
@@ -36,7 +38,7 @@ const RaceImage = ({ image, caption, children, altText }) => {
                 setMenuOpen(false)
               }}
             >
-              <Image
+              <MyImage
                 objectFit="contain"
                 image={getImage(image)}
                 alt={altText || ''}

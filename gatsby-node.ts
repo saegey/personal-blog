@@ -66,56 +66,56 @@ const createMdxPages = async (graphql, createPage, reporter) => {
   })
 }
 
-exports.createResolvers = async ({ createResolvers }) => {
-  createResolvers({
-    Mdx: {
-      gpxData: {
-        type: "File",
-        resolve: async (source, args, context) => {
-          if (source.frontmatter.gpxFile) {
-            const results = await context.nodeModel.runQuery({
-              query: {
-                filter: {
-                  name: {
-                    eq: source.frontmatter.gpxFile,
-                  },
-                },
-              },
-              type: "File",
-              firstOnly: true,
-            })
-            return results
-          } else {
-            return null
-          }
-        },
-      },
-      results: {
-        type: "File",
-        resolve: async (source, args, context) => {
-          if (source.frontmatter.results) {
-            try {
-              const results = await context.nodeModel.runQuery({
-                query: {
-                  filter: {
-                    name: {
-                      eq: source.frontmatter.results.file,
-                    },
-                  },
-                },
-                type: "File",
-                firstOnly: true,
-              })
-              return results
-            } catch (e) {
-              console.log("error", e)
-            }
-          }
-        },
-      },
-    },
-  })
-}
+// exports.createResolvers = async ({ createResolvers }) => {
+//   createResolvers({
+//     Mdx: {
+//       gpxData: {
+//         type: "File",
+//         resolve: async (source, args, context) => {
+//           if (source.frontmatter.gpxFile) {
+//             const results = await context.nodeModel.runQuery({
+//               query: {
+//                 filter: {
+//                   name: {
+//                     eq: source.frontmatter.gpxFile,
+//                   },
+//                 },
+//               },
+//               type: "File",
+//               firstOnly: true,
+//             })
+//             return results
+//           } else {
+//             return null
+//           }
+//         },
+//       },
+//       results: {
+//         type: "File",
+//         resolve: async (source, args, context) => {
+//           if (source.frontmatter.results) {
+//             try {
+//               const results = await context.nodeModel.runQuery({
+//                 query: {
+//                   filter: {
+//                     name: {
+//                       eq: source.frontmatter.results.file,
+//                     },
+//                   },
+//                 },
+//                 type: "File",
+//                 firstOnly: true,
+//               })
+//               return results
+//             } catch (e) {
+//               console.log("error", e)
+//             }
+//           }
+//         },
+//       },
+//     },
+//   })
+// }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage, loadNodeContent } = actions
@@ -387,6 +387,8 @@ exports.createSchemaCustomization = ({ actions }) => {
     type Mdx implements Node {
       frontmatter: Frontmatter
       fields: Fields
+      gpxData: File @link(by: "name", from: "frontmatter.gpxFile")
+      results: File @link(by: "name", from: "frontmatter.results.file")
     }
 
     type Frontmatter {

@@ -1,5 +1,3 @@
-/** @jsxImportSource theme-ui */
-
 import React from 'react';
 import { Text, Flex, Box } from 'theme-ui';
 
@@ -7,7 +5,7 @@ interface Props {
   item: {
     isMe: boolean
     place: string
-    name: number
+    name: string
     speedMetric: number
     speed: number
     time: string
@@ -46,7 +44,7 @@ const RaceResultItemSmall = ({ item, theme }: Props) => {
         <Box sx={{ width: '10%' }} />
         <Box sx={{ color: 'primary' }}>
           <Text variant="resultsItem">
-            {theme.unitOfMeasure === 'metric' ? item.speedMetric.toFixed(2) : item.speed}
+            {theme.unitOfMeasure === 'metric' ? item.speedMetric : item.speed}
           </Text>
         </Box>
         <Box sx={{ marginLeft: 'auto', color: 'primary' }}>

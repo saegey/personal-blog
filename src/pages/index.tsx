@@ -1,4 +1,3 @@
-import * as React from 'react'
 import type { PageProps } from "gatsby"
 import { graphql } from 'gatsby'
 import { Container, Box } from 'theme-ui'
@@ -8,27 +7,8 @@ import Seo from '../components/seo'
 import PostCard from '../components/postCard'
 import SafariStyle from '../components/SafariStyle'
 
-type DataProps = {
-  site: {
-    siteMetadata: {
-      title: string
-    }
-  },
-  allMdx: {
-    nodes: [{
-      frontmatter: {
-        title: string,
-        headerImage: ImageDataLike | null,
-      },
-      fields: {
-        slug: string
-      }
-    }]
-  }
-}
 
-
-const BlogIndex = ({ data }: PageProps<DataProps>) => {
+const BlogIndex = ({ data }: PageProps<Queries.BlogIndexQuery>) => {
   const posts = data.allMdx.nodes
 
   return (
@@ -36,11 +16,16 @@ const BlogIndex = ({ data }: PageProps<DataProps>) => {
       <SafariStyle />
       <Container sx={{ padding: '0px' }} bg="muted">
         <Box as="ol" sx={{ p: 0 }}>
-          {posts.map((post, index) => {
-            const image = getImage(post.frontmatter.headerImage)
-            const title = post.frontmatter.title || post.fields.slug
+          {posts.map((post, index: number) => {
+            if (
+							!post || !post.frontmatter || !post.frontmatter.headerImage || post.frontmatter.headerImage === undefined) {
+							return <></>
+						}
+						const { headerImage } = post.frontmatter
+            const image = getImage(headerImage)
+            const title = post.frontmatter.title
 
-            return <PostCard post={post} title={title} image={image} key={index} />
+            return (<PostCard post={post} title={title} image={image} key={index} />)
           })}
         </Box>
       </Container>
@@ -58,7 +43,7 @@ export default BlogIndex
 export const Head = () => <Seo title="All posts" />
 
 export const pageQuery = graphql`
-  query {
+  query BlogIndex {
     site {
       siteMetadata {
         title

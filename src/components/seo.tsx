@@ -5,12 +5,29 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import * as React from 'react'
 import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 
-const Seo = ({ description, title, children }) => {
-  const { site } = useStaticQuery(
+type Props = {
+  description?: string,
+  title: string,
+  children?: JSX.Element
+}
+
+type Site = {
+  site: {
+    siteMetadata: {
+      title: string,
+      description: string,
+      social: {
+        twitter: string
+      }
+    }
+  }
+}
+
+const Seo = ({ description, title, children }: Props) => {
+  const { site }: Site = useStaticQuery(
     graphql`
       query {
         site {

@@ -1,6 +1,3 @@
-/** @jsxImportSource theme-ui */
-
-import React from "react"
 import { Text, Link, Box } from "theme-ui"
 
 const Footer = () => {

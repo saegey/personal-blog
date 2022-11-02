@@ -1,15 +1,14 @@
-/** @jsx jsx */
-import * as React from "react"
-import { jsx, Container } from "theme-ui"
+import { Container } from "theme-ui"
 import { graphql } from "gatsby"
 import { getImage } from "gatsby-plugin-image"
+import type { PageProps } from "gatsby"
 
 import Seo from "../components/seo"
 import PostCard from "../components/postCard"
 import SafariStyle from "../components/SafariStyle"
+import { IndexDataProps } from '../common/types'
 
-const BlogIndex = ({ data, location }) => {
-  // const siteTitle = data.site.siteMetadata?.title || `Title`
+const ProjectsIndex = ({ data }: PageProps<IndexDataProps>) => {
   const posts = data.allMdx.nodes
 
   if (posts.length === 0) {
@@ -40,7 +39,7 @@ const BlogIndex = ({ data, location }) => {
   )
 }
 
-export default BlogIndex
+export default ProjectsIndex
 
 /**
  * Head export to define metadata for the page

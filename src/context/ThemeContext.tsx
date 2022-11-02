@@ -1,24 +1,21 @@
-import React from "react"
+import { createContext, Component } from "react"
 
 const defaultState = {
-  dark: false,
-  toggleDark: () => {},
+  unitOfMeasure: "imperial",
+  toggleUnit: () => {},
 }
 
-const ThemeContext = React.createContext(defaultState)
+const ThemeContext = createContext(defaultState)
 
-// Getting dark mode information from OS!
-// You need macOS Mojave + Safari Technology Preview Release 68 to test this currently.
 const supportsDarkMode = () =>
   window.matchMedia("(prefers-color-scheme: dark)").matches === true
 
-class ThemeProvider extends React.Component {
+class ThemeProvider extends Component {
   state = {
     unitOfMeasure: "imperial",
   }
 
   toggleUnit = () => {
-    // console.log("oh hey")
     let unitOfMeasure
     if (this.state.unitOfMeasure === "imperial") {
       unitOfMeasure = "metric"
@@ -30,7 +27,6 @@ class ThemeProvider extends React.Component {
   }
 
   componentDidMount() {
-    // Getting dark mode value from localStorage!
     const unit = localStorage.getItem("unitOfMeasure")
     if (unit) {
       this.setState({ unitOfMeasure: unit })
