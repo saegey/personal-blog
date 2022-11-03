@@ -1,5 +1,5 @@
-import React from 'react';
-import { Text, Flex, Box } from 'theme-ui';
+import React from 'react'
+import { Text, Flex, Box } from 'theme-ui'
 
 interface Props {
   item: {
@@ -28,13 +28,11 @@ const RaceResultItemSmall = ({ item, theme }: Props) => {
           <Text variant="resultsItem">{item.place}</Text>
         </Box>
         <Box>
-          {item.isMe === true
-            ? (
-              <Text variant="highlightedItem">{item.name}</Text>
-            )
-            : (
-              <Text variant="resultsItem">{item.name}</Text>
-            )}
+          {item.isMe === true ? (
+            <Text variant="highlightedItem">{item.name}</Text>
+          ) : (
+            <Text variant="resultsItem">{item.name}</Text>
+          )}
         </Box>
         <Box sx={{ marginLeft: 'auto' }}>
           <Text variant="resultsItem">{item.time}</Text>
@@ -52,7 +50,7 @@ const RaceResultItemSmall = ({ item, theme }: Props) => {
         </Box>
       </Flex>
     </Box>
-  );
+  )
 }
 
-export default RaceResultItemSmall;
+export default RaceResultItemSmall

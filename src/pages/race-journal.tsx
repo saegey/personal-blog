@@ -54,7 +54,6 @@ type DataProps = {
   }
 }
 
-
 /**
  * Head export to define metadata for the page
  *

@@ -1,4 +1,4 @@
-import type { PageProps } from "gatsby"
+import type { PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
 import { Container, Box } from 'theme-ui'
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
@@ -6,7 +6,6 @@ import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import Seo from '../components/seo'
 import PostCard from '../components/postCard'
 import SafariStyle from '../components/SafariStyle'
-
 
 const BlogIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data.allMdx.nodes
@@ -23,7 +22,9 @@ const BlogIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
             const image = getImage(post.frontmatter.headerImage)
             const title = post?.frontmatter?.title
 
-            return (<PostCard post={post} title={title} image={image} key={index} />)
+            return (
+              <PostCard post={post} title={title} image={image} key={index} />
+            )
           })}
         </Box>
       </Container>

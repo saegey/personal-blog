@@ -1,37 +1,37 @@
-import { createContext, Component } from "react"
+import { createContext, Component } from 'react'
 
 const defaultState = {
-  unitOfMeasure: "imperial",
+  unitOfMeasure: 'imperial',
   toggleUnit: () => {},
 }
 
 const ThemeContext = createContext(defaultState)
 
 const supportsDarkMode = () =>
-  window.matchMedia("(prefers-color-scheme: dark)").matches === true
+  window.matchMedia('(prefers-color-scheme: dark)').matches === true
 
 class ThemeProvider extends Component {
   state = {
-    unitOfMeasure: "imperial",
+    unitOfMeasure: 'imperial',
   }
 
   toggleUnit = () => {
     let unitOfMeasure
-    if (this.state.unitOfMeasure === "imperial") {
-      unitOfMeasure = "metric"
+    if (this.state.unitOfMeasure === 'imperial') {
+      unitOfMeasure = 'metric'
     } else {
-      unitOfMeasure = "imperial"
+      unitOfMeasure = 'imperial'
     }
-    localStorage.setItem("unitOfMeasure", unitOfMeasure)
+    localStorage.setItem('unitOfMeasure', unitOfMeasure)
     this.setState({ unitOfMeasure })
   }
 
   componentDidMount() {
-    const unit = localStorage.getItem("unitOfMeasure")
+    const unit = localStorage.getItem('unitOfMeasure')
     if (unit) {
       this.setState({ unitOfMeasure: unit })
     } else if (supportsDarkMode()) {
-      this.setState({ unitOfMeasure: "imperial" })
+      this.setState({ unitOfMeasure: 'imperial' })
     }
   }
 

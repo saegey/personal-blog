@@ -1,17 +1,17 @@
-import { ResponsiveLine } from '@nivo/line';
-import { useThemeUI, Box } from 'theme-ui';
+import { ResponsiveLine } from '@nivo/line'
+import { useThemeUI, Box } from 'theme-ui'
 
 import {
   formatSeconds,
   generateElevatioinTickValues,
   generateTimeTickValues,
   formatTime,
-} from '../lib/formatters';
-import { GraphProps } from '../common/types';
-import ThemeContext from '../context/ThemeContext';
+} from '../lib/formatters'
+import { GraphProps } from '../common/types'
+import ThemeContext from '../context/ThemeContext'
 
 const ElevationGraph = ({ data, unit }: GraphProps) => {
-  const { theme } = useThemeUI();
+  const { theme } = useThemeUI()
   const graphColor = theme.colors?.text
 
   return (
@@ -20,14 +20,14 @@ const ElevationGraph = ({ data, unit }: GraphProps) => {
         type: 'linear',
         min:
           unit === 'metric'
-            ? Math.min(...data.map((o) => o.y)) - 152.4
-            : Math.min(...data.map((o) => o.y)) * 3.280839895 - 500,
+            ? Math.min(...data.map(o => o.y)) - 152.4
+            : Math.min(...data.map(o => o.y)) * 3.280839895 - 500,
         // min: "auto",
         max:
           unit === 'metric'
-            ? Math.floor(Math.max(...data.map((o) => o.y)) / 500) * 500 + 500
-            : (Math.floor(Math.max(...data.map((o) => o.y)) / 500) * 500 + 500)
-              * 3.280839895,
+            ? Math.floor(Math.max(...data.map(o => o.y)) / 500) * 500 + 500
+            : (Math.floor(Math.max(...data.map(o => o.y)) / 500) * 500 + 500) *
+              3.280839895,
         stacked: false,
         reverse: false,
       }}
@@ -37,7 +37,10 @@ const ElevationGraph = ({ data, unit }: GraphProps) => {
         max: 'auto',
       }}
       margin={{
-        top: 10, right: 0, bottom: 25, left: 40,
+        top: 10,
+        right: 0,
+        bottom: 25,
+        left: 40,
       }}
       curve="natural"
       pointSize={0}
@@ -45,8 +48,8 @@ const ElevationGraph = ({ data, unit }: GraphProps) => {
       enableArea
       areaBaselineValue={
         unit === 'metric'
-          ? Math.min(...data.map((o) => o.y)) - 152.4
-          : Math.min(...data.map((o) => o.y)) * 3.280839895 - 500
+          ? Math.min(...data.map(o => o.y)) - 152.4
+          : Math.min(...data.map(o => o.y)) * 3.280839895 - 500
       }
       areaOpacity={0.3}
       colors={[theme.colors.text]}
@@ -73,7 +76,7 @@ const ElevationGraph = ({ data, unit }: GraphProps) => {
             borderRadius: '4px',
           }}
         >
-          {slice.points.map((point) => (
+          {slice.points.map(point => (
             <div
               key={point.id}
               style={{
@@ -81,20 +84,16 @@ const ElevationGraph = ({ data, unit }: GraphProps) => {
                 padding: '3px 0',
               }}
             >
-              <div style={{ fontWeight: 300 }}>
-                {formatTime(point.data.x)}
-              </div>
+              <div style={{ fontWeight: 300 }}>{formatTime(point.data.x)}</div>
               <div style={{ fontWeight: 600 }}>
-                {point.data.y.toLocaleString()}
-                {' '}
-                {unit === 'metric' ? 'm' : 'ft'}
+                {point.data.y.toLocaleString()} {unit === 'metric' ? 'm' : 'ft'}
               </div>
             </div>
           ))}
         </div>
       )}
       axisLeft={{
-        format: (val) => `${val}`,
+        format: val => `${val}`,
         orient: 'left',
         tickSize: 0,
         tickPadding: 5,
@@ -200,20 +199,20 @@ const ElevationGraph = ({ data, unit }: GraphProps) => {
           data:
             unit === 'metric'
               ? data
-              : data.map((d) => ({
-                x: d.x,
-                y: (d.y * 3.280839895).toFixed(0),
-              })),
+              : data.map(d => ({
+                  x: d.x,
+                  y: (d.y * 3.280839895).toFixed(0),
+                })),
         },
       ]}
     />
-  );
+  )
 }
 
-const ElevationGraphWrapper = ({ data }: { data: GraphProps["data"]}) => {
+const ElevationGraphWrapper = ({ data }: { data: GraphProps['data'] }) => {
   return (
     <ThemeContext.Consumer>
-      {(theme) => (
+      {theme => (
         <Box
           sx={{
             height: ['150px', '100px', '150px'],
@@ -225,7 +224,7 @@ const ElevationGraphWrapper = ({ data }: { data: GraphProps["data"]}) => {
         </Box>
       )}
     </ThemeContext.Consumer>
-  );
+  )
 }
 
-export default ElevationGraphWrapper;
+export default ElevationGraphWrapper

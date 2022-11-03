@@ -1,12 +1,11 @@
 require('ts-node').register({
-    compilerOptions: {
-        module: 'commonjs',
-        target: 'es2017',
-    },
+  compilerOptions: {
+    module: 'commonjs',
+    target: 'es2017',
+  },
 })
 
 module.exports = {
-  // graphqlTypegen: true,
   pathPrefix: `/personal-blog`,
   siteMetadata: {
     title: `Adam Saegebarth`,
@@ -24,16 +23,8 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: "gatsby-plugin-theme-ui",
+      resolve: 'gatsby-plugin-theme-ui',
     },
-    // {
-    //   resolve: `gatsby-plugin-typescript`,
-    //   options: {
-    //     isTSX: true, // defaults to false
-    //     jsxPragma: `jsx`, // defaults to "React"
-    //     allExtensions: true, // defaults to false
-    //   },
-    // },
     {
       resolve: `gatsby-plugin-mdx`,
       options: {

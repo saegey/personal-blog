@@ -1,16 +1,13 @@
-const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
-// const DOMParser = require("xmldom").DOMParser
-
+import path from 'path'
+import { createFilePath } from 'gatsby-source-filesystem'
 import type { GatsbyNode } from 'gatsby'
-import length from "@turf/length"
-// import tj from '@tmcw/togeojson'
-import { gpx } from "@tmcw/togeojson";
+import length from '@turf/length'
+import { gpx } from '@tmcw/togeojson'
 import { DOMParser } from '@xmldom/xmldom'
 
 import { parse } from '../lib/raceResults'
 import { parseTSV } from '../lib/webscorer'
-import { parseOmniTSV } from "../lib/omniGo"
+import { parseOmniTSV } from '../lib/omniGo'
 
 import {
   calcBestPowers,
@@ -18,21 +15,21 @@ import {
   calcStoppage,
   dateDiff,
   downsampleElevation,
-} from "../lib/gpxHelper"
+} from '../lib/gpxHelper'
 
 const defaultTimeWindows = [5, 10, 15, 30, 60, 120, 300, 600]
 const slugify = (str: string) => {
   return str
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)+/g, "")
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)+/g, '')
 }
 
 type MdxData = {
   data?: {
     allMdx: {
       nodes: {
-        id: string,
+        id: string
         fields: {
           slug: string
         }
@@ -46,16 +43,20 @@ type MdxData = {
 }
 
 type Point = {
-	x: number
-	y: number
+  x: number
+  y: number
 }
 
 type Geometry = {
-	type: string,
-	coordinates: [[number, number, number]]
+  type: string
+  coordinates: [[number, number, number]]
 }
 
-export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions, reporter }) => {
+export const createPages: GatsbyNode['createPages'] = async ({
+  graphql,
+  actions,
+  reporter,
+}) => {
   const { createPage } = actions
 
   const result: MdxData = await graphql(`
@@ -84,36 +85,23 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
 
   if (!result.data) {
     reporter.panic(`No Data`, result.errors)
-    throw "No data found"
+    throw 'No data found'
   }
 
-	const postTemplate = path.resolve("./src/templates/post.tsx")
-	const createPostPromise = result.data?.allMdx.nodes.map((post) => {
-		createPage({
-				path : `${post.fields.slug}`,
-				component : `${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
-				context : {
-						slug: post.fields.slug,
-						id: post.id,
-						// anything else you want to pass to your context
-				}
-		})
+  const postTemplate = path.resolve('./src/templates/post.tsx')
+  const createPostPromise = result.data?.allMdx.nodes.map(post => {
+    createPage({
+      path: `${post.fields.slug}`,
+      component: `${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
+      context: {
+        slug: post.fields.slug,
+        id: post.id,
+        // anything else you want to pass to your context
+      },
+    })
   })
 
-  await Promise.all( [ createPostPromise] )
-
-  // const data = result.data.allMdx.nodes
-
-  // data.forEach(node => {
-  //   createPage({
-  //     path: node.fields.slug,
-  //     component: `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
-  //     context: {
-  //       slug: node.fields.slug,
-  //       id: node.id,
-  //     },
-  //   })
-  // })
+  await Promise.all([createPostPromise])
 }
 
 // Workaround
@@ -127,11 +115,16 @@ type NodeType = {
   }
 }
 
-export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ node, actions, getNode, loadNodeContent }) => {
+export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
+  node,
+  actions,
+  getNode,
+  loadNodeContent,
+}) => {
   const { createNodeField } = actions
   const nodeValue = node as any as NodeType
 
-  if (nodeValue.internal.type === "Mdx") {
+  if (nodeValue.internal.type === 'Mdx') {
     const slug: string = createFilePath({ node, getNode })
 
     createNodeField({
@@ -141,15 +134,17 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ node, actions, 
     })
   }
 
-  if (node.internal.mediaType === "text/plain") {
+  if (node.internal.mediaType === 'text/plain') {
     const content = await loadNodeContent(node)
-    if (!node.internal?.description) { return }
+    if (!node.internal?.description) {
+      return
+    }
     const type = node.internal.description
-      .split(" ")[1]
-      .split("/")
+      .split(' ')[1]
+      .split('/')
       .slice(-2, -1)[0]
 
-    if (type === "raceresults") {
+    if (type === 'raceresults') {
       createNodeField({
         name: `data`,
         node,
@@ -157,7 +152,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ node, actions, 
       })
     }
 
-    if (type === "webscorer") {
+    if (type === 'webscorer') {
       createNodeField({
         name: `data`,
         node,
@@ -165,7 +160,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ node, actions, 
       })
     }
 
-    if (type === "omnigo") {
+    if (type === 'omnigo') {
       createNodeField({
         name: `data`,
         node,
@@ -174,10 +169,9 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ node, actions, 
     }
   }
 
-  if (node.internal.mediaType === "application/gpx+xml") {
+  if (node.internal.mediaType === 'application/gpx+xml') {
     const content = await loadNodeContent(node)
     const gpxData = new DOMParser().parseFromString(content)
-		// console.log(gpxData)
     const data = gpx(gpxData)
 
     createNodeField({
@@ -186,13 +180,13 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ node, actions, 
       value: length(data),
     })
 
-    if (data.type && data.type === "FeatureCollection") {
+    if (data.type && data.type === 'FeatureCollection') {
       if (data.features) {
         // const { createNode } = boundActionCreators
         data.features.forEach(feature => {
           if (
             feature.type &&
-            feature.type === "Feature" &&
+            feature.type === 'Feature' &&
             feature.properties &&
             feature.properties.name
           ) {
@@ -289,8 +283,11 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ node, actions, 
 
             if (powers !== undefined) {
               Object.keys(powerAnalysis as {}).forEach(key => {
-                if (key === "entire") return
-                points.push({ x: Number(key), y: powerAnalysis ? powerAnalysis[key] : 0 })
+                if (key === 'entire') return
+                points.push({
+                  x: Number(key),
+                  y: powerAnalysis ? powerAnalysis[key] : 0,
+                })
               })
             }
 
@@ -366,10 +363,11 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ node, actions, 
   }
 }
 
-export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({ actions }) => {
-  const { createTypes } = actions
+export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] =
+  ({ actions }) => {
+    const { createTypes } = actions
 
-  createTypes(`
+    createTypes(`
     type SiteSiteMetadata {
       author: Author
       siteUrl: String
@@ -411,4 +409,4 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     }
 
   `)
-}
+  }

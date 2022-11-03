@@ -1,5 +1,5 @@
-import { Box } from "theme-ui"
-import {BoxSvgType} from '../common/types'
+import { Box } from 'theme-ui'
+import { BoxSvgType } from '../common/types'
 
 const SvgBox = Box as any as (props: BoxSvgType) => JSX.Element
 
@@ -9,8 +9,8 @@ const FullScreenIcon = () => {
       as="svg"
       viewBox="60 0 580 580"
       sx={{
-        ".icon-solid": {
-          fill: "white",
+        '.icon-solid': {
+          fill: 'white',
         },
       }}
     >

@@ -1,28 +1,27 @@
-import ThemeContext from "../context/ThemeContext"
-import RaceStats from "./RaceStats"
+import ThemeContext from '../context/ThemeContext'
+import RaceStats from './RaceStats'
 
 type Props = {
   data: {
-    elevationGain: number,
-    distance: number,
+    elevationGain: number
+    distance: number
     heartAnalysis: {
       entire: number
-    },
+    }
     tempAnalysis: {
       entire: number
-    },
+    }
     powerAnalysis: {
       entire: number
-    },
+    }
     cadenceAnalysis: {
       entire: number
-    },
+    }
     elapsedTime: {
       seconds: number
-    },
-    stoppedTime: number,
-
-  },
+    }
+    stoppedTime: number
+  }
   selectedFields: string[]
 }
 
@@ -43,9 +42,9 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
 
         const items = [
           {
-            title: "Elevation Gain",
+            title: 'Elevation Gain',
             value:
-              theme.unitOfMeasure === "metric"
+              theme.unitOfMeasure === 'metric'
                 ? `${elevationGain.toFixed(0)} meters`
                 : `${(elevationGain * 3.280839895).toLocaleString(undefined, {
                     minimumFractionDigits: 0,
@@ -53,33 +52,33 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
                   })} ft`,
           },
           {
-            title: "Avg Heart Rate",
+            title: 'Avg Heart Rate',
             value: `${heartAnalysis.entire} bpm`,
           },
           {
-            title: "Distance",
+            title: 'Distance',
             value:
-              theme.unitOfMeasure === "metric"
+              theme.unitOfMeasure === 'metric'
                 ? `${distance.toFixed(2)} km`
                 : `${(distance * 0.621371).toFixed()} miles`,
           },
           {
-            title: "Elapsed Time",
+            title: 'Elapsed Time',
             value: `${new Date(elapsedTime.seconds * 1000)
               .toISOString()
               .substr(11, 8)}`,
           },
           {
-            title: "Avg Temperature",
+            title: 'Avg Temperature',
             value:
-              theme.unitOfMeasure === "metric"
+              theme.unitOfMeasure === 'metric'
                 ? `${tempAnalysis.entire} °C`
                 : `${tempAnalysis.entire * (9 / 5) + 32} °F`,
           },
           {
-            title: "Avg Speed",
+            title: 'Avg Speed',
             value:
-              theme.unitOfMeasure === "metric"
+              theme.unitOfMeasure === 'metric'
                 ? `${(
                     ((distance * 1000) / (elapsedTime.seconds - stoppedTime)) *
                     3.6
@@ -90,16 +89,16 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
                   ).toFixed(2)} mph`,
           },
           {
-            title: "Avg Power",
-            value: powerAnalysis ? `${powerAnalysis.entire} watts` : "N/A",
+            title: 'Avg Power',
+            value: powerAnalysis ? `${powerAnalysis.entire} watts` : 'N/A',
           },
           {
-            title: "Time Stopped",
+            title: 'Time Stopped',
             value: new Date(stoppedTime * 1000).toISOString().substr(11, 8),
           },
           {
-            title: "Avg Cadence",
-            value: cadenceAnalysis ? `${cadenceAnalysis.entire} rpm` : "N/A",
+            title: 'Avg Cadence',
+            value: cadenceAnalysis ? `${cadenceAnalysis.entire} rpm` : 'N/A',
           },
         ]
 

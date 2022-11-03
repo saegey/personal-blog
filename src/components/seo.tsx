@@ -9,16 +9,16 @@ import PropTypes from 'prop-types'
 import { useStaticQuery, graphql } from 'gatsby'
 
 type Props = {
-  description?: string,
-  title: string,
+  description?: string
+  title: string
   children?: JSX.Element
 }
 
 type Site = {
   site: {
     siteMetadata: {
-      title: string,
-      description: string,
+      title: string
+      description: string
       social: {
         twitter: string
       }
@@ -49,17 +49,17 @@ const Seo = ({ description, title, children }: Props) => {
   return (
     <>
       <title>{defaultTitle ? `${title} | ${defaultTitle}` : title}</title>
-      <meta name='description' content={metaDescription} />
-      <meta property='og:title' content={title} />
-      <meta property='og:description' content={metaDescription} />
-      <meta property='og:type' content='website' />
-      <meta name='twitter:card' content='summary' />
+      <meta name="description" content={metaDescription} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={metaDescription} />
+      <meta property="og:type" content="website" />
+      <meta name="twitter:card" content="summary" />
       <meta
-        name='twitter:creator'
+        name="twitter:creator"
         content={site.siteMetadata?.social?.twitter || ''}
       />
-      <meta name='twitter:title' content={title} />
-      <meta name='twitter:description' content={metaDescription} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={metaDescription} />
       {children}
     </>
   )

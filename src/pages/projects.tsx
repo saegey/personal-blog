@@ -1,11 +1,11 @@
-import { Container } from "theme-ui"
-import { graphql } from "gatsby"
-import { getImage, IGatsbyImageData } from "gatsby-plugin-image"
-import type { PageProps } from "gatsby"
+import { Container } from 'theme-ui'
+import { graphql } from 'gatsby'
+import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
+import type { PageProps } from 'gatsby'
 
-import Seo from "../components/seo"
-import PostCard from "../components/postCard"
-import SafariStyle from "../components/SafariStyle"
+import Seo from '../components/seo'
+import PostCard from '../components/postCard'
+import SafariStyle from '../components/SafariStyle'
 
 const ProjectsIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data.allMdx.nodes
@@ -24,7 +24,7 @@ const ProjectsIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
   return (
     <>
       <SafariStyle />
-      <Container sx={{ padding: "0px" }} bg="muted">
+      <Container sx={{ padding: '0px' }} bg="muted">
         <ol sx={{ p: 0 }}>
           {posts.map(post => {
             const image = getImage(post.frontmatter.headerImage)
@@ -41,7 +41,7 @@ const ProjectsIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
 export default ProjectsIndex
 
 type DataProps = {
-	allMdx: {
+  allMdx: {
     nodes: {
       fields: {
         slug: string

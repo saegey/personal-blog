@@ -14,7 +14,6 @@ import ElevationGraph from '../components/ElevationGraph'
 import { default as PowerCurveGraph } from '../components/PowerCurveGraph'
 import { default as PowerCurveContextGraph } from '../components/PowerCurveContext'
 
-
 const shortcodes = {
   Box,
   Divider,
@@ -37,15 +36,15 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
     <>
       <SafariStyle />
       <Flex sx={{ marginBottom: '20px' }}>
-        <Text variant='postType'>{type}</Text>
+        <Text variant="postType">{type}</Text>
       </Flex>
       <Flex>
-        <Text as='h1' variant='postTitle'>
+        <Text as="h1" variant="postTitle">
           {title}
         </Text>
       </Flex>
       <Flex>
-        <Text variant='postSubtitle'>
+        <Text variant="postSubtitle">
           {date} — {location}
         </Text>
       </Flex>
@@ -56,7 +55,9 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
 
 export default PostTemplate
 
-export const Head: React.FC<PageProps<DataProps>> = ({ data }) => <Seo title={data.mdx.frontmatter.title} />
+export const Head: React.FC<PageProps<DataProps>> = ({ data }) => (
+  <Seo title={data.mdx.frontmatter.title} />
+)
 
 type DataProps = {
   mdx: {
@@ -76,9 +77,9 @@ type DataProps = {
 }
 
 export const query = graphql`
-  query Post ($id: String!) {
+  query Post($id: String!) {
     mdx(id: { eq: $id }) {
-			id
+      id
       frontmatter {
         date(formatString: "MMM DD, YYYY")
         location

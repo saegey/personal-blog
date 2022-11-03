@@ -1,7 +1,7 @@
 import { Text, Box, Grid } from 'theme-ui'
 
 interface Item {
-  title: string,
+  title: string
   value: string
 }
 
@@ -27,7 +27,7 @@ const RaceStats = ({ items }: Props) => {
           return (
             <Box key={index}>
               <>
-                <Text variant='raceStatHeading'>{item.title}</Text>
+                <Text variant="raceStatHeading">{item.title}</Text>
                 <Box
                   sx={{
                     fontFamily: 'body',

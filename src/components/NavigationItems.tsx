@@ -1,10 +1,10 @@
-import { Link as GatsbyLink } from "gatsby"
-import { Link } from "theme-ui"
-import { MyLinkProps} from "../common/types"
+import { Link as GatsbyLink } from 'gatsby'
+import { Link } from 'theme-ui'
+import { MyLinkProps } from '../common/types'
 
 type MenuLinkProps = {
-  title: string,
-  location: any,
+  title: string
+  location: any
   setMenuOpen: (arg: boolean) => void
 }
 
@@ -16,7 +16,7 @@ const MenuLink = ({ title, location, setMenuOpen }: MenuLinkProps) => {
       <MyLink
         to={location}
         variant="menu"
-        sx={{ textDecoration: "none" }}
+        sx={{ textDecoration: 'none' }}
         activeClassName="active"
         as={GatsbyLink}
         onClick={() => setMenuOpen(false)}
@@ -28,26 +28,26 @@ const MenuLink = ({ title, location, setMenuOpen }: MenuLinkProps) => {
 }
 
 type NavItemsProps = {
-	setMenuOpen: (arg: boolean) => void
+  setMenuOpen: (arg: boolean) => void
 }
 
 const NavigationItems = ({ setMenuOpen }: NavItemsProps) => {
   return (
     <div
       sx={{
-        display: "flex",
-        alignItems: "center",
+        display: 'flex',
+        alignItems: 'center',
       }}
     >
       <ul
         sx={{
-          listStyleType: "none",
-          paddingLeft: "45px",
-          transition: "all .2s ease-in-out",
+          listStyleType: 'none',
+          paddingLeft: '45px',
+          transition: 'all .2s ease-in-out',
           top: 0,
           left: 0,
-          ".active": {
-            color: "headerForeground",
+          '.active': {
+            color: 'headerForeground',
           },
         }}
       >

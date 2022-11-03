@@ -1,25 +1,26 @@
-
 import { Text, Flex, Box, Button, Close } from 'theme-ui'
 
 import RaceResultsList from './RaceResultsList'
 
 type Props = {
-  data: [{
-    name: string,
-    time: string,
-    speedMetric: number,
-    speed: number,
-    timeBehind: number,
-		isMe: boolean,
-		place: string
-  }],
+  data: [
+    {
+      name: string
+      time: string
+      speedMetric: number
+      speed: number
+      timeBehind: number
+      isMe: boolean
+      place: string
+    }
+  ]
   setShouldShowResults: (arg: boolean) => void
 }
 
 const RaceResultsViewAll = ({ data, setShouldShowResults }: Props) => {
   return (
     <Box
-      variant='styles.faded'
+      variant="styles.faded"
       onClick={event => {
         setShouldShowResults(false)
       }}
@@ -46,7 +47,7 @@ const RaceResultsViewAll = ({ data, setShouldShowResults }: Props) => {
         >
           <Box sx={{ p: '20px' }}>
             <Text
-              as='h2'
+              as="h2"
               sx={{
                 lineHeight: '30px',
                 fontFamily: 'serif',
@@ -65,7 +66,7 @@ const RaceResultsViewAll = ({ data, setShouldShowResults }: Props) => {
               sx={{ backgroundColor: 'transparent', p: 0 }}
             >
               <Close
-                ml='auto'
+                ml="auto"
                 mr={-2}
                 sx={{ color: 'text', cursor: 'pointer' }}
               />
@@ -79,6 +80,5 @@ const RaceResultsViewAll = ({ data, setShouldShowResults }: Props) => {
     </Box>
   )
 }
-
 
 export default RaceResultsViewAll

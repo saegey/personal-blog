@@ -8,5 +8,5 @@
 //   setHtmlAttributes({ lang: `en` })
 // }
 
-import rootWrapper from "./rootWrapper"
+import rootWrapper from './rootWrapper'
 export const wrapPageElement = rootWrapper

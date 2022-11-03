@@ -6,35 +6,42 @@ import RaceResultsList from './RaceResultsList'
 import RaceResultsViewAll from './RaceResultsViewAll'
 
 type Props = {
-  data: [{
-    name: string,
-    time: string,
-    speedMetric: string,
-    speed: string,
-    timeBehind: string,
-    place: string,
-    isMe: boolean
-  }],
-  numbersToHighlight: [number],
-  distance: number,
+  data: [
+    {
+      name: string
+      time: string
+      speedMetric: string
+      speed: string
+      timeBehind: string
+      place: string
+      isMe: boolean
+    }
+  ]
+  numbersToHighlight: [number]
+  distance: number
   racerName: string
 }
 
 type HighlightsType = {
-  name: string,
-  time: string,
-  speedMetric: string,
-  speed: string,
+  name: string
+  time: string
+  speedMetric: string
+  speed: string
   timeBehind?: string
 }
 
-const RaceResults = ({ data, numbersToHighlight, distance, racerName }: Props) => {
+const RaceResults = ({
+  data,
+  numbersToHighlight,
+  distance,
+  racerName,
+}: Props) => {
   const [shouldShowResults, setShouldShowResults] = useState(false)
 
   const firstPlaceTime = data[0].time
     .split(':')
     .map(d => Number(d))
-    .reduce((acc, time)  => 60 * acc + +time)
+    .reduce((acc, time) => 60 * acc + +time)
 
   data.forEach(d => {
     if (d.place === '') return
@@ -50,13 +57,13 @@ const RaceResults = ({ data, numbersToHighlight, distance, racerName }: Props) =
       )} km/h`
       d.speed = `${((distance / timeSeconds) * 2236.9362920544).toFixed(2)} mph`
     } else {
-      d.speed = ""
+      d.speed = ''
     }
 
     if (!isNaN(timeSeconds) && timeSeconds !== 0) {
       d.timeBehind = formatTime((timeSeconds - firstPlaceTime).toFixed(2))
     } else {
-      d.timeBehind = ""
+      d.timeBehind = ''
     }
     if (d.name === racerName) {
       d.isMe = true
@@ -80,7 +87,7 @@ const RaceResults = ({ data, numbersToHighlight, distance, racerName }: Props) =
       <Box>
         <Flex>
           <Box sx={{ marginBottom: ['10px', '0px', '0px'] }}>
-            <Text as='h2' variant='resultsHeading'>
+            <Text as="h2" variant="resultsHeading">
               Results
             </Text>
           </Box>

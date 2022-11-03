@@ -2,7 +2,7 @@ import { Label, Radio, Box, Text, Flex } from 'theme-ui'
 
 type ThemeContextProps = {
   unitOfMeasure: {
-    unitOfMeasure: string,
+    unitOfMeasure: string
     toggleUnit: () => void
   }
 }
@@ -31,8 +31,8 @@ const UnitSelector = ({ unitOfMeasure }: ThemeContextProps) => {
         </Text>
         <Label sx={{ marginBottom: '5px' }}>
           <Radio
-            name='unitOfMeasure'
-            value='imperial'
+            name="unitOfMeasure"
+            value="imperial"
             checked={unitOfMeasure.unitOfMeasure === 'imperial'}
             onChange={unitOfMeasure.toggleUnit}
           />
@@ -40,8 +40,8 @@ const UnitSelector = ({ unitOfMeasure }: ThemeContextProps) => {
         </Label>
         <Label sx={{ marginBottom: '5px' }}>
           <Radio
-            name='unitOfMeasure'
-            value='metric'
+            name="unitOfMeasure"
+            value="metric"
             onChange={unitOfMeasure.toggleUnit}
             checked={unitOfMeasure.unitOfMeasure === 'metric'}
           />

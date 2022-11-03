@@ -1,10 +1,10 @@
-import React from "react"
+import React from 'react'
 
-import Layout from "./src/components/layout"
-import { ThemeProvider } from "./src/context/ThemeContext"
+import Layout from './src/components/layout'
+import { ThemeProvider } from './src/context/ThemeContext'
 
 type Props = {
-	element: JSX.Element,
+  element: JSX.Element
 }
 const rootWrapper = ({ element }: Props) => {
   return (

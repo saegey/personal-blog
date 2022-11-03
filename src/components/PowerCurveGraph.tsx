@@ -1,9 +1,9 @@
-import { ResponsiveLine } from "@nivo/line"
-import { useThemeUI, Box } from "theme-ui"
-import { useResponsiveValue } from "@theme-ui/match-media"
+import { ResponsiveLine } from '@nivo/line'
+import { useThemeUI, Box } from 'theme-ui'
+import { useResponsiveValue } from '@theme-ui/match-media'
 
-import { formatSeconds, formatTime } from "../lib/formatters"
-import  {GraphProps } from "../common/types"
+import { formatSeconds, formatTime } from '../lib/formatters'
+import { GraphProps } from '../common/types'
 
 const PowerCurveGraph = ({ data, unit }: GraphProps) => {
   const { theme } = useThemeUI()
@@ -21,22 +21,22 @@ const PowerCurveGraph = ({ data, unit }: GraphProps) => {
     <ResponsiveLine
       data={[
         {
-          id: "power",
-          color: "hsl(260, 70%, 50%)",
+          id: 'power',
+          color: 'hsl(260, 70%, 50%)',
           data: powerCurve,
         },
       ]}
       enableArea={true}
       margin={{ top: 0, right: 0, bottom: 25, left: 25 }}
       xScale={{
-        type: "log",
+        type: 'log',
         base: 2,
         // max: 16384,
         // max: Math.max(...powerCurve.map(o => o.x)),
       }}
       yScale={{
-        type: "linear",
-        min: "0",
+        type: 'linear',
+        min: '0',
         max: Math.max(...powerCurve.map(o => o.y)) + 50,
         stacked: true,
         reverse: false,
@@ -46,10 +46,10 @@ const PowerCurveGraph = ({ data, unit }: GraphProps) => {
           <div
             style={{
               background: theme.colors.text,
-              padding: "9px 12px",
+              padding: '9px 12px',
               fontFamily: theme.fonts.body,
-              letterSpacing: ".4px",
-              borderRadius: "4px",
+              letterSpacing: '.4px',
+              borderRadius: '4px',
             }}
           >
             {slice.points.map(point => {
@@ -58,7 +58,7 @@ const PowerCurveGraph = ({ data, unit }: GraphProps) => {
                   key={point.id}
                   style={{
                     color: theme.colors.background,
-                    padding: "3px 0",
+                    padding: '3px 0',
                   }}
                 >
                   <div style={{ fontWeight: 300 }}>
@@ -79,34 +79,34 @@ const PowerCurveGraph = ({ data, unit }: GraphProps) => {
       axisRight={null}
       axisBottom={{
         format: formatSeconds,
-        orient: "bottom",
+        orient: 'bottom',
         tickSize: 0,
         tickPadding: 5,
         tickRotation: 0,
         // legend: "TIME",
         legendOffset: 35,
-        legendPosition: "middle",
+        legendPosition: 'middle',
         // tickCount: 100,
         tickValues: [5, 15, 60, 300, 1200, 3600, 10800],
       }}
       axisLeft={{
-        orient: "left",
+        orient: 'left',
         tickSize: 0,
         tickPadding: 5,
         tickRotation: 0,
         tickCount: 3,
         // legend: "WATTS",
         legendOffset: -40,
-        legendPosition: "middle",
+        legendPosition: 'middle',
         tickValues: yAxes,
       }}
       colors={[theme.colors.text, theme.colors.headerForeground]}
       pointSize={0}
-      pointColor={{ theme: "background" }}
+      pointColor={{ theme: 'background' }}
       enableGridX={false}
       enableGridY={false}
       pointBorderWidth={2}
-      pointBorderColor={{ from: "serieColor" }}
+      pointBorderColor={{ from: 'serieColor' }}
       pointLabelYOffset={-12}
       useMesh={true}
       enableSlices="x"
@@ -152,7 +152,7 @@ const PowerCurveGraph = ({ data, unit }: GraphProps) => {
             text: {
               fontSize: 14,
               fill: graphColor,
-              letterSpacing: ".1px",
+              letterSpacing: '.1px',
             },
           },
         },
@@ -189,7 +189,7 @@ const PowerCurveGraph = ({ data, unit }: GraphProps) => {
 
 const PowerCurveGraphWrapper = ({ data, unit }: GraphProps) => {
   return (
-    <Box sx={{ height: ["200px", "400px", "400px"] }}>
+    <Box sx={{ height: ['200px', '400px', '400px'] }}>
       <PowerCurveGraph data={data} unit={unit} />
     </Box>
   )

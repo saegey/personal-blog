@@ -1,4 +1,4 @@
-const formatSeconds = (value: number) => {
+export const formatSeconds = (value: number) => {
   if (value >= 3600) {
     return `${value / 60 / 60}h`
   } else if (value >= 60) {
@@ -8,7 +8,7 @@ const formatSeconds = (value: number) => {
   return `${value}s`
 }
 
-const formatTime = (value: number) => {
+export const formatTime = (value: number) => {
   if (value < 3600) {
     return new Date(value * 1000).toISOString().substr(14, 5)
   }
@@ -16,11 +16,14 @@ const formatTime = (value: number) => {
 }
 
 type GenerateTickValueProps = {
-	data: [{x: number, y: number}],
-	intervalSecs: number
+  data: [{ x: number; y: number }]
+  intervalSecs: number
 }
 
-const generateTimeTickValues = ({data, intervalSecs}: GenerateTickValueProps)  => {
+export const generateTimeTickValues = ({
+  data,
+  intervalSecs,
+}: GenerateTickValueProps) => {
   const max = Math.max(...data.map(o => o.x))
   let currentTick = 0
   const ticks = []
@@ -33,18 +36,22 @@ const generateTimeTickValues = ({data, intervalSecs}: GenerateTickValueProps)  =
 }
 
 type GenerateElevationTickValueProps = {
-	data: [{x: number, y: number}],
-	intervalSecs: number,
-	unit: string
+  data: [{ x: number; y: number }]
+  intervalSecs: number
+  unit: string
 }
 
-const generateElevatioinTickValues = ({data, intervalSecs, unit}: GenerateElevationTickValueProps) => {
+export const generateElevatioinTickValues = ({
+  data,
+  intervalSecs,
+  unit,
+}: GenerateElevationTickValueProps) => {
   const max =
-    unit === "metric"
+    unit === 'metric'
       ? Math.max(...data.map(o => o.y))
       : Math.max(...data.map(o => o.y)) * 3.280839895
   const min =
-    unit === "metric"
+    unit === 'metric'
       ? Math.min(...data.map(o => o.y))
       : Math.min(...data.map(o => o.y)) * 3.280839895
 
@@ -67,12 +74,5 @@ export const camelize = (str: string) => {
     .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
       return index === 0 ? word.toLowerCase() : word.toUpperCase()
     })
-    .replace(/\s+/g, "")
-}
-
-export {
-  formatSeconds,
-  formatTime,
-  generateTimeTickValues,
-  generateElevatioinTickValues,
+    .replace(/\s+/g, '')
 }

@@ -1,9 +1,8 @@
 type Coordinate = [number, number, number]
 type ProcessedCoordinate = {
-  x: number,
+  x: number
   y: string
 }
-
 
 export const dateDiff = (dateFrom: Date, dateTo: Date) => {
   let seconds = -1
@@ -20,13 +19,16 @@ export const dateDiff = (dateFrom: Date, dateTo: Date) => {
   }
 }
 
-export const downsampleElevation = (coordinates: Coordinate[], rate: number) => {
+export const downsampleElevation = (
+  coordinates: Coordinate[],
+  rate: number
+) => {
   const downsampled: ProcessedCoordinate[] = []
   coordinates.forEach((item, index) => {
     if (index % rate === 0 || index === 0) {
       downsampled.push({
         x: index,
-        y: Number(item[2]).toFixed(0)
+        y: Number(item[2]).toFixed(0),
       })
     }
   })
@@ -45,20 +47,22 @@ export const calcPowerSlices = (powers: number[], length: number) => {
   return powerSums
 }
 
-
-
-export const calcBestPowers = (times: number[], powers: number[], removeZeros = false): Record<number | string, number> => {
+export const calcBestPowers = (
+  times: number[],
+  powers: number[],
+  removeZeros = false
+): Record<number | string, number> => {
   const filteredVals = removeZeros ? powers.filter(val => val !== 0) : powers
 
-	let initialValue = 0
-  filteredVals.reduce(p => {
-    const val = p ? p : 0
-    return initialValue = initialValue + val
-  })
-  const averagePower = Math.round(initialValue / filteredVals.length)
+  const sum = filteredVals
+    .map(p => (p ? p : 0))
+    .reduce((accumulator, value) => {
+      return accumulator + value
+    }, 0)
+  const averagePower = Math.round(sum / filteredVals.length)
 
   const response: Record<number | string, number> = {}
-  response["entire"] = averagePower
+  response['entire'] = averagePower
 
   times.forEach(time => {
     if (time > filteredVals.length) return
@@ -73,8 +77,7 @@ export const calcElevationGain = (coordinates: Coordinate[]) => {
   let elevation = 0
   coordinates.forEach((coord, index) => {
     if (index === coordinates.length - 1) return // stop 1 point early since comparison requires 2 points
-    const elevationDifference =
-      coordinates[index + 1][2] - coord[2]
+    const elevationDifference = coordinates[index + 1][2] - coord[2]
     if (elevationDifference > 0) elevation += elevationDifference
   })
   return elevation

@@ -1,7 +1,7 @@
-import { Button, Box, useColorMode } from "theme-ui"
+import { Button, Box, useColorMode } from 'theme-ui'
 
-import Logo from "./logo"
-import {BoxSvgType} from '../common/types'
+import Logo from './logo'
+import { BoxSvgType } from '../common/types'
 
 type Props = {
   setMenuOpen: (arg: boolean) => void
@@ -14,34 +14,34 @@ const Header = ({ setMenuOpen }: Props) => {
   return (
     <header
       sx={{
-        display: "grid",
+        display: 'grid',
         gridGap: 3,
-        gridTemplateColumns: "repeat(3, 1fr)",
-        px: "10px",
-        py: "10px",
-        alignItems: "center",
-        position: "sticky",
-        background: "headerColor",
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        px: '10px',
+        py: '10px',
+        alignItems: 'center',
+        position: 'sticky',
+        background: 'headerColor',
         top: 0,
-        zIndex: "101",
+        zIndex: '101',
       }}
     >
       <Button
         title="Toggle Menu"
         sx={{
-          appearance: "none",
+          appearance: 'none',
           width: 32,
           height: 32,
           m: 0,
           p: 1,
-          color: "inherit",
-          bg: "transparent",
+          color: 'inherit',
+          bg: 'transparent',
           border: 0,
-          ":focus": {
-            outline: "2px solid",
+          ':focus': {
+            outline: '2px solid',
           },
-          ":hover": {
-            color: "primary",
+          ':hover': {
+            color: 'primary',
           },
         }}
         onClick={() => {
@@ -54,9 +54,9 @@ const Header = ({ setMenuOpen }: Props) => {
           height="36"
           viewBox="0 0 36 36"
           sx={{
-            display: "block",
+            display: 'block',
             margin: 0,
-            fill: "headerForeground",
+            fill: 'headerForeground',
           }}
         >
           <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
@@ -64,14 +64,14 @@ const Header = ({ setMenuOpen }: Props) => {
       </Button>
       <div
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <div
           sx={{
-            width: ["100px", "110px", "130px"],
+            width: ['100px', '110px', '130px'],
           }}
         >
           <Logo border={false} />
@@ -79,31 +79,26 @@ const Header = ({ setMenuOpen }: Props) => {
       </div>
       <div
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-end",
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
         }}
       >
         <Button
           onClick={e => {
-            setColorMode(colorMode === "default" ? "dark" : "default")
+            setColorMode(colorMode === 'default' ? 'dark' : 'default')
           }}
           sx={{
-            cursor: "pointer",
-            backgroundColor: "transparent",
-            p: "0",
-            ".logo-solid": {
-              fill: "headerForeground",
+            cursor: 'pointer',
+            backgroundColor: 'transparent',
+            p: '0',
+            '.logo-solid': {
+              fill: 'headerForeground',
             },
           }}
         >
-          {colorMode === "default" ? (
-            <SvgBox
-              as="svg"
-              viewBox="0 0 512 512"
-              height="24"
-              width="24"
-            >
+          {colorMode === 'default' ? (
+            <SvgBox as="svg" viewBox="0 0 512 512" height="24" width="24">
               <g className="logo-solid">
                 <path d="M195 125c0-26.3 5.3-51.3 14.9-74.1C118.7 73 51 155.1 51 253c0 114.8 93.2 208 208 208 97.9 0 180-67.7 202.1-158.9-22.8 9.6-47.9 14.9-74.1 14.9-106 0-192-86-192-192z"></path>
               </g>

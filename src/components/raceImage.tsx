@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Text, Image, Box } from 'theme-ui'
 import { getImage, GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
-import { MyImageProps } from "../common/types"
+import { MyImageProps } from '../common/types'
 
 const MyImage = Image as any as (props: MyImageProps) => JSX.Element
 
@@ -58,7 +58,7 @@ const RaceImage: React.FC<Props> = ({ image, caption, children, altText }) => {
 export default RaceImage
 
 export interface Props {
-  image: IGatsbyImageData,
+  image: IGatsbyImageData
   caption: string
   altText: string
   children: JSX.Element
