@@ -19,8 +19,6 @@ results:
 
 import { IKImage, IKVideo, IKContext } from "imagekitio-react"
 
-import WoodinvilleLink from "../../../src/components/WoodinvilleLink.js"
-
 <RaceOverview
   data={props.data.mdx.gpxData.fields}
   selectedFields={[
@@ -36,7 +34,12 @@ import WoodinvilleLink from "../../../src/components/WoodinvilleLink.js"
 <Box sx={{ marginBottom: "20px" }}>
   <LandscapeImage
     image={props.data.mdx.frontmatter.images[0]}
-    caption={<WoodinvilleLink />}
+    caption={
+      <Text>
+        Photo courtesy of{" "}
+        <Link href="http://woodinvillebicycle.com">Woodinville Bicycle</Link>
+      </Text>
+    }
   />
 </Box>
 
@@ -50,7 +53,12 @@ The course was still prettty fast and the conditions pretty dry even with a few 
 
 <LandscapeImage
   image={props.data.mdx.frontmatter.images[1]}
-  caption={<WoodinvilleLink />}
+  caption={
+    <Text>
+      Photo courtesy of{" "}
+      <Link href="http://woodinvillebicycle.com">Woodinville Bicycle</Link>
+    </Text>
+  }
 />
 
 Around five seconds into the start of the race, a huge crash happened that I was unfortunately stuck behind but avoided being involved with. Some racers were tangled together so this spread out the field a bit and cost some crucial time and positioning. I am happy to just not be involved.
@@ -70,6 +78,7 @@ After the crash cleared, the rest of the race was overall smooth and uneventul. 
     />
   </IKContext>
 </Box>
+
 My tires for today were the WTB Cross Boss 35c tires. I was not a fan of these last
 year in the races are used them for. The height of tire seems greater than other
 tires and last year my complaint with them was sliding out in tight corners.
@@ -78,7 +87,12 @@ In this race, in corners at high speed felt like they wanted to roll off the rim
 
 <LandscapeImage
   image={props.data.mdx.frontmatter.images[2]}
-  caption="Photo courtesy of Woodinville Bicycle"
+  caption={
+    <Text>
+      Photo courtesy of{" "}
+      <Link href="http://woodinvillebicycle.com">Woodinville Bicycle</Link>
+    </Text>
+  }
 />
 
 The bike for single speed this year is a Transition Rapture that I purchased in October of 2015. It has been raced single speed cross in 2015 and 2016, but mostly used as a commuter bike since then. Last year, it was even setup 2x as a winter bike with fenders and 32c Gravel King slicks.
@@ -96,6 +110,7 @@ For this season, it is the go to single speed CX bike and recently was upgrade t
   data={props.data.mdx.results.fields.data}
   numbersToHighlight={[0, 1, 2, 26, 29, 31, 32]}
   distance={props.data.mdx.gpxData.fields.distance}
+  racerName="Adam Saegebarth"
 />
 
 <Divider sx={{ marginTop: "20px", marginBottom: "20px" }} />

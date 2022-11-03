@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-blog",
+  "name": "saegey-gatsby-blog",
   "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "description": "A blog powered by Gatsby and Markdown for bike race journalling",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Adam Saegebarth <adam.saegebarth@gmail.com>",
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
@@ -19,6 +19,7 @@
     "@theme-ui/mdx": "^0.15.1",
     "@theme-ui/presets": "^0.15.1",
     "@turf/length": "^6.5.0",
+    "@xmldom/xmldom": "^0.8.5",
     "add": "^2.0.6",
     "chart.js": "^3.9.1",
     "fs": "0.0.1-security",
@@ -46,12 +47,19 @@
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.1.0",
     "react-helmet": "^6.1.0",
-    "theme-ui": "^0.15.1"
+    "theme-ui": "^0.15.1",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.19.3",
     "@tmcw/togeojson": "^5.2.2",
+    "@types/node": "^18.11.8",
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@types/react-helmet": "^6.1.5",
+    "@typescript-eslint/parser": "^4.33.0",
     "prettier": "^2.7.1",
+    "typescript": "^4.8.4",
     "xmldom": "^0.6.0"
   },
   "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
@@ -67,7 +75,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "ENABLE_GATSBY_REFRESH_ENDPOINT=true gatsby develop -H 0.0.0.0",
+    "start": "NODE_ENV=development ENABLE_GATSBY_REFRESH_ENDPOINT=true gatsby develop -H 0.0.0.0",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
