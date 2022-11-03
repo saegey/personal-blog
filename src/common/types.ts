@@ -1,11 +1,11 @@
-import { IGatsbyImageData, ImageDataLike, GatsbyImageProps } from "gatsby-plugin-image"
+import { IGatsbyImageData, GatsbyImageProps } from "gatsby-plugin-image"
 import { LinkProps, ImageProps, BoxProps} from "theme-ui"
 import { GatsbyLinkProps } from 'gatsby';
 import { FunctionComponent } from 'react';
 
-interface Image {
-  image: IGatsbyImageData | null
-}
+// interface Image {
+//   image: IGatsbyImageData | null
+// }
 
 export interface Coordinate {
   x: number,
@@ -15,9 +15,9 @@ export interface Coordinate {
 export interface GraphProps {
   data: Coordinate[]
   unit: {
-		unitOfMeasure: string,
-		toggleUnit: () => void
-	}
+    unitOfMeasure: string,
+    toggleUnit: () => void
+  }
 }
 
 export interface RaceImageType {
@@ -31,8 +31,9 @@ export interface MyLinkProps extends LinkProps, CustomGatsbyLinkProps {
   // as: typeof CustomGatsbyLinkProps // this is now required
 }
 export interface MyImageProps extends ImageProps  {
-  image: IGatsbyImageData
+  image: IGatsbyImageData | undefined
   objectFit?: string
+  layout?: string
   alt?: string
   as: FunctionComponent<GatsbyImageProps>
   variant?: string
@@ -49,22 +50,27 @@ export interface NestedRaceImageType extends RaceImageType {
 }
 
 export interface PostCardProps {
-  post: PostNode | null
-  title: string | null
-  image: IGatsbyImageData | undefined
+  post: PostNode
+  title: string
+  image:  IGatsbyImageData | undefined
 }
 
 export interface PostNode {
   frontmatter: {
-    title: string,
-    headerImage: ImageDataLike | null,
-    date: string
-    location: string
-    type: string
-  },
+    title: string | null
+    headerImage: {
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData
+      } | null
+    } | null
+    date: string | null
+    location: string | null
+    type: string | null
+    tags: ReadonlyArray<string>
+  } | null,
   fields: {
-    slug: string
-  }
+    slug: string | null
+  } | null
 }
 
 export interface IndexDataProps {

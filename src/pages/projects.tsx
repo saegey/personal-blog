@@ -1,14 +1,13 @@
 import { Container } from "theme-ui"
 import { graphql } from "gatsby"
-import { getImage } from "gatsby-plugin-image"
+import { getImage, IGatsbyImageData } from "gatsby-plugin-image"
 import type { PageProps } from "gatsby"
 
 import Seo from "../components/seo"
 import PostCard from "../components/postCard"
 import SafariStyle from "../components/SafariStyle"
-import { IndexDataProps } from '../common/types'
 
-const ProjectsIndex = ({ data }: PageProps<IndexDataProps>) => {
+const ProjectsIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data.allMdx.nodes
 
   if (posts.length === 0) {
@@ -40,6 +39,28 @@ const ProjectsIndex = ({ data }: PageProps<IndexDataProps>) => {
 }
 
 export default ProjectsIndex
+
+type DataProps = {
+	allMdx: {
+    nodes: {
+      fields: {
+        slug: string
+      }
+      frontmatter: {
+        headerImage: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData
+          }
+        }
+        title: string
+        date: string
+        location: string
+        type: string
+        tags: ReadonlyArray<string>
+      }
+    }[]
+  }
+}
 
 /**
  * Head export to define metadata for the page

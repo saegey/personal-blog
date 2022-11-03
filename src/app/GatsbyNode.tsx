@@ -1,21 +1,24 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
-const { report } = require("process")
-const tj = require("@tmcw/togeojson")
-const DOMParser = require("xmldom").DOMParser
-const { parse } = require("./src/lib/raceResults")
-const { parseTSV } = require("./src/lib/webscorer")
-const { parseOmniTSV } = require("./src/lib/omniGo")
+// const DOMParser = require("xmldom").DOMParser
 
-var length = require("@turf/length")
+import type { GatsbyNode } from 'gatsby'
+import length from "@turf/length"
+// import tj from '@tmcw/togeojson'
+import { gpx } from "@tmcw/togeojson";
+import { DOMParser } from '@xmldom/xmldom'
 
-const {
+import { parse } from '../lib/raceResults'
+import { parseTSV } from '../lib/webscorer'
+import { parseOmniTSV } from "../lib/omniGo"
+
+import {
   calcBestPowers,
   calcElevationGain,
   calcStoppage,
   dateDiff,
   downsampleElevation,
-} = require("./src/lib/gpxDemo")
+} from "../lib/gpxHelper"
 
 const defaultTimeWindows = [5, 10, 15, 30, 60, 120, 300, 600]
 const slugify = (str: string) => {
@@ -25,10 +28,37 @@ const slugify = (str: string) => {
     .replace(/(^-|-$)+/g, "")
 }
 
-const createMdxPages = async (graphql, createPage, reporter) => {
-  const postTemplate = path.resolve("./src/templates/post.tsx")
+type MdxData = {
+  data?: {
+    allMdx: {
+      nodes: {
+        id: string,
+        fields: {
+          slug: string
+        }
+        internal: {
+          contentFilePath: string
+        }
+      }[]
+    }
+  }
+  errors?: any
+}
 
-  const result = await graphql(`
+type Point = {
+	x: number
+	y: number
+}
+
+type Geometry = {
+	type: string,
+	coordinates: [[number, number, number]]
+}
+
+export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions, reporter }) => {
+  const { createPage } = actions
+
+  const result: MdxData = await graphql(`
     {
       allMdx {
         nodes {
@@ -48,96 +78,72 @@ const createMdxPages = async (graphql, createPage, reporter) => {
   `)
 
   if (result.errors) {
-    reporter.panic(`Error loading posts`, JSON.stringify(result.errors))
+    reporter.panic(`Error loading posts`, result.errors)
     throw result.errors
   }
 
-  const data = result.data.allMdx.nodes
+  if (!result.data) {
+    reporter.panic(`No Data`, result.errors)
+    throw "No data found"
+  }
 
-  data.forEach(node => {
-    createPage({
-      path: node.fields.slug,
-      component: `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
-      context: {
-        slug: node.fields.slug,
-        id: node.id,
-      },
-    })
+	const postTemplate = path.resolve("./src/templates/post.tsx")
+	const createPostPromise = result.data?.allMdx.nodes.map((post) => {
+		createPage({
+				path : `${post.fields.slug}`,
+				component : `${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
+				context : {
+						slug: post.fields.slug,
+						id: post.id,
+						// anything else you want to pass to your context
+				}
+		})
   })
+
+  await Promise.all( [ createPostPromise] )
+
+  // const data = result.data.allMdx.nodes
+
+  // data.forEach(node => {
+  //   createPage({
+  //     path: node.fields.slug,
+  //     component: `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
+  //     context: {
+  //       slug: node.fields.slug,
+  //       id: node.id,
+  //     },
+  //   })
+  // })
 }
 
-// exports.createResolvers = async ({ createResolvers }) => {
-//   createResolvers({
-//     Mdx: {
-//       gpxData: {
-//         type: "File",
-//         resolve: async (source, args, context) => {
-//           if (source.frontmatter.gpxFile) {
-//             const results = await context.nodeModel.runQuery({
-//               query: {
-//                 filter: {
-//                   name: {
-//                     eq: source.frontmatter.gpxFile,
-//                   },
-//                 },
-//               },
-//               type: "File",
-//               firstOnly: true,
-//             })
-//             return results
-//           } else {
-//             return null
-//           }
-//         },
-//       },
-//       results: {
-//         type: "File",
-//         resolve: async (source, args, context) => {
-//           if (source.frontmatter.results) {
-//             try {
-//               const results = await context.nodeModel.runQuery({
-//                 query: {
-//                   filter: {
-//                     name: {
-//                       eq: source.frontmatter.results.file,
-//                     },
-//                   },
-//                 },
-//                 type: "File",
-//                 firstOnly: true,
-//               })
-//               return results
-//             } catch (e) {
-//               console.log("error", e)
-//             }
-//           }
-//         },
-//       },
-//     },
-//   })
-// }
-
-exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { createPage, loadNodeContent } = actions
-  // await createRemarkPages(graphql, createPage, reporter)
-  await createMdxPages(graphql, createPage, reporter)
+// Workaround
+type NodeType = {
+  internal: {
+    type: string
+    description: string
+  }
+  frontmatter: {
+    type: string
+  }
 }
 
-exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
-  const { createNode, createParentChildLink, createNodeField } = actions
+export const onCreateNode: GatsbyNode['onCreateNode'] = async ({ node, actions, getNode, loadNodeContent }) => {
+  const { createNodeField } = actions
+  const nodeValue = node as any as NodeType
 
-  if (node.internal.type === "Mdx") {
-    const slug = createFilePath({ node, getNode })
+  if (nodeValue.internal.type === "Mdx") {
+    const slug: string = createFilePath({ node, getNode })
 
     createNodeField({
       name: `slug`,
       node,
-      value: `${slugify(node.frontmatter.type)}${slug}`,
+      value: `${slugify(nodeValue.frontmatter.type)}${slug}`,
     })
   }
 
   if (node.internal.mediaType === "text/plain") {
     const content = await loadNodeContent(node)
+    if (!node.internal?.description) { return }
     const type = node.internal.description
       .split(" ")[1]
       .split("/")
@@ -171,12 +177,13 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
   if (node.internal.mediaType === "application/gpx+xml") {
     const content = await loadNodeContent(node)
     const gpxData = new DOMParser().parseFromString(content)
-    const data = tj.gpx(gpxData)
+		// console.log(gpxData)
+    const data = gpx(gpxData)
 
     createNodeField({
       name: `distance`,
       node,
-      value: length.default(data),
+      value: length(data),
     })
 
     if (data.type && data.type === "FeatureCollection") {
@@ -191,7 +198,7 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
           ) {
             const { powers, heart, times, atemps, cads } =
               feature.properties.coordinateProperties
-            const { coordinates } = feature.geometry
+            const { coordinates } = feature.geometry as Geometry
             const powerAnalysis =
               powers !== undefined
                 ? calcBestPowers(
@@ -278,12 +285,12 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
                     powers
                   )
                 : null
-            const points = []
+            const points: Point[] = []
 
             if (powers !== undefined) {
-              Object.keys(powerAnalysis).forEach(key => {
+              Object.keys(powerAnalysis as {}).forEach(key => {
                 if (key === "entire") return
-                points.push({ x: key, y: powerAnalysis[key] })
+                points.push({ x: Number(key), y: powerAnalysis ? powerAnalysis[key] : 0 })
               })
             }
 
@@ -359,15 +366,9 @@ exports.onCreateNode = async ({ node, actions, getNode, loadNodeContent }) => {
   }
 }
 
-exports.createSchemaCustomization = ({ actions }) => {
+export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = ({ actions }) => {
   const { createTypes } = actions
 
-  // Explicitly define the siteMetadata {} object
-  // This way those will always be defined even if removed from gatsby-config.js
-
-  // Also explicitly define the Markdown frontmatter
-  // This way the "MarkdownRemark" queries will return `null` even when no
-  // blog posts are stored inside "content/blog" instead of returning an error
   createTypes(`
     type SiteSiteMetadata {
       author: Author
@@ -385,17 +386,19 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type Mdx implements Node {
-      frontmatter: Frontmatter
+      frontmatter: Frontmatter!
       fields: Fields
       gpxData: File @link(by: "name", from: "frontmatter.gpxFile")
       results: File @link(by: "name", from: "frontmatter.results.file")
     }
 
     type Frontmatter {
-      title: String
+      title: String!
       description: String
-      date: Date @dateformat
-      tags: [String!]!
+      date: Date! @dateformat
+      tags: [String!]
+      location: String
+      type: String!
     }
 
     type Coordinate {

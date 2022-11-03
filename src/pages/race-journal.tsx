@@ -1,13 +1,12 @@
 import { Container, Box } from 'theme-ui'
 import { graphql, PageProps } from 'gatsby'
-import { getImage } from 'gatsby-plugin-image'
+import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
 import Seo from '../components/seo'
 import PostCard from '../components/postCard'
 import SafariStyle from '../components/SafariStyle'
-import { IndexDataProps } from '../common/types'
 
-const BlogIndex = ({ data }: PageProps<IndexDataProps>) => {
+const BlogIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data.allMdx.nodes
 
   return (
@@ -32,6 +31,29 @@ const BlogIndex = ({ data }: PageProps<IndexDataProps>) => {
 }
 
 export default BlogIndex
+
+type DataProps = {
+  allMdx: {
+    nodes: {
+      fields: {
+        slug: string
+      }
+      frontmatter: {
+        headerImage: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData
+          }
+        }
+        title: string
+        date: string
+        location: string
+        type: string
+        tags: ReadonlyArray<string>
+      }
+    }[]
+  }
+}
+
 
 /**
  * Head export to define metadata for the page

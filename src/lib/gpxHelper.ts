@@ -1,15 +1,13 @@
-// const tj = require("@tmcw/togeojson")
-// const fs = require("fs")
-// // node doesn't have xml parsing or a dom. use xmldom
-// const DOMParser = require("xmldom").DOMParser
+type Coordinate = [number, number, number]
+type ProcessedCoordinate = {
+  x: number,
+  y: string
+}
 
-// const gpx = new DOMParser().parseFromString(
-//   fs.readFileSync("./RPI_Queen_Stage_3_Baked_.gpx", "utf8")
-// )
 
-const dateDiff = (dateFrom, dateTo) => {
+export const dateDiff = (dateFrom: Date, dateTo: Date) => {
   let seconds = -1
-  if (dateFrom != undefined && dateTo != undefined) {
+  if (dateFrom !== undefined && dateTo !== undefined) {
     var dif = dateFrom.getTime() - dateTo.getTime()
     seconds = Math.abs(dif / 1000)
   }
@@ -22,19 +20,22 @@ const dateDiff = (dateFrom, dateTo) => {
   }
 }
 
-const downsampleElevation = (coordinates, rate) => {
-  const downsampled = []
-  coordinates.forEach((d, index) => {
+export const downsampleElevation = (coordinates: Coordinate[], rate: number) => {
+  const downsampled: ProcessedCoordinate[] = []
+  coordinates.forEach((item, index) => {
     if (index % rate === 0 || index === 0) {
-      downsampled.push({ x: index, y: d[2].toFixed(0) })
+      downsampled.push({
+        x: index,
+        y: Number(item[2]).toFixed(0)
+      })
     }
   })
 
   return downsampled
 }
 
-const calcPowerSlices = (powers, length) => {
-  const powerSums = []
+export const calcPowerSlices = (powers: number[], length: number) => {
+  const powerSums: number[] = []
   for (var i = 0; i < powers.length; i++) {
     powerSums.push(powers.slice(i, i + length).reduce((pv, cv) => pv + cv, 0))
   }
@@ -44,17 +45,19 @@ const calcPowerSlices = (powers, length) => {
   return powerSums
 }
 
-const calcBestPowers = (times, powers, removeZeros = false) => {
-  let initialValue = 0
+
+
+export const calcBestPowers = (times: number[], powers: number[], removeZeros = false): Record<number | string, number> => {
   const filteredVals = removeZeros ? powers.filter(val => val !== 0) : powers
 
-  filteredVals.reduce((previous, p) => {
+	let initialValue = 0
+  filteredVals.reduce(p => {
     const val = p ? p : 0
-    initialValue = initialValue + val
+    return initialValue = initialValue + val
   })
   const averagePower = Math.round(initialValue / filteredVals.length)
 
-  const response = {}
+  const response: Record<number | string, number> = {}
   response["entire"] = averagePower
 
   times.forEach(time => {
@@ -66,18 +69,18 @@ const calcBestPowers = (times, powers, removeZeros = false) => {
   return response
 }
 
-const calcElevationGain = coordinates => {
+export const calcElevationGain = (coordinates: Coordinate[]) => {
   let elevation = 0
   coordinates.forEach((coord, index) => {
     if (index === coordinates.length - 1) return // stop 1 point early since comparison requires 2 points
     const elevationDifference =
-      coordinates[index + 1][2] - coordinates[index][2]
+      coordinates[index + 1][2] - coord[2]
     if (elevationDifference > 0) elevation += elevationDifference
   })
   return elevation
 }
 
-const calcStoppage = (coordinates, times) => {
+export const calcStoppage = (coordinates: Coordinate[], times: number[]) => {
   let seconds = 0
 
   times.forEach((time, index) => {
@@ -90,9 +93,3 @@ const calcStoppage = (coordinates, times) => {
 
   return seconds
 }
-
-exports.calcBestPowers = calcBestPowers
-exports.calcElevationGain = calcElevationGain
-exports.calcStoppage = calcStoppage
-exports.dateDiff = dateDiff
-exports.downsampleElevation = downsampleElevation

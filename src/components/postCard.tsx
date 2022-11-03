@@ -9,13 +9,10 @@ const MyLink = Link as any as (props: MyLinkProps) => JSX.Element
 const MyImage = Image as any as (props: MyImageProps) => JSX.Element
 
 const PostCard = ({ post, title, image }: PostCardProps) => {
-  if (!image) { return <></>}
-  if (!title) { return <></>}
-  if (!post || !post.fields || !post.fields.slug) { return <></> }
 
   return (
     <MyLink
-      to={`/${post.fields.slug}`}
+      to={`/${post.fields?.slug}`}
       itemProp="url"
       sx={{ textDecoration: "none" }}
       as={GatsbyLink}
@@ -33,14 +30,15 @@ const PostCard = ({ post, title, image }: PostCardProps) => {
               flexBasis: "sidebar",
             }}
           >
+            { image && (
             <MyImage
-              // layout="constrained"
+              layout="constrained"
               image={image}
               objectFit="cover"
               alt={`${title} Photo`}
               as={GatsbyImage}
               variant="postCardImage"
-            />
+            />)}
           </div>
           <main
             sx={{
@@ -58,7 +56,7 @@ const PostCard = ({ post, title, image }: PostCardProps) => {
               >
                 <Box sx={{ flex: "1" }}>
                   <Box sx={{ marginTop: "20px", marginLeft: "20px" }}>
-                    <Text variant="postCardType">{post.frontmatter.type}</Text>
+                    <Text variant="postCardType">{post.frontmatter?.type}</Text>
                   </Box>
                 </Box>
                 <Box sx={{ flex: "1" }}>
@@ -68,7 +66,7 @@ const PostCard = ({ post, title, image }: PostCardProps) => {
                         {title}
                       </Text>
                       <Text variant="postCardSubtitle">
-                        {post.frontmatter.location}
+                        {post.frontmatter?.location}
                       </Text>
                     </Box>
                   </Flex>
@@ -83,7 +81,7 @@ const PostCard = ({ post, title, image }: PostCardProps) => {
                       }}
                     >
                       <Text variant="postCardBottom">
-                        {post.frontmatter.date}
+                        {post.frontmatter?.date}
                       </Text>
                     </Box>
                   </Flex>

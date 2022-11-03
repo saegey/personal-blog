@@ -1,6 +1,7 @@
 import { Text, Flex, Box, Divider, Link } from 'theme-ui'
-import { graphql } from 'gatsby'
+import { graphql, PageProps } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 import Seo from '../components/seo'
 import SafariStyle from '../components/SafariStyle'
@@ -12,6 +13,7 @@ import LandscapeImage from '../components/LandscapeImage'
 import ElevationGraph from '../components/ElevationGraph'
 import { default as PowerCurveGraph } from '../components/PowerCurveGraph'
 import { default as PowerCurveContextGraph } from '../components/PowerCurveContext'
+
 
 const shortcodes = {
   Box,
@@ -28,10 +30,8 @@ const shortcodes = {
   Text,
 }
 
-const PostTemplate = ({ data, children }) => {
-  const {
-    frontmatter: { title, date, type, location },
-  } = data.mdx
+const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
+  const { title, date, location, type } = data.mdx.frontmatter
 
   return (
     <>
@@ -56,33 +56,29 @@ const PostTemplate = ({ data, children }) => {
 
 export default PostTemplate
 
-export const Head = ({ data }) => <Seo title={data.mdx.frontmatter.title} />
-// Head.propTypes = {
-//   data: PropTypes.shape({
-//     mdx: PropTypes.shape({
-//       frontmatter: PropTypes.shape({
-//         title: PropTypes.string,
-//         date: PropTypes.string,
-//         location: PropTypes.string,
-//         type: PropTypes.string,
-//       }),
-//     }),
-//   }),
-// }
+export const Head: React.FC<PageProps<DataProps>> = ({ data }) => <Seo title={data.mdx.frontmatter.title} />
+
+type DataProps = {
+  mdx: {
+    frontmatter: {
+      images: {
+        childImageSharp: {
+          gatsbyImageData: IGatsbyImageData
+        }
+      }[]
+      title: string
+      date: string
+      location: string
+      type: string
+      tags: ReadonlyArray<string>
+    }
+  }
+}
 
 export const query = graphql`
-  query ($id: String!) {
-    site {
-      siteMetadata {
-        author {
-          name
-          summary
-        }
-        description
-      }
-    }
+  query Post ($id: String!) {
     mdx(id: { eq: $id }) {
-      id
+			id
       frontmatter {
         date(formatString: "MMM DD, YYYY")
         location

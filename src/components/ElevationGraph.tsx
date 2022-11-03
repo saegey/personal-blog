@@ -12,7 +12,7 @@ import ThemeContext from '../context/ThemeContext';
 
 const ElevationGraph = ({ data, unit }: GraphProps) => {
   const { theme } = useThemeUI();
-  const graphColor = theme.colors.text
+  const graphColor = theme.colors?.text
 
   return (
     <ResponsiveLine

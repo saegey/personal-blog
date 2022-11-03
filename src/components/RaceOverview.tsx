@@ -26,7 +26,7 @@ type Props = {
   selectedFields: string[]
 }
 
-const RaceOverview = ({ data, selectedFields = [] }: Props) => {
+const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
   return (
     <ThemeContext.Consumer>
       {theme => {

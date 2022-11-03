@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { Text, Image, Box } from 'theme-ui'
-import { getImage, GatsbyImage } from 'gatsby-plugin-image'
+import { getImage, GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
-import { NestedRaceImageType, MyImageProps } from "../common/types"
+import { MyImageProps } from "../common/types"
 
 const MyImage = Image as any as (props: MyImageProps) => JSX.Element
 
-const RaceImage = ({ image, caption, children, altText }: NestedRaceImageType) => {
+const RaceImage: React.FC<Props> = ({ image, caption, children, altText }) => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
@@ -56,3 +56,10 @@ const RaceImage = ({ image, caption, children, altText }: NestedRaceImageType) =
   )
 }
 export default RaceImage
+
+export interface Props {
+  image: IGatsbyImageData,
+  caption: string
+  altText: string
+  children: JSX.Element
+}
