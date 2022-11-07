@@ -1,0 +1,57 @@
+﻿Place	Bib	Name	First name	Last name	Team name	Category	Age	Gender	Time	Lap 1	Lap 2	Lap 3	Lap 4	Lap 5	Lap 6	Lap 7	Difference	% Back	% Winning	% Average	% Median	Laps
+1	500	Garrett Sczechowski	Garrett	Sczechowski	Pain Cave Productions	Single Speed Men	29	Male	48:19.3	0:08.2	7:55.4	8:03.5	8:05.6	8:05.7	8:07.7	7:53.0	-	-	100%	7.42%	6.53%	7
+2	553	Rhys Haydon	Rhys	Haydon	Premier Racing	Single Speed Men	37	Male	48:21.9	0:09.1	8:16.8	7:56.2	7:56.1	8:03.0	8:07.1	7:53.6	+0:02.6	+0.09%	99.91%	7.34%	6.45%	7
+3	469	Joey Mullan	Joey	Mullan	Cascadia Wheel Co. Dirt Tem	Single Speed Men	33	Male	48:22.0	0:07.3	7:55.3	8:04.4	8:06.1	8:05.6	8:07.0	7:56.3	+0:02.7	+0.09%	99.91%	7.33%	6.45%	7
+4	491	Patrick Leonard	Patrick	Leonard	Soft Like Kitten	Single Speed Men	39	Male	48:23.5	0:08.0	7:54.8	8:06.7	8:04.8	8:05.4	8:07.3	7:56.6	+0:04.2	+0.14%	99.86%	7.29%	6.40%	7
+5	499	Matthew Turney	Matthew	Turney	PCP Racing	Single Speed Men	24	Male	48:23.7	0:08.9	7:55.1	8:03.2	8:06.0	8:07.7	8:06.9	7:55.9	+0:04.4	+0.15%	99.85%	7.28%	6.39%	7
+6	417	Zack Phillips	Zack	Phillips	PCP Racing	Single Speed Men	49	Male	49:11.0	0:08.4	8:06.9	8:08.5	8:08.6	8:13.9	8:14.5	8:10.3	+0:51.7	+1.78%	98.25%	5.77%	4.87%	7
+7	495	Emil Hillding	Emil	Hillding		Single Speed Men	45	Male	49:11.3	0:09.0	8:07.1	8:02.4	8:08.9	8:19.7	8:14.3	8:10.0	+0:52.0	+1.79%	98.24%	5.76%	4.86%	7
+8	412	John Reynders	John	Reynders	TEAM SPORTS	Single Speed Men	33	Male	49:31.8	0:08.5	8:11.5	8:09.2	8:06.4	8:16.2	8:16.6	8:23.3	+1:12.5	+2.50%	97.56%	5.10%	4.20%	7
+9	408	Tyler Boucher	Tyler	Boucher		Single Speed Men	34	Male	49:39.2	0:08.4	8:07.0	8:10.0	8:13.0	8:17.4	8:20.1	8:23.3	+1:19.9	+2.76%	97.32%	4.87%	3.96%	7
+10	489	Anthony Dickson	Anthony	Dickson	Booger P/B Miir	Single Speed Men	50	Male	49:51.5	0:09.0	8:20.9	8:13.5	8:23.4	8:07.7	8:14.0	8:22.9	+1:32.2	+3.18%	96.92%	4.48%	3.56%	7
+11	444	Brian Myers	Brian	Myers	Hodala!	Single Speed Men	44	Male	50:14.0	0:09.0	8:05.0	8:26.7	8:18.6	8:14.8	8:27.7	8:32.3	+1:54.7	+3.96%	96.19%	3.76%	2.84%	7
+12	564	Aaron Huebner	Aaron	Huebner	Hodala	Single Speed Men	40	Male	50:24.3	0:08.1	8:12.5	8:19.7	8:27.0	8:24.5	8:30.2	8:22.1	+2:05.0	+4.31%	95.87%	3.43%	2.50%	7
+13	567	Brandon Sprouse	Brandon	Sprouse	Liquid Velo - Expeditors	Single Speed Men	38	Male	50:31.4	0:09.1	8:17.0	8:17.1	8:23.9	8:26.1	8:31.6	8:26.7	+2:12.1	+4.56%	95.64%	3.20%	2.28%	7
+14	465	Cody Riggs	Cody	Riggs	Pizza Pals	Single Speed Men	37	Male	50:42.0	0:08.5	8:25.7	8:19.5	8:25.0	8:25.4	8:35.4	8:22.4	+2:22.7	+4.92%	95.31%	2.86%	1.93%	7
+15	426	Nathan Lawrence	Nathan	Lawrence	Illuminati Hotties	Single Speed Men	37	Male	50:49.4	0:09.3	8:28.1	8:21.5	8:25.6	8:26.4	8:26.4	8:32.1	+2:30.1	+5.18%	95.08%	2.63%	1.70%	7
+16	504	Dylan Carney	Dylan	Carney	Soft Like Kitten	Single Speed Men	41	Male	50:53.9	0:09.5	8:24.2	8:19.4	8:26.0	8:31.8	8:33.9	8:29.1	+2:34.6	+5.33%	94.94%	2.48%	1.55%	7
+17	492	Mike Keller	Mike	Keller	Spaaaaaaaaaaaaaaaace Cadet Racing	Single Speed Men	34	Male	51:34.7	0:10.8	8:42.4	8:37.0	8:34.0	8:40.2	8:35.2	8:15.2	+3:15.4	+6.74%	93.69%	1.18%	0.24%	7
+18	416	Conrad Kornmann	Conrad	Kornmann		Single Speed Men	45	Male	51:37.2	0:13.1	8:37.2	8:25.1	8:25.8	8:37.2	8:45.6	8:33.3	+3:17.9	+6.83%	93.61%	1.10%	0.15%	7
+19	431	Devon Wright	Devon	Wright		Single Speed Men	34	Male	51:38.7	0:10.4	8:33.3	8:23.1	8:24.4	8:37.7	8:52.7	8:37.0	+3:19.4	+6.88%	93.57%	1.05%	0.11%	7
+20	429	Greg Miller	Greg	Miller	Bob Miller Foundation	Single Speed Men	37	Male	51:45.3	0:13.1	9:01.8	8:28.1	8:31.6	8:27.3	8:35.3	8:28.0	+3:26.0	+7.11%	93.37%	0.84%	-0.11%	7
+21	542	Ben Schauland	Ben	Schauland	Pizza Pals	Single Speed Men	36	Male	52:00.0	0:11.1	8:40.3	8:20.1	8:24.8	8:26.6	9:25.1	8:31.9	+3:40.7	+7.61%	92.93%	0.37%	-0.58%	7
+22	556	Andrew Howe	Andrew	Howe	Soft Like Kitten	Single Speed Men	36	Male	52:22.4	0:09.7	8:31.7	8:32.5	8:49.8	8:50.0	8:46.8	8:42.0	+4:03.1	+8.38%	92.26%	-0.34%	-1.30%	7
+23	424	William Taplin	William	Taplin	Cascadia Wheel Co. Dirt Team	Single Speed Men	35	Male	52:30.2	0:09.2	8:22.6	8:34.3	8:35.6	8:54.9	8:55.8	8:57.9	+4:10.9	+8.65%	92.04%	-0.59%	-1.55%	7
+24	570	Dieter Laskowski	Dieter	Laskowski		Single Speed Men	36	Male	52:30.7	0:11.0	8:36.4	8:40.7	8:47.8	8:45.6	8:47.5	8:41.8	+4:11.4	+8.67%	92.02%	-0.61%	-1.57%	7
+25	423	Christopher Morrow	Christopher	Morrow	Space Cadet Racing	Single Speed Men	38	Male	52:39.4	0:12.2	9:00.2	8:42.1	8:40.1	8:41.8	8:48.1	8:35.0	+4:20.1	+8.97%	91.77%	-0.89%	-1.85%	7
+26	406	Bryan Smith	Bryan	Smith	Pizza Pals	Single Speed Men	39	Male	52:44.8	0:10.3	8:37.6	8:42.5	8:54.2	8:48.2	8:49.1	8:42.9	+4:25.5	+9.16%	91.61%	-1.06%	-2.02%	7
+27	503	Adam Saegebarth	Adam	Saegebarth	RCC	Single Speed Men	40	Male	52:51.1	0:10.9	8:54.8	8:40.9	8:43.7	8:44.6	8:49.3	8:47.0	+4:31.8	+9.37%	91.43%	-1.26%	-2.23%	7
+28	572	Cal Spranger	Cal	Spranger		Single Speed Men	48	Male	53:19.4	0:09.5	8:27.7	8:42.7	8:51.3	8:55.4	9:02.7	9:10.0	+5:00.1	+10.35%	90.62%	-2.16%	-3.14%	7
+29	484	Todd Tucker	Todd	Tucker	PCP	Single Speed Men	51	Male	53:57.2	0:12.2	8:51.4	8:45.5	8:47.3	9:11.2	9:02.2	9:07.2	+5:37.9	+11.65%	89.56%	-3.37%	-4.36%	7
+30	533	Nathan Atkins	Nathan	Atkins	Hodala	Single Speed Men	46	Male	54:10.7	0:10.1	8:57.2	8:45.0	8:57.2	8:59.2	9:16.0	9:06.0	+5:51.4	+12.12%	89.19%	-3.80%	-4.79%	7
+31	507	Gary Ballas	Gary	Ballas	Dyna Racing	Single Speed Men	52	Male	54:59.5	0:09.9	8:59.9	9:02.1	9:08.9	9:08.1	9:15.0	9:15.5	+6:40.2	+13.80%	87.87%	-5.36%	-6.37%	7
+32	496	Kevin Shinn	Kevin	Shinn	Pizza Pals	Single Speed Men	31	Male	55:51.5	0:13.3	9:19.4	9:17.2	9:05.3	9:27.6	9:21.7	9:07.1	+7:32.2	+15.60%	86.51%	-7.02%	-8.04%	7
+33	422	Matt "Messmann" Messenger	Matt "Messmann"	Messenger	Pizza Pals	Single Speed Men	51	Male	55:51.8	0:09.7	8:57.1	9:06.9	8:59.6	9:21.8	9:39.7	9:37.1	+7:32.5	+15.61%	86.50%	-7.03%	-8.05%	7
+34	439	Michael Klipfel	Michael	Klipfel		Single Speed Men	34	Male	56:15.4	0:14.4	9:42.7	9:01.7	9:03.1	9:20.5	9:35.2	9:17.8	+7:56.1	+16.42%	85.90%	-7.78%	-8.81%	7
+35	497	Tim Ptak	Tim	Ptak	PCP Racing	Single Speed Men	51	Male	57:15.8	0:13.7	9:09.2	9:52.5	9:07.1	9:32.1	9:32.6	9:48.5	+8:56.5	+18.50%	84.39%	-9.71%	-10.76%	7
+36	438	Benjamin Siler	Benjamin	Siler		Single Speed Men	34	Male	57:51.9	0:15.6	9:53.6	9:16.0	9:35.9	9:44.1	9:34.6	9:32.1	+9:32.6	+19.75%	83.51%	-10.87%	-11.92%	7
+37	478	Vince Partridge	Vince	Partridge	Unavita Racing	Single Speed Men	51	Male	58:01.2	0:12.2	9:45.6	9:35.9	9:36.7	9:31.4	9:28.5	9:50.9	+9:41.9	+20.07%	83.28%	-11.16%	-12.22%	7
+38	482	Quin Kennedy	Quin	Kennedy	Seattle Rush Racing	Single Speed Men	37	Female/Male	58:43.4	0:13.1	9:21.3	9:51.3	9:36.1	9:28.2	9:32.5	10:40.9	+10:24.1	+21.53%	82.29%	-12.51%	-13.58%	7
+39	418	Matt2 Seguin	Matt2	Seguin	Unavita Racing	Single Speed Men	43	Male	-1 lap	0:11.5	9:15.3	9:13.9	10:48.5	9:52.8	9:57.4	-	-	-	-	-	-	6
+40	413	Andrew Demeter	Andrew	Demeter	Hodala!	Single Speed Men	50	Male	-1 lap	0:12.7	9:42.4	9:38.0	9:55.1	10:01.1	9:57.9	-	-	-	-	-	-	6
+41	436	Bart Sanderson	Bart	Sanderson	PCP Racing	Single Speed Men	58	Male	-1 lap	0:11.9	9:36.4	9:31.2	9:44.8	10:04.2	10:19.3	-	-	-	-	-	-	6
+42	427	Jeff Anderson	Jeff	Anderson	Hodala	Single Speed Men	45	Male	-1 lap	0:14.1	10:15.8	10:05.3	10:06.3	10:20.9	10:16.3	-	-	-	-	-	-	6
+43	479	Singh L Speed	Singh L	Speed	Recycled Cycles Racing	Single Speed Men	45	Male	-1 lap	0:14.2	10:39.5	10:14.6	10:17.7	10:23.5	10:31.6	-	-	-	-	-	-	6
+44	402	Butter Knife	Butter	Knife	Nemesis Moest Singular	Single Speed Men	50	Male	-1 lap	0:11.8	10:01.8	10:23.6	10:52.6	11:15.7	10:44.3	-	-	-	-	-	-	6
+45	540	Wayne Brent Wakeman	Wayne Brent	Wakeman	Unavita Racing	Single Speed Men	50	Male	-1 lap	0:12.1	10:22.7	10:51.0	11:03.3	11:05.3	11:11.0	-	-	-	-	-	-	6
+46	485	Chris Fast	Chris	Fast	Black Sheep Velo	Single Speed Men	56	Female	-1 lap	0:16.2	12:20.1	11:07.8	10:58.6	11:15.9	11:15.8	-	-	-	-	-	-	6
+47	481	Brian Howard	Brian	Howard	Soft Like Kitten	Single Speed Men	40	Male	-3 laps	0:13.2	10:18.5	10:21.0	10:40.0	-	-	-	-	-	-	-	-	4
+48	551	Christopher Gay	Christopher	Gay	Hodala	Single Speed Men	52	Male	-3 laps	0:11.3	10:10.8	10:14.5	11:35.7	-	-	-	-	-	-	-	-	4
+49	463	Shawn Big Dog Peerson	Shawn Big Dog	Peerson	Unavita Racing	Single Speed Men		Male	-3 laps	0:11.7	10:54.9	10:47.9	11:32.1	-	-	-	-	-	-	-	-	4
+50	511	John Graham	John	Graham	Alki Velo Club	Single Speed Men	48	Male	-3 laps	0:18.0	11:07.7	11:22.7	11:26.8	-	-	-	-	-	-	-	-	4
+51	555	Randy Salamon	Randy	Salamon	Hodala!	Single Speed Men	49	Male	-5 laps	0:10.8	9:42.1	-	-	-	-	-	-	-	-	-	-	2
+-	-	Frankie Hammond	Frankie	Hammond	Pizza Pals	Single Speed Men	36	Male	DNS								-	-	-	-	-	0
+-	405	Alec Cervenka	Alec	Cervenka		Single Speed Men	36	Male	DNS								-	-	-	-	-	0
+-	486	George Jackson 2	George	Jackson 2		Single Speed Men	58	Male	DNS								-	-	-	-	-	0
+-	505	Dustin Riggs	Dustin	Riggs	Pizza Pals	Single Speed Men	37	Male	DNS								-	-	-	-	-	0
+-	2160	Robert Beare	Robert	Beare	UNAVITA	Single Speed Men	51	Male	DNS								-	-	-	-	-	0
