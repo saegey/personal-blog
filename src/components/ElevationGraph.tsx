@@ -7,12 +7,16 @@ import {
   generateTimeTickValues,
   formatTime,
 } from '../lib/formatters'
-import { GraphProps } from '../common/types'
+import { Coordinate, GraphProps } from '../common/types'
 import ThemeContext from '../context/ThemeContext'
 
-const ElevationGraph = ({ data, unit }: GraphProps) => {
+const ElevationGraph = ({ data, unit, downsampleRate=1 }: GraphProps) => {
   const { theme } = useThemeUI()
   const graphColor = theme.colors?.text
+
+  const downSampledData: Coordinate[] = data.filter(n => (Number(n.y) % downsampleRate) == 0)
+  console.log(data, downSampledData)
+
 
   return (
     <ResponsiveLine
@@ -20,13 +24,13 @@ const ElevationGraph = ({ data, unit }: GraphProps) => {
         type: 'linear',
         min:
           unit === 'metric'
-            ? Math.min(...data.map(o => o.y)) - 152.4
-            : Math.min(...data.map(o => o.y)) * 3.280839895 - 500,
+            ? Math.min(...downSampledData.map(o => o.y)) - 152.4
+            : Math.min(...downSampledData.map(o => o.y)) * 3.280839895 - 500,
         // min: "auto",
         max:
           unit === 'metric'
-            ? Math.floor(Math.max(...data.map(o => o.y)) / 500) * 500 + 500
-            : (Math.floor(Math.max(...data.map(o => o.y)) / 500) * 500 + 500) *
+            ? Math.floor(Math.max(...downSampledData.map(o => o.y)) / 500) * 500 + 500
+            : (Math.floor(Math.max(...downSampledData.map(o => o.y)) / 500) * 500 + 500) *
               3.280839895,
         stacked: false,
         reverse: false,
@@ -48,8 +52,8 @@ const ElevationGraph = ({ data, unit }: GraphProps) => {
       enableArea
       areaBaselineValue={
         unit === 'metric'
-          ? Math.min(...data.map(o => o.y)) - 152.4
-          : Math.min(...data.map(o => o.y)) * 3.280839895 - 500
+          ? Math.min(...downSampledData.map(o => o.y)) - 152.4
+          : Math.min(...downSampledData.map(o => o.y)) * 3.280839895 - 500
       }
       areaOpacity={0.3}
       colors={[theme.colors.text]}
@@ -198,8 +202,8 @@ const ElevationGraph = ({ data, unit }: GraphProps) => {
           id: 'elevation',
           data:
             unit === 'metric'
-              ? data
-              : data.map(d => ({
+              ? downSampledData
+              : downSampledData.map(d => ({
                   x: d.x,
                   y: (d.y * 3.280839895).toFixed(0),
                 })),
@@ -209,7 +213,7 @@ const ElevationGraph = ({ data, unit }: GraphProps) => {
   )
 }
 
-const ElevationGraphWrapper = ({ data }: { data: GraphProps['data'] }) => {
+const ElevationGraphWrapper = ({ data, downsampleRate }: { data: GraphProps['data'], downsampleRate: number }) => {
   return (
     <ThemeContext.Consumer>
       {theme => (
@@ -220,7 +224,7 @@ const ElevationGraphWrapper = ({ data }: { data: GraphProps['data'] }) => {
             marginY: '20px',
           }}
         >
-          <ElevationGraph data={data} unit={theme.unitOfMeasure} />
+          <ElevationGraph data={data} unit={theme.unitOfMeasure} downsampleRate={downsampleRate} />
         </Box>
       )}
     </ThemeContext.Consumer>

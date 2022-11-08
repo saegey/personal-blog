@@ -12,6 +12,7 @@ import { parseOmniTSV } from '../lib/omniGo'
 import {
   calcBestPowers,
   calcElevationGain,
+  calcNormalizedPower,
   calcStoppage,
   dateDiff,
   downsampleElevation,
@@ -307,6 +308,15 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
             })
 
             createNodeField({
+              name: `normalizedPower`,
+              node,
+              value:
+                powers !== undefined
+                  ? calcNormalizedPower(powers)
+                  : null,
+            })
+
+            createNodeField({
               name: `tempAnalysis`,
               node,
               value: calcBestPowers(defaultTimeWindows, atemps),
@@ -348,7 +358,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
             createNodeField({
               name: `elevationData`,
               node,
-              value: downsampleElevation(coordinates, 60),
+              value: downsampleElevation(coordinates, 20),
             })
 
             createNodeField({

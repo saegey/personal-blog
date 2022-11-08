@@ -18,6 +18,7 @@ export interface GraphProps {
     unitOfMeasure: string
     toggleUnit: () => void
   }
+  downsampleRate?: number
 }
 
 export interface RaceImageType {

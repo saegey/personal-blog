@@ -5,6 +5,7 @@ type Props = {
   data: {
     elevationGain: number
     distance: number
+    normalizedPower: number
     heartAnalysis: {
       entire: number
     }
@@ -30,6 +31,7 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
     <ThemeContext.Consumer>
       {theme => {
         const {
+          normalizedPower,
           elevationGain,
           distance,
           heartAnalysis,
@@ -41,6 +43,10 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
         } = data
 
         const items = [
+          {
+            title: 'Normalized Power',
+            value: `${normalizedPower.toFixed()} watts`
+          },
           {
             title: 'Elevation Gain',
             value:

@@ -105,6 +105,7 @@ export const query = graphql`
       gpxData {
         id
         fields {
+          normalizedPower
           elevationGain
           stoppedTime
           distance

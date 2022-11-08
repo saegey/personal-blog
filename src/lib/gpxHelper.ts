@@ -36,6 +36,27 @@ export const downsampleElevation = (
   return downsampled
 }
 
+export const calcNormalizedPower = (powers: number[]) => {
+  const segmentSums = []
+  const cleanPowers = powers.map(p => (p === null ? 0 : p))
+
+  let index = 0
+  do {
+    segmentSums.push(
+      cleanPowers.slice(index, index + 30).reduce((pv, cv) => pv + cv, 0)
+    )
+    index += 1
+  } while (index <= powers.length - 30)
+
+  const segmentTotal = segmentSums
+    .map(s => s / 30)
+    .map(s => Math.pow(s, 4))
+    .reduce((pv, cv) => pv + cv, 0)
+
+  const average = segmentTotal / segmentSums.length
+  return Math.pow(average, 1 / 4)
+}
+
 export const calcPowerSlices = (powers: number[], length: number) => {
   const powerSums: number[] = []
   for (var i = 0; i < powers.length; i++) {
