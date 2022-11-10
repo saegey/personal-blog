@@ -1,8 +1,8 @@
 export const formatSeconds = (value: number) => {
   if (value >= 3600) {
-    return `${value / 60 / 60}h`
+    return `${(value / 60 / 60).toFixed(0)}h`
   } else if (value >= 60) {
-    return `${value / 60}m`
+    return `${(value / 60).toFixed(0)}m`
   }
 
   return `${value}s`

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Text, Flex, Box } from 'theme-ui'
 
 import ThemeContext from '../context/ThemeContext'

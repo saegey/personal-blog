@@ -12,9 +12,11 @@ import { parseOmniTSV } from '../lib/omniGo'
 import {
   calcBestPowers,
   calcElevationGain,
+  calcNormalizedPower,
   calcStoppage,
   dateDiff,
   downsampleElevation,
+  calcMatchesBurned,
 } from '../lib/gpxHelper'
 
 const defaultTimeWindows = [5, 10, 15, 30, 60, 120, 300, 600]
@@ -307,6 +309,19 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
             })
 
             createNodeField({
+              name: `normalizedPower`,
+              node,
+              value: powers !== undefined ? calcNormalizedPower(powers) : null,
+            })
+
+            createNodeField({
+              name: `matchesBurned`,
+              node,
+              value:
+                powers !== undefined ? calcMatchesBurned(powers, times) : null,
+            })
+
+            createNodeField({
               name: `tempAnalysis`,
               node,
               value: calcBestPowers(defaultTimeWindows, atemps),
@@ -348,7 +363,19 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
             createNodeField({
               name: `elevationData`,
               node,
-              value: downsampleElevation(coordinates, 60),
+              value: downsampleElevation(coordinates, 20),
+            })
+
+            createNodeField({
+              name: `powerData`,
+              node,
+              value: powers,
+            })
+
+            createNodeField({
+              name: `heartRateData`,
+              node,
+              value: heart,
             })
 
             createNodeField({

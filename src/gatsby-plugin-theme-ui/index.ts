@@ -273,6 +273,8 @@ const theme: Theme = {
     text: '#212529ff',
     mutedText: '#495057ff',
     background: '#fff',
+    graphGrid: '#e9ecefff',
+    graphFill: '#495057ff',
     primary: colors.sonicSilver,
     headerColor: '#e9ecefff',
     // headerForeground: "rgb(255, 116, 139)",
@@ -286,6 +288,7 @@ const theme: Theme = {
     opacity: '0.3',
     modes: {
       dark: {
+        graphGrid: '#343a40ff',
         headerColor: colors.eerieBlack,
         dividerColor: colors.sonicSilver,
         text: colors.cultured,

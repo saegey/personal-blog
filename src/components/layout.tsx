@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react'
+import { useState } from 'react'
 import { Container } from 'theme-ui'
 import Helmet from 'react-helmet'
 

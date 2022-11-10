@@ -13,11 +13,39 @@ export interface Coordinate {
 }
 
 export interface GraphProps {
-  data: Coordinate[]
-  unit: {
-    unitOfMeasure: string
-    toggleUnit: () => void
-  }
+  data: number[]
+  unit: string
+  startTime: number
+  endTime: number
+  downsampleRate?: number
+}
+
+export interface LineGraphProps {
+  data: [
+    {
+      id: string
+      data: Coordinate[]
+    }
+  ]
+  unit: string
+  yScaleMin: number
+  yScaleMax: number
+  areaBaselineValue: number
+  axisBottomTickValues: number[]
+  axisLeftTickValues: number[]
+  curve:
+    | 'linear'
+    | 'natural'
+    | 'basis'
+    | 'cardinal'
+    | 'catmullRom'
+    | 'monotoneX'
+    | 'monotoneY'
+    | 'step'
+    | 'stepAfter'
+    | 'stepBefore'
+    | undefined
+  enableArea: boolean
 }
 
 export interface RaceImageType {

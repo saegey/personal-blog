@@ -1,42 +1,42 @@
 ---
 title: MFG Magnuson Single Speed CX
 date: 2022-10-23
-headerImage: "./FB6A5023.jpg"
-location: "Seattle, Washington"
+headerImage: './FB6A5023.jpg'
+location: 'Seattle, Washington'
 tags:
   - CX
 type: Race Journal
-gpxFile: "MFG_Magnuson_Single_Speed"
+gpxFile: 'MFG_Magnuson_Single_Speed'
 images:
   - ./FB6A5023.jpg
   - ./FB6A4839-X5.jpg
   - ./FB6A4789.jpg
   - ./1.jpeg
 results:
-  file: "mfg-4-2022-1_45PM"
-  provider: "webscorer"
+  file: 'mfg-4-2022-1_45PM'
+  provider: 'webscorer'
 ---
 
-import { IKImage, IKVideo, IKContext } from "imagekitio-react"
+import { IKImage, IKVideo, IKContext } from 'imagekitio-react'
 
 <RaceOverview
   data={props.data.mdx.gpxData.fields}
   selectedFields={[
-    "Elevation Gain",
-    "Avg Heart Rate",
-    "Distance",
-    "Elapsed Time",
-    "Avg Temperature",
-    "Avg Speed",
+    'Elevation Gain',
+    'Avg Heart Rate',
+    'Distance',
+    'Elapsed Time',
+    'Avg Temperature',
+    'Avg Speed',
   ]}
 />
 
-<Box sx={{ marginBottom: "20px" }}>
+<Box sx={{ marginBottom: '20px' }}>
   <LandscapeImage
     image={props.data.mdx.frontmatter.images[0]}
     caption={
       <Text>
-        Photo courtesy of{" "}
+        Photo courtesy of{' '}
         <Link href="http://woodinvillebicycle.com">Woodinville Bicycle</Link>
       </Text>
     }
@@ -55,7 +55,7 @@ The course was still prettty fast and the conditions pretty dry even with a few 
   image={props.data.mdx.frontmatter.images[1]}
   caption={
     <Text>
-      Photo courtesy of{" "}
+      Photo courtesy of{' '}
       <Link href="http://woodinvillebicycle.com">Woodinville Bicycle</Link>
     </Text>
   }
@@ -65,14 +65,14 @@ Around five seconds into the start of the race, a huge crash happened that I was
 
 After the crash cleared, the rest of the race was overall smooth and uneventul. I didn't have any slip ups for the entirety of the race. I pushed the speed in corners and felt some slippage from time to time but never anything that felt close to losing it.
 
-<Box sx={{ width: "100%", video: { borderRadius: "4px" } }}>
+<Box sx={{ width: '100%', video: { borderRadius: '4px' } }}>
   <IKContext
     publicKey="public_0yo2SuC0X+YKHkXDmLUU4S18vcA="
     urlEndpoint="https://ik.imagekit.io/hcbw4dyr5"
     transformationPosition="path"
   >
     <IKVideo
-      path={"/1645BBBF-8744-48A3-BE01-A53C0E6FA614_jYty_L6hH.mov"}
+      path={'/1645BBBF-8744-48A3-BE01-A53C0E6FA614_jYty_L6hH.mov'}
       width="100%"
       controls={true}
     />
@@ -89,7 +89,7 @@ In this race, in corners at high speed felt like they wanted to roll off the rim
   image={props.data.mdx.frontmatter.images[2]}
   caption={
     <Text>
-      Photo courtesy of{" "}
+      Photo courtesy of{' '}
       <Link href="http://woodinvillebicycle.com">Woodinville Bicycle</Link>
     </Text>
   }
@@ -104,7 +104,7 @@ For this season, it is the go to single speed CX bike and recently was upgrade t
   caption="Throwback to when I used to race the Transition - Magnuson Oct 16, 2016 on a muddy day "
 />
 
-<Divider sx={{ marginTop: "20px", marginBottom: "20px" }} />
+<Divider sx={{ marginTop: '20px', marginBottom: '20px' }} />
 
 <RaceResults
   data={props.data.mdx.results.fields.data}
@@ -113,12 +113,17 @@ For this season, it is the go to single speed CX bike and recently was upgrade t
   racerName="Adam Saegebarth"
 />
 
-<Divider sx={{ marginTop: "20px", marginBottom: "20px" }} />
+<Divider sx={{ marginTop: '20px', marginBottom: '20px' }} />
 
 ## The Good
 
 1. **Consistent** lap times and cornering improved throughout the race. I was able to pick out some better lines as the race went on and it helped conserve some energy.
 2. **Strong effort** and kept the heart rate and suffering up through the whole race. After geting stuck behind the crash in the beginning and seeing some rivals ahead, I had to go hard or I would find my self in the back of the field. Single speed fields are big and traffic can be a real problem. I fueled up with GU Roctane Endurance, SKRATCH and gel before race which help keep me fueled.
+
+<ElevationGraph
+  data={props.data.mdx.gpxData.fields.elevationData}
+  downsampleRate={1}
+/>
 
 ## Needs Improvement
 

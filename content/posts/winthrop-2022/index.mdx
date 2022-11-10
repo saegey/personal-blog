@@ -1,16 +1,16 @@
 ---
 title: Gran Fondo Winthrop
 date: 2022-09-21
-headerImage: "./1.jpeg"
+headerImage: './1.jpeg'
 tags:
   - gravel
   - gran-fondo
 type: Race Journal
-gpxFile: "Gran_Fondo_Winthrop"
+gpxFile: 'Gran_Fondo_Winthrop'
 location: Winthrop, Washington
 results:
-  file: "gfw-2022-results"
-  provider: "webscorer"
+  file: 'gfw-2022-results'
+  provider: 'webscorer'
 images:
   - ./p915086034-5.jpg
   - ./p251988007-5.jpg
@@ -27,15 +27,15 @@ images:
 <RaceOverview
   data={props.data.mdx.gpxData.fields}
   selectedFields={[
-    "Avg Power",
-    "Avg Heart Rate",
-    "Distance",
-    "Elapsed Time",
-    "Elevation Gain",
-    "Avg Temperature",
-    "Time Stopped",
-    "Avg Cadence",
-    "Avg Speed",
+    'Avg Power',
+    'Avg Heart Rate',
+    'Distance',
+    'Elapsed Time',
+    'Elevation Gain',
+    'Avg Temperature',
+    'Time Stopped',
+    'Avg Cadence',
+    'Avg Speed',
   ]}
 />
 
@@ -46,7 +46,7 @@ As soon as I found out a friend of mine, [Chris Brooks](https://www.instagram.co
   caption={
     <Text>
       Just a few minutes after the start and we are rolling through downtown
-      Winthrop. Photo courtesy of{" "}
+      Winthrop. Photo courtesy of{' '}
       <Link href="https://www.mitchellimage.com/">Mitchell Image</Link>
     </Text>
   }
@@ -59,7 +59,7 @@ I played it naive and didn't pay much attention to what the route looked like fo
   caption={
     <Text>
       The group rolling up to the start of the first climb. The pace spiced up
-      at this point and Chris and I are hanging off the back. Photo courtesy of{" "}
+      at this point and Chris and I are hanging off the back. Photo courtesy of{' '}
       <Link href="https://www.mitchellimage.com/">Mitchell Image</Link>
     </Text>
   }
@@ -72,7 +72,7 @@ As daunting as the numbers are, for some reason the long climbs are my jam these
   caption={
     <Text>
       We got interrupted by some cattle crossing and had to stop for a minute.
-      Photo courtesy of{" "}
+      Photo courtesy of{' '}
       <Link href="https://www.mitchellimage.com/">Mitchell Image</Link>
     </Text>
   }
@@ -82,11 +82,18 @@ The temperature at 8am was cold so I opted to start with a shake dry jacket and 
 
 <Divider />
 
-<ElevationGraph data={props.data.mdx.gpxData.fields.elevationData} />
+<ElevationGraph
+  data={props.data.mdx.gpxData.fields.elevationData}
+  downsampleRate={6}
+/>
 
 <Divider />
 
 My strategy was to ride mostly in the tempo zone and try to stay consistent the whole race as far as power output. Because this route is basically two giant climbs riding with a group is not that important because the benefits of drafting are not big at slower speeds. I also was thinking the group with split apart quickly on the climbing which it did.
+
+<Divider />
+<MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
+<Divider />
 
 The groups broke apart and most people were riding solo to maybe 5 max halfway up the first climb. I was riding with Chris and was riding a more convervative pace than maybe I usually would but also I have never raced something with two giant climbs like this.
 
@@ -94,7 +101,7 @@ The groups broke apart and most people were riding solo to maybe 5 max halfway u
   image={props.data.mdx.frontmatter.images[3]}
   caption={
     <Text>
-      Approaching the crest of the first big climb. Photo courtesy of{" "}
+      Approaching the crest of the first big climb. Photo courtesy of{' '}
       <Link href="https://www.mitchellimage.com/">Mitchell Image</Link>
     </Text>
   }
@@ -108,7 +115,7 @@ There was aid station a little below the top of the climb that Chris and I decid
   image={props.data.mdx.frontmatter.images[8]}
   caption={
     <Text>
-      Approaching the crest of the first big climb. Photo courtesy of{" "}
+      Approaching the crest of the first big climb. Photo courtesy of{' '}
       <Link href="https://www.mitchellimage.com/">Mitchell Image</Link>
     </Text>
   }
@@ -123,11 +130,11 @@ Chris and I were back together for the big descent and by now I was determined t
 
 <PortraitImage
   image={props.data.mdx.frontmatter.images[6]}
-  widthPercentage={"45%"}
+  widthPercentage={'45%'}
   caption={
     <Text>
       The beginning of the second climb. Both climbs began on pavement and
-      transitioned to gravel. Photo courtesy of{" "}
+      transitioned to gravel. Photo courtesy of{' '}
       <Link href="https://www.mitchellimage.com/">Mitchell Image</Link>
     </Text>
   }
@@ -145,7 +152,7 @@ such so getting through this area unscathed was a milestone.
   caption={
     <Text>
       On the second climb after the pavement ended and sandy gravel began. Photo
-      courtesy of{" "}
+      courtesy of{' '}
       <Link href="https://www.mitchellimage.com/">Mitchell Image</Link>
     </Text>
   }
@@ -157,7 +164,7 @@ We stopped for only a few minutes at Aid Station #2. And I refilled both of my 2
   image={props.data.mdx.frontmatter.images[1]}
   caption={
     <Text>
-      At the summit of the second big climb. Legs are on fire. Photo courtesy of{" "}
+      At the summit of the second big climb. Legs are on fire. Photo courtesy of{' '}
       <Link href="https://www.mitchellimage.com/">Mitchell Image</Link>
     </Text>
   }
@@ -169,10 +176,10 @@ While deeper into the climb, I noticed someone slowly enroaching on me. I wasn't
 
 <PortraitImage
   image={props.data.mdx.frontmatter.images[7]}
-  widthPercentage={"45%"}
+  widthPercentage={'45%'}
   caption={
     <Text>
-      At the summit of the second big climb. Legs are on fire. Photo courtesy of{" "}
+      At the summit of the second big climb. Legs are on fire. Photo courtesy of{' '}
       <Link href="https://www.mitchellimage.com/">Mitchell Image</Link>
     </Text>
   }
@@ -194,7 +201,7 @@ The vibrations from the washboard were causing me hands to go numb and I could b
   image={props.data.mdx.frontmatter.images[9]}
   caption={
     <Text>
-      A good view of the top of the first climb. Photo courtesy of{" "}
+      A good view of the top of the first climb. Photo courtesy of{' '}
       <Link href="https://www.mitchellimage.com/">Mitchell Image</Link>
     </Text>
   }
@@ -203,7 +210,7 @@ The vibrations from the washboard were causing me hands to go numb and I could b
 This descent still required periods of hard pedaling to keep the speed up. I get back on pavement and don't see anyone behind me. I try my best to ride tempo into town and stay strong and go through the finish line and the race is over. I chat with Austin and he said he couldn't feel his hands either. Chris finishes a few minutes later and it was time to get clean and eat a feast in town.
 
 <Divider />
-<Box sx={{ marginTop: "20px" }}>
+<Box sx={{ marginTop: '20px' }}>
   <RaceResults
     data={props.data.mdx.results.fields.data}
     numbersToHighlight={[0, 1, 2, 8, 10, 11, 12, 14, 15, 31, 50]}
@@ -212,7 +219,7 @@ This descent still required periods of hard pedaling to keep the speed up. I get
   />
 </Box>
 
-<Divider sx={{ marginBottom: "20px" }} />
+<Divider sx={{ marginBottom: '20px' }} />
 
 ## The Good
 
@@ -220,7 +227,7 @@ This descent still required periods of hard pedaling to keep the speed up. I get
 2. Equipment was dialed. I am still in love with my Specialized Pathfinder Pro 42mm with Roval Terra CLX wheel combination. Still no punctures after two years and I can run low pressure with such a high volume tire. Also, since it rained the week before the dust was really low and my chain sounded good the whole time. This has not been the case during dusty races where the wax results in a squeaky chain earlier than you would expect. I still need a better lube option for dusty conditions.
 3. Fitness level was overall good. Even with lots of downtime after RPI this year and only one longer ride. The legs held on and were good for raceday.
 
-<Divider sx={{ marginBottom: "20px" }} />
+<Divider sx={{ marginBottom: '20px' }} />
 
 ## Needs Improvement
 
