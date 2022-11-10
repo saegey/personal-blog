@@ -11,8 +11,10 @@ import RaceResults from '../components/RaceResults'
 import RaceOverview from '../components/RaceOverview'
 import LandscapeImage from '../components/LandscapeImage'
 import ElevationGraph from '../components/ElevationGraph'
+import { MatchesBurned } from '../components/MatchesBurned'
 import { default as PowerCurveGraph } from '../components/PowerCurveGraph'
 import { default as PowerCurveContextGraph } from '../components/PowerCurveContext'
+import PowerGraph from '../components/PowerGraph'
 
 const shortcodes = {
   Box,
@@ -25,8 +27,10 @@ const shortcodes = {
   ElevationGraph,
   PowerCurveGraph,
   PowerCurveContextGraph,
+  PowerGraph,
   Link,
   Text,
+  MatchesBurned,
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
@@ -109,6 +113,7 @@ export const query = graphql`
           elevationGain
           stoppedTime
           distance
+          powerData
           powerAnalysis {
             entire
           }
@@ -127,6 +132,14 @@ export const query = graphql`
           }
           heartAnalysis {
             entire
+          }
+          matchesBurned {
+            averagePower
+            index
+            totalJoules
+            startTime
+            totalTime
+            vals
           }
           powerCurve {
             x

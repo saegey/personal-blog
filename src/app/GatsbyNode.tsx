@@ -16,6 +16,7 @@ import {
   calcStoppage,
   dateDiff,
   downsampleElevation,
+  calcMatchesBurned,
 } from '../lib/gpxHelper'
 
 const defaultTimeWindows = [5, 10, 15, 30, 60, 120, 300, 600]
@@ -310,10 +311,14 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
             createNodeField({
               name: `normalizedPower`,
               node,
+              value: powers !== undefined ? calcNormalizedPower(powers) : null,
+            })
+
+            createNodeField({
+              name: `matchesBurned`,
+              node,
               value:
-                powers !== undefined
-                  ? calcNormalizedPower(powers)
-                  : null,
+                powers !== undefined ? calcMatchesBurned(powers, times) : null,
             })
 
             createNodeField({
@@ -359,6 +364,18 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
               name: `elevationData`,
               node,
               value: downsampleElevation(coordinates, 20),
+            })
+
+            createNodeField({
+              name: `powerData`,
+              node,
+              value: powers,
+            })
+
+            createNodeField({
+              name: `heartRateData`,
+              node,
+              value: heart,
             })
 
             createNodeField({

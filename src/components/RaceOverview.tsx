@@ -45,7 +45,7 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
         const items = [
           {
             title: 'Normalized Power',
-            value: `${normalizedPower.toFixed()} watts`
+            value: `${normalizedPower ? normalizedPower.toFixed() : ''} watts`,
           },
           {
             title: 'Elevation Gain',

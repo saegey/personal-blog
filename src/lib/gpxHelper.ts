@@ -57,6 +57,14 @@ export const calcNormalizedPower = (powers: number[]) => {
   return Math.pow(average, 1 / 4)
 }
 
+export const calcPedalBreakdown = (powers: number[]) => {
+  const notPedaling = powers.filter(p => p === 0 || p === undefined)
+  return {
+    notPedaling: (notPedaling.length / powers.length).toFixed(2),
+    pedaling: ((powers.length - notPedaling.length) / powers.length).toFixed(2),
+  }
+}
+
 export const calcPowerSlices = (powers: number[], length: number) => {
   const powerSums: number[] = []
   for (var i = 0; i < powers.length; i++) {
@@ -66,6 +74,41 @@ export const calcPowerSlices = (powers: number[], length: number) => {
     return a - b
   })
   return powerSums
+}
+
+export const calcMatchesBurned = (powers: number[], times: Date[]) => {
+  let index = 0
+  const matches = []
+  do {
+    let tempPowerIndex = -1
+    const startIndex = index
+    const tempPowers = powers.slice(index, powers.length)
+    do {
+      tempPowerIndex += 1
+      index += 1
+    } while (tempPowers[tempPowerIndex] > 280)
+    if (tempPowerIndex > 2) {
+      matches.push({
+        startTime: times[startIndex],
+        index: startIndex,
+        vals: tempPowers.slice(0, tempPowerIndex),
+      })
+    }
+  } while (index < powers.length)
+
+  const formatted = matches.map(m => {
+    const totalJoules = m.vals.reduce((partialSum, a) => partialSum + a, 0)
+    return {
+      totalJoules: totalJoules,
+      vals: m.vals,
+      averagePower: Number((totalJoules / m.vals.length).toFixed(0)),
+      totalTime: m.vals.length,
+      index: m.index,
+      startTime: m.startTime,
+    }
+  })
+
+  return formatted.sort((a, b) => b.totalJoules - a.totalJoules).slice(0, 20)
 }
 
 export const calcBestPowers = (

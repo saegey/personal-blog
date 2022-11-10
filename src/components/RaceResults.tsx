@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Text, Flex, Box, Button, Close } from 'theme-ui'
+import { Text, Flex, Box, Button } from 'theme-ui'
 
 import { formatTime } from '../lib/formatters'
 import RaceResultsList from './RaceResultsList'
