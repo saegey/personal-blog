@@ -126,6 +126,22 @@ During this section, I was really conservative because it seemed like if you pus
 too hard you could easily slide out on a corner. I was pretty slow in this section
 and lost time to some of the other riders that chose to send it. At top of the first climb there is two shorter climbs around 700 feet each.
 
+## Heart Rate
+
+<PowerGraph
+  data={props.data.mdx.gpxData.fields.heartRateData}
+  startTime={0}
+  areaBaselineValue={90}
+  axisLeftTickValues={[100, 120, 140, 160, 180]}
+  axisBottomTickValues={[3600, 7200, 10800, 14400, 18000, 21600, 25200]}
+  yScaleMax={190}
+  unit={'bpm'}
+  downsampleRate={60}
+  curve={'natural'}
+  lineWidth={2}
+  colors={['red']}
+/>
+
 Chris and I were back together for the big descent and by now I was determined to not get gapped on the descent and stayed on his wheel. This decent was tricky with big rocks, large holes, and washed out sections so we were using the full width of the road trying to find the fastest line without destroying are tires.
 
 <PortraitImage
