@@ -114,6 +114,23 @@ My friends Chris from Space Cadets was either close on my wheel or a few spots b
   endTime={400}
 />
 
+## Heart Rate
+
+<PowerGraph
+  data={props.data.mdx.gpxData.fields.heartRateData}
+  startTime={5}
+  endTime={3180}
+  areaBaselineValue={90}
+  axisLeftTickValues={[100, 120, 140, 160, 180]}
+  axisBottomTickValues={[600, 1200, 1800, 2400, 3000]}
+  yScaleMax={190}
+  unit={'bpm'}
+  downsampleRate={10}
+  curve={'natural'}
+  lineWidth={2}
+  colors={['red']}
+/>
+
 After that happened, there was a lot of lapped traffic that got in the way and not enough time to find a way to close the gap. I was also feeling pretty worn out and pulled off the gas a bit right at the finish when I realized it was going to be near impossible to gain any places.
 
 <Box sx={{ marginBottom: '20px' }}>

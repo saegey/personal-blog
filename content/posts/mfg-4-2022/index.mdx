@@ -83,6 +83,23 @@ My tires for today were the WTB Cross Boss 35c tires. I was not a fan of these l
 year in the races are used them for. The height of tire seems greater than other
 tires and last year my complaint with them was sliding out in tight corners.
 
+## Heart Rate
+
+<PowerGraph
+  data={props.data.mdx.gpxData.fields.heartRateData}
+  startTime={0}
+  endTime={2890}
+  areaBaselineValue={90}
+  axisLeftTickValues={[100, 120, 140, 160, 180]}
+  axisBottomTickValues={[600, 1200, 1800, 2400, 3000]}
+  yScaleMax={190}
+  unit={'bpm'}
+  downsampleRate={10}
+  curve={'natural'}
+  lineWidth={2}
+  colors={['red']}
+/>
+
 In this race, in corners at high speed felt like they wanted to roll off the rim and that felt pretty meh. I was running them around 19psi front and rear. If I run higher pressure, this side effect goes away but most likely with loss in traction and compliance.
 
 <LandscapeImage
@@ -119,11 +136,6 @@ For this season, it is the go to single speed CX bike and recently was upgrade t
 
 1. **Consistent** lap times and cornering improved throughout the race. I was able to pick out some better lines as the race went on and it helped conserve some energy.
 2. **Strong effort** and kept the heart rate and suffering up through the whole race. After geting stuck behind the crash in the beginning and seeing some rivals ahead, I had to go hard or I would find my self in the back of the field. Single speed fields are big and traffic can be a real problem. I fueled up with GU Roctane Endurance, SKRATCH and gel before race which help keep me fueled.
-
-<ElevationGraph
-  data={props.data.mdx.gpxData.fields.elevationData}
-  downsampleRate={1}
-/>
 
 ## Needs Improvement
 

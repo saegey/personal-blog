@@ -114,6 +114,7 @@ export const query = graphql`
           stoppedTime
           distance
           powerData
+          heartRateData
           powerAnalysis {
             entire
           }
