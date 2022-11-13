@@ -3,7 +3,7 @@ import { Text, Flex, Box, Button } from 'theme-ui'
 
 import { formatTime } from '../lib/formatters'
 import RaceResultsList from './RaceResultsList'
-import RaceResultsViewAll from './RaceResultsViewAll'
+import Modal from './Modal'
 
 type Props = {
   data: [
@@ -78,10 +78,9 @@ const RaceResults = ({
   return (
     <>
       {shouldShowResults && (
-        <RaceResultsViewAll
-          setShouldShowResults={setShouldShowResults}
-          data={data}
-        />
+        <Modal modalOpen={setShouldShowResults} headerText={"Race Results"}>
+          <RaceResultsList data={data} />
+        </Modal>
       )}
 
       <Box>

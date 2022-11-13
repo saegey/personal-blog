@@ -33,7 +33,7 @@ const theme: Theme = {
     },
     em: { fontWeight: '500' },
     h2: {
-      fontFamily: 'serif',
+      fontFamily: 'body',
       fontWeight: 'headline',
       lineHeight: 'headline',
       marginTop: 0,
@@ -179,8 +179,8 @@ const theme: Theme = {
     },
     resultsHeading: {
       lineHeight: '30px',
-      fontFamily: 'serif',
-      letterSpacing: '.6px',
+      fontFamily: 'body',
+      // letterSpacing: '.6px',
       fontWeight: '700',
     },
     resultsItem: {

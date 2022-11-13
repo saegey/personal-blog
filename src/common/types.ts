@@ -18,6 +18,24 @@ export interface GraphProps {
   startTime: number
   endTime: number
   downsampleRate?: number
+  areaBaselineValue: number
+  axisLeftTickValues: number[]
+  yScaleMax: number
+  axisBottomTickValues: number[]
+  curve:
+    | 'linear'
+    | 'natural'
+    | 'basis'
+    | 'cardinal'
+    | 'catmullRom'
+    | 'monotoneX'
+    | 'monotoneY'
+    | 'step'
+    | 'stepAfter'
+    | 'stepBefore'
+    | undefined
+  lineWidth: number
+  colors: string[]
 }
 
 export interface LineGraphProps {
@@ -46,6 +64,8 @@ export interface LineGraphProps {
     | 'stepBefore'
     | undefined
   enableArea: boolean
+  lineWidth: number
+  colors: string[]
 }
 
 export interface RaceImageType {

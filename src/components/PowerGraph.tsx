@@ -1,17 +1,28 @@
 import { Box } from 'theme-ui'
 
-import { generateTimeTickValues } from '../lib/formatters'
 import { Coordinate, GraphProps } from '../common/types'
 import ThemeContext from '../context/ThemeContext'
 import LineGraph from '../components/LineGraph'
 
-const PowerGraph = ({ data, startTime = 0, endTime = 100 }: GraphProps) => {
+const PowerGraph = ({
+  data,
+  startTime = 0,
+  endTime,
+  areaBaselineValue,
+  axisLeftTickValues,
+  yScaleMax,
+  unit,
+  downsampleRate,
+  axisBottomTickValues,
+  curve,
+  lineWidth,
+  colors,
+}: GraphProps) => {
   const downSampledData: Coordinate[] = data
     .map((n, i) => {
-      // if (n === undefined || n === ) return
-      return { x: i, y: n ? n : 0 }
+      return { x: i, y: n ? n : null }
     })
-    .slice(startTime, endTime)
+    .slice(startTime, endTime === undefined ? data.length : endTime)
 
   return (
     <ThemeContext.Consumer>
@@ -24,22 +35,38 @@ const PowerGraph = ({ data, startTime = 0, endTime = 100 }: GraphProps) => {
           }}
         >
           <LineGraph
-            unit={'watts'}
+            unit={unit ? unit : 'watts'}
             data={[
               {
                 id: 'power',
-                data: downSampledData,
+                data: downsampleRate
+                  ? downSampledData.filter(
+                      n => Number(n.x) % downsampleRate == 0
+                    )
+                  : downSampledData,
               },
             ]}
-            yScaleMin={0}
+            yScaleMin={areaBaselineValue ? areaBaselineValue : 0}
             yScaleMax={
-              Math.floor(Math.max(...downSampledData.map(o => o.y))) + 50
+              yScaleMax
+                ? yScaleMax
+                : Math.floor(Math.max(...downSampledData.map(o => o.y))) + 50
             }
-            areaBaselineValue={0}
-            axisBottomTickValues={[60, 120, 180, 240, 300, 360, 420, 480, 540]}
-            axisLeftTickValues={[0, 100, 200, 300, 400, 500, 600, 700, 800]}
-            curve={'linear'}
+            areaBaselineValue={areaBaselineValue ? areaBaselineValue : 0}
+            axisBottomTickValues={
+              axisBottomTickValues
+                ? axisBottomTickValues
+                : [60, 120, 180, 240, 300, 360, 420, 480, 540]
+            }
+            axisLeftTickValues={
+              axisLeftTickValues
+                ? axisLeftTickValues
+                : [0, 100, 200, 300, 400, 500, 600, 700, 800]
+            }
+            colors={colors}
+            curve={curve ? curve : 'linear'}
             enableArea={false}
+            lineWidth={lineWidth}
           />
         </Box>
       )}

@@ -15,6 +15,8 @@ const LineGraph = ({
   axisLeftTickValues,
   curve,
   enableArea = true,
+  lineWidth = 1,
+  colors,
 }: LineGraphProps) => {
   const { theme } = useThemeUI()
   const themeData = themeTemplate(theme)
@@ -35,7 +37,7 @@ const LineGraph = ({
       }}
       margin={{
         top: 10,
-        right: 0,
+        right: 10,
         bottom: 25,
         left: 40,
       }}
@@ -43,20 +45,18 @@ const LineGraph = ({
       pointSize={0}
       useMesh
       enableArea={enableArea}
-      lineWidth={1}
+      lineWidth={lineWidth}
       areaBaselineValue={areaBaselineValue}
       areaOpacity={1.0}
-      colors={[theme.colors?.graphFill as string]}
+      colors={colors ? colors : [theme.colors?.graphFill as string]}
       axisBottom={{
         format: formatSeconds,
-        // orient: 'bottom',
         tickSize: 0,
         tickPadding: 5,
         tickRotation: 0,
         // legend: "Time",
         legendOffset: 30,
         legendPosition: 'middle',
-        // tickCount: 5,
         tickValues: axisBottomTickValues,
       }}
       enableSlices="x"
@@ -70,35 +70,30 @@ const LineGraph = ({
             borderRadius: '4px',
           }}
         >
-          {slice.points.map(point => (
-            <div
-              key={point.id}
-              style={{
-                color: theme.colors?.background,
-                padding: '3px 0',
-              }}
-            >
-              <div style={{ fontWeight: 300 }}>
-                {formatTime(Number(point.data.x))}
-              </div>
-              <div style={{ fontWeight: 600 }}>
-                {point.data.y.toLocaleString()} {unit}
-              </div>
+          <div
+            key={slice.points[0].id}
+            style={{
+              color: theme.colors?.background,
+              padding: '3px 0',
+            }}
+          >
+            <div style={{ fontWeight: 300 }}>
+              {formatTime(Number(slice.points[0].data.x))}
             </div>
-          ))}
+            <div style={{ fontWeight: 600 }}>
+              {slice.points[0].data.y.toLocaleString()} {unit}
+            </div>
+          </div>
         </div>
       )}
       axisLeft={{
         format: val => `${val}`,
-        // orient: 'left',
         tickSize: 0,
         tickPadding: 5,
         tickRotation: 0,
-        // tickCount: 2,
         // legend: "Elevation",
         legendOffset: 0,
         legendPosition: 'middle',
-        // tickValues: [0, 1000, 2000],
         tickValues: axisLeftTickValues,
       }}
       theme={themeData}
@@ -109,7 +104,6 @@ const LineGraph = ({
         'areas',
         'crosshair',
         'lines',
-        'points',
         'slices',
         'mesh',
         'legends',
