@@ -70,20 +70,20 @@ const LineGraph = ({
             borderRadius: '4px',
           }}
         >
-            <div
-              key={slice.points[0].id}
-              style={{
-                color: theme.colors?.background,
-                padding: '3px 0',
-              }}
-            >
-              <div style={{ fontWeight: 300 }}>
-                {formatTime(Number(slice.points[0].data.x))}
-              </div>
-              <div style={{ fontWeight: 600 }}>
-                {slice.points[0].data.y.toLocaleString()} {unit}
-              </div>
+          <div
+            key={slice.points[0].id}
+            style={{
+              color: theme.colors?.background,
+              padding: '3px 0',
+            }}
+          >
+            <div style={{ fontWeight: 300 }}>
+              {formatTime(Number(slice.points[0].data.x))}
             </div>
+            <div style={{ fontWeight: 600 }}>
+              {slice.points[0].data.y.toLocaleString()} {unit}
+            </div>
+          </div>
         </div>
       )}
       axisLeft={{
