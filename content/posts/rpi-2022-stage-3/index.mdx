@@ -34,14 +34,41 @@ results:
   ]}
 />
 
-<LandscapeImage image={props.data.mdx.frontmatter.images[1]} />
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[1]}
+  caption={
+    <Text>
+      Riding through one of the many dusty gravel roads. Photo credit to{' '}
+      <Link href="https://www.strava.com/athletes/41502563?oq=scarlett">
+        FinisherPix
+      </Link>
+    </Text>
+  }
+/>
 
-This stage was a true sufferfest of a stage. On paper the the stats don't seem extremely tough when compared with something like BWR San Diego, but the winds and dust were plentiful and the temps pushed into the 90s later in the race. The stage starts with a longer climb and I was able to push hard and get into a good position (26min @ 268watts). There were still to larger groups ahead that I couldn't bridge to and on the descent I decided to slow a bit to build up a group and that eventually ended up around 20+ riders.
+This stage was a true sufferfest of a stage. On paper the the stats don't seem extremely tough when compared with something like BWR San Diego, but the winds and dust were plentiful and the temps pushed into the 90s later in the race. The stage starts with a longer climb and I was able to push hard and get
+into a good position (26min @ 268watts).
+
+## Power on the first climb
+
+<PowerGraph
+  data={props.data.mdx.gpxData.fields.powerData}
+  startTime={1220}
+  endTime={2900}
+  downsampleRate={5}
+/>
+<Divider />
+
+There were still to larger groups ahead that I couldn't bridge to and on the descent I decided to slow a bit to build up a group and that eventually ended up around 20+ riders.
+
+<Divider />
+## Elevation Profile
 
 <ElevationGraph
   data={props.data.mdx.gpxData.fields.elevationData}
   downsampleRate={6}
 />
+<Divider />
 
 Riding with a group in this stage is huge because the winds are strong and being solo is slow and can zap motivation quickly. I stayed with this group until the aid station @ mile 46 when almost the entire group pushed on since they had hydration packs. After the aid station, it was Brelon and I taking pulls into the wind trying to keep our speed up and find some riders ahead to group up with. We eventually linked up with Sarah and Molly and rode with them through Copper Basin.
 
@@ -53,12 +80,17 @@ The group organically grew as we rode on and I was motivated to not lose them ti
 
 <PortraitImage
   image={props.data.mdx.frontmatter.images[0]}
-  caption="hell world"
+  caption={
+    <Text>
+      At the bottom of the decent when it transitioned to pavement. Once you
+      reach this area the finish line can't come soon enough. You are so close
+      to being finished but still some small rollers and wind ahead. Photo
+      credit to <Link href="https://www.finisherpix.com">FinisherPix</Link>
+    </Text>
+  }
 />
 
-> It takes a ride like that — 100 miles, 200 miles, four days, whatever it takes
-> — to make the experience more core. Yeah, it hurts, but the best things come with
-> a high price tag. <em>- Rebecca Rusch</em>
+## Power Curve
 
 <PowerCurveContextGraph data={props.data.mdx.gpxData.fields.powerCurve} />
 

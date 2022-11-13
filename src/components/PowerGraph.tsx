@@ -20,7 +20,7 @@ const PowerGraph = ({
 }: GraphProps) => {
   const downSampledData: Coordinate[] = data
     .map((n, i) => {
-      return { x: i, y: n ? n : 0 }
+      return { x: i, y: n ? n : null }
     })
     .slice(startTime, endTime === undefined ? data.length : endTime)
 

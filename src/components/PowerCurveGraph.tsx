@@ -189,7 +189,7 @@ const PowerCurveGraph = ({ data, unit }: GraphProps) => {
 
 const PowerCurveGraphWrapper = ({ data, unit }: GraphProps) => {
   return (
-    <Box sx={{ height: ['200px', '400px', '400px'] }}>
+    <Box sx={{ height: ['200px', '300px', '300px'] }}>
       <PowerCurveGraph data={data} unit={unit} />
     </Box>
   )

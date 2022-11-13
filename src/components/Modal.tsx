@@ -1,28 +1,17 @@
 import { Text, Flex, Box, Button, Close } from 'theme-ui'
 
-import RaceResultsList from './RaceResultsList'
-
-type Props = {
-  data: [
-    {
-      name: string
-      time: string
-      speedMetric: number
-      speed: number
-      timeBehind: number
-      isMe: boolean
-      place: string
-    }
-  ]
-  setShouldShowResults: (arg: boolean) => void
+type ModalProps = {
+  children: JSX.Element
+  modalOpen: (arg: boolean) => void
+	headerText: string
 }
 
-const RaceResultsViewAll = ({ data, setShouldShowResults }: Props) => {
+const Modal = ({ children, modalOpen, headerText }: ModalProps) => {
   return (
     <Box
       variant="styles.faded"
-      onClick={event => {
-        setShouldShowResults(false)
+      onClick={() => {
+        modalOpen(false)
       }}
     >
       <Box
@@ -48,20 +37,15 @@ const RaceResultsViewAll = ({ data, setShouldShowResults }: Props) => {
           <Box sx={{ p: '20px' }}>
             <Text
               as="h2"
-              sx={{
-                lineHeight: '30px',
-                fontFamily: 'serif',
-                letterSpacing: '.6px',
-                fontWeight: '700',
-              }}
+              variant='resultsHeading'
             >
-              Results
+              {headerText}
             </Text>
           </Box>
           <Box sx={{ marginLeft: 'auto', p: '20px' }}>
             <Button
               onClick={() => {
-                setShouldShowResults(false)
+                modalOpen(false)
               }}
               sx={{ backgroundColor: 'transparent', p: 0 }}
             >
@@ -73,12 +57,10 @@ const RaceResultsViewAll = ({ data, setShouldShowResults }: Props) => {
             </Button>
           </Box>
         </Flex>
-        <Box sx={{ paddingX: '20px' }}>
-          <RaceResultsList data={data} />
-        </Box>
+        <Box sx={{ paddingX: '20px' }}>{children}</Box>
       </Box>
     </Box>
   )
 }
 
-export default RaceResultsViewAll
+export default Modal
