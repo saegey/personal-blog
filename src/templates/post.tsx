@@ -121,13 +121,13 @@ export const query = graphql`
       gpxData {
         id
         fields {
-					powerZoneBuckets
-					powerZones {
-						zone
-						title
-						powerLow
-						powerHigh
-					}
+          powerZoneBuckets
+          powerZones {
+            zone
+            title
+            powerLow
+            powerHigh
+          }
           normalizedPower
           elevationGain
           stoppedTime
