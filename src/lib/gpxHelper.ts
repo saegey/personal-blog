@@ -36,6 +36,55 @@ export const downsampleElevation = (
   return downsampled
 }
 
+type PowerZoneBucketProps = {
+  zones: Array<{
+    powerLow: number
+    powerHigh: number
+    zone: number
+    title: string
+  }>
+  powers: number[]
+}
+export const calcPowerZoneBuckets = ({
+  zones,
+  powers,
+}: PowerZoneBucketProps) => {
+  const breakdownBuckets: number[] = new Array(zones.length).fill(0)
+  powers.forEach(d => {
+    for (var i = zones.length - 1; i >= 0; i--) {
+      if (d >= zones[i].powerLow && d !== null) {
+        breakdownBuckets[i] += 1
+        break
+      }
+    }
+  })
+  return breakdownBuckets
+}
+
+export const calcPowerZones = (ftp: number) => {
+  const zonesPercent = [
+    { zone: 0, title: 'Not pedaling', powerLow: '0', powerHigh: '0' },
+    { zone: 1, title: 'Active Recovery', powerLow: '1', powerHigh: '56' },
+    { zone: 2, title: 'Endurance', powerLow: '56', powerHigh: '76' },
+    { zone: 3, title: 'Tempo', powerLow: '76', powerHigh: '91' },
+    { zone: 4, title: 'Threshold', powerLow: '91', powerHigh: '106' },
+    { zone: 5, title: 'VO2max', powerLow: '106', powerHigh: '121' },
+    {
+      zone: 6,
+      title: 'Anaerobic Capacity',
+      powerLow: '121',
+      powerHigh: null,
+    },
+  ]
+  return zonesPercent.map(z => {
+    return {
+      ...z,
+      powerLow: Math.round((Number(z.powerLow) / 100) * ftp),
+      powerHigh: Math.round((Number(z.powerHigh) / 100) * ftp),
+    }
+  })
+}
+
 export const calcNormalizedPower = (powers: number[]) => {
   const segmentSums = []
   const cleanPowers = powers.map(p => (p === null ? 0 : p))

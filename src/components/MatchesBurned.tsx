@@ -74,7 +74,7 @@ export const MatchesBurned = ({ data }: Props) => {
   return (
     <>
       {isModalOpen && (
-        <Modal modalOpen={openModal} headerText={"Matches Burned"}>
+        <Modal modalOpen={openModal} headerText={'Matches Burned'}>
           <>
             <MatchesHeading />
             {data.map((d, index: number) => {
@@ -102,7 +102,7 @@ export const MatchesBurned = ({ data }: Props) => {
         </Flex>
         <MatchesHeading />
         {data.slice(0, 5).map((d, index: number) => {
-          return <MatchesItem d={d} index={index} />
+          return <MatchesItem d={d} key={`matches-${index}`} index={index} />
         })}
       </Box>
     </>

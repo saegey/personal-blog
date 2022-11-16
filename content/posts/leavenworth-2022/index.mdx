@@ -1,6 +1,6 @@
 ---
 title: Gran Fondo Leavenworth
-date: 2022-06-21
+date: 2022-05-29
 headerImage: './2.jpeg'
 tags:
   - gravel
@@ -15,6 +15,9 @@ results:
   provider: 'webscorer'
 ---
 
+<Box sx={{ marginBottom: '20px' }}>
+  <LandscapeImage image={props.data.mdx.frontmatter.images[0]} />
+</Box>
 <RaceOverview
   data={props.data.mdx.gpxData.fields}
   selectedFields={[
@@ -32,11 +35,25 @@ results:
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
-<PowerCurveGraph data={props.data.mdx.gpxData.fields.powerCurve} />
+<PowerBreakdown
+  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
+  powerZones={props.data.mdx.gpxData.fields.powerZones}
+/>
+
+Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
 Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
 
-<LandscapeImage image={props.data.mdx.frontmatter.images[0]} />
+<Divider />
+
+## Power Curve
+
+<PowerCurveGraph data={props.data.mdx.gpxData.fields.powerCurve} />
+
+<Divider />
+
+Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
+
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man
 bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis
 retro butcher dolore jean shorts viral.
@@ -47,16 +64,44 @@ retro butcher dolore jean shorts viral.
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
+Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis
+retro butcher dolore jean shorts viral.
+
+<Divider />
+
 <RaceResults
   data={props.data.mdx.results.fields.data}
   numbersToHighlight={[0, 1, 2, 4, 9, 11, 14, 15, 25, 83]}
   distance={props.data.mdx.gpxData.fields.distance}
 />
 
+<Divider />
+
+Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hellal.
+
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
+
+Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid seral.
 
 <ElevationGraph data={props.data.mdx.gpxData.fields.elevationData} />
 
 Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
 
 <LandscapeImage image={props.data.mdx.frontmatter.images[1]} />
+
+## The Good
+
+1. Consistent lap times and no major mistakes.
+2. Kept heart rate high and elevated.
+3. Remounts were smooth.
+4. Overall result was good and lots of racers within 30 secs ahead of me so I'm getting closer to top twenty finish.
+5. Switched my gear ratio from 40x17 to 36x17 and that worked well for the profile of this course. I only really spun out on the finish line and the slight gravel road descent leading up to the climb.
+6. Mud tires (Specialized Terra Pro) provided good traction in corners.
+
+## Needs Improvement
+
+1. Valve cores were clogged with sealant and making it very to hard to set desired tire pressure.
+2. Need more lean and better lines in tighter corners. I made some small mistakes that cost me some time.
+3. Tire pressure too low and not stable enough in fast corners
+4. Need to practice 30 second anaerobic power efforts for steep sections.
+5. Dropouts and rear QR skewer not tight enough. I was swapping chains a few days before to a newer waxed chain and playing with tension and the rocker dropouts. Well I need to tighten up everything when I finished but I didn't. Good thing there wasn't any bad outcomes from this.

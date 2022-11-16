@@ -7,66 +7,6 @@
   <name>MFG Magnuson Single Speed</name>
   <type>1</type>
   <trkseg>
-   <trkpt lat="47.6805700" lon="-122.2475840">
-    <ele>8.8</ele>
-    <time>2022-10-23T20:43:03Z</time>
-    <extensions>
-     <gpxtpx:TrackPointExtension>
-      <gpxtpx:atemp>26</gpxtpx:atemp>
-      <gpxtpx:hr>107</gpxtpx:hr>
-     </gpxtpx:TrackPointExtension>
-    </extensions>
-   </trkpt>
-   <trkpt lat="47.6807970" lon="-122.2477470">
-    <ele>9.2</ele>
-    <time>2022-10-23T20:43:04Z</time>
-    <extensions>
-     <gpxtpx:TrackPointExtension>
-      <gpxtpx:atemp>26</gpxtpx:atemp>
-      <gpxtpx:hr>107</gpxtpx:hr>
-     </gpxtpx:TrackPointExtension>
-    </extensions>
-   </trkpt>
-   <trkpt lat="47.6808300" lon="-122.2477130">
-    <ele>7.6</ele>
-    <time>2022-10-23T20:48:24Z</time>
-    <extensions>
-     <gpxtpx:TrackPointExtension>
-      <gpxtpx:atemp>26</gpxtpx:atemp>
-      <gpxtpx:hr>92</gpxtpx:hr>
-     </gpxtpx:TrackPointExtension>
-    </extensions>
-   </trkpt>
-   <trkpt lat="47.6808620" lon="-122.2476800">
-    <ele>7.6</ele>
-    <time>2022-10-23T20:48:25Z</time>
-    <extensions>
-     <gpxtpx:TrackPointExtension>
-      <gpxtpx:atemp>26</gpxtpx:atemp>
-      <gpxtpx:hr>92</gpxtpx:hr>
-     </gpxtpx:TrackPointExtension>
-    </extensions>
-   </trkpt>
-   <trkpt lat="47.6808940" lon="-122.2476460">
-    <ele>7.6</ele>
-    <time>2022-10-23T20:48:26Z</time>
-    <extensions>
-     <gpxtpx:TrackPointExtension>
-      <gpxtpx:atemp>26</gpxtpx:atemp>
-      <gpxtpx:hr>92</gpxtpx:hr>
-     </gpxtpx:TrackPointExtension>
-    </extensions>
-   </trkpt>
-   <trkpt lat="47.6809270" lon="-122.2476130">
-    <ele>7.4</ele>
-    <time>2022-10-23T20:48:27Z</time>
-    <extensions>
-     <gpxtpx:TrackPointExtension>
-      <gpxtpx:atemp>26</gpxtpx:atemp>
-      <gpxtpx:hr>92</gpxtpx:hr>
-     </gpxtpx:TrackPointExtension>
-    </extensions>
-   </trkpt>
    <trkpt lat="47.6809590" lon="-122.2475790">
     <ele>7.4</ele>
     <time>2022-10-23T20:49:07Z</time>

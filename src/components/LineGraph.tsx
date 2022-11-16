@@ -17,6 +17,7 @@ const LineGraph = ({
   enableArea = true,
   lineWidth = 1,
   colors,
+  markers,
 }: LineGraphProps) => {
   const { theme } = useThemeUI()
   const themeData = themeTemplate(theme)
@@ -36,7 +37,7 @@ const LineGraph = ({
         max: 'auto',
       }}
       margin={{
-        top: 10,
+        top: 20,
         right: 10,
         bottom: 25,
         left: 40,
@@ -45,6 +46,7 @@ const LineGraph = ({
       pointSize={0}
       useMesh
       enableArea={enableArea}
+      enableGridX={false}
       lineWidth={lineWidth}
       areaBaselineValue={areaBaselineValue}
       areaOpacity={1.0}
@@ -96,6 +98,7 @@ const LineGraph = ({
         legendPosition: 'middle',
         tickValues: axisLeftTickValues,
       }}
+      markers={markers}
       theme={themeData}
       layers={[
         'grid',

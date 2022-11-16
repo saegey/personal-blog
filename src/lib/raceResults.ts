@@ -7,10 +7,11 @@ function capitalize(str: string) {
 }
 
 function getName(line: string) {
-  const parts = line.split(' ').map(p => Number(p))
+  const parts = line.split(' ')
   const name = []
   for (let i = 2; i < parts.length; i++) {
-    if (isNaN(parts[i])) {
+    const val = Number(parts[i])
+    if (isNaN(val)) {
       name.push(capitalize(new String(parts[i]).toLowerCase()))
     } else {
       break

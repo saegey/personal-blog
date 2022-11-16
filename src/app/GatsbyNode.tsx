@@ -8,6 +8,7 @@ import { DOMParser } from '@xmldom/xmldom'
 import { parse } from '../lib/raceResults'
 import { parseTSV } from '../lib/webscorer'
 import { parseOmniTSV } from '../lib/omniGo'
+import { parseSegmentsFromXml } from '../lib/wkoHelper'
 
 import {
   calcBestPowers,
@@ -17,6 +18,8 @@ import {
   dateDiff,
   downsampleElevation,
   calcMatchesBurned,
+  calcPowerZones,
+  calcPowerZoneBuckets,
 } from '../lib/gpxHelper'
 
 const defaultTimeWindows = [5, 10, 15, 30, 60, 120, 300, 600]
@@ -170,6 +173,18 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
       })
     }
   }
+  // console.log(JSON.stringify(node))
+  if (node.internal.mediaType === 'application/octet-stream') {
+    const content = await loadNodeContent(node)
+    const xmlDoc = new DOMParser().parseFromString(content)
+    const segments = parseSegmentsFromXml(xmlDoc)
+    console.log(segments)
+    createNodeField({
+      name: `segments`,
+      node,
+      value: segments,
+    })
+  }
 
   if (node.internal.mediaType === 'application/gpx+xml') {
     const content = await loadNodeContent(node)
@@ -299,6 +314,27 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
               value: points,
             })
 
+            if (feature.properties.desc) {
+              const ftp = JSON.parse(feature.properties.desc).ftp
+              const zones = calcPowerZones(ftp)
+              createNodeField({
+                name: `currentFtp`,
+                node,
+                value: ftp,
+              })
+              createNodeField({
+                name: `powerZones`,
+                node,
+                value: zones,
+              })
+
+              createNodeField({
+                name: `powerZoneBuckets`,
+                node,
+                value: calcPowerZoneBuckets({ zones, powers }),
+              })
+            }
+
             createNodeField({
               name: `powerAnalysis`,
               node,
@@ -352,6 +388,12 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
               name: `stoppedTime`,
               node,
               value: calcStoppage(coordinates, times),
+            })
+
+            createNodeField({
+              name: `times`,
+              node,
+              value: times,
             })
 
             createNodeField({
@@ -415,6 +457,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       fields: Fields
       gpxData: File @link(by: "name", from: "frontmatter.gpxFile")
       results: File @link(by: "name", from: "frontmatter.results.file")
+      segments: File @link(by: "name", from: "frontmatter.trainingPeaks")
     }
 
     type Frontmatter {
