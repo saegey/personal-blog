@@ -36,6 +36,12 @@ export interface GraphProps {
     | undefined
   lineWidth: number
   colors: string[]
+  segments: Array<{
+    beginningTime: number
+    segmentDistance: number
+    segmentDuration: number
+    segmentDurationStopped: number
+  }>
 }
 
 export interface LineGraphProps {
@@ -66,6 +72,7 @@ export interface LineGraphProps {
   enableArea: boolean
   lineWidth: number
   colors: string[]
+  markers: any
 }
 
 export interface RaceImageType {

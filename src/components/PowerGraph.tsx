@@ -1,4 +1,4 @@
-import { Box } from 'theme-ui'
+import { Box, useThemeUI } from 'theme-ui'
 
 import { Coordinate, GraphProps } from '../common/types'
 import ThemeContext from '../context/ThemeContext'
@@ -17,7 +17,35 @@ const PowerGraph = ({
   curve,
   lineWidth,
   colors,
+  segments,
 }: GraphProps) => {
+  const { theme } = useThemeUI()
+  let lapTime = 0
+  const markers =
+    segments &&
+    segments.map((seg, index) => {
+      if (index !== 0) lapTime += seg.segmentDuration
+      return {
+        axis: 'x',
+        // value: seg.beginningTime,
+        value: lapTime,
+        lineStyle: {
+          stroke: theme.colors?.primary,
+          strokeWidth: index === 0 ? 0 : 1.5,
+        },
+        legend: `Lap ${index + 1}`,
+        // legendOrientation: "vertical",
+        textStyle: {
+          fontSize: 14,
+          fontFamily: theme.fonts?.body,
+          fontWeight: '600',
+          transform: 'translate(10px, -10px)',
+          // textTransform: "uppercase"
+        },
+      }
+    })
+  // console.log(markers)
+
   const downSampledData: Coordinate[] = data
     .map((n, i) => {
       return { x: i, y: n ? n : null }
@@ -67,6 +95,7 @@ const PowerGraph = ({
             curve={curve ? curve : 'linear'}
             enableArea={false}
             lineWidth={lineWidth}
+            markers={markers}
           />
         </Box>
       )}

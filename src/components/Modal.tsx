@@ -3,7 +3,7 @@ import { Text, Flex, Box, Button, Close } from 'theme-ui'
 type ModalProps = {
   children: JSX.Element
   modalOpen: (arg: boolean) => void
-	headerText: string
+  headerText: string
 }
 
 const Modal = ({ children, modalOpen, headerText }: ModalProps) => {
@@ -35,10 +35,7 @@ const Modal = ({ children, modalOpen, headerText }: ModalProps) => {
           }}
         >
           <Box sx={{ p: '20px' }}>
-            <Text
-              as="h2"
-              variant='resultsHeading'
-            >
+            <Text as="h2" variant="resultsHeading">
               {headerText}
             </Text>
           </Box>
