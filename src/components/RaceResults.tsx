@@ -78,7 +78,7 @@ const RaceResults = ({
   return (
     <>
       {shouldShowResults && (
-        <Modal modalOpen={setShouldShowResults} headerText={"Race Results"}>
+        <Modal modalOpen={setShouldShowResults} headerText={'Race Results'}>
           <RaceResultsList data={data} />
         </Modal>
       )}

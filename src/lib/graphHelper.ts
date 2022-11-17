@@ -18,7 +18,6 @@ export const themeTemplate = (theme: any) => {
       line: {
         stroke: theme.colors?.graphGrid,
         strokeWidth: 1,
-        zIndex: -100000,
       },
     },
     axis: {
@@ -48,20 +47,20 @@ export const themeTemplate = (theme: any) => {
     legends: {
       title: {
         text: {
-          fontSize: 18,
+          fontSize: 10,
           fill: theme.colors?.text,
           fontFamily: theme.fonts.body,
         },
       },
       text: {
-        fontSize: 18,
+        fontSize: 10,
         fill: theme.colors?.text,
         fontFamily: theme.fonts.body,
       },
       ticks: {
         line: {},
         text: {
-          fontSize: 18,
+          fontSize: 10,
           fill: theme.colors?.text,
           fontFamily: theme.fonts.body,
         },
