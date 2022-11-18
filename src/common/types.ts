@@ -13,16 +13,16 @@ export interface Coordinate {
 }
 
 export interface GraphProps {
-  data: number[]
-  unit: string
-  startTime: number
-  endTime: number
+  data: Coordinate[]
+  unit?: string
+  startTime?: number
+  endTime?: number
   downsampleRate?: number
-  areaBaselineValue: number
-  axisLeftTickValues: number[]
-  yScaleMax: number
-  axisBottomTickValues: number[]
-  curve:
+  areaBaselineValue?: number
+  axisLeftTickValues?: number[]
+  yScaleMax?: number
+  axisBottomTickValues?: number[]
+  curve?:
     | 'linear'
     | 'natural'
     | 'basis'
@@ -34,9 +34,9 @@ export interface GraphProps {
     | 'stepAfter'
     | 'stepBefore'
     | undefined
-  lineWidth: number
-  colors: string[]
-  segments: Array<{
+  lineWidth?: number
+  colors?: string[]
+  segments?: Array<{
     beginningTime: number
     segmentDistance: number
     segmentDuration: number
@@ -57,7 +57,7 @@ export interface LineGraphProps {
   areaBaselineValue: number
   axisBottomTickValues: number[]
   axisLeftTickValues: number[]
-  curve:
+  curve?:
     | 'linear'
     | 'natural'
     | 'basis'
@@ -71,8 +71,9 @@ export interface LineGraphProps {
     | undefined
   enableArea: boolean
   lineWidth: number
-  colors: string[]
-  markers: any
+  colors?: string[]
+  markers?: any
+  xScaleType: 'linear' | 'log' | 'symlog' | 'point'
 }
 
 export interface RaceImageType {

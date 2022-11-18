@@ -20,6 +20,7 @@ type Props = {
   numbersToHighlight: [number]
   distance: number
   racerName: string
+  showSpeed: boolean
 }
 
 type HighlightsType = {
@@ -35,6 +36,7 @@ const RaceResults = ({
   numbersToHighlight,
   distance,
   racerName,
+  showSpeed = true,
 }: Props) => {
   const [shouldShowResults, setShouldShowResults] = useState(false)
 
@@ -100,7 +102,7 @@ const RaceResults = ({
             </Button>
           </Box>
         </Flex>
-        <RaceResultsList data={highlights} />
+        <RaceResultsList data={highlights} showSpeed={showSpeed} />
       </Box>
     </>
   )

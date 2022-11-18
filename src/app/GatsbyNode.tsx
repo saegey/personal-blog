@@ -9,6 +9,7 @@ import { parse } from '../lib/raceResults'
 import { parseTSV } from '../lib/webscorer'
 import { parseOmniTSV } from '../lib/omniGo'
 import { parseSegmentsFromXml } from '../lib/wkoHelper'
+import { parseTurboreg } from '../lib/turboreg'
 
 import {
   calcBestPowers,
@@ -172,13 +173,21 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
         value: parseOmniTSV(content),
       })
     }
+
+    if (type === 'turboreg') {
+      createNodeField({
+        name: `data`,
+        node,
+        value: parseTurboreg(content),
+      })
+    }
   }
-  // console.log(JSON.stringify(node))
+
   if (node.internal.mediaType === 'application/octet-stream') {
     const content = await loadNodeContent(node)
     const xmlDoc = new DOMParser().parseFromString(content)
     const segments = parseSegmentsFromXml(xmlDoc)
-    console.log(segments)
+
     createNodeField({
       name: `segments`,
       node,

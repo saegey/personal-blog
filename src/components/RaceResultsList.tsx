@@ -15,6 +15,7 @@ interface Props {
       isMe: boolean
     }
   ]
+  showSpeed: boolean
 }
 
 interface WrapperProps extends Props {
@@ -23,7 +24,7 @@ interface WrapperProps extends Props {
   }
 }
 
-const RaceResultsList = ({ data, theme }: WrapperProps) => {
+const RaceResultsList = ({ data, showSpeed, theme }: WrapperProps) => {
   return (
     <>
       {data.map((item, index) => {
@@ -45,7 +46,7 @@ const RaceResultsList = ({ data, theme }: WrapperProps) => {
                   <strong>{item.place}</strong>
                 </Text>
               </Box>
-              <Box sx={{ width: '40%' }}>
+              <Box sx={{ width: showSpeed ? '40%' : '60%' }}>
                 {item.isMe ? (
                   <Text variant="highlightedItem">{item.name}</Text>
                 ) : (
@@ -55,13 +56,16 @@ const RaceResultsList = ({ data, theme }: WrapperProps) => {
               <Box sx={{ width: '20%' }}>
                 <Text variant="resultsItem">{item.time}</Text>
               </Box>
-              <Box sx={{ width: '20%' }}>
-                <Text variant="resultsItem">
-                  {theme.unitOfMeasure === 'metric'
-                    ? item.speedMetric
-                    : item.speed}
-                </Text>
-              </Box>
+              {showSpeed && (
+                <Box sx={{ width: '20%' }}>
+                  <Text variant="resultsItem">
+                    {theme.unitOfMeasure === 'metric'
+                      ? item.speedMetric
+                      : item.speed}
+                  </Text>
+                </Box>
+              )}
+
               <Box sx={{ width: '15%', textAlign: 'right' }}>
                 <Text variant="resultsItem">{item.timeBehind}</Text>
               </Box>
@@ -73,11 +77,13 @@ const RaceResultsList = ({ data, theme }: WrapperProps) => {
   )
 }
 
-const RaceResultWrapper = ({ data }: Props) => {
+const RaceResultWrapper = ({ data, showSpeed }: Props) => {
   return (
     <ThemeContext.Consumer>
       {theme => {
-        return <RaceResultsList data={data} theme={theme} />
+        return (
+          <RaceResultsList data={data} showSpeed={showSpeed} theme={theme} />
+        )
       }}
     </ThemeContext.Consumer>
   )
