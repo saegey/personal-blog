@@ -14,7 +14,6 @@ import ElevationGraph from '../components/ElevationGraph'
 import { MatchesBurned } from '../components/MatchesBurned'
 import PowerBreakdown from '../components/PowerBreakdown'
 import { default as PowerCurveGraph } from '../components/PowerCurveGraph'
-import { default as PowerCurveContextGraph } from '../components/PowerCurveContext'
 import PowerGraph from '../components/PowerGraph'
 
 const shortcodes = {
@@ -27,7 +26,6 @@ const shortcodes = {
   LandscapeImage,
   ElevationGraph,
   PowerCurveGraph,
-  PowerCurveContextGraph,
   PowerGraph,
   Link,
   Text,

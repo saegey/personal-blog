@@ -18,6 +18,7 @@ const LineGraph = ({
   lineWidth = 1,
   colors,
   markers,
+  xScaleType,
 }: LineGraphProps) => {
   const { theme } = useThemeUI()
   const themeData = themeTemplate(theme)
@@ -32,7 +33,7 @@ const LineGraph = ({
         reverse: false,
       }}
       xScale={{
-        type: 'linear',
+        type: xScaleType ? xScaleType : 'linear',
         min: 'auto',
         max: 'auto',
       }}
