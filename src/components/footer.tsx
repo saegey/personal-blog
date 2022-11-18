@@ -9,10 +9,8 @@ const Footer = () => {
         alignItems: 'center',
         variant: 'styles.footer',
         fontFamily: 'body',
-        marginTop: '30px',
-        marginBottom: '0px',
-        marginX: '20px',
-        padding: '0px',
+        padding: '20px',
+        backgroundColor: 'muted',
       }}
     >
       <Box

@@ -16,7 +16,6 @@ const LandscapeImage = ({ image, caption }: RaceImageType) => {
           as={GatsbyImage}
           sx={{
             width: ['100%', '100%', '100%'],
-            zIndex: '100',
             borderRadius: [4, 4, 4],
           }}
         />
@@ -26,7 +25,7 @@ const LandscapeImage = ({ image, caption }: RaceImageType) => {
             position: 'absolute',
             right: '0',
             top: '0',
-            zIndex: 1000,
+            zIndex: 0,
           }}
         >
           <FullScreenIcon />

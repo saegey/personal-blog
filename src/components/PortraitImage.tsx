@@ -20,6 +20,7 @@ const PortraitImage = ({ image, widthPercentage, caption }) => {
           // Spread bgImage into BackgroundImage:
           {...bgImage}
           preserveStackingContext
+          sx={{ zIndex: '0' }}
         >
           <Box sx={{ backdropFilter: 'blur(10px)' }}>
             <Box
@@ -35,7 +36,6 @@ const PortraitImage = ({ image, widthPercentage, caption }) => {
                 as={GatsbyImage}
                 sx={{
                   width: ['100%', '100%', '100%'],
-                  zIndex: '100',
                   borderRadius: [0, 0, 0],
                   backdropFilter: 'blur(10px)',
                 }}
@@ -48,7 +48,6 @@ const PortraitImage = ({ image, widthPercentage, caption }) => {
               position: 'absolute',
               right: '0',
               top: '0',
-              zIndex: 100,
             }}
           >
             <FullScreenIcon />
