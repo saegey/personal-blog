@@ -26,10 +26,8 @@ const Layout = ({ children }: CardProps) => {
       >
         <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <Header setMenuOpen={setMenuOpen} />
-        <main>
-          <Container p={['20px', '20px', '32px']} bg="muted">
-            {children}
-          </Container>
+        <main sx={{ bg: 'muted' }}>
+          <Container p={['20px', '20px', '32px']}>{children}</Container>
         </main>
         <Footer />
       </div>
