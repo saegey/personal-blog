@@ -15,6 +15,7 @@ import { MatchesBurned } from '../components/MatchesBurned'
 import PowerBreakdown from '../components/PowerBreakdown'
 import { default as PowerCurveGraph } from '../components/PowerCurveGraph'
 import PowerGraph from '../components/PowerGraph'
+import VideoPlayer from '../components/VideoPlayer'
 
 const shortcodes = {
   Box,
@@ -31,6 +32,7 @@ const shortcodes = {
   Text,
   MatchesBurned,
   PowerBreakdown,
+  VideoPlayer
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {

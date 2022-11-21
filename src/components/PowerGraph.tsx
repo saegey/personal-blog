@@ -30,16 +30,17 @@ const PowerGraph = ({
         // value: seg.beginningTime,
         value: lapTime,
         lineStyle: {
-          stroke: theme.colors?.primary,
-          strokeWidth: index === 0 ? 0 : 1.5,
+          stroke: theme.colors?.marker,
+          strokeWidth: index === 0 ? 0 : 1,
         },
         legend: `Lap ${index + 1}`,
         // legendOrientation: "vertical",
         textStyle: {
           fontSize: 14,
           fontFamily: theme.fonts?.body,
+          fill: theme.colors?.marker,
           fontWeight: '600',
-          transform: 'translate(10px, -10px)',
+          transform: 'translate(-10px, -10px)',
           // textTransform: "uppercase"
         },
       }
@@ -57,7 +58,7 @@ const PowerGraph = ({
       {context => (
         <Box
           sx={{
-            height: ['200px', '200px', '200px'],
+            height: ['200px', '250px', '300px'],
             fontFamily: 'body',
             marginY: '20px',
           }}
