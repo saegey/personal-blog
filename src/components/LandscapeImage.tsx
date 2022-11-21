@@ -1,4 +1,4 @@
-import { Image, Box } from 'theme-ui'
+import { Image, Box, useColorMode } from 'theme-ui'
 import { getImage, GatsbyImage } from 'gatsby-plugin-image'
 
 import ImageWrapper from './imageWrapper'
@@ -6,7 +6,14 @@ import FullScreenIcon from './FullScreenIcon'
 import { RaceImageType, MyImageProps } from '../common/types'
 const MyImage = Image as any as (props: MyImageProps) => JSX.Element
 
-const LandscapeImage = ({ image, caption }: RaceImageType) => {
+const LandscapeImage = ({
+  image,
+  caption,
+  invert = false,
+  maximize = true,
+}: RaceImageType) => {
+  const [colorMode] = useColorMode()
+
   return (
     <ImageWrapper image={image} caption={caption} altText="">
       <Box sx={{ width: '100%', position: 'relative' }}>
@@ -15,6 +22,7 @@ const LandscapeImage = ({ image, caption }: RaceImageType) => {
           alt={'blah'}
           as={GatsbyImage}
           sx={{
+            filter: invert && colorMode === 'dark' ? `invert(1)` : `none`,
             width: ['100%', '100%', '100%'],
             borderRadius: [4, 4, 4],
           }}

@@ -6,11 +6,16 @@ tags:
   - cyclocross
 type: Race Journal
 gpxFile: 'CXR_5_Frontier_Single_Speed'
+trainingPeaks: Adam_Saegebarth_2022_11_13_14_00
 location: Graham, Washington
 images:
   - ./FB6A1931.jpg
   - ./FB6A2145.jpg
   - ./FB6A2252.jpg
+  - ./IMG_7359.jpg
+  - ./IMG_7372.jpg
+  - ./IMG_7374.jpg
+  - ./1.jpeg
 results:
   file: 'cxr-5-2022'
   provider: 'turboreg'
@@ -18,7 +23,29 @@ results:
 
 <LandscapeImage image={props.data.mdx.frontmatter.images[0]} />
 
-Tilde pug cornhole distillery crucifix. Offal tonx chartreuse pop-up vinyl pork belly. Palo santo street art semiotics whatever, cred +1 kombucha taiyaki mixtape migas schlitz single-origin coffee meditation. Small batch selfies kitsch bitters food truck beard normcore kickstarter roof party lumbersexual. You probably haven't heard of them godard lyft, keytar small batch tumblr viral JOMO hot chicken man braid disrupt.
+Last year the weather was pretty epic for this venue with cold, freezing rain and some pretty muddy conditions. Today it was clear and pretty mild temps by the time the single speed race started in the afternoon.
+
+In the race last year, I had a great start in 2nd and then slid out on the first tight corner and lost of a lot spots and eventually finished 10/16 and it wasn't a great result for me when looking at other races that season.
+
+## Heart Rate by Lap
+
+<PowerGraph
+  data={props.data.mdx.gpxData.fields.heartRateData}
+  startTime={0}
+  endTime={3180}
+  areaBaselineValue={90}
+  axisLeftTickValues={[100, 120, 140, 160, 180]}
+  axisBottomTickValues={[600, 1200, 1800, 2400, 3000]}
+  yScaleMax={190}
+  unit={'bpm'}
+  downsampleRate={10}
+  curve={'natural'}
+  lineWidth={2}
+  colors={['red']}
+  segments={props.data.mdx.segments.fields.segments}
+/>
+
+The course is pretty tight with quite a bit of single track and plenty of gravel with some pretty slippery transitions. I'm not quite comfortable with the bike sliding in a corner but I was trying to push the edge a bit with home much speed I could carry through the corners.
 
 <RaceOverview
   data={props.data.mdx.gpxData.fields}
@@ -35,11 +62,18 @@ Tilde pug cornhole distillery crucifix. Offal tonx chartreuse pop-up vinyl pork 
   ]}
 />
 
-Messenger bag ennui distillery franzen chillwave. Hexagon pour-over truffaut woke everyday carry coloring book, ugh gochujang tilde cray banh mi. Wolf asymmetrical coloring book, lomo PBR&B DSA direct trade cliche. Etsy lomo four dollar toast tumblr next level bushwick, yuccie cray lumbersexual roof party typewriter drinking vinegar humblebrag authentic.
+On the 2nd lap I lost it in one section and slid out but it happened so quick I fell with my arm extended and separated my shoulder temporarily. It was pretty much locked out for a few seconds but popped back and the pain wasn't the worst and I got back at it.
+
+<PortraitImage
+  image={props.data.mdx.frontmatter.images[4]}
+  widthPercentage="50%"
+/>
+
+After looking in WKO at my file I learned that I was stopped for about 7 seconds for the crash. I wasn't the only one crashing. I witnessed plenty of nasty ones in front of me and heard some happen behind me so conditions must have been pretty loose.
 
 <PortraitImage
   image={props.data.mdx.frontmatter.images[1]}
-  widthPercentage={'45%'}
+  widthPercentage={'50%'}
   caption={
     <Text>
       Climbing up one of the single track sections on the east part of the
@@ -51,25 +85,43 @@ Messenger bag ennui distillery franzen chillwave. Hexagon pour-over truffaut wok
   }
 />
 
-Swag lomo unicorn DIY kinfolk gluten-free keffiyeh intelligentsia flexitarian woke distillery truffaut stumptown. Tote bag green juice before they sold out lumbersexual etsy actually neutra. Put a bird on it yuccie air plant squid gastropub tote bag. Freegan echo park thundercats jianbing. DSA artisan hell of woke poutine. Cray ascot ethical, tousled chia hella post-ironic organic.
+I was feeling good prior to the crash but after it had me spooked a bit and riding in a pretty conservation way to avoid any other mishaps. It didn't feel like I was going easy but after looking at the heart rate data it looked like I had some room to go harder since I can probably sustain a 175 bpm for the entire race despite it pretty painful.
+
+<LandscapeImage image={props.data.mdx.frontmatter.images[3]} />
+
+I felt as the laps went on I found a good flow and the sand run up didn't spike my heart rate too much. I still chose to run the small barriers they had since it must faster for me than attempting to hop them in a pretty gross way. Next year, I really need to start practicing hopping these things because it just looks way more fun even if you do crash occasionally.
 
 <Divider />
 <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
 <Divider sx={{ marginBottom: '20px' }} />
 
-Narwhal chartreuse master cleanse cliche, waistcoat lumbersexual kickstarter. Man bun freegan schlitz jean shorts ethical mixtape narwhal master cleanse artisan prism fixie ramps. Mukbang vexillologist direct trade tote bag street art lomo stumptown actually, vape fit godard raclette PBR&B. Beard disrupt swag, neutra meggings pabst meh hella gluten-free mlkshk yr edison bulb etsy prism.
+## Time in Power Zones
 
-## Power Analysis
+<PowerBreakdown
+  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
+  powerZones={props.data.mdx.gpxData.fields.powerZones}
+/>
+<Divider />
+
+## Power Curve
 
 <PowerCurveGraph data={props.data.mdx.gpxData.fields.powerCurve} />
+<Divider />
 
-Post-ironic organic art party, franzen artisan gatekeep palo santo williamsburg kombucha mumblecore viral put a bird on it. Snackwave shaman hot chicken, master cleanse biodiesel lo-fi beard small batch lyft helvetica aesthetic bruh leggings cold-pressed austin. Green juice tumeric ramps yuccie pop-up DIY, celiac pork belly jianbing cornhole fixie cardigan chillwave cred tousled.
+Even though it wasn't my best race and I came away a little broken, it was nice to get another hard race effort in the legs in preparation for Woodland Park next week and get some good bike handling practice. My fitness level is not where I was wanting for this short CX season but I'm hoping I can find some before the end in SeaTac.
 
-<LandscapeImage image={props.data.mdx.frontmatter.images[2]} />
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[2]}
+  caption={
+    <Text>
+      Running over the 3 small barriers. I ran every lap since it's still much
+      faster in my mind. Photo /{' '}
+      <Link href="http://woodinvillebicycle.com">Woodinville Bicycle</Link>
+    </Text>
+  }
+/>
 
-Man braid hammock la croix semiotics small batch. Put a bird on it palo santo same, 8-bit keytar twee wayfarers XOXO godard tumeric venmo quinoa gastropub bitters. Pabst offal tumeric hashtag coloring book narwhal copper mug direct trade synth shoreditch plaid, swag tote bag.
-
-Readymade banjo asymmetrical neutra twee. Vinyl tonx mustache, waistcoat yuccie taxidermy quinoa butcher coloring book edison bulb meggings mukbang disrupt occupy. Praxis woke quinoa, tattooed intelligentsia lyft jianbing normcore vice hell of tumeric pinterest humblebrag big mood.
+It was also really nice to finally ride my Transition bike with some proper decals on it. In 2016, I had it sand blasted and then rattle can painted it an olive green and it's naked till the day before the race. With the help of my friend Jesse, we cut some metallic vinyl and got them installed the day before and I was happy how they came out and went on pretty quickly. I have been wanting to do this for a while and it was nice to finally finish it up and get it done. I will make a post at a later time to cover the process of it and plan to do it on another bike for end of the year.
 
 <Divider sx={{ marginBottom: '20px' }} />
 <RaceResults
@@ -81,13 +133,16 @@ Readymade banjo asymmetrical neutra twee. Vinyl tonx mustache, waistcoat yuccie 
 />
 <Divider />
 
-Mlkshk kale chips lyft tofu. Hexagon quinoa hoodie, hashtag chia DSA green juice yes plz kale chips street art irony viral polaroid mustache swag. Gochujang vibecession VHS YOLO kale chips, leggings retro fixie polaroid tumblr everyday carry bushwick prism. Sus chia retro ascot viral scenester. Hexagon asymmetrical pour-over schlitz tumeric.
+## The Good
 
-<PowerBreakdown
-  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
-  powerZones={props.data.mdx.gpxData.fields.powerZones}
-/>
+1.  Had a really good sprint to finish the race. I saw someone approaching me toward the end of the final lap and was determined to go full gas and not let them get close.blast.
 
-Flannel four dollar toast drinking vinegar tonx kitsch VHS hexagon vice gentrify fam iceland blog viral. Tacos activated charcoal flexitarian fit four loko lomo mustache air plant listicle same hell of.
+2.  Gearing was perfect for this course and only real chance to spin out was on the long straight at the finish.
 
-Microdosing four loko tousled woke poutine DSA 90's jean shorts big mood street art shoreditch irony mumblecore. Fit gluten-free cornhole, pour-over ascot DIY snackwave vaporware lo-fi prism master cleanse deep v lomo. Vape microdosing blue bottle tilde.
+## Needs Improvement
+
+1. Still need to work on bike handling skills and carrying more speed through turns.
+
+<VideoPlayer fileName={`IMG_7393 2.MOV`} />
+
+2. I could have gone deeper and suffered more to pick up some time. The straight at the end of the lap I could have easily went harder and did on the final lap when it was too late. There was someone catchable in front me and I didn't really make attempt to close in on them.

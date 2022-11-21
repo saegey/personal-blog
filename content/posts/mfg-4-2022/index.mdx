@@ -18,8 +18,6 @@ results:
   provider: 'webscorer'
 ---
 
-import { IKImage, IKVideo, IKContext } from 'imagekitio-react'
-
 <RaceOverview
   data={props.data.mdx.gpxData.fields}
   selectedFields={[
@@ -66,19 +64,7 @@ Around five seconds into the start of the race, a huge crash happened that I was
 
 After the crash cleared, the rest of the race was overall smooth and uneventul. I didn't have any slip ups for the entirety of the race. I pushed the speed in corners and felt some slippage from time to time but never anything that felt close to losing it.
 
-<Box sx={{ width: '100%', video: { borderRadius: '4px' } }}>
-  <IKContext
-    publicKey="public_0yo2SuC0X+YKHkXDmLUU4S18vcA="
-    urlEndpoint="https://ik.imagekit.io/hcbw4dyr5"
-    transformationPosition="path"
-  >
-    <IKVideo
-      path={'/1645BBBF-8744-48A3-BE01-A53C0E6FA614_jYty_L6hH.mov'}
-      width="100%"
-      controls={true}
-    />
-  </IKContext>
-</Box>
+<VideoPlayer fileName={`1645BBBF-8744-48A3-BE01-A53C0E6FA614_jYty_L6hH.mov`} />
 
 My tires for today were the WTB Cross Boss 35c tires. I was not a fan of these last
 year in the races are used them for. The height of tire seems greater than other
