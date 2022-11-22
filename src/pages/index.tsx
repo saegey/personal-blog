@@ -79,7 +79,8 @@ export const pageQuery = graphql`
           tags
           headerImage {
             childImageSharp {
-              gatsbyImageData(placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
+              gatsbyImageData(placeholder: BLURRED, width: 300)
+
             }
           }
         }
