@@ -10,7 +10,7 @@ import { parseTSV } from '../lib/webscorer'
 import { parseOmniTSV } from '../lib/omniGo'
 import { parseSegmentsFromXml } from '../lib/wkoHelper'
 import { parseTurboreg } from '../lib/turboreg'
-import {Feature} from '@types/geojson'
+import { Feature } from 'geojson'
 
 import {
   calcBestPowers,
