@@ -65,7 +65,7 @@ export const Head = () => <Seo title="All posts" />
 
 export const pageQuery = graphql`
   query BlogIndex {
-    allMdx(sort: {frontmatter: {date: DESC}}) {
+    allMdx(sort: { frontmatter: { date: DESC } }) {
       nodes {
         fields {
           slug
