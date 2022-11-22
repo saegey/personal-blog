@@ -65,7 +65,7 @@ export const Head = () => <Seo title="All posts" />
 
 export const pageQuery = graphql`
   query BlogIndex {
-    allMdx(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMdx(sort: {frontmatter: {date: DESC}}) {
       nodes {
         fields {
           slug
@@ -79,8 +79,7 @@ export const pageQuery = graphql`
           tags
           headerImage {
             childImageSharp {
-              gatsbyImageData(placeholder: BLURRED, width: 300)
-
+              gatsbyImageData(placeholder: BLURRED, width: 300, height: 200)
             }
           }
         }

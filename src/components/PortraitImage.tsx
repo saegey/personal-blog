@@ -1,33 +1,24 @@
 import { Box, Image } from 'theme-ui'
 import { getImage } from 'gatsby-plugin-image'
 import { GatsbyImage } from 'gatsby-plugin-image'
-import { convertToBgImage } from 'gbimage-bridge'
-import BackgroundImage from 'gatsby-background-image'
 
 import ImageWrapper from './imageWrapper'
 import FullScreenIcon from './FullScreenIcon'
 
 const PortraitImage = ({ image, widthPercentage, caption }) => {
   const width = widthPercentage ? widthPercentage : '65%'
-  const placeholderImage = getImage(image)
-  const bgImage = convertToBgImage(placeholderImage)
+  // const placeholderImage = getImage(image)
+  // const bgImage = convertToBgImage(placeholderImage)
 
   return (
     <ImageWrapper image={image} caption={caption}>
       <Box sx={{ marginTop: '20px', borderRadius: '4px', overflow: 'hidden' }}>
-        <BackgroundImage
-          Tag="section"
-          // Spread bgImage into BackgroundImage:
-          {...bgImage}
-          preserveStackingContext
-          sx={{ zIndex: '0' }}
-        >
-          <Box sx={{ backdropFilter: 'blur(10px)' }}>
+          <Box sx={{ backdropFilter: 'blur(10px)', backgroundColor: `rgb(33,37,47,.04)` }}>
             <Box
               sx={{
                 width: width,
                 margin: 'auto',
-                display: 'block',
+                display: 'block'
               }}
             >
               <Image
@@ -52,7 +43,6 @@ const PortraitImage = ({ image, widthPercentage, caption }) => {
           >
             <FullScreenIcon />
           </Box>
-        </BackgroundImage>
       </Box>
     </ImageWrapper>
   )
