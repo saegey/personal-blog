@@ -115,7 +115,7 @@ const Header = ({ setMenuOpen }: Props) => {
           }}
         >
           <Button
-            onClick={e => {
+            onClick={() => {
               setColorMode(colorMode === 'default' ? 'dark' : 'default')
             }}
             sx={{

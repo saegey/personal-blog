@@ -10,6 +10,7 @@ import { parseTSV } from '../lib/webscorer'
 import { parseOmniTSV } from '../lib/omniGo'
 import { parseSegmentsFromXml } from '../lib/wkoHelper'
 import { parseTurboreg } from '../lib/turboreg'
+import { Feature } from 'geojson'
 
 import {
   calcBestPowers,
@@ -209,7 +210,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
     if (data.type && data.type === 'FeatureCollection') {
       if (data.features) {
         // const { createNode } = boundActionCreators
-        data.features.forEach(feature => {
+        data.features.forEach((feature: Feature) => {
           if (
             feature.type &&
             feature.type === 'Feature' &&

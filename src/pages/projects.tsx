@@ -72,7 +72,7 @@ export const Head = () => <Seo title="Projects" />
 export const pageQuery = graphql`
   query SITE_INDEX_QUERY {
     allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { frontmatter: { date: DESC } }
       filter: { frontmatter: { type: { eq: "projects" } } }
     ) {
       nodes {

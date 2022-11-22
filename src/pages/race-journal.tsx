@@ -73,7 +73,7 @@ export const pageQuery = graphql`
       }
     }
     allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { frontmatter: { date: DESC } }
       filter: { frontmatter: { type: { eq: "Race Journal" } } }
     ) {
       nodes {
@@ -89,7 +89,7 @@ export const pageQuery = graphql`
           location
           headerImage {
             childImageSharp {
-              gatsbyImageData(placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
+              gatsbyImageData(placeholder: BLURRED, width: 300, height: 200)
             }
           }
         }
