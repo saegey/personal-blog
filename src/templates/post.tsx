@@ -32,7 +32,7 @@ const shortcodes = {
   Text,
   MatchesBurned,
   PowerBreakdown,
-  VideoPlayer
+  VideoPlayer,
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
