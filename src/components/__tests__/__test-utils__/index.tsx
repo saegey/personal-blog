@@ -47,11 +47,11 @@ export const theme = makeTheme({
       borderRadius: 99999,
     },
   },
-	colors: {
-		headerColor: "white",
-		primary: "red",
-		background: "pink"
-	},
+  colors: {
+    headerColor: 'white',
+    primary: 'red',
+    background: 'pink',
+  },
   links: {
     nav: {
       textDecoration: 'none',

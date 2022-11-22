@@ -4,7 +4,7 @@ import Logo from './logo'
 import { BoxSvgType } from '../common/types'
 
 type Props = {
-  setMenuOpen?: (arg: boolean) => void
+  setMenuOpen: (arg: boolean) => void
 }
 const SvgBox = Box as any as (props: BoxSvgType) => JSX.Element
 
@@ -115,7 +115,7 @@ const Header = ({ setMenuOpen }: Props) => {
           }}
         >
           <Button
-            onClick={e => {
+            onClick={() => {
               setColorMode(colorMode === 'default' ? 'dark' : 'default')
             }}
             sx={{

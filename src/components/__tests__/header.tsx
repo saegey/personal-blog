@@ -14,11 +14,13 @@ import { theme } from './__test-utils__'
 
 describe('Header', () => {
   it('renders', () => {
-    const json = renderer.create(
+    const json = renderer
+      .create(
         <ThemeProvider theme={theme}>
-          <Header setMenuOpen={jest.fn()}/>
+          <Header setMenuOpen={jest.fn()} />
         </ThemeProvider>
-      ).toJSON()
+      )
+      .toJSON()
     expect(json).toMatchSnapshot()
   })
 })
