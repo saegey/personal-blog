@@ -1,4 +1,5 @@
 import { Theme } from 'theme-ui'
+import { darken, lighten } from '@theme-ui/color'
 
 // example theme file
 // @refresh reset
@@ -47,11 +48,11 @@ const theme: Theme = {
       color: 'text',
     },
     hr: {
-      color: 'dividerColor',
+      color: 'backgroundEmDark',
     },
     p: {
       fontFamily: 'serif',
-      lineHeight: '1.8',
+      lineHeight: '1.5',
       fontSize: [16, 16, 17],
       letterSpacing: '.4px',
       fontWeight: '400',
@@ -65,7 +66,7 @@ const theme: Theme = {
     },
     li: {
       fontFamily: 'serif',
-      lineHeight: '2',
+      lineHeight: '1.5',
       letterSpacing: '.4px',
       fontSize: [16, 18, 18],
       paddingLeft: '10px',
@@ -274,6 +275,8 @@ const theme: Theme = {
     muted: '#f8f9faff',
     mutedText: '#495057ff',
     background: '#fff',
+    backgroundEm: darken('background', 0.06),
+    backgroundEmDark: darken('background', 0.1),
     graphGrid: '#e9ecefff',
     graphFill: '#495057ff',
     primary: colors.sonicSilver,
@@ -295,7 +298,10 @@ const theme: Theme = {
         dividerColor: colors.sonicSilver,
         text: colors.cultured,
         mutedText: '#6c757dff',
+        graphFill: colors.cultured,
         background: colors.eerieBlack,
+        backgroundEm: lighten('background', 0.06),
+        backgroundEmDark: lighten('background', 0.1),
         muted: colors.eerieBlack,
         cardBackground: colors.onyx,
         primary: colors.gainsboro,

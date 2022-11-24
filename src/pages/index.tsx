@@ -75,7 +75,7 @@ export const pageQuery = graphql`
           title
           type
           location
-          date(formatString: "YYYY MMMM DD")
+          date(formatString: "MMM DD, YYYY")
           tags
           headerImage {
             childImageSharp {
