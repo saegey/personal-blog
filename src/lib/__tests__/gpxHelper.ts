@@ -3,6 +3,15 @@ import {
   calcPedalBreakdown,
   timeInRed,
   totalWattsOverFtp,
+  dateDiff,
+  downsampleElevation,
+  calcPowerZoneBuckets,
+  calcNormalizedPower,
+  calcPowerSlices,
+  calcMatchesBurned,
+  calcBestPowers,
+  calcElevationGain,
+  calcStoppage,
 } from '../gpxHelper'
 
 describe('GpxHelper', () => {
@@ -16,6 +25,167 @@ describe('GpxHelper', () => {
       { powerHigh: 121, powerLow: 106, title: 'VO2max', zone: 5 },
       { powerHigh: 0, powerLow: 121, title: 'Anaerobic Capacity', zone: 6 },
     ])
+  })
+
+  describe('dateDiff', () => {
+    it('returns time between two dates', () => {
+      expect(
+        dateDiff(
+          new Date('1995-12-17T03:24:00'),
+          new Date('1995-12-17T03:25:00')
+        )
+      ).toEqual({
+        days: 0.0006944444444444445,
+        hours: 0.016666666666666666,
+        minutes: 1,
+        seconds: 60,
+      })
+    })
+  })
+
+  describe('downsampleElevation', () => {
+    it('decreases the number of points in the array', () => {
+      expect(
+        downsampleElevation(
+          [
+            [0, 1, 1],
+            [1, 1, 2],
+            [2, 1, 3],
+            [3, 1, 4],
+          ],
+          2
+        )
+      ).toEqual([
+        { x: 0, y: '1' },
+        { x: 2, y: '3' },
+      ])
+    })
+  })
+
+  describe('calcPowerZoneBuckets', () => {
+    it('sums power into buckets by athletes power zones', () => {
+      expect(
+        calcPowerZoneBuckets({
+          zones: [
+            { powerLow: 0, powerHigh: 100, title: 'recovery' },
+            { powerLow: 101, powerHigh: 200, title: 'endurance' },
+          ],
+          powers: [0, 50, 200, 250, 100],
+        })
+      ).toEqual([3, 2])
+    })
+  })
+
+  describe('calcNormalizedPower', () => {
+    it('calcs normalized power from array of power numbers', () => {
+      expect(
+        calcNormalizedPower([
+          0,
+          200,
+          100,
+          250,
+          300,
+          200,
+          225,
+          200,
+          200,
+          225,
+          100,
+          200,
+          300,
+          200,
+          null,
+          100,
+          225,
+          200,
+          500,
+          400,
+          300,
+          200,
+          300,
+          100,
+          200,
+        ])
+      ).toEqual(174.16666666666666)
+    })
+  })
+
+  describe('calcPowerSlices', () => {
+    it('creates sums for all lengths in array', () => {
+      expect(
+        calcPowerSlices([200, 300, 300, 400, 100, 500, 300, 200, 300], 4)
+      ).toEqual([1100, 1100, 1200, 1300, 1300, 1300])
+    })
+  })
+
+  describe('calcMatchesBurned', () => {
+    it('returns array of objects of detail info of time over ftp', () => {
+      expect(
+        calcMatchesBurned(
+          [0, 100, 200, 300, 400, 500],
+          [
+            new Date('1995-12-17T03:24:00'),
+            new Date('1995-12-17T03:24:01'),
+            new Date('1995-12-17T03:24:02'),
+            new Date('1995-12-17T03:24:03'),
+            new Date('1995-12-17T03:24:04'),
+            new Date('1995-12-17T03:24:05'),
+          ]
+        )
+      ).toEqual([
+        {
+          averagePower: 400,
+          index: 3,
+          startTime: new Date('1995-12-17T03:24:03'),
+          totalJoules: 1200,
+          totalTime: 3,
+          vals: [300, 400, 500],
+        },
+      ])
+    })
+  })
+
+  describe('calcBestPowers', () => {
+    it('should return power numbers', () => {
+      expect(
+        calcBestPowers([1, 2, 3, 4, 5], [100, 200, 200, 0, 500], true)
+      ).toEqual({ '1': 500, '2': 350, '3': 300, '4': 250, entire: 250 })
+    })
+  })
+
+  describe('calcElevationGain', () => {
+    it('should calc elevation gain of a array of coordinates', () => {
+      expect(
+        calcElevationGain([
+          [0, 0, 0],
+          [1, 1, 1],
+          [2, 2, 2],
+          [3, 3, 3],
+          [3, 3, 2],
+        ])
+      ).toEqual(3)
+    })
+  })
+
+  describe('calcStoppage', () => {
+    it('should return time of seconds when not moving', () => {
+      expect(
+        calcStoppage(
+          [
+            [0, 0, 0],
+            [1, 1, 1],
+            [2, 2, 2],
+            [3, 3, 3],
+          ],
+          [
+            new Date('1995-12-17T03:24:00'),
+            new Date('1995-12-17T03:24:01'),
+            new Date('1995-12-17T03:24:05'),
+            new Date('1995-12-17T03:24:06'),
+          ]
+        )
+      ).toEqual(4)
+    })
   })
 
   describe('calcPedalBreakdown', () => {

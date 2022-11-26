@@ -16,7 +16,7 @@ export const formatTime = (value: number) => {
 }
 
 type GenerateTickValueProps = {
-  data: [{ x: number; y: number }]
+  data: Array<{ x: number; y: number }>
   intervalSecs: number
 }
 
@@ -32,40 +32,6 @@ export const generateTimeTickValues = ({
     currentTick += intervalSecs
     ticks.push(currentTick)
   }
-  return ticks
-}
-
-type GenerateElevationTickValueProps = {
-  data: [{ x: number; y: number }]
-  intervalSecs: number
-  unit: string
-}
-
-export const generateElevatioinTickValues = ({
-  data,
-  intervalSecs,
-  unit,
-}: GenerateElevationTickValueProps) => {
-  const max =
-    unit === 'metric'
-      ? Math.max(...data.map(o => o.y))
-      : Math.max(...data.map(o => o.y)) * 3.280839895
-  const min =
-    unit === 'metric'
-      ? Math.min(...data.map(o => o.y))
-      : Math.min(...data.map(o => o.y)) * 3.280839895
-
-  let currentTick = (Math.floor(min / 1000) + 1) * 1000
-  const ticks = []
-
-  while (currentTick < max) {
-    if (currentTick < max) {
-      ticks.push(currentTick)
-    }
-    currentTick += intervalSecs
-  }
-  ticks.push(currentTick)
-
   return ticks
 }
 

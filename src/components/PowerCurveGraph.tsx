@@ -8,7 +8,7 @@ interface PowerCurveGraphProps extends GraphProps {
   yAxes: Array<Array<Number>>
   xAxes: Array<Array<Number>>
   yScaleMax: number
-	ftp: number
+  ftp: number
 }
 
 const PowerCurveGraph = ({
@@ -16,7 +16,7 @@ const PowerCurveGraph = ({
   yAxes,
   xAxes,
   yScaleMax = 1000,
-	ftp
+  ftp,
 }: PowerCurveGraphProps) => {
   const yTicks = useResponsiveValue(yAxes)
   const xTicks = useResponsiveValue(xAxes)
@@ -44,9 +44,9 @@ const PowerCurveGraph = ({
           axis: 'y',
           value: ftp,
           lineStyle: {
-						stroke: theme.colors?.marker,
-						strokeWidth: 1,
-					},
+            stroke: theme.colors?.marker,
+            strokeWidth: 1,
+          },
           legend: `FTP - ${ftp}w`,
           textStyle: {
             fontSize: 14,
@@ -66,7 +66,7 @@ const PowerCurveGraphWrapper = ({
   yAxes,
   xAxes,
   yScaleMax,
-	ftp
+  ftp,
 }: PowerCurveGraphProps) => {
   return (
     <Box sx={{ height: ['200px', '300px', '300px'] }}>
@@ -75,7 +75,7 @@ const PowerCurveGraphWrapper = ({
         yAxes={yAxes}
         xAxes={xAxes}
         yScaleMax={yScaleMax}
-				ftp={ftp}
+        ftp={ftp}
       />
     </Box>
   )
