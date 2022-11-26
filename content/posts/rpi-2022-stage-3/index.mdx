@@ -66,7 +66,22 @@ There were still to larger groups ahead that I couldn't bridge to and on the des
 
 <ElevationGraph
   data={props.data.mdx.gpxData.fields.elevationData}
-  downsampleRate={6}
+  axisLeftTickValues={{
+    imperial: [
+      [6500, 7500, 8500],
+      [6000, 6500, 7000, 7500, 8000, 8500],
+      [6000, 6500, 7000, 7500, 8000, 8500],
+    ],
+    metric: [
+      [2000, 2250, 2500],
+      [1800, 2000, 2200, 2400, 2600],
+      [1800, 2000, 2200, 2400, 2600],
+    ],
+  }}
+  areaBaselineValue={{ imperial: 6000, metric: 1800 }}
+  yScaleMin={{ imperial: 6000, metric: 1800 }}
+  yScaleMax={{ imperial: 8600, metric: 2600 }}
+  downsampleRate={4}
 />
 <Divider />
 
@@ -96,12 +111,27 @@ Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis 
 
 ## Power Curve
 
-<PowerCurveGraph data={props.data.mdx.gpxData.fields.powerCurve} />
+<PowerCurveGraph
+  data={props.data.mdx.gpxData.fields.powerCurve}
+  yAxes={[
+    [100, 300, 500, 700, 900],
+    [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    [100, 200, 300, 400, 500, 600, 700, 800, 900],
+  ]}
+  xAxes={[
+    [5, 60, 600, 3600, 14400],
+    [1, 5, 10, 60, 300, 1200, 3600, 7200, 21600],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 21600],
+  ]}
+  yScaleMax={800}
+  ftp={props.data.mdx.gpxData.fields.currentFtp}
+/>
 
 <Box sx={{ paddingBottom: '20px' }}>
   <PortraitImage
     image={props.data.mdx.frontmatter.images[3]}
     widthPercentage="45%"
+    caption="Descending at the end of the race. Photo / FinisherPix"
   />
 </Box>
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man

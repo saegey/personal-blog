@@ -68,7 +68,21 @@ single-origin coffee portland do intelligentsia.
 
 ## Power Analysis
 
-<PowerCurveGraph data={props.data.mdx.gpxData.fields.powerCurve} />
+<PowerCurveGraph
+  data={props.data.mdx.gpxData.fields.powerCurve}
+  yAxes={[
+    [200, 400, 600, 800],
+    [200, 400, 600, 800],
+    [200, 400, 600, 800],
+  ]}
+  xAxes={[
+    [1, 10, 60, 600, 3600, 14400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400],
+  ]}
+  yScaleMax={800}
+  ftp={props.data.mdx.gpxData.fields.currentFtp}
+/>
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
@@ -93,7 +107,25 @@ seitan godard DIY, fugiat same austin single-origin coffee portland do intellige
 
 ## Elevation Profile
 
-<ElevationGraph data={props.data.mdx.gpxData.fields.elevationData} />
+<ElevationGraph
+  data={props.data.mdx.gpxData.fields.elevationData}
+  axisLeftTickValues={{
+    imperial: [
+      [5000, 6000, 7000, 8000, 9000],
+      [5000, 6000, 7000, 8000, 9000],
+      [5000, 6000, 7000, 8000, 9000],
+    ],
+    metric: [
+      [1500, 2000, 2500],
+      [1750, 2000, 2250, 2500, 2750],
+      [1750, 2000, 2250, 2500, 2750],
+    ],
+  }}
+  areaBaselineValue={{ imperial: 5000, metric: 1500 }}
+  yScaleMin={{ imperial: 5000, metric: 1500 }}
+  yScaleMax={{ imperial: 9000, metric: 2700 }}
+  downsampleRate={3}
+/>
 <Divider />
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.

@@ -46,7 +46,7 @@ I was looking forward to this venue when I first saw the race schedule released 
     'Avg Heart Rate',
     'Distance',
     'Elapsed Time',
-    'Elevation Gain',
+    'Time in Red',
     'Avg Temperature',
     'Normalized Power',
     'Avg Cadence',
@@ -105,7 +105,21 @@ On the third lap I learned that if I gonna make pass I better be ready to speed 
 
 ## Power Analysis
 
-<PowerCurveGraph data={props.data.mdx.gpxData.fields.powerCurve} />
+<PowerCurveGraph
+  data={props.data.mdx.gpxData.fields.powerCurve}
+  yAxes={[
+    [200, 400, 600, 800],
+    [200, 400, 600, 800],
+    [200, 400, 600, 800],
+  ]}
+  yScaleMax={800}
+  xAxes={[
+    [1, 5, 10, 60, 600, 2400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 2400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 2400],
+  ]}
+  ftp={props.data.mdx.gpxData.fields.currentFtp}
+/>
 
 My friends Chris from Space Cadets was either close on my wheel or a few spots back the whole race. On the final lap he made a pass on the gravel climb and I was determined to match it.
 

@@ -110,9 +110,9 @@ const theme: Theme = {
     serif: '"Source Serif Pro", serif',
     mono: 'Inconsolata',
   },
-  sizes: {
-    container: 768,
-  },
+  // sizes: {
+  //   container: 768,
+  // },
   cards: {
     primary: {
       padding: 0,
@@ -280,11 +280,11 @@ const theme: Theme = {
     graphGrid: '#e9ecefff',
     graphFill: '#495057ff',
     primary: colors.sonicSilver,
-    marker: colors.sonicSilver,
+    marker: darken('background', 0.4),
     headerColor: '#f8f9faff',
     // headerForeground: "rgb(255, 116, 139)",
     headerForeground: colors.onyx,
-    menuBackground: colors.lightGray,
+    menuBackground: darken('background', 0.1),
     cardBackground: colors.cultured,
     blockquoteBg: '#e9ecefff',
     activeMenuLink: colors.cadetBlueCrayola,
@@ -306,7 +306,7 @@ const theme: Theme = {
         cardBackground: colors.onyx,
         primary: colors.gainsboro,
         marker: colors.cultured,
-        menuBackground: colors.eerieBlack,
+        menuBackground: lighten('background', 0.03),
         blockquoteBg: colors.davysGrey,
         headerForeground: '#ced4daff',
         highlightColor: '#6c757dff',

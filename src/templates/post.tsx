@@ -1,4 +1,4 @@
-import { Text, Flex, Box, Divider, Link } from 'theme-ui'
+import { Text, Flex, Box, Divider, Link, Container } from 'theme-ui'
 import { graphql, PageProps } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
@@ -39,7 +39,7 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
   const { title, date, location, type } = data.mdx.frontmatter
 
   return (
-    <>
+    <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 768 }}>
       <SafariStyle />
       <Flex sx={{ marginBottom: '20px' }}>
         <Text variant="postType">{type}</Text>
@@ -55,7 +55,7 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
         </Text>
       </Flex>
       <MDXProvider components={shortcodes}>{children}</MDXProvider>
-    </>
+    </Container>
   )
 }
 
@@ -128,9 +128,11 @@ export const query = graphql`
             powerLow
             powerHigh
           }
+					currentFtp
           normalizedPower
           elevationGain
           stoppedTime
+          timeInRed
           distance
           powerData
           heartRateData

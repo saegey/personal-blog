@@ -114,6 +114,22 @@ export const calcPedalBreakdown = (powers: number[]) => {
   }
 }
 
+type timeInRedType = {
+  powers: number[]
+  ftp: number
+}
+export const timeInRed = ({ powers, ftp }: timeInRedType) => {
+  let secsInRed = 0
+  powers.map(p => (p > ftp ? (secsInRed += 1) : ''))
+  return secsInRed
+}
+
+export const totalWattsOverFtp = ({ powers, ftp }: timeInRedType) => {
+  let total = 0
+  powers.map(p => (p > ftp ? (total += p - ftp) : ''))
+  return total
+}
+
 export const calcPowerSlices = (powers: number[], length: number) => {
   const powerSums: number[] = []
   for (var i = 0; i < powers.length; i++) {

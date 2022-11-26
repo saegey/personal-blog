@@ -10,7 +10,7 @@ const BlogIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data.allMdx.nodes
 
   return (
-    <>
+    <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 768 }}>
       <SafariStyle />
       <Container sx={{ padding: '0px' }}>
         <Box as="ol" sx={{ p: 0, marginTop: '0px' }}>
@@ -26,7 +26,7 @@ const BlogIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
           })}
         </Box>
       </Container>
-    </>
+    </Container>
   )
 }
 

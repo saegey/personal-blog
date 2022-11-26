@@ -1,17 +1,26 @@
-import { useThemeUI, Box } from 'theme-ui'
+import { Box, useThemeUI } from 'theme-ui'
 import { useResponsiveValue } from '@theme-ui/match-media'
 
 import LineGraph from './LineGraph'
 import { GraphProps } from '../common/types'
 
-const PowerCurveGraph = ({ data }: GraphProps) => {
-  const { theme } = useThemeUI()
+interface PowerCurveGraphProps extends GraphProps {
+  yAxes: Array<Array<Number>>
+  xAxes: Array<Array<Number>>
+  yScaleMax: number
+	ftp: number
+}
 
-  const yAxes = useResponsiveValue([
-    [100, 300, 500, 700],
-    [100, 200, 300, 400, 500, 600, 700],
-    [100, 200, 300, 400, 500, 600, 700],
-  ])
+const PowerCurveGraph = ({
+  data,
+  yAxes,
+  xAxes,
+  yScaleMax = 1000,
+	ftp
+}: PowerCurveGraphProps) => {
+  const yTicks = useResponsiveValue(yAxes)
+  const xTicks = useResponsiveValue(xAxes)
+  const { theme } = useThemeUI()
 
   return (
     <LineGraph
@@ -23,23 +32,51 @@ const PowerCurveGraph = ({ data }: GraphProps) => {
         },
       ]}
       yScaleMin={0}
-      yScaleMax={1000}
+      yScaleMax={yScaleMax}
       xScaleType={'log'}
       lineWidth={2}
       enableArea={false}
       areaBaselineValue={0}
-      axisBottomTickValues={[
-        1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 21600,
+      axisBottomTickValues={xTicks}
+      axisLeftTickValues={yTicks}
+      markers={[
+        {
+          axis: 'y',
+          value: ftp,
+          lineStyle: {
+						stroke: theme.colors?.marker,
+						strokeWidth: 1,
+					},
+          legend: `FTP - ${ftp}w`,
+          textStyle: {
+            fontSize: 14,
+            fontFamily: theme.fonts?.body,
+            fill: theme.colors?.marker,
+            fontWeight: '400',
+          },
+          // legendOrientation: 'vertical',
+        },
       ]}
-      axisLeftTickValues={[0, 200, 400, 600, 800, 1000]}
     />
   )
 }
 
-const PowerCurveGraphWrapper = ({ data }: GraphProps) => {
+const PowerCurveGraphWrapper = ({
+  data,
+  yAxes,
+  xAxes,
+  yScaleMax,
+	ftp
+}: PowerCurveGraphProps) => {
   return (
     <Box sx={{ height: ['200px', '300px', '300px'] }}>
-      <PowerCurveGraph data={data} />
+      <PowerCurveGraph
+        data={data}
+        yAxes={yAxes}
+        xAxes={xAxes}
+        yScaleMax={yScaleMax}
+				ftp={ftp}
+      />
     </Box>
   )
 }

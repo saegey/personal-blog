@@ -22,6 +22,7 @@ type Props = {
       seconds: number
     }
     stoppedTime: number
+    timeInRed: number
   }
   selectedFields: string[]
 }
@@ -40,6 +41,7 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
           stoppedTime,
           powerAnalysis,
           cadenceAnalysis,
+          timeInRed,
         } = data
 
         const items = [
@@ -105,6 +107,10 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
           {
             title: 'Avg Cadence',
             value: cadenceAnalysis ? `${cadenceAnalysis.entire} rpm` : 'N/A',
+          },
+          {
+            title: 'Time in Red',
+            value: `${new Date(timeInRed * 1000).toISOString().substr(11, 8)}`,
           },
         ]
 

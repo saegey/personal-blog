@@ -14,6 +14,7 @@ import { Feature } from 'geojson'
 
 import {
   calcBestPowers,
+  timeInRed,
   calcElevationGain,
   calcNormalizedPower,
   calcStoppage,
@@ -22,6 +23,7 @@ import {
   calcMatchesBurned,
   calcPowerZones,
   calcPowerZoneBuckets,
+  totalWattsOverFtp,
 } from '../lib/gpxHelper'
 
 const defaultTimeWindows = [5, 10, 15, 30, 60, 120, 300, 600]
@@ -336,6 +338,18 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
                 name: `powerZones`,
                 node,
                 value: zones,
+              })
+
+              createNodeField({
+                name: `timeInRed`,
+                node,
+                value: timeInRed({ powers, ftp }),
+              })
+
+              createNodeField({
+                name: `totalWattsOverFtp`,
+                node,
+                value: totalWattsOverFtp({ powers, ftp }),
               })
 
               createNodeField({

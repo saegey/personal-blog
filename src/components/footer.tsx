@@ -1,6 +1,25 @@
 import { Text, Link, Box } from 'theme-ui'
+import { useStaticQuery, graphql } from 'gatsby'
 
 const Footer = () => {
+  const data = useStaticQuery(graphql`
+    query HeaderQuery {
+      site {
+        siteMetadata {
+          title
+          social {
+            twitter
+            instagram
+            github
+          }
+        }
+      }
+    }
+  `)
+
+  const { instagram, github, twitter } = data.site.siteMetadata.social
+  const title = data.site.siteMetadata.title
+
   return (
     <footer
       sx={{
@@ -26,14 +45,15 @@ const Footer = () => {
             fontSize: '2',
             marginBottom: '10px',
             letterSpacing: '1px',
+            textTransform: 'uppercase',
           }}
         >
-          SAEGEY
+          {title}
         </Text>
 
         <Box>
           <Link
-            href="http://instagram.com/saegey"
+            href={`http://instagram.com/${instagram}`}
             sx={{
               textDecoration: 'underline',
               textUnderlineOffset: '2.5px',
@@ -44,7 +64,7 @@ const Footer = () => {
             Instagram
           </Link>
           <Link
-            href="http://github.com/saegey"
+            href={`http://github.com/${github}`}
             sx={{
               textDecoration: 'underline',
               textUnderlineOffset: '2.5px',
@@ -55,7 +75,7 @@ const Footer = () => {
             Github
           </Link>
           <Link
-            href="http://twitter.com/saegey"
+            href={`http://twitter.com/${twitter}`}
             sx={{
               textDecoration: 'underline',
               textUnderlineOffset: '2.5px',

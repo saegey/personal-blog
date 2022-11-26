@@ -52,7 +52,21 @@ Enamel pin letterpress live-edge lyft schlitz kale chips austin DSA slow-carb ev
 <Divider sx={{ marginBottom: '20px' }} />
 ## Power Curve
 
-<PowerCurveGraph data={props.data.mdx.gpxData.fields.powerCurve} />
+<PowerCurveGraph
+  data={props.data.mdx.gpxData.fields.powerCurve}
+  yAxes={[
+    [200, 400, 600, 800],
+    [200, 400, 600, 800],
+    [200, 400, 600, 800],
+  ]}
+  yScaleMax={900}
+  xAxes={[
+    [1, 10, 60, 600, 3600, 32400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
+  ]}
+  ftp={props.data.mdx.gpxData.fields.currentFtp}
+/>
 <Divider sx={{ marginBottom: '20px' }} />
 
 Disrupt portland organic, flannel tumeric offal flexitarian palo santo pug lo-fi
@@ -98,7 +112,27 @@ Selvage church-key direct trade live-edge. Kitsch taxidermy beard vibecession lu
 
 Polaroid bitters dreamcatcher mustache migas locavore artisan ethical vice sartorial VHS microdosing gluten-free. Bespoke fashion axe raclette offal 90's viral affogato. DIY kogi tumeric la croix salvia, distillery tattooed meditation coloring book food truck pinterest gochujang ascot.
 
-<ElevationGraph data={props.data.mdx.gpxData.fields.elevationData} />
+## Elevation Profile
+
+<ElevationGraph
+  data={props.data.mdx.gpxData.fields.elevationData}
+  axisLeftTickValues={{
+    imperial: [
+      [3000, 5000, 7000],
+      [500, 1000, 1500, 2000, 2500],
+      [500, 1000, 1500, 2000, 2500],
+    ],
+    metric: [
+      [100, 300, 500, 700],
+      [100, 200, 300, 400, 500, 600, 700],
+      [100, 200, 300, 400, 500, 600, 700],
+    ],
+  }}
+  areaBaselineValue={{ imperial: 0, metric: 0 }}
+  yScaleMin={{ imperial: 0, metric: 0 }}
+  yScaleMax={{ imperial: 2500, metric: 700 }}
+  downsampleRate={6}
+/>
 
 Meditation YOLO venmo butcher viral DIY ennui kinfolk. Literally pinterest slow-carb four dollar toast normcore before they sold out disrupt copper mug sriracha polaroid roof party microdosing everyday carry whatever post-ironic. Freegan small batch salvia tousled quinoa.
 

@@ -1,5 +1,4 @@
-import * as React from 'react'
-import { Box, Flex } from 'theme-ui'
+import { Box, Flex, Container } from 'theme-ui'
 import { graphql } from 'gatsby'
 import { StaticImage } from 'gatsby-plugin-image'
 
@@ -8,7 +7,7 @@ import Seo from '../components/seo'
 
 const AboutIndex = () => {
   return (
-    <>
+    <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 768 }}>
       <SafariStyle />
       <Box>
         <Flex sx={{ width: '100%' }}>
@@ -69,7 +68,7 @@ const AboutIndex = () => {
           schlitz pitchfork tattooed.
         </p>
       </Box>
-    </>
+    </Container>
   )
 }
 

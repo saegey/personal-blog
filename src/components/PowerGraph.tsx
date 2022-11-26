@@ -39,7 +39,7 @@ const PowerGraph = ({
           fontSize: 14,
           fontFamily: theme.fonts?.body,
           fill: theme.colors?.marker,
-          fontWeight: '600',
+          fontWeight: '400',
           transform: 'translate(-10px, -10px)',
           // textTransform: "uppercase"
         },

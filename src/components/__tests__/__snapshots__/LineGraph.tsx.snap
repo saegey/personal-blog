@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LineGraph renders 1`] = `
+<div
+  style={
+    {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+/>
+`;

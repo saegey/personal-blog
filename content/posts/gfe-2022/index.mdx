@@ -42,8 +42,22 @@ Edison bulb intelligentsia godard green juice readymade bodega boys. Before they
 
 ## Power Curve
 
-<PowerCurveGraph data={props.data.mdx.gpxData.fields.powerCurve} />
-
+<PowerCurveGraph
+  data={props.data.mdx.gpxData.fields.powerCurve}
+  yAxes={[
+    [100, 300, 500, 700],
+    [100, 300, 500, 700],
+    [100, 300, 500, 700],
+  ]}
+  yScaleMin={100}
+  yScaleMax={800}
+  xAxes={[
+    [1, 10, 60, 600, 3600, 32400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400],
+  ]}
+  ftp={props.data.mdx.gpxData.fields.currentFtp}
+/>
 <Divider />
 
 Single-origin coffee hell of fam lyft tumblr vibecession fingerstache cray kogi. Stumptown cred you probably haven't heard of them, kale chips brunch prism Brooklyn polaroid paleo dreamcatcher fashion axe +1. Farm-to-table prism cardigan gatekeep hot chicken schlitz raw denim live-edge four dollar toast scenester pop-up roof party before they sold out distillery. Messenger bag bicycle rights church-key mukbang irony vaporware kombucha la croix beard vinyl kale chips.
@@ -52,7 +66,25 @@ Single-origin coffee hell of fam lyft tumblr vibecession fingerstache cray kogi.
 
 ## Elevation Profile
 
-<ElevationGraph data={props.data.mdx.gpxData.fields.elevationData} />
+<ElevationGraph
+  data={props.data.mdx.gpxData.fields.elevationData}
+  axisLeftTickValues={{
+    imperial: [
+      [3000, 5000, 7000],
+      [2000, 3000, 4000, 5000, 6000, 7000],
+      [2000, 3000, 4000, 5000, 6000, 7000],
+    ],
+    metric: [
+      [500, 2500],
+      [500, 1000, 1500, 2000, 2500],
+      [500, 1000, 1500, 2000, 2500],
+    ],
+  }}
+  areaBaselineValue={{ imperial: 1500, metric: 500 }}
+  yScaleMin={{ imperial: 1500, metric: 500 }}
+  yScaleMax={{ imperial: 7500, metric: 2500 }}
+  downsampleRate={4}
+/>
 
 <Divider />
 

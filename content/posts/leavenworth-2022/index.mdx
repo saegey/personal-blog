@@ -48,8 +48,21 @@ Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Cruc
 
 ## Power Curve
 
-<PowerCurveGraph data={props.data.mdx.gpxData.fields.powerCurve} />
-
+<PowerCurveGraph
+  data={props.data.mdx.gpxData.fields.powerCurve}
+  yAxes={[
+    [100, 300, 500, 700],
+    [100, 300, 500, 700],
+    [100, 300, 500, 700],
+  ]}
+  xAxes={[
+    [1, 10, 60, 600, 3600, 21600],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 21600],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 21600],
+  ]}
+  yScaleMax={700}
+  ftp={props.data.mdx.gpxData.fields.currentFtp}
+/>
 <Divider />
 
 Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
@@ -73,6 +86,7 @@ retro butcher dolore jean shorts viral.
   data={props.data.mdx.results.fields.data}
   numbersToHighlight={[0, 1, 2, 4, 9, 11, 14, 15, 25, 83]}
   distance={props.data.mdx.gpxData.fields.distance}
+  racerName={'Adam Saegebarth'}
 />
 
 <Divider />
@@ -83,11 +97,36 @@ Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis 
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid seral.
 
-<ElevationGraph data={props.data.mdx.gpxData.fields.elevationData} />
+<ElevationGraph
+  data={props.data.mdx.gpxData.fields.elevationData}
+  axisLeftTickValues={{
+    imperial: [
+      [1000, 2000, 3000, 4000],
+      [500, 1500, 2500, 3500, 4500],
+      [500, 1500, 2500, 3500, 4500],
+    ],
+    metric: [
+      [250, 750, 1250],
+      [250, 500, 750, 1000, 1250],
+      [250, 500, 750, 1000, 1250],
+    ],
+  }}
+  areaBaselineValue={{ imperial: 0, metric: 0 }}
+  yScaleMin={{ imperial: 0, metric: 0 }}
+  yScaleMax={{ imperial: 4500, metric: 1400 }}
+  downsampleRate={3}
+/>
+Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix
+seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
 
-Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
-
-<LandscapeImage image={props.data.mdx.frontmatter.images[1]} />
+<PortraitImage
+  image={props.data.mdx.frontmatter.images[1]}
+  widthPercentage={'70%'}
+  caption={
+    'Climbing up the first of two big climbs.  I was able to stay near the front group till the last little bit of the climb'
+  }
+/>
+<Divider sx={{ marginY: '20px' }} />
 
 ## The Good
 
@@ -97,6 +136,8 @@ Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Cruc
 4. Overall result was good and lots of racers within 30 secs ahead of me so I'm getting closer to top twenty finish.
 5. Switched my gear ratio from 40x17 to 36x17 and that worked well for the profile of this course. I only really spun out on the finish line and the slight gravel road descent leading up to the climb.
 6. Mud tires (Specialized Terra Pro) provided good traction in corners.
+
+<Divider sx={{ marginY: '20px' }} />
 
 ## Needs Improvement
 

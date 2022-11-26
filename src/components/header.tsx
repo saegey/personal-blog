@@ -18,7 +18,6 @@ const Header = ({ setMenuOpen }: Props) => {
         background: 'headerColor',
         top: '-16px',
         zIndex: 1,
-        // height: '80px',
         '::before': {
           content: '""',
           display: 'block',
@@ -28,11 +27,8 @@ const Header = ({ setMenuOpen }: Props) => {
           top: '32px',
         },
         '::after': {
-          // background:
-          //   'linear-gradient(white 10%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.4) 70%, transparent)',
           background: 'headerColor',
           content: '""',
-          // display: 'block',
           height: '16px',
           top: 0,
           position: 'sticky',

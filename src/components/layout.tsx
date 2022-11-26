@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Container } from 'theme-ui'
 import Helmet from 'react-helmet'
 
 import Menu from './menu'
@@ -26,9 +25,7 @@ const Layout = ({ children }: CardProps) => {
       >
         <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <Header setMenuOpen={setMenuOpen} />
-        <main sx={{ bg: 'muted' }}>
-          <Container p={['20px', '20px', '32px']}>{children}</Container>
-        </main>
+        <main sx={{ bg: 'muted' }}>{children}</main>
         <Footer />
       </div>
     </>
