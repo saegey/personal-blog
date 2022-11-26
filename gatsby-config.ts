@@ -8,7 +8,7 @@ require('ts-node').register({
 module.exports = {
   pathPrefix: `/personal-blog`,
   siteMetadata: {
-    title: `Adam Saegebarth`,
+    title: `Saegey`,
     author: {
       name: `Adam Saegebarth`,
       summary: `who lives in Seattle and likes to ride his bike.`,

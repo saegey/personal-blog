@@ -16,6 +16,7 @@
     "@nivo/core": "^0.80.0",
     "@nivo/line": "^0.80.0",
     "@testing-library/react": "^13.4.0",
+    "@theme-ui/color": "^0.15.4",
     "@theme-ui/match-media": "^0.15.4",
     "@theme-ui/mdx": "^0.15.4",
     "@theme-ui/presets": "^0.15.4",

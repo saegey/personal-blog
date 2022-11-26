@@ -59,4 +59,7 @@ export const theme = makeTheme({
       fontWeight: 'normal',
     },
   },
+  fonts: {
+    body: 'bodyfont',
+  },
 })

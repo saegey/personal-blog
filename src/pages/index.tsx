@@ -11,7 +11,7 @@ const BlogIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data.allMdx.nodes
 
   return (
-    <>
+    <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 768 }}>
       <SafariStyle />
       <Container sx={{ padding: '0px' }} bg="muted">
         <Box as="ol" sx={{ p: 0 }}>
@@ -28,7 +28,7 @@ const BlogIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
           })}
         </Box>
       </Container>
-    </>
+    </Container>
   )
 }
 
@@ -75,7 +75,7 @@ export const pageQuery = graphql`
           title
           type
           location
-          date(formatString: "YYYY MMMM DD")
+          date(formatString: "MMM DD, YYYY")
           tags
           headerImage {
             childImageSharp {

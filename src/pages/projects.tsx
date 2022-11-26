@@ -22,7 +22,10 @@ const ProjectsIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
     )
   }
   return (
-    <>
+    <Container
+      p={['20px', '20px', '32px']}
+      sx={{ maxWidth: 768, height: '100%' }}
+    >
       <SafariStyle />
       <Container sx={{ padding: '0px' }} bg="muted">
         <ol sx={{ p: 0 }}>
@@ -34,7 +37,7 @@ const ProjectsIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
           })}
         </ol>
       </Container>
-    </>
+    </Container>
   )
 }
 

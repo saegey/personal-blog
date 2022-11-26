@@ -73,7 +73,7 @@ export interface LineGraphProps {
   lineWidth: number
   colors?: string[]
   markers?: any
-  xScaleType: 'linear' | 'log' | 'symlog' | 'point'
+  xScaleType?: 'linear' | 'log' | 'symlog' | 'point'
 }
 
 export interface RaceImageType {

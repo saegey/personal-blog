@@ -54,7 +54,7 @@ The course is pretty tight with quite a bit of single track and plenty of gravel
     'Avg Heart Rate',
     'Distance',
     'Elapsed Time',
-    'Elevation Gain',
+    'Time in Red',
     'Avg Temperature',
     'Normalized Power',
     'Avg Cadence',
@@ -105,7 +105,20 @@ I felt as the laps went on I found a good flow and the sand run up didn't spike 
 
 ## Power Curve
 
-<PowerCurveGraph data={props.data.mdx.gpxData.fields.powerCurve} />
+<PowerCurveGraph
+  data={props.data.mdx.gpxData.fields.powerCurve}
+  yAxes={[
+    [200, 400, 600, 800, 1000],
+    [200, 400, 600, 800, 1000],
+    [200, 400, 600, 800, 1000],
+  ]}
+  xAxes={[
+    [1, 5, 10, 60, 600, 2400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 2400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 2400],
+  ]}
+  ftp={props.data.mdx.gpxData.fields.currentFtp}
+/>
 <Divider />
 
 Even though it wasn't my best race and I came away a little broken, it was nice to get another hard race effort in the legs in preparation for Woodland Park next week and get some good bike handling practice. My fitness level is not where I was wanting for this short CX season but I'm hoping I can find some before the end in SeaTac.

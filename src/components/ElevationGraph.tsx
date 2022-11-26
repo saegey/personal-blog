@@ -1,76 +1,104 @@
 import { Box } from 'theme-ui'
+import { useResponsiveValue, useBreakpointIndex } from '@theme-ui/match-media'
 
-import {
-  generateElevatioinTickValues,
-  generateTimeTickValues,
-} from '../lib/formatters'
+import { generateTimeTickValues } from '../lib/formatters'
 import { Coordinate, GraphProps } from '../common/types'
 import ThemeContext from '../context/ThemeContext'
 import LineGraph from '../components/LineGraph'
 
-const ElevationGraph = ({ data, downsampleRate = 1 }: GraphProps) => {
+interface ElevationGraphProps extends GraphProps {
+  axisLeftTickValues: { imperial: number[]; metric: number[] }
+  areaBaselineValue: { imperial: number; metric: number }
+  yScaleMin: { imperial: number; metric: number }
+  yScaleMax: { imperial: number; metric: number }
+}
+
+const ElevationGraph = ({
+  data,
+  downsampleRate = 1,
+  axisLeftTickValues,
+  areaBaselineValue,
+  yScaleMin,
+  yScaleMax,
+  context,
+}: ElevationGraphProps) => {
   const downSampledData: Coordinate[] = data.filter(
     n => Number(n.y) % downsampleRate == 0
   )
 
+  const yTicks =
+    context.unitOfMeasure === 'metric'
+      ? useResponsiveValue(axisLeftTickValues.metric)
+      : useResponsiveValue(axisLeftTickValues.imperial)
+
+  const yMax =
+    context.unitOfMeasure === 'metric' ? yScaleMax.metric : yScaleMax.imperial
+
   return (
-    <ThemeContext.Consumer>
-      {context => (
-        <Box
-          sx={{
-            height: ['150px', '100px', '150px'],
-            fontFamily: 'body',
-            marginY: '20px',
-          }}
-        >
-          <LineGraph
-            unit={context.unitOfMeasure === 'metric' ? 'meters' : 'feet'}
-            data={[
-              {
-                id: 'elevation',
-                data:
-                  context.unitOfMeasure === 'metric'
-                    ? downSampledData
-                    : downSampledData.map(d => ({
-                        x: d.x,
-                        y: (Number(d.y) * 3.280839895).toFixed(0),
-                      })),
-              },
-            ]}
-            yScaleMin={
+    <Box
+      sx={{
+        height: ['200px', '250px', '300px'],
+        fontFamily: 'body',
+        marginY: '20px',
+      }}
+    >
+      <LineGraph
+        unit={context.unitOfMeasure === 'metric' ? 'meters' : 'feet'}
+        data={[
+          {
+            id: 'elevation',
+            data:
               context.unitOfMeasure === 'metric'
-                ? Math.min(...data.map(o => o.y)) - 152.4
-                : Math.min(...data.map(o => o.y)) * 3.280839895 - 50
-            }
-            yScaleMax={
-              context.unitOfMeasure === 'metric'
-                ? Math.floor(Math.max(...data.map(o => o.y)) / 500) * 500 + 500
-                : (Math.floor(
-                    Math.max(...downSampledData.map(o => o.y)) / 500
-                  ) *
-                    500 +
-                    500) *
-                  3.280839895
-            }
-            areaBaselineValue={
-              context.unitOfMeasure === 'metric'
-                ? Math.min(...data.map(o => o.y)) - 152.4
-                : Math.min(...data.map(o => o.y)) * 3.280839895 - 50
-            }
-            axisBottomTickValues={generateTimeTickValues({
-              data: downSampledData,
-              intervalSecs: 3600,
-            })}
-            axisLeftTickValues={generateElevatioinTickValues({
-              data: downSampledData,
-              intervalSecs: context.unitOfMeasure === 'metric' ? 500 : 1000,
-              unit: context.unitOfMeasure,
-            })}
-          />
-        </Box>
-      )}
-    </ThemeContext.Consumer>
+                ? downSampledData
+                : downSampledData.map(d => ({
+                    x: d.x,
+                    y: (Number(d.y) * 3.280839895).toFixed(0),
+                  })),
+          },
+        ]}
+        yScaleMin={
+          context.unitOfMeasure === 'metric'
+            ? yScaleMin.metric
+            : yScaleMin.imperial
+        }
+        yScaleMax={yMax}
+        curve={'linear'}
+        areaBaselineValue={
+          context.unitOfMeasure === 'metric'
+            ? areaBaselineValue.metric
+            : areaBaselineValue.imperial
+        }
+        axisBottomTickValues={generateTimeTickValues({
+          data: downSampledData,
+          intervalSecs: 3600,
+        })}
+        axisLeftTickValues={yTicks}
+      />
+    </Box>
   )
 }
 
-export default ElevationGraph
+const ElevationGraphWrapper = ({
+  data,
+  downsampleRate = 1,
+  axisLeftTickValues,
+  areaBaselineValue,
+  yScaleMin,
+  yScaleMax,
+}: ElevationGraphProps) => (
+  <ThemeContext.Consumer>
+    {context => (
+      <ElevationGraph
+        data={data}
+        downsampleRate={downsampleRate}
+        axisLeftTickValues={axisLeftTickValues}
+        areaBaselineValue={areaBaselineValue}
+        yScaleMin={yScaleMin}
+        yScaleMax={yScaleMax}
+        context={context}
+      />
+    )}
+  </ThemeContext.Consumer>
+)
+
+export default ElevationGraphWrapper

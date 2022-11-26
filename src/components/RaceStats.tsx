@@ -16,7 +16,7 @@ const RaceStats = ({ items }: Props) => {
         gap={2}
         columns={[2, 2, 3]}
         sx={{
-          backgroundColor: ['', 'blockquoteBg', 'blockquoteBg'],
+          backgroundColor: ['', 'backgroundEm', 'backgroundEm'],
           paddingY: ['0px', '20px', '20px'],
           paddingX: ['0px', '20px', '20px'],
           marginBottom: '20px',

@@ -82,9 +82,26 @@ The temperature at 8am was cold so I opted to start with a shake dry jacket and 
 
 <Divider />
 
+## Elevation Profile
+
 <ElevationGraph
   data={props.data.mdx.gpxData.fields.elevationData}
-  downsampleRate={6}
+  axisLeftTickValues={{
+    imperial: [
+      [3000, 5000, 7000],
+      [2000, 3000, 4000, 5000, 6000, 7000],
+      [2000, 3000, 4000, 5000, 6000, 7000],
+    ],
+    metric: [
+      [500, 2500],
+      [500, 1000, 1500, 2000, 2500],
+      [500, 1000, 1500, 2000, 2500],
+    ],
+  }}
+  areaBaselineValue={{ imperial: 1500, metric: 500 }}
+  yScaleMin={{ imperial: 1500, metric: 500 }}
+  yScaleMax={{ imperial: 7500, metric: 2500 }}
+  downsampleRate={4}
 />
 
 <Divider />
@@ -207,7 +224,21 @@ At this point in the race, I am so ready to be done and I don't want to give up 
 
 ## Power Analysis
 
-<PowerCurveGraph data={props.data.mdx.gpxData.fields.powerCurve} />
+<PowerCurveGraph
+  data={props.data.mdx.gpxData.fields.powerCurve}
+  yAxes={[
+    [200, 400, 600, 800],
+    [200, 400, 600, 800],
+    [200, 400, 600, 800],
+  ]}
+  xAxes={[
+    [1, 10, 60, 600, 3600, 21600],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 21600],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 21600],
+  ]}
+  yScaleMax={600}
+  ftp={props.data.mdx.gpxData.fields.currentFtp}
+/>
 
 What this descent has is lots of washboard. I have learned the faster you take washboard the less noticeable it is and so I was trying to send it as much as possible. Austin blows past me so easily so I have a ways to go before because strong descender.
 
