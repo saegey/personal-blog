@@ -45,6 +45,7 @@ type PowerZoneBucketProps = {
   }>
   powers: number[]
 }
+
 export const calcPowerZoneBuckets = ({
   zones,
   powers,
@@ -133,7 +134,11 @@ export const totalWattsOverFtp = ({ powers, ftp }: timeInRedType) => {
 export const calcPowerSlices = (powers: number[], length: number) => {
   const powerSums: number[] = []
   for (var i = 0; i < powers.length; i++) {
-    powerSums.push(powers.slice(i, i + length).reduce((pv, cv) => pv + cv, 0))
+    const nums = powers.slice(i, i + length)
+    if (nums.length === length) {
+      powerSums.push(nums.reduce((pv, cv) => pv + cv, 0))
+    }
+    // console.log(nums)
   }
   powerSums.sort(function (a, b) {
     return a - b
@@ -212,7 +217,7 @@ export const calcElevationGain = (coordinates: Coordinate[]) => {
   return elevation
 }
 
-export const calcStoppage = (coordinates: Coordinate[], times: number[]) => {
+export const calcStoppage = (coordinates: Coordinate[], times: Array<Date>) => {
   let seconds = 0
 
   times.forEach((time, index) => {

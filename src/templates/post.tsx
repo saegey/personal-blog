@@ -128,7 +128,7 @@ export const query = graphql`
             powerLow
             powerHigh
           }
-					currentFtp
+          currentFtp
           normalizedPower
           elevationGain
           stoppedTime

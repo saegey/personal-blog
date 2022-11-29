@@ -90,6 +90,6 @@
     "start": "NODE_ENV=development ENABLE_GATSBY_REFRESH_ENDPOINT=true gatsby develop -H 0.0.0.0",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "jest"
+    "test": "jest --coverage"
   }
 }
