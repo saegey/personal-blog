@@ -1,0 +1,664 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RaceOverview injects context intoo component 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: repeat(2, 1fr);
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-0 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-0 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-0 {
+    background-color: backgroundEm;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-0 {
+    background-color: backgroundEm;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.emotion-1 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+}
+
+.emotion-3 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  font-family: body;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-3 {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-3 {
+    font-size: 24px;
+  }
+}
+
+<div
+  className="emotion-0"
+>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Normalized Power
+    </span>
+    <div
+      className="emotion-3"
+    >
+      251 watts
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Elevation Gain
+    </span>
+    <div
+      className="emotion-3"
+    >
+      40,502 ft
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Avg Heart Rate
+    </span>
+    <div
+      className="emotion-3"
+    >
+      170 bpm
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Distance
+    </span>
+    <div
+      className="emotion-3"
+    >
+      62 miles
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Elapsed Time
+    </span>
+    <div
+      className="emotion-3"
+    >
+      01:00:00
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Avg Temperature
+    </span>
+    <div
+      className="emotion-3"
+    >
+      122 °F
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Avg Speed
+    </span>
+    <div
+      className="emotion-3"
+    >
+      74.56 mph
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Avg Power
+    </span>
+    <div
+      className="emotion-3"
+    >
+      280 watts
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Avg Cadence
+    </span>
+    <div
+      className="emotion-3"
+    >
+      75 rpm
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Time in Red
+    </span>
+    <div
+      className="emotion-3"
+    >
+      00:05:20
+    </div>
+  </div>
+</div>
+`;
+
+exports[`RaceOverview renders imperial 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: repeat(2, 1fr);
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-0 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-0 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-0 {
+    background-color: backgroundEm;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-0 {
+    background-color: backgroundEm;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.emotion-1 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+}
+
+.emotion-3 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  font-family: bodyfont;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-3 {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-3 {
+    font-size: 24px;
+  }
+}
+
+<div
+  className="emotion-0"
+>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Normalized Power
+    </span>
+    <div
+      className="emotion-3"
+    >
+      251 watts
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Elevation Gain
+    </span>
+    <div
+      className="emotion-3"
+    >
+      40,502 ft
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Avg Heart Rate
+    </span>
+    <div
+      className="emotion-3"
+    >
+      170 bpm
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Distance
+    </span>
+    <div
+      className="emotion-3"
+    >
+      62 miles
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Elapsed Time
+    </span>
+    <div
+      className="emotion-3"
+    >
+      01:00:00
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Avg Temperature
+    </span>
+    <div
+      className="emotion-3"
+    >
+      122 °F
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Avg Speed
+    </span>
+    <div
+      className="emotion-3"
+    >
+      74.56 mph
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Avg Power
+    </span>
+    <div
+      className="emotion-3"
+    >
+      280 watts
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Avg Cadence
+    </span>
+    <div
+      className="emotion-3"
+    >
+      75 rpm
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Time in Red
+    </span>
+    <div
+      className="emotion-3"
+    >
+      00:05:20
+    </div>
+  </div>
+</div>
+`;
+
+exports[`RaceOverview renders metric 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: repeat(2, 1fr);
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-0 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-0 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-0 {
+    background-color: backgroundEm;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-0 {
+    background-color: backgroundEm;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.emotion-1 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+}
+
+.emotion-3 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  font-family: bodyfont;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-3 {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-3 {
+    font-size: 24px;
+  }
+}
+
+<div
+  className="emotion-0"
+>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Normalized Power
+    </span>
+    <div
+      className="emotion-3"
+    >
+      251 watts
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Elevation Gain
+    </span>
+    <div
+      className="emotion-3"
+    >
+      12345 meters
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Avg Heart Rate
+    </span>
+    <div
+      className="emotion-3"
+    >
+      170 bpm
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Distance
+    </span>
+    <div
+      className="emotion-3"
+    >
+      100.00 km
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Elapsed Time
+    </span>
+    <div
+      className="emotion-3"
+    >
+      01:00:00
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Avg Temperature
+    </span>
+    <div
+      className="emotion-3"
+    >
+      50 °C
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Avg Speed
+    </span>
+    <div
+      className="emotion-3"
+    >
+      120.00 km/h
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Avg Power
+    </span>
+    <div
+      className="emotion-3"
+    >
+      280 watts
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Avg Cadence
+    </span>
+    <div
+      className="emotion-3"
+    >
+      75 rpm
+    </div>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <span
+      className="emotion-1"
+    >
+      Time in Red
+    </span>
+    <div
+      className="emotion-3"
+    >
+      00:05:20
+    </div>
+  </div>
+</div>
+`;

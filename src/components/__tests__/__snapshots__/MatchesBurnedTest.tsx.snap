@@ -1,0 +1,263 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Matches Burned renders 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+}
+
+.emotion-1 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-2 {
+    margin-bottom: 0px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-2 {
+    margin-bottom: 0px;
+  }
+}
+
+.emotion-4 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  margin-left: auto;
+}
+
+.emotion-5 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  display: inline-block;
+  text-align: center;
+  line-height: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  font-size: inherit;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  color: white;
+  background-color: var(--theme-ui-colors-primary);
+  border: 0;
+  border-radius: 4px;
+  color: var(--theme-ui-colors-background);
+  background-color: var(--theme-ui-colors-primary);
+}
+
+.emotion-6 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 35px;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-6 {
+    height: 35px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-6 {
+    height: 35px;
+  }
+}
+
+.emotion-7 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 34%;
+}
+
+.emotion-9 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 33%;
+  text-align: center;
+}
+
+.emotion-11 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 33%;
+  text-align: right;
+}
+
+.emotion-13 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 35px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-13 {
+    height: 35px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-13 {
+    height: 35px;
+  }
+}
+
+.emotion-14 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 34%;
+}
+
+.emotion-16 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 33%;
+  text-align: center;
+}
+
+.emotion-18 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 33%;
+  text-align: right;
+}
+
+<div
+  className="emotion-0"
+>
+  <div
+    className="emotion-1"
+  >
+    <div
+      className="emotion-2"
+    >
+      <h2
+        className="emotion-0"
+      >
+        Matches Burned
+      </h2>
+    </div>
+    <div
+      className="emotion-4"
+    >
+      <button
+        className="emotion-5"
+        onClick={[Function]}
+      >
+        View All
+      </button>
+    </div>
+  </div>
+  <div
+    className="emotion-6"
+  >
+    <div
+      className="emotion-7"
+    >
+      <p
+        className="emotion-0"
+      >
+        <strong>
+          Average Power
+        </strong>
+      </p>
+    </div>
+    <div
+      className="emotion-9"
+    >
+      <p
+        className="emotion-0"
+      >
+        <strong>
+          Total Joules
+        </strong>
+      </p>
+    </div>
+    <div
+      className="emotion-11"
+    >
+      <p
+        className="emotion-0"
+      >
+        <strong>
+          Total time
+        </strong>
+      </p>
+    </div>
+  </div>
+  <div
+    className="emotion-13"
+  >
+    <div
+      className="emotion-14"
+    >
+      <p
+        className="emotion-0"
+      >
+        200
+         watts
+      </p>
+    </div>
+    <div
+      className="emotion-16"
+    >
+      <p
+        className="emotion-0"
+      >
+        1.00
+         kJ
+      </p>
+    </div>
+    <div
+      className="emotion-18"
+    >
+      <p
+        className="emotion-0"
+      >
+        60
+         sec
+      </p>
+    </div>
+  </div>
+</div>
+`;

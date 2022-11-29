@@ -74,14 +74,16 @@ export const MatchesBurned = ({ data }: Props) => {
   return (
     <>
       {isModalOpen && (
-        <Modal modalOpen={openModal} headerText={'Matches Burned'}>
-          <>
-            <MatchesHeading />
-            {data.map((d, index: number) => {
-              return <MatchesItem d={d} index={index} key={index} />
-            })}
-          </>
-        </Modal>
+        <div data-testid="matchesModal">
+          <Modal modalOpen={openModal} headerText={'Matches Burned'}>
+            <>
+              <MatchesHeading />
+              {data.map((d, index: number) => {
+                return <MatchesItem d={d} index={index} key={index} />
+              })}
+            </>
+          </Modal>
+        </div>
       )}
       <Box>
         <Flex>

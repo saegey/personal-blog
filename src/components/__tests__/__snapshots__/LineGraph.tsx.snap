@@ -4,9 +4,488 @@ exports[`LineGraph renders 1`] = `
 <div
   style={
     {
-      "height": "100%",
-      "width": "100%",
+      "position": "relative",
     }
   }
-/>
+>
+  <svg
+    role="img"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      fill="transparent"
+    />
+    <g
+      transform="translate(40,20)"
+    >
+      <g>
+        <line
+          opacity={1}
+          stroke="#dddddd"
+          strokeWidth={1}
+          x1={0}
+          x2={NaN}
+          y1={NaN}
+          y2={NaN}
+        />
+        <line
+          opacity={1}
+          stroke="#dddddd"
+          strokeWidth={1}
+          x1={0}
+          x2={NaN}
+          y1={NaN}
+          y2={NaN}
+        />
+        <line
+          opacity={1}
+          stroke="#dddddd"
+          strokeWidth={1}
+          x1={0}
+          x2={NaN}
+          y1={NaN}
+          y2={NaN}
+        />
+        <line
+          opacity={1}
+          stroke="#dddddd"
+          strokeWidth={1}
+          x1={0}
+          x2={NaN}
+          y1={NaN}
+          y2={NaN}
+        />
+        <line
+          opacity={1}
+          stroke="#dddddd"
+          strokeWidth={1}
+          x1={0}
+          x2={NaN}
+          y1={NaN}
+          y2={NaN}
+        />
+        <line
+          opacity={1}
+          stroke="#dddddd"
+          strokeWidth={1}
+          x1={0}
+          x2={NaN}
+          y1={NaN}
+          y2={NaN}
+        />
+        <line
+          opacity={1}
+          stroke="#dddddd"
+          strokeWidth={1}
+          x1={0}
+          x2={NaN}
+          y1={NaN}
+          y2={NaN}
+        />
+        <line
+          opacity={1}
+          stroke="#dddddd"
+          strokeWidth={1}
+          x1={0}
+          x2={NaN}
+          y1={NaN}
+          y2={NaN}
+        />
+        <line
+          opacity={1}
+          stroke="#dddddd"
+          strokeWidth={1}
+          x1={0}
+          x2={NaN}
+          y1={NaN}
+          y2={NaN}
+        />
+        <line
+          opacity={1}
+          stroke="#dddddd"
+          strokeWidth={1}
+          x1={0}
+          x2={NaN}
+          y1={NaN}
+          y2={NaN}
+        />
+        <line
+          opacity={1}
+          stroke="#dddddd"
+          strokeWidth={1}
+          x1={0}
+          x2={NaN}
+          y1={NaN}
+          y2={NaN}
+        />
+      </g>
+      <g
+        transform="translate(0,NaN)"
+      >
+        <g
+          style={
+            {
+              "opacity": 1,
+            }
+          }
+          transform="translate(NaN,0)"
+        >
+          <line
+            style={
+              {
+                "stroke": "#777777",
+                "strokeWidth": 1,
+              }
+            }
+            x1={0}
+            x2={0}
+            y1={0}
+            y2={0}
+          />
+          <text
+            dominantBaseline="text-before-edge"
+            style={
+              {
+                "fill": "#333333",
+                "fontFamily": "bodyfont",
+                "fontSize": 14,
+              }
+            }
+            textAnchor="middle"
+            transform="translate(0,5) rotate(0)"
+          >
+            0s
+          </text>
+        </g>
+        <g
+          style={
+            {
+              "opacity": 1,
+            }
+          }
+          transform="translate(NaN,0)"
+        >
+          <line
+            style={
+              {
+                "stroke": "#777777",
+                "strokeWidth": 1,
+              }
+            }
+            x1={0}
+            x2={0}
+            y1={0}
+            y2={0}
+          />
+          <text
+            dominantBaseline="text-before-edge"
+            style={
+              {
+                "fill": "#333333",
+                "fontFamily": "bodyfont",
+                "fontSize": 14,
+              }
+            }
+            textAnchor="middle"
+            transform="translate(0,5) rotate(0)"
+          >
+            1s
+          </text>
+        </g>
+        <g
+          style={
+            {
+              "opacity": 1,
+            }
+          }
+          transform="translate(NaN,0)"
+        >
+          <line
+            style={
+              {
+                "stroke": "#777777",
+                "strokeWidth": 1,
+              }
+            }
+            x1={0}
+            x2={0}
+            y1={0}
+            y2={0}
+          />
+          <text
+            dominantBaseline="text-before-edge"
+            style={
+              {
+                "fill": "#333333",
+                "fontFamily": "bodyfont",
+                "fontSize": 14,
+              }
+            }
+            textAnchor="middle"
+            transform="translate(0,5) rotate(0)"
+          >
+            2s
+          </text>
+        </g>
+        <g
+          style={
+            {
+              "opacity": 1,
+            }
+          }
+          transform="translate(NaN,0)"
+        >
+          <line
+            style={
+              {
+                "stroke": "#777777",
+                "strokeWidth": 1,
+              }
+            }
+            x1={0}
+            x2={0}
+            y1={0}
+            y2={0}
+          />
+          <text
+            dominantBaseline="text-before-edge"
+            style={
+              {
+                "fill": "#333333",
+                "fontFamily": "bodyfont",
+                "fontSize": 14,
+              }
+            }
+            textAnchor="middle"
+            transform="translate(0,5) rotate(0)"
+          >
+            3s
+          </text>
+        </g>
+        <line
+          style={
+            {
+              "stroke": "transparent",
+              "strokeWidth": 1,
+            }
+          }
+          x1={0}
+          x2={NaN}
+          y1={0}
+          y2={0}
+        />
+      </g>
+      <g
+        transform="translate(0,0)"
+      >
+        <g
+          style={
+            {
+              "opacity": 1,
+            }
+          }
+          transform="translate(0,NaN)"
+        >
+          <line
+            style={
+              {
+                "stroke": "#777777",
+                "strokeWidth": 1,
+              }
+            }
+            x1={0}
+            x2={-0}
+            y1={0}
+            y2={0}
+          />
+          <text
+            dominantBaseline="central"
+            style={
+              {
+                "fill": "#333333",
+                "fontFamily": "bodyfont",
+                "fontSize": 14,
+              }
+            }
+            textAnchor="end"
+            transform="translate(-5,0) rotate(0)"
+          >
+            0
+          </text>
+        </g>
+        <g
+          style={
+            {
+              "opacity": 1,
+            }
+          }
+          transform="translate(0,NaN)"
+        >
+          <line
+            style={
+              {
+                "stroke": "#777777",
+                "strokeWidth": 1,
+              }
+            }
+            x1={0}
+            x2={-0}
+            y1={0}
+            y2={0}
+          />
+          <text
+            dominantBaseline="central"
+            style={
+              {
+                "fill": "#333333",
+                "fontFamily": "bodyfont",
+                "fontSize": 14,
+              }
+            }
+            textAnchor="end"
+            transform="translate(-5,0) rotate(0)"
+          >
+            5
+          </text>
+        </g>
+        <g
+          style={
+            {
+              "opacity": 1,
+            }
+          }
+          transform="translate(0,NaN)"
+        >
+          <line
+            style={
+              {
+                "stroke": "#777777",
+                "strokeWidth": 1,
+              }
+            }
+            x1={0}
+            x2={-0}
+            y1={0}
+            y2={0}
+          />
+          <text
+            dominantBaseline="central"
+            style={
+              {
+                "fill": "#333333",
+                "fontFamily": "bodyfont",
+                "fontSize": 14,
+              }
+            }
+            textAnchor="end"
+            transform="translate(-5,0) rotate(0)"
+          >
+            10
+          </text>
+        </g>
+        <g
+          style={
+            {
+              "opacity": 1,
+            }
+          }
+          transform="translate(0,NaN)"
+        >
+          <line
+            style={
+              {
+                "stroke": "#777777",
+                "strokeWidth": 1,
+              }
+            }
+            x1={0}
+            x2={-0}
+            y1={0}
+            y2={0}
+          />
+          <text
+            dominantBaseline="central"
+            style={
+              {
+                "fill": "#333333",
+                "fontFamily": "bodyfont",
+                "fontSize": 14,
+              }
+            }
+            textAnchor="end"
+            transform="translate(-5,0) rotate(0)"
+          >
+            15
+          </text>
+        </g>
+        <g
+          style={
+            {
+              "opacity": 1,
+            }
+          }
+          transform="translate(0,NaN)"
+        >
+          <line
+            style={
+              {
+                "stroke": "#777777",
+                "strokeWidth": 1,
+              }
+            }
+            x1={0}
+            x2={-0}
+            y1={0}
+            y2={0}
+          />
+          <text
+            dominantBaseline="central"
+            style={
+              {
+                "fill": "#333333",
+                "fontFamily": "bodyfont",
+                "fontSize": 14,
+              }
+            }
+            textAnchor="end"
+            transform="translate(-5,0) rotate(0)"
+          >
+            20
+          </text>
+        </g>
+        <line
+          style={
+            {
+              "stroke": "transparent",
+              "strokeWidth": 1,
+            }
+          }
+          x1={0}
+          x2={0}
+          y1={0}
+          y2={NaN}
+        />
+      </g>
+      <path
+        d="MNaN,NaNCNaN,NaN,NaN,NaN,NaN,NaNCNaN,NaN,NaN,NaN,NaN,NaN"
+        fill="none"
+        strokeWidth={2}
+      />
+      <rect
+        fill="red"
+        fillOpacity={0}
+        height={NaN}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+        onMouseMove={[Function]}
+        stroke="red"
+        strokeOpacity={0.75}
+        strokeWidth={0}
+        width={NaN}
+        x={NaN}
+        y={0}
+      />
+    </g>
+  </svg>
+</div>
 `;
