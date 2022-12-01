@@ -1,0 +1,161 @@
+---
+title: CXR 6 - North SeaTac Single Speed
+date: 2022-11-27
+headerImage: './FB6A7886.jpg'
+tags:
+  - cyclocross
+type: Race Journal
+gpxFile: 'CXR_6_SeaTac_SS'
+trainingPeaks: Adam_Saegebarth_2022_11_27_13_56
+location: SeaTac, Washington
+images:
+  - ./FB6A7886.jpg
+  - ./FB6A8021.jpg
+  - ./FB6A8023.jpg
+results:
+  file: 'cxr-6-2022'
+  provider: 'turboreg'
+---
+
+<PortraitImage
+  image={props.data.mdx.frontmatter.images[0]}
+  widthPercentage={'40%'}
+/>
+
+Last year the weather was pretty epic for this venue with cold, freezing rain and some pretty muddy conditions. Today it was clear and pretty mild temps by the time the single speed race started in the afternoon.
+
+In the race last year, I had a great start in 2nd and then slid out on the first tight corner and lost of a lot spots and eventually finished 10/16 and it wasn't a great result for me when looking at other races that season.
+
+## Heart Rate by Lap
+
+<PowerGraph
+  data={props.data.mdx.gpxData.fields.heartRateData}
+  startTime={0}
+  endTime={3180}
+  areaBaselineValue={90}
+  axisLeftTickValues={[100, 120, 140, 160, 180]}
+  axisBottomTickValues={[600, 1200, 1800, 2400, 3000]}
+  yScaleMax={190}
+  unit={'bpm'}
+  downsampleRate={10}
+  curve={'natural'}
+  lineWidth={2}
+  colors={['red']}
+  segments={props.data.mdx.segments.fields.segments}
+/>
+
+The course is pretty tight with quite a bit of single track and plenty of gravel with some pretty slippery transitions. I'm not quite comfortable with the bike sliding in a corner but I was trying to push the edge a bit with home much speed I could carry through the corners.
+
+<RaceOverview
+  data={props.data.mdx.gpxData.fields}
+  selectedFields={[
+    'Avg Power',
+    'Avg Heart Rate',
+    'Distance',
+    'Elapsed Time',
+    'Time in Red',
+    'Avg Temperature',
+    'Normalized Power',
+    'Avg Cadence',
+    'Avg Speed',
+  ]}
+/>
+
+On the 2nd lap I lost it in one section and slid out but it happened so quick I fell with my arm extended and separated my shoulder temporarily. It was pretty much locked out for a few seconds but popped back and the pain wasn't the worst and I got back at it.
+
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[2]}
+  widthPercentage="50%"
+/>
+
+After looking in WKO at my file I learned that I was stopped for about 7 seconds for the crash. I wasn't the only one crashing. I witnessed plenty of nasty ones in front of me and heard some happen behind me so conditions must have been pretty loose.
+
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[1]}
+  widthPercentage={'50%'}
+  caption={
+    <Text>
+      Climbing up one of the single track sections on the east part of the
+      course. My gearing (36x17) was perfect for these sections.{' '}
+      <Link href="http://woodinvillebicycle.com">
+        <em>Woodinville Bicycle</em>
+      </Link>
+    </Text>
+  }
+/>
+
+I was feeling good prior to the crash but after it had me spooked a bit and riding in a pretty conservation way to avoid any other mishaps. It didn't feel like I was going easy but after looking at the heart rate data it looked like I had some room to go harder since I can probably sustain a 175 bpm for the entire race despite it pretty painful.
+
+<PortraitImage
+  image={props.data.mdx.frontmatter.images[0]}
+  widthPercentage={'40%'}
+/>
+
+I felt as the laps went on I found a good flow and the sand run up didn't spike my heart rate too much. I still chose to run the small barriers they had since it must faster for me than attempting to hop them in a pretty gross way. Next year, I really need to start practicing hopping these things because it just looks way more fun even if you do crash occasionally.
+
+<Divider />
+<MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
+<Divider sx={{ marginBottom: '20px' }} />
+
+## Time in Power Zones
+
+<PowerBreakdown
+  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
+  powerZones={props.data.mdx.gpxData.fields.powerZones}
+/>
+<Divider />
+
+## Power Curve
+
+<PowerCurveGraph
+  data={props.data.mdx.gpxData.fields.powerCurve}
+  yAxes={[
+    [200, 400, 600, 800, 1000],
+    [200, 400, 600, 800, 1000],
+    [200, 400, 600, 800, 1000],
+  ]}
+  xAxes={[
+    [1, 5, 10, 60, 600, 2400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 2400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 2400],
+  ]}
+  ftp={props.data.mdx.gpxData.fields.currentFtp}
+/>
+<Divider />
+
+Even though it wasn't my best race and I came away a little broken, it was nice to get another hard race effort in the legs in preparation for Woodland Park next week and get some good bike handling practice. My fitness level is not where I was wanting for this short CX season but I'm hoping I can find some before the end in SeaTac.
+
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[2]}
+  caption={
+    <Text>
+      Running over the 3 small barriers. I ran every lap since it's still much
+      faster in my mind. Photo /{' '}
+      <Link href="http://woodinvillebicycle.com">Woodinville Bicycle</Link>
+    </Text>
+  }
+/>
+
+It was also really nice to finally ride my Transition bike with some proper decals on it. In 2016, I had it sand blasted and then rattle can painted it an olive green and it's naked till the day before the race. With the help of my friend Jesse, we cut some metallic vinyl and got them installed the day before and I was happy how they came out and went on pretty quickly. I have been wanting to do this for a while and it was nice to finally finish it up and get it done. I will make a post at a later time to cover the process of it and plan to do it on another bike for end of the year.
+
+<Divider sx={{ marginBottom: '20px' }} />
+<RaceResults
+  data={props.data.mdx.results.fields.data}
+  numbersToHighlight={[0, 1, 2, 13, 16, 17]}
+  distance={props.data.mdx.gpxData.fields.distance}
+  racerName="ADAM SAEGEBARTH"
+  showSpeed={false}
+/>
+<Divider />
+
+## The Good
+
+1.  Had a really good sprint to finish the race. I saw someone approaching me toward the end of the final lap and was determined to go full gas and not let them get close.blast.
+
+2.  Gearing was perfect for this course and only real chance to spin out was on the long straight at the finish.
+
+## Needs Improvement
+
+1. Still need to work on bike handling skills and carrying more speed through turns.
+
+2. I could have gone deeper and suffered more to pick up some time. The straight at the end of the lap I could have easily went harder and did on the final lap when it was too late. There was someone catchable in front me and I didn't really make attempt to close in on them.
