@@ -125,18 +125,36 @@ I felt as the laps went on I found a good flow and the sand run up didn't spike 
 
 Even though it wasn't my best race and I came away a little broken, it was nice to get another hard race effort in the legs in preparation for Woodland Park next week and get some good bike handling practice. My fitness level is not where I was wanting for this short CX season but I'm hoping I can find some before the end in SeaTac.
 
-<LandscapeImage
-  image={props.data.mdx.frontmatter.images[2]}
-  caption={
-    <Text>
-      Running over the 3 small barriers. I ran every lap since it's still much
-      faster in my mind. Photo /{' '}
-      <Link href="http://woodinvillebicycle.com">Woodinville Bicycle</Link>
-    </Text>
+<Carousel
+  images={[
+    props.data.mdx.frontmatter.images[1],
+    props.data.mdx.frontmatter.images[2],
+  ]}
+>
+  <LandscapeImage
+    image={props.data.mdx.frontmatter.images[1]}
+    widthPercentage={'50%'}
+    maximize={false}
+  />
+  <LandscapeImage
+    image={props.data.mdx.frontmatter.images[2]}
+    maximize={false}
+  />
+</Carousel>
+<Caption
+  text={
+    ' Spinning full gas on one of the long grass straights that leads to the big'
   }
-/>
+></Caption>
 
-It was also really nice to finally ride my Transition bike with some proper decals on it. In 2016, I had it sand blasted and then rattle can painted it an olive green and it's naked till the day before the race. With the help of my friend Jesse, we cut some metallic vinyl and got them installed the day before and I was happy how they came out and went on pretty quickly. I have been wanting to do this for a while and it was nice to finally finish it up and get it done. I will make a post at a later time to cover the process of it and plan to do it on another bike for end of the year.
+It was also really nice to finally ride my Transition bike with some proper
+decals on it. In 2016, I had it sand blasted and then rattle can painted it an
+olive green and it's naked till the day before the race. With the help of my
+friend Jesse, we cut some metallic vinyl and got them installed the day before
+and I was happy how they came out and went on pretty quickly. I have been
+wanting to do this for a while and it was nice to finally finish it up and get
+it done. I will make a post at a later time to cover the process of it and plan
+to do it on another bike for end of the year.
 
 <Divider sx={{ marginBottom: '20px' }} />
 <RaceResults

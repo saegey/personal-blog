@@ -16,6 +16,8 @@ import PowerBreakdown from '../components/PowerBreakdown'
 import { default as PowerCurveGraph } from '../components/PowerCurveGraph'
 import PowerGraph from '../components/PowerGraph'
 import VideoPlayer from '../components/VideoPlayer'
+import Carousel from '../components/Carousel'
+import Caption from '../components/Caption'
 
 const shortcodes = {
   Box,
@@ -33,6 +35,8 @@ const shortcodes = {
   MatchesBurned,
   PowerBreakdown,
   VideoPlayer,
+  Carousel,
+  Caption,
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {

@@ -19,6 +19,7 @@ import '@fontsource/inconsolata/800.css'
 import '@fontsource/inconsolata/900.css'
 // normalize CSS across browsers
 import './src/normalize.css'
+import './src/carousel.css'
 // custom CSS styles
 // import "./src/style.css"
 

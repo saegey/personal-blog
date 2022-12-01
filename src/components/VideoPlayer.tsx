@@ -1,7 +1,13 @@
 import { IKVideo, IKContext } from 'imagekitio-react'
 import { Box } from 'theme-ui'
 
-const VideoPlayer = ({ fileName, borderRadius = "4px" }: { fileName: string, borderRadius: string }) => {
+const VideoPlayer = ({
+  fileName,
+  borderRadius = '4px',
+}: {
+  fileName: string
+  borderRadius: string
+}) => {
   return (
     <Box sx={{ width: '100%', video: { borderRadius } }}>
       <IKContext
