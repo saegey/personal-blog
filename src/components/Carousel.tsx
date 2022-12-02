@@ -42,7 +42,6 @@ const CustomCarousel = ({ images }: { children: JSX.Element }) => {
         showThumbs={false}
         onClickItem={e => {
           maximizeImage(images[e])
-          console.log('tst', e)
         }}
       >
         {images.map((image, i) => (
@@ -57,6 +56,7 @@ const CustomCarousel = ({ images }: { children: JSX.Element }) => {
               sx={{
                 width: ['100%', '100%', '100%'],
                 borderRadius: [4, 4, 4],
+                '-webkit-mask-image': '-webkit-radial-gradient(white, black)',
               }}
             />
           </Box>

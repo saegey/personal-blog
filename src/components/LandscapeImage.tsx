@@ -25,6 +25,7 @@ const LandscapeImage = ({
             filter: invert && colorMode === 'dark' ? `invert(1)` : `none`,
             width: ['100%', '100%', '100%'],
             borderRadius: [4, 4, 4],
+            '-webkit-mask-image': '-webkit-radial-gradient(white, black)',
           }}
         />
       </Box>
@@ -42,6 +43,7 @@ const LandscapeImage = ({
             filter: invert && colorMode === 'dark' ? `invert(1)` : `none`,
             width: ['100%', '100%', '100%'],
             borderRadius: [4, 4, 4],
+            '-webkit-mask-image': '-webkit-radial-gradient(white, black)',
           }}
         />
         <Box

@@ -13,14 +13,14 @@
   -ms-transition: all 0.25s ease-in;
   -o-transition: all 0.25s ease-in;
   transition: all 0.25s ease-in;
-  opacity: 0.4;
+  opacity: 0.8;
   filter: alpha(opacity=40);
   position: absolute;
   z-index: 2;
   top: 20px;
   background: none;
   border: 0;
-  font-size: 32px;
+  font-size: 50px;
   cursor: pointer; }
   .carousel .control-arrow:focus, .carousel .control-arrow:hover {
     opacity: 1;
@@ -28,8 +28,8 @@
   .carousel .control-arrow:before, .carousel.carousel-slider .control-arrow:before {
     margin: 0 5px;
     display: inline-block;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
     content: ''; }
   .carousel .control-disabled.control-arrow {
     opacity: 0;
@@ -39,11 +39,11 @@
   .carousel .control-prev.control-arrow {
     left: 0; }
     .carousel .control-prev.control-arrow:before {
-      border-right: 8px solid #fff; }
+      border-right: 16px solid #fff; }
   .carousel .control-next.control-arrow {
     right: 0; }
     .carousel .control-next.control-arrow:before {
-      border-left: 8px solid #fff; }
+      border-left: 16px solid #fff; }
 
 .carousel-root {
   outline: none; }
