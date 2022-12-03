@@ -1,0 +1,163 @@
+---
+title: CXR 6 - North SeaTac Single Speed
+date: 2022-11-27
+headerImage: './1.jpeg'
+tags:
+  - cyclocross
+type: Race Journal
+gpxFile: 'CXR_6_SeaTac_SS'
+trainingPeaks: Adam_Saegebarth_2022_11_27_13_56
+location: SeaTac, Washington
+images:
+  - ./FB6A7886.jpg
+  - ./FB6A8021.jpg
+  - ./FB6A8023.jpg
+  - ./1.jpeg
+  - ./2.jpeg
+  - ./3.jpeg
+results:
+  file: 'cxr-6-2022'
+  provider: 'turboreg'
+---
+
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[3]}
+  widthPercentage={'40%'}
+/>
+
+SeaTac was a good place to close out my short, five cx race season. It's always nice when races are closer to home, about 30 min drive, and where you are more familiar with the terrain. I had time for two practice laps and by the time the single speed race started at 1:45pm it was already getting colder. Earlier in the day, the sun was out and temps felt fine but I was getting colder the closer it go towards the race.
+
+## Heart Rate by Lap
+
+<PowerGraph
+  data={props.data.mdx.gpxData.fields.heartRateData}
+  startTime={0}
+  endTime={3180}
+  areaBaselineValue={90}
+  axisLeftTickValues={[100, 120, 140, 160, 180]}
+  axisBottomTickValues={[600, 1200, 1800, 2400, 3000]}
+  yScaleMax={190}
+  unit={'bpm'}
+  downsampleRate={10}
+  curve={'natural'}
+  lineWidth={2}
+  colors={['red']}
+  segments={props.data.mdx.segments.fields.segments}
+/>
+
+The course is pretty tight with quite a bit of single track and plenty of gravel with some pretty slippery transitions. I'm not quite comfortable with the bike sliding in a corner but I was trying to push the edge a bit with home much speed I could carry through the corners.
+
+<RaceOverview
+  data={props.data.mdx.gpxData.fields}
+  selectedFields={[
+    'Avg Power',
+    'Avg Heart Rate',
+    'Distance',
+    'Elapsed Time',
+    'Time in Red',
+    'Avg Temperature',
+    'Normalized Power',
+    'Avg Cadence',
+    'Avg Speed',
+  ]}
+/>
+
+I had a good start and slotted into somewhere in the top 15 on the start which led to a sand section, big rail road tie stair run up and then into single track and some short sections of asphalt. I remember after rolling through the finish line after lap 1 I was in 13th place which is a season best for me for sure.
+
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[4]}
+  widthPercentage="50%"
+/>
+
+I rode clean and reasonably fast with only a few hiccups on some hairpin single track corners and some bumpy muddy sections that I would have like to carry a bit more speed but was not able to get there. The course was slick and muddy in lots of sections and it was the first race this sloppy for me this year so I was a little tense.
+
+<PortraitImage
+  image={props.data.mdx.frontmatter.images[5]}
+  widthPercentage={'70%'}
+/>
+
+By lap three or so I had a group of four, breathing down my neck. I did everything I could to maintain the gap and even sprinted on the road sections to try to push out more since I could tell I was a bit slower on the tighter single track areas. I could tell after a while of trying to hold them off I was getting a bit careless and making small mistakes on a few corners.
+
+Eventually I was passed by 3 on the small barriers where I decided to run and they choose to jump over them. Jumping was much quicker here when in some other courses running wasn't much of a penalty. Next year, I will be ready to jump these but I wasn't ready this year.
+
+<Divider />
+<MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
+<Divider sx={{ marginBottom: '20px' }} />
+
+## Time in Power Zones
+
+<PowerBreakdown
+  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
+  powerZones={props.data.mdx.gpxData.fields.powerZones}
+/>
+<Divider />
+
+## Power Curve
+
+<PowerCurveGraph
+  data={props.data.mdx.gpxData.fields.powerCurve}
+  yAxes={[
+    [200, 400, 600, 800, 1000],
+    [200, 400, 600, 800, 1000],
+    [200, 400, 600, 800, 1000],
+  ]}
+  xAxes={[
+    [1, 5, 10, 60, 600, 2400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 2400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 2400],
+  ]}
+  ftp={props.data.mdx.gpxData.fields.currentFtp}
+/>
+<Divider />
+
+The two run-ups went pretty well and the larger barriers I didn't have the best lines coming into due to the mud and should have maybe done a couple reps in pre ride to a faster line. As I did last year, the sand from the run-up on the stairs and the dirt from the run-up on the front half clogged up the mountain bike cleats on my shoes. It was a hassle to get clipped in after I sometimes would take 15 secs or so of shoe to pedal strikes and such to clean out the cleat. I'm sure this could be improved upon and would have saved a little time when considering 5 laps of this same thing happening.
+
+<Carousel
+  images={[
+    props.data.mdx.frontmatter.images[1],
+    props.data.mdx.frontmatter.images[2],
+  ]}
+>
+  <LandscapeImage
+    image={props.data.mdx.frontmatter.images[1]}
+    widthPercentage={'50%'}
+    maximize={false}
+  />
+  <LandscapeImage
+    image={props.data.mdx.frontmatter.images[2]}
+    maximize={false}
+  />
+</Carousel>
+<Caption
+  text={
+    ' Spinning full gas on one of the long grass straights that leads to the big'
+  }
+></Caption>
+
+This course is overall pretty technical and the strong power helps less looking at the number from this week of myself and others. At Woodland Park, it was a much faster race and high power was a requirement to do well.
+
+My finish was probably the best all year and it was nice to finish the season on a positive. Next year, I am planning to finally to some XC mountain bike racing and this should bring some improved bike handling to next years cross season. Also, on the todo list is learn to wheelie and bunny hop so plenty to work on going into the new year. I am no switching my focus to a winter base block to prepare for the Festive 500 brevet that is happening at the end of the year.
+
+<Divider sx={{ marginBottom: '20px' }} />
+<RaceResults
+  data={props.data.mdx.results.fields.data}
+  numbersToHighlight={[0, 1, 2, 13, 16, 17]}
+  distance={props.data.mdx.gpxData.fields.distance}
+  racerName="ADAM SAEGEBARTH"
+  showSpeed={false}
+/>
+<Divider />
+
+## The Good
+
+1. Result was solid. Best finish all year and great start and early position. Next year if I can continue to gain spots I could finish in the top 10.
+
+2. No major mistakes or mechanicals. Tire pressure was good and so was gear ration of 36x17.
+
+## Needs Improvement
+
+1. I'm not sure if was a Whoop malfunction or a result of the temperature but my heart rate data is super low which seems abnormal compared to the other races.
+
+2. Could have done a better job using my pre ride laps to learn better lines versus just riding through it.
+
+3. Lost three positions on barriers which is a first for me.

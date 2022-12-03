@@ -13,6 +13,11 @@ images:
   - ./1.jpeg
   - ./2.jpeg
   - ./3.jpeg
+  - ./FB6A4267.jpg
+  - ./FB6A4642.jpg
+  - ./FB6A4643.jpg
+  - ./FB6A5023.jpg
+  - ./IMG_9472.jpg
 results:
   file: 'MFG Cyclocross - Woodland Park 1_45 PM'
   provider: 'webscorer'
@@ -23,8 +28,8 @@ results:
     image={props.data.mdx.frontmatter.images[2]}
     caption={
       <Text>
-        Remounting after the three small barriers. I ran them every lap since it
-        was faster than jumping them in the pre-ride. Photo credit to{' '}
+        Rolling through Hodala corner where they had bubbles on quicker inside
+        line. I was no fun and skipped this area every lap. Photo credit to{' '}
         <Link href="https://www.strava.com/athletes/41502563?oq=scarlett">
           Scarlett S
         </Link>
@@ -33,7 +38,7 @@ results:
   />
 </Box>
 
-I was looking forward to this venue when I first saw the race schedule released earlier this year. I raced this course in 2015 and 2016 and had fond memories of the course. Now that we are in November and in the company of numerous atmospheric rivers, the conditions should finally get to proper cyclocross conditions and give us a muddier course. Sunday wasn't full mud fest but it was better than PNW has seen all season.
+It's been way too long since there has been a race in Woodland Park. It is always the biggest race of the year due to it's location in the city and has a huge field because of the massive turnout and some big crowds cheering. Because it's so big it can set a high expectation for a good result in the race since it's maybe one of the few races friends and family will see you race and your going against the largest field of the year.
 
 <RaceOverview
   data={props.data.mdx.gpxData.fields}
@@ -50,12 +55,10 @@ I was looking forward to this venue when I first saw the race schedule released 
   ]}
 />
 
-Leading up to the race, it had been raining the previous week with some heavier than usual rain so things were damp for sure. The rain stopped pretty much right before Sunday's races started at it was coming down while the organizers set up the course.
+I have raced past years in Woodland Park but it has been a long time since I raced single speed for it. Woodland Park also is where I have done all my cross practicing this year which was rather light but maybe something I can add to the to do list for next year. I went looking in the old galleries on Woodinville Cycles SmugMug and found some photos from a muddy race back in 2016. It always nice to bike to races and since Woodland is close to where I live, it makes to even easier to get over there.
 
-I didn't have high expectations on my result and just wanted to ride a clean ride and go full gas and keep the heart rate high while keeping lap times consistent or improving. I think I can say that happened for me.
-
-<PortraitImage
-  image={props.data.mdx.frontmatter.images[1]}
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[7]}
   widthPercentage="40%"
   caption={
     <Text>
@@ -70,11 +73,25 @@ I didn't have high expectations on my result and just wanted to ride a clean rid
   }
 />
 
-My start was fine but its really hard to position to well because I'm probably five rows back and there is plenty of people to get around. I think this might be harder in single speed because you spin out pretty early on and the course narrowed in some twisty sections and the traffic was slowing things down some.
+It was very dry and cold the week leading up to the race so the course conditions were very quick. The course was also modified a bit from previous iterations that made it every quicker. I had a good start at finished the first lap in 20th place. I remember losing some spots as some faster guys that didn't start well eventually passed in in the first couple of laps. There was even one guy that yelled he was coming in hot in the past Hodala corner and bumped shoulders with on the inside. The corners were fast and most could be ridden with a lot of speed.
 
-<VideoPlayer fileName={`woodland4.mp4`} />
+<Box
+  sx={{
+    backgroundColor: 'backgroundEm',
+  }}
+>
+  <Box
+    sx={{
+      width: '50%',
+      margin: 'auto',
+      display: 'block',
+    }}
+  >
+    <VideoPlayer fileName={`woodland4.mp4`} borderRadius={'0px'} />
+  </Box>
+</Box>
 
-The course was reversed this year and had a short gravel climb that took some sharp, big efforts to get up. There was a stair run up and a nice short technical descent with a hard left turn at the bottom.
+The laps flowed by without any big mistakes. Line selection was good but probably could have been better. There was a loose gravel corner in the first half of the course that was hard to carry speed on and the bike wanted to slide on. There were a few crashes in this section. I had one issue on the barriers I think on the final lap. The area to dismount was quite deep and loose and just dismount and ended a little off balance but was able to save myself from taking a spill.
 
 <Divider />
 <RaceResults
@@ -84,8 +101,6 @@ The course was reversed this year and had a short gravel climb that took some sh
   racerName="Adam Saegebarth"
 />
 <Divider />
-
-On the third lap I learned that if I gonna make pass I better be ready to speed up after. I passed Tall Bryan from Pizza Pals early in the 3rd lap and he ended up motivated and came by late in the 3rd lap and was too much to catch but I was able to hang on his wheel the rest of the race.
 
 ## Power Analysis
 
@@ -103,16 +118,20 @@ On the third lap I learned that if I gonna make pass I better be ready to speed 
   ]}
   ftp={props.data.mdx.gpxData.fields.currentFtp}
 />
-
-My friends Chris from Space Cadets was either close on my wheel or a few spots back the whole race. On the final lap he made a pass on the gravel climb and I was determined to match it.
-
+<Divider sx={{ marginY: '20px' }} />
+## Time in Zones
 <PowerBreakdown
   powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
   powerZones={props.data.mdx.gpxData.fields.powerZones}
 />
 
-I caught up and took the inside line to the hairpin after the climb and got ahead. This resulted in him making another hard sprint and passing both Bryan and myself.
+<Divider sx={{ marginY: '20px' }} />
 
+In the later laps, traffic became a bigger issue than it usually was due to the bigger field. It wasn't that bad but maybe burned a few matches making passes getting through it all.
+
+My friend Chris passed me about midway on the last lap and I did everything I could to stay close to him so I could maybe have a chance to pass on the final sprint. I had a little bad luck and had a tandem get in the way on the last couple of corners that took me a little while to get by and another single speed racer pipped me at the line that I didn't see and lost another place.
+
+<Divider sx={{ marginY: '20px' }} />
 ## Heart Rate
 
 <PowerGraph
@@ -131,11 +150,11 @@ I caught up and took the inside line to the hairpin after the climb and got ahea
   segments={props.data.mdx.segments.fields.segments}
 />
 
-After that happened, there was a lot of lapped traffic that got in the way and not enough time to find a way to close the gap. I was also feeling pretty worn out and pulled off the gas a bit right at the finish when I realized it was going to be near impossible to gain any places.
+Overall, with the field as large as it was I was happy with the result and felt that my effort expended on this race was probably my greatest all cx season. The course didn't have anything really twisty so it was just full gas pretty much the entire time and then you add the short kicker gravel climbs and it just gets even harder.
 
 <Box sx={{ marginBottom: '20px' }}>
   <LandscapeImage
-    image={props.data.mdx.frontmatter.images[2]}
+    image={props.data.mdx.frontmatter.images[3]}
     caption={
       <Text>
         Spinning full gas on one of the long grass straights that leads to the
@@ -148,11 +167,9 @@ After that happened, there was a lot of lapped traffic that got in the way and n
   />
 </Box>
 
-I hypothesize that since this is only my second cross race this season and some of field is on their 7th or 8th that I'm losing some spots due to fitness or do I need to up my bike handling skills too improve my position. I plan to do a deep dive in the near future to come up with a plan to improve and get myself in the top 20 for a single speed race this year.
-
 <Box sx={{ marginBottom: '20px' }}>
   <LandscapeImage
-    image={props.data.mdx.frontmatter.images[0]}
+    image={props.data.mdx.frontmatter.images[4]}
     caption={
       <Text>
         Photo credit to{' '}
@@ -164,24 +181,21 @@ I hypothesize that since this is only my second cross race this season and some 
   />
 </Box>
 
-I also was feel left out not hitting the Hodala short cut jump on the laps. I have never hit a ramp like that on my cross bike and to self conscious to try first in race. I need to find a way to practice a jump since I know this ramp will be back in a race soon. Also, I still want to be able to jump the small barriers but I have only practiced twice so its probably not happening this season but who knows.
-
 <Divider />
 <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
 <Divider sx={{ marginBottom: '20px' }} />
 
 ## The Good
 
-1. Consistent lap times and no major mistakes.
+1. Burned a lot of matches throughout the race without ever fading out at all. Last lap was one of my quickest all race.
 2. Kept heart rate high and elevated.
-3. Remounts were smooth.
-4. Overall result was good and lots of racers within 30 secs ahead of me so I'm getting closer to top twenty finish.
-5. Switched my gear ratio from 40x17 to 36x17 and that worked well for the profile of this course. I only really spun out on the finish line and the slight gravel road descent leading up to the climb.
-6. Mud tires (Specialized Terra Pro) provided good traction in corners.
+3. Overall result was good and lots of racers within 30 secs to 1 min.
+4. Gear ratio (36x17) was pretty perfect for the course. The only area where I had to grind the reps out was the gravel climb and thats the same for pretty much everyone else.
+5. Equipment was dialed and tire pressure was comfortable at around 22 psi.
 
 <Box sx={{ marginBottom: '20px' }}>
   <LandscapeImage
-    image={props.data.mdx.frontmatter.images[0]}
+    image={props.data.mdx.frontmatter.images[6]}
     widthPercentage={'40%'}
     caption={
       <Text>
@@ -195,8 +209,7 @@ I also was feel left out not hitting the Hodala short cut jump on the laps. I ha
 
 ## Needs Improvement
 
-1. Valve cores were clogged with sealant and making it very to hard to set desired tire pressure.
-2. Need more lean and better lines in tighter corners. I made some small mistakes that cost me some time.
-3. Tire pressure too low and not stable enough in fast corners
-4. Need to practice 30 second anaerobic power efforts for steep sections.
-5. Dropouts and rear QR skewer not tight enough. I was swapping chains a few days before to a newer waxed chain and playing with tension and the rocker dropouts. Well I need to tighten up everything when I finished but I didn't. Good thing there wasn't any bad outcomes from this.
+1. Shoulder was still banged up so still riding cautiously to avoid another crash.
+2. More VO2 and anaerobic watts to throw down through out the race
+3. Improved biking handling and maybe using leg dabbing some to have a failsafe I really loose corners.
+4. Be more aware at finish line to not loose places without putting up a fight. I have been pipped at the line 2-3 times in the past year when I probably could win the sprint. So maybe now I will also sprint finishes hard even if no one is around to avoid this.

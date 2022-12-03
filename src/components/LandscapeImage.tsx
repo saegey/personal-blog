@@ -14,6 +14,24 @@ const LandscapeImage = ({
 }: RaceImageType) => {
   const [colorMode] = useColorMode()
 
+  if (!maximize) {
+    return (
+      <Box sx={{ width: '100%', position: 'relative' }}>
+        <MyImage
+          image={getImage(image)}
+          alt={'blah'}
+          as={GatsbyImage}
+          sx={{
+            filter: invert && colorMode === 'dark' ? `invert(1)` : `none`,
+            width: ['100%', '100%', '100%'],
+            borderRadius: [4, 4, 4],
+            '-webkit-mask-image': '-webkit-radial-gradient(white, black)',
+          }}
+        />
+      </Box>
+    )
+  }
+
   return (
     <ImageWrapper image={image} caption={caption} altText="">
       <Box sx={{ width: '100%', position: 'relative' }}>
@@ -25,6 +43,7 @@ const LandscapeImage = ({
             filter: invert && colorMode === 'dark' ? `invert(1)` : `none`,
             width: ['100%', '100%', '100%'],
             borderRadius: [4, 4, 4],
+            '-webkit-mask-image': '-webkit-radial-gradient(white, black)',
           }}
         />
         <Box
