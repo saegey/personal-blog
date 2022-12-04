@@ -80,17 +80,22 @@ By lap three or so I had a group of four, breathing down my neck. I did everythi
 
 Eventually I was passed by 3 on the small barriers where I decided to run and they choose to jump over them. Jumping was much quicker here when in some other courses running wasn't much of a penalty. Next year, I will be ready to jump these but I wasn't ready this year.
 
-<Divider />
-<MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
-<Divider sx={{ marginBottom: '20px' }} />
+<Box
+  sx={{ backgroundColor: 'backgroundEm', padding: '20px', borderRadius: '4px' }}
+>
+  <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
+</Box>
 
-## Time in Power Zones
+<Box sx={{ paddingY: '20px'}}>
+	## Time in Zones
 
-<PowerBreakdown
-  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
-  powerZones={props.data.mdx.gpxData.fields.powerZones}
-/>
-<Divider />
+    <PowerBreakdown
+    	powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
+    	powerZones={props.data.mdx.gpxData.fields.powerZones}
+    />
+    <Divider />
+
+</Box>
 
 ## Power Curve
 
