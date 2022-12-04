@@ -1,14 +1,24 @@
 import type { PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
-import { Container, Box } from 'theme-ui'
+import { Link as GatsbyLink } from 'gatsby'
+import { Container, Box, Link, Flex } from 'theme-ui'
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
 import Seo from '../components/seo'
 import PostCard from '../components/postCard'
 import SafariStyle from '../components/SafariStyle'
 
-const BlogIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
+const PostList: React.FC<PageProps<DataProps>> = ({ data, pageContext }) => {
   const posts = data.allMdx.nodes
+  console.log(pageContext)
+  const { currentPage, numPages, urlPrefix } = pageContext
+  const isFirst = currentPage === 1
+  const isLast = currentPage === numPages
+  const prevPage =
+    currentPage - 1 === 1
+      ? `${urlPrefix}`
+      : `${urlPrefix === '/' ? '' : urlPrefix }/${(currentPage - 1).toString()}`
+  const nextPage = `${urlPrefix === '/' ? '' : urlPrefix }/${(currentPage + 1).toString()}`
 
   return (
     <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 768 }}>
@@ -26,13 +36,37 @@ const BlogIndex: React.FC<PageProps<DataProps>> = ({ data }) => {
               <PostCard post={post} title={title} image={image} key={index} />
             )
           })}
+          <Flex>
+            <Box sx={{ marginX: 'auto' }}>
+              {!isFirst && (
+                <Link
+                  to={`${prevPage}`}
+                  rel="prev"
+                  as={GatsbyLink}
+                  sx={{ fontFamily: 'body', paddingRight: '10px' }}
+                >
+                  ← Previous
+                </Link>
+              )}
+              {!isLast && (
+                <Link
+                  to={`${nextPage}`}
+                  rel="next"
+                  as={GatsbyLink}
+                  sx={{ fontFamily: 'body' }}
+                >
+                  Next →
+                </Link>
+              )}
+            </Box>
+          </Flex>
         </Box>
       </Container>
     </Container>
   )
 }
 
-export default BlogIndex
+export default PostList
 
 type DataProps = {
   allMdx: {
@@ -64,13 +98,13 @@ type DataProps = {
 export const Head = () => <Seo title="All posts" />
 
 export const pageQuery = graphql`
-  query BlogIndex {
-    allMdx(sort: { frontmatter: { date: DESC } }) {
+  query postPageQuery($skip: Int!, $limit: Int!) {
+    allMdx(sort: { frontmatter: { date: DESC } }, limit: $limit, skip: $skip) {
       nodes {
         fields {
           slug
         }
-        excerpt(pruneLength: 250)
+        # excerpt(pruneLength: 250)
         frontmatter {
           title
           type

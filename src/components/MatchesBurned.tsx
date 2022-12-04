@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Box, Flex, Text, Button } from 'theme-ui'
+import FullScreenIcon from './FullScreenIcon'
 
 import Modal from './Modal'
 
@@ -91,13 +92,19 @@ export const MatchesBurned = ({ data }: Props) => {
             </Text>
           </Box>
           <Box sx={{ marginLeft: 'auto' }}>
-            <Button
+            <Box
+              sx={{
+                width: '40px',
+                right: '0',
+                top: '0',
+                zIndex: 0,
+              }}
               onClick={() => {
                 openModal(true)
               }}
             >
-              View All
-            </Button>
+              <FullScreenIcon color="primary" />
+            </Box>
           </Box>
         </Flex>
         <MatchesHeading />

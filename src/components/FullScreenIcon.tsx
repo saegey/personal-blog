@@ -3,14 +3,14 @@ import { BoxSvgType } from '../common/types'
 
 const SvgBox = Box as any as (props: BoxSvgType) => JSX.Element
 
-const FullScreenIcon = () => {
+const FullScreenIcon = ({ color = 'white' }) => {
   return (
     <SvgBox
       as="svg"
       viewBox="60 0 580 580"
       sx={{
         '.icon-solid': {
-          fill: 'white',
+          fill: color,
         },
       }}
     >
