@@ -111,6 +111,68 @@ export const createPages: GatsbyNode['createPages'] = async ({
   })
 
   await Promise.all([createPostPromise])
+
+  // Create blog post list pages
+  const postsPerPage = 5
+  const numPages = Math.ceil(result.data?.allMdx.nodes.length / postsPerPage)
+
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/` : `/${i + 1}`,
+      component: path.resolve('./src/templates/post-list.tsx'),
+      context: {
+        limit: postsPerPage,
+        skip: i * postsPerPage,
+        numPages,
+        currentPage: i + 1,
+        urlPrefix: '/',
+      },
+    })
+  })
+
+  const raceJournals: MdxData = await graphql(`
+    query RaceJournalListQuery {
+      allMdx(
+        filter: { frontmatter: { type: { eq: "Race Journal" } } }
+        sort: { frontmatter: { date: DESC } }
+      ) {
+        nodes {
+          id
+          fields {
+            slug
+          }
+          frontmatter {
+            type
+          }
+          internal {
+            contentFilePath
+          }
+        }
+      }
+    }
+  `)
+
+  // Create blog post list pages
+  // const postsPerPage = 5
+  if (raceJournals.data) {
+    const raceJournalListPages = Math.ceil(
+      raceJournals.data?.allMdx.nodes.length / postsPerPage
+    )
+
+    Array.from({ length: raceJournalListPages }).forEach((_, i) => {
+      createPage({
+        path: i === 0 ? `/race-journal/` : `/race-journal/${i + 1}`,
+        component: path.resolve('./src/templates/post-list.tsx'),
+        context: {
+          urlPrefix: '/race-journal',
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numPages,
+          currentPage: i + 1,
+        },
+      })
+    })
+  }
 }
 
 // Workaround

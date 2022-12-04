@@ -103,7 +103,7 @@ export const MatchesBurned = ({ data }: Props) => {
                 openModal(true)
               }}
             >
-              <FullScreenIcon color="black" />
+              <FullScreenIcon color="primary" />
             </Box>
           </Box>
         </Flex>
