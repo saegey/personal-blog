@@ -133,7 +133,13 @@ My friend Chris passed me about midway on the last lap and I did everything I co
 <Divider sx={{ marginY: '20px' }} />
 
 <PowerGraph
-  data={props.data.mdx.gpxData.fields.heartRateData}
+  data={[
+    {
+      id: 'Heart Rate',
+      data: props.data.mdx.gpxData.fields.heartRateData,
+      unit: 'bpm',
+    },
+  ]}
   startTime={0}
   endTime={3180}
   areaBaselineValue={90}

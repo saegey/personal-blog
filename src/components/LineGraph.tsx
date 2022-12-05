@@ -41,7 +41,7 @@ const LineGraph = ({
       margin={{
         top: 20,
         right: 10,
-        bottom: 25,
+        bottom: 50,
         left: 40,
       }}
       curve={curve ? curve : 'natural'}
@@ -87,7 +87,7 @@ const LineGraph = ({
             <div style={{ fontWeight: 600 }}>
               {slice.points.map((p, i) => (
                 <Text as="p">
-                  {p.data.y} {data.filter((d => d.id === p.serieId))[0].unit}
+                  {p.data.y} {data.filter(d => d.id === p.serieId)[0].unit}
                 </Text>
               ))}
             </div>

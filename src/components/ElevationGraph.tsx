@@ -47,10 +47,10 @@ const ElevationGraph = ({
       }}
     >
       <LineGraph
-        unit={context.unitOfMeasure === 'metric' ? 'meters' : 'feet'}
         data={[
           {
             id: 'elevation',
+            unit: (context.unitOfMeasure === 'metric' ? 'meters' : 'feet'),
             data:
               context.unitOfMeasure === 'metric'
                 ? downSampledData

@@ -71,7 +71,13 @@ year in the races are used them for. The height of tire seems greater than other
 tires and last year my complaint with them was sliding out in tight corners.
 
 <PowerGraph
-  data={props.data.mdx.gpxData.fields.heartRateData}
+  data={[
+    {
+      id: 'Heart Rate',
+      data: props.data.mdx.gpxData.fields.heartRateData,
+      unit: 'bpm',
+    },
+  ]}
   startTime={0}
   endTime={2890}
   areaBaselineValue={90}

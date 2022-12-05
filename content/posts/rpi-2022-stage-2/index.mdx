@@ -129,12 +129,20 @@ Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis 
 
 <Divider sx={{ marginBottom: '20px' }} />
 
-## Power for Time Trial
-
 <PowerGraph
-  data={props.data.mdx.gpxData.fields.powerData}
+  data={[
+    {
+      id: 'Power',
+      data: props.data.mdx.gpxData.fields.powerData,
+      unit: 'watts',
+    },
+  ]}
   startTime={5719}
   endTime={7380}
+  downsampleRate={5}
+  axisLeftTickValues={[0, 100, 200, 300, 400, 500]}
+  yScaleMax={500}
+  yScaleMin={0}
   title="Power for Uphill TT"
 />
 <Divider />

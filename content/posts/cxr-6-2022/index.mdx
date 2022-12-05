@@ -28,7 +28,13 @@ results:
 SeaTac was a good place to close out my short, five cx race season. It's always nice when races are closer to home, about 30 min drive, and where you are more familiar with the terrain. I had time for two practice laps and by the time the single speed race started at 1:45pm it was already getting colder. Earlier in the day, the sun was out and temps felt fine but I was getting colder the closer it go towards the race.
 
 <PowerGraph
-  data={props.data.mdx.gpxData.fields.heartRateData}
+  data={[
+    {
+      id: 'Heart Rate',
+      data: props.data.mdx.gpxData.fields.heartRateData,
+      unit: 'bpm',
+    },
+  ]}
   startTime={0}
   endTime={3180}
   areaBaselineValue={90}
@@ -39,7 +45,6 @@ SeaTac was a good place to close out my short, five cx race season. It's always 
   downsampleRate={10}
   curve={'natural'}
   lineWidth={2}
-  colors={['red']}
   segments={props.data.mdx.segments.fields.segments}
   title="Heart Rate By Lap"
 />

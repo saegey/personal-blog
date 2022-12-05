@@ -19,7 +19,6 @@ const PowerGraph = ({
   axisBottomTickValues,
   curve,
   lineWidth,
-  colors,
   segments,
   isMaximized = false,
 }: GraphProps) => {
@@ -50,11 +49,12 @@ const PowerGraph = ({
     })
 
   const downSampledData: Coordinate[] = data.map(d => {
+		// console.log(data[0].data)
     const formattedData = d.data
       .map((n, i) => {
         return { x: i, y: n ? n : null }
       })
-      .slice(startTime, endTime === undefined ? data.data.length : endTime)
+      .slice(startTime, endTime === undefined ? d.data.length : endTime)
 
     return {
       data: downsampleRate
@@ -64,8 +64,6 @@ const PowerGraph = ({
       unit: d.unit,
     }
   })
-
-  console.log(downSampledData)
 
   return (
     <ThemeContext.Consumer>
@@ -79,16 +77,6 @@ const PowerGraph = ({
         >
           <LineGraph
             unit={unit ? unit : 'watts'}
-            // data={[
-            //   {
-            //     id: data.id,
-            //     data: downsampleRate
-            //       ? downSampledData.filter(
-            //           n => Number(n.x) % downsampleRate == 0
-            //         )
-            //       : downSampledData,
-            //   },
-            // ]}
             data={downSampledData}
             yScaleMin={areaBaselineValue ? areaBaselineValue : 0}
             yScaleMax={
@@ -102,7 +90,7 @@ const PowerGraph = ({
                 direction: 'row',
                 justify: false,
                 translateX: 0,
-                translateY: 20,
+                translateY: 50,
                 itemsSpacing: 0,
                 itemDirection: 'left-to-right',
                 itemWidth: 120,
@@ -133,7 +121,7 @@ const PowerGraph = ({
                 ? axisLeftTickValues
                 : [0, 100, 200, 300, 400, 500, 600, 700, 800]
             }
-            colors={colors}
+            colors={theme.colors.graph}
             curve={curve ? curve : 'linear'}
             enableArea={false}
             lineWidth={lineWidth}

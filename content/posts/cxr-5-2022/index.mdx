@@ -28,7 +28,13 @@ Last year the weather was pretty epic for this venue with cold, freezing rain an
 In the race last year, I had a great start in 2nd and then slid out on the first tight corner and lost of a lot spots and eventually finished 10/16 and it wasn't a great result for me when looking at other races that season.
 
 <PowerGraph
-  data={props.data.mdx.gpxData.fields.heartRateData}
+  data={[
+    {
+      id: 'Heart Rate',
+      data: props.data.mdx.gpxData.fields.heartRateData,
+      unit: 'bpm',
+    },
+  ]}
   startTime={0}
   endTime={3180}
   areaBaselineValue={90}

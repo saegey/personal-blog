@@ -130,7 +130,13 @@ My friends Chris from Space Cadets was either close on my wheel or a few spots b
 I caught up and took the inside line to the hairpin after the climb and got ahead. This resulted in him making another hard sprint and passing both Bryan and myself.
 
 <PowerGraph
-  data={props.data.mdx.gpxData.fields.heartRateData}
+  data={[
+    {
+      id: 'Heart Rate',
+      data: props.data.mdx.gpxData.fields.heartRateData,
+      unit: 'bpm',
+    },
+  ]}
   startTime={0}
   endTime={3180}
   areaBaselineValue={90}

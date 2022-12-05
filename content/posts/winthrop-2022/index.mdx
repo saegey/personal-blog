@@ -142,7 +142,13 @@ too hard you could easily slide out on a corner. I was pretty slow in this secti
 and lost time to some of the other riders that chose to send it. At top of the first climb there is two shorter climbs around 700 feet each.
 
 <PowerGraph
-  data={props.data.mdx.gpxData.fields.heartRateData}
+  data={[
+    {
+      id: 'Heart Rate',
+      data: props.data.mdx.gpxData.fields.heartRateData,
+      unit: 'bpm',
+    },
+  ]}
   startTime={0}
   areaBaselineValue={90}
   axisLeftTickValues={[100, 120, 140, 160, 180]}
