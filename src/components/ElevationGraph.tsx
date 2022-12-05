@@ -1,10 +1,13 @@
 import { Box } from 'theme-ui'
-import { useResponsiveValue, useBreakpointIndex } from '@theme-ui/match-media'
+import { useResponsiveValue } from '@theme-ui/match-media'
 
 import { generateTimeTickValues } from '../lib/formatters'
 import { Coordinate, GraphProps } from '../common/types'
 import ThemeContext from '../context/ThemeContext'
 import LineGraph from '../components/LineGraph'
+import { useState } from 'react'
+import MaximizedContainer from './MaximizedContainer'
+import ExpandableCard from './ExpandableCard'
 
 interface ElevationGraphProps extends GraphProps {
   axisLeftTickValues: { imperial: number[]; metric: number[] }
@@ -21,6 +24,7 @@ const ElevationGraph = ({
   yScaleMin,
   yScaleMax,
   context,
+  isMaximized = false,
 }: ElevationGraphProps) => {
   const downSampledData: Coordinate[] = data.filter(
     n => Number(n.y) % downsampleRate == 0
@@ -37,7 +41,7 @@ const ElevationGraph = ({
   return (
     <Box
       sx={{
-        height: ['200px', '250px', '300px'],
+        height: isMaximized ? '90%' : ['200px', '250px', '300px'],
         fontFamily: 'body',
         marginY: '20px',
       }}
@@ -85,20 +89,42 @@ const ElevationGraphWrapper = ({
   areaBaselineValue,
   yScaleMin,
   yScaleMax,
-}: ElevationGraphProps) => (
-  <ThemeContext.Consumer>
-    {context => (
-      <ElevationGraph
-        data={data}
-        downsampleRate={downsampleRate}
-        axisLeftTickValues={axisLeftTickValues}
-        areaBaselineValue={areaBaselineValue}
-        yScaleMin={yScaleMin}
-        yScaleMax={yScaleMax}
-        context={context}
-      />
-    )}
-  </ThemeContext.Consumer>
-)
+}: ElevationGraphProps) => {
+  const [isMax, setMax] = useState()
+
+  return (
+    <ThemeContext.Consumer>
+      {context => (
+        <>
+          {isMax && (
+            <MaximizedContainer title="Elevation Profile" openModal={setMax}>
+              <ElevationGraph
+                data={data}
+                downsampleRate={downsampleRate}
+                axisLeftTickValues={axisLeftTickValues}
+                areaBaselineValue={areaBaselineValue}
+                yScaleMin={yScaleMin}
+                yScaleMax={yScaleMax}
+                context={context}
+                isMaximized={true}
+              />
+            </MaximizedContainer>
+          )}
+          <ExpandableCard title="Elevation Profile" openModal={setMax}>
+            <ElevationGraph
+              data={data}
+              downsampleRate={downsampleRate}
+              axisLeftTickValues={axisLeftTickValues}
+              areaBaselineValue={areaBaselineValue}
+              yScaleMin={yScaleMin}
+              yScaleMax={yScaleMax}
+              context={context}
+            />
+          </ExpandableCard>
+        </>
+      )}
+    </ThemeContext.Consumer>
+  )
+}
 
 export default ElevationGraphWrapper

@@ -1,8 +1,11 @@
 import { Box, useThemeUI } from 'theme-ui'
+import { useState } from 'react'
 
 import { Coordinate, GraphProps } from '../common/types'
 import ThemeContext from '../context/ThemeContext'
-import LineGraph from '../components/LineGraph'
+import LineGraph from './LineGraph'
+import MaximizedContainer from './MaximizedContainer'
+import ExpandableCard from './ExpandableCard'
 
 const PowerGraph = ({
   data,
@@ -18,6 +21,7 @@ const PowerGraph = ({
   lineWidth,
   colors,
   segments,
+  isMaximized = false,
 }: GraphProps) => {
   const { theme } = useThemeUI()
   let lapTime = 0
@@ -41,11 +45,9 @@ const PowerGraph = ({
           fill: theme.colors?.marker,
           fontWeight: '400',
           transform: 'translate(-10px, -10px)',
-          // textTransform: "uppercase"
         },
       }
     })
-  // console.log(markers)
 
   const downSampledData: Coordinate[] = data
     .map((n, i) => {
@@ -58,7 +60,7 @@ const PowerGraph = ({
       {context => (
         <Box
           sx={{
-            height: ['200px', '250px', '300px'],
+            height: isMaximized ? '85%' : ['200px', '250px', '300px'],
             fontFamily: 'body',
             marginY: '20px',
           }}
@@ -104,4 +106,21 @@ const PowerGraph = ({
   )
 }
 
-export default PowerGraph
+const PowerGraphWrapper = (props: GraphProps) => {
+  const [isMax, setMax] = useState(false)
+
+  return (
+    <>
+      {isMax && (
+        <MaximizedContainer title={props.title} openModal={setMax}>
+          <PowerGraph isMaximized={true} {...props} />
+        </MaximizedContainer>
+      )}
+      <ExpandableCard title={props.title} openModal={setMax}>
+        <PowerGraph {...props} />
+      </ExpandableCard>
+    </>
+  )
+}
+
+export default PowerGraphWrapper

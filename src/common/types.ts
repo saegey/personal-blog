@@ -12,6 +12,13 @@ export interface Coordinate {
   y: number
 }
 
+export interface Segment {
+  beginningTime: number
+  segmentDistance: number
+  segmentDuration: number
+  segmentDurationStopped: number
+}
+
 export interface GraphProps {
   data: Coordinate[]
   unit?: string
@@ -36,12 +43,9 @@ export interface GraphProps {
     | undefined
   lineWidth?: number
   colors?: string[]
-  segments?: Array<{
-    beginningTime: number
-    segmentDistance: number
-    segmentDuration: number
-    segmentDurationStopped: number
-  }>
+  segments?: Array<Segment>
+  isMaximized: boolean
+  title: string
 }
 
 export interface LineGraphProps {

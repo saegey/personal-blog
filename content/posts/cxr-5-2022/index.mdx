@@ -27,8 +27,6 @@ Last year the weather was pretty epic for this venue with cold, freezing rain an
 
 In the race last year, I had a great start in 2nd and then slid out on the first tight corner and lost of a lot spots and eventually finished 10/16 and it wasn't a great result for me when looking at other races that season.
 
-## Heart Rate by Lap
-
 <PowerGraph
   data={props.data.mdx.gpxData.fields.heartRateData}
   startTime={0}
@@ -43,6 +41,7 @@ In the race last year, I had a great start in 2nd and then slid out on the first
   lineWidth={2}
   colors={['red']}
   segments={props.data.mdx.segments.fields.segments}
+  title="Heart Rate by Lap"
 />
 
 The course is pretty tight with quite a bit of single track and plenty of gravel with some pretty slippery transitions. I'm not quite comfortable with the bike sliding in a corner but I was trying to push the edge a bit with home much speed I could carry through the corners.
@@ -103,8 +102,6 @@ I felt as the laps went on I found a good flow and the sand run up didn't spike 
 />
 <Divider />
 
-## Power Curve
-
 <PowerCurveGraph
   data={props.data.mdx.gpxData.fields.powerCurve}
   yAxes={[
@@ -118,6 +115,7 @@ I felt as the laps went on I found a good flow and the sand run up didn't spike 
     [1, 5, 10, 30, 60, 300, 600, 1200, 2400],
   ]}
   ftp={props.data.mdx.gpxData.fields.currentFtp}
+  title={'Power Curve'}
 />
 <Divider />
 
