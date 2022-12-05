@@ -17,7 +17,19 @@ results:
   provider: 'webscorer'
 ---
 
-<LandscapeImage image={props.data.mdx.frontmatter.images[1]} />
+<Carousel
+  images={[
+    props.data.mdx.frontmatter.images[1],
+    props.data.mdx.frontmatter.images[0],
+    props.data.mdx.frontmatter.images[2],
+    props.data.mdx.frontmatter.images[3],
+  ]}
+>
+  <LandscapeImage image={props.data.mdx.frontmatter.images[1]} />
+  <LandscapeImage image={props.data.mdx.frontmatter.images[0]} />
+  <LandscapeImage image={props.data.mdx.frontmatter.images[2]} />
+  <LandscapeImage image={props.data.mdx.frontmatter.images[3]} />
+</Carousel>
 
 I'm baby man bun tilde health goth fixie austin taiyaki 3 wolf moon cloud bread microdosing. Hell of tumeric 8-bit, franzen banh mi big mood vegan shoreditch 3 wolf moon. Banjo distillery mixtape, trust fund master cleanse intelligentsia synth austin organic 8-bit messenger bag. Messenger bag ennui distillery franzen chillwave. Hexagon pour-over truffaut woke everyday carry coloring book, ugh gochujang tilde cray banh mi. Wolf asymmetrical coloring book, lomo PBR&B DSA direct trade cliche. Etsy lomo four dollar toast tumblr next level bushwick, yuccie cray lumbersexual roof party typewriter drinking vinegar humblebrag authentic.
 
@@ -40,8 +52,6 @@ Edison bulb intelligentsia godard green juice readymade bodega boys. Before they
 
 <Divider />
 
-## Power Curve
-
 <PowerCurveGraph
   data={props.data.mdx.gpxData.fields.powerCurve}
   yAxes={[
@@ -57,6 +67,7 @@ Edison bulb intelligentsia godard green juice readymade bodega boys. Before they
     [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400],
   ]}
   ftp={props.data.mdx.gpxData.fields.currentFtp}
+  title="Power Curve"
 />
 <Divider />
 
@@ -64,25 +75,23 @@ Single-origin coffee hell of fam lyft tumblr vibecession fingerstache cray kogi.
 
 <Divider />
 
-## Elevation Profile
-
 <ElevationGraph
   data={props.data.mdx.gpxData.fields.elevationData}
   axisLeftTickValues={{
     imperial: [
-      [3000, 5000, 7000],
-      [2000, 3000, 4000, 5000, 6000, 7000],
-      [2000, 3000, 4000, 5000, 6000, 7000],
+      [1000, 2000, 3000],
+      [500, 1000, 1500, 2000, 2500, 3000],
+      [500, 1000, 1500, 2000, 2500, 3000],
     ],
     metric: [
-      [500, 2500],
-      [500, 1000, 1500, 2000, 2500],
-      [500, 1000, 1500, 2000, 2500],
+      [250, 500, 750, 1000],
+      [250, 500, 750, 1000],
+      [250, 500, 750, 1000],
     ],
   }}
-  areaBaselineValue={{ imperial: 1500, metric: 500 }}
-  yScaleMin={{ imperial: 1500, metric: 500 }}
-  yScaleMax={{ imperial: 7500, metric: 2500 }}
+  areaBaselineValue={{ imperial: 500, metric: 0 }}
+  yScaleMin={{ imperial: 500, metric: 0 }}
+  yScaleMax={{ imperial: 3000, metric: 1000 }}
   downsampleRate={4}
 />
 

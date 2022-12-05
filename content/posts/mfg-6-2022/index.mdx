@@ -102,8 +102,6 @@ The laps flowed by without any big mistakes. Line selection was good but probabl
 />
 <Divider />
 
-## Power Analysis
-
 <PowerCurveGraph
   data={props.data.mdx.gpxData.fields.powerCurve}
   yAxes={[
@@ -117,6 +115,7 @@ The laps flowed by without any big mistakes. Line selection was good but probabl
     [1, 5, 10, 30, 60, 300, 600, 1200, 2400],
   ]}
   ftp={props.data.mdx.gpxData.fields.currentFtp}
+  title="Power Analysis"
 />
 <Divider sx={{ marginY: '20px' }} />
 ## Time in Zones
@@ -132,7 +131,6 @@ In the later laps, traffic became a bigger issue than it usually was due to the 
 My friend Chris passed me about midway on the last lap and I did everything I could to stay close to him so I could maybe have a chance to pass on the final sprint. I had a little bad luck and had a tandem get in the way on the last couple of corners that took me a little while to get by and another single speed racer pipped me at the line that I didn't see and lost another place.
 
 <Divider sx={{ marginY: '20px' }} />
-## Heart Rate
 
 <PowerGraph
   data={props.data.mdx.gpxData.fields.heartRateData}
@@ -148,6 +146,7 @@ My friend Chris passed me about midway on the last lap and I did everything I co
   lineWidth={2}
   colors={['red']}
   segments={props.data.mdx.segments.fields.segments}
+  title="Heart Rate by Lap"
 />
 
 Overall, with the field as large as it was I was happy with the result and felt that my effort expended on this race was probably my greatest all cx season. The course didn't have anything really twisty so it was just full gas pretty much the entire time and then you add the short kicker gravel climbs and it just gets even harder.

@@ -8,7 +8,16 @@ import Seo from '../components/seo'
 import PostCard from '../components/postCard'
 import SafariStyle from '../components/SafariStyle'
 
-const PostList: React.FC<PageProps<DataProps>> = ({ data, pageContext }) => {
+type PageContext = {
+  currentPage: number
+  numPages: number
+  urlPrefix: string
+}
+
+const PostList: React.FC<PageProps<DataProps, PageContext>> = ({
+  data,
+  pageContext,
+}) => {
   const posts = data.allMdx.nodes
   console.log(pageContext)
   const { currentPage, numPages, urlPrefix } = pageContext
@@ -17,8 +26,11 @@ const PostList: React.FC<PageProps<DataProps>> = ({ data, pageContext }) => {
   const prevPage =
     currentPage - 1 === 1
       ? `${urlPrefix}`
-      : `${urlPrefix === '/' ? '' : urlPrefix }/${(currentPage - 1).toString()}`
-  const nextPage = `${urlPrefix === '/' ? '' : urlPrefix }/${(currentPage + 1).toString()}`
+      : `${urlPrefix === '/' ? '' : urlPrefix}/${(currentPage - 1).toString()}`
+
+  const nextPage = `${urlPrefix === '/' ? '' : urlPrefix}/${(
+    currentPage + 1
+  ).toString()}`
 
   return (
     <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 768 }}>

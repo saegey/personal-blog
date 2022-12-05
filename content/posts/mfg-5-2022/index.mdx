@@ -103,8 +103,6 @@ The course was reversed this year and had a short gravel climb that took some sh
 
 On the third lap I learned that if I gonna make pass I better be ready to speed up after. I passed Tall Bryan from Pizza Pals early in the 3rd lap and he ended up motivated and came by late in the 3rd lap and was too much to catch but I was able to hang on his wheel the rest of the race.
 
-## Power Analysis
-
 <PowerCurveGraph
   data={props.data.mdx.gpxData.fields.powerCurve}
   yAxes={[
@@ -119,6 +117,7 @@ On the third lap I learned that if I gonna make pass I better be ready to speed 
     [1, 5, 10, 30, 60, 300, 600, 1200, 2400],
   ]}
   ftp={props.data.mdx.gpxData.fields.currentFtp}
+  title="Power Curve"
 />
 
 My friends Chris from Space Cadets was either close on my wheel or a few spots back the whole race. On the final lap he made a pass on the gravel climb and I was determined to match it.
@@ -129,8 +128,6 @@ My friends Chris from Space Cadets was either close on my wheel or a few spots b
 />
 
 I caught up and took the inside line to the hairpin after the climb and got ahead. This resulted in him making another hard sprint and passing both Bryan and myself.
-
-## Heart Rate
 
 <PowerGraph
   data={props.data.mdx.gpxData.fields.heartRateData}
@@ -146,6 +143,7 @@ I caught up and took the inside line to the hairpin after the climb and got ahea
   lineWidth={2}
   colors={['red']}
   segments={props.data.mdx.segments.fields.segments}
+  title="Heart Rate by Lap"
 />
 
 After that happened, there was a lot of lapped traffic that got in the way and not enough time to find a way to close the gap. I was also feeling pretty worn out and pulled off the gas a bit right at the finish when I realized it was going to be near impossible to gain any places.

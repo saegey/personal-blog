@@ -27,8 +27,6 @@ results:
 
 SeaTac was a good place to close out my short, five cx race season. It's always nice when races are closer to home, about 30 min drive, and where you are more familiar with the terrain. I had time for two practice laps and by the time the single speed race started at 1:45pm it was already getting colder. Earlier in the day, the sun was out and temps felt fine but I was getting colder the closer it go towards the race.
 
-## Heart Rate by Lap
-
 <PowerGraph
   data={props.data.mdx.gpxData.fields.heartRateData}
   startTime={0}
@@ -43,6 +41,7 @@ SeaTac was a good place to close out my short, five cx race season. It's always 
   lineWidth={2}
   colors={['red']}
   segments={props.data.mdx.segments.fields.segments}
+  title="Heart Rate By Lap"
 />
 
 The course is pretty tight with quite a bit of single track and plenty of gravel with some pretty slippery transitions. I'm not quite comfortable with the bike sliding in a corner but I was trying to push the edge a bit with home much speed I could carry through the corners.
@@ -97,8 +96,6 @@ Eventually I was passed by 3 on the small barriers where I decided to run and th
 
 </Box>
 
-## Power Curve
-
 <PowerCurveGraph
   data={props.data.mdx.gpxData.fields.powerCurve}
   yAxes={[
@@ -112,6 +109,7 @@ Eventually I was passed by 3 on the small barriers where I decided to run and th
     [1, 5, 10, 30, 60, 300, 600, 1200, 2400],
   ]}
   ftp={props.data.mdx.gpxData.fields.currentFtp}
+  title="Power Curve"
 />
 <Divider />
 

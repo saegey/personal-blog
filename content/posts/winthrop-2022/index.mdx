@@ -82,8 +82,6 @@ The temperature at 8am was cold so I opted to start with a shake dry jacket and 
 
 <Divider />
 
-## Elevation Profile
-
 <ElevationGraph
   data={props.data.mdx.gpxData.fields.elevationData}
   axisLeftTickValues={{
@@ -143,8 +141,6 @@ During this section, I was really conservative because it seemed like if you pus
 too hard you could easily slide out on a corner. I was pretty slow in this section
 and lost time to some of the other riders that chose to send it. At top of the first climb there is two shorter climbs around 700 feet each.
 
-## Heart Rate
-
 <PowerGraph
   data={props.data.mdx.gpxData.fields.heartRateData}
   startTime={0}
@@ -157,6 +153,7 @@ and lost time to some of the other riders that chose to send it. At top of the f
   curve={'natural'}
   lineWidth={2}
   colors={['red']}
+  title="Heart Rate"
 />
 
 Chris and I were back together for the big descent and by now I was determined to not get gapped on the descent and stayed on his wheel. This decent was tricky with big rocks, large holes, and washed out sections so we were using the full width of the road trying to find the fastest line without destroying are tires.
@@ -222,8 +219,6 @@ In the second half of the climb, I passed Austin Foxley who looked to be dealing
 
 At this point in the race, I am so ready to be done and I don't want to give up and places so I am gonna rip this descent. Overall this one is better than the first since its less twisty and not as steep. I pass a Fount racer - Kevin Hodges, on the way down super quickly. If you are a good descender than you have a clear advantage in this race and can gain some valuable time on the way down. I classify myself as a moderate descender but was previously a slow descender. I have improved a lot over the past few years.
 
-## Power Analysis
-
 <PowerCurveGraph
   data={props.data.mdx.gpxData.fields.powerCurve}
   yAxes={[
@@ -238,6 +233,7 @@ At this point in the race, I am so ready to be done and I don't want to give up 
   ]}
   yScaleMax={600}
   ftp={props.data.mdx.gpxData.fields.currentFtp}
+  title="Power Curve"
 />
 
 What this descent has is lots of washboard. I have learned the faster you take washboard the less noticeable it is and so I was trying to send it as much as possible. Austin blows past me so easily so I have a ways to go before because strong descender.
