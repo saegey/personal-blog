@@ -49,11 +49,23 @@ const PowerGraph = ({
       }
     })
 
-  const downSampledData: Coordinate[] = data
-    .map((n, i) => {
-      return { x: i, y: n ? n : null }
-    })
-    .slice(startTime, endTime === undefined ? data.length : endTime)
+  const downSampledData: Coordinate[] = data.map(d => {
+    const formattedData = d.data
+      .map((n, i) => {
+        return { x: i, y: n ? n : null }
+      })
+      .slice(startTime, endTime === undefined ? data.data.length : endTime)
+
+    return {
+      data: downsampleRate
+        ? formattedData.filter(n => Number(n.x) % downsampleRate == 0)
+        : formattedData,
+      id: d.id,
+      unit: d.unit,
+    }
+  })
+
+  console.log(downSampledData)
 
   return (
     <ThemeContext.Consumer>
@@ -67,22 +79,49 @@ const PowerGraph = ({
         >
           <LineGraph
             unit={unit ? unit : 'watts'}
-            data={[
-              {
-                id: 'power',
-                data: downsampleRate
-                  ? downSampledData.filter(
-                      n => Number(n.x) % downsampleRate == 0
-                    )
-                  : downSampledData,
-              },
-            ]}
+            // data={[
+            //   {
+            //     id: data.id,
+            //     data: downsampleRate
+            //       ? downSampledData.filter(
+            //           n => Number(n.x) % downsampleRate == 0
+            //         )
+            //       : downSampledData,
+            //   },
+            // ]}
+            data={downSampledData}
             yScaleMin={areaBaselineValue ? areaBaselineValue : 0}
             yScaleMax={
               yScaleMax
                 ? yScaleMax
                 : Math.floor(Math.max(...downSampledData.map(o => o.y))) + 50
             }
+            legends={[
+              {
+                anchor: 'bottom',
+                direction: 'row',
+                justify: false,
+                translateX: 0,
+                translateY: 20,
+                itemsSpacing: 0,
+                itemDirection: 'left-to-right',
+                itemWidth: 120,
+                itemHeight: 20,
+                itemOpacity: 1,
+                symbolSize: 16,
+                symbolShape: 'circle',
+                symbolBorderColor: 'rgba(0, 0, 0, .5)',
+                effects: [
+                  {
+                    on: 'hover',
+                    style: {
+                      itemBackground: 'rgba(0, 0, 0, .03)',
+                      itemOpacity: 1,
+                    },
+                  },
+                ],
+              },
+            ]}
             areaBaselineValue={areaBaselineValue ? areaBaselineValue : 0}
             axisBottomTickValues={
               axisBottomTickValues

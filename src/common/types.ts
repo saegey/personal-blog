@@ -20,7 +20,10 @@ export interface Segment {
 }
 
 export interface GraphProps {
-  data: Coordinate[]
+  data: {
+    id: string
+    data: Coordinate[]
+  }
   unit?: string
   startTime?: number
   endTime?: number

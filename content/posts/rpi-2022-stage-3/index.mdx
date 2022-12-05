@@ -50,11 +50,26 @@ This stage was a true sufferfest of a stage. On paper the the stats don't seem e
 into a good position (26min @ 268watts).
 
 <PowerGraph
-  data={props.data.mdx.gpxData.fields.powerData}
+  data={[
+    {
+      id: 'Power',
+      data: props.data.mdx.gpxData.fields.powerData,
+      unit: 'watts',
+    },
+    {
+      id: 'Heart Rate',
+      data: props.data.mdx.gpxData.fields.heartRateData,
+      unit: 'bpm',
+    },
+  ]}
   startTime={1220}
   endTime={2900}
   downsampleRate={5}
   title="Power on the first climb"
+  axisLeftTickValues={[0, 100, 200, 300, 400, 500]}
+  yScaleMax={500}
+  yScaleMin={0}
+  colors={['blue', 'red']}
 />
 <Divider />
 

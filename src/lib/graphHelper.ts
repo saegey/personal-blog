@@ -47,13 +47,13 @@ export const themeTemplate = (theme: any) => {
     legends: {
       title: {
         text: {
-          fontSize: 10,
+          fontSize: 14,
           fill: theme.colors?.text,
           fontFamily: theme.fonts.body,
         },
       },
       text: {
-        fontSize: 10,
+        fontSize: 14,
         fill: theme.colors?.text,
         fontFamily: theme.fonts.body,
       },

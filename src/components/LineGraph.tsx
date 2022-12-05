@@ -1,5 +1,5 @@
 import { ResponsiveLine } from '@nivo/line'
-import { useThemeUI } from 'theme-ui'
+import { useThemeUI, Text } from 'theme-ui'
 
 import { formatSeconds, formatTime } from '../lib/formatters'
 import { LineGraphProps } from '../common/types'
@@ -7,7 +7,7 @@ import { themeTemplate } from '../lib/graphHelper'
 
 const LineGraph = ({
   data,
-  unit,
+  // unit,
   yScaleMin,
   yScaleMax,
   areaBaselineValue,
@@ -19,6 +19,7 @@ const LineGraph = ({
   colors,
   markers,
   xScaleType,
+  legends,
 }: LineGraphProps) => {
   const { theme } = useThemeUI()
   const themeData = themeTemplate(theme)
@@ -84,11 +85,16 @@ const LineGraph = ({
               {formatTime(Number(slice.points[0].data.x))}
             </div>
             <div style={{ fontWeight: 600 }}>
-              {slice.points[0].data.y.toLocaleString()} {unit}
+              {slice.points.map((p, i) => (
+                <Text as="p">
+                  {p.data.y} {data.filter((d => d.id === p.serieId))[0].unit}
+                </Text>
+              ))}
             </div>
           </div>
         </div>
       )}
+      legends={legends}
       axisLeft={{
         format: val => `${val}`,
         tickSize: 0,
