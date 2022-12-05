@@ -1,4 +1,4 @@
-import { Text, Flex, Box, Button, Close } from 'theme-ui'
+import { Text, Flex, Box, Close } from 'theme-ui'
 
 type ModalProps = {
   children: JSX.Element
@@ -9,6 +9,7 @@ type ModalProps = {
 const Modal = ({ children, modalOpen, headerText }: ModalProps) => {
   return (
     <Box
+      title="modalBackgroundContainer"
       variant="styles.faded"
       onClick={() => {
         modalOpen(false)
@@ -40,18 +41,15 @@ const Modal = ({ children, modalOpen, headerText }: ModalProps) => {
             </Text>
           </Box>
           <Box sx={{ marginLeft: 'auto', p: '20px' }}>
-            <Button
+            <Close
+              title="Close"
+              ml="auto"
+              mr={-2}
+              sx={{ color: 'text', cursor: 'pointer' }}
               onClick={() => {
                 modalOpen(false)
               }}
-              sx={{ backgroundColor: 'transparent', p: 0 }}
-            >
-              <Close
-                ml="auto"
-                mr={-2}
-                sx={{ color: 'text', cursor: 'pointer' }}
-              />
-            </Button>
+            />
           </Box>
         </Flex>
         <Box sx={{ paddingX: '20px' }}>{children}</Box>

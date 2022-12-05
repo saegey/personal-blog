@@ -1,11 +1,12 @@
-import { ResponsiveLine } from '@nivo/line'
+import { Line } from '@nivo/line'
+import { ResponsiveWrapper } from '@nivo/core'
 import { useThemeUI } from 'theme-ui'
 
 import { formatSeconds, formatTime } from '../lib/formatters'
 import { LineGraphProps } from '../common/types'
 import { themeTemplate } from '../lib/graphHelper'
 
-const LineGraph = ({
+export const LineGraph = ({
   data,
   unit,
   yScaleMin,
@@ -24,7 +25,7 @@ const LineGraph = ({
   const themeData = themeTemplate(theme)
 
   return (
-    <ResponsiveLine
+    <Line
       yScale={{
         type: 'linear',
         min: yScaleMin,
@@ -117,4 +118,10 @@ const LineGraph = ({
   )
 }
 
-export default LineGraph
+const LineGraphResponsive = (props: LineGraphProps) => (
+  <ResponsiveWrapper>
+    {({ width, height }) => <Line width={width} height={height} {...props} />}
+  </ResponsiveWrapper>
+)
+
+export default LineGraphResponsive

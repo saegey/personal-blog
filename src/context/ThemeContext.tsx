@@ -7,15 +7,13 @@ const defaultState = {
 
 const ThemeContext = createContext(defaultState)
 
-const supportsDarkMode = () =>
-  window.matchMedia('(prefers-color-scheme: dark)').matches === true
-
 class ThemeProvider extends Component {
   state = {
     unitOfMeasure: 'imperial',
   }
 
   toggleUnit = () => {
+    console.log('unit toggle')
     let unitOfMeasure
     if (this.state.unitOfMeasure === 'imperial') {
       unitOfMeasure = 'metric'
@@ -30,7 +28,7 @@ class ThemeProvider extends Component {
     const unit = localStorage.getItem('unitOfMeasure')
     if (unit) {
       this.setState({ unitOfMeasure: unit })
-    } else if (supportsDarkMode()) {
+    } else {
       this.setState({ unitOfMeasure: 'imperial' })
     }
   }

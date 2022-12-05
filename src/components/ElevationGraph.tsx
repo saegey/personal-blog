@@ -1,5 +1,5 @@
 import { Box } from 'theme-ui'
-import { useResponsiveValue, useBreakpointIndex } from '@theme-ui/match-media'
+import { useResponsiveValue } from '@theme-ui/match-media'
 
 import { generateTimeTickValues } from '../lib/formatters'
 import { Coordinate, GraphProps } from '../common/types'
