@@ -19,7 +19,6 @@ const PostList: React.FC<PageProps<DataProps, PageContext>> = ({
   pageContext,
 }) => {
   const posts = data.allMdx.nodes
-  console.log(pageContext)
   const { currentPage, numPages, urlPrefix } = pageContext
   const isFirst = currentPage === 1
   const isLast = currentPage === numPages

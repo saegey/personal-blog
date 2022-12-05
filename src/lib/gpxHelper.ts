@@ -138,7 +138,6 @@ export const calcPowerSlices = (powers: number[], length: number) => {
     if (nums.length === length) {
       powerSums.push(nums.reduce((pv, cv) => pv + cv, 0))
     }
-    // console.log(nums)
   }
   powerSums.sort(function (a, b) {
     return a - b
