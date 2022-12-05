@@ -1,10 +1,9 @@
-import { Box, Flex, useThemeUI, Text, Close } from 'theme-ui'
+import { Box, useThemeUI } from 'theme-ui'
 import { useResponsiveValue } from '@theme-ui/match-media'
+import { useState } from 'react'
 
 import LineGraph from './LineGraph'
 import { GraphProps } from '../common/types'
-import { useState } from 'react'
-import FullScreenIcon from './FullScreenIcon'
 import MaximizedContainer from './MaximizedContainer'
 import ExpandableCard from './ExpandableCard'
 
