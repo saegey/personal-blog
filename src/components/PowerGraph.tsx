@@ -19,7 +19,6 @@ const PowerGraph = ({
   axisBottomTickValues,
   curve,
   lineWidth,
-  colors,
   segments,
   isMaximized = false,
 }: GraphProps) => {
@@ -49,11 +48,22 @@ const PowerGraph = ({
       }
     })
 
-  const downSampledData: Coordinate[] = data
-    .map((n, i) => {
-      return { x: i, y: n ? n : null }
-    })
-    .slice(startTime, endTime === undefined ? data.length : endTime)
+  const downSampledData: Coordinate[] = data.map(d => {
+    // console.log(data[0].data)
+    const formattedData = d.data
+      .map((n, i) => {
+        return { x: i, y: n ? n : null }
+      })
+      .slice(startTime, endTime === undefined ? d.data.length : endTime)
+
+    return {
+      data: downsampleRate
+        ? formattedData.filter(n => Number(n.x) % downsampleRate == 0)
+        : formattedData,
+      id: d.id,
+      unit: d.unit,
+    }
+  })
 
   return (
     <ThemeContext.Consumer>
@@ -67,22 +77,39 @@ const PowerGraph = ({
         >
           <LineGraph
             unit={unit ? unit : 'watts'}
-            data={[
-              {
-                id: 'power',
-                data: downsampleRate
-                  ? downSampledData.filter(
-                      n => Number(n.x) % downsampleRate == 0
-                    )
-                  : downSampledData,
-              },
-            ]}
+            data={downSampledData}
             yScaleMin={areaBaselineValue ? areaBaselineValue : 0}
             yScaleMax={
               yScaleMax
                 ? yScaleMax
                 : Math.floor(Math.max(...downSampledData.map(o => o.y))) + 50
             }
+            legends={[
+              {
+                anchor: 'bottom',
+                direction: 'row',
+                justify: false,
+                translateX: 0,
+                translateY: 50,
+                itemsSpacing: 0,
+                itemDirection: 'left-to-right',
+                itemWidth: 120,
+                itemHeight: 20,
+                itemOpacity: 1,
+                symbolSize: 16,
+                symbolShape: 'circle',
+                symbolBorderColor: 'rgba(0, 0, 0, .5)',
+                effects: [
+                  {
+                    on: 'hover',
+                    style: {
+                      itemBackground: 'rgba(0, 0, 0, .03)',
+                      itemOpacity: 1,
+                    },
+                  },
+                ],
+              },
+            ]}
             areaBaselineValue={areaBaselineValue ? areaBaselineValue : 0}
             axisBottomTickValues={
               axisBottomTickValues
@@ -94,7 +121,7 @@ const PowerGraph = ({
                 ? axisLeftTickValues
                 : [0, 100, 200, 300, 400, 500, 600, 700, 800]
             }
-            colors={colors}
+            colors={theme.colors.graph}
             curve={curve ? curve : 'linear'}
             enableArea={false}
             lineWidth={lineWidth}

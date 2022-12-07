@@ -57,7 +57,6 @@ const CustomCarousel = ({ images }: { children: JSX.Element }) => {
         showStatus={false}
         showThumbs={false}
         onClickItem={e => {
-          console.log(e)
           maximizeImage(e)
         }}
       >

@@ -50,11 +50,26 @@ This stage was a true sufferfest of a stage. On paper the the stats don't seem e
 into a good position (26min @ 268watts).
 
 <PowerGraph
-  data={props.data.mdx.gpxData.fields.powerData}
+  data={[
+    {
+      id: 'Heart Rate',
+      data: props.data.mdx.gpxData.fields.heartRateData,
+      unit: 'bpm',
+    },
+    {
+      id: 'Power',
+      data: props.data.mdx.gpxData.fields.powerData,
+      unit: 'watts',
+    },
+  ]}
   startTime={1220}
   endTime={2900}
   downsampleRate={5}
   title="Power on the first climb"
+  axisLeftTickValues={[0, 100, 200, 300, 400, 500]}
+  yScaleMax={500}
+  yScaleMin={0}
+  colors={['blue', 'red']}
 />
 <Divider />
 
@@ -88,7 +103,11 @@ Riding with a group in this stage is huge because the winds are strong and being
 <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
 <Divider />
 
-The group organically grew as we rode on and I was motivated to not lose them till the tough, rocky 5 mile double track section (Diablito) at around mile 80. It was there I was finally solo and continued to push on the remainder of the race. I was still able to average 171 watts the final 13 miles of the race which is a huge improvement for me. My power would more drastically fade later in races last year and is something I have worked on in addition to having a solid nutrition plan for the entire race.
+The group organically grew as we rode on and I was motivated to not lose them till the tough, rocky 5 mile double track section (Diablito) at around mile 80. It was there I was finally solo and continued to push on the remainder of the race.
+
+<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
+
+I was still able to average 171 watts the final 13 miles of the race which is a huge improvement for me. My power would more drastically fade later in races last year and is something I have worked on in addition to having a solid nutrition plan for the entire race.
 
 <PortraitImage
   image={props.data.mdx.frontmatter.images[0]}

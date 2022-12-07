@@ -18,6 +18,7 @@ import PowerGraph from '../components/PowerGraph'
 import VideoPlayer from '../components/VideoPlayer'
 import Carousel from '../components/Carousel'
 import Caption from '../components/Caption'
+import Map from '../components/Map'
 
 const shortcodes = {
   Box,
@@ -37,10 +38,13 @@ const shortcodes = {
   VideoPlayer,
   Carousel,
   Caption,
+  Map,
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
   const { title, date, location, type } = data.mdx.frontmatter
+
+	console.log(`${JSON.stringify(process.env)}`)
 
   return (
     <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 768 }}>
@@ -125,6 +129,7 @@ export const query = graphql`
       gpxData {
         id
         fields {
+          coordinates
           powerZoneBuckets
           powerZones {
             zone

@@ -78,7 +78,11 @@ As daunting as the numbers are, for some reason the long climbs are my jam these
   }
 />
 
-The temperature at 8am was cold so I opted to start with a shake dry jacket and medium gloves. It was time to ditch the jacket after around 25 min into ride after hitting the base of the climb which starts as pavement. I probably would choose a vest next time. The zipper on my 7mesh jacket is not easiest to use when riding so I pulled over for probably 15 secs to take it off. Before this is when we ran into the cattle that were crossing the road. The gloves were a good choice though and left them on the entire ride. At higher altitudes on the climb the temperature was lower and the gloves helped keep my hands warm.
+The temperature at 8am was cold so I opted to start with a shake dry jacket and medium gloves. It was time to ditch the jacket after around 25 min into ride after hitting the base of the climb which starts as pavement. I probably would choose a vest next time. The zipper on my 7mesh jacket is not easiest to use when riding so I pulled over for probably 15 secs to take it off.
+
+<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
+
+Before this is when we ran into the cattle that were crossing the road. The gloves were a good choice though and left them on the entire ride. At higher altitudes on the climb the temperature was lower and the gloves helped keep my hands warm.
 
 <Divider />
 
@@ -142,7 +146,13 @@ too hard you could easily slide out on a corner. I was pretty slow in this secti
 and lost time to some of the other riders that chose to send it. At top of the first climb there is two shorter climbs around 700 feet each.
 
 <PowerGraph
-  data={props.data.mdx.gpxData.fields.heartRateData}
+  data={[
+    {
+      id: 'Heart Rate',
+      data: props.data.mdx.gpxData.fields.heartRateData,
+      unit: 'bpm',
+    },
+  ]}
   startTime={0}
   areaBaselineValue={90}
   axisLeftTickValues={[100, 120, 140, 160, 180]}

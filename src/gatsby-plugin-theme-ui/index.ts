@@ -282,6 +282,7 @@ const theme: Theme = {
     primary: colors.sonicSilver,
     marker: darken('background', 0.4),
     headerColor: '#f8f9faff',
+    graph: ['red', 'blue'],
     // headerForeground: "rgb(255, 116, 139)",
     headerForeground: colors.onyx,
     menuBackground: darken('background', 0.1),

@@ -46,6 +46,8 @@ This was my first race of the season and it was probably the first cylocross rac
 
 It can change quite a bit if it's muddy but that doesn't usually happen at Magnuson and there have only been a few muddy races here in the last decade.
 
+<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
+
 For this years race, the course was reversed which changed it up a bit. The barriers were placed on a steeper uphill segment that results in the remainder of the hill becoming a running section because it was too difficult to get momentum to remount.
 
 The course was still prettty fast and the conditions pretty dry even with a few days of heavier rain leading up to race day. I have been postponing the start to my cross season partly because of the smoking and dry and dusty conditions. The condition were better today than they have been so the rain welcome this fall for once. I hope some muddy conditions are coming soon!
@@ -71,7 +73,13 @@ year in the races are used them for. The height of tire seems greater than other
 tires and last year my complaint with them was sliding out in tight corners.
 
 <PowerGraph
-  data={props.data.mdx.gpxData.fields.heartRateData}
+  data={[
+    {
+      id: 'Heart Rate',
+      data: props.data.mdx.gpxData.fields.heartRateData,
+      unit: 'bpm',
+    },
+  ]}
   startTime={0}
   endTime={2890}
   areaBaselineValue={90}

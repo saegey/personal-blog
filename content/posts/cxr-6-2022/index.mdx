@@ -28,7 +28,13 @@ results:
 SeaTac was a good place to close out my short, five cx race season. It's always nice when races are closer to home, about 30 min drive, and where you are more familiar with the terrain. I had time for two practice laps and by the time the single speed race started at 1:45pm it was already getting colder. Earlier in the day, the sun was out and temps felt fine but I was getting colder the closer it go towards the race.
 
 <PowerGraph
-  data={props.data.mdx.gpxData.fields.heartRateData}
+  data={[
+    {
+      id: 'Heart Rate',
+      data: props.data.mdx.gpxData.fields.heartRateData,
+      unit: 'bpm',
+    },
+  ]}
   startTime={0}
   endTime={3180}
   areaBaselineValue={90}
@@ -39,7 +45,6 @@ SeaTac was a good place to close out my short, five cx race season. It's always 
   downsampleRate={10}
   curve={'natural'}
   lineWidth={2}
-  colors={['red']}
   segments={props.data.mdx.segments.fields.segments}
   title="Heart Rate By Lap"
 />
@@ -76,6 +81,8 @@ I rode clean and reasonably fast with only a few hiccups on some hairpin single 
 />
 
 By lap three or so I had a group of four, breathing down my neck. I did everything I could to maintain the gap and even sprinted on the road sections to try to push out more since I could tell I was a bit slower on the tighter single track areas. I could tell after a while of trying to hold them off I was getting a bit careless and making small mistakes on a few corners.
+
+<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
 
 Eventually I was passed by 3 on the small barriers where I decided to run and they choose to jump over them. Jumping was much quicker here when in some other courses running wasn't much of a penalty. Next year, I will be ready to jump these but I wasn't ready this year.
 

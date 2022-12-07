@@ -21,8 +21,6 @@ try {
       const { powers, times } = feature.properties.coordinateProperties
     }
   })
-
-  // console.log(data)
 } catch (err) {
   console.error(err)
 }
