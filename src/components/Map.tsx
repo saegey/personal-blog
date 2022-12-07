@@ -4,8 +4,8 @@ import { Box } from 'theme-ui'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
-const MAPBOX_TOKEN =
-  'pk.eyJ1Ijoic2FlZ2V5IiwiYSI6ImNsYmQxaGh1MzBvdHQzcHFnZ3E1YXF6cDUifQ.AUBHKU6jU79FjJn3vM-tfg'
+const MAPBOX_TOKEN = `${process.env.GATSBY_MAPBOX_TOKEN}`
+console.log('MAPBOX_TOKEN', MAPBOX_TOKEN)
 
 const mapContainerStyle = {
   width: '100%',
