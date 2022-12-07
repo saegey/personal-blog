@@ -50,7 +50,7 @@ const ElevationGraph = ({
         data={[
           {
             id: 'elevation',
-            unit: (context.unitOfMeasure === 'metric' ? 'meters' : 'feet'),
+            unit: context.unitOfMeasure === 'metric' ? 'meters' : 'feet',
             data:
               context.unitOfMeasure === 'metric'
                 ? downSampledData

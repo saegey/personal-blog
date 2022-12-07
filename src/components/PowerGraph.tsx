@@ -49,7 +49,7 @@ const PowerGraph = ({
     })
 
   const downSampledData: Coordinate[] = data.map(d => {
-		// console.log(data[0].data)
+    // console.log(data[0].data)
     const formattedData = d.data
       .map((n, i) => {
         return { x: i, y: n ? n : null }

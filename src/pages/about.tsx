@@ -4,8 +4,9 @@ import { StaticImage } from 'gatsby-plugin-image'
 
 import SafariStyle from '../components/SafariStyle'
 import Seo from '../components/seo'
+import Map from '../components/Map'
 
-const AboutIndex = () => {
+const AboutIndex = ({ data }) => {
   return (
     <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 768 }}>
       <SafariStyle />
@@ -51,7 +52,9 @@ const AboutIndex = () => {
           post-ironic. Austin bespoke af pop-up, photo booth meggings hoodie
           dreamcatcher cray hexagon wolf +1. Tote bag banh mi letterpress lo-fi
           tilde glossier mumblecore iceland cred pork belly normcore.
+          {/* { JSON.stringify(data.mdx.gpxData.fields.coordinates)} */}
         </p>
+        <Map coodinates={data.mdx.gpxData.fields.coordinates} />
         <p
           sx={{
             fontFamily: 'serif',
@@ -86,6 +89,22 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+      }
+    }
+    mdx(id: { eq: "99dcffe3-5444-57bc-8433-3122da49fc3a" }) {
+      id
+      frontmatter {
+        date(formatString: "MMM DD, YYYY")
+        location
+        title
+        tags
+        type
+      }
+      gpxData {
+        id
+        fields {
+          coordinates
+        }
       }
     }
   }

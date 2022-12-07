@@ -39,6 +39,7 @@ const PowerCurveGraph = ({
           {
             id: 'power',
             data,
+            unit: 'watts',
           },
         ]}
         yScaleMin={0}

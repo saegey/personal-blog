@@ -483,6 +483,12 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
             })
 
             createNodeField({
+              name: `coordinates`,
+              node,
+              value: coordinates,
+            })
+
+            createNodeField({
               name: `elapsedTime`,
               node,
               value: dateDiff(new Date(times[0]), new Date(times.at(-1))),
