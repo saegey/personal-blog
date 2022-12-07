@@ -31,7 +31,7 @@ module.exports = {
     options: {
       headers: {
         "/*": [
-          'Referrer-Policy: origin-when-cross-origin'
+          'Referrer-Policy: origin'
         ]
       }
     }
