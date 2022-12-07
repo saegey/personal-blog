@@ -28,6 +28,7 @@
     "fs": "0.0.1-security",
     "gatsby": "^5.0.1",
     "gatsby-plugin-feed": "^5.0.0",
+    "gatsby-plugin-gatsby-cloud": "^5.2.0",
     "gatsby-plugin-image": "^3.0.0",
     "gatsby-plugin-manifest": "^5.0.0",
     "gatsby-plugin-mdx": "^5.0.0",
