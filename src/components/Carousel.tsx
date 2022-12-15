@@ -30,7 +30,7 @@ const CustomCarousel = ({ images }: { children: JSX.Element }) => {
                 sx={{ width: '100%', position: 'relative' }}
               >
                 <Image
-                  image={getImage(image)}
+                  image={getImage(image.imageObj)}
                   alt={'blah'}
                   as={GatsbyImage}
                   sx={{
@@ -65,16 +65,43 @@ const CustomCarousel = ({ images }: { children: JSX.Element }) => {
             key={`carousel-${i}`}
             sx={{ width: '100%', position: 'relative' }}
           >
-            <Image
-              image={getImage(image)}
-              alt={'blah'}
-              as={GatsbyImage}
-              sx={{
-                width: ['100%', '100%', '100%'],
-                borderRadius: [4, 4, 4],
-                '-webkit-mask-image': '-webkit-radial-gradient(white, black)',
-              }}
-            />
+            {image.orientation === 'portrait' ? (
+              <Box
+                sx={{
+                  width: '100%',
+                  backgroundColor: 'backgroundEm',
+                  borderRadius: '4px',
+                }}
+              >
+                <Box
+                  sx={{
+                    width: '44%',
+                    margin: 'auto',
+                    display: 'block',
+                  }}
+                >
+                  <Image
+                    image={getImage(image.imageObj)}
+                    alt={'blah'}
+                    as={GatsbyImage}
+                    sx={{
+                      width: '100%',
+                    }}
+                  />
+                </Box>
+              </Box>
+            ) : (
+              <Image
+                image={getImage(image.imageObj)}
+                alt={'blah'}
+                as={GatsbyImage}
+                sx={{
+                  width: ['100%', '100%', '100%'],
+                  borderRadius: [4, 4, 4],
+                  '-webkit-mask-image': '-webkit-radial-gradient(white, black)',
+                }}
+              />
+            )}
           </Box>
         ))}
       </Carousel>

@@ -18,6 +18,15 @@ results:
   provider: 'race-results'
 ---
 
+<Carousel
+  images={[
+    { imageObj: props.data.mdx.frontmatter.images[1], orientation: 'landscape' },
+    { imageObj: props.data.mdx.frontmatter.images[0], orientation: 'landscape' },
+    { imageObj: props.data.mdx.frontmatter.images[2], orientation: 'landscape' },
+    { imageObj: props.data.mdx.frontmatter.images[3], orientation: 'portrait' },
+  ]}
+/>
+
 This stage was a true sufferfest of a stage. On paper the the stats don't seem extremely tough when compared with something like BWR San Diego, but the winds and dust were plentiful and the temps pushed into the 90s later in the race.
 
 <RaceOverview
@@ -33,11 +42,6 @@ This stage was a true sufferfest of a stage. On paper the the stats don't seem e
     'Normalized Power',
     'Avg Speed',
   ]}
-/>
-
-<LandscapeImage
-  image={props.data.mdx.frontmatter.images[1]}
-  caption="Stream crossing that was rideable by a few. Photo by FinisherPix"
 />
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
