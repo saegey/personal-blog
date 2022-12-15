@@ -306,7 +306,7 @@ const theme: Theme = {
         muted: colors.eerieBlack,
         cardBackground: colors.onyx,
         primary: colors.gainsboro,
-        marker: colors.cultured,
+        marker: lighten('background', 0.4),
         menuBackground: lighten('background', 0.03),
         blockquoteBg: colors.davysGrey,
         headerForeground: '#ced4daff',
