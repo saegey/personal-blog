@@ -121,8 +121,7 @@ exports[`Footer renders 1`] = `
   <div
     className="emotion-8"
   >
-    ©
-    2023
+    © 2023
   </div>
 </footer>
 `;
