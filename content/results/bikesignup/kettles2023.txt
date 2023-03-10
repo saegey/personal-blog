@@ -1,0 +1,13 @@
+Place,Bib,Name,Gender,City,State,Country,Lap 1,Lap 2,"Clock Time","Chip Time",Pace,Age,"Division Place",Division
+1,208,"Jesse Favia",M,Renton,WA,US,38:13:00,38:24:00,1:16:36,1:16:36,,42,1,M 0-99
+2,213,"Anthony Ottinger",M,Maple Valley,WA,US,38:11:00,38:53:00,1:17:04,1:17:04,,20,2,M 0-99
+3,238,"Brian Atwood",M,Langley,WA,US,39:08:00,41:03:00,1:20:12,1:20:12,,47,3,M 0-99
+4,236,"Adam Saegebarth",M,Seattle,WA,US,39:51:00,41:06:00,1:20:57,1:20:57,,41,4,M 0-99
+5,218,"Powell Jones",M,Sequim,WA,US,40:12:00,41:00:00,1:21:12,1:21:12,,46,5,M 0-99
+6,217,"Vesa Suomalainen",M,Woodinville,WA,US,40:32:00,41:29:00,1:22:01,1:22:01,,61,6,M 0-99
+7,222,"Patrick Adrian",M,Tacoma,WA,US,39:07:00,43:10:00,1:22:17,1:22:17,,37,7,M 0-99
+8,202,"Mark Doane",M,Tacoma,WA,US,38:10:00,45:31:00,1:23:41,1:23:41,,48,8,M 0-99
+9,214,"PJ Bauser",M,Seattle,WA,US,42:11:00,44:05:00,1:26:16,1:26:16,,43,9,M 0-99
+10,234,"Carter Seigh",M,Poulsbo,WA,US,43:16:00,46:29:00,1:29:44,1:29:44,,39,10,M 0-99
+11,205,"Buck Giles",M,Hoquiam,WA,US,42:47:00,49:23:00,1:32:10,1:32:10,,34,11,M 0-99
+12,237,"Kyle Williams",M,Issaquah,WA,US,45:24:00,49:53:00,1:35:16,1:35:16,,42,12,M 0-99
