@@ -44,11 +44,6 @@ export const parseBikeSignup = (file: string) => {
       name: getName(l),
       time: getTotalTime(l)
     })
-    console.log({
-      place,
-      name: getName(l),
-      time: getTotalTime(l)
-    })
   })
   return results
 }
