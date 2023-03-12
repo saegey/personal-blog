@@ -40,10 +40,10 @@ const RaceResults = ({
 }: Props) => {
   const [shouldShowResults, setShouldShowResults] = useState(false)
 
-  const firstPlaceTime = data[0].time
+  const firstPlaceTime = data ? data[0].time
     .split(':')
     .map(d => Number(d))
-    .reduce((acc, time) => 60 * acc + +time)
+    .reduce((acc, time) => 60 * acc + +time) : 0
 
   data.forEach(d => {
     if (d.place === '') return
