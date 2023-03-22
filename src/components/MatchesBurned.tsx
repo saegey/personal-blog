@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Box, Flex, Text, Button } from 'theme-ui'
+import { Box, Flex, Text } from 'theme-ui'
 import FullScreenIcon from './FullScreenIcon'
 
 import Modal from './Modal'

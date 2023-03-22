@@ -9,6 +9,10 @@ tags:
 type: Race Journal
 gpxFile: 'MFG_6_Woodland_Park_Single_Speed'
 trainingPeaks: Adam_Saegebarth_2022_11_20_13_37
+related:
+  - 'CXR Frontier Park Single Speed'
+  - 'CXR 6 - North SeaTac Single Speed'
+  - 'MFG North 40 Single Speed CX'
 images:
   - ./1.jpeg
   - ./2.jpeg
@@ -222,3 +226,23 @@ Overall, with the field as large as it was I was happy with the result and felt 
 2. More VO2 and anaerobic watts to throw down through out the race
 3. Improved biking handling and maybe using leg dabbing some to have a failsafe I really loose corners.
 4. Be more aware at finish line to not loose places without putting up a fight. I have been pipped at the line 2-3 times in the past year when I probably could win the sprint. So maybe now I will also sprint finishes hard even if no one is around to avoid this.
+
+<Divider sx={{ marginBottom: '20px' }} />
+
+<RelatedRaces
+  items={props.data.relatedP.edges.map(d => {
+    return {
+      slug: d.node.fields.slug,
+      title: d.node.frontmatter.title,
+      date: d.node.frontmatter.date,
+      normalizedPower: d.node.gpxData.fields.normalizedPower,
+      headerImage: d.node.frontmatter.headerImage,
+      timeInRed: `${new Date(d.node.gpxData.fields.timeInRed * 1000)
+        .toISOString()
+        .substr(11, 8)}`,
+      distance: d.node.gpxData.fields.distance,
+      stoppedTime: d.node.gpxData.fields.stoppedTime,
+      elapsedTime: d.node.gpxData.fields.elapsedTime,
+    }
+  })}
+/>

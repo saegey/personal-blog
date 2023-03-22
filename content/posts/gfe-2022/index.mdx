@@ -1,9 +1,11 @@
 ---
-title: Gran Fondo Ephrata
+title: Gran Fondo Ephrata 2022
 date: 2022-03-20
 headerImage: './2.jpg'
 tags:
   - gravel
+related:
+  - 'Gran Fondo Ephrata 2023'
 type: Race Journal
 gpxFile: 'Gran_fondo_ephrata'
 location: Ephrata, Washington
@@ -45,11 +47,11 @@ Hexagon pour-over truffaut woke everyday carry coloring book, ugh gochujang tild
     'Avg Power',
     'Avg Heart Rate',
     'Distance',
-    'Elapsed Time',
+    'Moving Time',
     'Elevation Gain',
     'Avg Temperature',
-    'Time Stopped',
-    'Avg Cadence',
+    'Time in Red',
+    'Normalized Power',
     'Avg Speed',
   ]}
 />
@@ -154,3 +156,21 @@ direct trade chillwave meh thundercats intelligentsia chicharrones letterpress.
 <LandscapeImage image={props.data.mdx.frontmatter.images[0]} />
 
 Copper mug 8-bit chia shaman migas mumblecore man braid post-ironic mlkshk microdosing twee normcore. Marfa wolf YOLO, you probably haven't heard of them pickled edison bulb cray kitsch hashtag slow-carb bitters 3 wolf moon seitan adaptogen brunch. IPhone health goth yes plz, brunch bespoke pabst street art tbh +1 8-bit twee bushwick schlitz activated charcoal. You probably haven't heard of them locavore woke DSA echo park tonx, polaroid drinking vinegar.
+
+<RelatedRaces
+  items={props.data.relatedP.edges.map(d => {
+    return {
+      slug: d.node.fields.slug,
+      title: d.node.frontmatter.title,
+      date: d.node.frontmatter.date,
+      normalizedPower: d.node.gpxData.fields.normalizedPower,
+      headerImage: d.node.frontmatter.headerImage,
+      timeInRed: `${new Date(d.node.gpxData.fields.timeInRed * 1000)
+        .toISOString()
+        .substr(11, 8)}`,
+      distance: d.node.gpxData.fields.distance,
+      stoppedTime: d.node.gpxData.fields.stoppedTime,
+      elapsedTime: d.node.gpxData.fields.elapsedTime,
+    }
+  })}
+/>

@@ -14,6 +14,7 @@ const Races: React.FC<PageProps<DataProps>> = ({ data }) => {
         <table sx={{ fontFamily: 'body', padding: '10px' }}>
           <tr>
             <th>Title</th>
+						<th>Date</th>
             <th>Time In Red</th>
             <th>NP</th>
             <th>Avg Power</th>
@@ -26,6 +27,7 @@ const Races: React.FC<PageProps<DataProps>> = ({ data }) => {
             return (
               <tr key={index}>
                 <td sx={{ padding: '5px' }}>{post.frontmatter.title}</td>
+                <td sx={{ padding: '5px' }}>{post.frontmatter.date}</td>
                 <td sx={{ padding: '5px' }}>{`${new Date(
                   post.gpxData.fields.timeInRed * 1000
                 )
@@ -111,6 +113,7 @@ export const pageQuery = graphql`
         id
         frontmatter {
           title
+          date(formatString: "MMM DD, YYYY")
         }
         gpxData {
           fields {

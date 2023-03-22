@@ -6,6 +6,10 @@ tags:
   - cyclocross
 type: Race Journal
 gpxFile: 'CXR_6_SeaTac_SS'
+related:
+  - 'CXR Frontier Park Single Speed'
+  - 'MFG 6 - Woodland Park'
+  - 'MFG North 40 Single Speed CX'
 trainingPeaks: Adam_Saegebarth_2022_11_27_13_56
 location: SeaTac, Washington
 images:
@@ -171,3 +175,23 @@ My finish was probably the best all year and it was nice to finish the season on
 2. Could have done a better job using my pre ride laps to learn better lines versus just riding through it.
 
 3. Lost three positions on barriers which is a first for me.
+
+<Divider sx={{ marginBottom: '20px' }} />
+
+<RelatedRaces
+  items={props.data.relatedP.edges.map(d => {
+    return {
+      slug: d.node.fields.slug,
+      title: d.node.frontmatter.title,
+      date: d.node.frontmatter.date,
+      normalizedPower: d.node.gpxData.fields.normalizedPower,
+      headerImage: d.node.frontmatter.headerImage,
+      timeInRed: `${new Date(d.node.gpxData.fields.timeInRed * 1000)
+        .toISOString()
+        .substr(11, 8)}`,
+      distance: d.node.gpxData.fields.distance,
+      stoppedTime: d.node.gpxData.fields.stoppedTime,
+      elapsedTime: d.node.gpxData.fields.elapsedTime,
+    }
+  })}
+/>

@@ -43,6 +43,9 @@ type MdxData = {
         fields: {
           slug: string
         }
+				frontmatter: {
+					related: Array<string>
+				}
         internal: {
           contentFilePath: string
         }
@@ -79,6 +82,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
           }
           frontmatter {
             type
+            related
           }
           internal {
             contentFilePath
@@ -106,6 +110,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
       context: {
         slug: post.fields.slug,
         id: post.id,
+        relatedPosts: post.frontmatter.related ? post.frontmatter.related : []
         // anything else you want to pass to your context
       },
     })
@@ -144,6 +149,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
           }
           frontmatter {
             type
+            related
           }
           internal {
             contentFilePath
@@ -562,6 +568,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     }
 
     type Frontmatter {
+      id: String!
       title: String!
       description: String
       date: Date! @dateformat

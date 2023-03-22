@@ -131,6 +131,14 @@ const theme: Theme = {
       borderTopRightRadius: [4, 0, 0],
       borderBottomLeftRadius: [0, 4, 4],
     },
+    relatedImage: {
+      width: ['100%', '300px', '300px'],
+      height: ['300px', '240px', '240px'],
+      zIndex: '0',
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: [4, 0, 0],
+      borderBottomLeftRadius: [0, 4, 4],
+    },
     fullScreen: {
       position: 'relative',
       height: '100vh',
@@ -184,8 +192,16 @@ const theme: Theme = {
       // letterSpacing: '.6px',
       fontWeight: '700',
     },
+    heading3: {
+      fontFamily: 'body',
+    },
     resultsItem: {
       fontSize: ['16px', '2', '2'],
+      // lineHeight: "35px",
+      fontFamily: 'body',
+    },
+    relatedSubheader: {
+      fontSize: ['16px', '16px', '16px'],
       // lineHeight: "35px",
       fontFamily: 'body',
     },
