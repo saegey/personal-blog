@@ -13,6 +13,9 @@ location: Leavenworth, Washington
 results:
   file: 'gfl-2022-results'
   provider: 'webscorer'
+related:
+  - 'Gran Fondo Ephrata 2022'
+  - 'Gran Fondo Winthrop'
 ---
 
 <Box sx={{ marginBottom: '20px' }}>
@@ -149,3 +152,24 @@ seitan godard DIY, fugiat same austin single-origin coffee portland do intellige
 3. Tire pressure too low and not stable enough in fast corners
 4. Need to practice 30 second anaerobic power efforts for steep sections.
 5. Dropouts and rear QR skewer not tight enough. I was swapping chains a few days before to a newer waxed chain and playing with tension and the rocker dropouts. Well I need to tighten up everything when I finished but I didn't. Good thing there wasn't any bad outcomes from this.
+
+<Divider sx={{ marginBottom: '20px' }} />
+
+<RelatedRaces
+  items={props.data.relatedP.edges.map(d => {
+    return {
+      slug: d.node.fields.slug,
+      title: d.node.frontmatter.title,
+      date: d.node.frontmatter.date,
+      normalizedPower: d.node.gpxData.fields.normalizedPower,
+      headerImage: d.node.frontmatter.headerImage,
+      timeInRed: `${new Date(d.node.gpxData.fields.timeInRed * 1000)
+        .toISOString()
+        .substr(11, 8)}`,
+      distance: d.node.gpxData.fields.distance,
+      stoppedTime: d.node.gpxData.fields.stoppedTime,
+      elapsedTime: d.node.gpxData.fields.elapsedTime,
+      location: d.node.frontmatter.location,
+    }
+  })}
+/>

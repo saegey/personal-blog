@@ -30,6 +30,8 @@ images:
   </Carousel>
 </Box>
 
+After having such a good time last year at this event, I knew this was one not to miss this year. It is always early in the year and a great way to assess current fitness going into the year. I was very happy with my performance last year and hoping to match or best my numbers.
+
 <RaceOverview
   data={props.data.mdx.gpxData.fields}
   selectedFields={[
@@ -45,88 +47,11 @@ images:
   ]}
 />
 
-So I finally got out there and did a XC mountain bike race. At the start of this year, I had decided mountain biking was going to be the primary focus this year because I enjoy it so much and I am not going as nearly as often as I would like it. At the end of last year, I purchased a Specialized Chisel xc hardtail frame and had it built up early this year.
+I am a bit behind as far as volume compared to last year so I was interested how I would stack up. This event always has the biggest field of all the Gran Fondo events from Vicious Cycles and there is plenty of competition. Leading up to the event, I did a couple simulations of the effort required for the first hour of the event because I knew from last year it is tough.
 
 <LandscapeImage image={props.data.mdx.frontmatter.images[2]} maximize={false} />
 
-As probably most of us do, if we do not have the optimal tool for racing we can make excuses for why we didn't do well or become less motivated to actually get out there and race so I figured a new hardtail to upgrade from my decade old 29er Soma steel mountain bike. The geometries have evolved quite a bit and slacker geometry should help with the faster stuff.
-
-<LandscapeImage image={props.data.mdx.frontmatter.images[1]} maximize={false} />
-
-I've gotten about 14 hours total on the Chisel and so far I have really enjoyed it and find it comfortable but very capable. I skipped the first three races of the Westside MTB Series because I felt I needed some more time practicing and my fitness level was lacking. I had to take some forced time off in the beginning of January after the Rapha Festive 500 brevet due to some knee pain.
-
-<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
-
-I wasn't set on pre-riding the course the day before. We arrived to Fort Ebey park around 5pm on Saturday with about an hour of daylight left. It was raining too and it was easy to pass on the pre-ride and get to the hotel and dinner.
-
-<LandscapeImage
-  image={props.data.mdx.frontmatter.images[3]}
-  caption={
-    <Text>
-      The lead group approaching the 1st of the 3 Devils gravel climbs. Photo
-      courtesy of{' '}
-      <Link href="https://www.markalanphoto.co/Fondos/Ephrata-Gran-Fondo-2023/Grande/i-Qdm3rBC/buy">
-        Mark Alan Photo
-      </Link>
-    </Text>
-  }
-/>
-
-The next morning we arrive about an hour before the race and got things ready. I saw a few people there and they were getting in some pre-rides and mentioned the course was going to be hard.
-
-<Divider sx={{ marginBottom: '20px' }} />
-<MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
-<Divider />
-
-So the races starts and there is about 900 feet gravel start until a right turn into the single track. My start was good and I think I may have ended up in fourth position before the single track. Once we dove in the pace was fast and I was just trying to hang on. I haven't ridden in technical terrain quite at that race pace so the first few minutes were pretty intense.
-
-<LandscapeImage image={props.data.mdx.frontmatter.images[4]} maximize={false} />
-
-There was section with some tight trees that I had a bar strike and was thrown off line. This threw off a couple people in behind and created a little gap ahead. It also reminded me to calm down a bit to avoid some stupid mistakes.
-
-<Divider sx={{ marginBottom: '20px' }} />
-
-<PowerCurveGraph
-  data={props.data.mdx.gpxData.fields.powerCurve}
-  yAxes={[
-    [200, 400, 600, 800],
-    [200, 400, 600, 800],
-    [200, 400, 600, 800],
-  ]}
-  yScaleMax={900}
-  xAxes={[
-    [1, 10, 60, 600, 3600, 32400],
-    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
-    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
-  ]}
-  ftp={props.data.mdx.gpxData.fields.currentFtp}
-  title="Power Curve"
-/>
-<Divider sx={{ marginBottom: '20px' }} />
-
-The first lap continued on and the terrain was up and down with not really any
-flat sections and quite twisty and root but we good traction. I noticed if I
-have someone on my wheel it would cause me to ride a little sloppier and I let
-someone go after asking them so I could ride my own race and start to find some
-flow out on the course. Once they passed, they created a decent gap and I was
-finally isolated and started to settle in to the pace and start to spend more
-time selecting my lines and working on my form. There was a rider I could see at
-times behind but with a large enough gap that it didn't bother me. It also
-motivation to keep on the gas so I don't drop any more positions.
-
-Toward the end of the 1st lap, I started moved up a position and caught some racers from earlier races. At this point, I was in full suffer mode and was thinking that first lap took a while. On the 2nd lap I was more careful and took way better lines since I had just been through there and knew what to expect. About a third of the way in a caught a group of 4 and I noticed one of them was in my category. I was in no rush to get by but also didn't want to wait to long to get caught by more racers.
-
-<Divider sx={{ marginBottom: '20px' }} />
-## Time in Zones
-<PowerBreakdown
-  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
-  powerZones={props.data.mdx.gpxData.fields.powerZones}
-/>
-<Divider sx={{ marginBottom: '20px' }} />
-
-Eventually, the one racer in my group passed the rest of the group and I knew it was time to go. The little break while stuck behind them gave me some time to recharge the legs and be ready to go hard when it was time to pass. I rode on the wheel of the other racer and was waiting till a good climbing section to get by him. I was learning that on the climbs I had a good advantage and in the technical I was a little slower. I got past him and just tried to go as hard as I could to build the gap. I would rather create distance to make it less likely that they will chase versus just staying a little ahead and providing motivation for them to chase.
-
-<Divider sx={{ marginBottom: '20px' }} />
+<Divider sx={{ marginTop: '20px' }} />
 <ElevationGraph
   data={props.data.mdx.gpxData.fields.elevationData}
   axisLeftTickValues={{
@@ -146,11 +71,68 @@ Eventually, the one racer in my group passed the rest of the group and I knew it
   yScaleMax={{ imperial: 3000, metric: 1000 }}
   downsampleRate={4}
 />
-<Divider sx={{ marginBottom: '20px' }} />
-
-I guess I did pretty well because I finished a minute and 20 seconds ahead and I was happy with the result. Before this race, I had no idea how I stack up in the field and I have lots of area for improvement so hopefully I can grab a podium some time this year. I finished 46 seconds behind third place and there were plenty of areas I could have gained some time. I am looking forward to the next one!
 
 <Divider sx={{ marginBottom: '20px' }} />
+
+There are two climbs that last nearly an hour total and this creates the selection of riders for most of the remainder of the event. I created a route to simulate this that topped out at the top of Cougar Mountain that I rode a few weeks before and I also did an interval block on the trainer with the power I was planning to target for the race.
+
+<Divider sx={{ marginBottom: '20px' }} />
+<PowerCurveGraph
+  data={props.data.mdx.gpxData.fields.powerCurve}
+  yAxes={[
+    [200, 400, 600, 800],
+    [200, 400, 600, 800],
+    [200, 400, 600, 800],
+  ]}
+  yScaleMax={900}
+  xAxes={[
+    [1, 10, 60, 600, 3600, 32400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
+  ]}
+  ftp={props.data.mdx.gpxData.fields.currentFtp}
+  title="Power Curve"
+/>
+<Divider sx={{ marginBottom: '20px' }} />
+
+The wind is always a big factor at Ephrata because of the desert terrain and lack of cover so having a strong group to ride with is very important. Last year, I blew passed the aid station at roughly mile 42 because my group of 20 or so didn't stop. This added some stress because I was sure I could make it the rest of the route on two 24oz bottles but I was surprised with an aid station at mile 60ish that I decided to stop briefly with another rider. This year I finally decided to pick up a hydration pack to remove this unknown and allow me to go the full distance without stopping once.
+
+<LandscapeImage image={props.data.mdx.frontmatter.images[1]} maximize={false} />
+
+The race rolls out of town and is neutralized for about 15 minutes when the gravel starts. The effort needed to hit these climbs is massive and everyone is suffering. I was pretty far back in the neutral section so started a little far back once the climb started. I was playing catch up for a bit and eventually found my friend Ira but had to close probably a 20 second gap. We both ended up getting dropped at the beginning of the long descent. Ira and I took turns doing pulls and got close to the group ahead a few times but we couldn't close it. It was originally around 20 seconds but by the end of the descent it was now a few minutes.
+
+<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
+
+The two of us had to go into a strong headwind for about 5 miles till we noticed a large group behind us and let them catch us. It made a huge difference and we rolled with them and picked up a few more leaving the aid station. We stayed with this group until about miles 62 when the first of the three devil climbs was upon us. Ira needed to stop at the top for bathroom break but others hit the climb hard and the group shattered apart. I rolled slowly till Ira rejoined and we picked up some riders from the remnants of our original group. These last 25 miles to the finish were the hardest for me.
+
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[3]}
+  caption={
+    <Text>
+      The lead group approaching the 1st of the 3 Devils gravel climbs. Photo
+      courtesy of{' '}
+      <Link href="https://www.markalanphoto.co/Fondos/Ephrata-Gran-Fondo-2023/Grande/i-Qdm3rBC/buy">
+        Mark Alan Photo
+      </Link>
+    </Text>
+  }
+/>
+
+I tried to settle in to a solid tempo zone and press on but the legs were feeling the fatigue some. From this point on we were max a group of 4 and everyone else seemed to be feeling the fatigue also. At then end, I finished 33rd which is better than last year but slower. This year was harder for me for sure and I think 20 watt lower FTP from last year was probably the difference. I guess I need to get back to consistent training and raise up that number so I can have some good races this year.
+
+<Divider sx={{ marginBottom: '20px' }} />
+<MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
+<Divider sx={{ marginBottom: '20px' }} />
+
+<LandscapeImage image={props.data.mdx.frontmatter.images[4]} maximize={false} />
+<Divider sx={{ marginBottom: '20px', marginTop: '20px' }} />
+## Time in Zones
+<PowerBreakdown
+  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
+  powerZones={props.data.mdx.gpxData.fields.powerZones}
+/>
+<Divider sx={{ marginBottom: '20px' }} />
+
 <RaceResults
   data={props.data.mdx.results.fields.data}
   numbersToHighlight={[0, 1, 2, 3, 4, 31, 32, 70, 76, 79, 82, 91, 118, 120]}
@@ -161,17 +143,14 @@ I guess I did pretty well because I finished a minute and 20 seconds ahead and I
 <Divider sx={{ marginBottom: '20px' }} />
 ## The Good
 
-1. Nutrition and hydration were solid and only needed to stop at one aid station minimizing stopped time. I had a few gels to spare but am still loving the Orucase top top bag with magnetic closure for easy access to gels.
-2. Equipment was dialed. I am still in love with my Specialized Pathfinder Pro 42mm with Roval Terra CLX wheel combination. Still no punctures after two years and I can run low pressure with such a high volume tire. Also, since it rained the week before the dust was really low and my chain sounded good the whole time. This has not been the case during dusty races where the wax results in a squeaky chain earlier than you would expect. I still need a better lube option for dusty conditions.
-3. Fitness level was overall good. Even with lots of downtime after RPI this year and only one longer ride. The legs held on and were good for raceday.
-
-<Divider sx={{ marginBottom: '20px' }} />
+1. Brand new 12 speed chain with silca wax treatment for race day
+2. Bike and tires were great all day and no issues at all.
+3. Effort for the first hour of the race was strong
 
 ## Needs Improvement
 
-1. Hands went numb of second long descent from washboard vibrations.
-2. I dropped a chain for the second race in a row and that would be nice to avoid but I'm not sure that possible with a 2x setup that I have currently. At least the helicopter tape I put on the frame limited the damage when the chain was stuck between frame and chainring.
-3. I could use more practice on technical descending on rough terrain. This was probably on of the toughest descents this year. Others that were similar were BWR in Black Canyon and maybe Kachess Ridge. Some more practice on this could save a nice chunk of time next year. I think time descending will be easier to gain time from then trying to increase fitness which I'm always trying to do and is tough to get noticeable gains.
+1. Planned for 60 grams of carb per hour and needed more. I was pretty depleted and really hungry by the beginning of the last climb and had two gels but I should have started with a gel per hour much earlier.
+2. I was dropped on the 2nd descent of the race and burned too many matches trying to get back with them. I eventually realized that most of them would likely stop at the aid station because only a few had hydration packs. I should have made this call earlier and just waited for company from behind to face the wind.
 
 <Divider sx={{ marginBottom: '20px' }} />
 

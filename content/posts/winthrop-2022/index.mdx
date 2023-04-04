@@ -22,6 +22,9 @@ images:
   - ./p252696583-5.jpg
   - ./p763622284-5.jpg
   - ./p845567604-5.jpg
+related:
+  - Gran Fondo Leavenworth
+  - Gran Fondo Ephrata 2023
 ---
 
 <RaceOverview
@@ -292,3 +295,24 @@ This descent still required periods of hard pedaling to keep the speed up. I get
 1. Hands went numb of second long descent from washboard vibrations.
 2. I dropped a chain for the second race in a row and that would be nice to avoid but I'm not sure that possible with a 2x setup that I have currently. At least the helicopter tape I put on the frame limited the damage when the chain was stuck between frame and chainring.
 3. I could use more practice on technical descending on rough terrain. This was probably on of the toughest descents this year. Others that were similar were BWR in Black Canyon and maybe Kachess Ridge. Some more practice on this could save a nice chunk of time next year. I think time descending will be easier to gain time from then trying to increase fitness which I'm always trying to do and is tough to get noticeable gains.
+
+<Divider sx={{ marginBottom: '20px' }} />
+
+<RelatedRaces
+  items={props.data.relatedP.edges.map(d => {
+    return {
+      slug: d.node.fields.slug,
+      title: d.node.frontmatter.title,
+      date: d.node.frontmatter.date,
+      normalizedPower: d.node.gpxData.fields.normalizedPower,
+      headerImage: d.node.frontmatter.headerImage,
+      timeInRed: `${new Date(d.node.gpxData.fields.timeInRed * 1000)
+        .toISOString()
+        .substr(11, 8)}`,
+      distance: d.node.gpxData.fields.distance,
+      stoppedTime: d.node.gpxData.fields.stoppedTime,
+      elapsedTime: d.node.gpxData.fields.elapsedTime,
+      location: d.node.frontmatter.location,
+    }
+  })}
+/>

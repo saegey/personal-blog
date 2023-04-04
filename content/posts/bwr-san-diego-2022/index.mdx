@@ -16,6 +16,10 @@ images:
   - ./3.jpeg
   - ./4.jpeg
   - ./5.jpeg
+related:
+  - Gran Fondo Ephrata 2022
+  - Rebecca's Private Idaho - Stage 3
+  - Gran Fondo Winthrop
 ---
 
 <LandscapeImage image={props.data.mdx.frontmatter.images[0]} />
@@ -143,3 +147,23 @@ Meditation YOLO venmo butcher viral DIY ennui kinfolk. Literally pinterest slow-
 Celiac scenester umami craft beer Brooklyn. Keytar tote bag ascot narwhal normcore. Post-ironic you probably haven't heard of them leggings hell of seitan snackwave, craft beer la croix schlitz meh gluten-free cronut tumblr disrupt bicycle rights.
 
 Dummy text? More like dummy thicc text, amirite?
+
+<Divider />
+<RelatedRaces
+  items={props.data.relatedP.edges.map(d => {
+    return {
+      slug: d.node.fields.slug,
+      title: d.node.frontmatter.title,
+      date: d.node.frontmatter.date,
+      normalizedPower: d.node.gpxData.fields.normalizedPower,
+      headerImage: d.node.frontmatter.headerImage,
+      timeInRed: `${new Date(d.node.gpxData.fields.timeInRed * 1000)
+        .toISOString()
+        .substr(11, 8)}`,
+      distance: d.node.gpxData.fields.distance,
+      stoppedTime: d.node.gpxData.fields.stoppedTime,
+      elapsedTime: d.node.gpxData.fields.elapsedTime,
+      location: d.node.frontmatter.location,
+    }
+  })}
+/>
