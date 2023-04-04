@@ -1,0 +1,173 @@
+---
+title: Westside MTB Series - Kettles
+date: 2023-03-04
+headerImage: './FB6A5331.jpg'
+tags:
+  - xc
+type: Race Journal
+gpxFile: 'Kettles_XC'
+location: Coupeville, WA
+results:
+  file: 'kettles2023'
+  provider: 'bikesignup'
+images:
+  - ./FB6A5331.jpg
+  - ./FB6A5332.jpg
+  - ./FB6A5333.jpg
+  - ./FB6A5334.jpg
+  - ./FB6A5335.jpg
+  - ./FB6A5336.jpg
+  - ./FB6A4993.jpg
+  - ./FB6A4994.jpg
+  - ./FB6A4995.jpg
+  - ./FB6A4996.jpg
+  - ./FB6A4997.jpg
+  - ./bikegeo.png
+  - ./bikecompare.png
+---
+
+<Box sx={{ marginBottom: '20px' }}>
+  <Carousel
+    images={[
+      props.data.mdx.frontmatter.images[0],
+      props.data.mdx.frontmatter.images[1],
+      props.data.mdx.frontmatter.images[2],
+      props.data.mdx.frontmatter.images[3],
+      props.data.mdx.frontmatter.images[4],
+      props.data.mdx.frontmatter.images[5],
+    ]}
+  >
+    <LandscapeImage
+      image={props.data.mdx.frontmatter.images[0]}
+      maximize={false}
+    />
+    <LandscapeImage
+      image={props.data.mdx.frontmatter.images[1]}
+      maximize={false}
+    />
+    <LandscapeImage
+      image={props.data.mdx.frontmatter.images[2]}
+      maximize={false}
+    />
+    <LandscapeImage
+      image={props.data.mdx.frontmatter.images[3]}
+      maximize={false}
+    />
+    <LandscapeImage
+      image={props.data.mdx.frontmatter.images[4]}
+      maximize={false}
+    />
+    <LandscapeImage
+      image={props.data.mdx.frontmatter.images[5]}
+      maximize={false}
+    />
+  </Carousel>
+</Box>
+
+<RaceOverview
+  data={props.data.mdx.gpxData.fields}
+  selectedFields={[
+    'Avg Power',
+    'Avg Heart Rate',
+    'Distance',
+    'Moving Time',
+    'Elevation Gain',
+    'Avg Temperature',
+    'Time in Red',
+    'Normalized Power',
+    'Avg Speed',
+  ]}
+/>
+
+So I finally got out there and did a XC mountain bike race. At the start of this year, I had decided mountain biking was going to be the primary focus this year because I enjoy it so much and I am not going as nearly as often as I would like it. At the end of last year, I purchased a Specialized Chisel xc hardtail frame and had it built up early this year.
+
+As probably most of us do, if we do not have the optimal tool for racing we can make excuses for why we didn't do well or become less motivated to actually get out there and race so I figured a new hardtail to upgrade from my decade old 29er Soma steel mountain bike. The geometries have evolved quite a bit and slacker geometry should help with the faster stuff.
+
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[12]}
+  maximize={false}
+/>
+
+I've gotten about 14 hours total on the Chisel and so far I have really enjoyed it and find it comfortable but very capable. I skipped the first three races of the Westside MTB Series because I felt I needed some more time practicing and my fitness level was lacking. I had to take some forced time off in the beginning of January after the Rapha Festive 500 brevet due to some knee pain.
+
+<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
+
+I wasn't set on pre-riding the course the day before. We arrived to Fort Ebey park around 5pm on Saturday with about an hour of daylight left. It was raining too and it was easy to pass on the pre-ride and get to the hotel and dinner. The next morning we arrive about an hour before the race and got things ready. I saw a few people there and they were getting in some pre-rides and mentioned the course was going to be hard.
+
+<Divider sx={{ marginBottom: '20px' }} />
+<MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
+<Divider />
+
+So the races starts and there is about 900 feet gravel start until a right turn into the single track. My start was good and I think I may have ended up in fourth position before the single track. Once we dove in the pace was fast and I was just trying to hang on. I haven't ridden in technical terrain quite at that race pace so the first few minutes were pretty intense. There was section with some tight trees that I had a bar strike and was thrown off line. This threw off a couple people in behind and created a little gap ahead. It also reminded me to calm down a bit to avoid some stupid mistakes.
+
+<Divider sx={{ marginBottom: '20px' }} />
+
+<PowerCurveGraph
+  data={props.data.mdx.gpxData.fields.powerCurve}
+  yAxes={[
+    [200, 400, 600, 800],
+    [200, 400, 600, 800],
+    [200, 400, 600, 800],
+  ]}
+  yScaleMax={900}
+  xAxes={[
+    [1, 10, 60, 600, 3600, 32400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
+  ]}
+  ftp={props.data.mdx.gpxData.fields.currentFtp}
+  title="Power Curve"
+/>
+<Divider sx={{ marginBottom: '20px' }} />
+
+The first lap continued on and the terrain was up and down with not really any
+flat sections and quite twisty and root but we good traction. I noticed if I
+have someone on my wheel it would cause me to ride a little sloppier and I let
+someone go after asking them so I could ride my own race and start to find some
+flow out on the course. Once they passed, they created a decent gap and I was
+finally isolated and started to settle in to the pace and start to spend more
+time selecting my lines and working on my form. There was a rider I could see at
+times behind but with a large enough gap that it didn't bother me. It also
+motivation to keep on the gas so I don't drop any more positions.
+
+Toward the end of the 1st lap, I started moved up a position and caught some racers from earlier races. At this point, I was in full suffer mode and was thinking that first lap took a while. On the 2nd lap I was more careful and took way better lines since I had just been through there and knew what to expect. About a third of the way in a caught a group of 4 and I noticed one of them was in my category. I was in no rush to get by but also didn't want to wait to long to get caught by more racers.
+
+<Divider sx={{ marginBottom: '20px' }} />
+## Time in Zones
+<PowerBreakdown
+  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
+  powerZones={props.data.mdx.gpxData.fields.powerZones}
+/>
+<Divider sx={{ marginBottom: '20px' }} />
+
+Eventually, the one racer in my group passed the rest of the group and I knew it was time to go. The little break while stuck behind them gave me some time to recharge the legs and be ready to go hard when it was time to pass. I rode on the wheel of the other racer and was waiting till a good climbing section to get by him. I was learning that on the climbs I had a good advantage and in the technical I was a little slower. I got past him and just tried to go as hard as I could to build the gap. I would rather create distance to make it less likely that they will chase versus just staying a little ahead and providing motivation for them to chase.
+
+<ElevationGraph
+  data={props.data.mdx.gpxData.fields.elevationData}
+  axisLeftTickValues={{
+    imperial: [
+      [100, 200, 300],
+      [100, 200, 300],
+      [100, 200, 300],
+    ],
+    metric: [
+      [25, 50, 75, 100],
+      [25, 50, 75, 100],
+      [25, 50, 75, 100],
+    ],
+  }}
+  areaBaselineValue={{ imperial: 0, metric: 0 }}
+  yScaleMin={{ imperial: 0, metric: 0 }}
+  yScaleMax={{ imperial: 300, metric: 100 }}
+  downsampleRate={1}
+/>
+
+I guess I did pretty well because I finished a minute and 20 seconds ahead and I was happy with the result. Before this race, I had no idea how I stack up in the field and I have lots of area for improvement so hopefully I can grab a podium some time this year. I finished 46 seconds behind third place and there were plenty of areas I could have gained some time. I am looking forward to the next one!
+
+<RaceResults
+  data={props.data.mdx.results.fields.data}
+  numbersToHighlight={[...Array(12).keys()]}
+  distance={props.data.mdx.gpxData.fields.distance}
+  racerName="Adam Saegebarth"
+  showSpeed={false}
+/>

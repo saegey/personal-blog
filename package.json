@@ -26,13 +26,17 @@
     "add": "^2.0.6",
     "babel-plugin-emotion": "^11.0.0",
     "fs": "0.0.1-security",
-    "gatsby": "^5.0.1",
+    "gatsby": "^5.8.0",
     "gatsby-plugin-feed": "^5.0.0",
+<<<<<<< HEAD
     "gatsby-plugin-gatsby-cloud": "^5.2.0",
     "gatsby-plugin-image": "^3.0.0",
+=======
+    "gatsby-plugin-image": "^3.8.0",
+>>>>>>> 356f72d... Ephrata post
     "gatsby-plugin-manifest": "^5.0.0",
     "gatsby-plugin-mdx": "^5.0.0",
-    "gatsby-plugin-sharp": "^5.0.0",
+    "gatsby-plugin-sharp": "^5.8.0",
     "gatsby-plugin-theme-ui": "^0.15.4",
     "gatsby-remark-copy-linked-files": "^6.0.0",
     "gatsby-remark-images": "^7.0.0",
@@ -41,7 +45,7 @@
     "gatsby-remark-smartypants": "^6.0.0",
     "gatsby-source-filesystem": "^5.0.0",
     "gatsby-transformer-remark": "^6.0.0",
-    "gatsby-transformer-sharp": "^5.0.0",
+    "gatsby-transformer-sharp": "^5.8.0",
     "geojson": "^0.5.0",
     "imagekitio-react": "^2.0.0",
     "jest-environment-jsdom": "^29.3.1",

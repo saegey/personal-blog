@@ -1,0 +1,174 @@
+---
+title: Gran Fondo Ephrata 2023
+date: 2023-03-19
+headerImage: './i-ggSjkgx-X5.jpg'
+tags:
+  - gravel
+type: Race Journal
+related:
+  - 'Gran Fondo Ephrata 2022'
+  - 'Gran Fondo Winthrop'
+gpxFile: 'Gran_Fondo_Ephrata_2023'
+location: Ephrata, WA
+results:
+  file: 'gfe-2023-results'
+  provider: 'webscorer'
+images:
+  - ./i-ggSjkgx-X5.jpg
+  - ./i-L8jDW7P-X5-2.jpg
+  - ./i-CTPmHcC-X5.jpg
+  - ./i-PL8KZ7s-X5.jpg
+  - ./i-Qdm3rBC-X5.jpg
+---
+
+<Box sx={{ marginBottom: '20px' }}>
+  <Carousel images={[props.data.mdx.frontmatter.images[0]]}>
+    <LandscapeImage
+      image={props.data.mdx.frontmatter.images[0]}
+      maximize={false}
+    />
+  </Carousel>
+</Box>
+
+After having such a good time last year at this event, I knew this was one not to miss this year. It is always early in the year and a great way to assess current fitness going into the year. I was very happy with my performance last year and hoping to match or best my numbers.
+
+<RaceOverview
+  data={props.data.mdx.gpxData.fields}
+  selectedFields={[
+    'Avg Power',
+    'Avg Heart Rate',
+    'Distance',
+    'Moving Time',
+    'Elevation Gain',
+    'Avg Temperature',
+    'Time in Red',
+    'Normalized Power',
+    'Avg Speed',
+  ]}
+/>
+
+I am a bit behind as far as volume compared to last year so I was interested how I would stack up. This event always has the biggest field of all the Gran Fondo events from Vicious Cycles and there is plenty of competition. Leading up to the event, I did a couple simulations of the effort required for the first hour of the event because I knew from last year it is tough.
+
+<LandscapeImage image={props.data.mdx.frontmatter.images[2]} maximize={false} />
+
+<Divider sx={{ marginTop: '20px' }} />
+<ElevationGraph
+  data={props.data.mdx.gpxData.fields.elevationData}
+  axisLeftTickValues={{
+    imperial: [
+      [1000, 2000, 3000],
+      [500, 1000, 1500, 2000, 2500, 3000],
+      [500, 1000, 1500, 2000, 2500, 3000],
+    ],
+    metric: [
+      [250, 500, 750, 1000],
+      [250, 500, 750, 1000],
+      [250, 500, 750, 1000],
+    ],
+  }}
+  areaBaselineValue={{ imperial: 500, metric: 0 }}
+  yScaleMin={{ imperial: 500, metric: 0 }}
+  yScaleMax={{ imperial: 3000, metric: 1000 }}
+  downsampleRate={4}
+/>
+
+<Divider sx={{ marginBottom: '20px' }} />
+
+There are two climbs that last nearly an hour total and this creates the selection of riders for most of the remainder of the event. I created a route to simulate this that topped out at the top of Cougar Mountain that I rode a few weeks before and I also did an interval block on the trainer with the power I was planning to target for the race.
+
+<Divider sx={{ marginBottom: '20px' }} />
+<PowerCurveGraph
+  data={props.data.mdx.gpxData.fields.powerCurve}
+  yAxes={[
+    [200, 400, 600, 800],
+    [200, 400, 600, 800],
+    [200, 400, 600, 800],
+  ]}
+  yScaleMax={900}
+  xAxes={[
+    [1, 10, 60, 600, 3600, 32400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
+  ]}
+  ftp={props.data.mdx.gpxData.fields.currentFtp}
+  title="Power Curve"
+/>
+<Divider sx={{ marginBottom: '20px' }} />
+
+The wind is always a big factor at Ephrata because of the desert terrain and lack of cover so having a strong group to ride with is very important. Last year, I blew passed the aid station at roughly mile 42 because my group of 20 or so didn't stop. This added some stress because I was sure I could make it the rest of the route on two 24oz bottles but I was surprised with an aid station at mile 60ish that I decided to stop briefly with another rider. This year I finally decided to pick up a hydration pack to remove this unknown and allow me to go the full distance without stopping once.
+
+<LandscapeImage image={props.data.mdx.frontmatter.images[1]} maximize={false} />
+
+The race rolls out of town and is neutralized for about 15 minutes when the gravel starts. The effort needed to hit these climbs is massive and everyone is suffering. I was pretty far back in the neutral section so started a little far back once the climb started. I was playing catch up for a bit and eventually found my friend Ira but had to close probably a 20 second gap. We both ended up getting dropped at the beginning of the long descent. Ira and I took turns doing pulls and got close to the group ahead a few times but we couldn't close it. It was originally around 20 seconds but by the end of the descent it was now a few minutes.
+
+<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
+
+The two of us had to go into a strong headwind for about 5 miles till we noticed a large group behind us and let them catch us. It made a huge difference and we rolled with them and picked up a few more leaving the aid station. We stayed with this group until about miles 62 when the first of the three devil climbs was upon us. Ira needed to stop at the top for bathroom break but others hit the climb hard and the group shattered apart. I rolled slowly till Ira rejoined and we picked up some riders from the remnants of our original group. These last 25 miles to the finish were the hardest for me.
+
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[3]}
+  caption={
+    <Text>
+      The lead group approaching the 1st of the 3 Devils gravel climbs. Photo
+      courtesy of{' '}
+      <Link href="https://www.markalanphoto.co/Fondos/Ephrata-Gran-Fondo-2023/Grande/i-Qdm3rBC/buy">
+        Mark Alan Photo
+      </Link>
+    </Text>
+  }
+/>
+
+I tried to settle in to a solid tempo zone and press on but the legs were feeling the fatigue some. From this point on we were max a group of 4 and everyone else seemed to be feeling the fatigue also. At then end, I finished 33rd which is better than last year but slower. This year was harder for me for sure and I think 20 watt lower FTP from last year was probably the difference. I guess I need to get back to consistent training and raise up that number so I can have some good races this year.
+
+<Divider sx={{ marginBottom: '20px' }} />
+<MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
+<Divider sx={{ marginBottom: '20px' }} />
+
+<LandscapeImage image={props.data.mdx.frontmatter.images[4]} maximize={false} />
+<Divider sx={{ marginBottom: '20px', marginTop: '20px' }} />
+## Time in Zones
+<PowerBreakdown
+  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
+  powerZones={props.data.mdx.gpxData.fields.powerZones}
+/>
+<Divider sx={{ marginBottom: '20px' }} />
+
+<RaceResults
+  data={props.data.mdx.results.fields.data}
+  numbersToHighlight={[0, 1, 2, 3, 4, 31, 32, 70, 76, 79, 82, 91, 118, 120]}
+  distance={props.data.mdx.gpxData.fields.distance}
+  racerName="Adam Saegebarth"
+  showSpeed={true}
+/>
+<Divider sx={{ marginBottom: '20px' }} />
+## The Good
+
+1. Brand new 12 speed chain with silca wax treatment for race day
+2. Bike and tires were great all day and no issues at all.
+3. Effort for the first hour of the race was strong
+
+## Needs Improvement
+
+1. Planned for 60 grams of carb per hour and needed more. I was pretty depleted and really hungry by the beginning of the last climb and had two gels but I should have started with a gel per hour much earlier.
+2. I was dropped on the 2nd descent of the race and burned too many matches trying to get back with them. I eventually realized that most of them would likely stop at the aid station because only a few had hydration packs. I should have made this call earlier and just waited for company from behind to face the wind.
+
+<Divider sx={{ marginBottom: '20px' }} />
+
+<RelatedRaces
+  items={props.data.relatedP.edges.map(d => {
+    return {
+      slug: d.node.fields.slug,
+      title: d.node.frontmatter.title,
+      date: d.node.frontmatter.date,
+      normalizedPower: d.node.gpxData.fields.normalizedPower,
+      headerImage: d.node.frontmatter.headerImage,
+      timeInRed: `${new Date(d.node.gpxData.fields.timeInRed * 1000)
+        .toISOString()
+        .substr(11, 8)}`,
+      distance: d.node.gpxData.fields.distance,
+      stoppedTime: d.node.gpxData.fields.stoppedTime,
+      elapsedTime: d.node.gpxData.fields.elapsedTime,
+      location: d.node.frontmatter.location,
+    }
+  })}
+/>
