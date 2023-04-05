@@ -28,12 +28,8 @@
     "fs": "0.0.1-security",
     "gatsby": "^5.8.0",
     "gatsby-plugin-feed": "^5.0.0",
-<<<<<<< HEAD
     "gatsby-plugin-gatsby-cloud": "^5.2.0",
     "gatsby-plugin-image": "^3.0.0",
-=======
-    "gatsby-plugin-image": "^3.8.0",
->>>>>>> 356f72d... Ephrata post
     "gatsby-plugin-manifest": "^5.0.0",
     "gatsby-plugin-mdx": "^5.0.0",
     "gatsby-plugin-sharp": "^5.8.0",
