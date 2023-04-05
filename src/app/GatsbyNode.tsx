@@ -25,6 +25,7 @@ import {
   calcPowerZoneBuckets,
   totalWattsOverFtp,
 } from '../lib/gpxHelper'
+import {parseBikeSignup} from '../lib/bikesignup'
 
 const defaultTimeWindows = [5, 10, 15, 30, 60, 120, 300, 600]
 const slugify = (str: string) => {
@@ -244,6 +245,14 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
         name: `data`,
         node,
         value: parseTurboreg(content),
+      })
+    }
+
+		if (type === 'bikesignup') {
+      createNodeField({
+        name: `data`,
+        node,
+        value: parseBikeSignup(content),
       })
     }
   }

@@ -26,6 +26,16 @@ module.exports = {
     },
   },
   plugins: [
+  {
+    resolve: `gatsby-plugin-gatsby-cloud`,
+    options: {
+      headers: {
+        "/*": [
+          'Referrer-Policy: origin'
+        ]
+      }
+    }
+  },
     {
       resolve: 'gatsby-plugin-theme-ui',
     },
