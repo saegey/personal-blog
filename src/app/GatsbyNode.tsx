@@ -4,13 +4,15 @@ import type { GatsbyNode } from 'gatsby'
 import length from '@turf/length'
 import { gpx } from '@tmcw/togeojson'
 import { DOMParser } from '@xmldom/xmldom'
+import { Feature } from 'geojson'
 
 import { parse } from '../lib/raceResults'
 import { parseTSV } from '../lib/webscorer'
 import { parseOmniTSV } from '../lib/omniGo'
 import { parseSegmentsFromXml } from '../lib/wkoHelper'
 import { parseTurboreg } from '../lib/turboreg'
-import { Feature } from 'geojson'
+import { parseBikeSignup } from '../lib/bikesignup'
+import { parseBikeSignupJSON } from '../lib/bikesignupjson'
 
 import {
   calcBestPowers,
@@ -25,7 +27,6 @@ import {
   calcPowerZoneBuckets,
   totalWattsOverFtp,
 } from '../lib/gpxHelper'
-import {parseBikeSignup} from '../lib/bikesignup'
 
 const defaultTimeWindows = [5, 10, 15, 30, 60, 120, 300, 600]
 const slugify = (str: string) => {
@@ -43,9 +44,9 @@ type MdxData = {
         fields: {
           slug: string
         }
-				frontmatter: {
-					related: Array<string>
-				}
+        frontmatter: {
+          related: Array<string>
+        }
         internal: {
           contentFilePath: string
         }
@@ -110,7 +111,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
       context: {
         slug: post.fields.slug,
         id: post.id,
-        relatedPosts: post.frontmatter.related ? post.frontmatter.related : []
+        relatedPosts: post.frontmatter.related ? post.frontmatter.related : [],
         // anything else you want to pass to your context
       },
     })
@@ -211,6 +212,26 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
       value: `${slugify(nodeValue.frontmatter.type)}${slug}`,
     })
   }
+  // console.log(node.internal)
+  if (node.internal.mediaType === 'application/json') {
+    // console.log(node)
+    const content = await loadNodeContent(node)
+    if (!node.internal?.description) {
+      return
+    }
+    const type = node.internal.description
+      .split(' ')[1]
+      .split('/')
+      .slice(-2, -1)[0]
+
+    if (type === 'bikesignupjson') {
+      createNodeField({
+        name: `data`,
+        node,
+        value: parseBikeSignupJSON(JSON.parse(content)),
+      })
+    }
+  }
 
   if (node.internal.mediaType === 'text/plain') {
     const content = await loadNodeContent(node)
@@ -254,7 +275,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
       })
     }
 
-		if (type === 'bikesignup') {
+    if (type === 'bikesignup') {
       createNodeField({
         name: `data`,
         node,

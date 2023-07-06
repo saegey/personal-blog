@@ -76,12 +76,18 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
               .toISOString()
               .substr(11, 8)}`,
           },
+					{
+            title: 'Moving Time',
+            value: `${new Date((elapsedTime.seconds - stoppedTime)  * 1000)
+              .toISOString()
+              .substr(11, 8)}`,
+          },
           {
             title: 'Avg Temperature',
             value:
               theme.unitOfMeasure === 'metric'
-                ? `${tempAnalysis.entire} °C`
-                : `${tempAnalysis.entire * (9 / 5) + 32} °F`,
+                ? `${tempAnalysis.entire.toFixed()} °C`
+                : `${(tempAnalysis.entire * (9 / 5) + 32).toFixed()} °F`,
           },
           {
             title: 'Avg Speed',

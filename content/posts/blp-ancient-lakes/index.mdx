@@ -1,29 +1,20 @@
 ---
-title: Westside MTB Series - Kettles
-date: 2023-03-04
-headerImage: './FB6A5331.jpg'
+title: Ancient Lakes XC
+date: 2023-03-18
+headerImage: './Ancient Lakes1_8.jpeg'
 tags:
   - xc
 type: Race Journal
-gpxFile: 'Kettles_XC'
-location: Coupeville, WA
+gpxFile: 'Ancient_Lakes_XC'
+location: Quincy, WA
 results:
-  file: 'kettles2023'
-  provider: 'bikesignup'
+  file: 'ancient_lakes'
+  provider: 'bikesignupjson'
 images:
-  - ./FB6A5331.jpg
-  - ./FB6A5332.jpg
-  - ./FB6A5333.jpg
-  - ./FB6A5334.jpg
-  - ./FB6A5335.jpg
-  - ./FB6A5336.jpg
-  - ./FB6A4993.jpg
-  - ./FB6A4994.jpg
-  - ./FB6A4995.jpg
-  - ./FB6A4996.jpg
-  - ./FB6A4997.jpg
-  - ./bikegeo.png
-  - ./bikecompare.png
+  - ./Ancient Lakes1_8.jpeg
+  - ./Ancient Lakes - 2 of 8.jpeg
+  - ./Ancient Lakes - 3 of 8.jpeg
+  - ./Ancient Lakes - 4 of 8.jpeg
 ---
 
 <Box sx={{ marginBottom: '20px' }}>
@@ -31,10 +22,7 @@ images:
     images={[
       props.data.mdx.frontmatter.images[0],
       props.data.mdx.frontmatter.images[1],
-      props.data.mdx.frontmatter.images[2],
       props.data.mdx.frontmatter.images[3],
-      props.data.mdx.frontmatter.images[4],
-      props.data.mdx.frontmatter.images[5],
     ]}
   >
     <LandscapeImage
@@ -46,19 +34,7 @@ images:
       maximize={false}
     />
     <LandscapeImage
-      image={props.data.mdx.frontmatter.images[2]}
-      maximize={false}
-    />
-    <LandscapeImage
       image={props.data.mdx.frontmatter.images[3]}
-      maximize={false}
-    />
-    <LandscapeImage
-      image={props.data.mdx.frontmatter.images[4]}
-      maximize={false}
-    />
-    <LandscapeImage
-      image={props.data.mdx.frontmatter.images[5]}
       maximize={false}
     />
   </Carousel>
@@ -146,19 +122,19 @@ Eventually, the one racer in my group passed the rest of the group and I knew it
   data={props.data.mdx.gpxData.fields.elevationData}
   axisLeftTickValues={{
     imperial: [
-      [100, 200, 300],
-      [100, 200, 300],
-      [100, 200, 300],
+      [900, 1000, 1100],
+      [900, 1000, 1100],
+      [900, 1000, 1100],
     ],
     metric: [
-      [25, 50, 75, 100],
-      [25, 50, 75, 100],
-      [25, 50, 75, 100],
+      [200, 250, 300, 350],
+      [200, 250, 300, 350],
+      [200, 250, 300, 350],
     ],
   }}
-  areaBaselineValue={{ imperial: 0, metric: 0 }}
-  yScaleMin={{ imperial: 0, metric: 0 }}
-  yScaleMax={{ imperial: 300, metric: 100 }}
+  areaBaselineValue={{ imperial: 900, metric: 200 }}
+  yScaleMin={{ imperial: 900, metric: 200 }}
+  yScaleMax={{ imperial: 1100, metric: 350 }}
   downsampleRate={1}
 />
 
