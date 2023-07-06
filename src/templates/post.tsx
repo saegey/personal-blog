@@ -46,8 +46,6 @@ const shortcodes = {
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
   const { title, date, location, type } = data.mdx.frontmatter
 
-  console.log(`${JSON.stringify(process.env)}`)
-
   return (
     <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 768 }}>
       <SafariStyle />

@@ -41,7 +41,6 @@ export const parseBikeSignupJSON = (file: Payload) => {
   file.resultSet.results.forEach(result => {
     const obj: any = {}
     headings.map((h, i) => {
-      // console.log(h, i)
       obj[h] = String(result[i])
       return obj
     })
