@@ -1,5 +1,5 @@
 import { Text, Flex, Box, Divider, Link, Container } from 'theme-ui'
-import { graphql, PageProps } from 'gatsby'
+import { graphql, PageProps, Link as GatsbyLink } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 
@@ -19,6 +19,7 @@ import VideoPlayer from '../components/VideoPlayer'
 import Carousel from '../components/Carousel'
 import Caption from '../components/Caption'
 import Map from '../components/Map'
+import RelatedRaces from '../components/RelatedRaces'
 
 const shortcodes = {
   Box,
@@ -39,12 +40,11 @@ const shortcodes = {
   Carousel,
   Caption,
   Map,
+  RelatedRaces,
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
   const { title, date, location, type } = data.mdx.frontmatter
-
-  // console.log(`${JSON.stringify(process.env)}`)
 
   return (
     <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 768 }}>
@@ -91,8 +91,45 @@ type DataProps = {
 }
 
 export const query = graphql`
-  query Post($id: String!) {
-    mdx(id: { eq: $id }) {
+  query Post($id: String!, $relatedPosts: [String]) {
+    relatedP: allMdx(
+      filter: { frontmatter: { title: { in: $relatedPosts } } }
+    ) {
+      edges {
+        node {
+          id
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "MMM DD, YYYY")
+            title
+            location
+            headerImage {
+              childImageSharp {
+                gatsbyImageData(placeholder: BLURRED)
+              }
+            }
+          }
+          gpxData {
+            id
+            fields {
+              normalizedPower
+              timeInRed
+              distance
+              stoppedTime
+              elapsedTime {
+                days
+                hours
+                minutes
+                seconds
+              }
+            }
+          }
+        }
+      }
+    }
+    mdx: mdx(id: { eq: $id }) {
       id
       frontmatter {
         date(formatString: "MMM DD, YYYY")

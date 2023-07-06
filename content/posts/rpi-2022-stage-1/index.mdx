@@ -15,6 +15,9 @@ images:
 results:
   file: 'rpi-stage-1-results'
   provider: 'race-results'
+related:
+  - Rebecca's Private Idaho - Stage 2
+  - Rebecca's Private Idaho - Stage 3
 ---
 
 This stage was a true sufferfest of a stage. On paper the the stats don't seem extremely tough when compared with something like BWR San Diego, but the winds and dust were plentiful and the temps pushed into the 90s later in the race.
@@ -162,3 +165,22 @@ single-origin coffee portland do intelligentsia.
     caption="Stream crossing that was rideable by a few. Photo by FinisherPix"
   />
 </Box>
+
+<RelatedRaces
+  items={props.data.relatedP.edges.map(d => {
+    return {
+      slug: d.node.fields.slug,
+      title: d.node.frontmatter.title,
+      date: d.node.frontmatter.date,
+      normalizedPower: d.node.gpxData.fields.normalizedPower,
+      headerImage: d.node.frontmatter.headerImage,
+      timeInRed: `${new Date(d.node.gpxData.fields.timeInRed * 1000)
+        .toISOString()
+        .substr(11, 8)}`,
+      distance: d.node.gpxData.fields.distance,
+      stoppedTime: d.node.gpxData.fields.stoppedTime,
+      elapsedTime: d.node.gpxData.fields.elapsedTime,
+      location: d.node.frontmatter.location,
+    }
+  })}
+/>

@@ -1,0 +1,183 @@
+---
+title: Ancient Lakes XC
+date: 2023-03-18
+headerImage: './Ancient Lakes1_8.jpeg'
+tags:
+  - xc
+type: Race Journal
+gpxFile: 'Ancient_Lakes_XC'
+location: Quincy, WA
+results:
+  file: 'ancient_lakes'
+  provider: 'bikesignupjson'
+images:
+  - ./Ancient Lakes1_8.jpeg
+  - ./Ancient Lakes - 2 of 8.jpeg
+  - ./Ancient Lakes - 3 of 8.jpeg
+  - ./Ancient Lakes - 4 of 8.jpeg
+  - ./Ancient Lakes - 5 of 8.jpeg
+  - ./Ancient Lakes - 6 of 8.jpeg
+  - ./Ancient Lakes - 7 of 8.jpeg
+  - ./Ancient Lakes - 8 of 8.jpeg
+---
+
+<Box sx={{ marginBottom: '20px' }}>
+  <Carousel
+    images={[
+      props.data.mdx.frontmatter.images[0],
+      props.data.mdx.frontmatter.images[1],
+      props.data.mdx.frontmatter.images[3],
+      props.data.mdx.frontmatter.images[4],
+    ]}
+  >
+    <LandscapeImage
+      image={props.data.mdx.frontmatter.images[0]}
+      maximize={false}
+    />
+    <LandscapeImage
+      image={props.data.mdx.frontmatter.images[1]}
+      maximize={false}
+    />
+    <LandscapeImage
+      image={props.data.mdx.frontmatter.images[3]}
+      maximize={false}
+    />
+    <LandscapeImage
+      image={props.data.mdx.frontmatter.images[4]}
+      maximize={false}
+    />
+  </Carousel>
+</Box>
+
+<RaceOverview
+  data={props.data.mdx.gpxData.fields}
+  selectedFields={[
+    'Avg Power',
+    'Avg Heart Rate',
+    'Distance',
+    'Moving Time',
+    'Elevation Gain',
+    'Avg Temperature',
+    'Time in Red',
+    'Normalized Power',
+    'Avg Speed',
+  ]}
+/>
+
+After seeing the photos from this race from last year, I really wanted to race this course. It is so different than our lush forest and loamy brown dirt trails in the western foothills of the Cascades. It is proper sage desert riding with loose, dusty, sandy and rocky trails. The race was originally scheduled for another weekend and I was already planning to race Ephrata Gran Fondo so two trips to central Washington didn't seam feasible but it was rescheduled to the day before Ephrata and it was an easy decision to head out early to race both days.
+
+<Divider sx={{ marginBottom: '20px' }} />
+
+<PowerCurveGraph
+  data={props.data.mdx.gpxData.fields.powerCurve}
+  yAxes={[
+    [200, 400, 600, 800],
+    [200, 400, 600, 800],
+    [200, 400, 600, 800],
+  ]}
+  yScaleMax={900}
+  xAxes={[
+    [1, 10, 60, 600, 3600, 32400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
+    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
+  ]}
+  ftp={props.data.mdx.gpxData.fields.currentFtp}
+  title="Power Curve"
+/>
+<Divider sx={{ marginBottom: '20px' }} />
+
+The race started about 45 min late and everyone was standing around so the brief warmup I didn't really matter. Once the race started, I was timid and didn't attack quite like I wanted. Upon looking at the start chute times, I was almost dead last at the start. The first part of the lap was some rocky double track and it was possible to gain some spots back but also pretty scary making passes because of the fast speeds and possibility of large rocks that appear out of nowhere.
+
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[6]}
+  maximize={true}
+  caption={
+    <Text>
+      Waiting by the start line for the race to start. It's hard to prepare and
+      be warmed up when it starts 45 min late but I guess everyone was in the
+      same boat.
+    </Text>
+  }
+/>
+
+The first three minutes were an average speed of 18 mph and 256 watts which is quite fast for mountain biking and also very flat. As a result of the poor start, I was stuck behind some people on single track when I could be riding faster. This course had limited areas to make passes. While stuck the riders at the front were pulling away and a pretty large gap formed.
+
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[7]}
+  maximize={true}
+  caption={
+    <Text>
+      Rolling through the start line for the 2nd and last lap of the race. This
+      is the double track section that was super fast.
+    </Text>
+  }
+/>
+
+About halfway into the first lap, I crashed in a pinch point where you had to navigate
+between two large rocks. It was super slow and I just kinda went over the bars in
+slow motion but one of my bottles fell out and I banged my knee some. I lost probably
+two or three spots from that crash and I struggled for a while after.
+
+My knee hurt pedaling so I wasn't able to put down my normal power (about 25 watts less for part
+of that lap) and I also started thinking about Ephrata and if this crash was going
+to mess up my more important race so I decided to ride a little more cautiously.
+
+<Divider sx={{ marginBottom: '20px' }} />
+## Time in Zones
+<PowerBreakdown
+  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
+  powerZones={props.data.mdx.gpxData.fields.powerZones}
+/>
+<Divider sx={{ marginBottom: '20px' }} />
+
+My knee began to feel better and I started to settle in some with the field pretty strung out at this point. It started to become more fun and just tried to ride things fast but smooth. During the race, I had at least 4 or so hard pedal strikes on rocks. One of them took me off trail some and through some sage bushes but was able to stay upright. The course is pretty flat so you're pedalling the whole time but also twisting through the trails and rocks are everywhere so the pedal strikes were pretty scary to have happen. I didn't have this happen during my pre-ride because the speed was slower and I was pumping through thee trail versus pedaling.
+
+<Divider sx={{ marginBottom: '20px' }} />
+<MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
+<Divider />
+
+All in all I had a good time and it was good experience racing on some trails that are completely different than I was used. As I already know, the start is so important and it was difficult to recover from a bad one when there is not many opportunities to pass.
+
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[5]}
+  maximize={true}
+  caption={
+    <Text>
+      I ran into <Link href="https://www.instagram.com/ellaad/">Ella</Link> and <Link href="https://www.instagram.com/_sarahnade/">Sarah</Link> on my pre-ride the day before. It was great to have some company for some of the ride.
+
+    </Text>
+
+}
+/>
+
+It's also hard to recover from a crash because it throws you off physically but also mentally. It was hard to drink my endurance drink during the ride and next time would wear a hydration vest to make that easier. I was only a few minutes away from 4th place so a good result was possible for me and I for sure could have finished better than I did but I will take this experience into my next cross country race.
+
+<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
+
+<ElevationGraph
+  data={props.data.mdx.gpxData.fields.elevationData}
+  axisLeftTickValues={{
+    imperial: [
+      [900, 1000, 1100, 1200],
+      [900, 1000, 1100, 1200],
+      [900, 1000, 1100, 1200],
+    ],
+    metric: [
+      [200, 250, 300, 350],
+      [200, 250, 300, 350],
+      [200, 250, 300, 350],
+    ],
+  }}
+  areaBaselineValue={{ imperial: 800, metric: 200 }}
+  yScaleMin={{ imperial: 800, metric: 200 }}
+  yScaleMax={{ imperial: 1200, metric: 350 }}
+  downsampleRate={1}
+/>
+
+<RaceResults
+  data={props.data.mdx.results.fields.data}
+  numbersToHighlight={[...Array(12).keys()]}
+  distance={props.data.mdx.gpxData.fields.distance}
+  racerName="Adam Saegebarth"
+  showSpeed={false}
+/>
