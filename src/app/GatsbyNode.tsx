@@ -13,6 +13,7 @@ import { parseSegmentsFromXml } from '../lib/wkoHelper'
 import { parseTurboreg } from '../lib/turboreg'
 import { parseBikeSignup } from '../lib/bikesignup'
 import { parseBikeSignupJSON } from '../lib/bikesignupjson'
+import { formatJson as formatRaceResultJson } from '../lib/myraceresult'
 
 import {
   calcBestPowers,
@@ -228,6 +229,14 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
         name: `data`,
         node,
         value: parseBikeSignupJSON(JSON.parse(content)),
+      })
+    }
+
+    if (type === 'myraceresult') {
+      createNodeField({
+        name: `data`,
+        node,
+        value: formatRaceResultJson(JSON.parse(content)),
       })
     }
   }
