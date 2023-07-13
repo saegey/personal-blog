@@ -18,7 +18,7 @@ module.exports = {
       summary: `who lives in Seattle and likes to ride his bike.`,
     },
     description: `A blog about software, art, bike rides, etc.`,
-    siteUrl: `https://saegey.github.io/personal-blog/`,
+    siteUrl: `https://saegey.com`,
     social: {
       instagram: `saegey`,
       twitter: `saegey`,

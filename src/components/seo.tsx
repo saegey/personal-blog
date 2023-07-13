@@ -1,78 +1,70 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
+import { useSiteMetadata } from '../hooks/use-site-metadata'
 
-import PropTypes from 'prop-types'
-import { useStaticQuery, graphql } from 'gatsby'
+const Seo = ({ title, description, pathname, children, image }) => {
+  const {
+    title: defaultTitle,
+    description: defaultDescription,
+    siteUrl,
+    twitterUsername,
+  } = useSiteMetadata()
 
-type Props = {
-  description?: string
-  title: string
-  children?: JSX.Element
-}
-
-type Site = {
-  site: {
-    siteMetadata: {
-      title: string
-      description: string
-      social: {
-        twitter: string
-      }
-    }
+  const seo = {
+    title: title || defaultTitle,
+    description: description || defaultDescription,
+    image: `${siteUrl}${image}`,
+    url: `${siteUrl}${pathname || ``}`,
+    twitterUsername,
   }
-}
 
-const Seo = ({ description, title, children }: Props) => {
-  const { site }: Site = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            social {
-              twitter
-            }
-          }
-        }
-      }
-    `
+  const twitterImageTag = image ? (
+    <meta
+      name="twitter:image"
+      content={`${seo.url}${image.childImageSharp.fixed.src}`}
+    />
+  ) : (
+    ''
   )
 
-  const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  const imageTag = image ? (
+    <meta
+      name="image"
+      content={`${seo.url}${image.childImageSharp.fixed.src}`}
+    />
+  ) : (
+    ''
+  )
+
+  // og:image
+  const facebookImageTag = image ? (
+    <meta
+      name="og:image"
+      content={`${seo.url}${image.childImageSharp.fixed.src}`}
+    />
+  ) : (
+    ''
+  )
 
   return (
     <>
-      <title>{defaultTitle ? `${title} | ${defaultTitle}` : title}</title>
-      <meta name="description" content={metaDescription} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={metaDescription} />
-      <meta property="og:type" content="website" />
-      <meta name="twitter:card" content="summary" />
-      <meta
-        name="twitter:creator"
-        content={site.siteMetadata?.social?.twitter || ''}
+      <title>{seo.title}</title>
+      <meta name="description" content={seo.description} />
+      {imageTag}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={seo.title} />
+      <meta name="twitter:url" content={seo.url} />
+      <meta name="twitter:description" content={seo.description} />
+      {twitterImageTag}
+      <meta name="twitter:creator" content={seo.twitterUsername} />
+      <link
+        rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>👤</text></svg>"
       />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={metaDescription} />
+      {facebookImageTag}
+      <meta name="og:title" content={seo.title} />
+      <meta name="og:description" content={seo.description} />
       {children}
     </>
   )
-}
-
-Seo.defaultProps = {
-  description: '',
-}
-
-Seo.propTypes = {
-  description: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  children: PropTypes.node,
 }
 
 export default Seo
