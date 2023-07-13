@@ -70,7 +70,11 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
 export default PostTemplate
 
 export const Head: React.FC<PageProps<DataProps>> = ({ data }) => (
-  <Seo title={data.mdx.frontmatter.title} />
+  <Seo
+    title={data.mdx.frontmatter.title}
+    description={data.mdx.frontmatter.description}
+    image={data.mdx.frontmatter.headerImage}
+  />
 )
 
 type DataProps = {
@@ -81,11 +85,17 @@ type DataProps = {
           gatsbyImageData: IGatsbyImageData
         }
       }[]
+      headerImage: {
+        childImageSharp: {
+          gatsbyImageData: IGatsbyImageData
+        }
+      }
       title: string
       date: string
       location: string
       type: string
       tags: ReadonlyArray<string>
+      description: string
     }
   }
 }
@@ -142,6 +152,14 @@ export const query = graphql`
             gatsbyImageData(placeholder: BLURRED, width: 2000)
           }
         }
+        headerImage {
+          childImageSharp {
+            fixed {
+              src
+            }
+          }
+        }
+        description
       }
       segments {
         fields {
