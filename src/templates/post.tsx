@@ -1,5 +1,5 @@
 import { Text, Flex, Box, Divider, Link, Container } from 'theme-ui'
-import { graphql, PageProps, Link as GatsbyLink } from 'gatsby'
+import { graphql, PageProps } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 

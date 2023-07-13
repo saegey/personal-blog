@@ -1,4 +1,4 @@
-require("dotenv").config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
@@ -26,16 +26,21 @@ module.exports = {
     },
   },
   plugins: [
-  {
-    resolve: `gatsby-plugin-gatsby-cloud`,
-    options: {
-      headers: {
-        "/*": [
-          'Referrer-Policy: origin'
-        ]
-      }
-    }
-  },
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: ['G-45TP2BZ76F'],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-gatsby-cloud`,
+      options: {
+        headers: {
+          '/*': ['Referrer-Policy: origin'],
+        },
+      },
+    },
     {
       resolve: 'gatsby-plugin-theme-ui',
     },
