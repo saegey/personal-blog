@@ -20,37 +20,36 @@ const Seo = ({
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    image: image.childImageSharp?.gatsbyImageData?.images?.fallback?.src,
+    image: image?.childImageSharp?.gatsbyImageData?.images?.fallback?.src,
+    width: image?.childImageSharp?.gatsbyImageData?.width,
+    height: image?.childImageSharp?.gatsbyImageData?.height,
     url: `${siteUrl}${pathname || ``}`,
     author: author || defaultAuthor,
     twitterUsername,
     publishedDate,
   }
 
+  console.log(image)
+
   const twitterImageTag = seo.image ? (
-    <meta
-      name="twitter:image"
-      content={`${seo.url}${seo.image}`}
-    />
+    <meta name="twitter:image" content={`${seo.url}${seo.image}`} />
   ) : (
     ''
   )
 
   const imageTag = image ? (
-    <meta
-      name="image"
-      content={`${seo.url}${seo.image}`}
-    />
+    <meta name="image" content={`${seo.url}${seo.image}`} />
   ) : (
     ''
   )
 
   // og:image
   const facebookImageTag = image ? (
-    <meta
-      name="og:image"
-      content={`${seo.url}${seo.image}`}
-    />
+    <>
+      <meta name="og:image" content={`${seo.url}${seo.image}`} />
+      <meta name="og:image:width" content={seo.width} />
+      <meta name="og:image:height" content={seo.height} />
+    </>
   ) : (
     ''
   )
@@ -64,7 +63,11 @@ const Seo = ({
   return (
     <>
       <title>{seo.title}</title>
-      <meta name="description" property="og:description" content={seo.description} />
+      <meta
+        name="description"
+        property="og:description"
+        content={seo.description}
+      />
       {imageTag}
       <meta
         property="twitter:title"
