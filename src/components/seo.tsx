@@ -8,14 +8,18 @@ const Seo = ({
   image,
   author,
   publishedDate,
+  twitterUsername,
 }) => {
   const {
     title: defaultTitle,
     description: defaultDescription,
     siteUrl,
-    twitterUsername,
+    social: defaultSocial,
     author: defaultAuthor,
   } = useSiteMetadata()
+
+  // TODO: Refactor based on the link below
+  // https://www.wpeform.io/blog/add-open-graph-site-url-to-gatsbyjs/
 
   const seo = {
     title: title || defaultTitle,
@@ -25,20 +29,24 @@ const Seo = ({
     height: image?.childImageSharp?.gatsbyImageData?.height,
     url: `${siteUrl}${pathname || ``}`,
     author: author || defaultAuthor,
-    twitterUsername,
+    twitterUsername: twitterUsername || defaultSocial.twitter,
     publishedDate,
   }
 
   console.log(image)
 
   const twitterImageTag = seo.image ? (
-    <meta name="twitter:image" content={`${seo.url}${seo.image}`} />
+    <meta
+      property="twitter:image"
+      name="twitter:image"
+      content={`${seo.url}${seo.image}`}
+    />
   ) : (
     ''
   )
 
   const imageTag = image ? (
-    <meta name="image" content={`${seo.url}${seo.image}`} />
+    <meta property="image" name="image" content={`${seo.url}${seo.image}`} />
   ) : (
     ''
   )
@@ -46,16 +54,32 @@ const Seo = ({
   // og:image
   const facebookImageTag = image ? (
     <>
-      <meta name="og:image" content={`${seo.url}${seo.image}`} />
-      <meta name="og:image:width" content={seo.width} />
-      <meta name="og:image:height" content={seo.height} />
+      <meta
+        property="og:image"
+        name="og:image"
+        content={`${seo.url}${seo.image}`}
+      />
+      <meta
+        property="og:image:width"
+        name="og:image:width"
+        content={seo.width}
+      />
+      <meta
+        property="og:image:height"
+        name="og:image:height"
+        content={seo.height}
+      />
     </>
   ) : (
     ''
   )
 
   const publishedTimeTag = publishedDate ? (
-    <meta property="article:published_time" content={publishedDate} />
+    <meta
+      property="article:published_time"
+      name="article:published_time"
+      content={publishedDate}
+    />
   ) : (
     ''
   )
@@ -85,7 +109,12 @@ const Seo = ({
       <meta
         property="twitter:creator"
         name="twitter:creator"
-        content={seo.twitterUsername}
+        content={`@${seo.twitterUsername}`}
+      />
+      <meta
+        property="twitter:site"
+        name="twitter:site"
+        content={`@${seo.twitterUsername}`}
       />
       <link
         rel="icon"
