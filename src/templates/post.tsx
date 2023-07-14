@@ -74,6 +74,7 @@ export const Head: React.FC<PageProps<DataProps>> = ({ data }) => (
     title={data.mdx.frontmatter.title}
     description={data.mdx.frontmatter.description}
     image={data.mdx.frontmatter.headerImage}
+    publishedDate={data.mdx.frontmatter.publishedDate}
   />
 )
 
@@ -92,6 +93,7 @@ type DataProps = {
       }
       title: string
       date: string
+      publishedDate: string
       location: string
       type: string
       tags: ReadonlyArray<string>
@@ -142,6 +144,7 @@ export const query = graphql`
     mdx: mdx(id: { eq: $id }) {
       id
       frontmatter {
+        publishedDate(formatString: "YYYY-MM-DD")
         date(formatString: "MMM DD, YYYY")
         location
         title
@@ -154,9 +157,7 @@ export const query = graphql`
         }
         headerImage {
           childImageSharp {
-            fixed {
-              src
-            }
+            gatsbyImageData(layout: FIXED, width: 1200)
           }
         }
         description

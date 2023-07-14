@@ -12,6 +12,9 @@ export const useSiteMetadata = () => {
           }
           # image
           siteUrl
+          author {
+            name
+          }
         }
       }
     }
