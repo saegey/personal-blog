@@ -1,5 +1,4 @@
 import { Button, Box, useColorMode } from 'theme-ui'
-// import * as themeui from 'theme-ui'
 
 import Logo from './logo'
 import { BoxSvgType } from '../common/types'
