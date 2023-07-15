@@ -20,6 +20,7 @@ import Carousel from '../components/Carousel'
 import Caption from '../components/Caption'
 import Map from '../components/Map'
 import RelatedRaces from '../components/RelatedRaces'
+import { useSiteMetadata } from '../hooks/use-site-metadata'
 
 const shortcodes = {
   Box,
@@ -69,14 +70,41 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
 
 export default PostTemplate
 
-export const Head: React.FC<PageProps<DataProps>> = ({ data }) => (
-  <Seo
-    title={data.mdx.frontmatter.title}
-    description={data.mdx.frontmatter.description}
-    image={data.mdx.frontmatter.headerImage}
-    publishedDate={data.mdx.frontmatter.publishedDate}
-  />
-)
+export const Head: React.FC<PageProps<DataProps>> = ({ data }) => {
+  const siteMetadata = useSiteMetadata()
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: data.mdx.frontmatter.title,
+    image: [
+      `${siteMetadata.siteUrl}${data.mdx.frontmatter.headerImage?.childImageSharp?.gatsbyImageData?.images?.fallback?.src}`,
+    ],
+    datePublished: data.mdx.frontmatter.publishedDate,
+    author: [
+      {
+        '@type': 'Person',
+        name: siteMetadata.author.name,
+        sameAs: `https://twitter.com/${siteMetadata.social.twitter}`,
+      },
+    ],
+    description: data.mdx.frontmatter.description,
+  }
+
+  // 2️⃣ Stringify the schema object (adding the "null, 2" gives you readable json)
+  const schemaAsString = JSON.stringify(schema, null, 2)
+
+  return (
+    <>
+      <Seo
+        title={data.mdx.frontmatter.title}
+        description={data.mdx.frontmatter.description}
+        image={data.mdx.frontmatter.headerImage}
+        publishedDate={data.mdx.frontmatter.publishedDate}
+      />
+      <script type="application/ld+json">{schemaAsString}</script>
+    </>
+  )
+}
 
 type DataProps = {
   mdx: {
