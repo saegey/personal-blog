@@ -9,6 +9,8 @@ const Seo = ({
   author,
   publishedDate,
   twitterUsername,
+  width,
+  height,
 }) => {
   const {
     title: defaultTitle,
@@ -24,27 +26,24 @@ const Seo = ({
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    image: image?.childImageSharp?.gatsbyImageData?.images?.fallback?.src,
-    width: image?.childImageSharp?.gatsbyImageData?.width,
-    height: image?.childImageSharp?.gatsbyImageData?.height,
     url: `${siteUrl}${pathname || ``}`,
     author: author || defaultAuthor,
     twitterUsername: twitterUsername || defaultSocial.twitter,
     publishedDate,
   }
 
-  const twitterImageTag = seo.image ? (
+  const twitterImageTag = image ? (
     <meta
       property="twitter:image"
       name="twitter:image"
-      content={`${seo.url}${seo.image}`}
+      content={`${seo.url}${image}`}
     />
   ) : (
     ''
   )
 
   const imageTag = image ? (
-    <meta property="image" name="image" content={`${seo.url}${seo.image}`} />
+    <meta property="image" name="image" content={`${seo.url}${image}`} />
   ) : (
     ''
   )
@@ -55,17 +54,13 @@ const Seo = ({
       <meta
         property="og:image"
         name="og:image"
-        content={`${seo.url}${seo.image}`}
+        content={`${seo.url}${image}`}
       />
-      <meta
-        property="og:image:width"
-        name="og:image:width"
-        content={seo.width}
-      />
+      <meta property="og:image:width" name="og:image:width" content={width} />
       <meta
         property="og:image:height"
         name="og:image:height"
-        content={seo.height}
+        content={height}
       />
     </>
   ) : (

@@ -98,7 +98,18 @@ export const Head: React.FC<PageProps<DataProps>> = ({ data }) => {
       <Seo
         title={data.mdx.frontmatter.title}
         description={data.mdx.frontmatter.description}
-        image={data.mdx.frontmatter.headerImage}
+        image={
+          data.mdx.frontmatter.headerImage?.childImageSharp?.gatsbyImageData
+            ?.images?.fallback?.src
+        }
+        width={
+          data.mdx.frontmatter.headerImage?.childImageSharp?.gatsbyImageData
+            ?.width
+        }
+        height={
+          data.mdx.frontmatter.headerImage?.childImageSharp?.gatsbyImageData
+            ?.height
+        }
         publishedDate={data.mdx.frontmatter.publishedDate}
       />
       <script type="application/ld+json">{schemaAsString}</script>
