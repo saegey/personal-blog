@@ -33,6 +33,7 @@ module.exports = {
         trackingIds: ['G-45TP2BZ76F'],
       },
     },
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-gatsby-cloud`,
       options: {

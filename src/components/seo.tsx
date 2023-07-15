@@ -33,8 +33,6 @@ const Seo = ({
     publishedDate,
   }
 
-  console.log(image)
-
   const twitterImageTag = seo.image ? (
     <meta
       property="twitter:image"
@@ -94,12 +92,13 @@ const Seo = ({
       />
       {imageTag}
       <meta
-        property="twitter:title"
+        property="twitter:card"
         name="twitter:card"
         content="summary_large_image"
       />
       <meta property="twitter:title" name="twitter:title" content={seo.title} />
       <meta property="twitter:url" name="twitter:url" content={seo.url} />
+      <meta property="og:url" name="og:url" content={seo.url} />
       <meta
         property="twitter:description"
         name="twitter:description"
