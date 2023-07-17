@@ -47,6 +47,7 @@ type MdxData = {
         }
         frontmatter: {
           related: Array<string>
+          isActive: boolean
         }
         internal: {
           contentFilePath: string
@@ -76,7 +77,10 @@ export const createPages: GatsbyNode['createPages'] = async ({
 
   const result: MdxData = await graphql(`
     {
-      allMdx {
+      allMdx(
+        filter: { frontmatter: { isActive: { ne: false } } }
+        sort: { frontmatter: { date: DESC } }
+      ) {
         nodes {
           id
           fields {
@@ -141,7 +145,9 @@ export const createPages: GatsbyNode['createPages'] = async ({
   const raceJournals: MdxData = await graphql(`
     query RaceJournalListQuery {
       allMdx(
-        filter: { frontmatter: { type: { eq: "Race Journal" } } }
+        filter: {
+          frontmatter: { type: { eq: "Race Journal" }, isActive: { ne: false } }
+        }
         sort: { frontmatter: { date: DESC } }
       ) {
         nodes {
@@ -586,6 +592,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 
     type Social {
       twitter: String
+      github: String
+      strava: String
+      instagram: String
     }
 
     type Mdx implements Node {
@@ -604,6 +613,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       tags: [String!]
       location: String
       type: String!
+      isActive: Boolean
     }
 
     type Coordinate {

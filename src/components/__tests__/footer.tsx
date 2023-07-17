@@ -19,6 +19,7 @@ const mockUseStaticQuery = {
         instagram: 'instagramusername',
         twitter: 'twitterusername',
         github: 'githubusername',
+        strava: 'stravausername'
       },
     },
   },

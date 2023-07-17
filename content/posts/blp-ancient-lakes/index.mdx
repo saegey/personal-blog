@@ -1,5 +1,5 @@
 ---
-title: Ancient Lakes XC
+title: Westside XC MTB - Ancient Lakes
 date: 2023-03-18
 headerImage: './Ancient Lakes1_8.jpeg'
 tags:
@@ -7,6 +7,7 @@ tags:
 type: Race Journal
 gpxFile: 'Ancient_Lakes_XC'
 location: Quincy, WA
+stravaUrl: https://www.strava.com/activities/8737832469
 results:
   file: 'ancient_lakes'
   provider: 'bikesignupjson'
@@ -26,8 +27,6 @@ images:
     images={[
       props.data.mdx.frontmatter.images[0],
       props.data.mdx.frontmatter.images[1],
-      props.data.mdx.frontmatter.images[3],
-      props.data.mdx.frontmatter.images[4],
     ]}
   >
     <LandscapeImage
@@ -36,14 +35,6 @@ images:
     />
     <LandscapeImage
       image={props.data.mdx.frontmatter.images[1]}
-      maximize={false}
-    />
-    <LandscapeImage
-      image={props.data.mdx.frontmatter.images[3]}
-      maximize={false}
-    />
-    <LandscapeImage
-      image={props.data.mdx.frontmatter.images[4]}
       maximize={false}
     />
   </Carousel>
@@ -63,6 +54,7 @@ images:
     'Avg Speed',
   ]}
 />
+<StravaLink stravaUrl={props.data.mdx.frontmatter.stravaUrl} />
 
 After seeing the photos from this race from last year, I really wanted to race this course. It is so different than our lush forest and loamy brown dirt trails in the western foothills of the Cascades. It is proper sage desert riding with loose, dusty, sandy and rocky trails. The race was originally scheduled for another weekend and I was already planning to race Ephrata Gran Fondo so two trips to central Washington didn't seam feasible but it was rescheduled to the day before Ephrata and it was an easy decision to head out early to race both days.
 
@@ -118,6 +110,8 @@ between two large rocks. It was super slow and I just kinda went over the bars i
 slow motion but one of my bottles fell out and I banged my knee some. I lost probably
 two or three spots from that crash and I struggled for a while after.
 
+<LandscapeImage image={props.data.mdx.frontmatter.images[4]} maximize={false} />
+
 My knee hurt pedaling so I wasn't able to put down my normal power (about 25 watts less for part
 of that lap) and I also started thinking about Ephrata and if this crash was going
 to mess up my more important race so I decided to ride a little more cautiously.
@@ -130,7 +124,11 @@ to mess up my more important race so I decided to ride a little more cautiously.
 />
 <Divider sx={{ marginBottom: '20px' }} />
 
-My knee began to feel better and I started to settle in some with the field pretty strung out at this point. It started to become more fun and just tried to ride things fast but smooth. During the race, I had at least 4 or so hard pedal strikes on rocks. One of them took me off trail some and through some sage bushes but was able to stay upright. The course is pretty flat so you're pedalling the whole time but also twisting through the trails and rocks are everywhere so the pedal strikes were pretty scary to have happen. I didn't have this happen during my pre-ride because the speed was slower and I was pumping through thee trail versus pedaling.
+My knee began to feel better and I started to settle in some with the field pretty strung out at this point. It started to become more fun and just tried to ride things fast but smooth. During the race, I had at least 4 or so hard pedal strikes on rocks. One of them took me off trail some and through some sage bushes but was able to stay upright.
+
+<LandscapeImage image={props.data.mdx.frontmatter.images[3]} maximize={false} />
+
+The course is pretty flat so you're pedalling the whole time but also twisting through the trails and rocks are everywhere so the pedal strikes were pretty scary to have happen. I didn't have this happen during my pre-ride because the speed was slower and I was pumping through thee trail versus pedaling.
 
 <Divider sx={{ marginBottom: '20px' }} />
 <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />

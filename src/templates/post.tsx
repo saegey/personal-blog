@@ -21,6 +21,7 @@ import Caption from '../components/Caption'
 import Map from '../components/Map'
 import RelatedRaces from '../components/RelatedRaces'
 import { useSiteMetadata } from '../hooks/use-site-metadata'
+import StravaLink from '../components/StravaLink'
 
 const shortcodes = {
   Box,
@@ -42,6 +43,7 @@ const shortcodes = {
   Caption,
   Map,
   RelatedRaces,
+  StravaLink,
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
@@ -200,6 +202,7 @@ export const query = graphql`
           }
         }
         description
+        stravaUrl
       }
       segments {
         fields {

@@ -1,0 +1,12 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#gatsby-focus-wrapper,
+#___gatsby {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

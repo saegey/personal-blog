@@ -11,20 +11,22 @@ const Footer = () => {
             twitter
             instagram
             github
+            strava
           }
         }
       }
     }
   `)
 
-  const { instagram, github, twitter } = data.site.siteMetadata.social
+  const { instagram, github, twitter, strava } = data.site.siteMetadata.social
   const title = data.site.siteMetadata.title
 
   return (
     <footer
       sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
+        // display: 'flex',
+        // flexWrap: 'wrap',
+        // flexShrink: 0,
         alignItems: 'center',
         variant: 'styles.footer',
         fontFamily: 'body',
@@ -84,6 +86,17 @@ const Footer = () => {
             }}
           >
             Twitter
+          </Link>
+          <Link
+            href={`https://www.strava.com/athletes/${strava}`}
+            sx={{
+              textDecoration: 'underline',
+              textUnderlineOffset: '2.5px',
+              paddingRight: 3,
+              fontWeight: '300',
+            }}
+          >
+            Strava
           </Link>
         </Box>
       </Box>

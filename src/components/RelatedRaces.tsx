@@ -15,7 +15,7 @@ type Props = {
       normalizedPower: number
       headerImage: IGatsbyImageData | undefined
       timeInRed: string
-			location: string
+      location: string
     }
   ]
 }
@@ -28,126 +28,99 @@ const RelatedRaces = ({ items }: Props) => {
           Related Races
         </Text>
       </Box>
-      {items.map(i => {
+      {items.map((i, index) => {
         const headerImage = getImage(i.headerImage)
         return (
-          <Card>
-            <div
-              sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
-              }}
-            >
+          <Link
+            to={`/${i.slug}`}
+            rel="related"
+            sx={{ textDecoration: 'none' }}
+            itemProp="url"
+            as={GatsbyLink}
+          >
+            <Card key={`related-race-${index}`}>
               <div
                 sx={{
-                  flexGrow: 1,
+                  display: 'flex',
+                  flexWrap: 'wrap',
                 }}
               >
-                {headerImage && (
-                  <MyImage
-                    layout="constrained"
-                    image={headerImage}
-                    objectFit="cover"
-                    alt={`${i.title} Photo`}
-                    as={GatsbyImage}
-                    variant="relatedImage"
-                  />
-                )}
-              </div>
-              <Box
-                sx={{
-                  flexGrow: 99999,
-                  flexBasis: 0,
-                  minWidth: 320,
-                }}
-              >
-                <Box sx={{ height: '100%' }}>
-                  <Flex
-                    sx={{
-                      flexDirection: 'column',
-                      height: '100%',
-                    }}
-                  >
-                    <Box
+                <div
+                  sx={{
+                    flexGrow: 1,
+                    flexBasis: 'sidebar',
+                  }}
+                >
+                  {headerImage && (
+                    <MyImage
+                      layout="constrained"
+                      image={headerImage}
+                      objectFit="cover"
+                      alt={`${i.title} Photo`}
+                      as={GatsbyImage}
+                      variant="relatedImage"
+                    />
+                  )}
+                </div>
+                <Box
+                  sx={{
+                    flexGrow: 99999,
+                    flexBasis: 0,
+                    minWidth: 320,
+                  }}
+                >
+                  <Box sx={{ height: '100%' }}>
+                    <Flex
                       sx={{
-                        flex: '1',
-                        marginTop: '20px',
-                        marginLeft: '20px',
-                        textAlign: 'left',
+                        flexDirection: 'column',
+                        height: '100%',
                       }}
                     >
-                      <Link to={`/${i.slug}`} rel="related" as={GatsbyLink}>
-                        <Text as="h3" variant="heading3">
+                      <Box
+                        sx={{
+                          flex: '1',
+                          marginTop: '20px',
+                          marginLeft: '20px',
+                          textAlign: 'left',
+                        }}
+                      >
+                        <Text as="h3" variant="postCardTitle">
                           {i.title}
                         </Text>
-                      </Link>
-                    </Box>
-                    <Box
-                      sx={{
-                        flex: '1',
-                        marginLeft: '20px',
-                        textAlign: 'left',
-                      }}
-                    >
-                      <Text variant="relatedSubheader">{i.date} - {i.location}</Text>
-                    </Box>
+                      </Box>
+                      <Box
+                        sx={{
+                          flex: '1',
+                          marginLeft: '20px',
+                          textAlign: 'left',
+                        }}
+                      >
+                        <Text variant="postCardSubtitle">
+                          {i.date} - {i.location}
+                        </Text>
+                      </Box>
 
-                    <Box
-                      sx={{
-                        flex: '1',
-                        marginLeft: '20px',
-                        marginY: '10px',
-                        textAlign: 'left',
-                      }}
-                    >
-                      <Text as="p" variant="raceStatHeading">
-                        Normalized Power
-                      </Text>
-                      <Text as="p" variant="resultsItem">
-                        {i.normalizedPower.toFixed(0)} watts
-                      </Text>
-                    </Box>
-
-                    <Box
-                      sx={{
-                        flex: '1',
-                        marginLeft: '20px',
-                        textAlign: 'left',
-                        marginBottom: '20px',
-                      }}
-                    >
-                      <Text as="p" variant="raceStatHeading">
-                        Time in Red
-                      </Text>
-                      <Text as="p" variant="resultsItem">
-                        {i.timeInRed}
-                      </Text>
-                    </Box>
-
-                    <Box
-                      sx={{
-                        flex: '1',
-                        marginLeft: '20px',
-                        textAlign: 'left',
-                        marginBottom: '20px',
-                      }}
-                    >
-                      <Text as="p" variant="raceStatHeading">
-                        Avg Speed
-                      </Text>
-                      <Text as="p" variant="resultsItem">
-                        {`${(
-                          (i.distance /
-                            (i.elapsedTime.seconds - i.stoppedTime)) *
-                          2236.9362920544
-                        ).toFixed(2)} mph`}
-                      </Text>
-                    </Box>
-                  </Flex>
+                      <Box
+                        sx={{
+                          flex: '1',
+                          marginLeft: '20px',
+                          marginY: '10px',
+                          textAlign: 'left',
+                        }}
+                      >
+                        <Text as="p" variant="raceStatHeading">
+                          Normalized Power
+                        </Text>
+                        <Text as="p" variant="resultsItem">
+                          {i.normalizedPower.toFixed(0)} watts
+                        </Text>
+                      </Box>
+                    </Flex>
+                  </Box>
                 </Box>
-              </Box>
-            </div>
-          </Card>
+              </div>
+            </Card>
+          </Link>
         )
       })}
     </>

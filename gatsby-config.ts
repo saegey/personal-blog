@@ -23,6 +23,7 @@ module.exports = {
       instagram: `saegey`,
       twitter: `saegey`,
       github: `saegey`,
+      strava: `saegey`,
     },
   },
   plugins: [
