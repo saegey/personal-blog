@@ -20,12 +20,22 @@ const Layout = ({ children }: CardProps) => {
       <div
         sx={{
           overflowY: menuOpen ? 'hidden' : 'visible',
-          height: menuOpen ? '100%' : '',
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          // height: menuOpen ? '100%' : '',
         }}
       >
         <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <Header setMenuOpen={setMenuOpen} />
-        <main sx={{ bg: 'muted' }}>{children}</main>
+        <main
+          sx={{
+            bg: 'muted',
+            flexGrow: 1,
+          }}
+        >
+          {children}
+        </main>
         <Footer />
       </div>
     </>

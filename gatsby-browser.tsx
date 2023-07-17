@@ -21,7 +21,7 @@ import '@fontsource/inconsolata/900.css'
 import './src/normalize.css'
 import './src/carousel.css'
 // custom CSS styles
-// import "./src/style.css"
+import "./src/styles/globals.css"
 
 // Highlighting for code blocks
 // import "prismjs/themes/prism.css"

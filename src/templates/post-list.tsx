@@ -106,11 +106,18 @@ type DataProps = {
  *
  * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
  */
-export const Head = () => <Seo title="All posts" />
+export const Head = () => <Seo title="Race Journal List" />
 
 export const pageQuery = graphql`
   query postPageQuery($skip: Int!, $limit: Int!) {
-    allMdx(sort: { frontmatter: { date: DESC } }, limit: $limit, skip: $skip) {
+    allMdx(
+      sort: { frontmatter: { date: DESC } }
+      limit: $limit
+      skip: $skip
+      filter: {
+        frontmatter: { type: { eq: "Race Journal" }, isActive: { ne: false } }
+      }
+    ) {
       nodes {
         fields {
           slug

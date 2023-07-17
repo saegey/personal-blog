@@ -86,7 +86,7 @@ const LineGraph = ({
             </div>
             <div style={{ fontWeight: 600 }}>
               {slice.points.map((p, i) => (
-                <Text as="p">
+                <Text as="p" key={`tooltip-${i}`}>
                   {p.data.y} {data.filter(d => d.id === p.serieId)[0].unit}
                 </Text>
               ))}

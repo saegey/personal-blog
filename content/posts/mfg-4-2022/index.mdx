@@ -3,6 +3,7 @@ title: MFG Magnuson Single Speed CX
 date: 2022-10-23
 headerImage: './FB6A5023.jpg'
 location: 'Seattle, Washington'
+stravaUrl: https://www.strava.com/activities/8009778195
 tags:
   - CX
 type: Race Journal
@@ -18,6 +19,8 @@ results:
   provider: 'webscorer'
 ---
 
+This was my first race of the season and it was probably the first cylocross race in Seattle proper in over 3 years if you can believe it. The race venue for Sunday is [Magnuson Park](https://en.wikipedia.org/wiki/Magnuson_Park) in the Sand Point neighborhood. The [course](https://i0.wp.com/mfgcyclocross.bike/wp-content/uploads/2022/10/MAG_Course-Map.png?w=792&ssl=1) is described by most as a "roadie" course because it was not very technical and relatively flat.
+
 <RaceOverview
   data={props.data.mdx.gpxData.fields}
   selectedFields={[
@@ -29,6 +32,12 @@ results:
     'Avg Speed',
   ]}
 />
+<StravaLink stravaUrl={props.data.mdx.frontmatter.stravaUrl} />
+
+It can change quite a bit if it's muddy but that doesn't usually happen at Magnuson and there have only been a few muddy races here in the last decade.
+
+For this years race, the course was reversed which changed it up a bit. The barriers were placed on a steeper uphill segment that results in the remainder of the hill becoming a running section because it was too difficult to get momentum to remount.
+
 
 <Box sx={{ marginBottom: '20px' }}>
   <LandscapeImage
@@ -42,13 +51,8 @@ results:
   />
 </Box>
 
-This was my first race of the season and it was probably the first cylocross race in Seattle proper in over 3 years if you can believe it. The race venue for Sunday is [Magnuson Park](https://en.wikipedia.org/wiki/Magnuson_Park) in the Sand Point neighborhood. The [course](https://i0.wp.com/mfgcyclocross.bike/wp-content/uploads/2022/10/MAG_Course-Map.png?w=792&ssl=1) is described by most as a "roadie" course because it was not very technical and relatively flat.
-
-It can change quite a bit if it's muddy but that doesn't usually happen at Magnuson and there have only been a few muddy races here in the last decade.
-
 <Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
 
-For this years race, the course was reversed which changed it up a bit. The barriers were placed on a steeper uphill segment that results in the remainder of the hill becoming a running section because it was too difficult to get momentum to remount.
 
 The course was still prettty fast and the conditions pretty dry even with a few days of heavier rain leading up to race day. I have been postponing the start to my cross season partly because of the smoking and dry and dusty conditions. The condition were better today than they have been so the rain welcome this fall for once. I hope some muddy conditions are coming soon!
 
