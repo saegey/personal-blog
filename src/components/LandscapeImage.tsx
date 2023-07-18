@@ -11,6 +11,7 @@ const LandscapeImage = ({
   caption,
   invert = false,
   maximize = true,
+  roundedEdges = true,
 }: RaceImageType) => {
   const [colorMode] = useColorMode()
 
@@ -24,7 +25,7 @@ const LandscapeImage = ({
           sx={{
             filter: invert && colorMode === 'dark' ? `invert(1)` : `none`,
             width: ['100%', '100%', '100%'],
-            borderRadius: [4, 4, 4],
+            borderRadius: roundedEdges ? [4, 4, 4] : [0, 0, 0],
             '-webkit-mask-image': '-webkit-radial-gradient(white, black)',
           }}
         />

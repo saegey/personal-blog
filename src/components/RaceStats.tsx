@@ -16,9 +16,9 @@ const RaceStats = ({ items }: Props) => {
         gap={2}
         columns={[2, 2, 3]}
         sx={{
-          backgroundColor: ['', 'backgroundEm', 'backgroundEm'],
-          paddingY: ['0px', '20px', '20px'],
-          paddingX: ['0px', '20px', '20px'],
+          // backgroundColor: ['', 'backgroundEm', 'backgroundEm'],
+          // paddingY: ['0px', '20px', '20px'],
+          // paddingX: ['0px', '20px', '20px'],
           marginBottom: '20px',
           borderRadius: '4px',
         }}
@@ -31,7 +31,7 @@ const RaceStats = ({ items }: Props) => {
                 <Box
                   sx={{
                     fontFamily: 'body',
-                    fontSize: ['3', '4', '4'],
+                    fontSize: ['18px', '16px', '20px'],
                     fontWeight: '600',
                   }}
                 >

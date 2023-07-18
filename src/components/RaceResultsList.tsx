@@ -35,10 +35,10 @@ const RaceResultsList = ({ data, showSpeed, theme }: WrapperProps) => {
             <RaceResultItemSmall item={item} theme={theme} key={index} />
             <Flex
               sx={{
-                height: ['35px', '35px', '35px'],
+                height: ['25px', '25px', '25px'],
                 display: ['none', 'flex', 'flex'],
                 fontFamily: 'body',
-                letterSpacing: '.3px',
+                // letterSpacing: '.3px',
               }}
             >
               <Box sx={{ width: '5%' }}>
@@ -46,18 +46,18 @@ const RaceResultsList = ({ data, showSpeed, theme }: WrapperProps) => {
                   <strong>{item.place}</strong>
                 </Text>
               </Box>
-              <Box sx={{ width: showSpeed ? '40%' : '60%' }}>
+              <Box sx={{ width: showSpeed ? '30%' : '50%' }}>
                 {item.isMe ? (
                   <Text variant="highlightedItem">{item.name}</Text>
                 ) : (
                   <Text variant="resultsItem">{item.name}</Text>
                 )}
               </Box>
-              <Box sx={{ width: '20%' }}>
+              <Box sx={{ width: '30%', textAlign: 'right' }}>
                 <Text variant="resultsItem">{item.time}</Text>
               </Box>
               {showSpeed && (
-                <Box sx={{ width: '20%' }}>
+                <Box sx={{ width: '20%', textAlign: 'right' }}>
                   <Text variant="resultsItem">
                     {theme.unitOfMeasure === 'metric'
                       ? item.speedMetric
