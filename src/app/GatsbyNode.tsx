@@ -14,6 +14,7 @@ import { parseTurboreg } from '../lib/turboreg'
 import { parseBikeSignup } from '../lib/bikesignup'
 import { parseBikeSignupJSON } from '../lib/bikesignupjson'
 import { formatJson as formatRaceResultJson } from '../lib/myraceresult'
+import { slugify } from '../lib/util'
 
 import {
   calcBestPowers,
@@ -30,12 +31,6 @@ import {
 } from '../lib/gpxHelper'
 
 const defaultTimeWindows = [5, 10, 15, 30, 60, 120, 300, 600]
-const slugify = (str: string) => {
-  return str
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)+/g, '')
-}
 
 type MdxData = {
   data?: {
@@ -108,6 +103,11 @@ export const createPages: GatsbyNode['createPages'] = async ({
     throw 'No data found'
   }
 
+  createPage({
+    path: `/`,
+    component: path.resolve('./src/pages/home.tsx'),
+  })
+
   const postTemplate = path.resolve('./src/templates/post.tsx')
   const createPostPromise = result.data?.allMdx.nodes.map(post => {
     createPage({
@@ -130,14 +130,14 @@ export const createPages: GatsbyNode['createPages'] = async ({
 
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
-      path: i === 0 ? `/` : `/${i + 1}`,
+      path: i === 0 ? `/posts` : `/posts/${i + 1}`,
       component: path.resolve('./src/templates/post-list.tsx'),
       context: {
         limit: postsPerPage,
         skip: i * postsPerPage,
         numPages,
         currentPage: i + 1,
-        urlPrefix: '/',
+        urlPrefix: '/posts',
       },
     })
   })

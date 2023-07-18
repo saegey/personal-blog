@@ -23,8 +23,9 @@ const StravaLink = ({ stravaUrl }: { children: ReactElement }) => {
             sx={{
               textDecoration: 'none',
               fontFamily: 'body',
-              textTransform: 'uppercase',
+              // textTransform: 'uppercase',
               fontSize: '15px',
+              fontWeight: '600',
               letterSpacing: '.2px',
             }}
           >

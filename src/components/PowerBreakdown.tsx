@@ -24,13 +24,13 @@ const PowerBreakdown = ({
               sx={{
                 fontFamily: 'body',
                 fontWeight: '600',
-                fontSize: '18px',
+                fontSize: '14px',
                 textTransform: 'uppercase',
               }}
             >
               {z.title}
             </Text>
-            <Text as="p" sx={{ fontFamily: 'body' }}>
+            <Text as="p" sx={{ fontFamily: 'body', fontSize: '13px' }}>
               {z.powerLow !== 0 &&
                 z.powerHigh !== 0 &&
                 `${z.powerLow} - ${z.powerHigh} watts`}
@@ -38,7 +38,14 @@ const PowerBreakdown = ({
               {z.powerLow === 0 && z.powerHigh === 0 && `${z.powerLow} watts`}
             </Text>
             <Text
-              sx={{ fontFamily: 'body', fontSize: '30px', fontWeight: '300' }}
+              as="p"
+              sx={{
+                marginY: '5px',
+                fontFamily: 'body',
+                fontSize: '20px',
+                fontWeight: '600',
+                // marginTop: '10px',
+              }}
             >
               {formatTime(powerZoneBuckets[index])}
             </Text>

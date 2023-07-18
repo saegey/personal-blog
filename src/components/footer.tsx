@@ -43,11 +43,11 @@ const Footer = () => {
         <Text
           as="div"
           sx={{
-            fontWeight: '700',
+            fontWeight: '500',
             fontSize: '2',
             marginBottom: '10px',
-            letterSpacing: '1px',
-            textTransform: 'uppercase',
+            // letterSpacing: '1px',
+            // textTransform: 'uppercase',
           }}
         >
           {title}
