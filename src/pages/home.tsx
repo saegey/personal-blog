@@ -1,10 +1,13 @@
 import { graphql } from 'gatsby'
-import { Container, Text, Link, Flex, Box } from 'theme-ui'
+import { Container, Text, Link, Flex, Box, Image } from 'theme-ui'
 import { Link as GatsbyLink } from 'gatsby'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+
+const MyImage = Image as any as (props: MyImageProps) => JSX.Element
 
 // import Layout from '../components/layout'
 import Seo from '../components/seo'
-import LandscapeImage from '../components/LandscapeImage'
+// import LandscapeImage from '../components/LandscapeImage'
 // import { slugify } from '../lib/util'
 
 const HomePage = ({ data, pageContext }) => {
@@ -14,22 +17,39 @@ const HomePage = ({ data, pageContext }) => {
 
   return (
     <Container sx={{ paddingY: '10px' }}>
-      <>
-        <Flex>
-          <Box sx={{ width: '67%' }}>
-            <LandscapeImage
-              image={featuredPost.frontmatter.headerImage}
-              maximize={false}
-              roundedEdges={false}
-            />
-          </Box>
+      <Flex sx={{ flexWrap: 'wrap' }}>
+        <Box sx={{ flexGrow: 1, flexBasis: 'sidebar' }}>
+          {/* <LandscapeImage
+						layout="constrained"
+            image={featuredPost.frontmatter.headerImage}
+            maximize={false}
+            roundedEdges={false}
+						objectFit="cover"
+          /> */}
+          <MyImage
+            // layout="constrained"
+            image={getImage(featuredPost.frontmatter.headerImage)}
+            objectFit="cover"
+            alt={`Photo`}
+            as={GatsbyImage}
+            variant="homePageImage"
+          />
+        </Box>
+        <Box
+          sx={{
+            flexGrow: 99999,
+            flexBasis: 0,
+            minWidth: 320,
+            bg: 'backgroundEm',
+          }}
+        >
           <Flex
             sx={{
-              bg: 'backgroundEm',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
               padding: '20px',
+              height: '100%',
             }}
           >
             <Box sx={{ flex: '1 1 auto' }}></Box>
@@ -69,9 +89,8 @@ const HomePage = ({ data, pageContext }) => {
               </Box>
             </Flex>
           </Flex>
-        </Flex>
-        {/* {JSON.stringify(featuredPost)} */}
-      </>
+        </Box>
+      </Flex>
     </Container>
   )
 }

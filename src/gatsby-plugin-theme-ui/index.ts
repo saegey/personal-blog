@@ -132,6 +132,14 @@ const theme: Theme = {
       borderTopRightRadius: [4, 0, 0],
       borderBottomLeftRadius: [0, 4, 4],
     },
+    homePageImage: {
+      width: ['600px', '600px', '600px'],
+      height: ['300px', '400px', '400px'],
+      zIndex: '0',
+      borderTopLeftRadius: 4,
+      borderTopRightRadius: [4, 0, 0],
+      borderBottomLeftRadius: [0, 4, 4],
+    },
     relatedImage: {
       width: ['100%', '200px', '300px'],
       height: ['300px', '150px', '200px'],
