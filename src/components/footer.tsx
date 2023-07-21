@@ -32,7 +32,7 @@ const Footer = () => {
         variant: 'styles.footer',
         fontFamily: 'body',
         padding: '20px',
-        backgroundColor: 'muted',
+        // backgroundColor: 'muted',
       }}
     >
       <Box
@@ -41,7 +41,7 @@ const Footer = () => {
           marginBottom: '10px',
           paddingTop: '20px',
           borderTopWidth: '1px',
-          borderTopColor: 'backgroundEmDarker',
+          borderTopColor: 'muted',
           borderTopStyle: 'solid',
         }}
       >

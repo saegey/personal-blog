@@ -45,7 +45,7 @@ const FeaturedPost = ({
           flexGrow: 99999,
           flexBasis: 0,
           minWidth: 320,
-          bg: 'backgroundEm',
+          bg: 'accent',
         }}
       >
         <Flex
@@ -93,9 +93,13 @@ const FeaturedPost = ({
                 to={`${slug}`}
                 as={GatsbyLink}
                 sx={{
+                  color: 'textInvert',
                   fontFamily: 'body',
                   textDecoration: 'none',
-                  ':hover': { textDecoration: 'underline' },
+                  ':hover': {
+                    textDecoration: 'underline',
+                    color: 'textInvert',
+                  },
                 }}
               >
                 <Text>Read the full post</Text>

@@ -8,13 +8,11 @@ type Props = {
 const SvgBox = Box as any as (props: BoxSvgType) => JSX.Element
 
 const Header = ({ setMenuOpen }: Props) => {
-  const [colorMode, setColorMode] = useColorMode()
-
   return (
     <header
       sx={{
         // position: 'sticky',
-        background: 'headerColor',
+        // background: 'headerColor',
         // top: '-16px',
         // zIndex: 1,
         // '::before': {
@@ -54,6 +52,7 @@ const Header = ({ setMenuOpen }: Props) => {
             m: 0,
             p: 0,
             color: 'inherit',
+            background: 'none',
             // bg: 'transparent',
             border: 0,
             // ':focus': {
@@ -76,7 +75,7 @@ const Header = ({ setMenuOpen }: Props) => {
             sx={{
               display: 'block',
               margin: 0,
-              fill: 'headerForeground',
+              fill: 'text',
             }}
           >
             <rect width="100" height="15"></rect>

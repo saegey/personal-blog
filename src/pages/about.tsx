@@ -1,4 +1,4 @@
-import { Box, Flex, Container } from 'theme-ui'
+import { Box, Flex, Container, Text } from 'theme-ui'
 import { graphql } from 'gatsby'
 import { StaticImage } from 'gatsby-plugin-image'
 
@@ -10,8 +10,14 @@ const AboutIndex = () => {
     <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 768 }}>
       <SafariStyle />
       <Box>
-        <Flex sx={{ width: '100%' }}>
-          <Box sx={{ marginX: 'auto' }}>
+        <Flex sx={{ justifyContent: 'center' }}>
+          <Box
+            sx={{
+              marginX: 'auto',
+              width: ['100%', '50%', '50%'],
+              marginBottom: '20px',
+            }}
+          >
             <StaticImage
               layout="constrained"
               formats={['auto', 'webp', 'avif']}
@@ -27,31 +33,34 @@ const AboutIndex = () => {
             />
           </Box>
         </Flex>
-        <p
+        <Text
+          as="p"
           sx={{
-            fontFamily: 'serif',
-            lineHeight: '1.6',
+            fontFamily: 'body',
+            lineHeight: '1.4',
             fontSize: ['16px', '2', '2'],
-            letterSpacing: '.4px',
+            // letterSpacing: '.4px',
           }}
         >
           Hi, I'm Adam. I'm a product designer, software engineer, and creative
           living in the Pacific Northwest. I like to ride and race my bike on
           gravel, road and dirt.
-        </p>
-        <p
+        </Text>
+        <Text
+          as="p"
           sx={{
             fontFamily: 'serif',
-            lineHeight: '1.6',
+            lineHeight: '1.4',
             fontSize: ['16px', '2', '2'],
-            letterSpacing: '.4px',
+            marginTop: '20px',
+            // letterSpacing: '.4px',
           }}
         >
           I built this website to provide a detailed analysis of my rides and
           races for myself and others so we can learn from our previous
           experiences. If you like this site, you can fork it on Github or wait
           till the platform is built where you can post your own race journals.
-        </p>
+        </Text>
       </Box>
     </Container>
   )

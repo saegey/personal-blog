@@ -9,7 +9,7 @@ const StravaLink = ({ stravaUrl }: { children: ReactElement }) => {
       <Flex>
         <Box sx={{ marginLeft: 'auto' }}></Box>
         <Box sx={{ width: '20px', marginRight: '5px', lineHeight: '10px' }}>
-          <StravaIcon color="black" />
+          <StravaIcon color="text" />
         </Box>
         <Box
           sx={{

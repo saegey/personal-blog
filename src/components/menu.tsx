@@ -3,6 +3,7 @@ import { Close } from 'theme-ui'
 import ThemeContext from '../context/ThemeContext'
 import UnitSelector from './UnitSelector'
 import NavigationItems from './NavigationItems'
+import ColorModeSelector from './ColorModeSelector'
 
 type Props = {
   menuOpen: boolean
@@ -34,7 +35,7 @@ const Menu = ({ menuOpen, setMenuOpen }: Props) => {
           ></div>
           <div
             sx={{
-              backgroundColor: 'menuBackground',
+              backgroundColor: 'background',
               position: 'fixed',
               opacity: '1',
               visibility: 'visible',
@@ -68,6 +69,7 @@ const Menu = ({ menuOpen, setMenuOpen }: Props) => {
             </div>
             <NavigationItems setMenuOpen={setMenuOpen} />
             <UnitSelector unitOfMeasure={unitOfMeasure} />
+            <ColorModeSelector />
           </div>
         </>
       )}

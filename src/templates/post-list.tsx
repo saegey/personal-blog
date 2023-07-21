@@ -34,7 +34,7 @@ const PostList: React.FC<PageProps<DataProps, PageContext>> = ({
   return (
     <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 768 }}>
       <SafariStyle />
-      <Container sx={{ padding: '0px' }} bg="muted">
+      <Container sx={{ padding: '0px' }}>
         <Box as="ol" sx={{ p: 0 }}>
           {posts.map((post, index: number) => {
             if (post === null || post.frontmatter?.headerImage === undefined) {

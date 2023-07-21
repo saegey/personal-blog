@@ -30,7 +30,7 @@ const Layout = ({ children }: CardProps) => {
         <Header setMenuOpen={setMenuOpen} />
         <main
           sx={{
-            bg: 'muted',
+            // bg: 'muted',
             flexGrow: 1,
           }}
         >

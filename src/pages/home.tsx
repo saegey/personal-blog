@@ -59,7 +59,7 @@ const HomePage: React.FC<PageProps<DataProps>> = ({ data }) => {
             // borderTopColor: 'backgroundEmDarker',
             // borderTopStyle: 'solid',
             // borderTopWidth: '1px',
-            borderBottomColor: 'backgroundEmDarker',
+            borderBottomColor: 'muted',
             borderBottomStyle: 'solid',
             borderBottomWidth: '1px',
             paddingY: '10px',

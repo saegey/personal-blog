@@ -82,7 +82,11 @@ const SubFeaturedPost = ({
               <Text
                 as="h1"
                 variant="postTitle"
-                sx={{ fontSize: ['20px', '24px', '24px'], textAlign: 'left' }}
+                sx={{
+                  fontSize: ['20px', '24px', '24px'],
+                  textAlign: 'left',
+                  color: 'text',
+                }}
               >
                 {title}
               </Text>
@@ -94,6 +98,7 @@ const SubFeaturedPost = ({
                 textAlign: 'left',
                 paddingTop: '10px',
                 marginBottom: '0px',
+                color: 'text',
               }}
             >
               {teaser}

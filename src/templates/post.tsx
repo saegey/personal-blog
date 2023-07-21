@@ -56,12 +56,12 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
         <Text variant="postType">{type}</Text>
       </Flex>
       <Flex>
-        <Text as="h1" variant="postTitle">
+        <Text as="h1" variant="postTitle" sx={{ color: 'text' }}>
           {title}
         </Text>
       </Flex>
       <Flex>
-        <Text variant="postSubtitle">
+        <Text variant="postSubtitle" sx={{ color: 'text' }}>
           {date} — {location}
         </Text>
       </Flex>
