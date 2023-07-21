@@ -1,101 +1,121 @@
 import { graphql } from 'gatsby'
-import { Container, Text, Link, Flex, Box, Image } from 'theme-ui'
-import { Link as GatsbyLink } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { Container, Text, Link, Flex, Box, Image, Button } from 'theme-ui'
+import { Link as GatsbyLink, PageProps } from 'gatsby'
+import { ImageDataLike } from 'gatsby-plugin-image'
 
-const MyImage = Image as any as (props: MyImageProps) => JSX.Element
-
-// import Layout from '../components/layout'
 import Seo from '../components/seo'
-// import LandscapeImage from '../components/LandscapeImage'
-// import { slugify } from '../lib/util'
+import FeaturedPost from '../components/FeaturedPost'
+import SubFeaturedPost from '../components/SubFeaturedPost'
 
-const HomePage = ({ data, pageContext }) => {
-  const siteTitle = data.site.siteMetadata.title
-  // cont
+type PostProps = {
+  node: {
+    frontmatter: {
+      headerImage: ImageDataLike | undefined
+      title: string
+      teaser: string
+      type: string
+      subType: string
+    }
+    fields: {
+      slug: string
+    }
+  }
+}
+
+type DataProps = {
+  allMdx: {
+    edges: Array<PostProps>
+  }
+}
+
+const HomePage: React.FC<PageProps<DataProps>> = ({ data }) => {
   const featuredPost = data?.allMdx?.edges[0].node
-
+  const { title, type, teaser, headerImage, subType } = featuredPost.frontmatter
   return (
     <Container sx={{ paddingY: '10px' }}>
-      <Flex sx={{ flexWrap: 'wrap' }}>
-        <Box sx={{ flexGrow: 1, flexBasis: 'sidebar' }}>
-          {/* <LandscapeImage
-						layout="constrained"
-            image={featuredPost.frontmatter.headerImage}
-            maximize={false}
-            roundedEdges={false}
-						objectFit="cover"
-          /> */}
-          <MyImage
-            // layout="constrained"
-            image={getImage(featuredPost.frontmatter.headerImage)}
-            objectFit="cover"
-            alt={`Photo`}
-            as={GatsbyImage}
-            variant="homePageImage"
-          />
-        </Box>
-        <Box
+      <Box sx={{ marginX: '20px' }}>
+        <FeaturedPost
+          headerImage={headerImage}
+          title={title}
+          type={type}
+          slug={featuredPost.fields.slug}
+          teaser={teaser}
+          subType={subType}
+        />
+      </Box>
+      <Flex
+        sx={{
+          marginX: '20px',
+          marginY: '20px',
+          gap: '20px',
+          flexDirection: 'column',
+        }}
+      >
+        <Text
+          as="h2"
           sx={{
-            flexGrow: 99999,
-            flexBasis: 0,
-            minWidth: 320,
-            bg: 'backgroundEm',
+            fontFamily: 'body',
+            fontSize: ['22px', '24px', '28px'],
+            // borderTopColor: 'backgroundEmDarker',
+            // borderTopStyle: 'solid',
+            // borderTopWidth: '1px',
+            borderBottomColor: 'backgroundEmDarker',
+            borderBottomStyle: 'solid',
+            borderBottomWidth: '1px',
+            paddingY: '10px',
           }}
         >
-          <Flex
-            sx={{
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: '20px',
-              height: '100%',
-            }}
-          >
-            <Box sx={{ flex: '1 1 auto' }}></Box>
-            <Box sx={{}}>
-              <Text
-                as="p"
-                variant="postType"
-                sx={{ textAlign: 'left', paddingBottom: '10px' }}
-              >
-                {featuredPost.frontmatter.type}
-              </Text>
-              <Text as="h1" variant="postTitle" sx={{ textAlign: 'left' }}>
-                {featuredPost.frontmatter.title}
-              </Text>
-              <Text
-                as="p"
-                variant="postSubtitle"
-                sx={{ textAlign: 'left', paddingTop: '10px' }}
-              >
-                This is a race you can't miss. Luxury gravel and strong fields
-                dominate the storyline.
-              </Text>
-            </Box>
-            <Flex sx={{ flex: '1 1 auto', width: '100%' }}>
-              <Box sx={{ marginLeft: 'auto', alignSelf: 'flex-end' }}>
-                <Link
-                  to={`${featuredPost.fields.slug}`}
-                  as={GatsbyLink}
-                  sx={{
-                    fontFamily: 'body',
-                    textDecoration: 'none',
-                    ':hover': { textDecoration: 'underline' },
-                  }}
-                >
-                  <Text>Read the full post</Text>
-                </Link>
-              </Box>
-            </Flex>
-          </Flex>
-        </Box>
+          Recent Posts
+        </Text>
+        <SubFeaturedPost
+          title={data.allMdx.edges[1].node.frontmatter.title}
+          headerImage={data.allMdx.edges[1].node.frontmatter.headerImage}
+          slug={data.allMdx.edges[1].node.fields.slug}
+          teaser={data.allMdx.edges[1].node.frontmatter.teaser}
+          subType={data.allMdx.edges[1].node.frontmatter.subType}
+        />
+        <SubFeaturedPost
+          title={data.allMdx.edges[2].node.frontmatter.title}
+          headerImage={data.allMdx.edges[2].node.frontmatter.headerImage}
+          slug={data.allMdx.edges[2].node.fields.slug}
+          teaser={data.allMdx.edges[2].node.frontmatter.teaser}
+          subType={data.allMdx.edges[2].node.frontmatter.subType}
+        />
+        <SubFeaturedPost
+          title={data.allMdx.edges[3].node.frontmatter.title}
+          headerImage={data.allMdx.edges[3].node.frontmatter.headerImage}
+          slug={data.allMdx.edges[3].node.fields.slug}
+          teaser={data.allMdx.edges[3].node.frontmatter.teaser}
+          subType={data.allMdx.edges[3].node.frontmatter.subType}
+        />
+      </Flex>
+      <Flex sx={{ justifyContent: 'center' }}>
+        <Link
+          to={`/race-journal`}
+          as={GatsbyLink}
+          sx={{
+            fontFamily: 'body',
+            textDecoration: 'none',
+            ':hover': { textDecoration: 'underline' },
+          }}
+        >
+          <Button sx={{ padding: '15px' }}>View Older Posts</Button>
+        </Link>
       </Flex>
     </Container>
   )
 }
 
-export const Head = () => <Seo title="Home" />
+export const Head: React.FC<PageProps<DataProps>> = ({ data }) => {
+  return (
+    <Seo
+      title="Home"
+      description="Home page about races and detailed breakdown of how they went down"
+      pathname="/"
+      image={data.allMdx.edges[0].node.frontmatter.headerImage}
+    />
+  )
+}
 
 export default HomePage
 
@@ -106,7 +126,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMdx(sort: { frontmatter: { date: DESC } }, limit: 1) {
+    allMdx(sort: { frontmatter: { date: DESC } }, limit: 4) {
       edges {
         node {
           id
@@ -114,8 +134,11 @@ export const pageQuery = graphql`
             slug
           }
           frontmatter {
+            subType
             title
+            tags
             type
+            teaser
             headerImage {
               childImageSharp {
                 gatsbyImageData(placeholder: BLURRED)

@@ -1,6 +1,5 @@
 import { Button, Box, useColorMode, Flex } from 'theme-ui'
 
-import Logo from './logo'
 import { BoxSvgType } from '../common/types'
 
 type Props = {
@@ -39,9 +38,9 @@ const Header = ({ setMenuOpen }: Props) => {
     >
       <Box
         sx={{
-          position: 'fixed',
+          // position: 'fixed',
           zIndex: 3,
-          marginLeft: '10px',
+          marginLeft: '20px',
           marginTop: '10px',
         }}
       >
@@ -53,13 +52,13 @@ const Header = ({ setMenuOpen }: Props) => {
             width: 32,
             height: 32,
             m: 0,
-            p: 1,
+            p: 0,
             color: 'inherit',
             // bg: 'transparent',
             border: 0,
-            ':focus': {
-              outline: '1px solid',
-            },
+            // ':focus': {
+            //   outline: '1px solid',
+            // },
             ':hover': {
               color: 'primary',
             },
@@ -100,7 +99,7 @@ const Header = ({ setMenuOpen }: Props) => {
           top: 0,
           // marginTop: '10px',
           // position: 'sticky',
-          height: '48px',
+          // height: '48px',
         }}
       >
         <Box sx={{ flexGrow: 1 }}></Box>

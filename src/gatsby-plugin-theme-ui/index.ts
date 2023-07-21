@@ -16,6 +16,11 @@ const colors = {
 }
 
 const theme: Theme = {
+  // breakpoints: [
+  //   '40em',
+  //   '@media (min-width: 56em) and (orientation: landscape)',
+  //   '64em',
+  // ],
   config: {
     initialColorModeName: 'light',
   },
@@ -54,7 +59,7 @@ const theme: Theme = {
       fontFamily: 'serif',
       lineHeight: '1.6',
       fontSize: [16, 16, 17],
-      fontFeatureSettings: "kern",
+      fontFeatureSettings: 'kern',
       fontKerning: 'normal',
       fontWeight: '400',
     },
@@ -133,12 +138,13 @@ const theme: Theme = {
       borderBottomLeftRadius: [0, 4, 4],
     },
     homePageImage: {
-      width: ['600px', '600px', '600px'],
-      height: ['300px', '400px', '400px'],
+      width: ['100%', '100%', '100%'],
+      height: 'auto',
+      // height: ['300px', '200px', '600px'],
       zIndex: '0',
-      borderTopLeftRadius: 4,
-      borderTopRightRadius: [4, 0, 0],
-      borderBottomLeftRadius: [0, 4, 4],
+      borderTopLeftRadius: 0,
+      borderTopRightRadius: [0, 0, 0],
+      borderBottomLeftRadius: [0, 0, 0],
     },
     relatedImage: {
       width: ['100%', '200px', '300px'],
@@ -242,7 +248,7 @@ const theme: Theme = {
       fontSize: ['14px', '16px', '16px'],
       // textTransform: 'uppercase',
       color: '#343a40',
-      marginTop:['0px','5px','10px'],
+      marginTop: ['0px', '5px', '10px'],
       marginBottom: '40px',
     },
     postTitle: {
@@ -305,6 +311,7 @@ const theme: Theme = {
     background: '#fff',
     backgroundEm: darken('background', 0.06),
     backgroundEmDark: darken('background', 0.1),
+    backgroundEmDarker: darken('background', 0.15),
     graphGrid: '#e9ecefff',
     graphFill: '#495057ff',
     primary: colors.sonicSilver,

@@ -1,5 +1,21 @@
+import { ImageDataLike } from 'gatsby-plugin-image'
+
 import { useSiteMetadata } from '../hooks/use-site-metadata'
 
+type SeoPayload = {
+  title: string
+  description: string
+  pathname: string
+  children?: JSX.Element
+  image?: ImageDataLike
+  author?: {
+    name: string
+  }
+  publishedDate?: string
+  twitterUsername?: string
+  width?: string
+  height?: string
+}
 const Seo = ({
   title,
   description,
@@ -11,7 +27,7 @@ const Seo = ({
   twitterUsername,
   width,
   height,
-}) => {
+}: SeoPayload) => {
   const {
     title: defaultTitle,
     description: defaultDescription,

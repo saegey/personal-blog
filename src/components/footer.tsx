@@ -27,6 +27,7 @@ const Footer = () => {
         // display: 'flex',
         // flexWrap: 'wrap',
         // flexShrink: 0,
+        // marginTop: '20px',
         alignItems: 'center',
         variant: 'styles.footer',
         fontFamily: 'body',
@@ -38,6 +39,10 @@ const Footer = () => {
         sx={{
           display: 'grid',
           marginBottom: '10px',
+          paddingTop: '20px',
+          borderTopWidth: '1px',
+          borderTopColor: 'backgroundEmDarker',
+          borderTopStyle: 'solid',
         }}
       >
         <Text
@@ -57,7 +62,7 @@ const Footer = () => {
           <Link
             href={`http://instagram.com/${instagram}`}
             sx={{
-              textDecoration: 'underline',
+              textDecoration: 'none',
               textUnderlineOffset: '2.5px',
               fontWeight: '300',
               paddingRight: 3,
@@ -68,7 +73,7 @@ const Footer = () => {
           <Link
             href={`http://github.com/${github}`}
             sx={{
-              textDecoration: 'underline',
+              textDecoration: 'none',
               textUnderlineOffset: '2.5px',
               paddingRight: 3,
               fontWeight: '300',
@@ -79,7 +84,7 @@ const Footer = () => {
           <Link
             href={`http://twitter.com/${twitter}`}
             sx={{
-              textDecoration: 'underline',
+              textDecoration: 'none',
               textUnderlineOffset: '2.5px',
               paddingRight: 3,
               fontWeight: '300',
@@ -90,7 +95,7 @@ const Footer = () => {
           <Link
             href={`https://www.strava.com/athletes/${strava}`}
             sx={{
-              textDecoration: 'underline',
+              textDecoration: 'none',
               textUnderlineOffset: '2.5px',
               paddingRight: 3,
               fontWeight: '300',
@@ -112,7 +117,7 @@ const Footer = () => {
           marginBottom: '10px',
         }}
       >
-        © {new Date().getFullYear()}
+        {/* © {new Date().getFullYear()} */}
       </div>
     </footer>
   )
