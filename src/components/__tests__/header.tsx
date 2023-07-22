@@ -4,9 +4,10 @@
 import renderer from 'react-test-renderer'
 import { render, fireEvent, screen } from '@testing-library/react'
 
-import { ThemeProvider, useColorMode } from 'theme-ui'
+import { ThemeUIProvider, useColorMode } from 'theme-ui'
 
 import Header from '../header'
+import ColorModeSelector from '../ColorModeSelector'
 
 import { theme } from './__test-utils__'
 import { JsxEmit } from 'typescript'
@@ -31,9 +32,9 @@ describe('Header', () => {
   it('renders', () => {
     const json = renderer
       .create(
-        <ThemeProvider theme={theme}>
+        <ThemeUIProvider theme={theme}>
           <Header setMenuOpen={jest.fn()} />
-        </ThemeProvider>
+        </ThemeUIProvider>
       )
       .toJSON()
     expect(json).toMatchSnapshot()
@@ -42,9 +43,9 @@ describe('Header', () => {
   it('clicks a button to open a menu', async () => {
     const openMenu = jest.fn()
     render(
-      <ThemeProvider theme={theme}>
+      <ThemeUIProvider theme={theme}>
         <Header setMenuOpen={openMenu} />
-      </ThemeProvider>
+      </ThemeUIProvider>
     )
     const menuButton = await screen.queryByTitle('Toggle Menu')
     fireEvent.click(menuButton)
@@ -59,13 +60,13 @@ describe('Header', () => {
 
       it('clicks a button to open a change color scheme', async () => {
         render(
-          <ThemeProvider theme={theme}>
-            <Header setMenuOpen={jest.fn()} />
-          </ThemeProvider>
+          <ThemeUIProvider theme={theme}>
+            <ColorModeSelector />
+          </ThemeUIProvider>
         )
         const themeButton = await screen.queryByTitle('Toggle Theme')
         fireEvent.click(themeButton)
-        expect(mockColorMode).toBeCalledWith('default')
+        expect(mockColorMode).toBeCalledWith('light')
       })
 
       afterEach(() => {
@@ -77,14 +78,14 @@ describe('Header', () => {
 
     describe('light mode to dark', () => {
       beforeEach(() => {
-        useColorMode.mockImplementation(() => ['default', mockDarkMode])
+        useColorMode.mockImplementation(() => ['light', mockDarkMode])
       })
 
       it('clicks a button to open a change color scheme', async () => {
         render(
-          <ThemeProvider theme={theme}>
-            <Header setMenuOpen={jest.fn()} />
-          </ThemeProvider>
+          <ThemeUIProvider theme={theme}>
+            <ColorModeSelector />
+          </ThemeUIProvider>
         )
         const themeButton = await screen.queryByTitle('Toggle Theme')
         fireEvent.click(themeButton)

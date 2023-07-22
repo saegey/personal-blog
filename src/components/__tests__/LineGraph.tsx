@@ -6,7 +6,7 @@
 import renderer from 'react-test-renderer'
 // import { render } from '@testing-library/react'
 
-import { ThemeProvider } from 'theme-ui'
+import { ThemeUIProvider } from 'theme-ui'
 
 import LineGraph from '../LineGraph'
 
@@ -22,7 +22,7 @@ describe('LineGraph', () => {
   it('renders', () => {
     const json = renderer
       .create(
-        <ThemeProvider theme={theme}>
+        <ThemeUIProvider theme={theme}>
           <LineGraph
             data={[
               {
@@ -43,7 +43,7 @@ describe('LineGraph', () => {
             unit={'watts'}
             lineWidth={2}
           />
-        </ThemeProvider>
+        </ThemeUIProvider>
       )
       .toJSON()
     expect(json).toMatchSnapshot()
