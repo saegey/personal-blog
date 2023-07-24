@@ -4,7 +4,7 @@ export const themeTemplate = (theme: any) => {
     fontSize: 15,
     tooltip: {
       container: {
-        background: theme.colors.background,
+        background: theme.colors.accent,
         color: theme.colors.text,
         fontSize: 12,
       },
@@ -16,14 +16,21 @@ export const themeTemplate = (theme: any) => {
     },
     grid: {
       line: {
-        stroke: theme.colors?.graphGrid,
+        stroke: theme.colors?.muted,
         strokeWidth: 1,
+      },
+    },
+    crosshair: {
+      line: {
+        stroke: theme.colors?.highlight,
+        strokeWidth: 1,
+        strokeOpacity: 1
       },
     },
     axis: {
       domain: {
         line: {
-          stroke: theme.colors?.graphGrid,
+          stroke: theme.colors?.muted,
           strokeWidth: 1,
         },
       },

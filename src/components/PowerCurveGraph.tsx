@@ -26,6 +26,20 @@ const PowerCurveGraph = ({
   const yTicks = useResponsiveValue(yAxes)
   const xTicks = useResponsiveValue(xAxes)
   const { theme } = useThemeUI()
+  const customTheme = {
+    axis: {
+      textColor: '#eee',
+      fontSize: '14px',
+      tickColor: '#eee',
+    },
+    grid: {
+      line: {
+        stroke: 'pink',
+        strokeWidth: 2,
+        strokeDasharray: '4 4',
+      },
+    },
+  }
 
   return (
     <Box
@@ -48,6 +62,7 @@ const PowerCurveGraph = ({
         lineWidth={2}
         enableArea={false}
         areaBaselineValue={0}
+        // theme={customTheme}
         axisBottomTickValues={xTicks}
         axisLeftTickValues={yTicks}
         markers={[
@@ -55,14 +70,14 @@ const PowerCurveGraph = ({
             axis: 'y',
             value: ftp,
             lineStyle: {
-              stroke: theme.colors?.marker,
-              strokeWidth: 1,
+              stroke: theme.colors?.highlight,
+              strokeWidth: 2,
             },
             legend: `FTP - ${ftp}w`,
             textStyle: {
               fontSize: 14,
               fontFamily: theme.fonts?.body,
-              fill: theme.colors?.marker,
+              fill: theme.colors?.text,
               fontWeight: '400',
             },
             // legendOrientation: 'vertical',

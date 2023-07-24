@@ -16,7 +16,7 @@ const PostCard = ({ post, title, image }: PostCardProps) => {
       sx={{ textDecoration: 'none' }}
       as={GatsbyLink}
     >
-      <Card>
+      <Card sx={{ background: 'cardBackground'}}>
         <div
           sx={{
             display: 'flex',
@@ -40,7 +40,7 @@ const PostCard = ({ post, title, image }: PostCardProps) => {
               />
             )}
           </div>
-          <main
+          <div
             sx={{
               flexGrow: 99999,
               flexBasis: 0,
@@ -88,7 +88,7 @@ const PostCard = ({ post, title, image }: PostCardProps) => {
                 </Box>
               </Flex>
             </Box>
-          </main>
+          </div>
         </div>
       </Card>
     </MyLink>

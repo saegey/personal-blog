@@ -1,55 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header renders 1`] = `
-.emotion-0 {
-  position: -webkit-sticky;
-  position: sticky;
-  background: var(--theme-ui-colors-headerColor);
-  top: -16px;
-  z-index: 1;
-}
-
-.emotion-0::before {
-  content: "";
-  display: block;
-  height: 16px;
-  position: -webkit-sticky;
-  position: sticky;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-  top: 32px;
-}
-
-.emotion-0::after {
-  background: var(--theme-ui-colors-headerColor);
-  content: "";
-  height: 16px;
-  top: 0;
-  position: -webkit-sticky;
-  position: sticky;
-  z-index: 2;
-  display: block;
-}
-
 .emotion-1 {
   box-sizing: border-box;
   margin: 0;
   min-width: 0;
-  display: grid;
-  grid-gap: 16px;
-  grid-template-columns: repeat(3, 1fr);
-  margin-left: 10px;
-  margin-right: 10px;
   z-index: 3;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: var(--theme-ui-colors-headerColor);
-  margin-top: -16px;
-  top: 0;
-  position: -webkit-sticky;
-  position: sticky;
-  height: 48px;
+  margin-left: 20px;
+  margin-top: 10px;
 }
 
 .emotion-2 {
@@ -80,17 +38,14 @@ exports[`Header renders 1`] = `
   -moz-appearance: none;
   -ms-appearance: none;
   appearance: none;
+  background-color: cardBackground;
   width: 32px;
   height: 32px;
   margin: 0;
-  padding: 4px;
+  padding: 0;
   color: inherit;
-  background-color: transparent;
+  background: none;
   border: 0;
-}
-
-.emotion-2:focus {
-  outline: 2px solid;
 }
 
 .emotion-2:hover {
@@ -100,14 +55,40 @@ exports[`Header renders 1`] = `
 .emotion-3 {
   display: block;
   margin: 0;
-  fill: headerForeground;
+  fill: text;
 }
 
 .emotion-4 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  z-index: 3;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: var(--theme-ui-colors-headerColor);
+  top: 0;
+}
+
+.emotion-5 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.emotion-6 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -118,84 +99,20 @@ exports[`Header renders 1`] = `
   justify-content: center;
 }
 
-.emotion-5 {
+.emotion-7 {
   width: 100px;
 }
 
 @media screen and (min-width: 40em) {
-  .emotion-5 {
+  .emotion-7 {
     width: 110px;
   }
 }
 
 @media screen and (min-width: 52em) {
-  .emotion-5 {
+  .emotion-7 {
     width: 130px;
   }
-}
-
-.emotion-6 {
-  box-sizing: border-box;
-  margin: 0;
-  min-width: 0;
-}
-
-.emotion-6 .logo-solid {
-  fill: headerForeground;
-}
-
-.emotion-7 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  -webkit-justify-content: flex-end;
-  justify-content: flex-end;
-}
-
-.emotion-8 {
-  box-sizing: border-box;
-  margin: 0;
-  min-width: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
-  display: inline-block;
-  text-align: center;
-  line-height: inherit;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  font-size: inherit;
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  color: white;
-  background-color: var(--theme-ui-colors-primary);
-  border: 0;
-  border-radius: 4px;
-  color: var(--theme-ui-colors-background);
-  background-color: var(--theme-ui-colors-primary);
-  cursor: pointer;
-  background-color: transparent;
-  padding: 0;
-}
-
-.emotion-8 .logo-solid {
-  fill: headerForeground;
-}
-
-.emotion-9 {
-  box-sizing: border-box;
-  margin: 0;
-  min-width: 0;
 }
 
 <header
@@ -211,88 +128,44 @@ exports[`Header renders 1`] = `
     >
       <svg
         className="emotion-3"
-        height="36"
-        viewBox="0 0 36 36"
-        width="36"
+        height="20"
+        viewBox="0 0 100 80"
+        width="20"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path
-          d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+        <rect
+          height="15"
+          width="100"
+        />
+        <rect
+          height="15"
+          width="100"
+          y="30"
+        />
+        <rect
+          height="15"
+          width="100"
+          y="60"
         />
       </svg>
     </button>
+  </div>
+  <div
+    className="emotion-4"
+  >
     <div
-      className="emotion-4"
+      className="emotion-5"
+    />
+    <div
+      className="emotion-6"
     >
       <div
-        className="emotion-5"
-      >
-        <svg
-          className="emotion-6"
-          viewBox="0 0 260 65"
-        >
-          <g
-            className="logo-solid"
-          >
-            <path
-              d="M29.5 31.5V31H29H0.5V0.5H37.5V17.5H8.5H8V18V23V23.5H8.5H37.5V65.5H0.5V38.5H29H29.5V38V31.5Z"
-              stroke="black"
-              strokeOpacity="0"
-            />
-            <path
-              d="M44 1V65H52.5V53H64V65H82V1H44Z M52.5 44.5V10H64V44.5H52.5Z"
-              fillRule="nonzero"
-              stroke="black"
-              strokeOpacity="0"
-            />
-            <path
-              d="M125 18V1H87.5V26L111 33L87.5 40V65H125V47.5H95L125 37.5V28.5L95 18H125Z"
-              stroke="black"
-              strokeOpacity="0"
-            />
-            <path
-              d="M212.5 18V1H175V26L198.5 33L175 40V65H212.5V47.5H182.5L212.5 37.5V28.5L182.5 18H212.5Z"
-              stroke="black"
-              strokeOpacity="0"
-            />
-            <path
-              d="M169 1V21H152V9.5H140V56.5H152V50H146V42H169V65H131V1H169Z"
-              stroke="black"
-              strokeOpacity="0"
-            />
-            <path
-              d="M236 1H219V30H235L225 65H256L246.5 30H262V1H245V21H236V1Z"
-              stroke="black"
-              strokeOpacity="0"
-            />
-          </g>
-        </svg>
-      </div>
+        className="emotion-7"
+      />
     </div>
     <div
-      className="emotion-7"
-    >
-      <button
-        className="emotion-8"
-        onClick={[Function]}
-        title="Toggle Theme"
-      >
-        <svg
-          className="emotion-9"
-          height="24"
-          viewBox="0 0 512 512"
-          width="24"
-        >
-          <g
-            className="logo-solid"
-          >
-            <path
-              d="M195 125c0-26.3 5.3-51.3 14.9-74.1C118.7 73 51 155.1 51 253c0 114.8 93.2 208 208 208 97.9 0 180-67.7 202.1-158.9-22.8 9.6-47.9 14.9-74.1 14.9-106 0-192-86-192-192z"
-            />
-          </g>
-        </svg>
-      </button>
-    </div>
+      className="emotion-5"
+    />
   </div>
 </header>
 `;

@@ -1,5 +1,6 @@
 import ThemeContext from '../context/ThemeContext'
 import RaceStats from './RaceStats'
+import { Text, Box } from 'theme-ui'
 
 type Props = {
   data: {
@@ -76,9 +77,9 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
               .toISOString()
               .substr(11, 8)}`,
           },
-					{
+          {
             title: 'Moving Time',
-            value: `${new Date((elapsedTime.seconds - stoppedTime)  * 1000)
+            value: `${new Date((elapsedTime.seconds - stoppedTime) * 1000)
               .toISOString()
               .substr(11, 8)}`,
           },
@@ -121,11 +122,18 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
         ]
 
         return (
-          <RaceStats
-            items={items.filter(activity =>
-              selectedFields.includes(activity.title)
-            )}
-          />
+          <>
+            <Box sx={{ marginBottom: '10px' }}>
+              <Text as="h2" variant="resultsHeading">
+                Key Metrics
+              </Text>
+            </Box>
+            <RaceStats
+              items={items.filter(activity =>
+                selectedFields.includes(activity.title)
+              )}
+            />
+          </>
         )
       }}
     </ThemeContext.Consumer>

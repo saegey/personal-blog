@@ -52,7 +52,7 @@ const LineGraph = ({
       lineWidth={lineWidth}
       areaBaselineValue={areaBaselineValue}
       areaOpacity={1.0}
-      colors={colors ? colors : [theme.colors?.graphFill as string]}
+      colors={colors ? colors : [theme.colors?.text as string]}
       axisBottom={{
         format: formatSeconds,
         tickSize: 0,
@@ -67,7 +67,7 @@ const LineGraph = ({
       sliceTooltip={({ slice }) => (
         <div
           style={{
-            backgroundColor: theme.colors?.text,
+            backgroundColor: theme.colors?.primary,
             padding: '9px 12px',
             fontFamily: theme.fonts?.body,
             letterSpacing: '.4px',
@@ -77,16 +77,16 @@ const LineGraph = ({
           <div
             key={slice.points[0].id}
             style={{
-              color: theme.colors?.background,
+              color: theme.colors?.muted,
               padding: '3px 0',
             }}
           >
-            <div style={{ fontWeight: 300 }}>
+            <div style={{ fontWeight: 300, fontSize: '14px' }}>
               {formatTime(Number(slice.points[0].data.x))}
             </div>
             <div style={{ fontWeight: 600 }}>
               {slice.points.map((p, i) => (
-                <Text as="p" key={`tooltip-${i}`}>
+                <Text as="p" key={`tooltip-${i}`} sx={{ fontSize: '12px' }}>
                   {p.data.y} {data.filter(d => d.id === p.serieId)[0].unit}
                 </Text>
               ))}

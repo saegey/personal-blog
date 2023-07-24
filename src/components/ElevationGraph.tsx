@@ -43,7 +43,6 @@ const ElevationGraph = ({
       sx={{
         height: isMaximized ? '90%' : ['200px', '250px', '300px'],
         fontFamily: 'body',
-        marginY: '20px',
       }}
     >
       <LineGraph

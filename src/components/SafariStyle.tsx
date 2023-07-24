@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 const SafariStyle = () => {
   return (
     <Helmet>
-      <meta
+      {/* <meta
         name="theme-color"
         content="#212529ff"
         media="(prefers-color-scheme: light)"
@@ -13,7 +13,7 @@ const SafariStyle = () => {
         content="#212529ff"
         media="(prefers-color-scheme: dark)"
       />
-      <meta name="apple-mobile-web-app-status-bar-style" content="black"></meta>
+      <meta name="apple-mobile-web-app-status-bar-style" content="black"></meta> */}
     </Helmet>
   )
 }

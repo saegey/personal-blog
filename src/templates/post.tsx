@@ -52,16 +52,16 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
   return (
     <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 768 }}>
       <SafariStyle />
-      <Flex sx={{ marginBottom: '20px' }}>
+      <Flex sx={{ marginBottom: '5px' }}>
         <Text variant="postType">{type}</Text>
       </Flex>
       <Flex>
-        <Text as="h1" variant="postTitle">
+        <Text as="h1" variant="postTitle" sx={{ color: 'text' }}>
           {title}
         </Text>
       </Flex>
       <Flex>
-        <Text variant="postSubtitle">
+        <Text variant="postSubtitle" sx={{ color: 'text' }}>
           {date} — {location}
         </Text>
       </Flex>

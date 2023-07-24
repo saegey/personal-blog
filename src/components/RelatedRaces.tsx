@@ -37,6 +37,7 @@ const RelatedRaces = ({ items }: Props) => {
             sx={{ textDecoration: 'none' }}
             itemProp="url"
             as={GatsbyLink}
+            key={`related-race-${index}`}
           >
             <Card key={`related-race-${index}`}>
               <div
@@ -67,6 +68,7 @@ const RelatedRaces = ({ items }: Props) => {
                     flexGrow: 99999,
                     flexBasis: 0,
                     minWidth: 320,
+                    background: 'muted',
                   }}
                 >
                   <Box sx={{ height: '100%' }}>
