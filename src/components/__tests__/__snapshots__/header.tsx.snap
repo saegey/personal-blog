@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header renders 1`] = `
-.emotion-1 {
+.emotion-0 {
   box-sizing: border-box;
   margin: 0;
   min-width: 0;
@@ -10,7 +10,7 @@ exports[`Header renders 1`] = `
   margin-top: 10px;
 }
 
-.emotion-2 {
+.emotion-1 {
   box-sizing: border-box;
   margin: 0;
   min-width: 0;
@@ -48,17 +48,17 @@ exports[`Header renders 1`] = `
   border: 0;
 }
 
-.emotion-2:hover {
+.emotion-1:hover {
   color: var(--theme-ui-colors-primary);
 }
 
-.emotion-3 {
+.emotion-2 {
   display: block;
   margin: 0;
   fill: text;
 }
 
-.emotion-4 {
+.emotion-3 {
   box-sizing: border-box;
   margin: 0;
   min-width: 0;
@@ -75,7 +75,7 @@ exports[`Header renders 1`] = `
   top: 0;
 }
 
-.emotion-5 {
+.emotion-4 {
   box-sizing: border-box;
   margin: 0;
   min-width: 0;
@@ -85,7 +85,7 @@ exports[`Header renders 1`] = `
   flex-grow: 1;
 }
 
-.emotion-6 {
+.emotion-5 {
   box-sizing: border-box;
   margin: 0;
   min-width: 0;
@@ -99,35 +99,33 @@ exports[`Header renders 1`] = `
   justify-content: center;
 }
 
-.emotion-7 {
+.emotion-6 {
   width: 100px;
 }
 
 @media screen and (min-width: 40em) {
-  .emotion-7 {
+  .emotion-6 {
     width: 110px;
   }
 }
 
 @media screen and (min-width: 52em) {
-  .emotion-7 {
+  .emotion-6 {
     width: 130px;
   }
 }
 
-<header
-  className="emotion-0"
->
+<header>
   <div
-    className="emotion-1"
+    className="emotion-0"
   >
     <button
-      className="emotion-2"
+      className="emotion-1"
       onClick={[Function]}
       title="Toggle Menu"
     >
       <svg
-        className="emotion-3"
+        className="emotion-2"
         height="20"
         viewBox="0 0 100 80"
         width="20"
@@ -151,20 +149,20 @@ exports[`Header renders 1`] = `
     </button>
   </div>
   <div
-    className="emotion-4"
+    className="emotion-3"
   >
     <div
-      className="emotion-5"
+      className="emotion-4"
     />
     <div
-      className="emotion-6"
+      className="emotion-5"
     >
       <div
-        className="emotion-7"
+        className="emotion-6"
       />
     </div>
     <div
-      className="emotion-5"
+      className="emotion-4"
     />
   </div>
 </header>
