@@ -64,7 +64,7 @@ describe('Header', () => {
             <ColorModeSelector />
           </ThemeUIProvider>
         )
-        const themeButton = await screen.queryByTitle('Toggle Theme')
+        const themeButton = await screen.queryByTitle('Light Mode')
         fireEvent.click(themeButton)
         expect(mockColorMode).toBeCalledWith('light')
       })
@@ -87,7 +87,7 @@ describe('Header', () => {
             <ColorModeSelector />
           </ThemeUIProvider>
         )
-        const themeButton = await screen.queryByTitle('Toggle Theme')
+        const themeButton = await screen.queryByTitle('Dark Mode')
         fireEvent.click(themeButton)
         expect(mockDarkMode).toBeCalledWith('dark')
       })

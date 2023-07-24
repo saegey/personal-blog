@@ -22,13 +22,13 @@ const AboutIndex = () => {
               layout="constrained"
               formats={['auto', 'webp', 'avif']}
               src="../images/profile-noise.png"
-              objectFit="cover"
+              objectFit="fill"
               quality={95}
               alt="Profile picture"
               sx={{
                 borderRadius: '20px',
-                height: ['200px', '300px', '300px'],
-                width: ['200px', '300px', '300px'],
+                height: ['100%', '300px', '300px'],
+                width: ['100%', '300px', '300px'],
               }}
             />
           </Box>

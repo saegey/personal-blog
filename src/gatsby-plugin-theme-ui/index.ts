@@ -16,7 +16,7 @@ const theme: Theme = {
     highlight: darken('background', 0.5),
     highlightedItem: '#e8ff50c7',
     muted: darken('#fff', 0.1),
-    cardBackground: 'background',
+    cardBackground: '#fff',
     modes: {
       dark: {
         text: '#fff',
@@ -28,7 +28,7 @@ const theme: Theme = {
         highlight: lighten('background', 0.5),
         highlightedItem: darken('#e8ff50c7', 0.4),
         muted: lighten('#000', 0.1),
-        cardBackground: lighten('background', 0.1),
+        cardBackground: lighten('#000', 0.1),
       },
     },
   },
@@ -134,7 +134,7 @@ const theme: Theme = {
       borderRadius: 4,
       boxShadow: '0 8px 16px -4px rgba(0,0,0,.1), 0 0 8px -3px rgba(0,0,0,.1)',
       marginBottom: '20px',
-      backgroundColor: 'cardBackground',
+      // backgroundColor: 'cardBackground',
     },
   },
   images: {
@@ -300,7 +300,7 @@ const theme: Theme = {
   links: {
     menu: {
       // fontSize: '24px',
-      fontSize: ['22px', '22px', '22px'],
+      fontSize: ['28px', '28px', '28px'],
       textTransform: 'uppercase',
       fontWeight: '700',
       lineHeight: '1.5',

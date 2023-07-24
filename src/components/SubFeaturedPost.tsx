@@ -40,16 +40,27 @@ const SubFeaturedPost = ({
     <Flex
       sx={{
         flexWrap: 'wrap',
+        gap: ['10px', '10px', '20px'],
       }}
     >
-      <Box sx={{ flexGrow: 1, flexBasis: 'sidebar', width: '30%' }}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          flexBasis: 'sidebar',
+          width: '30%',
+          alignContent: 'center',
+          alignItems: 'center',
+          marginTop: 'auto',
+          marginBottom: 'auto'
+        }}
+      >
         {headerImageComp}
       </Box>
       <Box
         sx={{
           flexGrow: 99999,
           flexBasis: 0,
-          minWidth: 420,
+          minWidth: [345, 345, 420],
           // bg: 'backgroundEm',
         }}
       >
@@ -58,7 +69,7 @@ const SubFeaturedPost = ({
             flexDirection: 'column',
             // alignItems: 'center',
             justifyContent: 'center',
-            paddingX: [0, '20px', '20px'],
+            // paddingX: ['20px' '20px', '20px'],
             paddingY: ['20px', 0, 0],
             height: '100%',
           }}
