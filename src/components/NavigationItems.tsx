@@ -15,10 +15,10 @@ const MenuLink = ({ title, location, setMenuOpen, borderTop=false }: MenuLinkPro
   return (
     <li
       sx={{
-        borderBottomColor: 'muted',
+        borderBottomColor: 'mutedAccent',
         borderBottomStyle: 'solid',
         borderBottomWidth: '1px',
-        borderTopColor: 'muted',
+        borderTopColor: 'mutedAccent',
         borderTopStyle: 'solid',
         borderTopWidth: borderTop ? '1px' : '0px'
         ,

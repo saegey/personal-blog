@@ -141,7 +141,7 @@ export const pageQuery = graphql`
             teaser
             headerImage {
               childImageSharp {
-                gatsbyImageData(placeholder: BLURRED)
+                gatsbyImageData(placeholder: BLURRED, width: 1200)
               }
             }
           }

@@ -1,39 +1,12 @@
-import { Button, Box, useColorMode, Flex } from 'theme-ui'
-
-import { BoxSvgType } from '../common/types'
+import { Button, Box, Flex } from 'theme-ui'
 
 type Props = {
   setMenuOpen: (arg: boolean) => void
 }
-const SvgBox = Box as any as (props: BoxSvgType) => JSX.Element
 
 const Header = ({ setMenuOpen }: Props) => {
   return (
-    <header
-      sx={{
-        // position: 'sticky',
-        // background: 'headerColor',
-        // top: '-16px',
-        // zIndex: 1,
-        // '::before': {
-        //   content: '""',
-        //   display: 'block',
-        //   height: '16px',
-        //   position: 'sticky',
-        //   boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.2)',
-        //   top: '32px',
-        // },
-        // '::after': {
-        //   background: 'headerColor',
-        //   content: '""',
-        //   height: '16px',
-        //   top: 0,
-        //   position: 'sticky',
-        //   zIndex: 2,
-        //   display: 'block',
-        // },
-      }}
-    >
+    <header>
       <Box
         sx={{
           // position: 'fixed',
@@ -86,19 +59,10 @@ const Header = ({ setMenuOpen }: Props) => {
       </Box>
       <Flex
         sx={{
-          // position: 'sticky',
-          // display: 'grid',
-          // gridGap: 3,
-          // gridTemplateColumns: 'repeat(3, 1fr)',
-          // mx: '10px',
           zIndex: 3,
           alignItems: 'center',
           background: 'headerColor',
-          // marginTop: '-16px',
           top: 0,
-          // marginTop: '10px',
-          // position: 'sticky',
-          // height: '48px',
         }}
       >
         <Box sx={{ flexGrow: 1 }}></Box>

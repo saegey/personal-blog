@@ -14,7 +14,7 @@ const Layout = ({ children }: CardProps) => {
 
   return (
     <>
-      <Helmet>
+      <Helmet htmlAttributes={{ lang: 'en-US' }}>
         <body className={menuOpen ? 'noScroll' : ''} />
       </Helmet>
       <div
@@ -23,7 +23,7 @@ const Layout = ({ children }: CardProps) => {
           minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
-          // height: menuOpen ? '100%' : '',
+          height: menuOpen ? '100%' : '',
         }}
       >
         <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
