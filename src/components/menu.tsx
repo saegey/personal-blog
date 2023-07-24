@@ -29,13 +29,18 @@ const Menu = ({ menuOpen, setMenuOpen }: Props) => {
               height: '100%',
               width: '100%',
               zIndex: 10000,
-              overflow: 'hidden',
+              // overflow: 'hidden',
+              overflowY: 'scroll',
+              // top: 0,
+              // bottom: 0,
+              // right: 0,
+              // left: 0,
               // transition: "all 2s fade",
             }}
           ></div>
           <div
             sx={{
-              backgroundColor: 'background',
+              backgroundColor: 'muted',
               position: 'fixed',
               opacity: '1',
               visibility: 'visible',

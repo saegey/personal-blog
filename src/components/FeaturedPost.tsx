@@ -55,6 +55,7 @@ const FeaturedPost = ({
             justifyContent: 'center',
             padding: '20px',
             height: '100%',
+            gap: ['10px', '20px', '20px']
           }}
         >
           <Box sx={{ flex: '1 1 auto' }}></Box>
@@ -62,7 +63,7 @@ const FeaturedPost = ({
             <Text
               as="p"
               variant="postType"
-              sx={{ textAlign: 'left', paddingBottom: '10px' }}
+              sx={{ textAlign: 'left' }}
             >
               {subType}
             </Text>

@@ -347,5 +347,5 @@ summary {
 } */
 
 .noScroll {
-  overflow-y: hidden;
+  overflow: hidden;
 }
