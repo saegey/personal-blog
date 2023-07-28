@@ -37,11 +37,13 @@ class ThemeProvider extends Component {
 
   render() {
     const { children } = this.props
-    const { unitOfMeasure } = this.state
+    const { unitOfMeasure, distanceUnit } = this.state
     return (
       <ThemeContext.Provider
         value={{
           unitOfMeasure,
+          distanceUnit: unitOfMeasure === 'imperial' ? 'mi' : 'km',
+          elevationUnit: unitOfMeasure === 'imperial' ? 'ft' : 'm',
           toggleUnit: this.toggleUnit,
         }}
       >

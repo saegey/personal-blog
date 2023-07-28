@@ -11,32 +11,34 @@ type MenuLinkProps = {
 
 const MyLink = Link as any as (props: MyLinkProps) => JSX.Element
 
-const MenuLink = ({ title, location, setMenuOpen, borderTop=false }: MenuLinkProps) => {
+const MenuLink = ({
+  title,
+  location,
+  setMenuOpen,
+  borderTop = false,
+}: MenuLinkProps) => {
   return (
-    <li
-      sx={{
-        borderBottomColor: 'mutedAccent',
-        borderBottomStyle: 'solid',
-        borderBottomWidth: '1px',
-        borderTopColor: 'mutedAccent',
-        borderTopStyle: 'solid',
-        borderTopWidth: borderTop ? '1px' : '0px'
-        ,
-        width: '100%',
-        paddingY: '10px'
-      }}
+    <MyLink
+      to={location}
+      variant="menu"
+      sx={{ textDecoration: 'none' }}
+      activeClassName="active"
+      as={GatsbyLink}
+      onClick={() => setMenuOpen(false)}
     >
-      <MyLink
-        to={location}
-        variant="menu"
-        sx={{ textDecoration: 'none' }}
-        activeClassName="active"
-        as={GatsbyLink}
-        onClick={() => setMenuOpen(false)}
+      <li
+        sx={{
+          ':hover': {
+            background: 'mutedAccent',
+            borderRadius: '5px',
+          },
+          paddingY: '5px',
+          paddingX: '10px',
+        }}
       >
         {title}
-      </MyLink>
-    </li>
+      </li>
+    </MyLink>
   )
 }
 
@@ -50,14 +52,14 @@ const NavigationItems = ({ setMenuOpen }: NavItemsProps) => {
       sx={{
         // display: 'flex',
         alignItems: 'center',
-        width: '100%',
+        // width: '100%',
       }}
     >
       <ul
         sx={{
           listStyleType: 'none',
-          paddingLeft: '45px',
-          paddingRight: '45px',
+          paddingLeft: '20px',
+          paddingRight: '20px',
           transition: 'all .2s ease-in-out',
           top: 0,
           left: 0,
@@ -66,16 +68,16 @@ const NavigationItems = ({ setMenuOpen }: NavItemsProps) => {
           },
         }}
       >
-        <MenuLink location="/" title="Home" setMenuOpen={setMenuOpen} borderTop={true} />
+        <MenuLink
+          location="/"
+          title="Home"
+          setMenuOpen={setMenuOpen}
+          borderTop={true}
+        />
         <MenuLink location="/about" title="About" setMenuOpen={setMenuOpen} />
         <MenuLink
           location="/race-journal"
-          title="Race Journal"
-          setMenuOpen={setMenuOpen}
-        />
-        <MenuLink
-          location="/projects"
-          title="Projects"
+          title="Bike Races"
           setMenuOpen={setMenuOpen}
         />
       </ul>

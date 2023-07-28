@@ -1,7 +1,12 @@
+import length from '@turf/length'
+import { lineString } from '@turf/helpers'
+
 type Coordinate = [number, number, number]
 type ProcessedCoordinate = {
   x: number
   y: string
+  distance: number
+  grade: number
 }
 
 export const dateDiff = (dateFrom: Date, dateTo: Date) => {
@@ -20,17 +25,40 @@ export const dateDiff = (dateFrom: Date, dateTo: Date) => {
 }
 
 export const downsampleElevation = (
-  coordinates: Coordinate[],
-  rate: number
+  coordinates: Coordinate[]
+  // rate: number
 ) => {
   const downsampled: ProcessedCoordinate[] = []
+  let totalDistance = 0
+  let distances: Array<number> = []
+  let grade = 0
+
   coordinates.forEach((item, index) => {
-    if (index % rate === 0 || index === 0) {
-      downsampled.push({
-        x: index,
-        y: Number(item[2]).toFixed(0),
-      })
+    if (index !== coordinates.length - 1) {
+      totalDistance += length(
+        lineString([
+          [coordinates[index][0], coordinates[index][1]],
+          [coordinates[index + 1][0], coordinates[index + 1][1]],
+        ]),
+        { units: 'meters' }
+      )
+      distances.push(totalDistance)
     }
+
+    if (index > 30) {
+      grade =
+        (item[2] - coordinates[index - 30][2]) /
+        (totalDistance - distances[index - 30])
+    }
+
+    downsampled.push({
+      x: index,
+      y: Number(item[2]).toFixed(0),
+      distance: totalDistance,
+      grade: !Number.isNaN(grade) && isFinite(grade) ? grade : 0,
+    })
+
+    // if (index % rate === 0 || index === 0) {
   })
 
   return downsampled

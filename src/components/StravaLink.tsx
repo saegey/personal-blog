@@ -18,7 +18,7 @@ const StravaLink = ({ stravaUrl }: { children: ReactElement }) => {
             alignItems: 'center',
           }}
         >
-          <Link
+          <a
             href={stravaUrl}
             sx={{
               textDecoration: 'none',
@@ -30,7 +30,7 @@ const StravaLink = ({ stravaUrl }: { children: ReactElement }) => {
             }}
           >
             View Activity on Strava
-          </Link>
+          </a>
         </Box>
         <Box sx={{ marginLeft: 'auto' }}></Box>
       </Flex>

@@ -2,6 +2,7 @@ import { IGatsbyImageData, GatsbyImageProps } from 'gatsby-plugin-image'
 import { LinkProps, ImageProps, BoxProps } from 'theme-ui'
 import { GatsbyLinkProps } from 'gatsby'
 import { FunctionComponent } from 'react'
+import { SliceTooltipProps } from '@nivo/line'
 
 // interface Image {
 //   image: IGatsbyImageData | null
@@ -81,6 +82,8 @@ export interface LineGraphProps {
   colors?: string[]
   markers?: any
   xScaleType?: 'linear' | 'log' | 'symlog' | 'point'
+  sliceCallback?: (func: SliceTooltipProps['slice']) => void
+  xAxisFormatter?: (func: number) => string
 }
 
 export interface RaceImageType {
