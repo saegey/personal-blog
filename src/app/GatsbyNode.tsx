@@ -547,7 +547,8 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
             createNodeField({
               name: `elevationData`,
               node,
-              value: downsampleElevation(coordinates, 20),
+              // value: downsampleElevation(coordinates, 20),
+              value: downsampleElevation(coordinates),
             })
 
             createNodeField({

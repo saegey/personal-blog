@@ -9,26 +9,27 @@ const AboutIndex = () => {
   return (
     <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 768 }}>
       <SafariStyle />
+      <Text as="h1">About Me</Text>
       <Box>
         <Flex sx={{ justifyContent: 'center' }}>
           <Box
             sx={{
               marginX: 'auto',
-              width: ['100%', '50%', '50%'],
+              width: ['100%', '100%', '100%'],
               marginBottom: '20px',
             }}
           >
             <StaticImage
               layout="constrained"
               formats={['auto', 'webp', 'avif']}
-              src="../images/profile-noise.png"
+              src="../images/A88F6F34-ADF4-4039-A6BF-586010755F0C_1_201_a.jpeg"
               objectFit="fill"
               quality={95}
               alt="Profile picture"
               sx={{
-                borderRadius: '20px',
-                height: ['100%', '300px', '300px'],
-                width: ['100%', '300px', '300px'],
+                // borderRadius: '20px',
+                height: ['100%', 'auto', 'auto'],
+                width: ['100%', '100%', '100%'],
               }}
             />
           </Box>

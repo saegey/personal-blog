@@ -22,6 +22,8 @@ import Map from '../components/Map'
 import RelatedRaces from '../components/RelatedRaces'
 import { useSiteMetadata } from '../hooks/use-site-metadata'
 import StravaLink from '../components/StravaLink'
+import VisualOverview from '../components/VisualOverview'
+import NewLineGraph from '../components/NewLineGraph'
 
 const shortcodes = {
   Box,
@@ -44,6 +46,8 @@ const shortcodes = {
   Map,
   RelatedRaces,
   StravaLink,
+  VisualOverview,
+  NewLineGraph,
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
@@ -258,6 +262,8 @@ export const query = graphql`
           elevationData {
             x
             y
+            distance
+            grade
           }
           heartAnalysis {
             entire

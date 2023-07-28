@@ -1,9 +1,10 @@
-import { Close } from 'theme-ui'
+import { Close, Box, Flex } from 'theme-ui'
 
 import ThemeContext from '../context/ThemeContext'
 import UnitSelector from './UnitSelector'
 import NavigationItems from './NavigationItems'
 import ColorModeSelector from './ColorModeSelector'
+import Logo from './logo'
 
 type Props = {
   menuOpen: boolean
@@ -54,24 +55,34 @@ const Menu = ({ menuOpen, setMenuOpen }: Props) => {
               transition: 'all .4s ease',
             }}
           >
-            <div
-              sx={{
-                display: 'flex',
-                paddingRight: '10px',
-                paddingTop: '10px',
-                justifyContent: 'right',
-                variant: 'styles.header',
-              }}
-            >
-              <Close
-                ml="auto"
-                mr={-2}
-                sx={{ color: 'headerForeground' }}
-                onClick={() => {
-                  setMenuOpen(false)
+            <Flex sx={{ paddingTop: '30px', paddingX: '20px' }}>
+              <Box sx={{ marginLeft: '10px' }}>
+                <Logo />
+              </Box>
+              <div
+                sx={{
+                  // display: 'flex',
+                  marginLeft: 'auto',
+                  paddingRight: '10px',
+                  justifyContent: 'right',
+                  variant: 'styles.header',
                 }}
-              />
-            </div>
+              >
+                <Close
+                  ml="auto"
+                  mr={-2}
+                  sx={{
+                    color: 'headerForeground',
+                    ':hover': {
+                      background: 'mutedAccent',
+                    },
+                  }}
+                  onClick={() => {
+                    setMenuOpen(false)
+                  }}
+                />
+              </div>
+            </Flex>
             <NavigationItems setMenuOpen={setMenuOpen} />
             <UnitSelector unitOfMeasure={unitOfMeasure} />
             <ColorModeSelector />

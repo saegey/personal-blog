@@ -14,7 +14,7 @@ const UnitSelector = ({ unitOfMeasure }: ThemeContextProps) => {
         // flex: '0 1 40px',
         marginTop: '20px',
         marginBottom: '20px',
-        marginLeft: '45px',
+        marginLeft: '30px',
         fontFamily: 'body',
       }}
     >
