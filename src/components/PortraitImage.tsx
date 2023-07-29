@@ -15,7 +15,7 @@ const PortraitImage = ({ image, widthPercentage, caption }) => {
       <Box sx={{ marginTop: '20px', borderRadius: '4px', overflow: 'hidden' }}>
         <Box
           sx={{
-            backgroundColor: 'backgroundEm',
+            backgroundColor: 'backgroundAccent',
           }}
         >
           <Box

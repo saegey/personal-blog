@@ -32,7 +32,7 @@ const HomePage: React.FC<PageProps<DataProps>> = ({ data }) => {
   const featuredPost = data?.allMdx?.edges[0].node
   const { title, type, teaser, headerImage, subType } = featuredPost.frontmatter
   return (
-    <Container sx={{ paddingY: '10px' }}>
+    <Container sx={{ paddingY: '20px' }}>
       <Box sx={{ marginX: '20px' }}>
         <FeaturedPost
           headerImage={headerImage}

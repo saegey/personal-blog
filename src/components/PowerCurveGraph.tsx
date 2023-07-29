@@ -6,6 +6,7 @@ import LineGraph from './LineGraph'
 import { GraphProps } from '../common/types'
 import MaximizedContainer from './MaximizedContainer'
 import ExpandableCard from './ExpandableCard'
+import { formatSeconds } from '../lib/formatters'
 
 interface PowerCurveGraphProps extends GraphProps {
   yAxes: Array<Array<Number>>
@@ -83,6 +84,7 @@ const PowerCurveGraph = ({
             // legendOrientation: 'vertical',
           },
         ]}
+        xAxisFormatter={formatSeconds}
       />
     </Box>
   )
@@ -98,7 +100,11 @@ const PowerCurveGraphWrapper = (props: PowerCurveGraphProps) => {
           <PowerCurveGraph isMaximized={true} {...props} />
         </MaximizedContainer>
       )}
-      <ExpandableCard title={props.title} openModal={setMax}>
+      <ExpandableCard
+        id="power-curve-graph"
+        title={props.title}
+        openModal={setMax}
+      >
         <PowerCurveGraph {...props} />
       </ExpandableCard>
     </>

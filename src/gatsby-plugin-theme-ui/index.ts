@@ -1,7 +1,6 @@
 import { Theme } from 'theme-ui'
 import { darken, lighten } from '@theme-ui/color'
 
-
 const theme: Theme = {
   config: {
     initialColorModeName: 'light',
@@ -10,6 +9,7 @@ const theme: Theme = {
     text: '#000',
     textInvert: lighten('text', 1),
     background: '#fff',
+    backgroundAccent: darken('background', 0.02),
     primary: lighten('text', 0.2),
     secondary: 'red',
     accent: darken('background', 0.8),
@@ -23,6 +23,7 @@ const theme: Theme = {
         text: '#fff',
         textInvert: darken('text', 1),
         background: '#000',
+        backgroundAccent: lighten('#000', 0.08),
         primary: darken('text', 0.2),
         secondary: 'red',
         accent: lighten('background', 1),
@@ -35,11 +36,15 @@ const theme: Theme = {
     },
   },
   styles: {
-    // the keys used here reference elements in MDX
+    root: {
+      // uses the theme values provided above
+      fontFamily: 'body',
+      fontWeight: 'body',
+    },
     h1: {
       // the style object for each element
       // can reference other values in the theme
-      fontFamily: 'body',
+      fontFamily: '"Public Sans Variable", sans-serif',
       fontWeight: 100,
       lineHeight: 'headline',
       fontSize: ['3', '4', '5'],
@@ -301,7 +306,7 @@ const theme: Theme = {
   },
   links: {
     menu: {
-      fontSize: ['26px', '26px', '26px'],
+      fontSize: ['22px', '22px', '22px'],
       // textTransform: 'uppercase',
       fontWeight: '700',
       lineHeight: '1.5',

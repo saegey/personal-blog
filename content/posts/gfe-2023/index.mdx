@@ -32,9 +32,9 @@ images:
     <Text>
       Attacking the first climb of the day which is naturally creates a
       selection of evenly matched groups for the remainder of the day. Photo:{' '}
-      <Link href="https://www.markalanphoto.co/Fondos/Ephrata-Gran-Fondo-2023/Grande/i-Qdm3rBC/buy">
+      <a href="https://www.markalanphoto.co/Fondos/Ephrata-Gran-Fondo-2023/Grande/i-Qdm3rBC/buy">
         Mark Alan Photo
-      </Link>
+      </a>
     </Text>
   }
 />
@@ -65,32 +65,11 @@ I am a bit behind as far as volume compared to last year so I was interested how
   caption={
     <Text>
       Lead group of three coming through 3 Devils climbs. Photo:{' '}
-      <Link href="https://www.markalanphoto.co/Fondos/Ephrata-Gran-Fondo-2023/Grande/i-Qdm3rBC/buy">
+      <a href="https://www.markalanphoto.co/Fondos/Ephrata-Gran-Fondo-2023/Grande/i-Qdm3rBC/buy">
         Mark Alan Photo
-      </Link>
+      </a>
     </Text>
   }
-/>
-
-<Divider sx={{ marginTop: '20px' }} />
-<ElevationGraph
-  data={props.data.mdx.gpxData.fields.elevationData}
-  axisLeftTickValues={{
-    imperial: [
-      [1000, 2000, 3000],
-      [500, 1000, 1500, 2000, 2500, 3000],
-      [500, 1000, 1500, 2000, 2500, 3000],
-    ],
-    metric: [
-      [250, 500, 750, 1000],
-      [250, 500, 750, 1000],
-      [250, 500, 750, 1000],
-    ],
-  }}
-  areaBaselineValue={{ imperial: 500, metric: 0 }}
-  yScaleMin={{ imperial: 500, metric: 0 }}
-  yScaleMax={{ imperial: 3000, metric: 1000 }}
-  downsampleRate={4}
 />
 
 <Divider sx={{ marginBottom: '20px' }} />
@@ -124,16 +103,35 @@ The wind is always a big factor at Ephrata because of the desert terrain and lac
   caption={
     <Text>
       My friend Ira and I riding one of the 3 Devils climbs. Photo:{' '}
-      <Link href="https://www.markalanphoto.co/Fondos/Ephrata-Gran-Fondo-2023/Grande/i-Qdm3rBC/buy">
+      <a href="https://www.markalanphoto.co/Fondos/Ephrata-Gran-Fondo-2023/Grande/i-Qdm3rBC/buy">
         Mark Alan Photo
-      </Link>
+      </a>
     </Text>
   }
 />
 
 The race rolls out of town and is neutralized for about 15 minutes when the gravel starts. The effort needed to hit these climbs is massive and everyone is suffering. I was pretty far back in the neutral section so started a little far back once the climb started. I was playing catch up for a bit and eventually found my friend Ira but had to close probably a 20 second gap. We both ended up getting dropped at the beginning of the long descent. Ira and I took turns doing pulls and got close to the group ahead a few times but we couldn't close it. It was originally around 20 seconds but by the end of the descent it was now a few minutes.
 
-<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
+<VisualOverview
+  coordinates={props.data.mdx.gpxData.fields.coordinates}
+  elevationData={{
+    downsampleRate: 60,
+    data: props.data.mdx.gpxData.fields.elevationData,
+    axisLeftTickValues: {
+      imperial: [
+        [1000, 2000, 3000],
+        [500, 1000, 1500, 2000, 2500],
+        [500, 1000, 1500, 2000, 2500],
+      ],
+      metric: [
+        [250, 500, 750, 1000],
+        [250, 500, 750, 1000],
+        [250, 500, 750, 1000],
+      ],
+    },
+  }}
+/>
+
 
 The two of us had to go into a strong headwind for about 5 miles till we noticed a large group behind us and let them catch us. It made a huge difference and we rolled with them and picked up a few more leaving the aid station. We stayed with this group until about miles 62 when the first of the three devil climbs was upon us. Ira needed to stop at the top for bathroom break but others hit the climb hard and the group shattered apart. I rolled slowly till Ira rejoined and we picked up some riders from the remnants of our original group. These last 25 miles to the finish were the hardest for me.
 
@@ -142,9 +140,9 @@ The two of us had to go into a strong headwind for about 5 miles till we noticed
   caption={
     <Text>
       My friend Ira and I riding one of the 3 Devils climbs. Photo:{' '}
-      <Link href="https://www.markalanphoto.co/Fondos/Ephrata-Gran-Fondo-2023/Grande/i-Qdm3rBC/buy">
+      <a href="https://www.markalanphoto.co/Fondos/Ephrata-Gran-Fondo-2023/Grande/i-Qdm3rBC/buy">
         Mark Alan Photo
-      </Link>
+      </a>
     </Text>
   }
 />

@@ -77,24 +77,25 @@ But the bad was we missed packet pick up by an hour or so. We had to pick up our
 
 The first big effort of the day was a 200 foot kicker climb the whole feel smashed up. I averaged 377 watts for 2:10 seconds which felt good because the legs were fresh for the day. Up to that point, it was an easy 119 watt average for first 10 min of the neutral roll out. The race pretty much starts at this climb but they actually stopped everyone for 2 min at a start line. Then there is a short descent and the next longer climb begins. This climb breaks up the field into a lot of different groups. Ira and I were riding together from the start and following each other wheels but during this climb we linked up with our friend [Alec](https://www.strava.com/activities/8945730124) and [Vincente](https://www.strava.com/activities/8945965055).
 
-<ElevationGraph
-  data={props.data.mdx.gpxData.fields.elevationData}
-  axisLeftTickValues={{
-    imperial: [
-      [1000, 2000, 3000, 4000, 5000],
-      [1000, 2000, 3000, 4000, 5000],
-      [1000, 2000, 3000, 4000, 5000],
-    ],
-    metric: [
-      [500, 1000, 1500],
-      [500, 1000, 1500],
-      [500, 1000, 1500],
-    ],
+<VisualOverview
+  coordinates={props.data.mdx.gpxData.fields.coordinates}
+  elevationData={{
+    downsampleRate: 60,
+    data: props.data.mdx.gpxData.fields.elevationData,
+    yScaleMin: { imperial: 0, metric: 0 },
+    axisLeftTickValues: {
+      imperial: [
+        [1000, 2000, 3000],
+        [500, 1000, 1500, 2000, 2500],
+        [500, 1000, 1500, 2000, 2500],
+      ],
+      metric: [
+        [250, 500, 750, 1000],
+        [250, 500, 750, 1000],
+        [250, 500, 750, 1000],
+      ],
+    },
   }}
-  areaBaselineValue={{ imperial: 0, metric: 0 }}
-  yScaleMin={{ imperial: 0, metric: 0 }}
-  yScaleMax={{ imperial: 5000, metric: 1500 }}
-  downsampleRate={4}
 />
 
 I was feeling really good on the climb. The climb was around 1,300 feet and I had a normalized power of 276 watts for about 31 minutes. I did a lot of turns on the front trying to push the pace because the riders in front of us were gaining distance and you don't want to fall too far back. I find that getting in a strong group earlier and just trying to hang on gives you a better chance of a good finish versus a slower start and trying to gain places over the race.
@@ -139,8 +140,6 @@ This is my second race using a hydration pack. I have the Osprey 1.5 liter pack 
 Once I reached the top of the climb, we were down to a group of about seven. I noticed a buddy, Carter, that I had met in Sun Valley for Rebecca's Private Idaho had joined us from behind. This was super cool to be a in strong couple with three of my friends and thoughts were going through my head that we could last all day together. There was a fast but gradual descent that lasted for 45 mins at an average speed of 24 miles per hour. By the end of the descent our group had grown to somewhere around 25 and the amount of coordination had dropped considerably. While we were a small group, we rotated through consistently in a paceline. Once we balloned in numbers, there were a few racers to stay at the front the whole time and others just sitting on not contributing at all.
 
 I had a few conversations with Ira and Vincente and we agreed to stay at the front if any splits were to form. It has been common in the gravel races in the past to have racers with strange strategies. Randomly going on attacks with no one in sight only to get caught 20 min later when they fade after such a big effort is one I have seen numerous times. We did the best we can trying to save our legs but also make sure the pace doesn't fizzle out.
-
-<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
 
 Once we got to the climb, the group broke apart again and everyone was trying make a strong effort to get through the climb. This climb was about 650 feet at 4.5 percent grade. It took a normalized power of 276 watts (4 watts/kg). Toward the end of the climb I had to make a bigger effort to close a gap and Ira, Vincente and I ended up in a more select group.
 

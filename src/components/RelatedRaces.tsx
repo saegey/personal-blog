@@ -68,7 +68,7 @@ const RelatedRaces = ({ items }: Props) => {
                     flexGrow: 99999,
                     flexBasis: 0,
                     minWidth: 320,
-                    background: 'muted',
+                    background: 'backgroundAccent',
                   }}
                 >
                   <Box sx={{ height: '100%' }}>
