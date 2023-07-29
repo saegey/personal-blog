@@ -19,21 +19,63 @@ const NewLineGraph = ({
   context,
   setMarker,
 }) => {
-  // render() {
   const themeContext = useThemeUI()
-  // const { data, downsampleRate, coordinates, context } = this.props
   const downSampledData = data
     .filter((d, i: number) => i % downsampleRate === 0)
     .map(d => {
-      return {
-        ...d,
-        distance:
-          context.unitOfMeasure === 'imperial'
-            ? (d.distance * 0.00062137121212121).toFixed(1)
-            : (d.distance / 1000).toFixed(1),
-        y: context.unitOfMeasure === 'imperial' ? d.y * 3.28084 : Number(d.y),
+      const grade = d.grade * 100
+      // if (d.x === 240) {
+      // console.log(d, grade >= 0.0, grade < 0.0)
+      // }
+      // console.log(grade)
+      if (grade > 0.0 && grade < 4) {
+        return {
+          ...d,
+          distance:
+            context.unitOfMeasure === 'imperial'
+              ? (d.distance * 0.00062137121212121).toFixed(1)
+              : (d.distance / 1000).toFixed(1),
+          y: context.unitOfMeasure === 'imperial' ? d.y * 3.28084 : Number(d.y),
+          green:
+            context.unitOfMeasure === 'imperial' ? d.y * 3.28084 : Number(d.y),
+        }
+      } else if (grade >= 4.0 && grade < 7.0) {
+        return {
+          ...d,
+          distance:
+            context.unitOfMeasure === 'imperial'
+              ? (d.distance * 0.00062137121212121).toFixed(1)
+              : (d.distance / 1000).toFixed(1),
+          y: context.unitOfMeasure === 'imperial' ? d.y * 3.28084 : Number(d.y),
+          orange:
+            context.unitOfMeasure === 'imperial' ? d.y * 3.28084 : Number(d.y),
+        }
+      } else if (grade <= 0.0) {
+        return {
+          ...d,
+          distance:
+            context.unitOfMeasure === 'imperial'
+              ? (d.distance * 0.00062137121212121).toFixed(1)
+              : (d.distance / 1000).toFixed(1),
+          y: context.unitOfMeasure === 'imperial' ? d.y * 3.28084 : Number(d.y),
+          gray:
+            context.unitOfMeasure === 'imperial' ? d.y * 3.28084 : Number(d.y),
+        }
+      } else if (grade >= 7.0) {
+        return {
+          ...d,
+          distance:
+            context.unitOfMeasure === 'imperial'
+              ? (d.distance * 0.00062137121212121).toFixed(1)
+              : (d.distance / 1000).toFixed(1),
+          y: context.unitOfMeasure === 'imperial' ? d.y * 3.28084 : Number(d.y),
+          red:
+            context.unitOfMeasure === 'imperial' ? d.y * 3.28084 : Number(d.y),
+        }
       }
     })
+
+  // console.log(downSampledData)
 
   const xMax = Math.floor(
     Number(downSampledData[downSampledData.length - 1].distance)
@@ -54,10 +96,10 @@ const NewLineGraph = ({
           data={downSampledData}
           onMouseMove={e => {
             if (!e || !e.activePayload) {
-              console.log(e)
               setMarker(null)
               return
             }
+            // console.log(e)
 
             setMarker(e.activePayload[0].payload)
           }}
@@ -65,6 +107,15 @@ const NewLineGraph = ({
         >
           <CartesianGrid stroke={themeContext.theme.colors?.muted} />
           <Tooltip content={<></>} />
+           <Area
+            // connectNulls
+            dataKey="y"
+            stroke={themeContext.theme.colors?.text}
+            strokeWidth={2}
+            fill={'gray'}
+            fillOpacity={.1}
+            dot={false}
+          />
           <XAxis
             dataKey="distance"
             allowDecimals={false}
@@ -74,11 +125,27 @@ const NewLineGraph = ({
           />
           <YAxis allowDataOverflow />
           <Area
-            dataKey="y"
+            dataKey="green"
             stroke={themeContext.theme.colors?.text}
             strokeWidth={2}
-            fill={themeContext.theme.colors?.text}
-            fillOpacity={0.2}
+            fill={'green'}
+            fillOpacity={1}
+            dot={false}
+          />
+          <Area
+            dataKey="orange"
+            stroke={themeContext.theme.colors?.text}
+            strokeWidth={2}
+            fill={'orange'}
+            fillOpacity={1}
+            dot={false}
+          />
+          <Area
+            dataKey="red"
+            stroke={themeContext.theme.colors?.text}
+            strokeWidth={2}
+            fill={'red'}
+            fillOpacity={1}
             dot={false}
           />
         </AreaChart>
