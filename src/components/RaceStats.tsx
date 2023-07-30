@@ -11,15 +11,11 @@ type Props = {
 
 const RaceStats = ({ items }: Props) => {
   return (
-    <>
+    <Box>
       <Grid
         gap={2}
         columns={[2, 2, 3]}
         sx={{
-          // backgroundColor: ['', 'backgroundEm', 'backgroundEm'],
-          // paddingY: ['0px', '20px', '20px'],
-          // paddingX: ['0px', '20px', '20px'],
-          marginBottom: '20px',
           borderRadius: '4px',
         }}
       >
@@ -42,7 +38,7 @@ const RaceStats = ({ items }: Props) => {
           )
         })}
       </Grid>
-    </>
+    </Box>
   )
 }
 

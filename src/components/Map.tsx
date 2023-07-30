@@ -6,11 +6,6 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 
 const MAPBOX_TOKEN = `${process.env.GATSBY_MAPBOX_TOKEN}`
 
-const mapContainerStyle = {
-  width: '100%',
-  height: '450px',
-}
-
 const Map = ({ coordinates, markerCoordinates }) => {
   const mapContainerRef = useRef(null)
   const map = useRef(null)
@@ -21,15 +16,11 @@ const Map = ({ coordinates, markerCoordinates }) => {
       return
     }
     if (map.current !== undefined) {
-      // console.log(map.current)
       const geojsonSource = map.current.getSource('currentPosition')
       if (!geojsonSource) {
         return
       }
-      // if (!markerCoordinates) {
-      //   geojsonSource
-      // }
-      // Update the data after the GeoJSON source was created
+
       geojsonSource.setData({
         type: 'FeatureCollection',
         features: [
@@ -38,7 +29,7 @@ const Map = ({ coordinates, markerCoordinates }) => {
             properties: { name: 'Null Island' },
             geometry: {
               type: 'Point',
-              coordinates: markerCoordinates ? markerCoordinates : [ 0, 0 ],
+              coordinates: markerCoordinates ? markerCoordinates : [0, 0],
             },
           },
         ],
@@ -48,7 +39,6 @@ const Map = ({ coordinates, markerCoordinates }) => {
 
   useEffect(() => {
     if (map && map.current) return
-    // console.log('redraw map', map.current)
     map.current = new mapboxgl.Map({
       container: mapContainerRef.current,
       accessToken: MAPBOX_TOKEN,
@@ -56,6 +46,9 @@ const Map = ({ coordinates, markerCoordinates }) => {
       // Empire State Building [lng, lat]
       center: coordinates[0],
       zoom: 14,
+      scrollZoom: false,
+      boxZoom: false,
+      doubleClickZoom: false,
     })
 
     map.current.addControl(new mapboxgl.NavigationControl(), 'top-right')
@@ -97,7 +90,6 @@ const Map = ({ coordinates, markerCoordinates }) => {
         type: 'circle',
         source: 'currentPosition',
         layout: {
-          // Make the layer visible by default.
           visibility: 'visible',
         },
         paint: {
@@ -105,10 +97,7 @@ const Map = ({ coordinates, markerCoordinates }) => {
           'circle-color': 'black',
           'circle-stroke-color': 'white',
           'circle-stroke-width': 2,
-          // 'border-width': 2,
-          // 'border-color': 'white',
         },
-        // 'source-layer': 'museum-cusco',
       })
     })
 
@@ -121,7 +110,7 @@ const Map = ({ coordinates, markerCoordinates }) => {
     }
 
     map.current.fitBounds(bounds, {
-      padding: 100,
+      padding: 50,
     })
     map.current.resize()
 
@@ -132,7 +121,7 @@ const Map = ({ coordinates, markerCoordinates }) => {
     <Box
       sx={{ width: '100%' }}
       ref={mapContainerRef}
-      style={mapContainerStyle}
+      sx={{ width: '100%', height: ['300px', '450px', '450px'] }}
     />
   )
 }

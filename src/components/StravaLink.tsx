@@ -6,7 +6,7 @@ import StravaIcon from './StravaIcon'
 const StravaLink = ({ stravaUrl }: { children: ReactElement }) => {
   return (
     <>
-      <Flex>
+      <Flex sx={{ marginY: '20px' }}>
         <Box sx={{ marginLeft: 'auto' }}></Box>
         <Box sx={{ width: '20px', marginRight: '5px', lineHeight: '10px' }}>
           <StravaIcon color="text" />
@@ -27,6 +27,7 @@ const StravaLink = ({ stravaUrl }: { children: ReactElement }) => {
               fontSize: '15px',
               fontWeight: '600',
               letterSpacing: '.2px',
+              color: 'text',
             }}
           >
             View Activity on Strava

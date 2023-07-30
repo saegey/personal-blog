@@ -12,16 +12,24 @@ import { Box, useThemeUI } from 'theme-ui'
 
 import ThemeContext from '../context/ThemeContext'
 
+const gradeToColor = (grade: number) => {
+  if (grade > 0 && grade < 4) return 'green'
+  if (grade >= 4 && grade < 7) return 'orange'
+  if (grade <= 0) return '#D3D3D3'
+  if (grade >= 7) return 'red'
+}
+
 const NewLineGraph = ({
   data,
   downsampleRate,
-  coordinates,
   context,
   setMarker,
+  elevationToAdd = 0,
+  axisLeftTickValues,
+  axisXTickValues,
+  yMin,
 }) => {
-  // render() {
   const themeContext = useThemeUI()
-  // const { data, downsampleRate, coordinates, context } = this.props
   const downSampledData = data
     .filter((d, i: number) => i % downsampleRate === 0)
     .map(d => {
@@ -35,18 +43,27 @@ const NewLineGraph = ({
       }
     })
 
-  const xMax = Math.floor(
-    Number(downSampledData[downSampledData.length - 1].distance)
-  )
+  const xMax = Number(downSampledData[downSampledData.length - 1].distance)
+  const yTicks =
+    context.unitOfMeasure === 'imperial'
+      ? axisLeftTickValues.imperial[0]
+      : axisLeftTickValues.metric[0]
+
+  const xTicks =
+    context.unitOfMeasure === 'imperial'
+      ? axisXTickValues.imperial[0]
+      : axisXTickValues.metric[0]
 
   return (
     <Box
       sx={{
         width: '100%',
-        height: '300px',
+        height: ['200px', '300px', '300px'],
         borderColor: 'mutedAccent',
         borderStyle: 'solid',
         borderWidth: '1px',
+        paddingY: ['10px', '20px', '20px'],
+        paddingRight: ['10px', '20px', '20px'],
       }}
     >
       <ResponsiveContainer width={'100%'} height="100%">
@@ -54,31 +71,55 @@ const NewLineGraph = ({
           data={downSampledData}
           onMouseMove={e => {
             if (!e || !e.activePayload) {
-              console.log(e)
               setMarker(null)
               return
             }
 
             setMarker(e.activePayload[0].payload)
           }}
-          margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
         >
           <CartesianGrid stroke={themeContext.theme.colors?.muted} />
           <Tooltip content={<></>} />
+          <defs>
+            <linearGradient id="splitColor" x1="0" y1="0" x2="1" y2="0">
+              {downSampledData.map((d, i) => {
+                const grade = d.grade * 100
+                return (
+                  <stop
+                    offset={d.distance / xMax}
+                    stopColor={gradeToColor(grade)}
+                    stopOpacity={1}
+                    key={`elevationGrade-${i}`}
+                  />
+                )
+              })}
+            </linearGradient>
+          </defs>
           <XAxis
             dataKey="distance"
-            allowDecimals={false}
-            tickCount={7}
             type={'number'}
+            ticks={xTicks}
             domain={[0, xMax]}
           />
-          <YAxis allowDataOverflow />
+          <YAxis
+            type="number"
+            domain={[
+              context.unitOfMeasure === 'imperial' ? yMin : yMin * 0.3048,
+              `dataMax + ${
+                context.unitOfMeasure === 'imperial'
+                  ? elevationToAdd
+                  : elevationToAdd * 0.3048
+              }`,
+            ]}
+            ticks={yTicks}
+          />
           <Area
+            type="basisOpen"
             dataKey="y"
-            stroke={themeContext.theme.colors?.text}
-            strokeWidth={2}
-            fill={themeContext.theme.colors?.text}
-            fillOpacity={0.2}
+            stroke="url(#splitColor)"
+            strokeWidth={3}
+            fill="gray"
+            fillOpacity={0.1}
             dot={false}
           />
         </AreaChart>

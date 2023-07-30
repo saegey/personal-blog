@@ -54,7 +54,7 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
   const { title, date, location, type } = data.mdx.frontmatter
 
   return (
-    <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 768 }}>
+    <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 1200 }}>
       <SafariStyle />
       <Flex sx={{ marginBottom: '5px' }}>
         <Text variant="postType">{type}</Text>

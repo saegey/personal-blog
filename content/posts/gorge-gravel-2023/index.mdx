@@ -1,5 +1,5 @@
 ---
-title: Gorge Gravel Grinder 2023
+title: Gorge Gravel Grinder
 date: 2023-04-23
 headerImage: './2023 Gorge Grave Grinder Drone photos- Adam Lapierre-smDJI_0712.jpg'
 tags:
@@ -79,8 +79,9 @@ The first big effort of the day was a 200 foot kicker climb the whole feel smash
 
 <VisualOverview
   coordinates={props.data.mdx.gpxData.fields.coordinates}
+  elevationToAdd={500}
   elevationData={{
-    downsampleRate: 60,
+    downsampleRate: 30,
     data: props.data.mdx.gpxData.fields.elevationData,
     yScaleMin: { imperial: 0, metric: 0 },
     axisLeftTickValues: {
@@ -95,6 +96,18 @@ The first big effort of the day was a 200 foot kicker climb the whole feel smash
         [250, 500, 750, 1000],
       ],
     },
+    axisXTickValues: {
+      imperial: [
+        [20, 40, 60, 80],
+        [500, 1000, 1500, 2000, 2500],
+        [500, 1000, 1500, 2000, 2500],
+      ],
+      metric: [
+        [20, 40, 60, 80, 100, 120],
+        [250, 500, 750, 1000],
+        [250, 500, 750, 1000],
+      ],
+    },
   }}
 />
 
@@ -102,7 +115,6 @@ I was feeling really good on the climb. The climb was around 1,300 feet and I ha
 
 The riders you link up with in the pointier part of the field typically have better fitness so the groups hold a higher speed. It can be a little scary because you worry about going to hard and totally blowing up but some of this is remembering to eat and drink so you can sustain a hard pace.
 
-<Divider sx={{ marginBottom: '20px' }} />
 <PowerCurveGraph
   data={props.data.mdx.gpxData.fields.powerCurve}
   yAxes={[
@@ -119,7 +131,6 @@ The riders you link up with in the pointier part of the field typically have bet
   ftp={props.data.mdx.gpxData.fields.currentFtp}
   title="Power Curve"
 />
-<Divider sx={{ marginBottom: '20px' }} />
 
 This is my second race using a hydration pack. I have the Osprey 1.5 liter pack and had two 26 oz bottles onboard. They were are filled with [GU Roctane Energy Drink Mix](https://guenergy.com/products/roctane-energy-drink-mix?variant=39247233908787). I also had around 9 GU energy gels in my jersey and was trying to consume one every hour of the race. I had consumed around 60 grams per hour in the Grand Fondo Ephrata and the last hour was pretty brutal for me and I assume it was somewhat related to fueling. So if I had a two gel every hour and a bottle every hour an half I would be around 80 grams per hour. The plan was to not stop at any aid stations the entire day to save time.
 
@@ -157,21 +168,14 @@ Once we got to the climb, the group broke apart again and everyone was trying ma
 
 This climb was part of a series of smaller climbs that make up the next 20 miles with a total elevation gain of 3300 feet. It was at the middle part of this section that the sun came out and the temperature rose quite a bit to a high of 73 farenheight. This may not sound that hot but the effort level in our group was strong on this climb and I overheated a lot. On long sustained climbs I normalled hold my position or gain time and this one had me losing time and places during the entire second half. I did my best to keep it together but I have never been happier to be done with a climb. There are a few rollers at the end that made it extra challenging mentally.
 
-<Divider sx={{ marginBottom: '20px' }} />
 <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
-<Divider sx={{ marginBottom: '20px' }} />
 
 So Ira and I spend the next hour and a half on some rollers and pushing into the wind. We have a group of three catch after probably 20 min or so. By this point, everyones legs are pretty tired and I just trying to keep it steady in the endurance zone. Even though the normalized power is around 200 watts for this period there were plenty of surges on the uphills. Lots of little climbs under 200 feet really hurt quite a bit.
-
-<Divider sx={{ marginBottom: '20px' }} />
-
-## Time in Zones
 
 <PowerBreakdown
   powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
   powerZones={props.data.mdx.gpxData.fields.powerZones}
 />
-<Divider sx={{ marginBottom: '20px' }} />
 
 The group grows during this roller section and we finally arrive to a gradual descent into the finish line. This when the first major problem occurs. Over time I had a slow leak in my tire that I began to notice once it was pretty low (20 psi) and stopped to pump it up. I should have used my Co2 that I had ready in my pocket but instead I used my small Lezyne pocket pump. I probably pumped it to somewhere in the 30 psi range and decided it was enough. I was pretty impatient but also tired so not making the best decisions. I saw some sealant but it seemed to be a slow leak and I was close to the finish. This stop took 1 minute 25 seconds.
 
@@ -195,8 +199,6 @@ It had been a few years since I had anything worse than a dropped chain in race 
 
 I rode the same tire at Ephrata which was similar conditions so I figured it would be okay. In the future, I will run something more robust with better sidewall protection because the marginal gains I get from a faster road tire don't outweight the chances of a major failure of a tire like I experienced in this race.
 
-<Divider sx={{ marginBottom: '20px' }} />
-
 <RaceResults
   data={props.data.mdx.results.fields.data}
   numbersToHighlight={[0, 1, 2, 13, 16, 30, 42, 50, 51]}
@@ -204,8 +206,8 @@ I rode the same tire at Ephrata which was similar conditions so I figured it wou
   racerName="Adam Saegebarth"
   showSpeed={true}
 />
-<Divider sx={{ marginBottom: '20px' }} />
-## The Good
+
+## What Went Well
 
 1. Nutrition strategy went well and I had enough onboard to avoid stopping the entire race. I even had some extra gels I gave to Ira when he was running low
 2. Strength in the first half of the race was good and I was able to push the pace for our group.
@@ -216,8 +218,6 @@ I rode the same tire at Ephrata which was similar conditions so I figured it wou
 1. Better tire choice
 2. Always pick up race packet the day before so the morning preparation isn't affected by waiting.
 3. Don't wear a winter jersey when it will warm up throughout the day. Wear layers that can be removed like a vest and arm warmers or carry a shakedry so you don't risk overheating. Overheating can really impact your power output.
-
-<Divider sx={{ marginBottom: '20px' }} />
 
 <RelatedRaces
   items={props.data.relatedP.edges.map(d => {

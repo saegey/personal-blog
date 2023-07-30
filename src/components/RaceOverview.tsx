@@ -122,7 +122,16 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
         ]
 
         return (
-          <>
+          <Box
+            sx={{
+              maxWidth: '690px',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              background: 'muted',
+              padding: '20px',
+              borderRadius: '5px',
+            }}
+          >
             <Box sx={{ marginBottom: '10px' }}>
               <Text as="h2" variant="resultsHeading">
                 Key Metrics
@@ -133,7 +142,7 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
                 selectedFields.includes(activity.title)
               )}
             />
-          </>
+          </Box>
         )
       }}
     </ThemeContext.Consumer>

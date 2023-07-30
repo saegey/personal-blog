@@ -40,10 +40,12 @@ const RaceResults = ({
 }: Props) => {
   const [shouldShowResults, setShouldShowResults] = useState(false)
 
-  const firstPlaceTime = data ? data[0].time
-    .split(':')
-    .map(d => Number(d))
-    .reduce((acc, time) => 60 * acc + +time) : 0
+  const firstPlaceTime = data
+    ? data[0].time
+        .split(':')
+        .map(d => Number(d))
+        .reduce((acc, time) => 60 * acc + +time)
+    : 0
 
   data.forEach(d => {
     if (d.place === '') return
@@ -85,7 +87,16 @@ const RaceResults = ({
         </Modal>
       )}
 
-      <Box>
+      <Box
+        sx={{
+          maxWidth: '690px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          background: 'muted',
+          padding: '20px',
+          borderRadius: '5px',
+        }}
+      >
         <Flex>
           <Box sx={{ marginBottom: ['10px', '0px', '0px'] }}>
             <Text as="h2" variant="resultsHeading">

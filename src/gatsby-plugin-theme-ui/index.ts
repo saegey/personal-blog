@@ -57,9 +57,16 @@ const theme: Theme = {
     h2: {
       fontFamily: 'body',
       fontWeight: 'headline',
+      maxWidth: '690px',
+      margin: 'auto',
       // lineHeight: 'headline',
-      marginTop: 0,
+      marginTop: '20px',
       marginBottom: 3,
+    },
+    ol: {
+      maxWidth: '690px',
+      margin: 'auto',
+      paddingInlineStart: '20px',
     },
     blockquote: {
       backgroundColor: 'blockquoteBg',
@@ -73,11 +80,16 @@ const theme: Theme = {
     },
     p: {
       fontFamily: 'serif',
-      lineHeight: '1.6',
-      fontSize: [16, 16, 17],
-      fontFeatureSettings: 'kern',
-      fontKerning: 'normal',
+      lineHeight: '30px',
+      fontSize: [20, 20, 20],
+      // fontFeatureSettings: 'kern',
+      // fontKerning: 'normal',
       fontWeight: '400',
+      maxWidth: '690px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      borderLeft: [0, 0, '1px solid #e1e1e1'],
+      paddingLeft: [0, 0, '8px'],
     },
     a: {
       ':hover, :focus': {
@@ -88,14 +100,10 @@ const theme: Theme = {
     },
     li: {
       fontFamily: 'serif',
-      lineHeight: '1.5',
-      letterSpacing: '.4px',
-      fontSize: [16, 16, 17],
+      lineHeight: '30px',
+      fontSize: [20, 20, 20],
       paddingLeft: '10px',
       marginBottom: '10px',
-    },
-    ol: {
-      paddingInlineStart: '20px',
     },
     faded: {
       position: 'fixed',
@@ -139,9 +147,9 @@ const theme: Theme = {
     primary: {
       padding: 0,
       borderRadius: 4,
-      boxShadow: '0 8px 16px -4px rgba(0,0,0,.1), 0 0 8px -3px rgba(0,0,0,.1)',
+      // boxShadow: '0 8px 16px -4px rgba(0,0,0,.1), 0 0 8px -3px rgba(0,0,0,.1)',
       marginBottom: '20px',
-      // backgroundColor: 'cardBackground',
+      backgroundColor: 'muted',
     },
   },
   images: {
@@ -269,7 +277,7 @@ const theme: Theme = {
       fontFamily: 'serif',
       fontWeight: 700,
       fontStyle: 'normal',
-      fontSize: ['20px', '5', '40px'],
+      fontSize: ['32px', '40px', '40px'],
       marginBottom: ['5px', '5px', '5px'],
       color: 'textInvert',
       // letterSpacing: ['.6px', '1px', '1px'],

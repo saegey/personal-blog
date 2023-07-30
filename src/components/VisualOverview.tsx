@@ -5,9 +5,11 @@ import ThemeContext from '../context/ThemeContext'
 import { GraphProps } from '../common/types'
 import Map from './Map'
 import NewLineGraph from './NewLineGraph'
+import { formatTime } from '../lib/formatters'
 
 interface ElevationProps extends GraphProps {
   axisLeftTickValues: { imperial: number[]; metric: number[] }
+  axisXTickValues: { imperial: number[]; metric: number[] }
   areaBaselineValue: { imperial: number; metric: number }
   yScaleMin: { imperial: number; metric: number }
   yScaleMax: { imperial: number; metric: number }
@@ -35,7 +37,7 @@ const calcColor = (grade: number) => {
   return 'gray'
 }
 
-const VisualOverview = ({ coordinates, elevationData, context }: Vizprops) => {
+const VisualOverview = ({ coordinates, elevationData, context, elevationToAdd, yMin=0 }: Vizprops) => {
   const [marker, setMarker] = useState({})
 
   return (
@@ -46,7 +48,7 @@ const VisualOverview = ({ coordinates, elevationData, context }: Vizprops) => {
       />
       <Grid
         gap={2}
-        columns={[3, 3, 3]}
+        columns={[2, 4, 4]}
         sx={{
           // marginY: '10px',
           padding: '10px',
@@ -87,12 +89,22 @@ const VisualOverview = ({ coordinates, elevationData, context }: Vizprops) => {
               : '-'}
           </Text>
         </Box>
+        <Box>
+          <Text as="p">Time</Text>
+          <Text sx={{ fontSize: '20px' }}>
+            {marker && marker.x ? `${formatTime(marker.x)}` : '-'}
+          </Text>
+        </Box>
       </Grid>
       <NewLineGraph
         data={elevationData.data}
-        downsampleRate={30}
+        downsampleRate={elevationData.downsampleRate}
         setMarker={setMarker}
         coordinates={coordinates}
+        elevationToAdd={elevationToAdd}
+        axisLeftTickValues={elevationData.axisLeftTickValues}
+        axisXTickValues={elevationData.axisXTickValues}
+        yMin={yMin}
       />
     </>
   )

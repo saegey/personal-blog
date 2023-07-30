@@ -20,7 +20,7 @@ const PortraitImage = ({ image, widthPercentage, caption }) => {
         >
           <Box
             sx={{
-              width: width,
+              width: ['100%', width, width],
               margin: 'auto',
               display: 'block',
             }}

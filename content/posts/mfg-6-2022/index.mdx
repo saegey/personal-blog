@@ -77,7 +77,23 @@ I have raced past years in Woodland Park but it has been a long time since I rac
 
 It was very dry and cold the week leading up to the race so the course conditions were very quick. The course was also modified a bit from previous iterations that made it every quicker. I had a good start at finished the first lap in 20th place.
 
-<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
+<VisualOverview
+  elevationToAdd={50}
+  yMin={300}
+  coordinates={props.data.mdx.gpxData.fields.coordinates}
+  elevationData={{
+    downsampleRate: 20,
+    data: props.data.mdx.gpxData.fields.elevationData,
+    axisXTickValues: {
+      imperial: [[2, 4, 6, 8]],
+      metric: [[4, 8, 12]],
+    },
+    axisLeftTickValues: {
+      imperial: [[200, 300, 400]],
+      metric: [[50, 100, 150]],
+    },
+  }}
+/>
 
 I remember losing some spots as some faster guys that didn't start well eventually passed in in the first couple of laps. There was even one guy that yelled he was coming in hot in the past Hodala corner and bumped shoulders with on the inside. The corners were fast and most could be ridden with a lot of speed.
 
@@ -97,16 +113,25 @@ I remember losing some spots as some faster guys that didn't start well eventual
   </Box>
 </Box>
 
-The laps flowed by without any big mistakes. Line selection was good but probably could have been better. There was a loose gravel corner in the first half of the course that was hard to carry speed on and the bike wanted to slide on. There were a few crashes in this section. I had one issue on the barriers I think on the final lap. The area to dismount was quite deep and loose and just dismount and ended a little off balance but was able to save myself from taking a spill.
+The laps flowed by without any big mistakes. Line selection was good but probably could have been better. There was a loose gravel corner in the first half of the course that was hard to carry speed on and the bike wanted to slide on.
 
-<Divider />
-<RaceResults
-  data={props.data.mdx.results.fields.data}
-  numbersToHighlight={[0, 1, 2, 11, 16, 25, 27]}
-  distance={props.data.mdx.gpxData.fields.distance}
-  racerName="Adam Saegebarth"
-/>
-<Divider />
+<Box sx={{ marginBottom: '20px' }}>
+  <LandscapeImage
+    image={props.data.mdx.frontmatter.images[4]}
+    caption={
+      <Text>
+        Photo credit to{' '}
+        <Link href="https://www.strava.com/athletes/41502563?oq=scarlett">
+          Scarlett S
+        </Link>
+      </Text>
+    }
+  />
+</Box>
+
+There were a few crashes in this section. I had one issue on the barriers I think on the final lap. The area to dismount was quite deep and loose and just dismount and ended a little off balance but was able to save myself from taking a spill.
+
+In the later laps, traffic became a bigger issue than it usually was due to the bigger field. It wasn't that bad but maybe burned a few matches making passes getting through it all.
 
 <PowerCurveGraph
   data={props.data.mdx.gpxData.fields.powerCurve}
@@ -123,20 +148,15 @@ The laps flowed by without any big mistakes. Line selection was good but probabl
   ftp={props.data.mdx.gpxData.fields.currentFtp}
   title="Power Analysis"
 />
-<Divider sx={{ marginY: '20px' }} />
-## Time in Zones
+
+My friend Chris passed me about midway on the last lap and I did everything I could to stay close to him so I could maybe have a chance to pass on the final sprint.
+
 <PowerBreakdown
   powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
   powerZones={props.data.mdx.gpxData.fields.powerZones}
 />
 
-<Divider sx={{ marginY: '20px' }} />
-
-In the later laps, traffic became a bigger issue than it usually was due to the bigger field. It wasn't that bad but maybe burned a few matches making passes getting through it all.
-
-My friend Chris passed me about midway on the last lap and I did everything I could to stay close to him so I could maybe have a chance to pass on the final sprint. I had a little bad luck and had a tandem get in the way on the last couple of corners that took me a little while to get by and another single speed racer pipped me at the line that I didn't see and lost another place.
-
-<Divider sx={{ marginY: '20px' }} />
+I had a little bad luck and had a tandem get in the way on the last couple of corners that took me a little while to get by and another single speed racer pipped me at the line that I didn't see and lost another place.
 
 <PowerGraph
   data={[
@@ -178,25 +198,9 @@ Overall, with the field as large as it was I was happy with the result and felt 
   />
 </Box>
 
-<Box sx={{ marginBottom: '20px' }}>
-  <LandscapeImage
-    image={props.data.mdx.frontmatter.images[4]}
-    caption={
-      <Text>
-        Photo credit to{' '}
-        <Link href="https://www.strava.com/athletes/41502563?oq=scarlett">
-          Scarlett S
-        </Link>
-      </Text>
-    }
-  />
-</Box>
-
-<Divider />
 <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
-<Divider sx={{ marginBottom: '20px' }} />
 
-## The Good
+## What Went Well
 
 1. Burned a lot of matches throughout the race without ever fading out at all. Last lap was one of my quickest all race.
 2. Kept heart rate high and elevated.
@@ -204,23 +208,16 @@ Overall, with the field as large as it was I was happy with the result and felt 
 4. Gear ratio (36x17) was pretty perfect for the course. The only area where I had to grind the reps out was the gravel climb and thats the same for pretty much everyone else.
 5. Equipment was dialed and tire pressure was comfortable at around 22 psi.
 
-<Box sx={{ marginBottom: '20px' }}>
-  <LandscapeImage
-    image={props.data.mdx.frontmatter.images[6]}
-    widthPercentage={'40%'}
-    caption={
-      <Text>
-        Cornering with Chris from Space Cadet right on my wheel. He was right
-        there on most laps till he got past me on the final lap. Photo courtesy
-        of <Link href="http://woodinvillebicycle.com">Woodinville Bicycle</Link>
-      </Text>
-    }
-  />
-</Box>
-
 ## Needs Improvement
 
 1. Shoulder was still banged up so still riding cautiously to avoid another crash.
 2. More VO2 and anaerobic watts to throw down through out the race
 3. Improved biking handling and maybe using leg dabbing some to have a failsafe I really loose corners.
 4. Be more aware at finish line to not loose places without putting up a fight. I have been pipped at the line 2-3 times in the past year when I probably could win the sprint. So maybe now I will also sprint finishes hard even if no one is around to avoid this.
+
+<RaceResults
+  data={props.data.mdx.results.fields.data}
+  numbersToHighlight={[0, 1, 2, 11, 16, 25, 27]}
+  distance={props.data.mdx.gpxData.fields.distance}
+  racerName="Adam Saegebarth"
+/>

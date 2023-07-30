@@ -22,8 +22,21 @@ type Props = {
 
 const RelatedRaces = ({ items }: Props) => {
   return (
-    <>
-      <Box sx={{ marginBottom: ['10px', '16px', '16px'] }}>
+    <Box
+      sx={{
+        maxWidth: '690px',
+        margin: 'auto',
+        marginY: '40px',
+        // background: 'muted',
+        // padding: '20px',
+        // borderRadius: '5px',
+      }}
+    >
+      <Box
+        sx={{
+          marginBottom: ['10px', '16px', '16px'],
+        }}
+      >
         <Text as="h2" variant="resultsHeading">
           Related Races
         </Text>
@@ -68,7 +81,7 @@ const RelatedRaces = ({ items }: Props) => {
                     flexGrow: 99999,
                     flexBasis: 0,
                     minWidth: 320,
-                    background: 'backgroundAccent',
+                    // background: 'backgroundAccent',
                   }}
                 >
                   <Box sx={{ height: '100%' }}>
@@ -125,7 +138,7 @@ const RelatedRaces = ({ items }: Props) => {
           </Link>
         )
       })}
-    </>
+    </Box>
   )
 }
 
