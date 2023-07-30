@@ -72,7 +72,7 @@ const PowerGraph = ({
             height: isMaximized ? '85%' : ['200px', '250px', '300px'],
             fontFamily: 'body',
             marginY: '20px',
-            maxWidth: isMaximized ? '100%' : '768px',
+            maxWidth: isMaximized ? '100%' : '690px',
             margin: 'auto',
           }}
         >

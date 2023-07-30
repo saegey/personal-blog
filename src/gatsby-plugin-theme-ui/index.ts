@@ -100,9 +100,8 @@ const theme: Theme = {
     },
     li: {
       fontFamily: 'serif',
-      lineHeight: '1.5',
-      letterSpacing: '.4px',
-      fontSize: [16, 16, 17],
+      lineHeight: '30px',
+      fontSize: [20, 20, 20],
       paddingLeft: '10px',
       marginBottom: '10px',
     },

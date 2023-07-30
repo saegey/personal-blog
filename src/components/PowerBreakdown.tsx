@@ -17,7 +17,7 @@ const PowerBreakdown = ({
   return (
     <Box
       sx={{
-        maxWidth: '768px',
+        maxWidth: '690px',
         marginLeft: 'auto',
         marginRight: 'auto',
         background: 'muted',

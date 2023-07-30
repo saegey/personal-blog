@@ -24,7 +24,7 @@ const RelatedRaces = ({ items }: Props) => {
   return (
     <Box
       sx={{
-        maxWidth: '768px',
+        maxWidth: '690px',
         margin: 'auto',
         marginY: '40px',
         // background: 'muted',

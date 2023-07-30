@@ -85,21 +85,26 @@ I rode clean and reasonably fast with only a few hiccups on some hairpin single 
 By lap three or so I had a group of four, breathing down my neck. I did everything I could to maintain the gap and even sprinted on the road sections to try to push out more since I could tell I was a bit slower on the tighter single track areas. I could tell after a while of trying to hold them off I was getting a bit careless and making small mistakes on a few corners.
 
 <VisualOverview
-  elevationToAdd={100}
+  elevationToAdd={50}
+  yMin={300}
   coordinates={props.data.mdx.gpxData.fields.coordinates}
   elevationData={{
-    downsampleRate: 10,
+    axisXTickValues: {
+      imperial: [
+        [2, 4, 6, 8],
+      ],
+      metric: [
+        [4, 8, 12],
+      ],
+    },
+    downsampleRate: 20,
     data: props.data.mdx.gpxData.fields.elevationData,
     axisLeftTickValues: {
       imperial: [
-        [1000, 2000, 3000],
-        [500, 1000, 1500, 2000, 2500],
-        [500, 1000, 1500, 2000, 2500],
+        [200, 300, 400],
       ],
       metric: [
-        [250, 500, 750, 1000],
-        [250, 500, 750, 1000],
-        [250, 500, 750, 1000],
+        [50, 100, 150],
       ],
     },
   }}

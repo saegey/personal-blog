@@ -153,18 +153,31 @@ It's also hard to recover from a crash because it throws you off physically but 
 
 <VisualOverview
   coordinates={props.data.mdx.gpxData.fields.coordinates}
-  elevationToAdd={200}
+  elevationToAdd={100}
+	yMin={700}
   elevationData={{
-    downsampleRate: 5,
+    downsampleRate: 20,
     data: props.data.mdx.gpxData.fields.elevationData,
     axisLeftTickValues: {
       imperial: [
-        [1000, 2000, 3000],
+        [800, 900, 1000, 1100],
         [500, 1000, 1500, 2000, 2500],
         [500, 1000, 1500, 2000, 2500],
       ],
       metric: [
+        [250, 300, 350],
         [250, 500, 750, 1000],
+        [250, 500, 750, 1000],
+      ],
+    },
+    axisXTickValues: {
+      imperial: [
+        [4, 8, 12],
+        [500, 1000, 1500, 2000, 2500],
+        [500, 1000, 1500, 2000, 2500],
+      ],
+      metric: [
+        [5, 10, 15, 20],
         [250, 500, 750, 1000],
         [250, 500, 750, 1000],
       ],

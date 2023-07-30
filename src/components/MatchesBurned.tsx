@@ -86,7 +86,7 @@ export const MatchesBurned = ({ data }: Props) => {
       )}
       <Box
         sx={{
-          maxWidth: '768px',
+          maxWidth: '690px',
           marginLeft: 'auto',
           marginRight: 'auto',
           background: 'muted',

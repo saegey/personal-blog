@@ -9,6 +9,7 @@ import { formatTime } from '../lib/formatters'
 
 interface ElevationProps extends GraphProps {
   axisLeftTickValues: { imperial: number[]; metric: number[] }
+  axisXTickValues: { imperial: number[]; metric: number[] }
   areaBaselineValue: { imperial: number; metric: number }
   yScaleMin: { imperial: number; metric: number }
   yScaleMax: { imperial: number; metric: number }
@@ -36,7 +37,7 @@ const calcColor = (grade: number) => {
   return 'gray'
 }
 
-const VisualOverview = ({ coordinates, elevationData, context, elevationToAdd }: Vizprops) => {
+const VisualOverview = ({ coordinates, elevationData, context, elevationToAdd, yMin=0 }: Vizprops) => {
   const [marker, setMarker] = useState({})
 
   return (
@@ -101,6 +102,9 @@ const VisualOverview = ({ coordinates, elevationData, context, elevationToAdd }:
         setMarker={setMarker}
         coordinates={coordinates}
         elevationToAdd={elevationToAdd}
+        axisLeftTickValues={elevationData.axisLeftTickValues}
+        axisXTickValues={elevationData.axisXTickValues}
+        yMin={yMin}
       />
     </>
   )

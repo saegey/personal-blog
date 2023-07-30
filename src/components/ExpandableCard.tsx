@@ -5,11 +5,17 @@ type Props = {
   children: JSX.Element
   title: string
   openModal: (arg: boolean) => void
+  expandableOnMobile: boolean
 }
-const ExpandableCard = ({ children, title, openModal }: Props) => {
+const ExpandableCard = ({
+  children,
+  title,
+  openModal,
+  expandableOnMobile = true,
+}: Props) => {
   return (
     <>
-      <Flex sx={{ maxWidth: '768px', marginRight: 'auto', marginLeft: 'auto' }}>
+      <Flex sx={{ maxWidth: '690px', marginRight: 'auto', marginLeft: 'auto' }}>
         <Box sx={{ marginBottom: ['10px', '0px', '0px'] }}>
           <Text as="h2" variant="resultsHeading">
             {title}
@@ -22,6 +28,9 @@ const ExpandableCard = ({ children, title, openModal }: Props) => {
               right: '0',
               top: '0',
               zIndex: 0,
+              display: expandableOnMobile
+                ? 'inherit'
+                : ['none', 'inherit', 'inherit'],
             }}
             onClick={() => {
               openModal(true)

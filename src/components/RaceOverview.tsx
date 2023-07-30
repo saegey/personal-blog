@@ -124,7 +124,7 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
         return (
           <Box
             sx={{
-              maxWidth: '768px',
+              maxWidth: '690px',
               marginLeft: 'auto',
               marginRight: 'auto',
               background: 'muted',

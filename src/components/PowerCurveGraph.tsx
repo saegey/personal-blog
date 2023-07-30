@@ -46,7 +46,7 @@ const PowerCurveGraph = ({
     <Box
       sx={{
         height: isMaximized ? '90%' : ['200px', '250px', '300px'],
-        maxWidth: isMaximized ? '100%' : '768px',
+        maxWidth: isMaximized ? '100%' : '690px',
         marginRight: 'auto',
         marginLeft: 'auto',
       }}
@@ -107,6 +107,7 @@ const PowerCurveGraphWrapper = (props: PowerCurveGraphProps) => {
         id="power-curve-graph"
         title={props.title}
         openModal={setMax}
+        expandableOnMobile={false}
       >
         <PowerCurveGraph {...props} />
       </ExpandableCard>

@@ -16,15 +16,11 @@ const Map = ({ coordinates, markerCoordinates }) => {
       return
     }
     if (map.current !== undefined) {
-      // console.log(map.current)
       const geojsonSource = map.current.getSource('currentPosition')
       if (!geojsonSource) {
         return
       }
-      // if (!markerCoordinates) {
-      //   geojsonSource
-      // }
-      // Update the data after the GeoJSON source was created
+
       geojsonSource.setData({
         type: 'FeatureCollection',
         features: [
@@ -43,7 +39,6 @@ const Map = ({ coordinates, markerCoordinates }) => {
 
   useEffect(() => {
     if (map && map.current) return
-    // console.log('redraw map', map.current)
     map.current = new mapboxgl.Map({
       container: mapContainerRef.current,
       accessToken: MAPBOX_TOKEN,
