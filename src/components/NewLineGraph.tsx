@@ -12,16 +12,8 @@ import { Box, useThemeUI } from 'theme-ui'
 
 import ThemeContext from '../context/ThemeContext'
 
-const NewLineGraph = ({
-  data,
-  downsampleRate,
-  coordinates,
-  context,
-  setMarker,
-}) => {
-  // render() {
+const NewLineGraph = ({ data, downsampleRate, context, setMarker, elevationToAdd = 0 }) => {
   const themeContext = useThemeUI()
-  // const { data, downsampleRate, coordinates, context } = this.props
   const downSampledData = data
     .filter((d, i: number) => i % downsampleRate === 0)
     .map(d => {
@@ -35,9 +27,12 @@ const NewLineGraph = ({
       }
     })
 
-  const xMax = Math.floor(
-    Number(downSampledData[downSampledData.length - 1].distance)
-  )
+  const xMax = Number(downSampledData[downSampledData.length - 1].distance)
+  // const yMax = Math.floor(Number(downSampledData[downSampledData.length - 1].y))
+  // console.log('xMax', yMax, elevationToAdd)
+  // const timeMax = Math.floor(
+  //   Number(downSampledData[downSampledData.length - 1].x)
+  // )
 
   return (
     <Box
@@ -65,20 +60,67 @@ const NewLineGraph = ({
         >
           <CartesianGrid stroke={themeContext.theme.colors?.muted} />
           <Tooltip content={<></>} />
+          <defs>
+            <linearGradient id="splitColor" x1="0" y1="0" x2="1" y2="0">
+              {downSampledData.map((d, i) => {
+                const grade = d.grade * 100
+                if (grade > 0 && grade < 4) {
+                  // console.log(d.distance / xMax)
+                  return (
+                    <stop
+                      offset={d.distance / xMax}
+                      stopColor="green"
+                      stopOpacity={1}
+                    />
+                  )
+                }
+                if (grade >= 4 && grade < 7) {
+                  return (
+                    <stop
+                      offset={d.distance / xMax}
+                      stopColor="orange"
+                      stopOpacity={1}
+                    />
+                  )
+                }
+                if (grade <= 0) {
+                  return (
+                    <stop
+                      offset={d.distance / xMax}
+                      stopColor="#D3D3D3"
+                      stopOpacity={1}
+                    />
+                  )
+                }
+                if (grade >= 7) {
+                  return (
+                    <stop
+                      offset={d.distance / xMax}
+                      stopColor="red"
+                      stopOpacity={1}
+                    />
+                  )
+                }
+              })}
+            </linearGradient>
+          </defs>
           <XAxis
             dataKey="distance"
-            allowDecimals={false}
+            // allowDecimals={false}
             tickCount={7}
             type={'number'}
             domain={[0, xMax]}
           />
-          <YAxis allowDataOverflow />
+          {/* <YAxis /> */}
+          {/* <YAxis type="number" domain={[0, yMax + 1000]} /> */}
+          <YAxis type="number" domain={[0, `dataMax + ${elevationToAdd}`]} />
           <Area
+            type="basisOpen"
             dataKey="y"
-            stroke={themeContext.theme.colors?.text}
-            strokeWidth={2}
-            fill={themeContext.theme.colors?.text}
-            fillOpacity={0.2}
+            stroke="url(#splitColor)"
+            strokeWidth={3}
+            fill="gray"
+            fillOpacity={0.1}
             dot={false}
           />
         </AreaChart>

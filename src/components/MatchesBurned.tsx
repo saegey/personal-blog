@@ -84,7 +84,16 @@ export const MatchesBurned = ({ data }: Props) => {
           </>
         </Modal>
       )}
-      <Box>
+      <Box
+        sx={{
+          maxWidth: '768px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          background: 'muted',
+          padding: '20px',
+          borderRadius: '5px',
+        }}
+      >
         <Flex>
           <Box sx={{ marginBottom: ['10px', '0px', '0px'] }}>
             <Text as="h2" variant="resultsHeading">

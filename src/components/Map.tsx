@@ -6,11 +6,6 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 
 const MAPBOX_TOKEN = `${process.env.GATSBY_MAPBOX_TOKEN}`
 
-const mapContainerStyle = {
-  width: '100%',
-  height: '450px',
-}
-
 const Map = ({ coordinates, markerCoordinates }) => {
   const mapContainerRef = useRef(null)
   const map = useRef(null)
@@ -38,7 +33,7 @@ const Map = ({ coordinates, markerCoordinates }) => {
             properties: { name: 'Null Island' },
             geometry: {
               type: 'Point',
-              coordinates: markerCoordinates ? markerCoordinates : [ 0, 0 ],
+              coordinates: markerCoordinates ? markerCoordinates : [0, 0],
             },
           },
         ],
@@ -56,6 +51,9 @@ const Map = ({ coordinates, markerCoordinates }) => {
       // Empire State Building [lng, lat]
       center: coordinates[0],
       zoom: 14,
+      scrollZoom: false,
+      boxZoom: false,
+      doubleClickZoom: false,
     })
 
     map.current.addControl(new mapboxgl.NavigationControl(), 'top-right')
@@ -97,7 +95,6 @@ const Map = ({ coordinates, markerCoordinates }) => {
         type: 'circle',
         source: 'currentPosition',
         layout: {
-          // Make the layer visible by default.
           visibility: 'visible',
         },
         paint: {
@@ -105,10 +102,7 @@ const Map = ({ coordinates, markerCoordinates }) => {
           'circle-color': 'black',
           'circle-stroke-color': 'white',
           'circle-stroke-width': 2,
-          // 'border-width': 2,
-          // 'border-color': 'white',
         },
-        // 'source-layer': 'museum-cusco',
       })
     })
 
@@ -121,7 +115,7 @@ const Map = ({ coordinates, markerCoordinates }) => {
     }
 
     map.current.fitBounds(bounds, {
-      padding: 100,
+      padding: 50,
     })
     map.current.resize()
 
@@ -132,7 +126,7 @@ const Map = ({ coordinates, markerCoordinates }) => {
     <Box
       sx={{ width: '100%' }}
       ref={mapContainerRef}
-      style={mapContainerStyle}
+      sx={{ width: '100%', height: ['300px', '450px', '450px'] }}
     />
   )
 }

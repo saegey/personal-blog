@@ -16,7 +16,7 @@ const PostCard = ({ post, title, image }: PostCardProps) => {
       sx={{ textDecoration: 'none' }}
       as={GatsbyLink}
     >
-      <Card sx={{ background: 'cardBackground'}}>
+      <Card sx={{ background: 'muted'}}>
         <div
           sx={{
             display: 'flex',

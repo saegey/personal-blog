@@ -9,7 +9,7 @@ type Props = {
 const ExpandableCard = ({ children, title, openModal }: Props) => {
   return (
     <>
-      <Flex>
+      <Flex sx={{ maxWidth: '768px', marginRight: 'auto', marginLeft: 'auto' }}>
         <Box sx={{ marginBottom: ['10px', '0px', '0px'] }}>
           <Text as="h2" variant="resultsHeading">
             {title}

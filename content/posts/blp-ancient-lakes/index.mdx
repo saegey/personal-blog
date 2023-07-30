@@ -46,6 +46,8 @@ images:
   </Carousel>
 </Box>
 
+After seeing the photos from this race from last year, I really wanted to race this course. It is so different than our lush forest and loamy brown dirt trails in the western foothills of the Cascades. It is proper sage desert riding with loose, dusty, sandy and rocky trails. The race was originally scheduled for another weekend and I was already planning to race Ephrata Gran Fondo so two trips to central Washington didn't seam feasible but it was rescheduled to the day before Ephrata and it was an easy decision to head out early to race both days.
+
 <RaceOverview
   data={props.data.mdx.gpxData.fields}
   selectedFields={[
@@ -61,8 +63,6 @@ images:
   ]}
 />
 <StravaLink stravaUrl={props.data.mdx.frontmatter.stravaUrl} />
-
-After seeing the photos from this race from last year, I really wanted to race this course. It is so different than our lush forest and loamy brown dirt trails in the western foothills of the Cascades. It is proper sage desert riding with loose, dusty, sandy and rocky trails. The race was originally scheduled for another weekend and I was already planning to race Ephrata Gran Fondo so two trips to central Washington didn't seam feasible but it was rescheduled to the day before Ephrata and it was an easy decision to head out early to race both days.
 
 <Divider sx={{ marginBottom: '20px' }} />
 
@@ -122,13 +122,10 @@ My knee hurt pedaling so I wasn't able to put down my normal power (about 25 wat
 of that lap) and I also started thinking about Ephrata and if this crash was going
 to mess up my more important race so I decided to ride a little more cautiously.
 
-<Divider sx={{ marginBottom: '20px' }} />
-## Time in Zones
 <PowerBreakdown
   powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
   powerZones={props.data.mdx.gpxData.fields.powerZones}
 />
-<Divider sx={{ marginBottom: '20px' }} />
 
 My knee began to feel better and I started to settle in some with the field pretty strung out at this point. It started to become more fun and just tried to ride things fast but smooth. During the race, I had at least 4 or so hard pedal strikes on rocks. One of them took me off trail some and through some sage bushes but was able to stay upright.
 
@@ -136,9 +133,7 @@ My knee began to feel better and I started to settle in some with the field pret
 
 The course is pretty flat so you're pedalling the whole time but also twisting through the trails and rocks are everywhere so the pedal strikes were pretty scary to have happen. I didn't have this happen during my pre-ride because the speed was slower and I was pumping through thee trail versus pedaling.
 
-<Divider sx={{ marginBottom: '20px' }} />
 <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
-<Divider />
 
 All in all I had a good time and it was good experience racing on some trails that are completely different than I was used. As I already know, the start is so important and it was difficult to recover from a bad one when there is not many opportunities to pass.
 
@@ -154,29 +149,30 @@ All in all I had a good time and it was good experience racing on some trails th
 }
 />
 
-It's also hard to recover from a crash because it throws you off physically but also mentally. It was hard to drink my endurance drink during the ride and next time would wear a hydration vest to make that easier. I was only a few minutes away from 4th place so a good result was possible for me and I for sure could have finished better than I did but I will take this experience into my next cross country race.
+It's also hard to recover from a crash because it throws you off physically but also mentally. It was hard to drink my endurance drink during the ride and next time would wear a hydration vest to make that easier.
 
-<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
-
-<ElevationGraph
-  data={props.data.mdx.gpxData.fields.elevationData}
-  axisLeftTickValues={{
-    imperial: [
-      [900, 1000, 1100, 1200],
-      [900, 1000, 1100, 1200],
-      [900, 1000, 1100, 1200],
-    ],
-    metric: [
-      [200, 250, 300, 350],
-      [200, 250, 300, 350],
-      [200, 250, 300, 350],
-    ],
+<VisualOverview
+  coordinates={props.data.mdx.gpxData.fields.coordinates}
+  elevationToAdd={200}
+  elevationData={{
+    downsampleRate: 5,
+    data: props.data.mdx.gpxData.fields.elevationData,
+    axisLeftTickValues: {
+      imperial: [
+        [1000, 2000, 3000],
+        [500, 1000, 1500, 2000, 2500],
+        [500, 1000, 1500, 2000, 2500],
+      ],
+      metric: [
+        [250, 500, 750, 1000],
+        [250, 500, 750, 1000],
+        [250, 500, 750, 1000],
+      ],
+    },
   }}
-  areaBaselineValue={{ imperial: 800, metric: 200 }}
-  yScaleMin={{ imperial: 800, metric: 200 }}
-  yScaleMax={{ imperial: 1200, metric: 350 }}
-  downsampleRate={1}
 />
+
+I was only a few minutes away from 4th place so a good result was possible for me and I for sure could have finished better than I did but I will take this experience into my next cross country race.
 
 <RaceResults
   data={props.data.mdx.results.fields.data}

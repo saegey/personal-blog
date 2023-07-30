@@ -46,6 +46,9 @@ const PowerCurveGraph = ({
     <Box
       sx={{
         height: isMaximized ? '90%' : ['200px', '250px', '300px'],
+        maxWidth: isMaximized ? '100%' : '768px',
+        marginRight: 'auto',
+        marginLeft: 'auto',
       }}
     >
       <LineGraph
