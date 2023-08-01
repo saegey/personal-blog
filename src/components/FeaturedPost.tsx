@@ -32,13 +32,14 @@ const FeaturedPost = ({
         objectFit="cover"
         alt={`Photo`}
         as={GatsbyImage}
-        variant="homePageImage"
+        variant="xthomePageImage"
         sx={{ borderRadius: '5px' }}
       />
     </Link>
   ) : (
     ''
   )
+
   return (
     <Flex sx={{ flexWrap: 'wrap' }}>
       <Box

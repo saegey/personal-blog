@@ -254,7 +254,6 @@ const theme: Theme = {
       fontSize: '13px',
     },
     postSubtitle: {
-      marginX: 'auto',
       fontFamily: 'body',
       fontWeight: '400',
       letterSpacing: '0px',
@@ -265,11 +264,7 @@ const theme: Theme = {
       fontWeight: 700,
       fontStyle: 'normal',
       fontSize: ['32px', '40px', '40px'],
-      marginBottom: ['5px', '5px', '5px'],
       color: 'textInvert',
-      // letterSpacing: ['.6px', '1px', '1px'],
-      marginX: 'auto',
-      textAlign: 'center',
     },
     postType: {
       fontFamily: 'body',

@@ -30,44 +30,6 @@ images:
   - ./bikecompare.png
 ---
 
-<Box sx={{ marginBottom: '20px' }}>
-  <Carousel
-    images={[
-      props.data.mdx.frontmatter.images[0],
-      props.data.mdx.frontmatter.images[1],
-      props.data.mdx.frontmatter.images[2],
-      props.data.mdx.frontmatter.images[3],
-      props.data.mdx.frontmatter.images[4],
-      props.data.mdx.frontmatter.images[5],
-    ]}
-  >
-    <LandscapeImage
-      image={props.data.mdx.frontmatter.images[0]}
-      maximize={false}
-    />
-    <LandscapeImage
-      image={props.data.mdx.frontmatter.images[1]}
-      maximize={false}
-    />
-    <LandscapeImage
-      image={props.data.mdx.frontmatter.images[2]}
-      maximize={false}
-    />
-    <LandscapeImage
-      image={props.data.mdx.frontmatter.images[3]}
-      maximize={false}
-    />
-    <LandscapeImage
-      image={props.data.mdx.frontmatter.images[4]}
-      maximize={false}
-    />
-    <LandscapeImage
-      image={props.data.mdx.frontmatter.images[5]}
-      maximize={false}
-    />
-  </Carousel>
-</Box>
-
 So I finally got out there and did a XC mountain bike race. At the start of this year, I had decided mountain biking was going to be the primary focus this year because I enjoy it so much and I am not going as nearly as often as I would like it. At the end of last year, I purchased a Specialized Chisel xc hardtail frame and had it built up early this year.
 
 <RaceOverview
@@ -104,12 +66,8 @@ I've gotten about 14 hours total on the Chisel and so far I have really enjoyed 
     data: props.data.mdx.gpxData.fields.elevationData,
     yScaleMin: { imperial: 0, metric: 0 },
     axisLeftTickValues: {
-      imperial: [
-        [100, 200, 300],
-      ],
-      metric: [
-        [50, 75, 100],
-      ],
+      imperial: [[100, 200, 300]],
+      metric: [[50, 75, 100]],
     },
     axisXTickValues: {
       imperial: [
@@ -160,7 +118,11 @@ The first lap continued on and the terrain was up and down with not really any
 flat sections and quite twisty and root but we good traction. I noticed if I
 have someone on my wheel it would cause me to ride a little sloppier and I let
 someone go after asking them so I could ride my own race and start to find some
-flow out on the course. Once they passed, they created a decent gap and I was
+flow out on the course.
+
+<LandscapeImage image={props.data.mdx.frontmatter.images[2]} maximize={false} />
+
+Once they passed, they created a decent gap and I was
 finally isolated and started to settle in to the pace and start to spend more
 time selecting my lines and working on my form. There was a rider I could see at
 times behind but with a large enough gap that it didn't bother me. It also
