@@ -63,7 +63,11 @@ const CustomCarousel = ({ images }: { children: JSX.Element }) => {
         {images.map((image, i) => (
           <Box
             key={`carousel-${i}`}
-            sx={{ width: '100%', position: 'relative' }}
+            sx={{
+              width: '100%',
+              position: 'relative',
+              paddingY: ['20px', '20px', '40px'],
+            }}
           >
             <Image
               image={getImage(image)}

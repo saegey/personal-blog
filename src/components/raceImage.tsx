@@ -11,7 +11,7 @@ const RaceImage: React.FC<Props> = ({ image, caption, children, altText }) => {
 
   return (
     <>
-      <Box>
+      <Box sx={{ marginY: ['20px', '80px', '100px'] }}>
         <Box
           sx={{ cursor: 'pointer' }}
           onClick={() => {
