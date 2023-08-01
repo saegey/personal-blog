@@ -4,9 +4,15 @@ body {
   flex-direction: column;
 }
 
+html,
+body {
+  scroll-behavior: smooth;
+}
+
 #gatsby-focus-wrapper,
 #___gatsby {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
 }

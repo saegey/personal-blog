@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import Menu from './menu'
 import Header from './header'
 import Footer from './footer'
+import BackToTop from './BackToTop'
 
 type CardProps = {
   children: JSX.Element
@@ -30,11 +31,11 @@ const Layout = ({ children }: CardProps) => {
         <Header setMenuOpen={setMenuOpen} />
         <main
           sx={{
-            // bg: 'muted',
             flexGrow: 1,
           }}
         >
           {children}
+          <BackToTop />
         </main>
         <Footer />
       </div>
