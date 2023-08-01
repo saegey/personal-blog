@@ -199,12 +199,12 @@ export const query = graphql`
         type
         images {
           childImageSharp {
-            gatsbyImageData(placeholder: BLURRED, width: 2000)
+            gatsbyImageData(placeholder: BLURRED)
           }
         }
         headerImage {
           childImageSharp {
-            gatsbyImageData(layout: FIXED, width: 1200)
+            gatsbyImageData(layout: FIXED)
           }
         }
         description

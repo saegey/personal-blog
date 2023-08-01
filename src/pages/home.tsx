@@ -24,6 +24,7 @@ type PostProps = {
       teaser: string
       type: string
       subType: string
+      publishedDate: Date
     }
     fields: {
       slug: string
@@ -226,7 +227,7 @@ export const pageQuery = graphql`
             teaser
             headerImage {
               childImageSharp {
-                gatsbyImageData(placeholder: BLURRED, width: 1200)
+                gatsbyImageData(placeholder: BLURRED)
               }
             }
             publishedDate
