@@ -99,9 +99,11 @@ const RaceResults = ({
       >
         <Flex>
           <Box sx={{ marginBottom: ['10px', '0px', '0px'] }}>
-            <Text as="h2" variant="resultsHeading">
-              Results
-            </Text>
+            <a id="results">
+              <Text as="h2" variant="resultsHeading">
+                Results
+              </Text>
+            </a>
           </Box>
           <Box sx={{ marginLeft: 'auto' }}>
             <Button

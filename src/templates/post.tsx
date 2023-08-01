@@ -56,8 +56,10 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
   return (
     <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 1200 }}>
       <SafariStyle />
-      <Flex sx={{ marginBottom: '5px' }}>
-        <Text variant="postType">{type}</Text>
+      <Flex sx={{ marginBottom: '5px', width: '100%' }}>
+        <Text variant="postType" sx={{ marginX: 'auto' }}>
+          {type}
+        </Text>
       </Flex>
       <Flex>
         <Text as="h1" variant="postTitle" sx={{ color: 'text' }}>

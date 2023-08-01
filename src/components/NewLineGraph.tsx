@@ -1,4 +1,3 @@
-import { Component } from 'react'
 import {
   AreaChart,
   Area,
@@ -7,6 +6,7 @@ import {
   Tooltip,
   CartesianGrid,
   ResponsiveContainer,
+  Brush,
 } from 'recharts'
 import { Box, useThemeUI } from 'theme-ui'
 

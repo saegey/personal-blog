@@ -1,6 +1,7 @@
 import { Text, Link, Flex, Box, Image } from 'theme-ui'
 import { Link as GatsbyLink } from 'gatsby'
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image'
+import moment from 'moment'
 
 import { MyImageProps } from '../common/types'
 const MyImage = Image as any as (props: MyImageProps) => JSX.Element
@@ -12,6 +13,7 @@ type FeaturePostProps = {
   slug: string
   teaser: string
   subType: string
+  updatedAt: Date
 }
 
 const SubFeaturedPost = ({
@@ -21,6 +23,7 @@ const SubFeaturedPost = ({
   type = 'Race Journal',
   teaser = '',
   subType,
+  updatedAt,
 }: FeaturePostProps) => {
   const headerImageComp = headerImage ? (
     <Link to={`${slug}`} as={GatsbyLink}>
@@ -30,6 +33,7 @@ const SubFeaturedPost = ({
         alt={`Photo`}
         as={GatsbyImage}
         variant="homePageImage"
+        sx={{ borderRadius: '5px' }}
       />
     </Link>
   ) : (
@@ -47,11 +51,11 @@ const SubFeaturedPost = ({
         sx={{
           flexGrow: 1,
           flexBasis: 'sidebar',
-          width: '30%',
+          width: '50%',
           alignContent: 'center',
           alignItems: 'center',
           marginTop: 'auto',
-          marginBottom: 'auto'
+          marginBottom: 'auto',
         }}
       >
         {headerImageComp}
@@ -60,59 +64,77 @@ const SubFeaturedPost = ({
         sx={{
           flexGrow: 99999,
           flexBasis: 0,
-          minWidth: [345, 345, 420],
+          minWidth: 300,
           // bg: 'backgroundEm',
         }}
       >
         <Flex
           sx={{
             flexDirection: 'column',
-            // alignItems: 'center',
-            justifyContent: 'center',
-            // paddingX: ['20px' '20px', '20px'],
-            paddingY: ['20px', 0, 0],
+            // justifyContent: 'flex-start',
+            gap: '10px',
             height: '100%',
           }}
         >
-          <Box sx={{}}>
+          <Text
+            as="p"
+            sx={{
+              // marginX: 'auto',
+              fontFamily: 'body',
+              fontWeight: '700',
+              letterSpacing: '.1em',
+              fontSize: ['13px', '13px', '13px'],
+              textTransform: 'uppercase',
+              color: 'primary',
+              lineHeight: '130%',
+            }}
+          >
+            {subType ? subType : type}
+          </Text>
+          <Link
+            to={`${slug}`}
+            as={GatsbyLink}
+            sx={{
+              fontFamily: 'body',
+              textDecoration: 'none',
+            }}
+          >
             <Text
-              as="p"
-              variant="postType"
-              sx={{ textAlign: 'left', paddingBottom: '10px' }}
-            >
-              {subType ? subType : type}
-            </Text>
-            <Link
-              to={`${slug}`}
-              as={GatsbyLink}
+              as="h1"
+              variant="postTitle"
               sx={{
-                fontFamily: 'body',
-                textDecoration: 'none',
-              }}
-            >
-              <Text
-                as="h1"
-                variant="postTitle"
-                sx={{
-                  fontSize: ['20px', '24px', '24px'],
-                  textAlign: 'left',
-                  color: 'text',
-                }}
-              >
-                {title}
-              </Text>
-            </Link>
-            <Text
-              as="p"
-              variant="postSubtitle"
-              sx={{
+                fontSize: ['20px', '24px', '24px'],
                 textAlign: 'left',
-                paddingTop: '10px',
-                marginBottom: '0px',
                 color: 'text',
               }}
             >
-              {teaser}
+              {title}
+            </Text>
+          </Link>
+          <Text
+            as="p"
+            variant="postSubtitle"
+            sx={{
+              textAlign: 'left',
+              marginBottom: '0px',
+              color: 'text',
+            }}
+          >
+            {teaser}
+          </Text>
+          <Box sx={{ margin: 'auto 0 0' }}>
+            <Text
+              as="p"
+              sx={{
+                fontSize: '11px',
+                textTransform: 'uppercase',
+                fontWeight: '600',
+                color: 'primary',
+                letterSpacing: '.05em',
+              }}
+            >
+              By Adam Saegebarth<br></br>
+              {moment(updatedAt).startOf('day').fromNow()}
             </Text>
           </Box>
         </Flex>

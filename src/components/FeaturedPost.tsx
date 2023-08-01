@@ -1,6 +1,7 @@
 import { Text, Link, Flex, Box, Image } from 'theme-ui'
 import { Link as GatsbyLink } from 'gatsby'
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image'
+import moment from 'moment'
 
 import { MyImageProps } from '../common/types'
 const MyImage = Image as any as (props: MyImageProps) => JSX.Element
@@ -12,6 +13,7 @@ type FeaturePostProps = {
   slug: string
   teaser: string
   subType: string
+  updatedAt: Date
 }
 
 const FeaturedPost = ({
@@ -21,6 +23,7 @@ const FeaturedPost = ({
   slug,
   teaser,
   subType,
+  updatedAt,
 }: FeaturePostProps) => {
   const headerImageComp = headerImage ? (
     <Link to={`${slug}`} as={GatsbyLink}>
@@ -30,6 +33,7 @@ const FeaturedPost = ({
         alt={`Photo`}
         as={GatsbyImage}
         variant="homePageImage"
+        sx={{ borderRadius: '5px' }}
       />
     </Link>
   ) : (
@@ -37,7 +41,17 @@ const FeaturedPost = ({
   )
   return (
     <Flex sx={{ flexWrap: 'wrap' }}>
-      <Box sx={{ flexGrow: 1, flexBasis: 'sidebar', width: '65%' }}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          flexBasis: 'sidebar',
+          width: [
+            '100%',
+            'calc(100% - 335px - 20px)',
+            'calc(100% - 335px - 20px)',
+          ],
+        }}
+      >
         {headerImageComp}
       </Box>
       <Box
@@ -45,68 +59,54 @@ const FeaturedPost = ({
           flexGrow: 99999,
           flexBasis: 0,
           minWidth: 320,
-          bg: 'accent',
         }}
       >
         <Flex
           sx={{
             flexDirection: 'column',
-            // alignItems: ['left', 'left', 'left'],
-            justifyContent: 'center',
-            padding: '20px',
+            paddingTop: ['10px', 0, 0],
+            paddingX: [0, '20px', '20px'],
             height: '100%',
-            gap: ['10px', '20px', '20px']
+            gap: ['10px', '20px', '20px'],
           }}
         >
-          <Box sx={{ flex: '1 1 auto' }}></Box>
-          <Box sx={{}}>
+          <Text as="p" variant="postType" sx={{ textAlign: 'left' }}>
+            {subType}
+          </Text>
+          <Link to={`${slug}`} as={GatsbyLink} sx={{ textDecoration: 'none' }}>
             <Text
-              as="p"
-              variant="postType"
-              sx={{ textAlign: 'left' }}
+              as="h1"
+              variant="postTitle"
+              sx={{ textAlign: 'left', color: 'text' }}
             >
-              {subType}
+              {title}
             </Text>
-            <Link
-              to={`${slug}`}
-              as={GatsbyLink}
-              sx={{ textDecoration: 'none' }}
-            >
-              <Text as="h1" variant="postTitle" sx={{ textAlign: 'left' }}>
-                {title}
-              </Text>
-            </Link>
+          </Link>
+          <Text
+            as="p"
+            variant="postSubtitle"
+            sx={{
+              marginBottom: '0px',
+              color: 'text',
+            }}
+          >
+            {teaser}
+          </Text>
+          <Box sx={{ margin: 'auto 0 0' }}>
             <Text
               as="p"
-              variant="postSubtitle"
               sx={{
-                textAlign: 'left',
-                paddingTop: '10px',
-                marginBottom: '0px',
+                fontSize: '11px',
+                textTransform: 'uppercase',
+                fontWeight: '600',
+                color: 'primary',
+                letterSpacing: '.05em',
               }}
             >
-              {teaser}
+              By Adam Saegebarth<br></br>
+              {moment(updatedAt).startOf('day').fromNow()}
             </Text>
           </Box>
-          <Flex sx={{ flex: '1 1 auto', width: '100%' }}>
-            <Box sx={{ marginLeft: 'auto', alignSelf: 'flex-end' }}>
-              <Link
-                to={`${slug}`}
-                as={GatsbyLink}
-                sx={{
-                  color: 'textInvert',
-                  fontFamily: 'body',
-                  textDecoration: 'none',
-                  ':hover': {
-                    textDecoration: 'underline',
-                    color: 'textInvert',
-                  },
-                }}
-              >
-                <Text>Read the full post</Text>
-              </Link>
-            </Box>
-          </Flex>
         </Flex>
       </Box>
     </Flex>
