@@ -37,11 +37,17 @@ const calcColor = (grade: number) => {
   return 'gray'
 }
 
-const VisualOverview = ({ coordinates, elevationData, context, elevationToAdd, yMin=0 }: Vizprops) => {
+const VisualOverview = ({
+  coordinates,
+  elevationData,
+  context,
+  elevationToAdd,
+  yMin = 0,
+}: Vizprops) => {
   const [marker, setMarker] = useState({})
 
   return (
-    <>
+    <Box sx={{ marginY: ['20px', '40px', '100px'] }}>
       <Map
         coordinates={coordinates}
         markerCoordinates={marker ? coordinates[marker.x] : null}
@@ -106,7 +112,7 @@ const VisualOverview = ({ coordinates, elevationData, context, elevationToAdd, y
         axisXTickValues={elevationData.axisXTickValues}
         yMin={yMin}
       />
-    </>
+    </Box>
   )
 }
 

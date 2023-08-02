@@ -39,6 +39,7 @@ const FeaturedPost = ({
   ) : (
     ''
   )
+
   return (
     <Flex sx={{ flexWrap: 'wrap' }}>
       <Box

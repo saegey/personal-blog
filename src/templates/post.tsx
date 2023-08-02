@@ -1,7 +1,10 @@
-import { Text, Flex, Box, Divider, Link, Container } from 'theme-ui'
+import { Text, Flex, Box, Divider, Link, Container, Image } from 'theme-ui'
 import { graphql, PageProps } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
-import { IGatsbyImageData } from 'gatsby-plugin-image'
+import { IGatsbyImageData, GatsbyImage, getImage } from 'gatsby-plugin-image'
+
+import { MyImageProps } from '../common/types'
+const MyImage = Image as any as (props: MyImageProps) => JSX.Element
 
 import Seo from '../components/seo'
 import SafariStyle from '../components/SafariStyle'
@@ -51,28 +54,67 @@ const shortcodes = {
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
-  const { title, date, location, type } = data.mdx.frontmatter
+  const { title, date, location, type, headerImage, teaser } =
+    data.mdx.frontmatter
 
   return (
-    <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 1200 }}>
-      <SafariStyle />
-      <Flex sx={{ marginBottom: '5px', width: '100%' }}>
-        <Text variant="postType" sx={{ marginX: 'auto' }}>
-          {type}
-        </Text>
+    <>
+      <Flex
+        sx={{
+          marginTop: '10px',
+          flexDirection: ['column', 'row', 'row'],
+          justifyContent: 'space-between',
+        }}
+      >
+        <Box
+          sx={{
+            width: ['100%', '65%', '65%'],
+          }}
+        >
+          <MyImage
+            image={getImage(headerImage)}
+            objectFit="cover"
+            alt={`Photo`}
+            as={GatsbyImage}
+            variant="homePageImage"
+          />
+        </Box>
+        <Flex
+          sx={{
+            width: ['calc(100% - 40px)', '35%', '35%'],
+            marginX: ['20px', '0', '0'],
+            bg: ['', 'muted', 'muted'],
+            paddingY: ['10px', '20px', '20px'],
+            paddingX: [0, '20px', '20px'],
+            gap: '10px',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            position: 'relative',
+            borderBottomColor: 'muted',
+            borderBottomWidth: ['1px', 0, 0],
+            borderBottomStyle: 'solid',
+          }}
+        >
+          <Text variant="postType">{type}</Text>
+          <Text as="h1" variant="postTitle" sx={{ color: 'text' }}>
+            {title}
+          </Text>
+          <Text
+            as="p"
+            sx={{ color: 'text', fontWeight: '500', fontSize: '16px' }}
+          >
+            {teaser}
+          </Text>
+          <Text variant="postSubtitle" sx={{ color: 'text' }}>
+            {date} — {location}
+          </Text>
+        </Flex>
       </Flex>
-      <Flex>
-        <Text as="h1" variant="postTitle" sx={{ color: 'text' }}>
-          {title}
-        </Text>
-      </Flex>
-      <Flex>
-        <Text variant="postSubtitle" sx={{ color: 'text' }}>
-          {date} — {location}
-        </Text>
-      </Flex>
-      <MDXProvider components={shortcodes}>{children}</MDXProvider>
-    </Container>
+      <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 1200 }}>
+        <SafariStyle />
+        <MDXProvider components={shortcodes}>{children}</MDXProvider>
+      </Container>
+    </>
   )
 }
 
@@ -195,6 +237,7 @@ export const query = graphql`
         date(formatString: "MMM DD, YYYY")
         location
         title
+        teaser
         tags
         type
         images {
@@ -204,7 +247,7 @@ export const query = graphql`
         }
         headerImage {
           childImageSharp {
-            gatsbyImageData(layout: FIXED)
+            gatsbyImageData(placeholder: BLURRED)
           }
         }
         description
