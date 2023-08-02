@@ -38,7 +38,6 @@ const RaceResultsList = ({ data, showSpeed, theme }: WrapperProps) => {
                 height: ['25px', '25px', '25px'],
                 display: ['none', 'flex', 'flex'],
                 fontFamily: 'body',
-                // letterSpacing: '.3px',
               }}
             >
               <Box sx={{ width: '5%' }}>

@@ -1,7 +1,13 @@
 import { Text, Flex, Box, Divider, Link, Container, Image } from 'theme-ui'
 import { graphql, PageProps } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
-import { IGatsbyImageData, GatsbyImage, getImage } from 'gatsby-plugin-image'
+import {
+  IGatsbyImageData,
+  GatsbyImage,
+  getImage,
+  StaticImage,
+} from 'gatsby-plugin-image'
+import moment from 'moment'
 
 import { MyImageProps } from '../common/types'
 const MyImage = Image as any as (props: MyImageProps) => JSX.Element
@@ -54,7 +60,7 @@ const shortcodes = {
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
-  const { title, date, location, type, headerImage, teaser } =
+  const { title, date, location, type, headerImage, teaser, publishedDate } =
     data.mdx.frontmatter
 
   return (
@@ -110,8 +116,87 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
           </Text>
         </Flex>
       </Flex>
-      <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 1200 }}>
-        <SafariStyle />
+      <Container
+        sx={{
+          maxWidth: '1045px',
+          position: 'relative',
+          width: 'calc(100% - 40px)',
+          margin: ['60px auto', '120px auto', '120px auto'],
+          '&.article>p+p': {
+            paddingTop: '30px',
+          },
+          '&.article>h2+ul': {
+            paddingTop: '30px',
+          },
+          '&.article>ul+h2': {
+            paddingTop: '30px',
+          },
+          '&.article>ol+h2': {
+            paddingTop: '30px',
+          },
+          '&.article>h2+ol': {
+            paddingTop: '30px',
+          },
+          '&.article>p+h2': {
+            paddingTop: '30px',
+          },
+        }}
+        className="article"
+        as="article"
+      >
+        <Box
+          sx={{
+            position: ['relative', 'relative', 'absolute'],
+            left: 0,
+            top: 0,
+            width: ['100%', '100%', '150px'],
+            height: '100%',
+            marginBottom: '60px',
+          }}
+        >
+          <Flex
+            sx={{
+              flexDirection: ['row', 'row', 'column'],
+              alignItems: 'flex-start',
+              gap: '20px',
+            }}
+          >
+            <StaticImage
+              layout="constrained"
+              formats={['auto', 'webp', 'avif']}
+              src="../images/author.jpg"
+              // objectFit="fill"
+              quality={95}
+              alt="Profile picture"
+              sx={{
+                borderRadius: ['5px', '50%', '50%'],
+                height: '100px',
+                width: '100px',
+                marginBottom: [0, '12px', '12px'],
+                minWidth: '100px',
+              }}
+            />
+            <Flex sx={{ flexDirection: 'column' }}>
+              <Text
+                as="span"
+                sx={{
+                  fontSize: '13px',
+                  fontWeight: '700',
+                  lineHeight: '18px',
+                  textTransform: 'uppercase',
+                }}
+              >
+                by Adam Saegebarth
+              </Text>
+              <Text
+                as="span"
+                sx={{ fontSize: '13px', fontWeight: '700', lineHeight: '18px' }}
+              >
+                {moment(publishedDate).format('MM.DD.YY')}
+              </Text>
+            </Flex>
+          </Flex>
+        </Box>
         <MDXProvider components={shortcodes}>{children}</MDXProvider>
       </Container>
     </>
@@ -204,6 +289,7 @@ export const query = graphql`
           }
           frontmatter {
             date(formatString: "MMM DD, YYYY")
+            publishedDate
             title
             location
             headerImage {

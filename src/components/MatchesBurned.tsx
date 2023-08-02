@@ -25,6 +25,7 @@ const MatchesHeading = () => {
     </Flex>
   )
 }
+
 type ItemProps = {
   index: number
   d: {
@@ -87,15 +88,14 @@ export const MatchesBurned = ({ data }: Props) => {
       <Box
         sx={{
           maxWidth: '690px',
-          marginLeft: 'auto',
-          marginRight: 'auto',
+          margin: '60px auto',
           background: 'muted',
-          padding: '20px',
+          padding: '30px',
           borderRadius: '5px',
         }}
       >
         <Flex>
-          <Box sx={{ marginBottom: ['10px', '0px', '0px'] }}>
+          <Box sx={{ marginBottom: '20px' }}>
             <Text as="h2" variant="resultsHeading">
               Matches Burned
             </Text>

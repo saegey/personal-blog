@@ -14,8 +14,17 @@ const ExpandableCard = ({
   expandableOnMobile = true,
 }: Props) => {
   return (
-    <>
-      <Flex sx={{ maxWidth: '690px', marginRight: 'auto', marginLeft: 'auto' }}>
+    <Box
+      as="figure"
+      sx={{
+        maxWidth: '690px',
+        background: 'muted',
+        borderRadius: '5px',
+        margin: '60px auto',
+        padding: '30px',
+      }}
+    >
+      <Flex sx={{ flexDirection: 'row' }}>
         <Box sx={{ marginBottom: ['10px', '0px', '0px'] }}>
           <Text as="h2" variant="resultsHeading">
             {title}
@@ -41,7 +50,7 @@ const ExpandableCard = ({
         </Box>
       </Flex>
       {children}
-    </>
+    </Box>
   )
 }
 

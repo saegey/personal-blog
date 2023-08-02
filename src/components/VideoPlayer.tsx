@@ -9,7 +9,7 @@ const VideoPlayer = ({
   borderRadius: string
 }) => {
   return (
-    <Box sx={{ width: '100%', video: { borderRadius } }}>
+    <Box sx={{ width: '100%', video: { borderRadius }, marginY: '60px' }}>
       <IKContext
         publicKey="public_0yo2SuC0X+YKHkXDmLUU4S18vcA="
         urlEndpoint="https://ik.imagekit.io/hcbw4dyr5"
