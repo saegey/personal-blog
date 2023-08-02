@@ -13,7 +13,7 @@ interface PowerCurveGraphProps extends GraphProps {
   xAxes: Array<Array<Number>>
   yScaleMax: number
   ftp: number
-  title?: string | undefined
+  title: string
 }
 
 const PowerCurveGraph = ({
@@ -27,20 +27,6 @@ const PowerCurveGraph = ({
   const yTicks = useResponsiveValue(yAxes)
   const xTicks = useResponsiveValue(xAxes)
   const { theme } = useThemeUI()
-  const customTheme = {
-    axis: {
-      textColor: '#eee',
-      fontSize: '14px',
-      tickColor: '#eee',
-    },
-    grid: {
-      line: {
-        stroke: 'pink',
-        strokeWidth: 2,
-        strokeDasharray: '4 4',
-      },
-    },
-  }
 
   return (
     <Box
@@ -66,7 +52,6 @@ const PowerCurveGraph = ({
         lineWidth={2}
         enableArea={false}
         areaBaselineValue={0}
-        // theme={customTheme}
         axisBottomTickValues={xTicks}
         axisLeftTickValues={yTicks}
         markers={[
@@ -84,7 +69,6 @@ const PowerCurveGraph = ({
               fill: theme.colors?.text,
               fontWeight: '400',
             },
-            // legendOrientation: 'vertical',
           },
         ]}
         xAxisFormatter={formatSeconds}

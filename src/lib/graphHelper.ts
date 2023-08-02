@@ -16,7 +16,7 @@ export const themeTemplate = (theme: any) => {
     },
     grid: {
       line: {
-        stroke: theme.colors?.muted,
+        stroke: theme.colors?.mutedAccent,
         strokeWidth: 1,
       },
     },

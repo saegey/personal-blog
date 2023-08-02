@@ -125,12 +125,12 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
           <Box
             sx={{
               maxWidth: '690px',
-              marginLeft: 'auto',
-              marginRight: 'auto',
               background: 'muted',
-              padding: '20px',
+              padding: '30px',
               borderRadius: '5px',
+              margin: '60px auto'
             }}
+            as="figure"
           >
             <Box sx={{ marginBottom: '10px' }}>
               <Text as="h2" variant="resultsHeading">

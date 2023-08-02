@@ -88,17 +88,17 @@ const RaceResults = ({
       )}
 
       <Box
+        as="figure"
         sx={{
           maxWidth: '690px',
-          marginLeft: 'auto',
-          marginRight: 'auto',
+          margin: '60px auto',
           background: 'muted',
-          padding: '20px',
+          padding: '30px',
           borderRadius: '5px',
         }}
       >
         <Flex>
-          <Box sx={{ marginBottom: ['10px', '0px', '0px'] }}>
+          <Box sx={{ marginBottom: ['20px', '20px', '20px'] }}>
             <a id="results">
               <Text as="h2" variant="resultsHeading">
                 Results

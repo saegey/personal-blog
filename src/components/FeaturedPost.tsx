@@ -102,6 +102,7 @@ const FeaturedPost = ({
                 fontWeight: '600',
                 color: 'primary',
                 letterSpacing: '.05em',
+                lineHeight: '130%',
               }}
             >
               By Adam Saegebarth<br></br>
