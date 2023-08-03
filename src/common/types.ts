@@ -115,12 +115,6 @@ export interface NestedRaceImageType extends RaceImageType {
   children: JSX.Element
 }
 
-export interface PostCardProps {
-  post: PostNode
-  title: string
-  image: IGatsbyImageData | undefined
-}
-
 export interface PostNode {
   frontmatter: {
     title: string | null
