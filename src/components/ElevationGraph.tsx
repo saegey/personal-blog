@@ -3,11 +3,11 @@ import { useResponsiveValue } from '@theme-ui/match-media'
 
 import { generateTimeTickValues } from '../lib/formatters'
 import { Coordinate, GraphProps } from '../common/types'
-import ThemeContext from '../context/ThemeContext'
 import LineGraph from '../components/LineGraph'
 import { useState } from 'react'
 import MaximizedContainer from './MaximizedContainer'
 import ExpandableCard from './ExpandableCard'
+import { useUnits } from '../context/UnitProvider'
 
 interface ElevationGraphProps extends GraphProps {
   axisLeftTickValues: { imperial: number[]; metric: number[] }
@@ -23,20 +23,20 @@ const ElevationGraph = ({
   areaBaselineValue,
   yScaleMin,
   yScaleMax,
-  context,
   isMaximized = false,
 }: ElevationGraphProps) => {
   const downSampledData: Coordinate[] = data.filter(
     n => Number(n.y) % downsampleRate == 0
   )
+  const units = useUnits()
 
   const yTicks =
-    context.unitOfMeasure === 'metric'
+    units.unitOfMeasure === 'metric'
       ? useResponsiveValue(axisLeftTickValues.metric)
       : useResponsiveValue(axisLeftTickValues.imperial)
 
   const yMax =
-    context.unitOfMeasure === 'metric' ? yScaleMax.metric : yScaleMax.imperial
+    units.unitOfMeasure === 'metric' ? yScaleMax.metric : yScaleMax.imperial
 
   return (
     <Box
@@ -49,9 +49,9 @@ const ElevationGraph = ({
         data={[
           {
             id: 'elevation',
-            unit: context.unitOfMeasure === 'metric' ? 'meters' : 'feet',
+            unit: units.unitOfMeasure === 'metric' ? 'meters' : 'feet',
             data:
-              context.unitOfMeasure === 'metric'
+              units.unitOfMeasure === 'metric'
                 ? downSampledData
                 : downSampledData.map(d => ({
                     x: d.x,
@@ -60,14 +60,14 @@ const ElevationGraph = ({
           },
         ]}
         yScaleMin={
-          context.unitOfMeasure === 'metric'
+          units.unitOfMeasure === 'metric'
             ? yScaleMin.metric
             : yScaleMin.imperial
         }
         yScaleMax={yMax}
         curve={'linear'}
         areaBaselineValue={
-          context.unitOfMeasure === 'metric'
+          units.unitOfMeasure === 'metric'
             ? areaBaselineValue.metric
             : areaBaselineValue.imperial
         }
@@ -92,8 +92,6 @@ const ElevationGraphWrapper = ({
   const [isMax, setMax] = useState()
 
   return (
-    <ThemeContext.Consumer>
-      {context => (
         <>
           {isMax && (
             <MaximizedContainer title="Elevation Profile" openModal={setMax}>
@@ -104,7 +102,6 @@ const ElevationGraphWrapper = ({
                 areaBaselineValue={areaBaselineValue}
                 yScaleMin={yScaleMin}
                 yScaleMax={yScaleMax}
-                context={context}
                 isMaximized={true}
               />
             </MaximizedContainer>
@@ -117,12 +114,9 @@ const ElevationGraphWrapper = ({
               areaBaselineValue={areaBaselineValue}
               yScaleMin={yScaleMin}
               yScaleMax={yScaleMax}
-              context={context}
             />
           </ExpandableCard>
         </>
-      )}
-    </ThemeContext.Consumer>
   )
 }
 

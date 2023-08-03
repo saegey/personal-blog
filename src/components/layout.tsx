@@ -5,6 +5,8 @@ import Menu from './menu'
 import Header from './header'
 import Footer from './footer'
 import BackToTop from './BackToTop'
+import ViewportProvider from '../context/ViewportProvider'
+import UnitProvider from '../context/UnitProvider'
 
 type CardProps = {
   children: JSX.Element
@@ -14,32 +16,36 @@ const Layout = ({ children }: CardProps) => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <>
-      <Helmet htmlAttributes={{ lang: 'en-US' }}>
-        <body className={menuOpen ? 'noScroll' : ''} />
-      </Helmet>
-      <div
-        sx={{
-          overflowY: menuOpen ? 'hidden' : 'visible',
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          height: menuOpen ? '100%' : '',
-        }}
-      >
-        <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        <Header setMenuOpen={setMenuOpen} />
-        <main
-          sx={{
-            flexGrow: 1,
-          }}
-        >
-          {children}
-          <BackToTop />
-        </main>
-        <Footer />
-      </div>
-    </>
+    <ViewportProvider>
+      <UnitProvider>
+        <>
+          <Helmet htmlAttributes={{ lang: 'en-US' }}>
+            <body className={menuOpen ? 'noScroll' : ''} />
+          </Helmet>
+          <div
+            sx={{
+              overflowY: menuOpen ? 'hidden' : 'visible',
+              minHeight: '100vh',
+              display: 'flex',
+              flexDirection: 'column',
+              height: menuOpen ? '100%' : '',
+            }}
+          >
+            <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <Header setMenuOpen={setMenuOpen} />
+            <main
+              sx={{
+                flexGrow: 1,
+              }}
+            >
+              {children}
+              <BackToTop />
+            </main>
+            <Footer />
+          </div>
+        </>
+      </UnitProvider>
+    </ViewportProvider>
   )
 }
 

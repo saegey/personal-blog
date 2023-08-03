@@ -1,7 +1,7 @@
 import { Text, Flex, Box } from 'theme-ui'
 
-import ThemeContext from '../context/ThemeContext'
 import RaceResultItemSmall from './RaceResultItemSmall'
+import { useUnits } from '../context/UnitProvider'
 
 interface Props {
   data: [
@@ -25,6 +25,8 @@ interface WrapperProps extends Props {
 }
 
 const RaceResultsList = ({ data, showSpeed, theme }: WrapperProps) => {
+  const units = useUnits()
+
   return (
     <>
       {data.map((item, index) => {
@@ -32,7 +34,7 @@ const RaceResultsList = ({ data, showSpeed, theme }: WrapperProps) => {
 
         return (
           <Box key={index}>
-            <RaceResultItemSmall item={item} theme={theme} key={index} />
+            <RaceResultItemSmall item={item} theme={units} key={index} />
             <Flex
               sx={{
                 height: ['25px', '25px', '25px'],
@@ -58,7 +60,7 @@ const RaceResultsList = ({ data, showSpeed, theme }: WrapperProps) => {
               {showSpeed && (
                 <Box sx={{ width: '20%', textAlign: 'right' }}>
                   <Text variant="resultsItem">
-                    {theme.unitOfMeasure === 'metric'
+                    {units.unitOfMeasure === 'metric'
                       ? item.speedMetric
                       : item.speed}
                   </Text>
@@ -76,16 +78,4 @@ const RaceResultsList = ({ data, showSpeed, theme }: WrapperProps) => {
   )
 }
 
-const RaceResultWrapper = ({ data, showSpeed }: Props) => {
-  return (
-    <ThemeContext.Consumer>
-      {theme => {
-        return (
-          <RaceResultsList data={data} showSpeed={showSpeed} theme={theme} />
-        )
-      }}
-    </ThemeContext.Consumer>
-  )
-}
-
-export default RaceResultWrapper
+export default RaceResultsList

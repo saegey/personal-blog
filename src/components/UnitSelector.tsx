@@ -1,13 +1,13 @@
 import { Label, Radio, Box, Text, Flex } from 'theme-ui'
 
-type ThemeContextProps = {
+type UnitContextProps = {
   unitOfMeasure: {
     unitOfMeasure: string
     toggleUnit: () => void
   }
 }
 
-const UnitSelector = ({ unitOfMeasure }: ThemeContextProps) => {
+const UnitSelector = ({ unitOfMeasure }: UnitContextProps) => {
   return (
     <Box
       sx={{
