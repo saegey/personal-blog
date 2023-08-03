@@ -3,6 +3,7 @@ title: Ancient Lakes
 date: 2023-03-18
 publishedDate: 2023-04-20
 headerImage: './Ancient Lakes1_8.jpeg'
+headerImageCaption: 'A great view of the Specialized Chisel the day before the race. I started from different parking lot and promptly hit a double black trail getting down from here. Photo: Adam Saegebarth'
 tags:
   - XC Mountain Bike
 type: Race Journal
@@ -36,7 +37,18 @@ I was already planning to race Ephrata Gran Fondo so two trips to central Washin
 didn't seam feasible but it was rescheduled to the day before Ephrata and it was
 an easy decision to head out early to race both days.
 
-<LandscapeImage image={props.data.mdx.frontmatter.images[1]} maximize={true} />
+<LandscapeImage
+  image={props.data.mdx.frontmatter.images[1]}
+  maximize={true}
+  caption={
+    <Text>
+      A view from up high the day before of some of the ancient lakes. I learned
+      an ancient lake is one with water for over 1 million years. This area is
+      truly spectacular location to bike or hike and surely a bucket list item.
+      Photo: Adam Saegebarth
+    </Text>
+  }
+/>
 
 <RaceOverview
   data={props.data.mdx.gpxData.fields}
@@ -63,7 +75,7 @@ The race started about 45 min late and everyone was standing around so the brief
     <Text>
       Waiting by the start line for the race to start. It's hard to prepare and
       be warmed up when it starts 45 min late but I guess everyone was in the
-      same boat.
+      same boat. Photo: Scarlett Saegebarth
     </Text>
   }
 />

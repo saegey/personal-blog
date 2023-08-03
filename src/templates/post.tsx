@@ -60,8 +60,16 @@ const shortcodes = {
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
-  const { title, date, location, type, headerImage, teaser, publishedDate } =
-    data.mdx.frontmatter
+  const {
+    title,
+    date,
+    location,
+    type,
+    headerImage,
+    teaser,
+    publishedDate,
+    headerImageCaption,
+  } = data.mdx.frontmatter
 
   return (
     <>
@@ -101,18 +109,38 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
             borderBottomStyle: 'solid',
           }}
         >
-          <Text variant="postType">{type}</Text>
+          <Text variant="postType" sx={{ marginTop: 'auto' }}>
+            {type}
+          </Text>
           <Text as="h1" variant="postTitle" sx={{ color: 'text' }}>
             {title}
           </Text>
+          <Text sx={{ fontSize: '14px', fontWeight: '300' }}>
+            {date} — {location}
+          </Text>
           <Text
             as="p"
-            sx={{ color: 'text', fontWeight: '500', fontSize: '16px' }}
+            sx={{
+              color: 'text',
+              fontWeight: '500',
+              fontSize: '16px',
+              lineHeight: '22px',
+            }}
           >
             {teaser}
           </Text>
-          <Text variant="postSubtitle" sx={{ color: 'text' }}>
-            {date} — {location}
+          <Text
+            sx={{
+              color: 'text',
+              marginTop: 'auto',
+              fontSize: '12px',
+              lineHeight: '15px',
+              fontWeight: '500',
+              order: [-1, 0, 0],
+              marginBottom: ['10px', '0', '0'],
+            }}
+          >
+            {headerImageCaption}
           </Text>
         </Flex>
       </Flex>
@@ -121,7 +149,7 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
           maxWidth: '1045px',
           position: 'relative',
           width: 'calc(100% - 40px)',
-          margin: ['60px auto', '120px auto', '120px auto'],
+          margin: ['20px auto', '120px auto', '120px auto'],
           '&.article>p+p': {
             paddingTop: '30px',
           },
@@ -151,7 +179,7 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
             top: 0,
             width: ['100%', '100%', '150px'],
             height: '100%',
-            marginBottom: '60px',
+            marginBottom: ['20px', '60px', '60px'],
           }}
         >
           <Flex
@@ -169,11 +197,11 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
               quality={95}
               alt="Profile picture"
               sx={{
-                borderRadius: ['5px', '50%', '50%'],
-                height: '100px',
-                width: '100px',
+                borderRadius: ['50%', '50%', '50%'],
+                height: ['50px', '100px', '100px'],
+                width: ['50px', '100px', '100px'],
                 marginBottom: [0, '12px', '12px'],
-                minWidth: '100px',
+                minWidth: ['50px', '50px', '100px'],
               }}
             />
             <Flex sx={{ flexDirection: 'column' }}>
@@ -336,6 +364,7 @@ export const query = graphql`
             gatsbyImageData(placeholder: BLURRED)
           }
         }
+        headerImageCaption
         description
         stravaUrl
       }

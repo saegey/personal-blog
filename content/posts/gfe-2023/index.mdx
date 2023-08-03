@@ -3,15 +3,17 @@ title: Gran Fondo Ephrata 2023
 date: 2023-03-19
 publishedDate: 2023-07-11
 headerImage: './20230319-_MAP6202.jpg'
+headerImageCaption: 'The lead group heading into the three devils climbs. Photo: Mark Alan Photo'
 description: A detailed race breakdown from the Gran Fondo Ephrata that took place on March 19, 2023.  The race went well and I ended up doing better than the previous year.
 tags:
   - gravel
+  - race journal
 type: Race Journal
 subType: Gravel Race
 related:
   - 'Gran Fondo Ephrata 2022'
   - 'Gran Fondo Winthrop'
-teaser: This fondo is a spring classic and the route is filled with epic desert landscapes. The race went well and I finished better than last year.
+teaser: A spring classic and a route filled with epic desert landscapes.
 gpxFile: 'Gran_Fondo_Ephrata_2023'
 location: Ephrata, WA
 stravaUrl: https://www.strava.com/activities/8743768692
@@ -62,19 +64,6 @@ Leading up to the event, I did a couple simulations of the effort required for t
 <StravaLink stravaUrl={props.data.mdx.frontmatter.stravaUrl} />
 
 I created a route to simulate this that topped out at the top of Cougar Mountain that I rode a few weeks before and I also did an interval block on the trainer with the power I was planning to target for the race.
-
-<LandscapeImage
-  image={props.data.mdx.frontmatter.images[1]}
-  maximize={true}
-  caption={
-    <Text>
-      Lead group of three coming through 3 Devils climbs. Photo:{' '}
-      <a href="https://www.markalanphoto.co/Fondos/Ephrata-Gran-Fondo-2023/Grande/i-Qdm3rBC/buy">
-        Mark Alan Photo
-      </a>
-    </Text>
-  }
-/>
 
 <PowerCurveGraph
   data={props.data.mdx.gpxData.fields.powerCurve}
