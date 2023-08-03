@@ -11,6 +11,7 @@ import {
 import { Box, useThemeUI } from 'theme-ui'
 
 import ThemeContext from '../context/ThemeContext'
+import GradeGradient from './GradeGradient'
 
 const gradeToColor = (grade: number) => {
   if (grade > 0 && grade < 4) return 'green'
@@ -40,6 +41,7 @@ const NewLineGraph = ({
             ? (d.distance * 0.00062137121212121).toFixed(1)
             : (d.distance / 1000).toFixed(1),
         y: context.unitOfMeasure === 'imperial' ? d.y * 3.28084 : Number(d.y),
+        color: gradeToColor(d.grade * 100),
       }
     })
 
@@ -82,17 +84,7 @@ const NewLineGraph = ({
           <Tooltip content={<></>} />
           <defs>
             <linearGradient id="splitColor" x1="0" y1="0" x2="1" y2="0">
-              {downSampledData.map((d, i) => {
-                const grade = d.grade * 100
-                return (
-                  <stop
-                    offset={d.distance / xMax}
-                    stopColor={gradeToColor(grade)}
-                    stopOpacity={1}
-                    key={`elevationGrade-${i}`}
-                  />
-                )
-              })}
+              <GradeGradient data={downSampledData} xMax={xMax} />
             </linearGradient>
           </defs>
           <XAxis
@@ -100,6 +92,7 @@ const NewLineGraph = ({
             type={'number'}
             ticks={xTicks}
             domain={[0, xMax]}
+            hide={true}
           />
           <YAxis
             type="number"
