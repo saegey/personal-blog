@@ -9,21 +9,14 @@ import {
 } from 'recharts'
 import { Box, useThemeUI } from 'theme-ui'
 
-import ThemeContext from '../context/ThemeContext'
-import ViewportProvider, { useViewport } from '../context/ViewportProvider'
+import { useViewport } from '../context/ViewportProvider'
 import GradeGradient from './GradeGradient'
-
-const gradeToColor = (grade: number) => {
-  if (grade > 0 && grade < 4) return 'green'
-  if (grade >= 4 && grade < 7) return 'orange'
-  if (grade <= 0) return '#D3D3D3'
-  if (grade >= 7) return 'red'
-}
+import { gradeToColor } from '../lib/formatters'
+import { useUnits } from '../context/UnitProvider'
 
 const NewLineGraph = ({
   data,
   downsampleRate,
-  context,
   setMarker,
   elevationToAdd = 0,
   axisLeftTickValues,
@@ -31,28 +24,30 @@ const NewLineGraph = ({
   yMin,
 }) => {
   const themeContext = useThemeUI()
+  const units = useUnits()
+
   const downSampledData = data
     .filter((d, i: number) => i % downsampleRate === 0)
     .map(d => {
       return {
         ...d,
         distance:
-          context.unitOfMeasure === 'imperial'
+          units.unitOfMeasure === 'imperial'
             ? (d.distance * 0.00062137121212121).toFixed(1)
             : (d.distance / 1000).toFixed(1),
-        y: context.unitOfMeasure === 'imperial' ? d.y * 3.28084 : Number(d.y),
+        y: units.unitOfMeasure === 'imperial' ? d.y * 3.28084 : Number(d.y),
         color: gradeToColor(d.grade * 100),
       }
     })
 
   const xMax = Number(downSampledData[downSampledData.length - 1].distance)
   const yTicks =
-    context.unitOfMeasure === 'imperial'
+    units.unitOfMeasure === 'imperial'
       ? axisLeftTickValues.imperial[0]
       : axisLeftTickValues.metric[0]
 
   const xTicks =
-    context.unitOfMeasure === 'imperial'
+    units.unitOfMeasure === 'imperial'
       ? axisXTickValues.imperial[0]
       : axisXTickValues.metric[0]
 
@@ -104,9 +99,9 @@ const NewLineGraph = ({
           <YAxis
             type="number"
             domain={[
-              context.unitOfMeasure === 'imperial' ? yMin : yMin * 0.3048,
+              units.unitOfMeasure === 'imperial' ? yMin : yMin * 0.3048,
               `dataMax + ${
-                context.unitOfMeasure === 'imperial'
+                units.unitOfMeasure === 'imperial'
                   ? elevationToAdd
                   : elevationToAdd * 0.3048
               }`,
@@ -129,16 +124,4 @@ const NewLineGraph = ({
   )
 }
 
-const NewLineGraphWrapper = props => {
-  return (
-    <ThemeContext.Consumer>
-      {context => (
-        <ViewportProvider>
-          <NewLineGraph context={context} {...props} />
-        </ViewportProvider>
-      )}
-    </ThemeContext.Consumer>
-  )
-}
-
-export default NewLineGraphWrapper
+export default NewLineGraph
