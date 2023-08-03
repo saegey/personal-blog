@@ -6,11 +6,11 @@ import {
   Tooltip,
   CartesianGrid,
   ResponsiveContainer,
-  Brush,
 } from 'recharts'
 import { Box, useThemeUI } from 'theme-ui'
 
 import ThemeContext from '../context/ThemeContext'
+import ViewportProvider, { useViewport } from '../context/ViewportProvider'
 import GradeGradient from './GradeGradient'
 
 const gradeToColor = (grade: number) => {
@@ -56,16 +56,19 @@ const NewLineGraph = ({
       ? axisXTickValues.imperial[0]
       : axisXTickValues.metric[0]
 
+  const { width } = useViewport()
+  const hideAxes = width > 640 ? false : true
+
   return (
     <Box
       sx={{
         width: '100%',
-        height: ['200px', '300px', '300px'],
+        height: ['100px', '200px', '250px'],
         borderColor: 'mutedAccent',
         borderStyle: 'solid',
         borderWidth: '1px',
-        paddingY: ['10px', '20px', '20px'],
-        paddingRight: ['10px', '20px', '20px'],
+        paddingY: [0, '20px', '20px'],
+        paddingRight: [0, '20px', '20px'],
       }}
     >
       <ResponsiveContainer width={'100%'} height="100%">
@@ -79,8 +82,12 @@ const NewLineGraph = ({
 
             setMarker(e.activePayload[0].payload)
           }}
+          margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
         >
-          <CartesianGrid stroke={themeContext.theme.colors?.muted} />
+          {!hideAxes && (
+            <CartesianGrid stroke={themeContext.theme.colors?.muted} />
+          )}
+
           <Tooltip content={<></>} />
           <defs>
             <linearGradient id="splitColor" x1="0" y1="0" x2="1" y2="0">
@@ -92,7 +99,7 @@ const NewLineGraph = ({
             type={'number'}
             ticks={xTicks}
             domain={[0, xMax]}
-            hide={true}
+            hide={hideAxes}
           />
           <YAxis
             type="number"
@@ -105,6 +112,7 @@ const NewLineGraph = ({
               }`,
             ]}
             ticks={yTicks}
+            hide={hideAxes}
           />
           <Area
             type="basisOpen"
@@ -124,7 +132,11 @@ const NewLineGraph = ({
 const NewLineGraphWrapper = props => {
   return (
     <ThemeContext.Consumer>
-      {context => <NewLineGraph context={context} {...props} />}
+      {context => (
+        <ViewportProvider>
+          <NewLineGraph context={context} {...props} />
+        </ViewportProvider>
+      )}
     </ThemeContext.Consumer>
   )
 }
