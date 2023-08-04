@@ -30,8 +30,8 @@ const VisualOverview = ({
   const downSampledData = useMemo(
     () =>
       elevationData.data
-        .filter((d, i: number) => i % elevationData.downsampleRate === 0)
-        .map(d => {
+        .filter((_d: any, i: number) => i % elevationData.downsampleRate === 0)
+        .map((d: { distance: number; y: number; grade: number }) => {
           return {
             ...d,
             distance:

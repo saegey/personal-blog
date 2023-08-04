@@ -8,15 +8,33 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 import { Box, useThemeUI } from 'theme-ui'
-import { useMemo } from 'react'
 
 import { useViewport } from '../context/ViewportProvider'
 import GradeGradient from './GradeGradient'
 import { useUnits } from '../context/UnitProvider'
 
+interface NewLineGraphProps {
+  xMax: number
+  downSampledData: Array<{
+    x: number
+    y: number
+    distance: number
+    color: string
+  }>
+  setMarker: (arg0: any) => { }
+  elevationToAdd: number
+  axisLeftTickValues: {
+    imperial: Array<Array<number>>
+    metric: Array<Array<number>>
+  }
+  axisXTickValues: {
+    imperial: Array<Array<number>>
+    metric: Array<Array<number>>
+  }
+  yMin: number
+}
+
 const NewLineGraph = ({
-  // data,
-  // downsampleRate,
   xMax,
   downSampledData,
   setMarker,
@@ -24,7 +42,7 @@ const NewLineGraph = ({
   axisLeftTickValues,
   axisXTickValues,
   yMin,
-}) => {
+}: NewLineGraphProps) => {
   const themeContext = useThemeUI()
   const units = useUnits()
 
@@ -67,7 +85,7 @@ const NewLineGraph = ({
           margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
         >
           {!hideAxes && (
-            <CartesianGrid stroke={themeContext.theme.colors?.muted} />
+            <CartesianGrid stroke={String(themeContext.theme.colors?.muted)} />
           )}
 
           <Tooltip content={<></>} />
