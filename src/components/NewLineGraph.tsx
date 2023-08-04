@@ -8,15 +8,17 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 import { Box, useThemeUI } from 'theme-ui'
+import { useMemo } from 'react'
 
 import { useViewport } from '../context/ViewportProvider'
 import GradeGradient from './GradeGradient'
-import { gradeToColor } from '../lib/formatters'
 import { useUnits } from '../context/UnitProvider'
 
 const NewLineGraph = ({
-  data,
-  downsampleRate,
+  // data,
+  // downsampleRate,
+  xMax,
+  downSampledData,
   setMarker,
   elevationToAdd = 0,
   axisLeftTickValues,
@@ -26,21 +28,6 @@ const NewLineGraph = ({
   const themeContext = useThemeUI()
   const units = useUnits()
 
-  const downSampledData = data
-    .filter((d, i: number) => i % downsampleRate === 0)
-    .map(d => {
-      return {
-        ...d,
-        distance:
-          units.unitOfMeasure === 'imperial'
-            ? (d.distance * 0.00062137121212121).toFixed(1)
-            : (d.distance / 1000).toFixed(1),
-        y: units.unitOfMeasure === 'imperial' ? d.y * 3.28084 : Number(d.y),
-        color: gradeToColor(d.grade * 100),
-      }
-    })
-
-  const xMax = Number(downSampledData[downSampledData.length - 1].distance)
   const yTicks =
     units.unitOfMeasure === 'imperial'
       ? axisLeftTickValues.imperial[0]
