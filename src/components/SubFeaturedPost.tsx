@@ -3,8 +3,9 @@ import { Link as GatsbyLink } from 'gatsby'
 import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image'
 import moment from 'moment'
 
-import { MyImageProps } from '../common/types'
+import { MyImageProps, MyLinkProps } from '../common/types'
 const MyImage = Image as any as (props: MyImageProps) => JSX.Element
+const MyLink = Link as any as (props: MyLinkProps) => JSX.Element
 
 type FeaturePostProps = {
   headerImage: ImageDataLike | undefined
@@ -26,7 +27,7 @@ const SubFeaturedPost = ({
   updatedAt,
 }: FeaturePostProps) => {
   const headerImageComp = headerImage ? (
-    <Link to={`${slug}`} as={GatsbyLink}>
+    <MyLink to={`${slug}`} as={GatsbyLink}>
       <MyImage
         image={getImage(headerImage)}
         objectFit="cover"
@@ -35,7 +36,7 @@ const SubFeaturedPost = ({
         variant="homePageImage"
         sx={{ borderRadius: '5px' }}
       />
-    </Link>
+    </MyLink>
   ) : (
     ''
   )
@@ -91,7 +92,7 @@ const SubFeaturedPost = ({
           >
             {subType ? subType : type}
           </Text>
-          <Link
+          <MyLink
             to={`${slug}`}
             as={GatsbyLink}
             sx={{
@@ -110,7 +111,7 @@ const SubFeaturedPost = ({
             >
               {title}
             </Text>
-          </Link>
+          </MyLink>
           <Text
             as="p"
             variant="postSubtitle"

@@ -24,15 +24,10 @@ const Footer = () => {
   return (
     <footer
       sx={{
-        // display: 'flex',
-        // flexWrap: 'wrap',
-        // flexShrink: 0,
-        // marginTop: '20px',
         alignItems: 'center',
         variant: 'styles.footer',
         fontFamily: 'body',
         padding: '20px',
-        // backgroundColor: 'muted',
       }}
     >
       <Box
@@ -51,8 +46,6 @@ const Footer = () => {
             fontWeight: '500',
             fontSize: '2',
             marginBottom: '10px',
-            // letterSpacing: '1px',
-            // textTransform: 'uppercase',
           }}
         >
           {title}
@@ -117,7 +110,6 @@ const Footer = () => {
           marginBottom: '10px',
         }}
       >
-        {/* © {new Date().getFullYear()} */}
       </div>
     </footer>
   )
