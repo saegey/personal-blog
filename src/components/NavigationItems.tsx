@@ -5,7 +5,6 @@ import { MyLinkProps } from '../common/types'
 type MenuLinkProps = {
   title: string
   location: any
-  borderTop: boolean
   setMenuOpen: (arg: boolean) => void
 }
 
@@ -15,7 +14,6 @@ const MenuLink = ({
   title,
   location,
   setMenuOpen,
-  borderTop = false,
 }: MenuLinkProps) => {
   return (
     <MyLink
@@ -72,7 +70,6 @@ const NavigationItems = ({ setMenuOpen }: NavItemsProps) => {
           location="/"
           title="Home"
           setMenuOpen={setMenuOpen}
-          borderTop={true}
         />
         <MenuLink location="/about" title="About" setMenuOpen={setMenuOpen} />
         <MenuLink

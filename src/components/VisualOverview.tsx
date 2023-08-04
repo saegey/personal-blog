@@ -24,7 +24,7 @@ const VisualOverview = ({
   elevationToAdd,
   yMin = 0,
 }: Vizprops) => {
-  const [marker, setMarker] = useState({})
+  const [marker, setMarker] = useState({x: ''})
   const units = useUnits()
 
   const downSampledData = useMemo(

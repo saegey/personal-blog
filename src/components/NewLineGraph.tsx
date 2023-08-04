@@ -21,7 +21,7 @@ interface NewLineGraphProps {
     distance: number
     color: string
   }>
-  setMarker: (arg0: any) => { }
+  setMarker: (arg: any) => { }
   elevationToAdd: number
   axisLeftTickValues: {
     imperial: Array<Array<number>>
