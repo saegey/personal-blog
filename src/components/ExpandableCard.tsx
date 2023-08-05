@@ -1,6 +1,7 @@
 import { Box, Flex, Text } from 'theme-ui'
 
-import FullScreenIcon from './FullScreenIcon'
+import FullScreenIcon from './icons/FullScreenIcon'
+
 type Props = {
   children: JSX.Element
   title: string

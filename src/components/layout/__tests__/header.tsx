@@ -6,11 +6,11 @@ import { render, fireEvent, screen } from '@testing-library/react'
 
 import { ThemeUIProvider, useColorMode } from 'theme-ui'
 
-import Header from '../header'
+import Header from '../Header'
 import ColorModeSelector from '../ColorModeSelector'
 
-import { theme } from './__test-utils__'
-import { JsxEmit } from 'typescript'
+import { theme } from '../../__tests__/__test-utils__/index'
+// import { JsxEmit } from 'typescript'
 const mockColorMode = jest.fn()
 const mockDarkMode = jest.fn()
 
@@ -64,7 +64,7 @@ describe('Header', () => {
             <ColorModeSelector />
           </ThemeUIProvider>
         )
-        const themeButton = await screen.queryByTitle('Light Mode')
+        const themeButton = await screen.queryByTitle('Light Mode')!
         fireEvent.click(themeButton)
         expect(mockColorMode).toBeCalledWith('light')
       })

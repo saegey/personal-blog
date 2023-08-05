@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Text, Flex, Box, Button } from 'theme-ui'
 
-import { formatTime } from '../lib/formatters'
+import { formatTime } from '../../../lib/formatters'
 import RaceResultsList from './RaceResultsList'
-import Modal from './Modal'
+import Modal from '../../Modal'
 
 type Props = {
   data: [

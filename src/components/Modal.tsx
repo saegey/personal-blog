@@ -4,15 +4,17 @@ type ModalProps = {
   children: JSX.Element
   modalOpen: (arg: boolean) => void
   headerText: string
+  testId?: string
 }
 
-const Modal = ({ children, modalOpen, headerText }: ModalProps) => {
+const Modal = ({ children, modalOpen, headerText, testId }: ModalProps) => {
   return (
     <Box
       variant="styles.faded"
       onClick={() => {
         modalOpen(false)
       }}
+      data-testid={testId}
     >
       <Box
         sx={{
@@ -40,18 +42,19 @@ const Modal = ({ children, modalOpen, headerText }: ModalProps) => {
             </Text>
           </Box>
           <Box sx={{ marginLeft: 'auto', p: '20px' }}>
-            <Button
+            <Close
               onClick={() => {
                 modalOpen(false)
               }}
-              sx={{ backgroundColor: 'transparent', p: 0 }}
-            >
-              <Close
-                ml="auto"
-                mr={-2}
-                sx={{ color: 'text', cursor: 'pointer' }}
-              />
-            </Button>
+              ml="auto"
+              mr={-2}
+              sx={{
+                color: 'text',
+                cursor: 'pointer',
+                backgroundColor: 'transparent',
+                p: 0,
+              }}
+            />
           </Box>
         </Flex>
         <Box sx={{ paddingX: '20px' }}>{children}</Box>

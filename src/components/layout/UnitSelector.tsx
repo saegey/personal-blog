@@ -1,4 +1,4 @@
-import { Label, Radio, Box, Text, Flex } from 'theme-ui'
+import { Label, Radio, Box, Text } from 'theme-ui'
 
 type UnitContextProps = {
   unitOfMeasure: {
@@ -11,7 +11,6 @@ const UnitSelector = ({ unitOfMeasure }: UnitContextProps) => {
   return (
     <Box
       sx={{
-        // flex: '0 1 40px',
         marginTop: '20px',
         marginBottom: '20px',
         marginLeft: '30px',

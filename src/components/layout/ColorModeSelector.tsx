@@ -1,6 +1,6 @@
-import { Button, Flex, Box, useColorMode, Radio, Label, Text } from 'theme-ui'
+import { Flex, Box, useColorMode, Radio, Label, Text } from 'theme-ui'
 
-import { BoxSvgType } from '../common/types'
+import { BoxSvgType } from '../../common/types'
 
 const SvgBox = Box as any as (props: BoxSvgType) => JSX.Element
 
@@ -16,7 +16,6 @@ const ColorModeSelector = ({}) => {
       sx={{
         flex: '0 1 40px',
         marginTop: '20px',
-        // marginBottom: '20px',
         marginLeft: '30px',
         fontFamily: 'body',
       }}

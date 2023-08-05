@@ -4,7 +4,7 @@
 import renderer from 'react-test-renderer'
 import * as Gatsby from 'gatsby'
 
-import Footer from '../footer'
+import Footer from '../Footer'
 
 
 const useStaticQuery = jest.spyOn(Gatsby, `useStaticQuery`)

@@ -1,0 +1,655 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MatchesBurned clicks full screen button it renders the modal 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+}
+
+.emotion-1 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  background-color: background;
+  margin: 0% auto;
+  padding: 0px;
+  width: 100%;
+  max-width: 706px;
+  overflow-y: scroll;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-1 {
+    margin: 5% auto;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-1 {
+    margin: 5% auto;
+  }
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  background-color: background;
+}
+
+.emotion-3 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  padding: 20px;
+}
+
+.emotion-5 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  margin-left: auto;
+  padding: 20px;
+}
+
+.emotion-6 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  padding: 4px;
+  width: 32px;
+  height: 32px;
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  border-radius: 4px;
+  margin-right: -8px;
+  margin-left: auto;
+  color: text;
+  cursor: pointer;
+  background-color: transparent;
+  padding: 0;
+}
+
+.emotion-7 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.emotion-8 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 35px;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-8 {
+    height: 35px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-8 {
+    height: 35px;
+  }
+}
+
+.emotion-9 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 34%;
+}
+
+.emotion-11 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 33%;
+  text-align: center;
+}
+
+.emotion-13 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 33%;
+  text-align: right;
+}
+
+.emotion-15 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 35px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-15 {
+    height: 35px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-15 {
+    height: 35px;
+  }
+}
+
+.emotion-16 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 34%;
+}
+
+.emotion-18 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 33%;
+  text-align: center;
+}
+
+.emotion-20 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 33%;
+  text-align: right;
+}
+
+<div
+  class="emotion-0"
+  data-testid="matches-modal"
+>
+  <div
+    class="emotion-1"
+  >
+    <div
+      class="emotion-2"
+    >
+      <div
+        class="emotion-3"
+      >
+        <h2
+          class="emotion-0"
+        >
+          Matches Burned
+        </h2>
+      </div>
+      <div
+        class="emotion-5"
+      >
+        <button
+          aria-label="Close"
+          class="emotion-6"
+          title="Close"
+        >
+          <svg
+            fill="currentColor"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div
+      class="emotion-7"
+    >
+      <div
+        class="emotion-8"
+      >
+        <div
+          class="emotion-9"
+        >
+          <p
+            class="emotion-0"
+          >
+            <strong>
+              Average Power
+            </strong>
+          </p>
+        </div>
+        <div
+          class="emotion-11"
+        >
+          <p
+            class="emotion-0"
+          >
+            <strong>
+              Total Joules
+            </strong>
+          </p>
+        </div>
+        <div
+          class="emotion-13"
+        >
+          <p
+            class="emotion-0"
+          >
+            <strong>
+              Total time
+            </strong>
+          </p>
+        </div>
+      </div>
+      <div
+        class="emotion-15"
+      >
+        <div
+          class="emotion-16"
+        >
+          <p
+            class="emotion-0"
+          >
+            250
+             watts
+          </p>
+        </div>
+        <div
+          class="emotion-18"
+        >
+          <p
+            class="emotion-0"
+          >
+            1.00
+             kJ
+          </p>
+        </div>
+        <div
+          class="emotion-20"
+        >
+          <p
+            class="emotion-0"
+          >
+            4
+             sec
+          </p>
+        </div>
+      </div>
+      <div
+        class="emotion-15"
+      >
+        <div
+          class="emotion-16"
+        >
+          <p
+            class="emotion-0"
+          >
+            300
+             watts
+          </p>
+        </div>
+        <div
+          class="emotion-18"
+        >
+          <p
+            class="emotion-0"
+          >
+            3.00
+             kJ
+          </p>
+        </div>
+        <div
+          class="emotion-20"
+        >
+          <p
+            class="emotion-0"
+          >
+            10
+             sec
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`MatchesBurned renders 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  max-width: 690px;
+  margin: 60px auto;
+  background: muted;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.emotion-1 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  margin-bottom: 20px;
+}
+
+.emotion-3 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+}
+
+.emotion-4 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  margin-left: auto;
+}
+
+.emotion-5 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 40px;
+  right: 0;
+  top: 0;
+  z-index: 0;
+}
+
+.emotion-6 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+}
+
+.emotion-6 .icon-solid {
+  fill: primary;
+}
+
+.emotion-7 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 35px;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-7 {
+    height: 35px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-7 {
+    height: 35px;
+  }
+}
+
+.emotion-8 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 34%;
+}
+
+.emotion-10 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 33%;
+  text-align: center;
+}
+
+.emotion-12 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 33%;
+  text-align: right;
+}
+
+.emotion-14 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 35px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-14 {
+    height: 35px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-14 {
+    height: 35px;
+  }
+}
+
+.emotion-15 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 34%;
+}
+
+.emotion-17 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 33%;
+  text-align: center;
+}
+
+.emotion-19 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 33%;
+  text-align: right;
+}
+
+<div
+  className="emotion-0"
+>
+  <div
+    className="emotion-1"
+  >
+    <div
+      className="emotion-2"
+    >
+      <h2
+        className="emotion-3"
+      >
+        Matches Burned
+      </h2>
+    </div>
+    <div
+      className="emotion-4"
+    >
+      <button
+        className="emotion-5"
+        data-testid="matches-burned-fullscreen"
+        onClick={[Function]}
+      >
+        <svg
+          className="emotion-6"
+          viewBox="60 0 580 580"
+        >
+          <g
+            className="icon-solid"
+          >
+            <path
+              d="m414.87 239.87 40.129-40.125v27.754h35v-87.5h-87.5v35h27.754l-40.125 40.129z"
+            />
+            <path
+              d="m297.5 385h-27.754l40.125-40.129-24.742-24.742-40.129 40.125v-27.754h-35v87.5h87.5z"
+            />
+          </g>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div
+    className="emotion-7"
+  >
+    <div
+      className="emotion-8"
+    >
+      <p
+        className="emotion-3"
+      >
+        <strong>
+          Average Power
+        </strong>
+      </p>
+    </div>
+    <div
+      className="emotion-10"
+    >
+      <p
+        className="emotion-3"
+      >
+        <strong>
+          Total Joules
+        </strong>
+      </p>
+    </div>
+    <div
+      className="emotion-12"
+    >
+      <p
+        className="emotion-3"
+      >
+        <strong>
+          Total time
+        </strong>
+      </p>
+    </div>
+  </div>
+  <div
+    className="emotion-14"
+  >
+    <div
+      className="emotion-15"
+    >
+      <p
+        className="emotion-3"
+      >
+        250
+         watts
+      </p>
+    </div>
+    <div
+      className="emotion-17"
+    >
+      <p
+        className="emotion-3"
+      >
+        1.00
+         kJ
+      </p>
+    </div>
+    <div
+      className="emotion-19"
+    >
+      <p
+        className="emotion-3"
+      >
+        4
+         sec
+      </p>
+    </div>
+  </div>
+  <div
+    className="emotion-14"
+  >
+    <div
+      className="emotion-15"
+    >
+      <p
+        className="emotion-3"
+      >
+        300
+         watts
+      </p>
+    </div>
+    <div
+      className="emotion-17"
+    >
+      <p
+        className="emotion-3"
+      >
+        3.00
+         kJ
+      </p>
+    </div>
+    <div
+      className="emotion-19"
+    >
+      <p
+        className="emotion-3"
+      >
+        10
+         sec
+      </p>
+    </div>
+  </div>
+</div>
+`;
