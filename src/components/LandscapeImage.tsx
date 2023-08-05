@@ -9,7 +9,7 @@ interface RaceImageType {
   image: IGatsbyImageData
   caption: string
   altText: string
-  invert?: boolean,
+  invert?: boolean
   maximize?: boolean
   roundedEdges?: boolean
 }

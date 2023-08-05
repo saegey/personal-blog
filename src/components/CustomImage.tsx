@@ -34,7 +34,6 @@ const CustomImage = ({
   theme,
   layout,
 }: CustomImageProps) => {
-  // console.log('theme', theme)
   return (
     <ImageAlias
       image={image}
