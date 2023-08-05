@@ -1,6 +1,6 @@
 import { useUnits } from '../context/UnitProvider'
 import RaceStats from './RaceStats'
-import { Text, Box } from 'theme-ui'
+import FigureBox from './FigureBox'
 
 type Props = {
   data: {
@@ -120,27 +120,13 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
   ]
 
   return (
-    <Box
-      sx={{
-        maxWidth: '690px',
-        background: 'muted',
-        padding: '30px',
-        borderRadius: '5px',
-        margin: '60px auto',
-      }}
-      as="figure"
-    >
-      <Box sx={{ marginBottom: '10px' }}>
-        <Text as="h2" variant="resultsHeading">
-          Key Metrics
-        </Text>
-      </Box>
+    <FigureBox>
       <RaceStats
         items={items.filter(activity =>
           selectedFields.includes(activity.title)
         )}
       />
-    </Box>
+    </FigureBox>
   )
 }
 

@@ -10,7 +10,7 @@ const theme: Theme = {
     textInvert: lighten('text', 1),
     background: '#fff',
     backgroundAccent: darken('background', 0.02),
-    primary: lighten('text', 0.5),
+    primary: String(lighten('text', 0.5)),
     secondary: 'red',
     accent: darken('background', 0.8),
     highlight: darken('background', 0.5),

@@ -1,10 +1,9 @@
-import { Text, Link, Flex, Box, Image } from 'theme-ui'
+import { Text, Link, Flex, Box } from 'theme-ui'
 import { Link as GatsbyLink } from 'gatsby'
-import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image'
+import { getImage, ImageDataLike } from 'gatsby-plugin-image'
 import moment from 'moment'
 
-import { MyImageProps } from '../common/types'
-const MyImage = Image as any as (props: MyImageProps) => JSX.Element
+import CustomImage from './CustomImage'
 
 type FeaturePostProps = {
   headerImage: ImageDataLike | undefined
@@ -27,13 +26,12 @@ const FeaturedPost = ({
 }: FeaturePostProps) => {
   const headerImageComp = headerImage ? (
     <Link to={`${slug}`} as={GatsbyLink}>
-      <MyImage
+      <CustomImage
         image={getImage(headerImage)}
         objectFit="cover"
         alt={`Photo`}
-        as={GatsbyImage}
         variant="homePageImage"
-        sx={{ borderRadius: '5px' }}
+        theme={{ borderRadius: '5px' }}
       />
     </Link>
   ) : (

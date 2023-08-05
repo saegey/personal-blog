@@ -1,10 +1,10 @@
 import { Text, Link, Flex, Box, Image } from 'theme-ui'
 import { Link as GatsbyLink } from 'gatsby'
-import { GatsbyImage, getImage, ImageDataLike } from 'gatsby-plugin-image'
+import { getImage, ImageDataLike } from 'gatsby-plugin-image'
 import moment from 'moment'
 
-import { MyImageProps, MyLinkProps } from '../common/types'
-const MyImage = Image as any as (props: MyImageProps) => JSX.Element
+import { MyLinkProps } from '../common/types'
+import CustomImage from './CustomImage'
 const MyLink = Link as any as (props: MyLinkProps) => JSX.Element
 
 type FeaturePostProps = {
@@ -28,13 +28,12 @@ const SubFeaturedPost = ({
 }: FeaturePostProps) => {
   const headerImageComp = headerImage ? (
     <MyLink to={`${slug}`} as={GatsbyLink}>
-      <MyImage
+      <CustomImage
         image={getImage(headerImage)}
         objectFit="cover"
         alt={`Photo`}
-        as={GatsbyImage}
         variant="homePageImage"
-        sx={{ borderRadius: '5px' }}
+        theme={{ borderRadius: '5px', height: '220px' }}
       />
     </MyLink>
   ) : (

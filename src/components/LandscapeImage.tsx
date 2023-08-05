@@ -1,10 +1,18 @@
-import { Image, Box, useColorMode } from 'theme-ui'
-import { getImage, GatsbyImage } from 'gatsby-plugin-image'
+import { Box, useColorMode } from 'theme-ui'
+import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
 import ImageWrapper from './imageWrapper'
 import FullScreenIcon from './FullScreenIcon'
-import { RaceImageType, MyImageProps } from '../common/types'
-const MyImage = Image as any as (props: MyImageProps) => JSX.Element
+import CustomImage from './CustomImage'
+
+interface RaceImageType {
+  image: IGatsbyImageData
+  caption: string
+  altText: string
+  invert?: boolean
+  maximize?: boolean
+  roundedEdges?: boolean
+}
 
 const LandscapeImage = ({
   image,
@@ -18,14 +26,13 @@ const LandscapeImage = ({
   if (!maximize) {
     return (
       <Box sx={{ width: '100%', position: 'relative' }}>
-        <MyImage
+        <CustomImage
           image={getImage(image)}
           alt={'blah'}
-          as={GatsbyImage}
-          sx={{
+          theme={{
             filter: invert && colorMode === 'dark' ? `invert(1)` : `none`,
             width: ['100%', '100%', '100%'],
-            borderRadius: roundedEdges ? [4, 4, 4] : [0, 0, 0],
+            borderRadius: roundedEdges ? [5, 5, 5] : [0, 0, 0],
             '-webkit-mask-image': '-webkit-radial-gradient(white, black)',
           }}
         />
@@ -36,11 +43,10 @@ const LandscapeImage = ({
   return (
     <ImageWrapper image={image} caption={caption} altText="">
       <Box sx={{ width: '100%', position: 'relative' }}>
-        <MyImage
+        <CustomImage
           image={getImage(image)}
           alt={'blah'}
-          as={GatsbyImage}
-          sx={{
+          theme={{
             filter: invert && colorMode === 'dark' ? `invert(1)` : `none`,
             width: ['100%', '100%', '100%'],
             borderRadius: [4, 4, 4],

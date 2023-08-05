@@ -1,10 +1,8 @@
 import { Link as GatsbyLink } from 'gatsby'
-import { Text, Box, Card, Link, Image, Flex } from 'theme-ui'
+import { Text, Box, Card, Link, Flex } from 'theme-ui'
 import { IGatsbyImageData, getImage } from 'gatsby-plugin-image'
-import { GatsbyImage } from 'gatsby-plugin-image'
-import { MyImageProps } from '../common/types'
 
-const MyImage = Image as any as (props: MyImageProps) => JSX.Element
+import CustomImage from './CustomImage'
 
 type Props = {
   items: [
@@ -13,7 +11,7 @@ type Props = {
       title: string
       date: string
       normalizedPower: number
-      headerImage: IGatsbyImageData | undefined
+      headerImage: IGatsbyImageData | null
       timeInRed: string
       location: string
     }
@@ -27,9 +25,6 @@ const RelatedRaces = ({ items }: Props) => {
         maxWidth: '690px',
         margin: 'auto',
         marginY: '40px',
-        // background: 'muted',
-        // padding: '20px',
-        // borderRadius: '5px',
       }}
     >
       <Box
@@ -42,7 +37,6 @@ const RelatedRaces = ({ items }: Props) => {
         </Text>
       </Box>
       {items.map((i, index) => {
-        const headerImage = getImage(i.headerImage)
         return (
           <Link
             to={`/${i.slug}`}
@@ -65,23 +59,19 @@ const RelatedRaces = ({ items }: Props) => {
                     flexBasis: 'sidebar',
                   }}
                 >
-                  {headerImage && (
-                    <MyImage
-                      layout="constrained"
-                      image={headerImage}
-                      objectFit="cover"
-                      alt={`${i.title} Photo`}
-                      as={GatsbyImage}
-                      variant="relatedImage"
-                    />
-                  )}
+                  <CustomImage
+                    layout="constrained"
+                    image={getImage(i.headerImage)}
+                    objectFit="cover"
+                    alt={`${i.title} Photo`}
+                    variant="relatedImage"
+                  />
                 </div>
                 <Box
                   sx={{
                     flexGrow: 99999,
                     flexBasis: 0,
                     minWidth: 320,
-                    // background: 'backgroundAccent',
                   }}
                 >
                   <Box sx={{ height: '100%' }}>
