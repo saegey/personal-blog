@@ -1,12 +1,7 @@
-import { IGatsbyImageData, GatsbyImageProps } from 'gatsby-plugin-image'
-import { LinkProps, ImageProps, BoxProps } from 'theme-ui'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
+import { LinkProps, BoxProps } from 'theme-ui'
 import { GatsbyLinkProps } from 'gatsby'
-import { FunctionComponent } from 'react'
 import { SliceTooltipProps } from '@nivo/line'
-
-// interface Image {
-//   image: IGatsbyImageData | null
-// }
 
 export interface Coordinate {
   x: number
@@ -86,33 +81,16 @@ export interface LineGraphProps {
   xAxisFormatter?: (func: number) => string
 }
 
-export interface RaceImageType {
-  image: IGatsbyImageData
-  caption: string
-  altText: string
-}
 type CustomGatsbyLinkProps = Omit<GatsbyLinkProps<{}>, 'ref'>
 
 export interface MyLinkProps extends LinkProps, CustomGatsbyLinkProps {
   // as: typeof CustomGatsbyLinkProps // this is now required
-}
-export interface MyImageProps extends ImageProps {
-  image: IGatsbyImageData | undefined
-  objectFit?: string
-  layout?: string
-  alt?: string
-  as: FunctionComponent<GatsbyImageProps>
-  variant?: string
 }
 
 export interface BoxSvgType extends BoxProps {
   viewBox: string
   height?: string
   width?: string
-}
-
-export interface NestedRaceImageType extends RaceImageType {
-  children: JSX.Element
 }
 
 export interface PostNode {

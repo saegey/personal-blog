@@ -1,22 +1,15 @@
 import type { PageProps } from 'gatsby'
 import { graphql, Link as GatsbyLink } from 'gatsby'
-import { Container, Box, Text, Flex, Grid, Image, Link } from 'theme-ui'
-import { getImage, IGatsbyImageData, GatsbyImage } from 'gatsby-plugin-image'
+import { Container, Box, Text, Flex, Grid, Link } from 'theme-ui'
+import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import moment from 'moment'
 
-import { MyImageProps } from '../common/types'
-const MyImage = Image as any as (props: MyImageProps) => JSX.Element
 
 import Seo from '../components/seo'
 import SafariStyle from '../components/SafariStyle'
+import CustomImage from '../components/CustomImage'
 
-type PageContext = {
-  currentPage: number
-  numPages: number
-  urlPrefix: string
-}
-
-const PostList: React.FC<PageProps<DataProps, PageContext>> = ({ data }) => {
+const PostList: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data.allMdx.nodes
 
   return (
@@ -31,13 +24,11 @@ const PostList: React.FC<PageProps<DataProps, PageContext>> = ({ data }) => {
           return (
             <Box key={`post-${index}`}>
               <Link href={`/${slug}`} as={GatsbyLink}>
-                <MyImage
+                <CustomImage
                   layout="constrained"
                   image={getImage(headerImage)}
-                  // objectFit="cover"
                   alt={`${title} Photo`}
-                  as={GatsbyImage}
-                  sx={{
+                  theme={{
                     borderRadius: '5px',
                     height: ['300px', '280px', '260px'],
                   }}

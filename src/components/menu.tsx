@@ -39,7 +39,7 @@ const Menu = ({ menuOpen, setMenuOpen }: Props) => {
           flexFlow: 'column',
           zIndex: 10000,
           maxWidth: ['', '350px', '350px'],
-          left: menuOpen ? '0px' : '-600px',
+          left: menuOpen ? '0px' : '-700px',
           transition: 'all .4s ease',
         }}
       >

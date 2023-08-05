@@ -1,10 +1,8 @@
 import { useState } from 'react'
-import { Text, Image, Box } from 'theme-ui'
+import { Text, Box } from 'theme-ui'
 import { getImage, GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
-import { MyImageProps } from '../common/types'
-
-const MyImage = Image as any as (props: MyImageProps) => JSX.Element
+import CustomImage from './CustomImage'
 
 const RaceImage: React.FC<Props> = ({ image, caption, children, altText }) => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -38,11 +36,10 @@ const RaceImage: React.FC<Props> = ({ image, caption, children, altText }) => {
                 setMenuOpen(false)
               }}
             >
-              <MyImage
+              <CustomImage
                 objectFit="contain"
                 image={getImage(image)}
                 alt={altText || ''}
-                as={GatsbyImage}
                 variant="fullScreen"
               />
             </Box>

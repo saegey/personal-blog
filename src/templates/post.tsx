@@ -1,16 +1,11 @@
-import { Text, Flex, Box, Divider, Link, Container, Image } from 'theme-ui'
+import { Text, Flex, Box, Divider, Link, Container} from 'theme-ui'
 import { graphql, PageProps } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
 import {
   IGatsbyImageData,
-  GatsbyImage,
-  getImage,
   StaticImage,
 } from 'gatsby-plugin-image'
 import moment from 'moment'
-
-import { MyImageProps } from '../common/types'
-const MyImage = Image as any as (props: MyImageProps) => JSX.Element
 
 import Seo from '../components/seo'
 import SafariStyle from '../components/SafariStyle'
@@ -33,6 +28,7 @@ import { useSiteMetadata } from '../hooks/use-site-metadata'
 import StravaLink from '../components/StravaLink'
 import VisualOverview from '../components/VisualOverview'
 import NewLineGraph from '../components/NewLineGraph'
+import PostHeader from '../components/PostHeader'
 
 const shortcodes = {
   Box,
@@ -73,77 +69,15 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
 
   return (
     <>
-      <Flex
-        sx={{
-          marginTop: '10px',
-          flexDirection: ['column', 'row', 'row'],
-          justifyContent: 'space-between',
-        }}
-      >
-        <Box
-          sx={{
-            width: ['100%', '65%', '65%'],
-          }}
-        >
-          <MyImage
-            image={getImage(headerImage)}
-            objectFit="cover"
-            alt={`Photo`}
-            as={GatsbyImage}
-            variant="homePageImage"
-          />
-        </Box>
-        <Flex
-          sx={{
-            width: ['calc(100% - 40px)', '35%', '35%'],
-            marginX: ['20px', '0', '0'],
-            bg: ['', 'muted', 'muted'],
-            paddingY: ['10px', '20px', '20px'],
-            paddingX: [0, '20px', '20px'],
-            gap: '10px',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            position: 'relative',
-            borderBottomColor: 'muted',
-            borderBottomWidth: ['1px', 0, 0],
-            borderBottomStyle: 'solid',
-          }}
-        >
-          <Text variant="postType" sx={{ marginTop: 'auto' }}>
-            {type}
-          </Text>
-          <Text as="h1" variant="postTitle" sx={{ color: 'text' }}>
-            {title}
-          </Text>
-          <Text sx={{ fontSize: '14px', fontWeight: '300' }}>
-            {date} — {location}
-          </Text>
-          <Text
-            as="p"
-            sx={{
-              color: 'text',
-              fontWeight: '500',
-              fontSize: '16px',
-              lineHeight: '22px',
-            }}
-          >
-            {teaser}
-          </Text>
-          <Text
-            sx={{
-              color: 'text',
-              marginTop: 'auto',
-              fontSize: '12px',
-              lineHeight: '15px',
-              fontWeight: '500',
-              order: [-1, 0, 0],
-              marginBottom: ['10px', '0', '0'],
-            }}
-          >
-            {headerImageCaption}
-          </Text>
-        </Flex>
-      </Flex>
+      <PostHeader
+        headerImage={headerImage}
+        type={type}
+        title={title}
+        date={date}
+        location={location}
+        teaser={teaser}
+        headerImageCaption={headerImageCaption}
+      />
       <Container
         sx={{
           maxWidth: '1045px',
