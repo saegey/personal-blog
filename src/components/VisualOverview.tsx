@@ -42,7 +42,7 @@ const VisualOverview = ({
             color: gradeToColor(d.grade * 100),
           }
         }),
-    [elevationData.data]
+    [elevationData.data, units.unitOfMeasure],
   )
 
   const xMax = Number(downSampledData[downSampledData.length - 1].distance)

@@ -71,7 +71,7 @@ const NewLineGraph = ({
         paddingRight: [0, '20px', '20px'],
       }}
     >
-      <ResponsiveContainer width={'100%'} height="100%">
+      <ResponsiveContainer width={'100%'} height={"100%"}>
         <AreaChart
           data={downSampledData}
           onMouseMove={e => {
