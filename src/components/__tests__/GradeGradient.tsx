@@ -3,7 +3,7 @@
  */
 import renderer from 'react-test-renderer'
 
-import GradeGradient from '../posts/GradeGradient'
+import GradeGradient from '../posts/Route/GradeGradient'
 
 describe('GradGradient', () => {
   it('renders', () => {
