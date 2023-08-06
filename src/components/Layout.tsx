@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import Helmet from 'react-helmet'
 
-import Menu from '../components/layout/Menu'
-import Header from '../components/layout/Header'
-import Footer from '../components/layout/Footer'
-import BackToTop from '../components/layout/BackToTop'
+import Menu from './layout/Menu'
+import Header from './layout/Header'
+import Footer from './layout/Footer'
+import BackToTop from './layout/BackToTop'
 import ViewportProvider from '../context/ViewportProvider'
 import UnitProvider from '../context/UnitProvider'
 
