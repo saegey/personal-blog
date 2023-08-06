@@ -122,7 +122,7 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
   ]
 
   return (
-    <Box variant="boxes.figure">
+    <Box variant="boxes.figure" id="blah">
       <RaceStats
         items={items.filter(activity =>
           selectedFields.includes(activity.title)
