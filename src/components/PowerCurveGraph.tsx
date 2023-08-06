@@ -88,7 +88,6 @@ const PowerCurveGraphWrapper = (props: PowerCurveGraphProps) => {
         </MaximizedContainer>
       )}
       <ExpandableCard
-        id="power-curve-graph"
         title={props.title}
         openModal={setMax}
         expandableOnMobile={false}

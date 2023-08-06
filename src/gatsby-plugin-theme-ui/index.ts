@@ -17,6 +17,7 @@ const theme: Theme = {
     highlightedItem: '#e8ff50c7',
     muted: darken('#fff', 0.1),
     mutedAccent: darken('#fff', 0.2),
+    mutedAccentMore: darken('#fff', 0.3),
     cardBackground: '#fff',
     modes: {
       dark: {
@@ -31,6 +32,7 @@ const theme: Theme = {
         highlightedItem: darken('#e8ff50c7', 0.4),
         muted: lighten('#000', 0.25),
         mutedAccent: lighten('#000', 0.4),
+        mutedAccentMore: lighten('#000', 0.35),
         cardBackground: lighten('#000', 0.1),
       },
     },
@@ -161,9 +163,15 @@ const theme: Theme = {
     serif: '"Public Sans Variable", sans-serif',
     mono: '"Public Sans Variable", sans-serif',
   },
-  // sizes: {
-  //   container: 768,
-  // },
+  boxes: {
+    figure: {
+      maxWidth: [null, null, '690px'],
+      background: 'muted',
+      padding: '30px',
+      borderRadius: '5px',
+      margin: ['60px 0', '60px 0', '60px auto'],
+    }
+  },
   cards: {
     primary: {
       padding: 0,

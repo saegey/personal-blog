@@ -9,9 +9,9 @@ import {
 } from 'recharts'
 import { Box, useThemeUI } from 'theme-ui'
 
-import { useViewport } from '../../context/ViewportProvider'
+import { useViewport } from '../../../context/ViewportProvider'
 import GradeGradient from './GradeGradient'
-import { useUnits } from '../../context/UnitProvider'
+import { useUnits } from '../../../context/UnitProvider'
 
 interface NewLineGraphProps {
   xMax: number

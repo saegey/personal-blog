@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import Helmet from 'react-helmet'
 
-import Menu from './Menu'
-import Header from './Header'
-import Footer from './Footer'
-import BackToTop from './BackToTop'
-import ViewportProvider from '../../context/ViewportProvider'
-import UnitProvider from '../../context/UnitProvider'
+import Menu from '../components/layout/Menu'
+import Header from '../components/layout/Header'
+import Footer from '../components/layout/Footer'
+import BackToTop from '../components/layout/BackToTop'
+import ViewportProvider from '../context/ViewportProvider'
+import UnitProvider from '../context/UnitProvider'
 
 type CardProps = {
   children: JSX.Element

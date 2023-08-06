@@ -19,7 +19,7 @@ related:
   - 'Gran Fondo Winthrop'
 ---
 
-<LandscapeImage image={props.data.mdx.frontmatter.images[0]} />
+Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
 <RaceOverview
   data={props.data.mdx.gpxData.fields}
@@ -38,16 +38,14 @@ related:
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
+<LandscapeImage image={props.data.mdx.frontmatter.images[0]} />
+
+Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
+
 <PowerBreakdown
   powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
   powerZones={props.data.mdx.gpxData.fields.powerZones}
 />
-
-Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
-
-<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
-
-Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
 Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
 
@@ -94,25 +92,24 @@ Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis 
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid seral.
 
-<ElevationGraph
-  data={props.data.mdx.gpxData.fields.elevationData}
-  axisLeftTickValues={{
-    imperial: [
-      [1000, 2000, 3000, 4000],
-      [500, 1500, 2500, 3500, 4500],
-      [500, 1500, 2500, 3500, 4500],
-    ],
-    metric: [
-      [250, 750, 1250],
-      [250, 500, 750, 1000, 1250],
-      [250, 500, 750, 1000, 1250],
-    ],
+<VisualOverview
+  elevationToAdd={50}
+  yMin={300}
+  coordinates={props.data.mdx.gpxData.fields.coordinates}
+  elevationData={{
+    axisXTickValues: {
+      imperial: [[20, 40, 60]],
+      metric: [[25, 50, 75, 100]],
+    },
+    downsampleRate: 20,
+    data: props.data.mdx.gpxData.fields.elevationData,
+    axisLeftTickValues: {
+      imperial: [[0, 2000, 4000, 6000]],
+      metric: [[500, 1000, 1500, 2000]],
+    },
   }}
-  areaBaselineValue={{ imperial: 0, metric: 0 }}
-  yScaleMin={{ imperial: 0, metric: 0 }}
-  yScaleMax={{ imperial: 4500, metric: 1400 }}
-  downsampleRate={3}
 />
+
 Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix
 seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
 

@@ -73,7 +73,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
   const result: MdxData = await graphql(`
     {
       allMdx(
-        filter: { frontmatter: { isActive: { ne: false } } }
+        # filter: { frontmatter: { isActive: { ne: false } } }
         sort: { frontmatter: { date: DESC } }
       ) {
         nodes {

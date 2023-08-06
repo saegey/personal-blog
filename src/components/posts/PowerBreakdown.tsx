@@ -1,7 +1,6 @@
 import { Grid, Box, Text } from 'theme-ui'
 
 import { formatTime } from '../../lib/formatters'
-import FigureBox from '../FigureBox'
 
 const PowerBreakdown = ({
   powerZoneBuckets,
@@ -16,7 +15,7 @@ const PowerBreakdown = ({
   }>
 }) => {
   return (
-    <FigureBox>
+    <Box variant="boxes.figure">
       <>
         <Box sx={{ marginBottom: '20px' }}>
           <Text as="h2" variant="resultsHeading">
@@ -66,7 +65,7 @@ const PowerBreakdown = ({
           })}
         </Grid>
       </>
-    </FigureBox>
+    </Box>
   )
 }
 

@@ -73,28 +73,31 @@ As daunting as the numbers are, for some reason the long climbs are my jam these
 
 The temperature at 8am was cold so I opted to start with a shake dry jacket and medium gloves. It was time to ditch the jacket after around 25 min into ride after hitting the base of the climb which starts as pavement. I probably would choose a vest next time. The zipper on my 7mesh jacket is not easiest to use when riding so I pulled over for probably 15 secs to take it off.
 
-<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
-
 Before this is when we ran into the cattle that were crossing the road. The gloves were a good choice though and left them on the entire ride. At higher altitudes on the climb the temperature was lower and the gloves helped keep my hands warm.
 
-<ElevationGraph
-  data={props.data.mdx.gpxData.fields.elevationData}
-  axisLeftTickValues={{
-    imperial: [
-      [3000, 5000, 7000],
-      [2000, 3000, 4000, 5000, 6000, 7000],
-      [2000, 3000, 4000, 5000, 6000, 7000],
-    ],
-    metric: [
-      [500, 2500],
-      [500, 1000, 1500, 2000, 2500],
-      [500, 1000, 1500, 2000, 2500],
-    ],
+<VisualOverview
+  elevationToAdd={1000}
+  coordinates={props.data.mdx.gpxData.fields.coordinates}
+  elevationData={{
+    downsampleRate: 60,
+    data: props.data.mdx.gpxData.fields.elevationData,
+    axisXTickValues: {
+      imperial: [
+        [20, 40, 60, 80],
+      ],
+      metric: [
+        [20, 40, 60, 80, 100, 120],
+      ],
+    },
+    axisLeftTickValues: {
+      imperial: [
+        [1000, 2000, 3000],
+      ],
+      metric: [
+        [250, 500, 750, 1000],
+      ],
+    },
   }}
-  areaBaselineValue={{ imperial: 1500, metric: 500 }}
-  yScaleMin={{ imperial: 1500, metric: 500 }}
-  yScaleMax={{ imperial: 7500, metric: 2500 }}
-  downsampleRate={4}
 />
 
 My strategy was to ride mostly in the tempo zone and try to stay consistent the whole race as far as power output. Because this route is basically two giant climbs riding with a group is not that important because the benefits of drafting are not big at slower speeds. I also was thinking the group with split apart quickly on the climbing which it did.
@@ -131,27 +134,6 @@ The descent was steep and twisty with a lot of bigger loose gravel.
 During this section, I was really conservative because it seemed like if you pushed
 too hard you could easily slide out on a corner. I was pretty slow in this section
 and lost time to some of the other riders that chose to send it. At top of the first climb there is two shorter climbs around 700 feet each.
-
-<PowerGraph
-  data={[
-    {
-      id: 'Heart Rate',
-      data: props.data.mdx.gpxData.fields.heartRateData,
-      unit: 'bpm',
-    },
-  ]}
-  startTime={0}
-  areaBaselineValue={90}
-  axisLeftTickValues={[100, 120, 140, 160, 180]}
-  axisBottomTickValues={[3600, 7200, 10800, 14400, 18000, 21600, 25200]}
-  yScaleMax={190}
-  unit={'bpm'}
-  downsampleRate={60}
-  curve={'natural'}
-  lineWidth={2}
-  colors={['red']}
-  title="Heart Rate"
-/>
 
 Chris and I were back together for the big descent and by now I was determined to not get gapped on the descent and stayed on his wheel. This decent was tricky with big rocks, large holes, and washed out sections so we were using the full width of the road trying to find the fastest line without destroying are tires.
 

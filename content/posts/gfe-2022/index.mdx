@@ -19,25 +19,11 @@ results:
   provider: 'webscorer'
 ---
 
-<Carousel
-  images={[
-    props.data.mdx.frontmatter.images[1],
-    props.data.mdx.frontmatter.images[0],
-    props.data.mdx.frontmatter.images[2],
-    props.data.mdx.frontmatter.images[3],
-  ]}
->
-  <LandscapeImage image={props.data.mdx.frontmatter.images[1]} />
-  <LandscapeImage image={props.data.mdx.frontmatter.images[0]} />
-  <LandscapeImage image={props.data.mdx.frontmatter.images[2]} />
-  <LandscapeImage image={props.data.mdx.frontmatter.images[3]} />
-</Carousel>
-
 I'm baby man bun tilde health goth fixie austin taiyaki 3 wolf moon cloud bread microdosing. Hell of tumeric 8-bit, franzen banh mi big mood vegan shoreditch 3 wolf moon. Banjo distillery mixtape, trust fund master cleanse intelligentsia synth austin organic 8-bit messenger bag. Messenger bag ennui distillery franzen chillwave.
 
-<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
-
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
+
+<LandscapeImage image={props.data.mdx.frontmatter.images[1]} />
 
 Hexagon pour-over truffaut woke everyday carry coloring book, ugh gochujang tilde cray banh mi. Wolf asymmetrical coloring book, lomo PBR&B DSA direct trade cliche. Etsy lomo four dollar toast tumblr next level bushwick, yuccie cray lumbersexual roof party typewriter drinking vinegar humblebrag authentic.
 
@@ -78,24 +64,22 @@ Edison bulb intelligentsia godard green juice readymade bodega boys. Before they
 
 Single-origin coffee hell of fam lyft tumblr vibecession fingerstache cray kogi. Stumptown cred you probably haven't heard of them, kale chips brunch prism Brooklyn polaroid paleo dreamcatcher fashion axe +1. Farm-to-table prism cardigan gatekeep hot chicken schlitz raw denim live-edge four dollar toast scenester pop-up roof party before they sold out distillery. Messenger bag bicycle rights church-key mukbang irony vaporware kombucha la croix beard vinyl kale chips.
 
-<ElevationGraph
-  data={props.data.mdx.gpxData.fields.elevationData}
-  axisLeftTickValues={{
-    imperial: [
-      [1000, 2000, 3000],
-      [500, 1000, 1500, 2000, 2500, 3000],
-      [500, 1000, 1500, 2000, 2500, 3000],
-    ],
-    metric: [
-      [250, 500, 750, 1000],
-      [250, 500, 750, 1000],
-      [250, 500, 750, 1000],
-    ],
+<VisualOverview
+  elevationToAdd={50}
+  yMin={300}
+  coordinates={props.data.mdx.gpxData.fields.coordinates}
+  elevationData={{
+    axisXTickValues: {
+      imperial: [[20, 40, 60, 80]],
+      metric: [[4, 8, 12]],
+    },
+    downsampleRate: 20,
+    data: props.data.mdx.gpxData.fields.elevationData,
+    axisLeftTickValues: {
+      imperial: [[1000, 2000, 3000]],
+      metric: [[250, 500, 750, 1000]],
+    },
   }}
-  areaBaselineValue={{ imperial: 500, metric: 0 }}
-  yScaleMin={{ imperial: 500, metric: 0 }}
-  yScaleMax={{ imperial: 3000, metric: 1000 }}
-  downsampleRate={4}
 />
 
 I'm baby farm-to-table williamsburg yes plz waistcoat edison bulb, asymmetrical pinterest single-origin coffee four dollar toast put a bird on it freegan godard fit. Live-edge unicorn tumeric, trust fund pok pok readymade tofu. Subway tile la croix paleo, crucifix tumblr food truck edison bulb art party. Pok pok distillery iPhone four loko shaman.
@@ -119,7 +103,6 @@ Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Cruc
 
 I'm baby farm-to-table williamsburg yes plz waistcoat edison bulb, asymmetrical pinterest single-origin coffee four dollar toast put a bird on it freegan godard fit. Live-edge unicorn tumeric, trust fund pok pok readymade tofu. Subway tile la croix paleo, crucifix tumblr food truck edison bulb art party. Pok pok distillery iPhone four loko shaman.
 
-
 <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
 
 Wolf migas cliche, occupy woke ugh tote bag kombucha intelligentsia shoreditch
@@ -128,12 +111,13 @@ air plant praxis squid mixtape iceland hexagon semiotics. Praxis vinyl narwhal,
 selvage umami locavore post-ironic yr keytar kale chips ramps paleo edison bulb
 actually.
 
-Cloud bread woke bodega boys swag blue bottle plaid hell of literally
-organic man braid vape offal pour-over street art chicharrones. Snackwave health
-goth DSA green juice hashtag, fanny pack praxis. Mustache sartorial heirloom
-kitsch cornhole slow-carb ramps live-edge chillwave beard bodega boys praxis
-austin. Mustache affogato hashtag taiyaki sriracha live-edge big mood keffiyeh
-direct trade chillwave meh thundercats intelligentsia chicharrones letterpress.
+<LandscapeImage image={props.data.mdx.frontmatter.images[3]} />
+Cloud bread woke bodega boys swag blue bottle plaid hell of literally organic man
+braid vape offal pour-over street art chicharrones. Snackwave health goth DSA green
+juice hashtag, fanny pack praxis. Mustache sartorial heirloom kitsch cornhole slow-carb
+ramps live-edge chillwave beard bodega boys praxis austin. Mustache affogato hashtag
+taiyaki sriracha live-edge big mood keffiyeh direct trade chillwave meh thundercats
+intelligentsia chicharrones letterpress.
 
 <LandscapeImage image={props.data.mdx.frontmatter.images[0]} />
 

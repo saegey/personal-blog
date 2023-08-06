@@ -1,6 +1,6 @@
 import { Box, Grid, Text } from 'theme-ui'
-import { gradeToColor, formatTime } from '../../lib/formatters'
-import { useUnits } from '../../context/UnitProvider'
+import { gradeToColor, formatTime } from '../../../lib/formatters'
+import { useUnits } from '../../../context/UnitProvider'
 
 const ElevationSlice = ({ marker }: any) => {
   const units = useUnits()

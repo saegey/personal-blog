@@ -6,9 +6,7 @@ import { IGatsbyImageData } from 'gatsby-plugin-image'
 import Seo from '../components/seo'
 import RaceStats from '../components/RaceStats'
 import RaceOverview from '../components/RaceOverview'
-import ElevationGraph from '../components/ElevationGraph'
 import { default as PowerCurveGraph } from '../components/PowerCurveGraph'
-import PowerGraph from '../components/PowerGraph'
 import VideoPlayer from '../components/VideoPlayer'
 import Carousel from '../components/Carousel'
 import Caption from '../components/Caption'
@@ -34,9 +32,7 @@ const shortcodes = {
   RaceResults,
   RaceOverview,
   LandscapeImage,
-  ElevationGraph,
   PowerCurveGraph,
-  PowerGraph,
   Link,
   Text,
   MatchesBurned,
