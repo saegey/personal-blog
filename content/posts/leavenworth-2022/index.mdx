@@ -19,9 +19,8 @@ related:
   - 'Gran Fondo Winthrop'
 ---
 
-<Box sx={{ marginBottom: '20px' }}>
-  <LandscapeImage image={props.data.mdx.frontmatter.images[0]} />
-</Box>
+Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
+
 <RaceOverview
   data={props.data.mdx.gpxData.fields}
   selectedFields={[
@@ -39,20 +38,16 @@ related:
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
+<LandscapeImage image={props.data.mdx.frontmatter.images[0]} />
+
+Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
+
 <PowerBreakdown
   powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
   powerZones={props.data.mdx.gpxData.fields.powerZones}
 />
 
-Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
-
-<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
-
-Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
-
 Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
-
-<Divider />
 
 <PowerCurveGraph
   data={props.data.mdx.gpxData.fields.powerCurve}
@@ -70,7 +65,6 @@ Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Cruc
   ftp={props.data.mdx.gpxData.fields.currentFtp}
   title="Power Curve"
 />
-<Divider />
 
 Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
 
@@ -78,16 +72,12 @@ Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis 
 bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis
 retro butcher dolore jean shorts viral.
 
-<Divider />
 <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
-<Divider />
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
 Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis
 retro butcher dolore jean shorts viral.
-
-<Divider />
 
 <RaceResults
   data={props.data.mdx.results.fields.data}
@@ -96,33 +86,30 @@ retro butcher dolore jean shorts viral.
   racerName={'Adam Saegebarth'}
 />
 
-<Divider />
-
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hellal.
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid seral.
 
-<ElevationGraph
-  data={props.data.mdx.gpxData.fields.elevationData}
-  axisLeftTickValues={{
-    imperial: [
-      [1000, 2000, 3000, 4000],
-      [500, 1500, 2500, 3500, 4500],
-      [500, 1500, 2500, 3500, 4500],
-    ],
-    metric: [
-      [250, 750, 1250],
-      [250, 500, 750, 1000, 1250],
-      [250, 500, 750, 1000, 1250],
-    ],
+<VisualOverview
+  elevationToAdd={50}
+  yMin={300}
+  coordinates={props.data.mdx.gpxData.fields.coordinates}
+  elevationData={{
+    axisXTickValues: {
+      imperial: [[20, 40, 60]],
+      metric: [[25, 50, 75, 100]],
+    },
+    downsampleRate: 20,
+    data: props.data.mdx.gpxData.fields.elevationData,
+    axisLeftTickValues: {
+      imperial: [[0, 2000, 4000, 6000]],
+      metric: [[500, 1000, 1500, 2000]],
+    },
   }}
-  areaBaselineValue={{ imperial: 0, metric: 0 }}
-  yScaleMin={{ imperial: 0, metric: 0 }}
-  yScaleMax={{ imperial: 4500, metric: 1400 }}
-  downsampleRate={3}
 />
+
 Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix
 seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
 
@@ -133,7 +120,6 @@ seitan godard DIY, fugiat same austin single-origin coffee portland do intellige
     'Climbing up the first of two big climbs.  I was able to stay near the front group till the last little bit of the climb'
   }
 />
-<Divider sx={{ marginY: '20px' }} />
 
 ## The Good
 
@@ -144,8 +130,6 @@ seitan godard DIY, fugiat same austin single-origin coffee portland do intellige
 5. Switched my gear ratio from 40x17 to 36x17 and that worked well for the profile of this course. I only really spun out on the finish line and the slight gravel road descent leading up to the climb.
 6. Mud tires (Specialized Terra Pro) provided good traction in corners.
 
-<Divider sx={{ marginY: '20px' }} />
-
 ## Needs Improvement
 
 1. Valve cores were clogged with sealant and making it very to hard to set desired tire pressure.
@@ -153,8 +137,6 @@ seitan godard DIY, fugiat same austin single-origin coffee portland do intellige
 3. Tire pressure too low and not stable enough in fast corners
 4. Need to practice 30 second anaerobic power efforts for steep sections.
 5. Dropouts and rear QR skewer not tight enough. I was swapping chains a few days before to a newer waxed chain and playing with tension and the rocker dropouts. Well I need to tighten up everything when I finished but I didn't. Good thing there wasn't any bad outcomes from this.
-
-<Divider sx={{ marginBottom: '20px' }} />
 
 <RelatedRaces
   items={props.data.relatedP.edges.map(d => {

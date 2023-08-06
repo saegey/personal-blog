@@ -104,7 +104,6 @@ const Footer = () => {
           p: 0,
           fontFamily: 'body',
           fontWeight: '300',
-          // position: "absolute",
           bottom: 0,
           marginTop: 'auto',
           marginBottom: '10px',

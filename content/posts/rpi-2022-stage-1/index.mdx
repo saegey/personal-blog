@@ -38,11 +38,6 @@ This stage was a true sufferfest of a stage. On paper the the stats don't seem e
   ]}
 />
 
-<LandscapeImage
-  image={props.data.mdx.frontmatter.images[1]}
-  caption="Stream crossing that was rideable by a few. Photo by FinisherPix"
-/>
-
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
 <PowerBreakdown
@@ -61,26 +56,20 @@ Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis 
 bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis
 retro butcher dolore jean shorts viral. Dolor ramps mollit bitters fam locavore.
 
-<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
-
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
-<Divider />
 <RaceResults
   data={props.data.mdx.results.fields.data}
   numbersToHighlight={[0, 1, 2, 5, 58, 67]}
   distance={props.data.mdx.gpxData.fields.distance}
 />
-<Divider />
 
 Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin
 single-origin coffee portland do intelligentsia.
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
-
-<Divider />
 
 <PowerCurveGraph
   data={props.data.mdx.gpxData.fields.powerCurve}
@@ -98,14 +87,13 @@ Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis 
   ftp={props.data.mdx.gpxData.fields.currentFtp}
   title="Power Curve"
 />
-<Divider />
+
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis
 man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot
 chicken duis retro butcher dolore jean shorts viral.
 
-<Divider />
 <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
-<Divider />
+
 Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Crucifix
 seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
 
@@ -113,15 +101,11 @@ Dolor ramps mollit bitters fam locavore. Tattooed vibecession id pour-over. Cruc
 
 Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do intelligentsia.
 
-<Box sx={{ marginBottom: '20px' }}>
-  <PortraitImage
-    image={props.data.mdx.frontmatter.images[2]}
-    widthPercentage="40%"
-    caption="Stream crossing that was rideable by a few. Photo by FinisherPix"
-  />
-</Box>
-
-<Divider />
+<PortraitImage
+  image={props.data.mdx.frontmatter.images[2]}
+  widthPercentage="40%"
+  caption="Stream crossing that was rideable by a few. Photo by FinisherPix"
+/>
 
 ## What Went Well
 
@@ -130,42 +114,35 @@ Crucifix seitan godard DIY, fugiat same austin single-origin coffee portland do 
 3. Dear foresaw hungry and much some overhung
 4. Rash opossum less because less some amid besides yikes jeepers frenetic impassive fruitlessly shut
 
-<Divider />
-
-<ElevationGraph
-  data={props.data.mdx.gpxData.fields.elevationData}
-  axisLeftTickValues={{
-    imperial: [
-      [7000, 8000],
-      [6500, 7000, 7500, 8000],
-      [6500, 7000, 7500, 8000],
-    ],
-    metric: [
-      [2000, 2500],
-      [1750, 2000, 2250, 2500],
-      [1750, 2000, 2250, 2500],
-    ],
+<VisualOverview
+  elevationToAdd={50}
+  yMin={6000}
+  coordinates={props.data.mdx.gpxData.fields.coordinates}
+  elevationData={{
+    axisXTickValues: {
+      imperial: [[20, 40]],
+      metric: [[25, 50, 75]],
+    },
+    downsampleRate: 20,
+    data: props.data.mdx.gpxData.fields.elevationData,
+    axisLeftTickValues: {
+      imperial: [[7000, 8500]],
+      metric: [[1000, 2000, 3000]],
+    },
   }}
-  areaBaselineValue={{ imperial: 6000, metric: 1700 }}
-  yScaleMin={{ imperial: 6000, metric: 1700 }}
-  yScaleMax={{ imperial: 8000, metric: 2500 }}
-  downsampleRate={3}
 />
 
-<Divider />
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man
 bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis
 retro butcher dolore jean shorts viral. Dolor ramps mollit bitters fam locavore.
 Tattooed vibecession id pour-over. Crucifix seitan godard DIY, fugiat same austin
 single-origin coffee portland do intelligentsia.
 
-<Box sx={{ marginBottom: '20px' }}>
-  <PortraitImage
-    image={props.data.mdx.frontmatter.images[3]}
-    widthPercentage="40%"
-    caption="Stream crossing that was rideable by a few. Photo by FinisherPix"
-  />
-</Box>
+<PortraitImage
+  image={props.data.mdx.frontmatter.images[3]}
+  widthPercentage="40%"
+  caption="Stream crossing that was rideable by a few. Photo by FinisherPix"
+/>
 
 <RelatedRaces
   items={props.data.relatedP.edges.map(d => {

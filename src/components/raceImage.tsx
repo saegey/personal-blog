@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Text, Box } from 'theme-ui'
-import { getImage, GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
+import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
 import CustomImage from './CustomImage'
 

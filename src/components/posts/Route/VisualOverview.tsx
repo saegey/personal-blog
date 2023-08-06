@@ -4,8 +4,8 @@ import { useState, useMemo } from 'react'
 import Map from './Map'
 import NewLineGraph from './NewLineGraph'
 import ElevationSlice from './ElevationSlice'
-import { gradeToColor } from '../lib/formatters'
-import { useUnits } from '../context/UnitProvider'
+import { gradeToColor } from '../../../lib/formatters'
+import { useUnits } from '../../../context/UnitProvider'
 
 interface Vizprops {
   elevationData: any

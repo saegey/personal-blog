@@ -1,7 +1,7 @@
-import { Box, Link, Flex } from 'theme-ui'
+import { Box, Flex } from 'theme-ui'
 import { ReactElement } from 'react'
 
-import StravaIcon from './StravaIcon'
+import StravaIcon from './icons/StravaIcon'
 
 const StravaLink = ({ stravaUrl }: { children: ReactElement }) => {
   return (

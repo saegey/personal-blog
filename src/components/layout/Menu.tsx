@@ -3,8 +3,8 @@ import { Close, Box, Flex } from 'theme-ui'
 import UnitSelector from './UnitSelector'
 import NavigationItems from './NavigationItems'
 import ColorModeSelector from './ColorModeSelector'
-import Logo from './logo'
-import { useUnits } from '../context/UnitProvider'
+import Logo from '../icons/Logo'
+import { useUnits } from '../../context/UnitProvider'
 
 type Props = {
   menuOpen: boolean

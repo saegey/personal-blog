@@ -1,0 +1,327 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MatchesBurned clicks full screen button it renders the modal 1`] = `null`;
+
+exports[`MatchesBurned renders 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+}
+
+.emotion-1 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-2 {
+    margin-bottom: 0px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-2 {
+    margin-bottom: 0px;
+  }
+}
+
+.emotion-4 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  margin-left: auto;
+}
+
+.emotion-5 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 45px;
+  height: 40px;
+  right: 0;
+  top: 0;
+  z-index: 0;
+  border: none;
+  background-color: mutedAccent;
+  border-radius: 5px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-5:hover {
+  background-color: mutedAccentMore;
+}
+
+.emotion-6 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+}
+
+.emotion-6 .icon-solid {
+  fill: primary;
+}
+
+.emotion-7 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 35px;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-7 {
+    height: 35px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-7 {
+    height: 35px;
+  }
+}
+
+.emotion-8 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 34%;
+}
+
+.emotion-10 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 33%;
+  text-align: center;
+}
+
+.emotion-12 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 33%;
+  text-align: right;
+}
+
+.emotion-14 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 35px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-14 {
+    height: 35px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-14 {
+    height: 35px;
+  }
+}
+
+.emotion-15 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 34%;
+}
+
+.emotion-17 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 33%;
+  text-align: center;
+}
+
+.emotion-19 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 33%;
+  text-align: right;
+}
+
+<figure
+  className="emotion-0"
+>
+  <div
+    className="emotion-1"
+  >
+    <div
+      className="emotion-2"
+    >
+      <h2
+        className="emotion-0"
+      >
+        Matches Burned
+      </h2>
+    </div>
+    <div
+      className="emotion-4"
+    >
+      <button
+        className="emotion-5"
+        data-testid="matches-burned-fullscreen"
+        onClick={[Function]}
+      >
+        <svg
+          className="emotion-6"
+          viewBox="60 0 580 580"
+        >
+          <g
+            className="icon-solid"
+          >
+            <path
+              d="m414.87 239.87 40.129-40.125v27.754h35v-87.5h-87.5v35h27.754l-40.125 40.129z"
+            />
+            <path
+              d="m297.5 385h-27.754l40.125-40.129-24.742-24.742-40.129 40.125v-27.754h-35v87.5h87.5z"
+            />
+          </g>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div
+    className="emotion-7"
+  >
+    <div
+      className="emotion-8"
+    >
+      <p
+        className="emotion-0"
+      >
+        <strong>
+          Average Power
+        </strong>
+      </p>
+    </div>
+    <div
+      className="emotion-10"
+    >
+      <p
+        className="emotion-0"
+      >
+        <strong>
+          Total Joules
+        </strong>
+      </p>
+    </div>
+    <div
+      className="emotion-12"
+    >
+      <p
+        className="emotion-0"
+      >
+        <strong>
+          Total time
+        </strong>
+      </p>
+    </div>
+  </div>
+  <div
+    className="emotion-14"
+  >
+    <div
+      className="emotion-15"
+    >
+      <p
+        className="emotion-0"
+      >
+        250
+         watts
+      </p>
+    </div>
+    <div
+      className="emotion-17"
+    >
+      <p
+        className="emotion-0"
+      >
+        1.00
+         kJ
+      </p>
+    </div>
+    <div
+      className="emotion-19"
+    >
+      <p
+        className="emotion-0"
+      >
+        4
+         sec
+      </p>
+    </div>
+  </div>
+  <div
+    className="emotion-14"
+  >
+    <div
+      className="emotion-15"
+    >
+      <p
+        className="emotion-0"
+      >
+        300
+         watts
+      </p>
+    </div>
+    <div
+      className="emotion-17"
+    >
+      <p
+        className="emotion-0"
+      >
+        3.00
+         kJ
+      </p>
+    </div>
+    <div
+      className="emotion-19"
+    >
+      <p
+        className="emotion-0"
+      >
+        10
+         sec
+      </p>
+    </div>
+  </div>
+</figure>
+`;

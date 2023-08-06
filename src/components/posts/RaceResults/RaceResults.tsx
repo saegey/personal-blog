@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import { Text, Flex, Box, Button } from 'theme-ui'
+import React from 'react'
 
-import { formatTime } from '../lib/formatters'
+import { formatTime } from '../../../lib/formatters'
 import RaceResultsList from './RaceResultsList'
-import Modal from './Modal'
+import MaximizedContainer from '../../MaximizedContainer'
+import ExpandableCard from '../../ExpandableCard'
 
 type Props = {
   data: [
@@ -38,7 +38,7 @@ const RaceResults = ({
   racerName,
   showSpeed = true,
 }: Props) => {
-  const [shouldShowResults, setShouldShowResults] = useState(false)
+  const [isModalOpen, openModal] = React.useState(false)
 
   const firstPlaceTime = data
     ? data[0].time
@@ -81,42 +81,19 @@ const RaceResults = ({
 
   return (
     <>
-      {shouldShowResults && (
-        <Modal modalOpen={setShouldShowResults} headerText={'Race Results'}>
+      {isModalOpen && (
+        <MaximizedContainer title={'Race Results'} openModal={openModal}>
           <RaceResultsList data={data} />
-        </Modal>
+        </MaximizedContainer>
       )}
 
-      <Box
-        as="figure"
-        sx={{
-          maxWidth: '690px',
-          margin: '60px auto',
-          background: 'muted',
-          padding: '30px',
-          borderRadius: '5px',
-        }}
+      <ExpandableCard
+        title={'Race Results'}
+        openModal={openModal}
+        expandableOnMobile={false}
       >
-        <Flex>
-          <Box sx={{ marginBottom: ['20px', '20px', '20px'] }}>
-            <a id="results">
-              <Text as="h2" variant="resultsHeading">
-                Results
-              </Text>
-            </a>
-          </Box>
-          <Box sx={{ marginLeft: 'auto' }}>
-            <Button
-              onClick={() => {
-                setShouldShowResults(true)
-              }}
-            >
-              View All
-            </Button>
-          </Box>
-        </Flex>
         <RaceResultsList data={highlights} showSpeed={showSpeed} />
-      </Box>
+      </ExpandableCard>
     </>
   )
 }

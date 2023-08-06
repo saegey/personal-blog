@@ -1,7 +1,7 @@
 import { Text, Flex, Box } from 'theme-ui'
 
 import RaceResultItemSmall from './RaceResultItemSmall'
-import { useUnits } from '../context/UnitProvider'
+import { useUnits } from '../../../context/UnitProvider'
 
 interface Props {
   data: [
@@ -18,13 +18,7 @@ interface Props {
   showSpeed: boolean
 }
 
-interface WrapperProps extends Props {
-  theme: {
-    unitOfMeasure: string
-  }
-}
-
-const RaceResultsList = ({ data, showSpeed, theme }: WrapperProps) => {
+const RaceResultsList = ({ data, showSpeed }: Props) => {
   const units = useUnits()
 
   return (

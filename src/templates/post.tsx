@@ -1,46 +1,38 @@
-import { Text, Flex, Box, Divider, Link, Container} from 'theme-ui'
+import { Text, Link, Container } from 'theme-ui'
 import { graphql, PageProps } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
-import {
-  IGatsbyImageData,
-  StaticImage,
-} from 'gatsby-plugin-image'
-import moment from 'moment'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 import Seo from '../components/seo'
-import SafariStyle from '../components/SafariStyle'
 import RaceStats from '../components/RaceStats'
-import PortraitImage from '../components/PortraitImage'
-import RaceResults from '../components/RaceResults'
 import RaceOverview from '../components/RaceOverview'
-import LandscapeImage from '../components/LandscapeImage'
-import ElevationGraph from '../components/ElevationGraph'
-import { MatchesBurned } from '../components/MatchesBurned'
-import PowerBreakdown from '../components/PowerBreakdown'
 import { default as PowerCurveGraph } from '../components/PowerCurveGraph'
-import PowerGraph from '../components/PowerGraph'
 import VideoPlayer from '../components/VideoPlayer'
 import Carousel from '../components/Carousel'
 import Caption from '../components/Caption'
-import Map from '../components/Map'
 import RelatedRaces from '../components/RelatedRaces'
 import { useSiteMetadata } from '../hooks/use-site-metadata'
 import StravaLink from '../components/StravaLink'
-import VisualOverview from '../components/VisualOverview'
-import NewLineGraph from '../components/NewLineGraph'
-import PostHeader from '../components/PostHeader'
+
+import {
+  PowerBreakdown,
+  PostAuthor,
+  PostHeader,
+  PortraitImage,
+  LandscapeImage,
+  VisualOverview,
+  Map,
+  RaceResults,
+  MatchesBurned
+} from '../components/posts'
 
 const shortcodes = {
-  Box,
-  Divider,
   RaceStats,
   PortraitImage,
   RaceResults,
   RaceOverview,
   LandscapeImage,
-  ElevationGraph,
   PowerCurveGraph,
-  PowerGraph,
   Link,
   Text,
   MatchesBurned,
@@ -52,7 +44,6 @@ const shortcodes = {
   RelatedRaces,
   StravaLink,
   VisualOverview,
-  NewLineGraph,
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
@@ -106,59 +97,7 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
         className="article"
         as="article"
       >
-        <Box
-          sx={{
-            position: ['relative', 'relative', 'absolute'],
-            left: 0,
-            top: 0,
-            width: ['100%', '100%', '150px'],
-            height: '100%',
-            marginBottom: ['20px', '60px', '60px'],
-          }}
-        >
-          <Flex
-            sx={{
-              flexDirection: ['row', 'row', 'column'],
-              alignItems: 'flex-start',
-              gap: '20px',
-            }}
-          >
-            <StaticImage
-              layout="constrained"
-              formats={['auto', 'webp', 'avif']}
-              src="../images/author.jpg"
-              // objectFit="fill"
-              quality={95}
-              alt="Profile picture"
-              sx={{
-                borderRadius: ['50%', '50%', '50%'],
-                height: ['50px', '100px', '100px'],
-                width: ['50px', '100px', '100px'],
-                marginBottom: [0, '12px', '12px'],
-                minWidth: ['50px', '50px', '100px'],
-              }}
-            />
-            <Flex sx={{ flexDirection: 'column' }}>
-              <Text
-                as="span"
-                sx={{
-                  fontSize: '13px',
-                  fontWeight: '700',
-                  lineHeight: '18px',
-                  textTransform: 'uppercase',
-                }}
-              >
-                by Adam Saegebarth
-              </Text>
-              <Text
-                as="span"
-                sx={{ fontSize: '13px', fontWeight: '700', lineHeight: '18px' }}
-              >
-                {moment(publishedDate).format('MM.DD.YY')}
-              </Text>
-            </Flex>
-          </Flex>
-        </Box>
+        <PostAuthor publishedDate={publishedDate} />
         <MDXProvider components={shortcodes}>{children}</MDXProvider>
       </Container>
     </>

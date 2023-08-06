@@ -1,9 +1,9 @@
 import { Box, useColorMode } from 'theme-ui'
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
-import ImageWrapper from './imageWrapper'
-import FullScreenIcon from './FullScreenIcon'
-import CustomImage from './CustomImage'
+import ImageWrapper from '../imageWrapper'
+import FullScreenIcon from '../icons/FullScreenIcon'
+import CustomImage from '../CustomImage'
 
 interface RaceImageType {
   image: IGatsbyImageData

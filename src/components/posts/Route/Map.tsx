@@ -1,5 +1,4 @@
-// map.js
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect } from 'react'
 import { Box } from 'theme-ui'
 import mapboxgl from 'mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
@@ -9,7 +8,6 @@ const MAPBOX_TOKEN = `${process.env.GATSBY_MAPBOX_TOKEN}`
 const Map = ({ coordinates, markerCoordinates }) => {
   const mapContainerRef = useRef(null)
   const map = useRef(null)
-  // const marker = useRef(null)
 
   useEffect(() => {
     if (!map || !map.current) {
@@ -119,7 +117,6 @@ const Map = ({ coordinates, markerCoordinates }) => {
 
   return (
     <Box
-      sx={{ width: '100%' }}
       ref={mapContainerRef}
       sx={{ width: '100%', height: ['300px', '450px', '450px'] }}
     />

@@ -1,6 +1,6 @@
 import { Link as GatsbyLink } from 'gatsby'
 import { Link } from 'theme-ui'
-import { MyLinkProps } from '../common/types'
+import { MyLinkProps } from '../../common/types'
 
 type MenuLinkProps = {
   title: string

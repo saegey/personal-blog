@@ -1,14 +1,21 @@
 import { Box, Image } from 'theme-ui'
-import { getImage } from 'gatsby-plugin-image'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import { getImage, GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
-import ImageWrapper from './imageWrapper'
-import FullScreenIcon from './FullScreenIcon'
+import ImageWrapper from '../imageWrapper'
+import FullScreenIcon from '../icons/FullScreenIcon'
 
-const PortraitImage = ({ image, widthPercentage, caption }) => {
+interface PortraitImageProps {
+  image: IGatsbyImageData
+  widthPercentage: string
+  caption: string
+}
+
+const PortraitImage = ({
+  image,
+  widthPercentage,
+  caption,
+}: PortraitImageProps) => {
   const width = widthPercentage ? widthPercentage : '65%'
-  // const placeholderImage = getImage(image)
-  // const bgImage = convertToBgImage(placeholderImage)
 
   return (
     <ImageWrapper image={image} caption={caption}>

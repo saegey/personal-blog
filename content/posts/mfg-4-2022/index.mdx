@@ -40,9 +40,7 @@ It can change quite a bit if it's muddy but that doesn't usually happen at Magnu
 
 For this years race, the course was reversed which changed it up a bit. The barriers were placed on a steeper uphill segment that results in the remainder of the hill becoming a running section because it was too difficult to get momentum to remount.
 
-<Box sx={{ marginY: '30px' }}>
-  <Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
-</Box>
+<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
 
 The course was still prettty fast and the conditions pretty dry even with a few days of heavier rain leading up to race day. I have been postponing the start to my cross season partly because of the smoking and dry and dusty conditions. The condition were better today than they have been so the rain welcome this fall for once. I hope some muddy conditions are coming soon!
 
@@ -66,29 +64,6 @@ My tires for today were the WTB Cross Boss 35c tires. I was not a fan of these l
 year in the races are used them for. The height of tire seems greater than other
 tires and last year my complaint with them was sliding out in tight corners.
 
-<PowerGraph
-  data={[
-    {
-      id: 'Heart Rate',
-      data: props.data.mdx.gpxData.fields.heartRateData,
-      unit: 'bpm',
-    },
-  ]}
-  startTime={0}
-  endTime={2890}
-  areaBaselineValue={90}
-  axisLeftTickValues={[100, 120, 140, 160, 180]}
-  axisBottomTickValues={[600, 1200, 1800, 2400, 3000]}
-  yScaleMax={190}
-  unit={'bpm'}
-  downsampleRate={10}
-  curve={'natural'}
-  lineWidth={2}
-  colors={['red']}
-  segments={props.data.mdx.segments.fields.segments}
-  title="Heart Rate by Lap"
-/>
-
 In this race, in corners at high speed felt like they wanted to roll off the rim and that felt pretty meh. I was running them around 19psi front and rear. If I run higher pressure, this side effect goes away but most likely with loss in traction and compliance.
 
 <LandscapeImage
@@ -109,7 +84,6 @@ For this season, it is the go to single speed CX bike and recently was upgrade t
   image={props.data.mdx.frontmatter.images[3]}
   caption="Throwback to when I used to race the Transition - Magnuson Oct 16, 2016 on a muddy day "
 />
-
 
 ## The Good
 

@@ -1,6 +1,7 @@
 ---
 title: Belgian Waffle Ride San Diego
 date: 2022-04-30
+publishedDate: 2022-12-03
 headerImage: './1.jpeg'
 tags:
   - gravel
@@ -23,8 +24,6 @@ related:
   - Gran Fondo Winthrop
 ---
 
-<LandscapeImage image={props.data.mdx.frontmatter.images[0]} />
-
 I'm baby seitan migas iceland shoreditch cred same occupy intelligentsia. Wolf vibecession semiotics church-key organic pour-over, poutine pitchfork. DSA lo-fi man bun tote bag semiotics yr. Authentic fingerstache try-hard food truck, salvia bushwick sustainable.
 
 <RaceOverview
@@ -44,21 +43,15 @@ I'm baby seitan migas iceland shoreditch cred same occupy intelligentsia. Wolf v
 
 Swag tonx cornhole gluten-free everyday carry. Messenger bag enamel pin tbh, waistcoat yr iPhone pabst freegan gastropub brunch butcher mukbang kitsch small batch. Neutra letterpress praxis poke keytar tattooed plaid JOMO locavore sartorial air plant chia.
 
-<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
-
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
 Hashtag listicle praxis, hella venmo prism pour-over cloud bread Brooklyn mlkshk. Brooklyn polaroid snackwave air plant ugh leggings. Poutine shaman drinking vinegar deep v brunch, humblebrag la croix.
 
-<Divider sx={{ marginBottom: '20px' }} />
 <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
-<Divider />
 
 Disrupt pork belly cronut waistcoat, ethical activated charcoal polaroid iceland raw denim chillwave kitsch lo-fi blog man braid sustainable.
 
 Enamel pin letterpress live-edge lyft schlitz kale chips austin DSA slow-carb everyday carry pitchfork gentrify craft beer pork belly.
-
-<Divider sx={{ marginBottom: '20px' }} />
 
 <PowerCurveGraph
   data={props.data.mdx.gpxData.fields.powerCurve}
@@ -76,7 +69,6 @@ Enamel pin letterpress live-edge lyft schlitz kale chips austin DSA slow-carb ev
   ftp={props.data.mdx.gpxData.fields.currentFtp}
   title="Power Curve"
 />
-<Divider sx={{ marginBottom: '20px' }} />
 
 Disrupt portland organic, flannel tumeric offal flexitarian palo santo pug lo-fi
 succulents man bun microdosing praxis cliche. Mlkshk beard bitters ethical
@@ -89,15 +81,11 @@ Glossier celiac swag green juice affogato authentic, street art craft beer salvi
 vibecession echo park drinking vinegar poke. Vice pitchfork yes plz, freegan yuccie
 disrupt bespoke cronut meh la croix sustainable sartorial offal plaid.
 
-<Divider />
-<Box sx={{ marginTop: '20px' }}>
-  <RaceResults
-    data={props.data.mdx.results.fields.data}
-    numbersToHighlight={[0, 1, 2, 3, 4, 35, 47, 315, 316]}
-    distance={props.data.mdx.gpxData.fields.distance}
-  />
-</Box>
-<Divider />
+<RaceResults
+  data={props.data.mdx.results.fields.data}
+  numbersToHighlight={[0, 1, 2, 3, 4, 35, 47, 315, 316]}
+  distance={props.data.mdx.gpxData.fields.distance}
+/>
 
 Pok pok street
 art XOXO banjo pitchfork kinfolk gatekeep marfa viral. Affogato put a bird on it
@@ -107,13 +95,11 @@ woke, twee readymade quinoa pug plaid.
 
 Selvage church-key direct trade live-edge. Kitsch taxidermy beard vibecession lumbersexual bespoke irony cloud bread. Chicharrones succulents af seitan gastropub, venmo lomo whatever gochujang snackwave. Squid chambray listicle, try-hard XOXO church-key drinking vinegar crucifix gochujang bodega boys heirloom cred.
 
-<Divider sx={{ marginBottom: '20px' }} />
-## Time in Zones
+
 <PowerBreakdown
   powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
   powerZones={props.data.mdx.gpxData.fields.powerZones}
 />
-<Divider sx={{ marginBottom: '20px' }} />
 
 Selvage church-key direct trade live-edge. Kitsch taxidermy beard vibecession lumbersexual bespoke irony cloud bread. Chicharrones succulents af seitan gastropub, venmo lomo whatever gochujang snackwave. Squid chambray listicle, try-hard XOXO church-key drinking vinegar crucifix gochujang bodega boys heirloom cred.
 
@@ -121,24 +107,22 @@ Selvage church-key direct trade live-edge. Kitsch taxidermy beard vibecession lu
 
 Polaroid bitters dreamcatcher mustache migas locavore artisan ethical vice sartorial VHS microdosing gluten-free. Bespoke fashion axe raclette offal 90's viral affogato. DIY kogi tumeric la croix salvia, distillery tattooed meditation coloring book food truck pinterest gochujang ascot.
 
-<ElevationGraph
-  data={props.data.mdx.gpxData.fields.elevationData}
-  axisLeftTickValues={{
-    imperial: [
-      [3000, 5000, 7000],
-      [500, 1000, 1500, 2000, 2500],
-      [500, 1000, 1500, 2000, 2500],
-    ],
-    metric: [
-      [100, 300, 500, 700],
-      [100, 200, 300, 400, 500, 600, 700],
-      [100, 200, 300, 400, 500, 600, 700],
-    ],
+<VisualOverview
+  elevationToAdd={50}
+  yMin={300}
+  coordinates={props.data.mdx.gpxData.fields.coordinates}
+  elevationData={{
+    axisXTickValues: {
+      imperial: [[20, 40, 60, 80, 100, 120]],
+      metric: [[4, 8, 12]],
+    },
+    downsampleRate: 20,
+    data: props.data.mdx.gpxData.fields.elevationData,
+    axisLeftTickValues: {
+      imperial: [[0, 1000, 2000]],
+      metric: [[50, 100, 150]],
+    },
   }}
-  areaBaselineValue={{ imperial: 0, metric: 0 }}
-  yScaleMin={{ imperial: 0, metric: 0 }}
-  yScaleMax={{ imperial: 2500, metric: 700 }}
-  downsampleRate={6}
 />
 
 Meditation YOLO venmo butcher viral DIY ennui kinfolk. Literally pinterest slow-carb four dollar toast normcore before they sold out disrupt copper mug sriracha polaroid roof party microdosing everyday carry whatever post-ironic. Freegan small batch salvia tousled quinoa.
@@ -149,7 +133,6 @@ Celiac scenester umami craft beer Brooklyn. Keytar tote bag ascot narwhal normco
 
 Dummy text? More like dummy thicc text, amirite?
 
-<Divider />
 <RelatedRaces
   items={props.data.relatedP.edges.map(d => {
     return {
