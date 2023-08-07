@@ -31,7 +31,7 @@ jest.mock('theme-ui', () => {
   }
 })
 
-describe('LandscapeImagee', () => {
+describe('LandscapeImage', () => {
   it('renders', () => {
     const json = renderer
       .create(
