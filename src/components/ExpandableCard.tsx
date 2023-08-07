@@ -22,7 +22,7 @@ const ExpandableCard = ({
             {title}
           </Text>
         </Box>
-        <Box sx={{ marginLeft: 'auto' }}>
+        <Box sx={{ marginLeft: 'auto', height: '32px' }}>
           <Maximize onClick={openModal}/>
         </Box>
       </Flex>

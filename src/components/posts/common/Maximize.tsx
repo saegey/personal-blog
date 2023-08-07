@@ -11,8 +11,8 @@ const Maximize = ({onClick}: MaxProps) => (
     as="button"
     data-testid={'matches-burned-fullscreen'}
     sx={{
-      width: '45px',
-      height: '40px',
+      width: '32px',
+      height: '32px',
       right: '0',
       top: '0',
       zIndex: 0,
@@ -29,7 +29,7 @@ const Maximize = ({onClick}: MaxProps) => (
       onClick(true)
     }}
   >
-    <FullScreenIcon color="primary" />
+    <FullScreenIcon color="white" />
   </Box>
 )
 

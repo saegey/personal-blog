@@ -55,10 +55,12 @@ const LandscapeImage = ({
         />
         <Box
           sx={{
-            width: '40px',
+            height: '32px',
+            width: '32px',
+            padding: '2px',
             position: 'absolute',
-            right: '0',
-            top: '0',
+            right: '10px',
+            top: '10px',
             zIndex: 0,
           }}
         >

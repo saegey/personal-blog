@@ -1,4 +1,4 @@
-import { Text, Link, Container } from 'theme-ui'
+import { Text, Link, Container, Box } from 'theme-ui'
 import { graphql, PageProps } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
@@ -44,6 +44,7 @@ const shortcodes = {
   RelatedRaces,
   StravaLink,
   VisualOverview,
+  Box
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
