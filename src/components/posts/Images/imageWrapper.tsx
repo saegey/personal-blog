@@ -1,11 +1,18 @@
-import { useState } from 'react'
-import { Text, Box } from 'theme-ui'
-import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
+import { IGatsbyImageData, getImage } from 'gatsby-plugin-image'
+import { Box, Text } from 'theme-ui'
+import React from 'react'
 
-import CustomImage from './CustomImage'
+import CustomImage from '../../CustomImage'
 
-const RaceImage: React.FC<Props> = ({ image, caption, children, altText }) => {
-  const [menuOpen, setMenuOpen] = useState(false)
+export interface RaceImageType {
+  image: IGatsbyImageData
+  caption: string
+  children: JSX.Element
+  altText: string
+}
+
+const ImageWrapper = ({ image, caption, children, altText }: RaceImageType) => {
+  const [menuOpen, setMenuOpen] = React.useState(false)
 
   return (
     <>
@@ -52,11 +59,5 @@ const RaceImage: React.FC<Props> = ({ image, caption, children, altText }) => {
     </>
   )
 }
-export default RaceImage
 
-export interface Props {
-  image: IGatsbyImageData
-  caption: string
-  altText: string
-  children: JSX.Element
-}
+export default ImageWrapper

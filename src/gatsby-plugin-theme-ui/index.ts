@@ -166,10 +166,13 @@ const theme: Theme = {
   boxes: {
     figure: {
       maxWidth: [null, null, '690px'],
-      background: 'muted',
+      backgroundColor: 'muted',
       padding: '30px',
       borderRadius: '5px',
-      margin: ['60px 0', '60px 0', '60px auto'],
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      marginTop: '60px',
+      marginBottom: '60px'
     }
   },
   cards: {

@@ -2,7 +2,7 @@ import { Flex, Box, Text } from 'theme-ui'
 import { StaticImage } from 'gatsby-plugin-image'
 import moment from 'moment'
 
-import { useViewport } from '../../context/ViewportProvider'
+import { useViewport } from '../../../context/ViewportProvider'
 
 interface PostAuthorProps {
   publishedDate: string
@@ -32,7 +32,7 @@ const PostAuthor = ({ publishedDate }: PostAuthorProps) => {
         <StaticImage
           layout="constrained"
           formats={['auto', 'webp', 'avif']}
-          src="../../images/author.jpg"
+          src="../../../images/author.jpg"
           // objectFit="fill"
           quality={95}
           alt="Profile picture"

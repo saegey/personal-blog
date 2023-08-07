@@ -16,7 +16,7 @@ const RaceStats = ({ items }: Props) => {
       columns={[2, 2, 3]}
       sx={{
         borderRadius: '4px',
-        gap: ['30px', '5px 100px', '30px']
+        gap: ['30px', '5px 100px', '5px']
       }}
     >
       {items.map((item, index) => {
@@ -37,7 +37,7 @@ const RaceStats = ({ items }: Props) => {
                 as="p"
                 sx={{
                   fontFamily: 'body',
-                  fontSize: ['20px', '30px', '34px'],
+                  fontSize: ['20px', '30px', '30px'],
                   fontWeight: ['600', '600', '600'],
                   lineHeight: ['30px', '50px', '60px'],
                 }}

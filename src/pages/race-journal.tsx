@@ -6,7 +6,6 @@ import moment from 'moment'
 
 
 import Seo from '../components/seo'
-import SafariStyle from '../components/SafariStyle'
 import CustomImage from '../components/CustomImage'
 
 const PostList: React.FC<PageProps<DataProps>> = ({ data }) => {
@@ -14,7 +13,6 @@ const PostList: React.FC<PageProps<DataProps>> = ({ data }) => {
 
   return (
     <Container p={['20px', '20px', '32px']} sx={{ maxWidth: '1090px' }}>
-      <SafariStyle />
       <Grid columns={[1, 2, 3]} sx={{ rowGap: '60px', columnGap: '20px' }}>
         {posts.map((post, index: number) => {
           const { title, headerImage, subType, publishedDate } =

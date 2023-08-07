@@ -1,9 +1,12 @@
 import { Box, Flex } from 'theme-ui'
-import { ReactElement } from 'react'
 
-import StravaIcon from './icons/StravaIcon'
+import StravaIcon from '../../icons/StravaIcon'
 
-const StravaLink = ({ stravaUrl }: { children: ReactElement }) => {
+interface StravaLinkProps {
+  stravaUrl: string
+}
+
+const StravaLink = ({ stravaUrl }: StravaLinkProps) => {
   return (
     <>
       <Flex sx={{ marginY: '20px' }}>

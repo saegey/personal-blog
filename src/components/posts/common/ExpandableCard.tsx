@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from 'theme-ui'
 
-import Maximize from './posts/common/Maximize'
+import Maximize from './Maximize'
 
 type Props = {
   children: JSX.Element
@@ -22,7 +22,7 @@ const ExpandableCard = ({
             {title}
           </Text>
         </Box>
-        <Box sx={{ marginLeft: 'auto' }}>
+        <Box sx={{ marginLeft: 'auto', height: '32px' }}>
           <Maximize onClick={openModal}/>
         </Box>
       </Flex>

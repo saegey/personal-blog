@@ -8,7 +8,7 @@ import renderer from 'react-test-renderer'
 
 import { ThemeUIProvider } from 'theme-ui'
 
-import LineGraph from '../LineGraph'
+import LineGraph from '../../components/posts/PowerCurveGraph/LineGraph'
 
 import { theme } from './__test-utils__'
 

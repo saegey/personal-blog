@@ -2,8 +2,8 @@ import React from 'react'
 
 import { formatTime } from '../../../lib/formatters'
 import RaceResultsList from './RaceResultsList'
-import MaximizedContainer from '../../MaximizedContainer'
-import ExpandableCard from '../../ExpandableCard'
+import MaximizedContainer from '../common/MaximizedContainer'
+import ExpandableCard from '../common/ExpandableCard'
 
 type Props = {
   data: [

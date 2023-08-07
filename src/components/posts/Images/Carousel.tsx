@@ -19,7 +19,7 @@ const CustomCarousel = ({ images }: { children: JSX.Element }) => {
             showIndicators={false}
             showStatus={false}
             showThumbs={false}
-            onClickItem={e => {
+            onClickItem={() => {
               maximizeImage(null)
             }}
             selectedItem={maximizedImage}

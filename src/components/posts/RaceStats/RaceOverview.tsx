@@ -1,6 +1,6 @@
 import { Box } from 'theme-ui'
 
-import { useUnits } from '../context/UnitProvider'
+import { useUnits } from '../../../context/UnitProvider'
 import RaceStats from './RaceStats'
 
 

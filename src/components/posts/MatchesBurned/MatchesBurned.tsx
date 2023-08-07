@@ -2,8 +2,8 @@ import React from 'react'
 
 import MatchesHeading from './MatchesHeading'
 import MatchesItem from './MatchesItem'
-import ExpandableCard from '../../ExpandableCard'
-import MaximizedContainer from '../../MaximizedContainer'
+import ExpandableCard from '../common/ExpandableCard'
+import MaximizedContainer from '../common/MaximizedContainer'
 
 type Props = {
   data: Array<{

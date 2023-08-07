@@ -1,18 +1,10 @@
-import { Text, Link, Container } from 'theme-ui'
+import { Text, Link, Container, Box } from 'theme-ui'
 import { graphql, PageProps } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 import Seo from '../components/seo'
-import RaceStats from '../components/RaceStats'
-import RaceOverview from '../components/RaceOverview'
-import { default as PowerCurveGraph } from '../components/PowerCurveGraph'
-import VideoPlayer from '../components/VideoPlayer'
-import Carousel from '../components/Carousel'
-import Caption from '../components/Caption'
-import RelatedRaces from '../components/RelatedRaces'
 import { useSiteMetadata } from '../hooks/use-site-metadata'
-import StravaLink from '../components/StravaLink'
 
 import {
   PowerBreakdown,
@@ -23,11 +15,16 @@ import {
   VisualOverview,
   Map,
   RaceResults,
-  MatchesBurned
+  MatchesBurned,
+  StravaLink,
+  RelatedRaces,
+  Carousel,
+  VideoPlayer,
+  PowerCurveGraph,
+  RaceOverview
 } from '../components/posts'
 
 const shortcodes = {
-  RaceStats,
   PortraitImage,
   RaceResults,
   RaceOverview,
@@ -39,11 +36,11 @@ const shortcodes = {
   PowerBreakdown,
   VideoPlayer,
   Carousel,
-  Caption,
   Map,
   RelatedRaces,
   StravaLink,
   VisualOverview,
+  Box
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {

@@ -2,7 +2,7 @@ import { Link as GatsbyLink } from 'gatsby'
 import { Text, Box, Card, Link, Flex } from 'theme-ui'
 import { IGatsbyImageData, getImage } from 'gatsby-plugin-image'
 
-import CustomImage from './CustomImage'
+import CustomImage from '../../CustomImage'
 
 type Props = {
   items: [

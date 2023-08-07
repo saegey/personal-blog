@@ -1,9 +1,9 @@
 import { ResponsiveLine } from '@nivo/line'
 import { useThemeUI, Text } from 'theme-ui'
 
-import { formatSeconds, formatTime } from '../lib/formatters'
-import { LineGraphProps } from '../common/types'
-import { themeTemplate } from '../lib/graphHelper'
+import { formatSeconds, formatTime } from '../../../lib/formatters'
+import { LineGraphProps } from '../../../common/types'
+import { themeTemplate } from '../../../lib/graphHelper'
 
 const LineGraph = ({
   data,

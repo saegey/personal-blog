@@ -1,23 +1,33 @@
 import { Box } from 'theme-ui'
-import { BoxSvgType } from '../common/types'
+import { BoxSvgType } from '../../common/types'
 
 const SvgBox = Box as any as (props: BoxSvgType) => JSX.Element
 
-const FullScreenIcon = ({ color = 'white' }) => {
+interface FullScreenIconProps {
+  color: string
+}
+
+const FullScreenIcon = ({color}: FullScreenIconProps) => {
   return (
     <SvgBox
       as="svg"
-      viewBox="60 0 580 580"
+      viewBox="0 0 14 14"
       sx={{
         '.icon-solid': {
           fill: color,
         },
+        width: '100%',
+        height: '100%',
+        padding: '2px',
       }}
     >
-      <g className="icon-solid">
-        <path d="m414.87 239.87 40.129-40.125v27.754h35v-87.5h-87.5v35h27.754l-40.125 40.129z"></path>
-        <path d="m297.5 385h-27.754l40.125-40.129-24.742-24.742-40.129 40.125v-27.754h-35v87.5h87.5z"></path>
-      </g>
+      <g fill="none" fill-rule="evenodd" id="Page-1" stroke="none" strokeWidth="1">
+        <g className="icon-solid" id="Core" transform="translate(-215.000000, -257.000000)">
+            <g id="fullscreen" transform="translate(215.000000, 257.000000)">
+              <path d="M2,9 L0,9 L0,14 L5,14 L5,12 L2,12 L2,9 L2,9 Z M0,5 L2,5 L2,2 L5,2 L5,0 L0,0 L0,5 L0,5 Z M12,12 L9,12 L9,14 L14,14 L14,9 L12,9 L12,12 L12,12 Z M9,0 L9,2 L12,2 L12,5 L14,5 L14,0 L9,0 L9,0 Z" id="Shape"/>
+            </g>
+          </g>
+        </g>
     </SvgBox>
   )
 }
