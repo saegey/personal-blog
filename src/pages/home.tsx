@@ -13,8 +13,8 @@ import { Link as GatsbyLink, PageProps } from 'gatsby'
 import { ImageDataLike } from 'gatsby-plugin-image'
 
 import Seo from '../components/seo'
-import FeaturedPost from '../components/FeaturedPost'
-import SubFeaturedPost from '../components/SubFeaturedPost'
+import FeaturedPost from '../components/home/FeaturedPost'
+import SubFeaturedPost from '../components/home/SubFeaturedPost'
 
 type PostProps = {
   node: {

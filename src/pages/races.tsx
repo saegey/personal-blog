@@ -2,14 +2,12 @@ import { Container } from 'theme-ui'
 import { graphql, PageProps } from 'gatsby'
 
 import Seo from '../components/seo'
-import SafariStyle from '../components/SafariStyle'
 
 const Races: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data.allMdx.nodes
 
   return (
     <>
-      <SafariStyle />
       <Container sx={{ padding: '20px' }}>
         <table sx={{ fontFamily: 'body', padding: '10px' }}>
           <tr>

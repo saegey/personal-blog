@@ -2,13 +2,11 @@ import { Box, Flex, Container, Text } from 'theme-ui'
 import { graphql } from 'gatsby'
 import { StaticImage } from 'gatsby-plugin-image'
 
-import SafariStyle from '../components/SafariStyle'
 import Seo from '../components/seo'
 
 const AboutIndex = () => {
   return (
     <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 768 }}>
-      <SafariStyle />
       <Text as="h1">About Me</Text>
       <Box>
         <Flex sx={{ justifyContent: 'center' }}>
