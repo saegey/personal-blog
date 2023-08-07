@@ -32,7 +32,7 @@ const PostAuthor = ({ publishedDate }: PostAuthorProps) => {
         <StaticImage
           layout="constrained"
           formats={['auto', 'webp', 'avif']}
-          src="../../images/author.jpg"
+          src="../../../images/author.jpg"
           // objectFit="fill"
           quality={95}
           alt="Profile picture"
