@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`GradGradient renders 1`] = `
-<stop
-  offset={0.25}
-  stopColor="red"
-  stopOpacity={1}
-/>
-`;

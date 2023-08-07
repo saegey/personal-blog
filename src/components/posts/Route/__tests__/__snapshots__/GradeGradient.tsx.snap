@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GradGradient consolidates stops if the same color 1`] = `
+[
+  <stop
+    offset={0.25}
+    stopColor="red"
+    stopOpacity={1}
+  />,
+  <stop
+    offset={1}
+    stopColor="red"
+    stopOpacity={1}
+  />,
+]
+`;
+
+exports[`GradGradient renders 1`] = `
+<stop
+  offset={0.25}
+  stopColor="red"
+  stopOpacity={1}
+/>
+`;

@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react'
 import { Box } from 'theme-ui'
 import mapboxgl from 'mapbox-gl'
-// import 'mapbox-gl/dist/mapbox-gl.css'
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 const MAPBOX_TOKEN = `${process.env.GATSBY_MAPBOX_TOKEN}`
 

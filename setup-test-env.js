@@ -19,28 +19,4 @@ jest.mock('gatsby-plugin-image', () => {
   return mockPlugin
 })
 
-// jest.mock('theme-ui', () => {
-//   return {
-//     Text: ({ children }) => {
-//       return <p>{children}</p>
-//     },
-//     Box: ({ children }) => {
-//       return <div>{children}</div>
-//     },
-//     Image: ({ children }) => {
-//       return <img>{children}</img>
-//     },
-//     useColorMode: () => {
-//       return ['dark']
-//     },
-//     useThemeUI: () => {
-//       return {
-//         theme: {
-//           colors: {
-//             background: 'blue',
-//           },
-//         },
-//       }
-//     },
-//   }
-// })
+ jest.mock('mapbox-gl/dist/mapbox-gl.css', () => jest.fn())
