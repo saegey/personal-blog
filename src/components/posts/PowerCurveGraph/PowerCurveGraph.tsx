@@ -3,10 +3,10 @@ import { useResponsiveValue } from '@theme-ui/match-media'
 import { useState } from 'react'
 
 import LineGraph from './LineGraph'
-import { GraphProps } from '../common/types'
-import MaximizedContainer from './MaximizedContainer'
-import ExpandableCard from './ExpandableCard'
-import { formatSeconds } from '../lib/formatters'
+import { GraphProps } from '../../../common/types'
+import MaximizedContainer from '../common/MaximizedContainer'
+import ExpandableCard from '../common/ExpandableCard'
+import { formatSeconds } from '../../../lib/formatters'
 
 interface PowerCurveGraphProps extends GraphProps {
   yAxes: Array<Array<Number>>

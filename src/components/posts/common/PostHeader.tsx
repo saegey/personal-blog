@@ -1,5 +1,5 @@
 import { Flex, Box, Text } from 'theme-ui'
-import CustomImage from '../CustomImage'
+import CustomImage from '../../CustomImage'
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
 interface PostHeaderProps {

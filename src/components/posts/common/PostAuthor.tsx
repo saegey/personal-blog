@@ -2,7 +2,7 @@ import { Flex, Box, Text } from 'theme-ui'
 import { StaticImage } from 'gatsby-plugin-image'
 import moment from 'moment'
 
-import { useViewport } from '../../context/ViewportProvider'
+import { useViewport } from '../../../context/ViewportProvider'
 
 interface PostAuthorProps {
   publishedDate: string

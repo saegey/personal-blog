@@ -1,5 +1,5 @@
 import { Box } from 'theme-ui'
-import { BoxSvgType } from '../common/types'
+import { BoxSvgType } from '../../common/types'
 
 const SvgBox = Box as any as (props: BoxSvgType) => JSX.Element
 

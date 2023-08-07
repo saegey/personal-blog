@@ -3,7 +3,9 @@ import { Link as GatsbyLink } from 'gatsby'
 import { getImage, ImageDataLike } from 'gatsby-plugin-image'
 import moment from 'moment'
 
-import CustomImage from './CustomImage'
+import { MyLinkProps } from '../../common/types'
+import CustomImage from '../CustomImage'
+const MyLink = Link as any as (props: MyLinkProps) => JSX.Element
 
 type FeaturePostProps = {
   headerImage: ImageDataLike | undefined
@@ -15,40 +17,45 @@ type FeaturePostProps = {
   updatedAt: Date
 }
 
-const FeaturedPost = ({
-  headerImage,
+const SubFeaturedPost = ({
   title,
-  type,
+  headerImage,
   slug,
-  teaser,
+  type = 'Race Journal',
+  teaser = '',
   subType,
   updatedAt,
 }: FeaturePostProps) => {
   const headerImageComp = headerImage ? (
-    <Link to={`${slug}`} as={GatsbyLink}>
+    <MyLink to={`${slug}`} as={GatsbyLink}>
       <CustomImage
         image={getImage(headerImage)}
         objectFit="cover"
         alt={`Photo`}
         variant="homePageImage"
-        theme={{ borderRadius: '5px' }}
+        theme={{ borderRadius: '5px', height: '220px' }}
       />
-    </Link>
+    </MyLink>
   ) : (
     ''
   )
 
   return (
-    <Flex sx={{ flexWrap: 'wrap' }}>
+    <Flex
+      sx={{
+        flexWrap: 'wrap',
+        gap: ['10px', '10px', '20px'],
+      }}
+    >
       <Box
         sx={{
           flexGrow: 1,
           flexBasis: 'sidebar',
-          width: [
-            '100%',
-            'calc(100% - 335px - 20px)',
-            'calc(100% - 335px - 20px)',
-          ],
+          width: '50%',
+          alignContent: 'center',
+          alignItems: 'center',
+          marginTop: 'auto',
+          marginBottom: 'auto',
         }}
       >
         {headerImageComp}
@@ -57,34 +64,58 @@ const FeaturedPost = ({
         sx={{
           flexGrow: 99999,
           flexBasis: 0,
-          minWidth: 320,
+          minWidth: 300,
+          // bg: 'backgroundEm',
         }}
       >
         <Flex
           sx={{
             flexDirection: 'column',
-            paddingTop: ['10px', 0, 0],
-            paddingX: [0, '20px', '20px'],
+            // justifyContent: 'flex-start',
+            gap: '10px',
             height: '100%',
-            gap: ['10px', '20px', '20px'],
           }}
         >
-          <Text as="p" variant="postType" sx={{ textAlign: 'left' }}>
-            {subType}
+          <Text
+            as="p"
+            sx={{
+              // marginX: 'auto',
+              fontFamily: 'body',
+              fontWeight: '700',
+              letterSpacing: '.1em',
+              fontSize: ['13px', '13px', '13px'],
+              textTransform: 'uppercase',
+              color: 'primary',
+              lineHeight: '130%',
+            }}
+          >
+            {subType ? subType : type}
           </Text>
-          <Link to={`${slug}`} as={GatsbyLink} sx={{ textDecoration: 'none' }}>
+          <MyLink
+            to={`${slug}`}
+            as={GatsbyLink}
+            sx={{
+              fontFamily: 'body',
+              textDecoration: 'none',
+            }}
+          >
             <Text
               as="h1"
               variant="postTitle"
-              sx={{ textAlign: 'left', color: 'text' }}
+              sx={{
+                fontSize: ['20px', '24px', '24px'],
+                textAlign: 'left',
+                color: 'text',
+              }}
             >
               {title}
             </Text>
-          </Link>
+          </MyLink>
           <Text
             as="p"
             variant="postSubtitle"
             sx={{
+              textAlign: 'left',
               marginBottom: '0px',
               color: 'text',
             }}
@@ -113,4 +144,4 @@ const FeaturedPost = ({
   )
 }
 
-export default FeaturedPost
+export default SubFeaturedPost

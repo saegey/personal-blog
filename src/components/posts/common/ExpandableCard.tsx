@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from 'theme-ui'
 
-import Maximize from './posts/common/Maximize'
+import Maximize from './Maximize'
 
 type Props = {
   children: JSX.Element

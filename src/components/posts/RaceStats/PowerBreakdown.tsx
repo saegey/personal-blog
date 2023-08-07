@@ -1,6 +1,6 @@
 import { Grid, Box, Text } from 'theme-ui'
 
-import { formatTime } from '../../lib/formatters'
+import { formatTime } from '../../../lib/formatters'
 
 const PowerBreakdown = ({
   powerZoneBuckets,
