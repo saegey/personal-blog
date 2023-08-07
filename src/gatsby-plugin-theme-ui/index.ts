@@ -66,7 +66,8 @@ const theme: Theme = {
       borderLeftColor: 'muted',
       paddingLeft: [0, 0, '8px'],
       marginTop: '20px',
-      marginY: 0,
+      marginBottom: '10px',
+      lineHeight: '30px'
     },
     ol: {
       maxWidth: '690px',

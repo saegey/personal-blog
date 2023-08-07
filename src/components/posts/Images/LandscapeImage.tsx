@@ -17,29 +17,10 @@ interface RaceImageType {
 const LandscapeImage = ({
   image,
   caption,
-  invert = false,
-  maximize = true,
-  roundedEdges = true,
+  invert = false
 }: RaceImageType) => {
   const [colorMode] = useColorMode()
   const { theme } = useThemeUI()
-
-  if (!maximize) {
-    return (
-      <Box sx={{ width: '100%', position: 'relative' }}>
-        <CustomImage
-          image={getImage(image)}
-          alt={'blah'}
-          theme={{
-            filter: invert && colorMode === 'dark' ? `invert(1)` : `none`,
-            width: ['100%', '100%', '100%'],
-            borderRadius: roundedEdges ? [5, 5, 5] : [0, 0, 0],
-            '-webkit-mask-image': '-webkit-radial-gradient(white, black)',
-          }}
-        />
-      </Box>
-    )
-  }
 
   return (
     <ImageWrapper image={image} caption={caption} altText="">
@@ -51,7 +32,7 @@ const LandscapeImage = ({
             filter: invert && colorMode === 'dark' ? `invert(1)` : `none`,
             width: ['100%', '100%', '100%'],
             borderRadius: [4, 4, 4],
-            // '-webkit-mask-image': '-webkit-radial-gradient(white, black)',
+            WebkitMaskImage: '-webkit-radial-gradient(white, black)',
           }}
         />
         <Box

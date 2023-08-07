@@ -31,7 +31,7 @@ const ImageWrapper = ({ image, caption, children, altText }: RaceImageType) => {
       </Box>
       {menuOpen && (
         <Box variant="styles.faded">
-          <div
+          <Box
             sx={{
               marginX: 'auto',
               marginY: 'auto',
@@ -53,7 +53,7 @@ const ImageWrapper = ({ image, caption, children, altText }: RaceImageType) => {
             <Text as="em" variant="caption">
               {caption}
             </Text>
-          </div>
+          </Box>
         </Box>
       )}
     </>
