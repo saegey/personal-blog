@@ -1,0 +1,413 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostTemplate renders 1`] = `
+[
+  .emotion-0 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-0 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-0 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+.emotion-1 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 100%;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-1 {
+    width: 65%;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-1 {
+    width: 65%;
+  }
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: calc(100% - 40px);
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 0;
+  padding-right: 0;
+  gap: 10px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  position: relative;
+  border-bottom-color: muted;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-2 {
+    width: 35%;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: muted;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-bottom-width: 0;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-2 {
+    width: 35%;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: muted;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-bottom-width: 0;
+  }
+}
+
+.emotion-3 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  margin-top: auto;
+}
+
+.emotion-4 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  color: text;
+}
+
+.emotion-5 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.emotion-6 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  color: text;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.emotion-7 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  color: text;
+  margin-top: auto;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 500;
+  -webkit-order: -1;
+  -ms-flex-order: -1;
+  order: -1;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-7 {
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-7 {
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    margin-bottom: 0;
+  }
+}
+
+<div
+    className="emotion-0"
+  >
+    <div
+      className="emotion-1"
+    >
+      <img
+        alt="Photo"
+        image={
+          {
+            "height": 420,
+            "width": 200,
+          }
+        }
+        objectFit="fill"
+      />
+    </div>
+    <div
+      className="emotion-2"
+    >
+      <span
+        className="emotion-3"
+      >
+        gravel racee
+      </span>
+      <h1
+        className="emotion-4"
+      >
+        this is a title
+      </h1>
+      <span
+        className="emotion-5"
+      >
+        2022-01-01
+         — 
+        Seattle Washington
+      </span>
+      <p
+        className="emotion-6"
+      >
+        this is a teaser
+      </p>
+      <span
+        className="emotion-7"
+      />
+    </div>
+  </div>,
+  .emotion-0 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  width: 100%;
+  max-width: container;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1045px;
+  position: relative;
+  width: calc(100% - 40px);
+  margin: 20px auto;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-0 {
+    margin: 120px auto;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-0 {
+    margin: 120px auto;
+  }
+}
+
+.emotion-0.article>p+p {
+  padding-top: 30px;
+}
+
+.emotion-0.article>h2+ul {
+  padding-top: 30px;
+}
+
+.emotion-0.article>ul+h2 {
+  padding-top: 30px;
+}
+
+.emotion-0.article>ol+h2 {
+  padding-top: 30px;
+}
+
+.emotion-0.article>h2+ol {
+  padding-top: 0px;
+}
+
+.emotion-0.article>p+h2 {
+  padding-top: 30px;
+}
+
+.emotion-1 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-width: 690px;
+  width: 150px;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-1 {
+    margin-bottom: 60px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-1 {
+    margin-bottom: 60px;
+  }
+}
+
+.emotion-2 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-2 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-2 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+.emotion-3 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.emotion-4 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+  text-transform: uppercase;
+}
+
+.emotion-5 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 18px;
+}
+
+<article
+    className="article emotion-0"
+  >
+    <div
+      className="emotion-1"
+    >
+      <div
+        className="emotion-2"
+      >
+        <img
+          alt="Profile picture"
+          formats={
+            [
+              "auto",
+              "webp",
+              "avif",
+            ]
+          }
+          layout="constrained"
+          quality={95}
+          src="../../../images/author.jpg"
+          transformOptions={
+            {
+              "grayscale": true,
+            }
+          }
+        />
+        <div
+          className="emotion-3"
+        >
+          <span
+            className="emotion-4"
+          >
+            by Adam Saegebarth
+          </span>
+          <span
+            className="emotion-5"
+          >
+            01.01.22
+          </span>
+        </div>
+      </div>
+    </div>
+    <div />
+  </article>,
+]
+`;

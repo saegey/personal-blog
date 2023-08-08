@@ -85,7 +85,7 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
             paddingTop: '30px',
           },
           '&.article>h2+ol': {
-            paddingTop: '30px',
+            paddingTop: '0px',
           },
           '&.article>p+h2': {
             paddingTop: '30px',

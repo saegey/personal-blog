@@ -8,7 +8,7 @@ interface PostAuthorProps {
   publishedDate: string
 }
 const PostAuthor = ({ publishedDate }: PostAuthorProps) => {
-  const { width } = useViewport();
+  const { width } = useViewport()
   return (
     <Box
       sx={{
@@ -34,6 +34,7 @@ const PostAuthor = ({ publishedDate }: PostAuthorProps) => {
           formats={['auto', 'webp', 'avif']}
           src="../../../images/author.jpg"
           // objectFit="fill"
+          transformOptions={{ grayscale: true }}
           quality={95}
           alt="Profile picture"
           sx={{

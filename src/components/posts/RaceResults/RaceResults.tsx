@@ -47,7 +47,7 @@ const RaceResults = ({
         .reduce((acc, time) => 60 * acc + +time)
     : 0
 
-  data.forEach(d => {
+  const results = React.useMemo(() => { return data.map(d => {
     if (d.place === '') return
 
     const timeSeconds = d.time
@@ -65,6 +65,7 @@ const RaceResults = ({
     }
 
     if (!isNaN(timeSeconds) && timeSeconds !== 0) {
+      console.log(timeSeconds, firstPlaceTime)
       d.timeBehind = formatTime((timeSeconds - firstPlaceTime).toFixed(2))
     } else {
       d.timeBehind = ''
@@ -74,16 +75,17 @@ const RaceResults = ({
     } else {
       d.isMe = false
     }
-  })
+    return d
+  })}, [data])
 
   const highlights: HighlightsType[] = []
-  numbersToHighlight.forEach(n => highlights.push(data[n]))
+  numbersToHighlight.forEach(n => highlights.push(results[n]))
 
   return (
     <>
       {isModalOpen && (
         <MaximizedContainer title={'Race Results'} openModal={openModal}>
-          <RaceResultsList data={data} />
+          <RaceResultsList data={results} />
         </MaximizedContainer>
       )}
 

@@ -8,11 +8,12 @@ const Races: React.FC<PageProps<DataProps>> = ({ data }) => {
 
   return (
     <>
-      <Container sx={{ padding: '20px' }}>
+      <Container p={['20px', '20px', '32px']} sx={{ maxWidth: 768 }}>
         <table sx={{ fontFamily: 'body', padding: '10px' }}>
           <tr>
             <th>Title</th>
             <th>Time In Red</th>
+            <th>Current FTP</th>
             <th>NP</th>
             <th>Avg Power</th>
             <th>Avg HR</th>
@@ -29,6 +30,12 @@ const Races: React.FC<PageProps<DataProps>> = ({ data }) => {
                 )
                   .toISOString()
                   .substr(11, 8)}`}</td>
+
+                <td sx={{ padding: '5px' }}>
+                  {post.gpxData.fields.currentFtp
+                    ? post.gpxData.fields.currentFtp.toFixed()
+                    : ''}
+                </td>
                 <td sx={{ padding: '5px' }}>
                   {post.gpxData.fields.normalizedPower
                     ? post.gpxData.fields.normalizedPower.toFixed()

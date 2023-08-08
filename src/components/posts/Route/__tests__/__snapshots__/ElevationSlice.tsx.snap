@@ -1,0 +1,225 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ElevationSlice renders 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 10px;
+  border-left-color: mutedAccent;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-right-color: mutedAccent;
+  border-right-style: solid;
+  border-right-width: 1px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-0 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-0 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.emotion-1 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+}
+
+.emotion-3 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  font-size: 20px;
+  color: black;
+}
+
+.emotion-6 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  font-size: 20px;
+}
+
+<div
+  className="emotion-0"
+>
+  <div
+    className="emotion-1"
+  >
+    <p
+      className="emotion-1"
+    >
+      Grade
+    </p>
+    <span
+      className="emotion-3"
+    >
+      -
+    </span>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <p
+      className="emotion-1"
+    >
+      Distance
+    </p>
+    <span
+      className="emotion-6"
+    >
+      -
+    </span>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <p
+      className="emotion-1"
+    >
+      Elevation
+    </p>
+    <span
+      className="emotion-6"
+    >
+      -
+    </span>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <p
+      className="emotion-1"
+    >
+      Time
+    </p>
+    <span
+      className="emotion-6"
+    >
+      -
+    </span>
+  </div>
+</div>
+`;
+
+exports[`ElevationSlice renders values 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 10px;
+  border-left-color: mutedAccent;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-right-color: mutedAccent;
+  border-right-style: solid;
+  border-right-width: 1px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-0 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-0 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.emotion-1 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+}
+
+.emotion-3 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  font-size: 20px;
+  color: orange;
+}
+
+.emotion-6 {
+  box-sizing: border-box;
+  margin: 0;
+  min-width: 0;
+  font-size: 20px;
+}
+
+<div
+  className="emotion-0"
+>
+  <div
+    className="emotion-1"
+  >
+    <p
+      className="emotion-1"
+    >
+      Grade
+    </p>
+    <span
+      className="emotion-3"
+    >
+      4.0%
+    </span>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <p
+      className="emotion-1"
+    >
+      Distance
+    </p>
+    <span
+      className="emotion-6"
+    >
+      100 miles
+    </span>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <p
+      className="emotion-1"
+    >
+      Elevation
+    </p>
+    <span
+      className="emotion-6"
+    >
+      50 feet
+    </span>
+  </div>
+  <div
+    className="emotion-1"
+  >
+    <p
+      className="emotion-1"
+    >
+      Time
+    </p>
+    <span
+      className="emotion-6"
+    >
+      20:00
+    </span>
+  </div>
+</div>
+`;

@@ -47,40 +47,6 @@ export interface GraphProps {
   title: string
 }
 
-export interface LineGraphProps {
-  data: [
-    {
-      id: string
-      data: Coordinate[]
-    }
-  ]
-  unit: string
-  yScaleMin: number
-  yScaleMax: number
-  areaBaselineValue: number
-  axisBottomTickValues: number[]
-  axisLeftTickValues: number[]
-  curve?:
-    | 'linear'
-    | 'natural'
-    | 'basis'
-    | 'cardinal'
-    | 'catmullRom'
-    | 'monotoneX'
-    | 'monotoneY'
-    | 'step'
-    | 'stepAfter'
-    | 'stepBefore'
-    | undefined
-  enableArea: boolean
-  lineWidth: number
-  colors?: string[]
-  markers?: any
-  xScaleType?: 'linear' | 'log' | 'symlog' | 'point'
-  sliceCallback?: (func: SliceTooltipProps['slice']) => void
-  xAxisFormatter?: (func: number) => string
-}
-
 type CustomGatsbyLinkProps = Omit<GatsbyLinkProps<{}>, 'ref'>
 
 export interface MyLinkProps extends LinkProps, CustomGatsbyLinkProps {
