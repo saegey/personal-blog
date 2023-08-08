@@ -266,7 +266,7 @@ exports[`PostTemplate renders 1`] = `
 }
 
 .emotion-0.article>h2+ol {
-  padding-top: 30px;
+  padding-top: 0px;
 }
 
 .emotion-0.article>p+h2 {

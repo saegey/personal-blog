@@ -19,4 +19,14 @@ jest.mock('gatsby-plugin-image', () => {
   return mockPlugin
 })
 
- jest.mock('mapbox-gl/dist/mapbox-gl.css', () => jest.fn())
+jest.mock('d3-scale', () => {
+  return {
+    scaleLog: () => {
+      return {
+        base: jest.fn(),
+      }
+    },
+  }
+})
+
+jest.mock('mapbox-gl/dist/mapbox-gl.css', () => jest.fn())
