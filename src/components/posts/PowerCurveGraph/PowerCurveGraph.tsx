@@ -1,12 +1,23 @@
-import { Box, useThemeUI } from 'theme-ui'
-import { useResponsiveValue } from '@theme-ui/match-media'
+import { Box, Text, useThemeUI } from 'theme-ui'
 import { useState } from 'react'
+import {
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  YAxis,
+  XAxis,
+  Tooltip,
+  ReferenceLine,
+  Label,
+} from 'recharts'
+import { scaleLog } from 'd3-scale'
 
-import LineGraph from './LineGraph'
 import { GraphProps } from '../../../common/types'
 import MaximizedContainer from '../common/MaximizedContainer'
 import ExpandableCard from '../common/ExpandableCard'
-import { formatSeconds } from '../../../lib/formatters'
+import { formatSeconds, formatTime } from '../../../lib/formatters'
+
+const scale = scaleLog().base(Math.E)
 
 interface PowerCurveGraphProps extends GraphProps {
   yAxes: Array<Array<Number>>
@@ -24,8 +35,7 @@ const PowerCurveGraph = ({
   ftp,
   isMaximized = false,
 }: PowerCurveGraphProps) => {
-  const yTicks = useResponsiveValue(yAxes)
-  const xTicks = useResponsiveValue(xAxes)
+  const ticks = [1, 2, 3, 4, 5, 10, 60, 300, 600, 1200, 3600]
   const { theme } = useThemeUI()
 
   return (
@@ -37,42 +47,58 @@ const PowerCurveGraph = ({
         marginLeft: 'auto',
       }}
     >
-      <LineGraph
-        unit={'watts'}
-        data={[
-          {
-            id: 'power',
-            data,
-            unit: 'watts',
-          },
-        ]}
-        yScaleMin={0}
-        yScaleMax={yScaleMax}
-        xScaleType={'log'}
-        lineWidth={2}
-        enableArea={false}
-        areaBaselineValue={0}
-        axisBottomTickValues={xTicks}
-        axisLeftTickValues={yTicks}
-        markers={[
-          {
-            axis: 'y',
-            value: ftp,
-            lineStyle: {
-              stroke: theme.colors?.highlight,
-              strokeWidth: 2,
-            },
-            legend: `FTP - ${ftp}w`,
-            textStyle: {
-              fontSize: 14,
-              fontFamily: theme.fonts?.body,
-              fill: theme.colors?.text,
-              fontWeight: '400',
-            },
-          },
-        ]}
-        xAxisFormatter={formatSeconds}
-      />
+      <ResponsiveContainer width={'100%'} height={'100%'}>
+        <LineChart data={data}>
+          <Line dataKey="y" dot={false} strokeWidth={2} />
+          <YAxis
+            type="number"
+            tick={{ fill: String(theme.colors?.accent), fontSize: '14px' }}
+            tickLine={{ stroke: String(theme.colors?.accent) }}
+            axisLine={{ stroke: String(theme.colors?.accent) }}
+          />
+          <XAxis
+            dataKey="x"
+            scale={scale}
+            ticks={ticks}
+            tickFormatter={formatSeconds}
+            tick={{ fill: String(theme.colors?.accent), fontSize: '14px' }}
+            tickLine={{ stroke: String(theme.colors?.accent) }}
+            axisLine={{ stroke: String(theme.colors?.accent) }}
+          >
+            <Label value="Time" offset={0} position="insideBottom" />
+          </XAxis>
+          <Tooltip
+            content={({ payload }) => {
+              if (!payload || payload.length < 1) return
+              // console.log(payload[0])
+              return (
+                <Box
+                  sx={{
+                    backgroundColor: theme.colors?.mutedAccent,
+                    padding: '5px',
+                    borderRadius: '5px',
+                  }}
+                >
+                  <Text as="p" sx={{ fontSize: '13px' }}>
+                    {formatTime(payload[0].payload.x)}
+                  </Text>
+                  <Text as="p" sx={{ fontSize: '13px' }}>
+                    {payload[0].payload.y} watts
+                  </Text>
+                </Box>
+              )
+            }}
+          />
+          <ReferenceLine
+            y={ftp}
+            stroke="gray"
+            // label="FTP"
+            strokeDasharray="3 3"
+          >
+            <Label value="FTP" offset={10} position="insideBottomLeft" />
+          </ReferenceLine>
+        </LineChart>
+      </ResponsiveContainer>
     </Box>
   )
 }

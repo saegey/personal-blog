@@ -66,7 +66,8 @@ const theme: Theme = {
       borderLeftColor: 'muted',
       paddingLeft: [0, 0, '8px'],
       marginTop: '20px',
-      marginBottom: '10px',
+      marginBottom: '0',
+      paddingBottom: '10px',
       lineHeight: '30px'
     },
     ol: {
@@ -76,6 +77,7 @@ const theme: Theme = {
       borderLeftStyle: 'solid',
       borderLeftColor: 'muted',
       paddingLeft: [0, 0, '8px'],
+      paddingTop:[0, 0, 0],
       listStylePosition: 'inside',
       borderBottomWidth: '1px',
       borderBottomStyle: 'solid',

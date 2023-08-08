@@ -12,8 +12,6 @@
     "@emotion/styled": "^11.11.0",
     "@fontsource-variable/public-sans": "^5.0.6",
     "@mdx-js/react": "^2.3.0",
-    "@nivo/core": "^0.83.0",
-    "@nivo/line": "^0.83.0",
     "@testing-library/react": "^13.4.0",
     "@theme-ui/color": "^0.16.0",
     "@theme-ui/core": "^0.16.0",
