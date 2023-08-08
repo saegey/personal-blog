@@ -10,7 +10,7 @@ import {
   ReferenceLine,
   Label,
 } from 'recharts'
-import { scaleLog} from 'd3-scale'
+import { scaleLog } from 'd3-scale'
 
 import { GraphProps } from '../../../common/types'
 import MaximizedContainer from '../common/MaximizedContainer'
