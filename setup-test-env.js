@@ -30,3 +30,10 @@ jest.mock('d3-scale', () => {
 })
 
 jest.mock('mapbox-gl/dist/mapbox-gl.css', () => jest.fn())
+
+
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}))
