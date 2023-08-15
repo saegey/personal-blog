@@ -26,7 +26,7 @@ module.exports = {
     '__test-utils__',
   ],
   transformIgnorePatterns: [
-    'node_modules/(?!(gatsby|gatsby-script|gatsby-link)/)',
+    'node_modules/(?!(gatsby|gatsby-script|gatsby-link|@saegey.*)/)',
   ],
   globals: {
     __PATH_PREFIX__: '',
