@@ -65,7 +65,7 @@ const RaceResults = ({
     }
 
     if (!isNaN(timeSeconds) && timeSeconds !== 0) {
-      console.log(timeSeconds, firstPlaceTime)
+      // console.log(timeSeconds, firstPlaceTime)
       d.timeBehind = formatTime((timeSeconds - firstPlaceTime).toFixed(2))
     } else {
       d.timeBehind = ''

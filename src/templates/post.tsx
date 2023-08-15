@@ -2,6 +2,8 @@ import { Text, Link, Container, Box } from 'theme-ui'
 import { graphql, PageProps } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
+import 'mapbox-gl/dist/mapbox-gl.css'
+import VisualOverview from '@saegey/posts.visual-overview'
 
 import Seo from '../components/seo'
 import { useSiteMetadata } from '../hooks/use-site-metadata'
@@ -12,7 +14,7 @@ import {
   PostHeader,
   PortraitImage,
   LandscapeImage,
-  VisualOverview,
+  // VisualOverview,
   Map,
   RaceResults,
   MatchesBurned,
