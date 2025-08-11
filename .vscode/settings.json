@@ -2,7 +2,7 @@
   "prettier.jsxSingleQuote": true,
   "prettier.requireConfig": true,
   "prettier.singleQuote": true,
-  "workbench.colorTheme": "Halcyon",
+  "workbench.colorTheme": "Default Light Modern",
 	"terminal.explorerKind": "external",
 	"terminal.integrated.automationProfile.osx": {},
 	"terminal.integrated.defaultProfile.osx": "zsh"

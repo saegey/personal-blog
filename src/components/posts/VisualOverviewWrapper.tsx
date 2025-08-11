@@ -1,4 +1,4 @@
-import VisualOverview from '@saegey/posts.visual-overview'
+import VisualOverview from './VisualOverview'
 
 const MAPBOX_TOKEN = `${process.env.GATSBY_MAPBOX_TOKEN}`
 

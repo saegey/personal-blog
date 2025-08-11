@@ -17,7 +17,6 @@ import MaximizedContainer from '../common/MaximizedContainer'
 import ExpandableCard from '../common/ExpandableCard'
 import { formatSeconds, formatTime } from '../../../lib/formatters'
 
-const scale = scaleLog().base(Math.E)
 
 interface PowerCurveGraphProps extends GraphProps {
   yAxes: Array<Array<Number>>
@@ -29,9 +28,6 @@ interface PowerCurveGraphProps extends GraphProps {
 
 const PowerCurveGraph = ({
   data,
-  yAxes,
-  xAxes,
-  yScaleMax = 1000,
   ftp,
   isMaximized = false,
 }: PowerCurveGraphProps) => {
@@ -55,10 +51,12 @@ const PowerCurveGraph = ({
             tick={{ fill: String(theme.colors?.accent), fontSize: '14px' }}
             tickLine={{ stroke: String(theme.colors?.accent) }}
             axisLine={{ stroke: String(theme.colors?.accent) }}
-          />
+          >
+            <Label value="Time" offset={0} position="insideBottom" />
+          </YAxis>
           <XAxis
             dataKey="x"
-            scale={scale}
+            scale={"log"}
             ticks={ticks}
             tickFormatter={formatSeconds}
             tick={{ fill: String(theme.colors?.accent), fontSize: '14px' }}
