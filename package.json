@@ -91,5 +91,6 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "jest --coverage"
-  }
+  },
+  "engines": { "node": ">=18 <=20" }
 }
