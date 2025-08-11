@@ -1,8 +1,9 @@
 import { Box, Flex, Text, Close } from 'theme-ui'
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 type MaxProps = {
-  children: JSX.Element
-  openModal: (arg: boolean) => void
+  children: ReactNode
+  openModal: Dispatch<SetStateAction<boolean>>
   title: string
 }
 const MaximizedContainer = ({ children, openModal, title }: MaxProps) => {

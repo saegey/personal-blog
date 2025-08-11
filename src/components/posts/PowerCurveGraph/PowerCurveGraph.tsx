@@ -10,7 +10,6 @@ import {
   ReferenceLine,
   Label,
 } from 'recharts'
-import { scaleLog } from 'd3-scale'
 
 import { GraphProps } from '../../../common/types'
 import MaximizedContainer from '../common/MaximizedContainer'
@@ -44,7 +43,7 @@ const PowerCurveGraph = ({
       }}
     >
       <ResponsiveContainer width={'100%'} height={'100%'}>
-        <LineChart data={data}>
+        <LineChart data={data as unknown as Array<{ x: number; y: number }>}>
           <Line dataKey="y" dot={false} strokeWidth={2} />
           <YAxis
             type="number"
@@ -102,13 +101,13 @@ const PowerCurveGraph = ({
 }
 
 const PowerCurveGraphWrapper = (props: PowerCurveGraphProps) => {
-  const [isMax, setMax] = useState()
+  const [isMax, setMax] = useState<boolean>(false)
 
   return (
     <>
       {isMax && (
         <MaximizedContainer title={props.title} openModal={setMax}>
-          <PowerCurveGraph isMaximized={true} {...props} />
+          <PowerCurveGraph {...props} isMaximized={isMax} />
         </MaximizedContainer>
       )}
       <ExpandableCard

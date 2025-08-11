@@ -8,7 +8,7 @@ import { useUnits } from './UnitProvider'
 
 interface Vizprops {
   elevationData: any
-  coordinates: any
+  coordinates: Array<[number, number]>
   elevationToAdd: number
   yMin: number
   token: string

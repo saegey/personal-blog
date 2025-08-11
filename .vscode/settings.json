@@ -5,5 +5,6 @@
   "workbench.colorTheme": "Default Light Modern",
 	"terminal.explorerKind": "external",
 	"terminal.integrated.automationProfile.osx": {},
-	"terminal.integrated.defaultProfile.osx": "zsh"
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "codeQL.createQuery.qlPackLocation": "/Users/saegey/Projects/personal-blog"
 }

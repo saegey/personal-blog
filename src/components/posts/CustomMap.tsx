@@ -6,7 +6,7 @@ import mapboxgl from "mapbox-gl";
 // const MAPBOX_TOKEN = `${process.env.GATSBY_MAPBOX_TOKEN}`
 interface MapProps {
 	coordinates: Array<[number, number]>;
-	markerCoordinates: [number, number];
+	markerCoordinates: [number, number] | null;
 	token: string;
 }
 
@@ -16,14 +16,14 @@ const Map = ({
 	token,
 }: MapProps): JSX.Element => {
 	const mapContainerRef = React.useRef(null);
-	const map = React.useRef(null);
+	const map = React.useRef<mapboxgl.Map | null>(null);
 
 	React.useEffect(() => {
 		if (!map || !map.current) {
 			return;
 		}
 		if (map.current !== undefined) {
-			const geojsonSource = map.current.getSource("currentPosition");
+			const geojsonSource = map.current.getSource("currentPosition") as mapboxgl.GeoJSONSource | undefined;
 			if (!geojsonSource) {
 				return;
 			}
@@ -47,7 +47,7 @@ const Map = ({
 	React.useEffect((): void => {
 		if (map && map.current) return;
 		map.current = new mapboxgl.Map({
-			container: mapContainerRef.current,
+			container: mapContainerRef.current!,
 			accessToken: process.env.MAPBOX_TOKEN ? process.env.MAPBOX_TOKEN : token,
 			style: "mapbox://styles/saegey/clkjy1fdl004x01oh25lhe0iz",
 			// Empire State Building [lng, lat]
@@ -61,6 +61,7 @@ const Map = ({
 		map.current.addControl(new mapboxgl.NavigationControl(), "top-right");
 
 		map.current.on("load", () => {
+			if (!map.current) return;
 			map.current.addSource("route", {
 				type: "geojson",
 				data: {
