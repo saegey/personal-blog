@@ -1,6 +1,14 @@
 import { useState, createContext, useEffect, useContext } from 'react'
 
-const viewportContext = createContext({})
+type ViewportContextType = {
+  width: number
+  height: number
+}
+
+const viewportContext = createContext<ViewportContextType>({
+  width: 0,
+  height: 0,
+})
 
 const ViewportProvider = ({ children }: { children: JSX.Element }) => {
   const isBrowser = typeof window !== 'undefined'

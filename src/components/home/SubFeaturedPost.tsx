@@ -10,7 +10,7 @@ const MyLink = Link as any as (props: MyLinkProps) => JSX.Element
 type FeaturePostProps = {
   headerImage: ImageDataLike | undefined
   title: string
-  type: string
+  type?: string
   slug: string
   teaser: string
   subType: string
