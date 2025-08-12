@@ -1,3 +1,20 @@
+// Polyfill for TextEncoder/TextDecoder in Node
+// ...existing code...
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}))
+
+// Mock mapbox-gl for Jest
+jest.mock('mapbox-gl', () => ({
+  Map: function () { return {}; },
+  NavigationControl: function () { return {}; },
+  GeolocateControl: function () { return {}; },
+  Marker: function () { return {}; },
+  Popup: function () { return {}; },
+  // Add any other Mapbox classes you use
+}));
 import { createSerializer } from '@emotion/jest'
 import * as emotion from '@emotion/react'
 

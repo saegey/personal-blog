@@ -1,5 +1,6 @@
 import { Link as GatsbyLink } from 'gatsby'
-import { Text, Box, Card, Link, Flex } from 'theme-ui'
+import { Text, Box, Card, Link, Flex, LinkProps as ThemeUILinkProps } from 'theme-ui'
+type GatsbyLinkProps = ThemeUILinkProps & { to: string };
 import { IGatsbyImageData, getImage } from 'gatsby-plugin-image'
 
 import CustomImage from '../../CustomImage'
@@ -37,16 +38,16 @@ const RelatedRaces = ({ items }: Props) => {
         </Text>
       </Box>
       {items.map((i, index) => {
+        const linkProps: GatsbyLinkProps = {
+          to: `/${i.slug}`,
+          rel: 'related',
+          sx: { textDecoration: 'none' },
+          itemProp: 'url',
+          as: GatsbyLink,
+        };
         return (
-          <Link
-            to={`/${i.slug}`}
-            rel="related"
-            sx={{ textDecoration: 'none' }}
-            itemProp="url"
-            as={GatsbyLink}
-            key={`related-race-${index}`}
-          >
-            <Card key={`related-race-${index}`}>
+          <Link key={`related-race-${index}`} {...linkProps}>
+            <Card>
               <div
                 sx={{
                   display: 'flex',

@@ -158,29 +158,6 @@ exports[`MatchesBurned renders 1`] = `
   }
 }
 
-.emotion-15 {
-  box-sizing: border-box;
-  margin: 0;
-  min-width: 0;
-  width: 34%;
-}
-
-.emotion-17 {
-  box-sizing: border-box;
-  margin: 0;
-  min-width: 0;
-  width: 33%;
-  text-align: center;
-}
-
-.emotion-19 {
-  box-sizing: border-box;
-  margin: 0;
-  min-width: 0;
-  width: 33%;
-  text-align: right;
-}
-
 <figure
   className="emotion-0"
 >
@@ -276,7 +253,7 @@ exports[`MatchesBurned renders 1`] = `
     className="emotion-14"
   >
     <div
-      className="emotion-15"
+      className="emotion-8"
     >
       <p
         className="emotion-0"
@@ -286,7 +263,7 @@ exports[`MatchesBurned renders 1`] = `
       </p>
     </div>
     <div
-      className="emotion-17"
+      className="emotion-10"
     >
       <p
         className="emotion-0"
@@ -296,7 +273,7 @@ exports[`MatchesBurned renders 1`] = `
       </p>
     </div>
     <div
-      className="emotion-19"
+      className="emotion-12"
     >
       <p
         className="emotion-0"
@@ -310,7 +287,7 @@ exports[`MatchesBurned renders 1`] = `
     className="emotion-14"
   >
     <div
-      className="emotion-15"
+      className="emotion-8"
     >
       <p
         className="emotion-0"
@@ -320,7 +297,7 @@ exports[`MatchesBurned renders 1`] = `
       </p>
     </div>
     <div
-      className="emotion-17"
+      className="emotion-10"
     >
       <p
         className="emotion-0"
@@ -330,7 +307,7 @@ exports[`MatchesBurned renders 1`] = `
       </p>
     </div>
     <div
-      className="emotion-19"
+      className="emotion-12"
     >
       <p
         className="emotion-0"

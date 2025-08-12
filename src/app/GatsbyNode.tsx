@@ -235,8 +235,8 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
 
   if (node.internal.mediaType === 'application/octet-stream') {
     const content = await loadNodeContent(node)
-    const xmlDoc = new DOMParser().parseFromString(content)
-    const segments = parseSegmentsFromXml(xmlDoc)
+    const xmlDoc = new DOMParser().parseFromString(content, 'text/xml')
+    const segments = parseSegmentsFromXml(xmlDoc as unknown as XMLDocument)
 
     createNodeField({
       name: `segments`,
@@ -247,7 +247,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
 
   if (node.internal.mediaType === 'application/gpx+xml') {
     const content = await loadNodeContent(node)
-    const gpxData = new DOMParser().parseFromString(content)
+    const gpxData = new DOMParser().parseFromString(content, 'text/xml')
     const data = gpx(gpxData)
 
     createNodeField({

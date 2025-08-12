@@ -10,14 +10,12 @@ import {
   ReferenceLine,
   Label,
 } from 'recharts'
-import { scaleLog } from 'd3-scale'
 
 import { GraphProps } from '../../../common/types'
 import MaximizedContainer from '../common/MaximizedContainer'
 import ExpandableCard from '../common/ExpandableCard'
 import { formatSeconds, formatTime } from '../../../lib/formatters'
 
-const scale = scaleLog().base(Math.E)
 
 interface PowerCurveGraphProps extends GraphProps {
   yAxes: Array<Array<Number>>
@@ -29,9 +27,6 @@ interface PowerCurveGraphProps extends GraphProps {
 
 const PowerCurveGraph = ({
   data,
-  yAxes,
-  xAxes,
-  yScaleMax = 1000,
   ftp,
   isMaximized = false,
 }: PowerCurveGraphProps) => {
@@ -48,17 +43,19 @@ const PowerCurveGraph = ({
       }}
     >
       <ResponsiveContainer width={'100%'} height={'100%'}>
-        <LineChart data={data}>
+        <LineChart data={data as unknown as Array<{ x: number; y: number }>}>
           <Line dataKey="y" dot={false} strokeWidth={2} />
           <YAxis
             type="number"
             tick={{ fill: String(theme.colors?.accent), fontSize: '14px' }}
             tickLine={{ stroke: String(theme.colors?.accent) }}
             axisLine={{ stroke: String(theme.colors?.accent) }}
-          />
+          >
+            <Label value="Time" offset={0} position="insideBottom" />
+          </YAxis>
           <XAxis
             dataKey="x"
-            scale={scale}
+            scale={"log"}
             ticks={ticks}
             tickFormatter={formatSeconds}
             tick={{ fill: String(theme.colors?.accent), fontSize: '14px' }}
@@ -104,13 +101,13 @@ const PowerCurveGraph = ({
 }
 
 const PowerCurveGraphWrapper = (props: PowerCurveGraphProps) => {
-  const [isMax, setMax] = useState()
+  const [isMax, setMax] = useState<boolean>(false)
 
   return (
     <>
       {isMax && (
         <MaximizedContainer title={props.title} openModal={setMax}>
-          <PowerCurveGraph isMaximized={true} {...props} />
+          <PowerCurveGraph {...props} isMaximized={isMax} />
         </MaximizedContainer>
       )}
       <ExpandableCard
