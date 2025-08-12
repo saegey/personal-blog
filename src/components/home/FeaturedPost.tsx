@@ -8,7 +8,6 @@ import CustomImage from '../CustomImage'
 type FeaturePostProps = {
   headerImage: ImageDataLike | undefined
   title: string
-  type: string
   slug: string
   teaser: string
   subType: string
@@ -18,7 +17,6 @@ type FeaturePostProps = {
 const FeaturedPost = ({
   headerImage,
   title,
-  type,
   slug,
   teaser,
   subType,

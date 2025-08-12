@@ -7,33 +7,33 @@ const theme: Theme = {
   },
   colors: {
     text: '#000',
-    textInvert: lighten('text', 1),
+    textInvert: lighten('text', 1) as unknown as string,
     background: '#fff',
-    backgroundAccent: darken('background', 0.02),
+    backgroundAccent: darken('background', 0.02) as unknown as string,
     primary: String(lighten('text', 0.5)),
     secondary: 'red',
-    accent: darken('background', 0.8),
-    highlight: darken('background', 0.5),
+    accent: darken('background', 0.8) as unknown as string,
+    highlight: darken('background', 0.5) as unknown as string,
     highlightedItem: '#e8ff50c7',
-    muted: darken('#fff', 0.1),
-    mutedAccent: darken('#fff', 0.2),
-    mutedAccentMore: darken('#fff', 0.3),
+    muted: darken('#fff', 0.1) as unknown as string,
+    mutedAccent: darken('#fff', 0.2) as unknown as string,
+    mutedAccentMore: darken('#fff', 0.3) as unknown as string,
     cardBackground: '#fff',
     modes: {
       dark: {
         text: '#fff',
-        textInvert: darken('text', 1),
+        textInvert: darken('text', 1) as unknown as string,
         background: '#000',
-        backgroundAccent: lighten('#000', 0.08),
-        primary: darken('text', 0.2),
+        backgroundAccent: lighten('#000', 0.08) as unknown as string,
+        primary: darken('text', 0.2) as unknown as string,
         secondary: 'red',
-        accent: lighten('background', 1),
-        highlight: lighten('background', 0.5),
-        highlightedItem: darken('#e8ff50c7', 0.4),
-        muted: lighten('#000', 0.25),
-        mutedAccent: lighten('#000', 0.4),
-        mutedAccentMore: lighten('#000', 0.35),
-        cardBackground: lighten('#000', 0.1),
+        accent: lighten('background', 1) as unknown as string,
+        highlight: lighten('background', 0.5) as unknown as string,
+        highlightedItem: darken('#e8ff50c7', 0.4) as unknown as string,
+        muted: lighten('#000', 0.25) as unknown as string,
+        mutedAccent: lighten('#000', 0.4) as unknown as string,
+        mutedAccentMore: lighten('#000', 0.35) as unknown as string,
+        cardBackground: lighten('#000', 0.1) as unknown as string,
       },
     },
   },
@@ -46,7 +46,7 @@ const theme: Theme = {
     h1: {
       // the style object for each element
       // can reference other values in the theme
-      fontFamily: '"Public Sans Variable", sans-serif',
+      fontFamily: 'body',
       fontWeight: 100,
       lineHeight: 'headline',
       fontSize: ['3', '4', '5'],
@@ -68,7 +68,7 @@ const theme: Theme = {
       marginTop: '20px',
       marginBottom: '0',
       paddingBottom: '10px',
-      lineHeight: '30px'
+      lineHeight: '30px',
     },
     ol: {
       maxWidth: '690px',
@@ -77,7 +77,7 @@ const theme: Theme = {
       borderLeftStyle: 'solid',
       borderLeftColor: 'muted',
       paddingLeft: [0, 0, '8px'],
-      paddingTop:[0, 0, 0],
+      paddingTop: [0, 0, 0],
       listStylePosition: 'inside',
       borderBottomWidth: '1px',
       borderBottomStyle: 'solid',
@@ -165,18 +165,6 @@ const theme: Theme = {
     headline: '"Public Sans Variable", sans-serif',
     serif: '"Public Sans Variable", sans-serif',
     mono: '"Public Sans Variable", sans-serif',
-  },
-  boxes: {
-    figure: {
-      maxWidth: [null, null, '690px'],
-      backgroundColor: 'muted',
-      padding: '30px',
-      borderRadius: '5px',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      marginTop: '60px',
-      marginBottom: '60px'
-    }
   },
   cards: {
     primary: {
