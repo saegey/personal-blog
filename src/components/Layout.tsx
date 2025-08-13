@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Helmet from 'react-helmet'
-
+import { Box, ThemeUIProvider } from 'theme-ui'
+import theme from '../../src/gatsby-plugin-theme-ui'
 import Menu from './layout/Menu'
 import Header from './layout/Header'
 import Footer from './layout/Footer'
@@ -16,36 +17,39 @@ const Layout = ({ children }: CardProps) => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <ViewportProvider>
-      <UnitProvider>
-        <>
-          <Helmet htmlAttributes={{ lang: 'en-US' }}>
-            <body className={menuOpen ? 'noScroll' : ''} />
-          </Helmet>
-          <div
-            sx={{
-              overflowY: menuOpen ? 'hidden' : 'visible',
-              minHeight: '100vh',
-              display: 'flex',
-              flexDirection: 'column',
-              height: menuOpen ? '100%' : '',
-            }}
-          >
-            <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-            <Header setMenuOpen={setMenuOpen} />
-            <main
+    // <ThemeUIProvider theme={theme}>
+      <ViewportProvider>
+        <UnitProvider>
+          <>
+            <Helmet htmlAttributes={{ lang: 'en-US' }}>
+              <body className={menuOpen ? 'noScroll' : ''} />
+            </Helmet>
+            <div
               sx={{
-                flexGrow: 1,
+                overflowY: menuOpen ? 'hidden' : 'visible',
+                minHeight: '100vh',
+                display: 'flex',
+                flexDirection: 'column',
+                height: menuOpen ? '100%' : '',
               }}
             >
-              {children}
-              <BackToTop />
-            </main>
-            <Footer />
-          </div>
-        </>
-      </UnitProvider>
-    </ViewportProvider>
+              <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+              <Header setMenuOpen={setMenuOpen} />
+              <Box
+                as="main"
+                sx={{
+                  flexGrow: 1,
+                }}
+              >
+                {children}
+                <BackToTop />
+              </Box>
+              <Footer />
+            </div>
+          </>
+        </UnitProvider>
+      </ViewportProvider>
+    // </ThemeUIProvider>
   )
 }
 

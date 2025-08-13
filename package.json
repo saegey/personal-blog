@@ -15,6 +15,7 @@
     "@testing-library/react": "^16.3.0",
     "@theme-ui/color": "^0.17.2",
     "@theme-ui/mdx": "^0.17.2",
+    "@theme-ui/presets": "^0.17.2",
     "@tmcw/togeojson": "^7.1.2",
     "@turf/length": "^7.2.0",
     "@types/d3-scale": "^4.0.9",
@@ -92,5 +93,7 @@
     "clean": "gatsby clean",
     "test": "jest --coverage"
   },
-  "engines": { "node": ">=18 <=20" }
+  "engines": {
+    "node": ">=18 <=20"
+  }
 }

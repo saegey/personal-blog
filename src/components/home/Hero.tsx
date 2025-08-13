@@ -7,8 +7,6 @@ const Hero: React.FC = () => (
       py: [5, 6],
       px: [3, 4],
       bg: 'background',
-      borderBottom: '1px solid',
-      borderColor: 'muted',
     }}
   >
     <Box sx={{ maxWidth: 1100, mx: 'auto' }}>
@@ -30,10 +28,23 @@ const Hero: React.FC = () => (
         data‑driven race analysis.
       </Text>
       <Flex sx={{ gap: 3, flexWrap: 'wrap' }}>
-        <Button as="a" href="/contact" sx={{ fontWeight: 700 }} variant="primary">
+        <Button
+          as="a"
+          href="/contact"
+          sx={{ fontWeight: 700 }}
+          color="primaryText"
+          backgroundColor="primary"
+        >
           Hire me
         </Button>
-        <Button as="a" variant="secondary" href="/dj" sx={{ fontWeight: 700 }}>
+        <Button
+          as="a"
+          variant="secondary"
+          href="/dj"
+          sx={{ fontWeight: 700 }}
+          color="primaryText"
+          backgroundColor="primary"
+        >
           Listen to Public Vinyl Radio
         </Button>
       </Flex>

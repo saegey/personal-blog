@@ -25,7 +25,6 @@ const Footer = () => {
     <footer
       sx={{
         alignItems: 'center',
-        variant: 'styles.footer',
         fontFamily: 'body',
         padding: '20px',
       }}
@@ -36,7 +35,7 @@ const Footer = () => {
           marginBottom: '10px',
           paddingTop: '20px',
           borderTopWidth: '1px',
-          borderTopColor: 'muted',
+          borderTopColor: 'primaryMuted',
           borderTopStyle: 'solid',
         }}
       >
