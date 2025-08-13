@@ -52,6 +52,7 @@ const RelatedRaces = ({ items }: Props) => {
                 sx={{
                   display: 'flex',
                   flexWrap: 'wrap',
+                  marginBottom: ['10px', '16px', '16px'],
                 }}
               >
                 <div

@@ -16,6 +16,7 @@ import Seo from '../components/seo'
 import FeaturedPost from '../components/home/FeaturedPost'
 import SubFeaturedPost from '../components/home/SubFeaturedPost'
 import Hero from '../components/home/Hero'
+import Layout from '../components/Layout'
 
 type PostProps = {
   node: {
@@ -46,9 +47,9 @@ const HomePage: React.FC<PageProps<DataProps>> = ({ data }) => {
   return (
     <Container sx={{ paddingTop: '0', maxWidth: '1440px', margin: '0 auto' }}>
       <Box sx={{ marginX: '20px' }}>
-        <Divider sx={{ marginTop: '20px' }} />
+        <Divider sx={{ marginTop: '20px', color: 'primaryMuted' }} />
         <Hero />
-        <Divider sx={{ marginBottom: '20px' }} />
+        <Divider sx={{ marginBottom: '20px', color: 'primaryMuted' }} />
         <FeaturedPost
           headerImage={headerImage}
           title={title}
@@ -57,7 +58,6 @@ const HomePage: React.FC<PageProps<DataProps>> = ({ data }) => {
           subType={subType}
           updatedAt={publishedDate}
         />
-        <Divider sx={{ marginTop: '20px' }} />
       </Box>
     </Container>
   )

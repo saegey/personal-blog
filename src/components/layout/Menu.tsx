@@ -2,7 +2,6 @@ import { Close, Box, Flex } from 'theme-ui'
 
 import UnitSelector from './UnitSelector'
 import NavigationItems from './NavigationItems'
-import ColorModeSelector from './ColorModeSelector'
 import Logo from '../icons/Logo'
 import { useUnits } from '../../context/UnitProvider'
 
@@ -15,7 +14,8 @@ const Menu = ({ menuOpen, setMenuOpen }: Props) => {
   const units = useUnits()
   return (
     <>
-      <div
+      <Box
+        as="div"
         sx={{
           backgroundColor: 'rgba(0, 0, 0, 0.7)',
           position: 'fixed',
@@ -26,10 +26,10 @@ const Menu = ({ menuOpen, setMenuOpen }: Props) => {
           zIndex: 10000,
           overflowY: 'scroll',
         }}
-      ></div>
+      />
       <div
         sx={{
-          backgroundColor: 'muted',
+          backgroundColor: 'primaryMuted',
           position: 'fixed',
           opacity: '1',
           visibility: 'visible',
@@ -73,7 +73,7 @@ const Menu = ({ menuOpen, setMenuOpen }: Props) => {
         </Flex>
         <NavigationItems setMenuOpen={setMenuOpen} />
         <UnitSelector unitOfMeasure={units} />
-        <ColorModeSelector />
+        {/* <ColorModeSelector /> */}
       </div>
     </>
   )

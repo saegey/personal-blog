@@ -1,61 +1,71 @@
-import { Theme } from 'theme-ui'
-import { darken, lighten } from '@theme-ui/color'
+// src/gatsby-plugin-theme-ui/index.js
+import { base } from '@theme-ui/presets'
 
-const theme: Theme = {
+const theme = {
+  ...base,
   config: {
-    initialColorModeName: 'light',
+    useColorSchemeMediaQuery: 'system', // Automatically respects system preferences
   },
   colors: {
-    text: '#000',
-    textInvert: lighten('text', 1) as unknown as string,
-    background: '#fff',
-    backgroundAccent: darken('background', 0.02) as unknown as string,
-    primary: String(lighten('text', 0.5)),
-    secondary: 'red',
-    accent: darken('background', 0.8) as unknown as string,
-    highlight: darken('background', 0.5) as unknown as string,
-    highlightedItem: '#e8ff50c7',
-    muted: darken('#fff', 0.1) as unknown as string,
-    mutedAccent: darken('#fff', 0.2) as unknown as string,
-    mutedAccentMore: darken('#fff', 0.3) as unknown as string,
-    cardBackground: '#fff',
+    ...base.colors,
+    primary: 'black',
+    primaryMuted: '#eeeeeeff',
+    secondary: '#30c',
+    badgeSecondaryBg: 'black',
+    badgeSecondaryText: 'white',
+    badgeSecondaryBorder: 'black',
+    primaryText: 'white',
+    cardBorderColor: '#e1e1e1',
+    cardBackgroundColor: '#f8f8f8',
+    showCardBackground: '#f5f5f5',
+    highlightedItem: "yellow",
+
     modes: {
       dark: {
-        text: '#fff',
-        textInvert: darken('text', 1) as unknown as string,
-        background: '#000',
-        backgroundAccent: lighten('#000', 0.08) as unknown as string,
-        primary: darken('text', 0.2) as unknown as string,
-        secondary: 'red',
-        accent: lighten('background', 1) as unknown as string,
-        highlight: lighten('background', 0.5) as unknown as string,
-        highlightedItem: darken('#e8ff50c7', 0.4) as unknown as string,
-        muted: lighten('#000', 0.25) as unknown as string,
-        mutedAccent: lighten('#000', 0.4) as unknown as string,
-        mutedAccentMore: lighten('#000', 0.35) as unknown as string,
-        cardBackground: lighten('#000', 0.1) as unknown as string,
+        primaryMuted: '#525252ff',
+        text: 'white',
+        background: 'black',
+        badgeSecondaryBg: 'black',
+        badgeSecondaryText: 'white',
+        badgeSecondaryBorder: 'white',
+        primary: 'white',
+        primaryText: 'black',
+        cardBorderColor: '#464646',
+        cardBackgroundColor: 'black',
+        showCardBackground: '#3b3b3b',
       },
     },
   },
+  fonts: {
+    // body: '"SF Mono", "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", "Courier New", monospace',
+    // body: '"Helvetica Neue", sans-serif',
+    body: '"Public Sans Variable", sans-serif',
+    headline: '"Public Sans Variable", sans-serif',
+    serif: '"Public Sans Variable", sans-serif',
+    mono: '"Public Sans Variable", sans-serif',
+  },
+  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 72],
+  fontWeights: {
+    body: 400,
+    heading: 700,
+    bold: 700,
+  },
+  lineHeights: {
+    body: 1.5,
+    heading: 1.25,
+  },
   styles: {
     root: {
-      // uses the theme values provided above
       fontFamily: 'body',
       fontWeight: 'body',
+      // lineHeight: 'body',
     },
     h1: {
-      // the style object for each element
-      // can reference other values in the theme
-      fontFamily: 'body',
-      fontWeight: 100,
-      lineHeight: 'headline',
-      fontSize: ['3', '4', '5'],
-      marginTop: 0,
-      marginBottom: 3,
-      letterSpacing: '-0.4px',
-      color: 'text',
+      fontFamily: 'heading',
+      fontWeight: 'heading',
+      lineHeight: 'heading',
+      fontSize: 5,
     },
-    em: { fontWeight: '500' },
     h2: {
       fontFamily: 'body',
       fontWeight: 'headline',
@@ -107,7 +117,7 @@ const theme: Theme = {
       color: 'muted',
     },
     p: {
-      fontFamily: 'serif',
+      fontFamily: 'body',
       lineHeight: '30px',
       fontSize: [20, 20, 20],
       fontWeight: '400',
@@ -141,38 +151,73 @@ const theme: Theme = {
       zIndex: 10000,
       display: 'flex',
     },
-    // more styles can be added as needed
   },
-  buttons: {
+  badges: {
     primary: {
+      bg: 'white',
+      color: 'black',
+      borderRadius: '15px',
+      px: 2,
+      py: 1,
+      fontSize: 1,
+      fontWeight: 'bold',
+      border: '1px solid black',
+    },
+    listSection: {
+      fontFamily: 'headline',
+      padding: '5px',
+      fontSize: ['0', '1', '1'],
       color: 'background',
-      marginRight: 0,
-      paddingX: '10px',
-      paddingY: '5px',
-      fontFamily: 'body',
-      cursor: 'pointer',
-      // textTransform: 'uppercase',
-      fontWeight: '600',
-      fontSize: '14px',
-      letterSpacing: '.5px',
-      paddingLeft: '20px',
-      paddingRight: '20px',
+      textTransform: 'uppercase',
+      marginRight: '5px',
+    },
+    em: { fontWeight: '500' },
+    secondary: {
+      bg: 'secondary',
+      color: 'background',
+      borderRadius: '4px',
+      px: 2,
+      py: 1,
+      fontSize: 1,
+      fontWeight: 'bold',
+    },
+    outline: {
+      bg: 'transparent',
+      color: 'primary',
+      border: '1px solid',
+      borderColor: 'primary',
+      borderRadius: '4px',
+      px: 2,
+      py: 1,
+      fontSize: 1,
     },
   },
-  fontSizes: [10, 13, 18, 21, 26, 34, 48],
-  fonts: {
-    body: '"Public Sans Variable", sans-serif',
-    headline: '"Public Sans Variable", sans-serif',
-    serif: '"Public Sans Variable", sans-serif',
-    mono: '"Public Sans Variable", sans-serif',
+  variants: {
+    linkCard: {
+      display: 'flex',
+      textDecoration: 'none',
+      alignItems: 'center',
+      p: 3,
+      mb: 3,
+      border: '2px solid',
+      borderColor: 'primary',
+      borderRadius: 0,
+      transition: 'box-shadow 0.2s ease',
+      '&:hover': {
+        boxShadow: 'card',
+      },
+    },
   },
-  cards: {
-    primary: {
-      padding: 0,
-      borderRadius: 4,
-      // boxShadow: '0 8px 16px -4px rgba(0,0,0,.1), 0 0 8px -3px rgba(0,0,0,.1)',
-      marginBottom: '20px',
-      backgroundColor: 'muted',
+  boxes: {
+    figure: {
+      maxWidth: [null, null, '690px'],
+      backgroundColor: 'primaryMuted',
+      padding: '30px',
+      borderRadius: '5px',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      marginTop: '60px',
+      marginBottom: '60px',
     },
   },
   images: {
@@ -307,16 +352,7 @@ const theme: Theme = {
       fontSize: [1],
     },
   },
-  badges: {
-    listSection: {
-      fontFamily: 'headline',
-      padding: '5px',
-      fontSize: ['0', '1', '1'],
-      color: 'background',
-      textTransform: 'uppercase',
-      marginRight: '5px',
-    },
-  },
+
   links: {
     menu: {
       fontSize: ['22px', '22px', '22px'],
