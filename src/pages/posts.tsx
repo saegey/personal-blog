@@ -4,7 +4,6 @@ import { Container, Box, Text, Flex, Grid, Link } from 'theme-ui'
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import moment from 'moment'
 
-
 import Seo from '../components/seo'
 import CustomImage from '../components/CustomImage'
 
@@ -22,15 +21,25 @@ const PostList: React.FC<PageProps<DataProps>> = ({ data }) => {
           return (
             <Box key={`post-${index}`}>
               <Link href={`/${slug}`} as={GatsbyLink}>
-                <CustomImage
-                  layout="constrained"
-                  image={getImage(headerImage)}
-                  alt={`${title} Photo`}
-                  theme={{
-                    borderRadius: '5px',
-                    height: ['300px', '280px', '260px'],
-                  }}
-                />
+                {headerImage ? (
+                  <CustomImage
+                    layout="constrained"
+                    image={getImage(headerImage)}
+                    alt={`${title} Photo`}
+                    theme={{
+                      borderRadius: '5px',
+                      height: ['300px', '280px', '260px'],
+                    }}
+                  />
+                ) : (
+                  <Box
+                    sx={{
+                      height: ['300px', '280px', '260px'],
+                      borderRadius: '5px',
+                      backgroundColor: 'primaryMuted',
+                    }}
+                  ></Box>
+                )}
               </Link>
               <Box>
                 <Flex
@@ -41,29 +50,6 @@ const PostList: React.FC<PageProps<DataProps>> = ({ data }) => {
                 >
                   <Box>
                     <Text as="h2">
-                      <Text
-                        as="span"
-                        sx={{
-                          fontSize: '16px',
-                          lineHeight: '20px',
-                          fontWeight: 700,
-                          color: 'primary',
-                        }}
-                      >
-                        {subType}
-                      </Text>
-                      <Text
-                        as="span"
-                        sx={{
-                          fontSize: '16px',
-                          lineHeight: '20px',
-                          fontWeight: 700,
-                          color: 'primary',
-                        }}
-                      >
-                        {' '}
-                        •{' '}
-                      </Text>
                       <Link
                         href={`/${slug}`}
                         as={GatsbyLink}
@@ -75,6 +61,33 @@ const PostList: React.FC<PageProps<DataProps>> = ({ data }) => {
                       >
                         {title}
                       </Link>
+                      {subType && (
+                        <>
+                          <Text
+                            as="span"
+                            sx={{
+                              fontSize: '16px',
+                              lineHeight: '20px',
+                              fontWeight: 700,
+                              color: 'primary',
+                            }}
+                          >
+                            {' '}
+                            •{' '}
+                          </Text>
+                          <Text
+                            as="span"
+                            sx={{
+                              fontSize: '16px',
+                              lineHeight: '20px',
+                              fontWeight: 700,
+                              color: 'primary',
+                            }}
+                          >
+                            {subType}
+                          </Text>
+                        </>
+                      )}
                     </Text>
                   </Box>
                   <Box>
@@ -116,6 +129,8 @@ type DataProps = {
             gatsbyImageData: IGatsbyImageData
           }
         }
+        subType?: string
+        publishedDate?: string
         title: string
         date: string
         location: string
@@ -131,14 +146,16 @@ type DataProps = {
  *
  * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
  */
-export const Head = () => <Seo title="Race Journal List" />
+export const Head = () => (
+  <Seo title="List of all posts" description={''} pathname={''} />
+)
 
 export const pageQuery = graphql`
   query postPageQuery {
     allMdx(
       sort: { frontmatter: { date: DESC } }
       filter: {
-        frontmatter: { type: { eq: "Race Journal" }, isActive: { ne: false } }
+        frontmatter: { isActive: { ne: false }, type: { ne: "projects" } }
       }
     ) {
       nodes {

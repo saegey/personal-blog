@@ -68,18 +68,36 @@ export const createPages: GatsbyNode['createPages'] = async ({
   })
 
   const postTemplate = path.resolve('./src/templates/post.tsx')
-  const createPostPromise = result.data?.allMdx.nodes.map(post => {
-    createPage({
-      path: `${post.fields.slug}`,
-      component: `${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
-      context: {
-        slug: post.fields.slug,
-        id: post.id,
-        relatedPosts: post.frontmatter.related ? post.frontmatter.related : [],
-        // anything else you want to pass to your context
-      },
-    })
-  })
+  const blogTemplate = path.resolve('./src/templates/blog.tsx')
+  const postsDir = '/content/posts/'
+  const blogsDir = '/content/blogs/'
 
-  await Promise.all([createPostPromise])
+  const createPostPromise = result.data?.allMdx.nodes
+    .filter(post => post.internal.contentFilePath.includes(postsDir))
+    .map(post => {
+      createPage({
+        path: `${post.fields.slug}`,
+        component: `${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
+        context: {
+          slug: post.fields.slug,
+          id: post.id,
+          relatedPosts: post.frontmatter.related ? post.frontmatter.related : [],
+        },
+      })
+    })
+
+  const createBlogPromise = result.data?.allMdx.nodes
+    .filter(post => post.internal.contentFilePath.includes(blogsDir))
+    .map(post => {
+      createPage({
+        path: `${post.fields.slug}`,
+        component: `${blogTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
+        context: {
+          slug: post.fields.slug,
+          id: post.id,
+        },
+      })
+    })
+
+  await Promise.all([createPostPromise, createBlogPromise])
 }
