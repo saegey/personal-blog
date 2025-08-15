@@ -23,17 +23,30 @@ interface CustomImageProps {
   alt: string
   variant?: string | undefined
   theme?: ThemeUIStyleObject | undefined
+  sx?: ThemeUIStyleObject | undefined
   layout?: string | undefined
 }
 
 const CustomImage = ({
   image,
+  publicUrl,
   objectFit,
   alt,
   variant,
   theme,
   layout,
+  sx = {},
 }: CustomImageProps) => {
+  if (publicUrl) {
+    return (
+      <Image
+        src={publicUrl}
+        alt={alt}
+        sx={sx}
+        className={variant}
+      />
+    )
+  }
   return (
     <ImageAlias
       image={image}

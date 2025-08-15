@@ -10,6 +10,7 @@ const theme = {
     ...base.colors,
     primary: 'black',
     primaryMuted: '#eeeeeeff',
+    textMuted: '#777777ff',
     secondary: '#30c',
     badgeSecondaryBg: 'black',
     badgeSecondaryText: 'white',
@@ -18,7 +19,8 @@ const theme = {
     cardBorderColor: '#e1e1e1',
     cardBackgroundColor: '#f8f8f8',
     showCardBackground: '#f5f5f5',
-    highlightedItem: "yellow",
+    highlightedItem: 'yellow',
+    text: '#212121ff',
 
     modes: {
       dark: {
@@ -37,11 +39,11 @@ const theme = {
     },
   },
   fonts: {
-    // body: '"SF Mono", "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", "Courier New", monospace',
-    // body: '"Helvetica Neue", sans-serif',
     body: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-    headline: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-    serif: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    headline:
+      'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    serif:
+      'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     mono: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
   },
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 72],
@@ -58,10 +60,9 @@ const theme = {
     root: {
       fontFamily: 'body',
       fontWeight: 'body',
-      // lineHeight: 'body',
     },
     h1: {
-      fontFamily: 'heading',
+      fontFamily: 'body',
       fontWeight: 'heading',
       lineHeight: 'heading',
       fontSize: 5,
@@ -69,42 +70,24 @@ const theme = {
     h2: {
       fontFamily: 'body',
       fontWeight: 'headline',
-      maxWidth: '690px',
-      marginX: 'auto',
       borderLeftWidth: [0, 0, '1px'],
-      borderLeftStyle: 'solid',
-      borderLeftColor: 'muted',
-      paddingLeft: [0, 0, '8px'],
-      marginTop: '20px',
-      marginBottom: '0',
-      paddingBottom: '10px',
-      lineHeight: '30px',
+      paddingTop: [3],
+      paddingBottom: [0],
     },
     ol: {
-      maxWidth: '690px',
-      margin: 'auto',
-      borderLeftWidth: [0, 0, '1px'],
-      borderLeftStyle: 'solid',
-      borderLeftColor: 'muted',
-      paddingLeft: [0, 0, '8px'],
-      paddingTop: [0, 0, 0],
-      listStylePosition: 'inside',
-      borderBottomWidth: '1px',
-      borderBottomStyle: 'solid',
-      borderBottomColor: 'background',
+      // listStylePosition: 'inside',
+      listStylePosition: 'outside',
+      fontSize: 18,
     },
     ul: {
-      maxWidth: '690px',
-      margin: 'auto',
-      borderLeftWidth: [0, 0, '1px'],
-      borderLeftStyle: 'solid',
-      borderLeftColor: 'muted',
-      borderBottomWidth: '1px',
-      borderBottomStyle: 'solid',
-      borderBottomColor: 'background',
-      paddingLeft: [0, 0, '8px'],
-      listStyle: 'square',
-      listStylePosition: 'inside',
+      paddingLeft: [2, 2, 3],
+
+      listStyle: 'disc',
+      listStylePosition: 'outside',
+      fontSize: 18,
+      'li::marker': {
+        color: 'textMuted',
+      },
     },
     blockquote: {
       backgroundColor: 'blockquoteBg',
@@ -112,21 +95,19 @@ const theme = {
       paddingY: '20px',
       margin: '0',
       color: 'text',
+      borderLeftWidth: '3px',
+      borderLeftStyle: 'solid',
+      borderLeftColor: 'textMuted',
     },
     hr: {
-      color: 'muted',
+      color: 'primaryMuted',
     },
     p: {
       fontFamily: 'body',
       lineHeight: '30px',
-      fontSize: [20, 20, 20],
+      fontSize: 18,
       fontWeight: '400',
-      maxWidth: ['100%', '100%', '690px'],
-      margin: '0 auto',
-      borderLeftWidth: [0, 0, '1px'],
-      borderLeftStyle: 'solid',
-      borderLeftColor: 'muted',
-      paddingLeft: [0, 0, '8px'],
+      color: 'text',
     },
     a: {
       ':hover, :focus': {
@@ -136,10 +117,10 @@ const theme = {
       color: 'text',
     },
     li: {
-      fontFamily: 'serif',
-      lineHeight: '30px',
-      fontSize: [20, 20, 20],
+      fontFamily: 'body',
+      fontSize: 18,
       marginBottom: '20px',
+      paddingLeft: 2, // or adjust as needed
     },
     faded: {
       position: 'fixed',
@@ -227,8 +208,8 @@ const theme = {
       zIndex: '0',
     },
     homePageImage: {
-      width: ['100%', '100%', '100%'],
-      height: 'auto',
+      width: ['100%', '200px', '200px'],
+      height: '200px',
       zIndex: '0',
     },
     relatedImage: {
@@ -328,10 +309,10 @@ const theme = {
       fontSize: ['14px', '16px', '16px'],
     },
     postTitle: {
-      fontFamily: 'serif',
-      fontWeight: 700,
+      fontFamily: 'body',
+      fontWeight: 600,
       fontStyle: 'normal',
-      fontSize: ['32px', '40px', '40px'],
+      fontSize: ['24px', '32px', '32px'],
       color: 'textInvert',
     },
     postType: {

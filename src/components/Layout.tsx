@@ -1,11 +1,5 @@
 import Helmet from 'react-helmet'
-import {
-  Box,
-  Flex,
-  NavLink,
-  Text,
-} from 'theme-ui'
-import Footer from './layout/Footer'
+import { Box, Divider, Flex, NavLink, Text } from 'theme-ui'
 import BackToTop from './layout/BackToTop'
 import ViewportProvider from '../context/ViewportProvider'
 import UnitProvider from '../context/UnitProvider'
@@ -26,27 +20,44 @@ const Layout = ({ children }: CardProps) => {
           <Helmet htmlAttributes={{ lang: 'en-US' }}>
             <body />
           </Helmet>
-          <Box sx={{ maxWidth: 1100, marginLeft: '20px' }}>
+          <Box sx={{ maxWidth: 1100, marginLeft: [3, 5] }}>
             <Flex sx={{ flexDirection: 'column' }}>
-              <Box>
+              <Box marginTop={3}>
                 <Text as="h1">Adam Saegebarth</Text>
               </Box>
               <Flex as="nav">
-                <NavLink href="/home" as={MyLink} p={2}>
-                  Home
-                </NavLink>
-                <NavLink href="/about" as={MyLink} p={2}>
-                  About
-                </NavLink>
-                <NavLink href="/posts" as={MyLink} p={2}>
-                  Posts
-                </NavLink>
-                <NavLink href="/projects" as={MyLink} p={2}>
-                  Projects
-                </NavLink>
+                {[
+                  { href: '/', label: 'Home' },
+                  { href: '/about', label: 'About' },
+                  { href: '/posts', label: 'Posts' },
+                  { href: '/projects', label: 'Projects', paddingY: 2 },
+                ].map(({ href, label, paddingY }) => (
+                  <NavLink
+                    key={href}
+                    href={href}
+                    as={MyLink}
+                    paddingRight={3}
+                    paddingTop={2}
+                    {...(paddingY ? { paddingY } : {})}
+                    sx={{
+                      textDecoration: 'underline',
+                      color: '#4c79f4ff',
+                      '&:hover': {
+                        color: '#3b5b9a',
+                        textDecorationThickness: '2px',
+                      },
+                      fontWeight: '600',
+                    }}
+                  >
+                    {label}
+                  </NavLink>
+                ))}
               </Flex>
             </Flex>
           </Box>
+          <Divider
+            sx={{ marginTop: 3, marginBottom: 0, color: 'primaryMuted' }}
+          />
           <Box
             as="main"
             sx={{
@@ -56,11 +67,9 @@ const Layout = ({ children }: CardProps) => {
             {children}
             <BackToTop />
           </Box>
-          <Footer />
         </>
       </UnitProvider>
     </ViewportProvider>
-    // </ThemeUIProvider>
   )
 }
 

@@ -36,10 +36,13 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       title: String!
       description: String
       date: Date! @dateformat
+      publishedDate: Date @dateformat
       tags: [String!]
       location: String
       type: String!
       isActive: Boolean
+      related: [String]
+      subType: String
     }
 
     type Coordinate {

@@ -33,6 +33,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
       node,
       value: `${slugify(nodeValue.frontmatter.type)}${slug}`,
     })
+    console.log(`Created slug for ${node.id}: ${slug}`)
   }
 
   if (node.internal.mediaType === 'application/json') {

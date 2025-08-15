@@ -1,34 +1,38 @@
-import { graphql } from 'gatsby';
-import { Box, Text } from 'theme-ui';
+import { graphql } from 'gatsby'
+import { Box, Container, Text } from 'theme-ui'
+import { MDXProvider } from '@mdx-js/react'
 
 interface BlogTemplateProps {
   data: {
     mdx: {
       frontmatter: {
-        title: string;
-        date: string;
-      };
-      body: string;
-    };
-  };
+        title: string
+        date: string
+      }
+      body: string
+    }
+  }
+  children: React.ReactNode
 }
 
-const BlogTemplate = ({ data }: BlogTemplateProps) => {
-  const { mdx } = data;
+const BlogTemplate = ({ data, children }: BlogTemplateProps) => {
+  const { mdx } = data
   return (
-    <Box sx={{ maxWidth: '690px', margin: 'auto', padding: 4 }}>
-      <Text as="h1" sx={{ fontSize: 5, fontWeight: 700, mb: 3 }}>
-        {mdx.frontmatter.title}
-      </Text>
-      <Text as="p" sx={{ color: 'muted', mb: 4 }}>
-        {mdx.frontmatter.date}
-      </Text>
-      <div className="blog-content">
-        {/* MDX body will be rendered here by Gatsby */}
-      </div>
-    </Box>
-  );
-};
+    <Container sx={{ paddingTop: '0', maxWidth: '1045px', margin: '0 0' }}>
+      <Box sx={{ marginLeft: [3, 5, 5] }}>
+        <Text as="h1" sx={{ fontSize: 5, fontWeight: 700, mb: 3 }}>
+          {mdx.frontmatter.title}
+        </Text>
+        <Text as="p" sx={{ color: 'muted', mb: 4 }}>
+          {mdx.frontmatter.date}
+        </Text>
+        <div className="blog-content">
+          <MDXProvider>{children}</MDXProvider>
+        </div>
+      </Box>
+    </Container>
+  )
+}
 
 export const pageQuery = graphql`
   query BlogBySlug($slug: String!) {
@@ -40,6 +44,6 @@ export const pageQuery = graphql`
       body
     }
   }
-`;
+`
 
-export default BlogTemplate;
+export default BlogTemplate

@@ -28,7 +28,7 @@ const PostHeader = ({
   return (
     <Flex
       sx={{
-        marginTop: '10px',
+        // marginTop: '10px',
         flexDirection: ['column', 'row', 'row'],
         justifyContent: 'space-between',
       }}
@@ -42,7 +42,6 @@ const PostHeader = ({
           image={getImage(headerImage)}
           objectFit="fill"
           alt={`Photo`}
-          variant="homePageImage"
           theme={{ height: '100%' }}
         />
       </Box>

@@ -1,116 +1,42 @@
 import type { PageProps } from 'gatsby'
 import { graphql, Link as GatsbyLink } from 'gatsby'
-import { Container, Box, Text, Flex, Grid, Link } from 'theme-ui'
+import { Container, Box, Text, Flex, Grid, Link, Divider } from 'theme-ui'
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 import moment from 'moment'
 
 import Seo from '../components/seo'
 import CustomImage from '../components/CustomImage'
+import FeaturedPost from '../components/home/FeaturedPost'
 
 const PostList: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data.allMdx.nodes
 
   return (
-    <Container p={['20px', '20px', '32px']} sx={{ maxWidth: '1090px' }}>
-      <Grid columns={[1, 2, 3]} sx={{ rowGap: '60px', columnGap: '20px' }}>
-        {posts.map((post, index: number) => {
-          const { title, headerImage, subType, publishedDate } =
-            post.frontmatter
-          const { slug } = post.fields
-
-          return (
-            <Box key={`post-${index}`}>
-              <Link href={`/${slug}`} as={GatsbyLink}>
-                {headerImage ? (
-                  <CustomImage
-                    layout="constrained"
-                    image={getImage(headerImage)}
-                    alt={`${title} Photo`}
-                    theme={{
-                      borderRadius: '5px',
-                      height: ['300px', '280px', '260px'],
-                    }}
-                  />
-                ) : (
-                  <Box
-                    sx={{
-                      height: ['300px', '280px', '260px'],
-                      borderRadius: '5px',
-                      backgroundColor: 'primaryMuted',
-                    }}
-                  ></Box>
-                )}
-              </Link>
-              <Box>
-                <Flex
-                  sx={{
-                    flexDirection: 'column',
-                    gap: '20px',
-                  }}
-                >
-                  <Box>
-                    <Text as="h2">
-                      <Link
-                        href={`/${slug}`}
-                        as={GatsbyLink}
-                        sx={{
-                          fontSize: '16px',
-                          lineHeight: '20px',
-                          fontWeight: 700,
-                        }}
-                      >
-                        {title}
-                      </Link>
-                      {subType && (
-                        <>
-                          <Text
-                            as="span"
-                            sx={{
-                              fontSize: '16px',
-                              lineHeight: '20px',
-                              fontWeight: 700,
-                              color: 'primary',
-                            }}
-                          >
-                            {' '}
-                            •{' '}
-                          </Text>
-                          <Text
-                            as="span"
-                            sx={{
-                              fontSize: '16px',
-                              lineHeight: '20px',
-                              fontWeight: 700,
-                              color: 'primary',
-                            }}
-                          >
-                            {subType}
-                          </Text>
-                        </>
-                      )}
-                    </Text>
-                  </Box>
-                  <Box>
-                    <Text
-                      as="p"
-                      sx={{
-                        fontWeight: 500,
-                        fontSize: '12px',
-                        lineHeight: '14px',
-                        letterSpacing: '.1em',
-                        textTransform: 'uppercase',
-                      }}
-                    >
-                      By Adam Saegebarth •&nbsp;
-                      {moment(publishedDate).startOf('day').fromNow()}
-                    </Text>
-                  </Box>
-                </Flex>
-              </Box>
-            </Box>
-          )
-        })}
-      </Grid>
+    <Container sx={{ paddingTop: '0', maxWidth: '1045px', margin: '0 0' }}>
+      <Box sx={{ marginX: [3, 5, 5], marginTop: [3], marginBottom: [5] }}>
+        <Flex sx={{ gap: 3, flexDirection: 'column' }}>
+          {posts.map((post, idx: number) => {
+            const { title, teaser, subType, publishedDate, headerImage } =
+              post.frontmatter
+            return (
+              <>
+                <FeaturedPost
+                  key={idx}
+                  headerImage={headerImage}
+                  title={title}
+                  slug={`/${post.fields.slug}`}
+                  teaser={teaser}
+                  subType={subType ?? ''}
+                  updatedAt={
+                    publishedDate ? new Date(publishedDate) : new Date(0)
+                  }
+                />
+                {idx < posts.length - 1 && <Divider color="primaryMuted" />}
+              </>
+            )
+          })}
+        </Flex>
+      </Box>
     </Container>
   )
 }
@@ -129,6 +55,7 @@ type DataProps = {
             gatsbyImageData: IGatsbyImageData
           }
         }
+        teaser: string
         subType?: string
         publishedDate?: string
         title: string
@@ -155,7 +82,7 @@ export const pageQuery = graphql`
     allMdx(
       sort: { frontmatter: { date: DESC } }
       filter: {
-        frontmatter: { isActive: { ne: false }, type: { ne: "projects" } }
+        frontmatter: { isActive: { ne: false }, type: { ne: "Project" } }
       }
     ) {
       nodes {
@@ -171,6 +98,7 @@ export const pageQuery = graphql`
           publishedDate
           date(formatString: "MMM DD, YYYY")
           tags
+          teaser
           headerImage {
             childImageSharp {
               gatsbyImageData(placeholder: BLURRED)
