@@ -1,0 +1,18 @@
+Personal Brand Crossover
+	1.	Engineering Crossover
+	•	How has your background as a senior software engineer influenced how you run Public Vinyl Radio — in terms of workflow, tools, or problem-solving?
+	  - There are lots parts of the process of releasing content that are repetitive. I am able to use AI prompting and scripts to streamline all this process. We want to not follow a formula creatively. But automation is key to allowing us to focus on the creative aspects and not get dragged down with the minutia 
+	2.	Creative Fusion
+	•	Do you see Public Vinyl Radio as another expression of your “data-driven creativity” pillar — blending tech with music and art?
+	- Yes, but not completely. In terms of creating playlists, we aren't going to rely solely on algorithms or data. Human curation and emotional connection to the music are still paramount. At the end of the day, we want to create a human experience that resonates with people. Analytics aren't everything. It's really about are the people are vibing with our content. It's a challenge to not focus too much on the data.
+	•	Any examples where tech has directly improved your creative output for PVR? (e.g., your playlist app, metadata workflows, editing automation)
+	- The playlist app is a great example. It allows us to quickly find tracks, see what we've played, and discover new music that fits our vibe. It saves us time and helps us focus on the creative side of things.
+	3.	Endurance Mindset
+	•	Has your endurance cycling mindset played a role in your approach to building the channel? (Consistency, long-term vision, pushing through plateaus)
+	 - Yes, absolutely. The endurance mindset is all about consistency and pushing through challenges, which is crucial when building a channel like PVR. There are always ups and downs, and it's important to stay committed to the long-term vision, even when progress feels slow. Just like in cycling, it's about finding your rhythm and not getting discouraged by temporary setbacks.
+	4.	Community Building
+	•	How do you approach community and collaboration in PVR compared to your work in tech/startups?
+	- Community is at the heart of what we do at PVR. In tech, collaboration often revolves around projects and deadlines, but in the music space, it's more about building relationships and fostering a shared passion. We actively engage with our listeners, encourage feedback, and create opportunities for collaboration — whether that's through guest mixes, listener submissions, or live events. It's about creating a sense of belonging and shared ownership over the music we create and share.
+	5.	Ownership & Independence
+	•	Does keeping PVR independent and self-produced align with how you approach ownership and autonomy in your tech career?
+	- Absolutely. In tech, I've always valued ownership and the ability to make decisions without unnecessary bureaucracy. Keeping PVR independent allows us to maintain creative control and stay true to our vision. We can experiment, take risks, and pivot when needed — all of which are essential for fostering innovation. Plus, it creates a more authentic connection with our audience, as they know we're not beholden to outside influences.

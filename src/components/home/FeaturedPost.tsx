@@ -1,113 +1,143 @@
-import { Text, Link, Flex, Box } from 'theme-ui'
+/** @jsxImportSource theme-ui */
+import * as React from 'react'
+import { Box, Card, Grid, Text } from 'theme-ui'
 import { Link as GatsbyLink } from 'gatsby'
 import { getImage, ImageDataLike } from 'gatsby-plugin-image'
-import moment from 'moment'
-
-import CustomImage from '../CustomImage'
+// import CustomImage from '../CustomImage'
 
 type FeaturePostProps = {
-  headerImage: ImageDataLike | undefined
+  headerImage?: ImageDataLike
   title: string
   slug: string
   teaser: string
   subType: string
-  updatedAt: Date
+  updatedAt: Date | string
 }
 
-const FeaturedPost = ({
-  headerImage,
+const formatDate = (d: Date | string) =>
+  new Intl.DateTimeFormat(undefined, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(typeof d === 'string' ? new Date(d) : d)
+
+const clamp = (lines: number) => ({
+  display: '-webkit-box',
+  WebkitLineClamp: lines,
+  WebkitBoxOrient: 'vertical' as const,
+  overflow: 'hidden',
+})
+
+const FeaturedPost: React.FC<FeaturePostProps> = ({
+  // headerImage,
   title,
   slug,
   teaser,
   subType,
   updatedAt,
-}: FeaturePostProps) => {
-  const headerImageComp = headerImage ? (
-    <Link to={`${slug}`} as={GatsbyLink}>
-      <CustomImage
-        image={getImage(headerImage)}
-        objectFit="cover"
-        alt={`Photo`}
-        variant="homePageImage"
-        theme={{ borderRadius: '5px' }}
-      />
-    </Link>
-  ) : (
-    ''
-  )
+}) => {
+  // const img = headerImage ? getImage(headerImage) : null
 
   return (
-    <Flex sx={{ flexWrap: 'wrap' }}>
-      <Box
-        sx={{
-          flexGrow: 1,
-          flexBasis: 'sidebar',
-          width: [
-            '100%',
-            'calc(100% - 335px - 20px)',
-            'calc(100% - 335px - 20px)',
-          ],
-        }}
+    <Card
+      as={GatsbyLink}
+      to={`/${slug.replace(/^\/+/, '')}`}
+      aria-label={`Open: ${title}`}
+      sx={{
+        textDecoration: 'none',
+        color: 'inherit',
+        paddingY: [2, 3],
+        borderRadius: 'lg',
+        transition: 'transform 120ms ease, box-shadow 120ms ease',
+        boxShadow: 'card',
+        '&:hover, &:focus': {
+          transform: 'translateY(-2px)',
+          boxShadow: 'elevated',
+        },
+        '&:focus': {
+          outline: 'none',
+        },
+      }}
+    >
+      <Grid
+        gap={[3, 4]}
+        // columns={[1, img ? 'minmax(260px, 36%) 1fr' : '1fr']}
+        columns={[1, '1fr']}
+        sx={{ alignItems: 'stretch' }}
       >
-        {headerImageComp}
-      </Box>
-      <Box
-        sx={{
-          flexGrow: 99999,
-          flexBasis: 0,
-          minWidth: 320,
-        }}
-      >
-        <Flex
-          sx={{
-            flexDirection: 'column',
-            paddingTop: ['10px', 0, 0],
-            paddingX: [0, '20px', '20px'],
-            height: '100%',
-            gap: ['10px', '20px', '20px'],
-          }}
-        >
-          <Text as="p" variant="postType" sx={{ textAlign: 'left' }}>
+        {/* Media
+        {img && (
+          <Box
+            sx={{
+              position: 'relative',
+              borderRadius: 'md',
+              overflow: 'hidden',
+              aspectRatio: ['16 / 9', '4 / 3'],
+            }}
+          >
+            <CustomImage
+              image={img}
+              objectFit="cover"
+              alt=""
+              variant="homePageImage"
+              theme={{ borderRadius: 'md' }}
+            />
+          </Box>
+        )} */}
+
+        {/* Content */}
+        <Box sx={{ minWidth: 0, display: 'flex', flexDirection: 'column' }}>
+          <Text
+            as="p"
+            sx={{
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
+              fontSize: 0,
+              color: 'textMuted',
+              mb: 1,
+              fontFamily: 'body',
+            }}
+          >
             {subType}
           </Text>
-          <Link to={`${slug}`} as={GatsbyLink} sx={{ textDecoration: 'none' }}>
-            <Text
-              as="h1"
-              variant="postTitle"
-              sx={{ textAlign: 'left', color: 'text' }}
-            >
-              {title}
-            </Text>
-          </Link>
+
+          <Text
+            as="h3"
+            variant="postTitle"
+            sx={{
+              textAlign: 'left',
+              color: 'text',
+              mb: 2,
+              ...clamp(2),
+            }}
+          >
+            {title}
+          </Text>
+
           <Text
             as="p"
             variant="postSubtitle"
             sx={{
-              marginBottom: '0px',
               color: 'text',
+              mb: 3,
+              ...clamp(3),
             }}
           >
             {teaser}
           </Text>
-          <Box sx={{ margin: 'auto 0 0' }}>
+
+          <Box sx={{ mt: 'auto' }}>
             <Text
-              as="p"
-              sx={{
-                fontSize: '11px',
-                textTransform: 'uppercase',
-                fontWeight: '600',
-                color: 'primary',
-                letterSpacing: '.05em',
-                lineHeight: '130%',
-              }}
+              as="time"
+              dateTime={new Date(updatedAt).toISOString()}
+              sx={{ fontSize: 0, color: 'textMuted', letterSpacing: '.03em' }}
             >
-              By Adam Saegebarth<br></br>
-              {moment(updatedAt).startOf('day').fromNow()}
+              {formatDate(updatedAt)}
             </Text>
           </Box>
-        </Flex>
-      </Box>
-    </Flex>
+        </Box>
+      </Grid>
+    </Card>
   )
 }
 

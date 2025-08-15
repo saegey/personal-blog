@@ -5,21 +5,27 @@ const Hero: React.FC = () => (
     as="section"
     sx={{
       py: [5, 6],
-      px: [3, 4],
       bg: 'background',
     }}
   >
-    <Box sx={{ maxWidth: 1100, mx: 'auto' }}>
+    <Box sx={{ maxWidth: 1100 }}>
       <Heading
         as="h1"
         sx={{ fontSize: [5, 6], lineHeight: 1.1, mb: 3 }}
         variant="headline"
       >
-        Senior software engineer, vinyl DJ, and endurance data nerd.
+        Product designer, software engineer, vinyl selector, and endurance
+        athlete.
       </Heading>
       <Text
         as="p"
-        sx={{ fontSize: [2, 3], color: 'text', maxWidth: 800, mb: 4 }}
+        sx={{
+          fontSize: [2, 3],
+          color: 'text',
+          maxWidth: 800,
+          mb: 4,
+          lineHeight: [1.5, 1.6],
+        }}
       >
         I’m Adam Saegebarth—Seattle‑based builder who ships end‑to‑end products,
         curates 100%‑vinyl global mixes, and turns training data into stories.
@@ -40,7 +46,7 @@ const Hero: React.FC = () => (
         <Button
           as="a"
           variant="secondary"
-          href="/dj"
+          onClick={() => window.open('https://publicvinylradio.com', '_blank')}
           sx={{ fontWeight: 700 }}
           color="primaryText"
           backgroundColor="primary"

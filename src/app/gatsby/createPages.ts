@@ -67,37 +67,49 @@ export const createPages: GatsbyNode['createPages'] = async ({
     component: path.resolve('./src/pages/home.tsx'),
   })
 
-  const postTemplate = path.resolve('./src/templates/post.tsx')
-  const blogTemplate = path.resolve('./src/templates/blog.tsx')
-  const postsDir = '/content/posts/'
-  const blogsDir = '/content/blogs/'
-
-  const createPostPromise = result.data?.allMdx.nodes
-    .filter(post => post.internal.contentFilePath.includes(postsDir))
-    .map(post => {
-      createPage({
-        path: `${post.fields.slug}`,
-        component: `${postTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
-        context: {
-          slug: post.fields.slug,
-          id: post.id,
-          relatedPosts: post.frontmatter.related ? post.frontmatter.related : [],
-        },
+  function createPagesForDir(nodes: any[], dir: string, template: string, contextCb: (post: any) => object) {
+    return nodes
+      .filter(post => post.internal.contentFilePath.includes(dir))
+      .map(post => {
+        console.log(`Creating page for ${post.fields.slug}`)
+        createPage({
+          path: `${post.fields.slug}`,
+          component: `${template}?__contentFilePath=${post.internal.contentFilePath}`,
+          context: contextCb(post),
+        })
       })
-    })
+  }
 
-  const createBlogPromise = result.data?.allMdx.nodes
-    .filter(post => post.internal.contentFilePath.includes(blogsDir))
-    .map(post => {
-      createPage({
-        path: `${post.fields.slug}`,
-        component: `${blogTemplate}?__contentFilePath=${post.internal.contentFilePath}`,
-        context: {
-          slug: post.fields.slug,
-          id: post.id,
-        },
-      })
+  const createPostPromise = createPagesForDir(
+    result.data?.allMdx.nodes,
+    '/content/posts/',
+    path.resolve('./src/templates/post.tsx'),
+    post => ({
+      slug: post.fields.slug,
+      id: post.id,
+      relatedPosts: post.frontmatter.related ? post.frontmatter.related : [],
     })
+  )
 
-  await Promise.all([createPostPromise, createBlogPromise])
+  const createBlogPromise = createPagesForDir(
+    result.data?.allMdx.nodes,
+    '/content/blogs/',
+    path.resolve('./src/templates/blog.tsx'),
+    post => ({
+      slug: post.fields.slug,
+      id: post.id,
+    })
+  )
+
+  const createProjectPromise = createPagesForDir(
+    result.data?.allMdx.nodes,
+    '/content/projects/',
+    path.resolve('./src/templates/project.tsx'),
+    post => ({
+      slug: post.fields.slug,
+      id: post.id,
+    })
+  )
+
+  await Promise.all([createPostPromise, createBlogPromise, createProjectPromise])
 }
