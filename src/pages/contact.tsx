@@ -80,7 +80,7 @@ const ContactPage: React.FC = () => {
           py: [4, 5],
         }}
       >
-        <Container sx={{ maxWidth: 1045, px: [3, 4], py: [4, 5] }}>
+        <Container>
           <Text
             as="p"
             sx={{
@@ -107,7 +107,7 @@ const ContactPage: React.FC = () => {
       </Box>
 
       {/* Content */}
-      <Container sx={{ maxWidth: 1045, px: [3, 4], py: [4, 5] }}>
+      <Container sx={{ py: [4, 5] }}>
         {/* Status banner */}
         {status === 'error' && (
           <Card
