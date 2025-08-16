@@ -2,7 +2,6 @@
 import * as React from 'react'
 import { Link as GatsbyLink } from 'gatsby'
 import {
-  Themed,
   Box,
   Grid,
   Flex,
@@ -20,7 +19,10 @@ const Section: React.FC<
   <Box
     as="section"
     id={id}
-    sx={{ py: [4, 5], borderTop: t => `1px solid ${t.colors?.primaryMuted}` }}
+    sx={{
+      py: [4, 5],
+      borderTop: t => `1px solid ${t.colors?.primaryMuted}`,
+    }}
   >
     <Text
       as="p"
@@ -38,7 +40,7 @@ const Section: React.FC<
     <Heading as="h2" sx={{ fontSize: [4, 5], mb: 3, fontFamily: 'body' }}>
       {heading}
     </Heading>
-    <Box sx={{ maxWidth: 920, lineHeight: 1.3 }}>{children}</Box>
+    <Box sx={{ lineHeight: 1.3 }}>{children}</Box>
   </Box>
 )
 
@@ -77,10 +79,12 @@ const SocialLink: React.FC<{ href: string; label: string }> = ({
 
 const AboutPage: React.FC = () => {
   return (
-    <Container sx={{ paddingTop: '0', maxWidth: '1045px', margin: '0 0' }}>
-      <Box sx={{ marginX: [3, 5, 5], marginTop: [4, 5] }}>
+    <Container
+      sx={{ paddingTop: '0'}}
+    >
+      <Box sx={{ marginTop: [3], marginBottom: [5] }}>
         {/* Hero */}
-        <Box as="header" sx={{ mb: [4, 5] }}>
+        <Box as="header" sx={{ mb: [4, 5], marginTop: [3, 5, 5] }}>
           <Text
             as="p"
             sx={{
@@ -317,11 +321,11 @@ const AboutPage: React.FC = () => {
         </Section>
 
         {/* CTA */}
-        <Section id="connect" heading="Let’s Connect" kicker="Collaboration">
+        <Section id="connect" heading="Let's Connect" kicker="Collaboration">
           <Text as="p" sx={{ mb: 3 }}>
             Open to collaboration, advisory, and roles that value hands‑on
             engineering with creative range. If something here resonates, reach
-            out—I’d love to talk.
+            out—I'd love to talk.
           </Text>
           <Flex sx={{ alignItems: 'center', flexWrap: 'wrap', gap: 3, mb: 3 }}>
             <Button
@@ -330,10 +334,14 @@ const AboutPage: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Connect on LinkedIn
+              <Text sx={{ color: 'primaryMuted', fontWeight: 500 }}>
+                Connect on LinkedIn
+              </Text>
             </Button>
             <Button as={GatsbyLink} to="/contact" variant="secondary">
-              Send a message
+              <Text sx={{ color: 'primaryMuted', fontWeight: 500 }}>
+                Send a message
+              </Text>
             </Button>
           </Flex>
           <Box sx={{ mt: 2 }}>

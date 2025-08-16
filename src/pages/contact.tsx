@@ -77,10 +77,7 @@ const ContactPage: React.FC = () => {
       {/* Hero */}
       <Box
         sx={{
-          bg: 'primaryMuted',
-          borderBottom: t => `1px solid ${t.colors?.muted}`,
           py: [4, 5],
-          px: [3, 4],
         }}
       >
         <Container sx={{ maxWidth: 1045, px: [3, 4], py: [4, 5] }}>
@@ -281,7 +278,9 @@ const ContactPage: React.FC = () => {
                   cursor: status === 'loading' ? 'wait' : 'pointer',
                 }}
               >
-                {status === 'loading' ? 'Sending…' : 'Send Message'}
+                <Text sx={{ color: 'primaryMuted', fontWeight: 500 }}>
+                  {status === 'loading' ? 'Sending…' : 'Send Message'}
+                </Text>
               </Button>
             </Card>
 
