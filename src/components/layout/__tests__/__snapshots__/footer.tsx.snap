@@ -18,7 +18,7 @@ exports[`Footer renders 1`] = `
   margin-bottom: 10px;
   padding-top: 20px;
   border-top-width: 1px;
-  border-top-color: muted;
+  border-top-color: primaryMuted;
   border-top-style: solid;
 }
 
