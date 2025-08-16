@@ -1,13 +1,14 @@
-import nodemailer from 'nodemailer';
+import nodemailer from 'nodemailer'
+import type { VercelRequest, VercelResponse } from '@vercel/node'
 
-export default async function handler(req, res) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const { name, email, message } = req.body || {};
+  const { name, email, message } = req.body || {}
   if (!name || !email || !message) {
-    return res.status(400).json({ error: 'Missing required fields' });
+    return res.status(400).json({ error: 'Missing required fields' })
   }
 
   const transporter = nodemailer.createTransport({
@@ -18,23 +19,28 @@ export default async function handler(req, res) {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
     },
-  });
+    logger: true,
+  })
 
   try {
     await transporter.sendMail({
       // Use your authenticated mailbox as the from
       from: `Contact Form <${process.env.SMTP_USER}>`,
-      to: process.env.CONTACT_TO_EMAIL || process.env.SMTP_USER,
-      subject: `Contact Form Submission from ${name}`,
+      to: process.env.SMTP_USER,
+      subject: `Saegey.com - Contact Form Submission from ${name}`,
       replyTo: email, // so you can reply directly to the sender
       text: message,
       html: `<p><strong>Name:</strong> ${name}</p>
              <p><strong>Email:</strong> ${email}</p>
-             <p>${message.replace(/\n/g, '<br/>')}</p>`
-    });
-    return res.status(200).json({ success: true });
+             <p>${message.replace(/\n/g, '<br/>')}</p>`,
+    })
+    return res.status(200).json({ success: true })
   } catch (error) {
     // Optional: console.error(error);
-    return res.status(500).json({ error: 'Failed to send email', details: error.message });
+    let details = 'Unknown error'
+    if (error instanceof Error) {
+      details = error.message
+    }
+    return res.status(500).json({ error: 'Failed to send email', details })
   }
 }
