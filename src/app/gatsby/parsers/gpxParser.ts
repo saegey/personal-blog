@@ -41,6 +41,11 @@ export async function handleGpxNode({
 }) {
   if (node.internal.mediaType === 'application/octet-stream') {
     const content = await loadNodeContent(node)
+    if (!content || !content.trim().startsWith('<')) {
+      console.warn(`GPX file ${node.id} is empty or not valid XML`)
+      // Skip empty or invalid files
+      return
+    }
     const xmlDoc = new DOMParser().parseFromString(content, 'text/xml')
     const segments = parseSegmentsFromXml(xmlDoc as unknown as XMLDocument)
     createNodeField({
@@ -53,6 +58,11 @@ export async function handleGpxNode({
 
   if (node.internal.mediaType === 'application/gpx+xml') {
     const content = await loadNodeContent(node)
+    if (!content || !content.trim().startsWith('<')) {
+      // Skip empty or invalid files
+      console.warn(`GPX file ${node.id} is empty or not valid XML`)
+      return
+    }
     const gpxData = new DOMParser().parseFromString(content, 'text/xml')
     const data = gpx(gpxData)
     createNodeField({
