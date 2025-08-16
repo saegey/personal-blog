@@ -1,7 +1,6 @@
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { LinkProps, BoxProps } from 'theme-ui'
 import { GatsbyLinkProps } from 'gatsby'
-import { SliceTooltipProps } from '@nivo/line'
 
 export interface Coordinate {
   x: number

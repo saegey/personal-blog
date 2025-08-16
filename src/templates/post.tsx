@@ -22,7 +22,7 @@ import {
   Carousel,
   VideoPlayer,
   PowerCurveGraph,
-  RaceOverview
+  RaceOverview,
 } from '../components/posts'
 
 const shortcodes = {
@@ -41,7 +41,7 @@ const shortcodes = {
   RelatedRaces,
   StravaLink,
   VisualOverview,
-  Box
+  Box,
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
@@ -91,6 +91,26 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
           '&.article>p+h2': {
             paddingTop: '30px',
           },
+          '&.article>p': {
+            maxWidth: ['100%', '100%', '690px'],
+            margin: '0 auto',
+            paddingLeft: [0, 0, '8px'],
+          },
+          '&.article>ol': {
+            maxWidth: ['100%', '100%', '690px'],
+            margin: '0 auto',
+            paddingLeft: [0, 0, '8px'],
+            paddingTop: [0, 0, 0],
+          },
+          '&.article>ul': {
+            maxWidth: '690px',
+            margin: 'auto',
+          },
+          '&.article>h2': {
+            maxWidth: '690px',
+            margin: '0 auto',
+            paddingLeft: [0, 0, '8px'],
+          },
         }}
         className="article"
         as="article"
@@ -134,17 +154,11 @@ export const Head: React.FC<PageProps<DataProps>> = ({ data }) => {
         description={data.mdx.frontmatter.description}
         image={
           data.mdx.frontmatter.headerImage?.childImageSharp?.gatsbyImageData
-            ?.images?.fallback?.src
         }
-        width={
-          data.mdx.frontmatter.headerImage?.childImageSharp?.gatsbyImageData
-            ?.width
-        }
-        height={
-          data.mdx.frontmatter.headerImage?.childImageSharp?.gatsbyImageData
-            ?.height
-        }
+        width={data.mdx.frontmatter.headerImage?.childImageSharp?.gatsbyImageData?.width?.toString()}
+        height={data.mdx.frontmatter.headerImage?.childImageSharp?.gatsbyImageData?.height?.toString()}
         publishedDate={data.mdx.frontmatter.publishedDate}
+        pathname={''}
       />
       <script type="application/ld+json">{schemaAsString}</script>
     </>

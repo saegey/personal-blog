@@ -16,7 +16,7 @@ const ImageWrapper = ({ image, caption, children, altText }: RaceImageType) => {
 
   return (
     <>
-      <Box sx={{ marginY: ['20px', '80px', '100px'] }}>
+      <Box sx={{ marginY: 3 }}>
         <Box
           sx={{ cursor: 'pointer' }}
           onClick={() => {

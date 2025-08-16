@@ -1,0 +1,140 @@
+---
+title: Optimizing Vinyl Playlists with AI and Audio Analysis
+date: 2025-08-15
+publishedDate: 2025-08-15
+tags:
+  - ios
+  - mobile
+type: Project
+subType: Product/Engineering
+teaser: How I turned my scattered vinyl collection into a searchable, playable library without losing the soul of crate digging.
+images:
+  - ./vinylapp1.gif
+---
+
+<CustomImage
+  publicUrl={props.data.mdx.frontmatter.images[0].publicURL}
+  maximize={true}
+  objectFit="cover"
+  sx={{ borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}
+/>
+
+I started vinyl selecting last year. My first step was keeping my library current in Discogs, which is great for cataloging but limited for the way I work as a DJ.
+
+They have “folders” to organize your collection, but a record can only be in one folder. Search is album-oriented, not track-oriented. And when you're trying to prep a set, flipping through those folders feels more like a digital filing cabinet than the tactile crate-digging experience I enjoy in my bins at home.
+
+> **“The world is analog, and digital is always a representation.”**
+> ― David Sax, The Revenge of Analog: Real Things and Why They Matter
+
+My goal was to create a tool that:
+
+- Mirrors the physical experience of crate digging, but without Discogs' constraints
+- Lets me search **tracks** by their specific style instead of just the album's genres
+- Surfaces forgotten records alongside new finds
+- Suggests an order that makes sense for the energy and flow of a set
+- Enables collaboration by pulling in other DJs' collections for cross-borrowing
+- Works locally so I'm not dependent on streaming rights staying intact
+
+## Where the Idea Came From
+
+A friend and I were talking about how difficult it is to browse our collections unless we're physically at home or logged into Discogs. Even then, it didn't have the features we needed. He's on Spotify, I'm on Apple Music — so collaboration was clunky from the start.
+
+The first problem I set out to solve was **better search and discovery**:
+
+- Search by actual track genres/styles
+- Find tracks similar to a reference track or playlist
+- Export playlists with a playable order
+- Preview audio instantly without long buffering times
+- Maintain a permanent catalog independent of streaming platforms
+
+## Building the First Version
+
+I didn't start with a fully formed architecture. The workflow came first, and the tech followed.  
+I chose **[Meilisearch](https://www.meilisearch.com/)** for its simplicity and API design — it's well-suited for fast, intuitive search queries. **[Discogs API](https://www.discogs.com/developers/)** was the natural starting point for pulling in my collection, and I layered in Apple MusicKit to match releases and export playlists for Public Vinyl Radio.
+
+On the infrastructure side, I needed to run:
+
+- [Meilisearch](https://www.meilisearch.com/)
+- [Postgres with vector search](https://github.com/pgvector/pgvector)
+- [Essentia](https://essentia.upf.edu/) for audio analysis
+- [NumPy](https://numpy.org/) for some math-heavy processing
+
+Docker made it possible to run all of these consistently, so I set it up on an old Intel NUC I had repurposed from a Home Assistant install. Running it locally has the same appeal as owning physical media: as long as the hardware is safe, the collection is mine and fully under my control.
+
+The turning point was when the recommendation engine — even before adding AI-enriched notes or full audio analysis — started returning tracks I'd completely forgotten about. That was the moment I knew this was more than a one-off experiment.
+
+## How I Use It for Vinyl Sets
+
+The typical workflow now starts with a single “anchor” track. I add it to a playlist, and the app suggests the next most compatible tracks. Each addition improves the recommendations. I can:
+
+- Search by style or energy
+- Rediscover deep cuts in my collection
+- Preview on the spot
+- Build full playlists remotely through a CloudFront tunnel with authentication
+
+For a recent YouTube mix, I built the entire setlist in the app. I exported:
+
+- JSON playlist that generated a blog post
+- An Apple Music playlist
+- A <a href="/jazz_sazon.pdf" target="_blank" rel="noopener noreferrer">PDF cue sheet</a> in a format designed for live performance
+
+I used the printed sheet during the set, which made cueing and transitions much smoother.
+
+## Technical Overview
+
+**Backend & Processing**
+
+- [**Node.js**](https://nodejs.org/) for API orchestration
+- [**PostgreSQL with pgvector extension**](https://github.com/pgvector/pgvector) for structured metadata
+- [**Meilisearch**](https://www.meilisearch.com/) for instant indexed search and vector search
+- [**OpenAI `text-embedding-3-small`**](https://platform.openai.com/docs/guides/embeddings) for semantic search vectors
+- [**Essentia**](https://essentia.upf.edu/) for BPM, key, and energy analysis
+- [**Python microservice**](https://www.python.org/) for the genetic ordering algorithm
+
+**Integrations**
+
+- [Discogs API](https://www.discogs.com/developers/)
+- [Apple Music API](https://developer.apple.com/documentation/applemusicapi)
+- [Spotify API](https://developer.spotify.com/documentation/web-api/)
+- [YouTube API](https://developers.google.com/youtube/v3)
+
+**Frontend**
+
+- **Next.js** with **Chakra UI**
+- React Hooks, custom providers, and reusable components for maintainability
+
+## Algorithms
+
+Two main strategies handle playlist ordering:
+
+1. **Genetic Algorithm**
+   - Scores transitions based on semantic similarity, BPM changes, and key compatibility
+   - Evolves order over multiple iterations for improved flow
+
+2. **Greedy Algorithm**
+   - Starts from an anchor track
+   - Always selects the next best track according to the scoring function
+   - Faster for quick set prep
+
+## Lessons From Building It
+
+- Running locally adds a layer of control that cloud services can't match.
+- Docker can be complex, but in this case it allowed multiple specialized services to run together cleanly.
+- Recommenders benefit hugely from high-quality, granular metadata — the better the input, the more accurate the suggestions.
+- Open-sourcing the code has already brought in useful feedback from other DJs and developers.
+
+## Try It
+
+- **GitHub Repo:** [saegey/dj-playlist](https://github.com/saegey/dj-playlist)
+
+## Where It Could Go
+
+With more time and resources, I'd like this to become a truly dynamic, interactive library for vinyl collections — a tool that not only organizes but also inspires new ways to experience the music.
+
+I imagine:
+
+- Local-first catalog management without dependence on streaming rights
+- Tools for collaborative crate digging
+- Smarter discovery that adapts to individual taste over time
+
+It's open source, and I want other selectors to shape it for their own workflows. Algorithms should enhance the process, not dictate it — the human stays in control.

@@ -73,8 +73,8 @@ const NavigationItems = ({ setMenuOpen }: NavItemsProps) => {
         />
         <MenuLink location="/about" title="About" setMenuOpen={setMenuOpen} />
         <MenuLink
-          location="/race-journal"
-          title="Bike Races"
+          location="/posts"
+          title="Posts"
           setMenuOpen={setMenuOpen}
         />
       </ul>
