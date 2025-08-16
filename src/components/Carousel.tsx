@@ -218,7 +218,7 @@ export default function Carousel({
             height: 8,
             borderRadius: 9999,
             mx: 1,
-            bg: i === index ? 'primary' : 'muted',
+            bg: i === index ? 'primary' : 'primaryMuted',
             cursor: 'pointer',
           }}
         />

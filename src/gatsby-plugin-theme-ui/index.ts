@@ -80,7 +80,7 @@ const theme = {
       fontSize: 18,
     },
     ul: {
-      paddingLeft: [2, 2, 3],
+      paddingLeft: [3, 3, 3],
 
       listStyle: 'disc',
       listStylePosition: 'outside',

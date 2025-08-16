@@ -14,7 +14,7 @@ const Hero: React.FC = () => (
         sx={{ fontSize: [5, 6], lineHeight: 1.1, mb: 3 }}
         variant="headline"
       >
-        Product designer, software engineer, vinyl selector, and endurance
+        Product designer, Software engineer, Vinyl selector, and Endurance
         athlete.
       </Heading>
       <Text
@@ -29,7 +29,7 @@ const Hero: React.FC = () => (
       >
         I’m Adam Saegebarth—Seattle‑based builder who ships end‑to‑end products,
         curates 100%‑vinyl global mixes, and turns training data into stories.
-        Recent work spans React Native + Rails for a parenting app, a vinyl
+        Recent work spans mobile app development using Expo/React Native, a vinyl
         playlist optimizer using embeddings and genetic algorithms, and
         data‑driven race analysis.
       </Text>
