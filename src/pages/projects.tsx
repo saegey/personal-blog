@@ -1,19 +1,17 @@
 import type { PageProps } from 'gatsby'
-import { graphql, Link as GatsbyLink } from 'gatsby'
-import { Container, Box, Text, Flex, Grid, Link, Divider } from 'theme-ui'
-import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
-import moment from 'moment'
+import { graphql } from 'gatsby'
+import { Container, Box, Flex, Divider } from 'theme-ui'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 import Seo from '../components/seo'
-import CustomImage from '../components/CustomImage'
 import FeaturedPost from '../components/home/FeaturedPost'
 
 const PostList: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data.allMdx.nodes
 
   return (
-    <Container sx={{ paddingTop: '0', maxWidth: '1045px', margin: '0 0' }}>
-      <Box sx={{ marginX: [3, 5, 5], marginTop: [3], marginBottom: [5] }}>
+    <Container sx={{ paddingTop: '0'}}>
+      <Box sx={{ marginBottom: [5] }}>
         <Flex sx={{ gap: 3, flexDirection: 'column' }}>
           {posts.map((post, idx: number) => {
             const { title, teaser, subType, publishedDate, headerImage } =

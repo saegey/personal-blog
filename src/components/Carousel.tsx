@@ -1,27 +1,28 @@
 /** @jsxImportSource theme-ui */
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Box, IconButton, AspectRatio, Flex } from 'theme-ui';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Box, IconButton, AspectRatio, Flex } from 'theme-ui'
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
 type Slide =
-  | { src: string; alt?: string; caption?: string }
-  | React.ReactNode; // allows custom children if you prefer
+  | { src?: string; alt?: string; caption?: string; image?: IGatsbyImageData }
+  | React.ReactNode // allows custom children if you prefer
 
 type CarouselProps = {
   /** Array of image objects or custom nodes */
-  slides: Slide[];
+  slides: Slide[]
   /** Default: 16/9. You can pass a number (ratio) or 'auto' to let content size itself */
-  ratio?: number | 'auto';
+  ratio?: number | 'auto'
   /** Show dots under the carousel */
-  showDots?: boolean;
+  showDots?: boolean
   /** Show prev/next arrow buttons */
-  showArrows?: boolean;
+  showArrows?: boolean
   /** Auto-advance in ms (e.g., 5000). Omit or set 0 to disable */
-  autoplayMs?: number;
+  autoplayMs?: number
   /** Rounded corners (Theme UI scale key or raw value). Default: 'lg' feel */
-  radius?: number | string;
+  radius?: number | string
   /** Optional sx overrides */
-  sx?: any;
-};
+  sx?: any
+}
 
 const srOnly = {
   position: 'absolute',
@@ -33,7 +34,7 @@ const srOnly = {
   clip: 'rect(0,0,0,0)',
   whiteSpace: 'nowrap',
   border: 0,
-} as const;
+} as const
 
 export default function Carousel({
   slides,
@@ -44,92 +45,119 @@ export default function Carousel({
   radius = 12,
   sx,
 }: CarouselProps) {
-  const listRef = useRef<HTMLDivElement>(null);
-  const [index, setIndex] = useState(0);
-  const isAuto = autoplayMs && autoplayMs > 0;
+  const listRef = useRef<HTMLDivElement>(null)
+  const [index, setIndex] = useState(0)
+  const isAuto = autoplayMs && autoplayMs > 0
 
-  const count = slides.length;
+  const count = slides.length
 
   const goTo = useCallback(
     (i: number) => {
-      const clamped = Math.max(0, Math.min(i, count - 1));
-      const el = listRef.current;
-      if (!el) return;
-      const slide = el.children[clamped] as HTMLElement | undefined;
-      slide?.scrollIntoView({ inline: 'center', behavior: 'smooth' });
-      setIndex(clamped);
+      const clamped = Math.max(0, Math.min(i, count - 1))
+      const el = listRef.current
+      if (!el) return
+      const slide = el.children[clamped] as HTMLElement | undefined
+      slide?.scrollIntoView({ inline: 'center', behavior: 'smooth' })
+      setIndex(clamped)
     },
-    [count]
-  );
+    [count],
+  )
 
-  const next = useCallback(() => goTo(index + 1), [goTo, index]);
-  const prev = useCallback(() => goTo(index - 1), [goTo, index]);
+  const next = useCallback(() => goTo(index + 1), [goTo, index])
+  const prev = useCallback(() => goTo(index - 1), [goTo, index])
 
   // Update index on scroll (so dots/arrows reflect position)
   useEffect(() => {
-    const el = listRef.current;
-    if (!el) return;
+    const el = listRef.current
+    if (!el) return
 
-    let ticking = false;
+    let ticking = false
     const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
+      if (ticking) return
+      ticking = true
       requestAnimationFrame(() => {
-        ticking = false;
-        const children = Array.from(el.children) as HTMLElement[];
+        ticking = false
+        const children = Array.from(el.children) as HTMLElement[]
         // Find the child closest to the left edge
-        const distances = children.map((c) => Math.abs(c.getBoundingClientRect().left - el.getBoundingClientRect().left));
-        const newIndex = distances.indexOf(Math.min(...distances));
-        if (newIndex !== index) setIndex(newIndex);
-      });
-    };
+        const distances = children.map(c =>
+          Math.abs(
+            c.getBoundingClientRect().left - el.getBoundingClientRect().left,
+          ),
+        )
+        const newIndex = distances.indexOf(Math.min(...distances))
+        if (newIndex !== index) setIndex(newIndex)
+      })
+    }
 
-    el.addEventListener('scroll', onScroll, { passive: true });
-    return () => el.removeEventListener('scroll', onScroll);
-  }, [index]);
+    el.addEventListener('scroll', onScroll, { passive: true })
+    return () => el.removeEventListener('scroll', onScroll)
+  }, [index])
 
   // Keyboard nav
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight') next();
-      if (e.key === 'ArrowLeft') prev();
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [next, prev]);
+      if (e.key === 'ArrowRight') next()
+      if (e.key === 'ArrowLeft') prev()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [next, prev])
 
   // Autoplay
   useEffect(() => {
-    if (!isAuto) return;
+    if (!isAuto) return
     const id = setInterval(() => {
       if (index >= count - 1) {
-        goTo(0);
+        goTo(0)
       } else {
-        next();
+        next()
       }
-    }, autoplayMs);
-    return () => clearInterval(id);
-  }, [isAuto, autoplayMs, index, count, next, goTo]);
+    }, autoplayMs)
+    return () => clearInterval(id)
+  }, [isAuto, autoplayMs, index, count, next, goTo])
 
   const renderSlide = useCallback(
     (slide: Slide, i: number) => {
-      const content =
-        typeof slide === 'object' && 'src' in slide ? (
+      let content: React.ReactNode
+      if (
+        typeof slide === 'object' &&
+        slide !== null &&
+        'image' in slide &&
+        slide.image
+      ) {
+        // GatsbyImage
+        content = (
+          <GatsbyImage
+            image={slide.image}
+            alt={slide.alt ?? ''}
+            style={{ width: '100%', height: '100%', borderRadius: radius }}
+            imgStyle={{ objectFit: 'cover', borderRadius: radius }}
+          />
+        )
+      } else if (
+        typeof slide === 'object' &&
+        slide !== null &&
+        'src' in slide &&
+        slide.src
+      ) {
+        // Fallback to <img>
+        content = (
           <img
             src={slide.src}
             alt={slide.alt ?? ''}
             loading="lazy"
-            sx={{
-              display: 'block',
+            style={{
               width: '100%',
               height: '100%',
               objectFit: 'cover',
               borderRadius: radius,
             }}
           />
-        ) : (
-          slide
-        );
+        )
+      } else {
+        // Custom node
+        content = slide
+      }
 
       return (
         <Box
@@ -144,9 +172,14 @@ export default function Carousel({
           }}
         >
           {ratio === 'auto' ? (
-            <Box sx={{ borderRadius: radius, overflow: 'hidden' }}>{content}</Box>
+            <Box sx={{ borderRadius: radius, overflow: 'hidden' }}>
+              {content}
+            </Box>
           ) : (
-            <AspectRatio ratio={ratio} sx={{ borderRadius: radius, overflow: 'hidden' }}>
+            <AspectRatio
+              ratio={ratio}
+              sx={{ borderRadius: radius, overflow: 'hidden' }}
+            >
               {content}
             </AspectRatio>
           )}
@@ -165,10 +198,10 @@ export default function Carousel({
             </Box>
           ) : null}
         </Box>
-      );
+      )
     },
-    [count, ratio, radius]
-  );
+    [count, ratio, radius],
+  )
 
   const dots = useMemo(
     () =>
@@ -190,8 +223,8 @@ export default function Carousel({
           }}
         />
       )),
-    [count, goTo, index]
-  );
+    [count, goTo, index],
+  )
 
   return (
     <Box sx={{ position: 'relative', ...sx }}>
@@ -262,10 +295,14 @@ export default function Carousel({
 
       {/* Dots */}
       {showDots && count > 1 && (
-        <Flex as="nav" aria-label="Carousel pagination" sx={{ justifyContent: 'center', mt: 3 }}>
+        <Flex
+          as="nav"
+          aria-label="Carousel pagination"
+          sx={{ justifyContent: 'center', mt: 3 }}
+        >
           {dots}
         </Flex>
       )}
     </Box>
-  );
+  )
 }

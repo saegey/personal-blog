@@ -2,13 +2,13 @@ import { Box, Flex, Heading, Text, Button } from 'theme-ui'
 
 const Hero: React.FC = () => (
   <Box
-    as="section"
+    // as="section"
     sx={{
-      py: [5, 6],
+      paddingBottom: [3, 5, 6],
       bg: 'background',
     }}
   >
-    <Box sx={{ maxWidth: 1100 }}>
+    <Box>
       <Heading
         as="h1"
         sx={{ fontSize: [5, 6], lineHeight: 1.1, mb: 3 }}

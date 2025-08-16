@@ -4,6 +4,8 @@ import { MDXProvider } from '@mdx-js/react'
 import { IGatsbyImageData, StaticImage } from 'gatsby-plugin-image'
 import CustomImage from '../components/CustomImage'
 import Carousel from '../components/Carousel'
+import { LandscapeImage } from '../components/posts'
+import TwoPhotoWide from '../components/TwoPhotoWide'
 
 interface ProjectTemplateProps {
   data: {
@@ -31,7 +33,7 @@ const ProjectTemplate = ({ data, children }: ProjectTemplateProps) => {
     <Container
       sx={{
         paddingTop: '0',
-        maxWidth: '1045px',
+        maxWidth: '992px',
         margin: '0 0',
         '&.article>p+p': {
           paddingTop: '40px',
@@ -40,8 +42,8 @@ const ProjectTemplate = ({ data, children }: ProjectTemplateProps) => {
       className="article"
       as="article"
     >
-      <Box sx={{ marginX: [3, 5, 5], marginTop: [4] }}>
-        <Text as="h1" sx={{ fontSize: 5, fontWeight: 700, mb: 3 }}>
+      <Box>
+        <Text as="h1" sx={{ fontSize: [4, 5], fontWeight: 700, mb: 3 }}>
           {mdx.frontmatter.title}
         </Text>
         <Text as="p" sx={{ color: 'primary', mb: 4 }}>
@@ -49,7 +51,16 @@ const ProjectTemplate = ({ data, children }: ProjectTemplateProps) => {
         </Text>
         <div className="blog-content">
           <MDXProvider
-            components={{ StaticImage, Box, Flex, Text, CustomImage, Carousel }}
+            components={{
+              StaticImage,
+              Box,
+              Flex,
+              Text,
+              CustomImage,
+              Carousel,
+              LandscapeImage,
+              TwoPhotoWide,
+            }}
           >
             {children}
           </MDXProvider>
@@ -67,6 +78,9 @@ export const pageQuery = graphql`
         publishedDate(formatString: "MMMM DD, YYYY")
         images {
           publicURL
+          childImageSharp {
+            gatsbyImageData(placeholder: BLURRED)
+          }
         }
       }
       body

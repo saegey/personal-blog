@@ -20,10 +20,12 @@ const Layout = ({ children }: CardProps) => {
           <Helmet htmlAttributes={{ lang: 'en-US' }}>
             <body />
           </Helmet>
-          <Box sx={{ maxWidth: 1100, marginLeft: [3, 5] }}>
+          <Box sx={{ maxWidth: '1045px', marginX: [3, 5] }}>
             <Flex sx={{ flexDirection: 'column' }}>
               <Box marginTop={3}>
-                <Text as="h1">Adam Saegebarth</Text>
+                <Text as="h1" sx={{ fontSize: [4, 5, 5] }}>
+                  Adam Saegebarth
+                </Text>
               </Box>
               <Flex as="nav">
                 {[
@@ -54,14 +56,17 @@ const Layout = ({ children }: CardProps) => {
                 ))}
               </Flex>
             </Flex>
+            <Divider
+              sx={{ marginTop: 3, marginBottom: 0, color: 'primaryMuted' }}
+            />
           </Box>
-          <Divider
-            sx={{ marginTop: 3, marginBottom: 0, color: 'primaryMuted' }}
-          />
+
           <Box
             as="main"
             sx={{
               flexGrow: 1,
+              maxWidth: '1045px',
+              margin: [3, 5],
             }}
           >
             {children}
