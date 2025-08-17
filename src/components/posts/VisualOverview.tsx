@@ -23,8 +23,7 @@ const VisualOverview = ({
 }: Vizprops) => {
   const [marker, setMarker] = React.useState<DataPoint | undefined>(undefined)
   const units = useUnits()
-  console.log(marker)
-
+  
   const downSampledData = React.useMemo(
     () =>
       elevationData.data

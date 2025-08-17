@@ -83,13 +83,13 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
         .toISOString()
         .substr(11, 8)}`,
     },
-    {
-      title: 'Avg Temperature',
-      value:
-        units.unitOfMeasure === 'metric'
-          ? `${tempAnalysis.entire.toFixed()} °C`
-          : `${(tempAnalysis.entire * (9 / 5) + 32).toFixed()} °F`,
-    },
+    // {
+    //   title: 'Avg Temperature',
+    //   value:
+    //     units.unitOfMeasure === 'metric'
+    //       ? `${tempAnalysis.entire.toFixed()} °C`
+    //       : `${(tempAnalysis.entire * (9 / 5) + 32).toFixed()} °F`,
+    // },
     {
       title: 'Avg Speed',
       value:
@@ -115,10 +115,10 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
       title: 'Avg Cadence',
       value: cadenceAnalysis ? `${cadenceAnalysis.entire} rpm` : 'N/A',
     },
-    {
-      title: 'Time in Red',
-      value: `${new Date(timeInRed * 1000).toISOString().substr(11, 8)}`,
-    },
+    // {
+    //   title: 'Time in Red',
+    //   value: `${new Date(timeInRed * 1000).toISOString().substr(11, 8)}`,
+    // },
   ]
 
   return (

@@ -27,7 +27,6 @@ export {
   RaceResults,
   MatchesBurned,
   StravaLink,
-  RelatedRaces,
   CustomCarousel as Carousel,
   VideoPlayer,
   PowerCurveGraphWrapper as PowerCurveGraph,

@@ -14,7 +14,8 @@ related:
   - 'Gran Fondo Winthrop'
 teaser: This is a race you can't miss. Luxury gravel and a fast course with lots of climbing.
 gpxFile: 'Gorge_Gravel_Grinder'
-statsFile: 'stats33'
+currentFtp: 273
+statsFile: 'stats_gorge_gravel'
 location: Dufur, Oregon
 stravaUrl: https://www.strava.com/activities/8946486639
 results:
@@ -32,23 +33,55 @@ This race has been on my list from since last year and is a great early season f
 
 From my memory, the gravel in this area is good with very little car traffic and can fit in the category of "luxury" gravel. I consider "luxury" gravel to be a smooth enough surface it can be ridden with wider road tires and is quite close to paved. It is also devoid of potholes and washboards that also can make a ride much less enjoyable.
 
+<Text>
+  {console.log(props.data.mdx.statsData.fields.data['PowerAnalysis'])}
+</Text>
+
 <RaceOverview
   data={{
-        ...props.data.mdx.gpxData.fields,
-    elevationGain: 1000,
-
-}}
-selectedFields={[
-'Avg Power',
-'Avg Heart Rate',
-'Distance',
-'Moving Time',
-'Elevation Gain',
-'Avg Temperature',
-'Time in Red',
-'Normalized Power',
-'Avg Speed',
-]}
+    elevationGain: props.data.mdx.statsData.fields.data['ElevationGain'],
+    normalizedPower: props.data.mdx.statsData.fields.data['NormalizedPower'],
+    heartAnalysis: {
+      entire:
+        props.data.mdx.statsData.fields.data['HeartAnalysis'][
+          Math.max(
+            ...Object.keys(
+              props.data.mdx.statsData.fields.data['HeartAnalysis'],
+            ).map(Number),
+          )
+        ],
+    },
+    distance:
+      props.data.mdx.statsData.fields.data['SimplifiedDistances'][
+        props.data.mdx.statsData.fields.data['SimplifiedDistances'].length - 1
+      ] / 1000,
+    powerAnalysis: {
+      entire:
+        props.data.mdx.statsData.fields.data['PowerAnalysis'][
+          Math.max(
+            ...Object.keys(
+              props.data.mdx.statsData.fields.data['PowerAnalysis'],
+            ).map(Number),
+          )
+        ],
+    },
+    elapsedTime: {
+      seconds: props.data.mdx.statsData.fields.data['ElapsedTime'],
+    },
+    averageSpeed: props.data.mdx.statsData.fields.data['AverageSpeed'],
+    stoppedTime: props.data.mdx.statsData.fields.data['StoppedTime'],
+  }}
+  selectedFields={[
+    'Avg Power',
+    'Avg Heart Rate',
+    'Distance',
+    'Moving Time',
+    'Elevation Gain',
+    'Normalized Power',
+    'Avg Speed',
+    'Elapsed Time',
+    'Time Stopped',
+  ]}
 />
 
 <StravaLink stravaUrl={props.data.mdx.frontmatter.stravaUrl} />
@@ -77,11 +110,34 @@ But the bad was we missed packet pick up by an hour or so. We had to pick up our
 The first big effort of the day was a 200 foot kicker climb the whole feel smashed up. I averaged 377 watts for 2:10 seconds which felt good because the legs were fresh for the day. Up to that point, it was an easy 119 watt average for first 10 min of the neutral roll out. The race pretty much starts at this climb but they actually stopped everyone for 2 min at a start line. Then there is a short descent and the next longer climb begins. This climb breaks up the field into a lot of different groups. Ira and I were riding together from the start and following each other wheels but during this climb we linked up with our friend [Alec](https://www.strava.com/activities/8945730124) and [Vincente](https://www.strava.com/activities/8945965055).
 
 <VisualOverview
-  coordinates={props.data.mdx.gpxData.fields.coordinates}
+  coordinates={props.data.mdx.statsData.fields.data['SimplifiedCoordinates']}
   elevationToAdd={500}
   elevationData={{
-    downsampleRate: 30,
-    data: props.data.mdx.gpxData.fields.elevationData,
+    downsampleRate: 1,
+    data: props.data.mdx.statsData.fields.data['SimplifiedElevations'].map(
+      (elevationFt, idx) => {
+        const x = idx
+        const y = elevationFt / 3.28084 // meters
+        const dist =
+          props.data.mdx.statsData.fields.data['SimplifiedDistances'][idx] // meters
+        const prevDist =
+          idx > 0
+            ? props.data.mdx.statsData.fields.data['SimplifiedDistances'][
+                idx - 1
+              ]
+            : dist
+        const prevY =
+          idx > 0
+            ? props.data.mdx.statsData.fields.data['SimplifiedElevations'][
+                idx - 1
+              ] / 3.28084
+            : y
+        const dx = Math.max(1, dist - prevDist) // avoid divide-by-zero
+        const dy = y - prevY
+        const grade = dx > 0 ? dy / dx : 0 // fractional grade
+        return { distance: dist, y, grade, x }
+      },
+    ),
     yScaleMin: { imperial: 0, metric: 0 },
     axisLeftTickValues: {
       imperial: [
@@ -115,7 +171,12 @@ I was feeling really good on the climb. The climb was around 1,300 feet and I ha
 The riders you link up with in the pointier part of the field typically have better fitness so the groups hold a higher speed. It can be a little scary because you worry about going to hard and totally blowing up but some of this is remembering to eat and drink so you can sustain a hard pace.
 
 <PowerCurveGraph
-  data={props.data.mdx.gpxData.fields.powerCurve}
+  data={Object.entries(
+    props.data.mdx.statsData.fields.data['PowerAnalysis'] || {},
+  )
+    .map(([k, v]) => ({ x: Number(k), y: Number(v) }))
+    .filter(p => Number.isFinite(p.x) && p.x > 0 && Number.isFinite(p.y))
+    .sort((a, b) => a.x - b.x)}
   yAxes={[
     [200, 400, 600, 800],
     [200, 400, 600, 800],
@@ -127,7 +188,7 @@ The riders you link up with in the pointier part of the field typically have bet
     [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
     [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
   ]}
-  ftp={props.data.mdx.gpxData.fields.currentFtp}
+  ftp={props.data.mdx.frontmatter.currentFtp}
   title="Power Curve"
 />
 
@@ -167,13 +228,13 @@ Once we got to the climb, the group broke apart again and everyone was trying ma
 
 This climb was part of a series of smaller climbs that make up the next 20 miles with a total elevation gain of 3300 feet. It was at the middle part of this section that the sun came out and the temperature rose quite a bit to a high of 73 farenheight. This may not sound that hot but the effort level in our group was strong on this climb and I overheated a lot. On long sustained climbs I normalled hold my position or gain time and this one had me losing time and places during the entire second half. I did my best to keep it together but I have never been happier to be done with a climb. There are a few rollers at the end that made it extra challenging mentally.
 
-<MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
+{/* <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} /> */}
 
 So Ira and I spend the next hour and a half on some rollers and pushing into the wind. We have a group of three catch after probably 20 min or so. By this point, everyones legs are pretty tired and I just trying to keep it steady in the endurance zone. Even though the normalized power is around 200 watts for this period there were plenty of surges on the uphills. Lots of little climbs under 200 feet really hurt quite a bit.
 
 <PowerBreakdown
-  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
-  powerZones={props.data.mdx.gpxData.fields.powerZones}
+  powerZoneBuckets={props.data.mdx.statsData.fields.data.PowerZoneBuckets}
+  powerZones={props.data.mdx.statsData.fields.data.PowerZones}
 />
 
 The group grows during this roller section and we finally arrive to a gradual descent into the finish line. This when the first major problem occurs. Over time I had a slow leak in my tire that I began to notice once it was pretty low (20 psi) and stopped to pump it up. I should have used my Co2 that I had ready in my pocket but instead I used my small Lezyne pocket pump. I probably pumped it to somewhere in the 30 psi range and decided it was enough. I was pretty impatient but also tired so not making the best decisions. I saw some sealant but it seemed to be a slow leak and I was close to the finish. This stop took 1 minute 25 seconds.
@@ -201,7 +262,11 @@ I rode the same tire at Ephrata which was similar conditions so I figured it wou
 <RaceResults
   data={props.data.mdx.results.fields.data}
   numbersToHighlight={[0, 1, 2, 13, 16, 30, 42, 50, 51]}
-  distance={props.data.mdx.gpxData.fields.distance}
+  distance={
+    props.data.mdx.statsData.fields.data['SimplifiedDistances'][
+      props.data.mdx.statsData.fields.data['SimplifiedDistances'].length - 1
+    ] / 1000
+  }
   racerName="Adam Saegebarth"
   showSpeed={true}
 />
@@ -218,7 +283,7 @@ I rode the same tire at Ephrata which was similar conditions so I figured it wou
 2. Always pick up race packet the day before so the morning preparation isn't affected by waiting.
 3. Don't wear a winter jersey when it will warm up throughout the day. Wear layers that can be removed like a vest and arm warmers or carry a shakedry so you don't risk overheating. Overheating can really impact your power output.
 
-<RelatedRaces
+{/* <RelatedRaces
   items={props.data.relatedP.edges.map(d => {
     return {
       slug: d.node.fields.slug,
@@ -235,4 +300,4 @@ I rode the same tire at Ephrata which was similar conditions so I figured it wou
       location: d.node.frontmatter.location,
     }
   })}
-/>
+/> */}

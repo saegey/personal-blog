@@ -29,6 +29,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       gpxData: File @link(by: "name", from: "frontmatter.gpxFile")
       results: File @link(by: "name", from: "frontmatter.results.file")
       segments: File @link(by: "name", from: "frontmatter.trainingPeaks")
+  statsData: File @link(by: "name", from: "frontmatter.statsFile")
     }
 
     type Frontmatter {
@@ -43,6 +44,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       isActive: Boolean
       related: [String]
       subType: String
+  statsFile: String
+  currentFtp: Int
     }
 
     type Coordinate {
@@ -54,5 +57,16 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       slug: String
     }
 
+    """
+    Expose custom fields on File nodes. The JSON type allows arbitrary structured data
+    from our JSON parsers to be queried without inference issues.
+    """
+    type FileFields @infer {
+      data: JSON
+    }
+
+    type File implements Node {
+      fields: FileFields
+    }
   `)
   }
