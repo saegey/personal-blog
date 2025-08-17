@@ -16,7 +16,6 @@ import MaximizedContainer from '../common/MaximizedContainer'
 import ExpandableCard from '../common/ExpandableCard'
 import { formatSeconds, formatTime } from '../../../lib/formatters'
 
-
 interface PowerCurveGraphProps extends GraphProps {
   yAxes: Array<Array<Number>>
   xAxes: Array<Array<Number>>
@@ -48,19 +47,23 @@ const PowerCurveGraph = ({
           <YAxis
             type="number"
             tick={{ fill: String(theme.colors?.accent), fontSize: '14px' }}
-            tickLine={{ stroke: String(theme.colors?.accent) }}
-            axisLine={{ stroke: String(theme.colors?.accent) }}
+            tickLine={{ stroke: String(theme.colors?.primary) }}
+            axisLine={{ stroke: String(theme.colors?.primary) }}
           >
-            <Label value="Time" offset={0} position="insideBottom" />
+            <Label
+              value="Power (watts)"
+              position="insideLeft"
+              angle={-90}
+            />
           </YAxis>
           <XAxis
             dataKey="x"
-            scale={"log"}
+            scale={'log'}
             ticks={ticks}
             tickFormatter={formatSeconds}
             tick={{ fill: String(theme.colors?.accent), fontSize: '14px' }}
-            tickLine={{ stroke: String(theme.colors?.accent) }}
-            axisLine={{ stroke: String(theme.colors?.accent) }}
+            tickLine={{ stroke: String(theme.colors?.primary) }}
+            axisLine={{ stroke: String(theme.colors?.primary) }}
           >
             <Label value="Time" offset={0} position="insideBottom" />
           </XAxis>
