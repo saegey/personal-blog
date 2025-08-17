@@ -14,6 +14,7 @@ related:
   - 'Gran Fondo Winthrop'
 teaser: This is a race you can't miss. Luxury gravel and a fast course with lots of climbing.
 gpxFile: 'Gorge_Gravel_Grinder'
+statsFile: 'stats33'
 location: Dufur, Oregon
 stravaUrl: https://www.strava.com/activities/8946486639
 results:
@@ -32,23 +33,28 @@ This race has been on my list from since last year and is a great early season f
 From my memory, the gravel in this area is good with very little car traffic and can fit in the category of "luxury" gravel. I consider "luxury" gravel to be a smooth enough surface it can be ridden with wider road tires and is quite close to paved. It is also devoid of potholes and washboards that also can make a ride much less enjoyable.
 
 <RaceOverview
-  data={props.data.mdx.gpxData.fields}
-  selectedFields={[
-    'Avg Power',
-    'Avg Heart Rate',
-    'Distance',
-    'Moving Time',
-    'Elevation Gain',
-    'Avg Temperature',
-    'Time in Red',
-    'Normalized Power',
-    'Avg Speed',
-  ]}
+  data={{
+        ...props.data.mdx.gpxData.fields,
+    elevationGain: 1000,
+
+}}
+selectedFields={[
+'Avg Power',
+'Avg Heart Rate',
+'Distance',
+'Moving Time',
+'Elevation Gain',
+'Avg Temperature',
+'Time in Red',
+'Normalized Power',
+'Avg Speed',
+]}
 />
 
 <StravaLink stravaUrl={props.data.mdx.frontmatter.stravaUrl} />
 
 ## Before the Race
+
 The preparation the day before was mixed for this race. I was in bed and asleep early (8:35pm) and slept a solid 8 hours 20 minutes. I brought my usual premade, steel cut oatmeal with sliced almonds, blueberries and maple syrup and ate as much as a could after waking up. I had a hearty meal in The Dalles the night before of hawaiian bbq (chicken, rice, mac salad) at [Lilo's](https://www.lilosbbq.com/).
 
 But the bad was we missed packet pick up by an hour or so. We had to pick up our packet (number plate, timing chip, etc) the morning of and the line was long. Ira and I spent an hour waiting in line so by the time we parked, we had about 15 minutes to get ready. The mistakes compounded because I just squeezed my tires and determined they were good and at the final moment decided to wear a winter long sleeve jersey instead of my planned summer weight short sleeve. All these mistakes will end up causing havoc for me later in the race.

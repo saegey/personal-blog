@@ -186,6 +186,12 @@ type DataProps = {
       tags: ReadonlyArray<string>
       description: string
     }
+    statsData?: {
+      id: string
+      fields?: {
+        data: any
+      }
+    }
   }
 }
 
