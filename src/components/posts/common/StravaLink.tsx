@@ -32,6 +32,7 @@ const StravaLink = ({ stravaUrl }: StravaLinkProps) => {
               letterSpacing: '.2px',
               color: 'text',
             }}
+            target="_blank"
           >
             View Activity on Strava
           </a>

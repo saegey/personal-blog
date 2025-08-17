@@ -19645,5 +19645,58 @@
     1315.62,
     1316.27,
     1316.27
+  ],
+  "PowerZoneBuckets": [
+    2392,
+    4005,
+    3684,
+    4588,
+    3533,
+    1559,
+    1011
+  ],
+  "PowerZones": [
+    {
+      "zone": 0,
+      "title": "Not pedaling",
+      "powerLow": 0,
+      "powerHigh": 0
+    },
+    {
+      "zone": 1,
+      "title": "Active Recovery",
+      "powerLow": 2,
+      "powerHigh": 152
+    },
+    {
+      "zone": 2,
+      "title": "Endurance",
+      "powerLow": 152,
+      "powerHigh": 207
+    },
+    {
+      "zone": 3,
+      "title": "Tempo",
+      "powerLow": 207,
+      "powerHigh": 248
+    },
+    {
+      "zone": 4,
+      "title": "Threshold",
+      "powerLow": 248,
+      "powerHigh": 289
+    },
+    {
+      "zone": 5,
+      "title": "VO2max",
+      "powerLow": 289,
+      "powerHigh": 330
+    },
+    {
+      "zone": 6,
+      "title": "Anaerobic Capacity",
+      "powerLow": 330,
+      "powerHigh": null
+    }
   ]
 }

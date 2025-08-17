@@ -18,7 +18,6 @@ import {
   RaceResults,
   MatchesBurned,
   StravaLink,
-  RelatedRaces,
   Carousel,
   VideoPlayer,
   PowerCurveGraph,
@@ -38,7 +37,6 @@ const shortcodes = {
   VideoPlayer,
   Carousel,
   Map,
-  RelatedRaces,
   StravaLink,
   VisualOverview,
   Box,
@@ -185,6 +183,7 @@ type DataProps = {
       type: string
       tags: ReadonlyArray<string>
       description: string
+      currentFtp?: number
     }
     statsData?: {
       id: string
@@ -245,6 +244,7 @@ export const query = graphql`
         teaser
         tags
         type
+        currentFtp
         images {
           childImageSharp {
             gatsbyImageData(placeholder: BLURRED)
@@ -259,6 +259,12 @@ export const query = graphql`
         description
         stravaUrl
       }
+      statsData {
+        id
+        fields {
+          data
+        }
+      }
       segments {
         fields {
           segments {
@@ -272,11 +278,7 @@ export const query = graphql`
       results {
         id
         fields {
-          data {
-            place
-            name
-            time
-          }
+          data
         }
       }
       gpxData {

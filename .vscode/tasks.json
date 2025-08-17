@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "gatsby develop (refresh schema)",
+			"type": "shell",
+			"command": "gatsby develop",
+			"args": [
+				"--no-uglify",
+				"--no-color"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$eslint-stylish"
+			],
+			"group": "build"
+		}
+	]
+}

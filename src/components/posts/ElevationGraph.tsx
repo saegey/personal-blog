@@ -80,7 +80,6 @@ const ElevationGraph = ({
         <AreaChart
           data={downSampledData}
           onMouseMove={e => {
-            console.log(e)
             if (!e || !e.activeTooltipIndex) {
               setMarker(undefined)
               return
