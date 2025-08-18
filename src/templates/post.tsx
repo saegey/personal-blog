@@ -242,63 +242,6 @@ export const query = graphql`
           data
         }
       }
-      gpxData {
-        id
-        fields {
-          coordinates
-          powerZoneBuckets
-          powerZones {
-            zone
-            title
-            powerLow
-            powerHigh
-          }
-          currentFtp
-          normalizedPower
-          elevationGain
-          stoppedTime
-          timeInRed
-          distance
-          powerData
-          heartRateData
-          powerAnalysis {
-            entire
-          }
-          cadenceAnalysis {
-            entire
-          }
-          elapsedTime {
-            days
-            hours
-            minutes
-            seconds
-          }
-          elevationData {
-            x
-            y
-            distance
-            grade
-          }
-          heartAnalysis {
-            entire
-          }
-          matchesBurned {
-            averagePower
-            index
-            totalJoules
-            startTime
-            totalTime
-            vals
-          }
-          powerCurve {
-            x
-            y
-          }
-          tempAnalysis {
-            entire
-          }
-        }
-      }
     }
   }
 `

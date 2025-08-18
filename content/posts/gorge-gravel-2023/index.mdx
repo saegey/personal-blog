@@ -9,11 +9,7 @@ tags:
   - race journal
 type: Race Journal
 subType: Gravel Race
-related:
-  - 'Gran Fondo Ephrata 2023'
-  - 'Gran Fondo Winthrop'
 teaser: This is a race you can't miss. Luxury gravel and a fast course with lots of climbing.
-gpxFile: 'Gorge_Gravel_Grinder'
 currentFtp: 273
 statsFile: 'stats_gorge_gravel'
 location: Dufur, Oregon
@@ -77,7 +73,7 @@ The first big effort of the day was a 200 foot kicker climb the whole feel smash
   data={props.data.mdx.statsData.fields.data}
   elevationToAdd={500}
   downsampleRate={1}
-  yMin={0}
+  yMin={1}
 />
 
 I was feeling really good on the climb. The climb was around 1,300 feet and I had a normalized power of 276 watts for about 31 minutes. I did a lot of turns on the front trying to push the pace because the riders in front of us were gaining distance and you don't want to fall too far back. I find that getting in a strong group earlier and just trying to hang on gives you a better chance of a good finish versus a slower start and trying to gain places over the race.
@@ -180,22 +176,3 @@ I rode the same tire at Ephrata which was similar conditions so I figured it wou
 1. Better tire choice
 2. Always pick up race packet the day before so the morning preparation isn't affected by waiting.
 3. Don't wear a winter jersey when it will warm up throughout the day. Wear layers that can be removed like a vest and arm warmers or carry a shakedry so you don't risk overheating. Overheating can really impact your power output.
-
-{/* <RelatedRaces
-  items={props.data.relatedP.edges.map(d => {
-    return {
-      slug: d.node.fields.slug,
-      title: d.node.frontmatter.title,
-      date: d.node.frontmatter.date,
-      normalizedPower: d.node.gpxData.fields.normalizedPower,
-      headerImage: d.node.frontmatter.headerImage,
-      timeInRed: `${new Date(d.node.gpxData.fields.timeInRed * 1000)
-        .toISOString()
-        .substr(11, 8)}`,
-      distance: d.node.gpxData.fields.distance,
-      stoppedTime: d.node.gpxData.fields.stoppedTime,
-      elapsedTime: d.node.gpxData.fields.elapsedTime,
-      location: d.node.frontmatter.location,
-    }
-  })}
-/> */}

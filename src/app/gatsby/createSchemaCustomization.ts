@@ -26,7 +26,6 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     type Mdx implements Node {
       frontmatter: Frontmatter!
       fields: Fields
-      gpxData: File @link(by: "name", from: "frontmatter.gpxFile")
       results: File @link(by: "name", from: "frontmatter.results.file")
       statsData: File @link(by: "name", from: "frontmatter.statsFile")
     }

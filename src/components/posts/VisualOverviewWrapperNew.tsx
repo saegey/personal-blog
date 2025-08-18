@@ -69,8 +69,7 @@ const VisualOverviewWrapper = ({
     const grade = dx > 0 ? dy / dx : 0
     return { distance: dist, y, grade, x: data?.MergedData[idx].t, i: idx }
   })
-  console.log(shaped)
-
+  
   const elevationData = {
     downsampleRate,
     data: shaped,
