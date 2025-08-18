@@ -1,5 +1,4 @@
 // Handles parsing and node field creation for GPX and octet-stream files
-import { parseSegmentsFromXml } from '../../../lib/wkoHelper'
 import { gpx } from '@tmcw/togeojson'
 import { DOMParser } from '@xmldom/xmldom'
 import length from '@turf/length'
