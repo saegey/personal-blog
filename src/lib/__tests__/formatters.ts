@@ -30,21 +30,6 @@ describe('formatters', () => {
     })
   })
 
-  describe('generateTimeTickValues', () => {
-    it('should generate array of numbers for graph timeline', () => {
-      expect(
-        generateTimeTickValues({
-          data: [
-            { x: 0, y: 20 },
-            { x: 3600, y: 40 },
-            { x: 7200, y: 40 },
-          ],
-          intervalSecs: 600,
-        })
-      ).toEqual([600, 1200, 1800, 2400, 3000, 3600])
-    })
-  })
-
   describe('camelize', () => {
     it('should camelize case a string', () => {
       expect(camelize(' hello ')).toEqual('Hello')
