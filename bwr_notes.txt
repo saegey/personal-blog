@@ -1,0 +1,51 @@
+Event Context & Logistics
+	1.	How did the race fit into your season—was it a targeted goal or a bold experiment?
+	    - This race was one of the main goals for the season besides High Cascades 100. I was familiar with BWR events after doing San Diego event last year. They are very hard and challenging.
+	2.	What was your approach to logistics? (e.g., travel route, where you stayed—tent camp, Airbnb, an epic pre-ride on local trails?)
+	    - I drove up from Seattle and took a ferry from outside Vancouver BC, to Naimo Vancouver Island. We stayed in Chemainus and made it a family affair with my parents visiting and driving up with us and my wife Scarlett doing the race but the shorter distance.
+
+Distancing & Course Details
+	3.	Which distance did you ride—Waffle (~120–136 miles), Wafer (~70 miles), or Wanna (~35 miles)?
+		- I did the waffle, the longest distance.
+	•	Do you recall the approximate elevation gain you tackled?
+	    - Elevation was almost 12k feet. It was actually a few thousand more than the RWGPS route that was provided. Ugh.
+	4.	Were there any standout course features (major climbs, technical singletrack sectors, sand, water crossings) that stick out in your memory?
+	    - So there was an early single track section that we weren't aggressive enough getting up there close to the front and the pace was quite slow in the single track.
+		- About 80 miles in there was about a .25 mile section (200 ft gain) that average 15% that was so brutal. I rode all of it and just grinded in a hard gear but lots of people were walking it.
+		- I got a puncture and noticed some sealant but it never really effected things. Maybe me a bit paranoid.
+		- At 123 miles in, you finish a huge climb (took me 43 min) and then 3 miles decent that is extremley hard and bumpy. I rode the brakes on most of it. I actually pre rode this last climb the day before and was glad I did and knew what to expect. Hands dying after it and there was a few parts of single track at the end that were very hard to ride. I was so tired at this point.
+
+Race Day Experience
+	5.	What was your pacing strategy—steady endurance, bursts on climbs, or reactive to group dynamics?
+	    - I tried to maintain a steady endurance pace because we knew it would be a long day in the saddle.
+	6.	Were there any memorable moments—maybe a mechanical, a standout food stop (waffle or otherwise), or fun festival highlights?
+	    - on the first food stop, I got to the station in the rear of the group and had to wait in line for a bit. If I would have anticipated I could have one to the front to get there first. 
+		- The tires I used where Tufo Thundero 40c tires and they were great. I had a few people ask me about them and I was happy to share my experience with them.
+		- Fueling: 82 grams per hour / 8 bottles of GU roctane / 9 GU gels / 2 bottles of Skratch
+		- Used Osprey hydration pack with 2 - 26oz bottles
+		- On a tricky decent someone crashed behind me and yelled at me. We later saw her at an aid station and she was okay but thought it was my friend that caused it.
+		- on the way back on the Cowichan valley trail, we smashed with a large group for around 18-20mph for an hour until we dropped our whole group and it was just my friend and I. It  was hard to see with the shadows and some traffic on the trail but we made it through unscathed. Lots of posts and crossings to deal with too. It reminded me some of the Snoqualmie Valley trail. We were able to ride together for the last 20 miles and he dropped me on the climb and nicely waited at the top for me.
+		- There was a guy on a mountain bike and was pretty strong and we were determined to drop. I was in aero socks, narrowish (40mm bars) and aero kit. We should be faster.
+
+Performance Metrics
+	7.	If you tracked power/heart data, do you remember any standout segments or numbers (peak power or heart rate, sustained efforts, etc.)?
+	    - Lots of hard climbs.
+	8.	How did you feel physically and mentally during the ride—did anything surprise you?
+	    - I felt much better than previous BWR and was able to push through the tough sections more easily. Even the last climb I had pretty solid power and overall I was happy. If we saved sometime on the aid stations, we could have saved  some time and gotten a better position in the start.
+
+Race Results & Reflections
+	9.	How did you place in your category (or overall)? Any friendly competitors you battled with on the day?
+	    - 21st - Waffle: Men 35 to 44 (82 in the field), 89 overallm, 262 finished, 40 or so DNFs
+	10.	In retrospect, what do you take away from the experience—fitness lessons, gear insights, emotional highs/lows?
+	    - These events will always be hard and challenging. I need to work on my pacing and nutrition a bit more. I was happy with my performance and the way I rode the course. I think I could have pushed harder in some sections but overall it was a great day.
+
+
+	1.	Photos / Media – Do you want me to embed any specific images (race start, your Strava ride map, gear setup, finish line) in the Markdown?
+        - no photos needed, I will add them later.
+	2.	Gear Section – You mentioned Tufo Thundero tires, Osprey hydration pack, and nutrition strategy. Would you like a dedicated “Gear & Fuel” section in the write-up?
+        - yes a gear section would be great. More gear from me: Santa Cruz stigmata bike, Roval CLX gravel wheels, Shimano Di2 12 speed 11/34 cassette 50/34 crankset. Garmin power meter pedals. Easton EC70 aero bar and seatpost. Rapha Pro team kit, Specialed aero socks, Specialzed s-works mountain shoes.
+	3.	Tone – Should the journal lean more toward:
+	•	Analytical/Performance: focusing on numbers, pacing, fueling, gear.
+	•	Storytelling/Experiential: focusing on course features, emotions, and personal moments.
+	•	Or a blend of both? blend of both.
+	4.	Elevation Chart – Do you want me to plot the SimplifiedCoordinates into an elevation profile graph and include it in the Markdown? not needed or any of the components that were in the sample MDX. I can add them later

@@ -78,7 +78,7 @@ export const Head = () => (
 export const pageQuery = graphql`
   query postPageQuery {
     allMdx(
-      sort: { frontmatter: { date: DESC } }
+      sort: { frontmatter: { publishedDate: DESC } }
       filter: {
         frontmatter: { isActive: { ne: false }, type: { ne: "Project" } }
       }
