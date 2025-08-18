@@ -2,7 +2,6 @@ import {
   camelize,
   formatSeconds,
   formatTime,
-  generateTimeTickValues,
 } from '../formatters'
 
 describe('formatters', () => {
