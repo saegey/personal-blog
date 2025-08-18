@@ -204,45 +204,7 @@ type DataProps = {
 }
 
 export const query = graphql`
-  query Post($id: String!, $relatedPosts: [String]) {
-    relatedP: allMdx(
-      filter: { frontmatter: { title: { in: $relatedPosts } } }
-    ) {
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMM DD, YYYY")
-            publishedDate
-            title
-            location
-            headerImage {
-              childImageSharp {
-                gatsbyImageData(placeholder: BLURRED)
-              }
-            }
-          }
-          gpxData {
-            id
-            fields {
-              normalizedPower
-              timeInRed
-              distance
-              stoppedTime
-              elapsedTime {
-                days
-                hours
-                minutes
-                seconds
-              }
-            }
-          }
-        }
-      }
-    }
+  query Post($id: String!) {
     mdx: mdx(id: { eq: $id }) {
       id
       frontmatter {
