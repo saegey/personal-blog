@@ -13,7 +13,7 @@ import {
   PostHeader,
   PortraitImage,
   LandscapeImage,
-  VisualOverviewWrapper as VisualOverview,
+  VisualOverviewWrapperNew as VisualOverviewNew,
   Map,
   RaceResults,
   MatchesBurned,
@@ -21,15 +21,20 @@ import {
   Carousel,
   VideoPlayer,
   PowerCurveGraph,
+  PowerCurveGraphStatsWrapper,
   RaceOverview,
+  RaceOverviewWrapper,
+  VisualOverviewWrapper as VisualOverview,
 } from '../components/posts'
 
 const shortcodes = {
   PortraitImage,
   RaceResults,
   RaceOverview,
+  RaceOverviewWrapper,
   LandscapeImage,
   PowerCurveGraph,
+  PowerCurveGraphStatsWrapper,
   Link,
   Text,
   MatchesBurned,
@@ -39,6 +44,7 @@ const shortcodes = {
   Map,
   StravaLink,
   VisualOverview,
+  VisualOverviewNew,
   Box,
 }
 
@@ -183,6 +189,9 @@ type DataProps = {
       type: string
       tags: ReadonlyArray<string>
       description: string
+      teaser?: string
+      headerImageCaption?: string
+      stravaUrl?: string
       currentFtp?: number
     }
     statsData?: {
