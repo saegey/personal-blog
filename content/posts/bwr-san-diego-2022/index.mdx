@@ -6,9 +6,8 @@ headerImage: './1.jpeg'
 tags:
   - gravel
 type: Race Journal
-gpxFile: 'BWR_San_Diego_Waffle_Ride_'
+statsFile: stats_bwr-san-diego
 location: San Marcos, California
-isActive: false
 results:
   file: 'bwr-waffle-san-diego-2022'
   provider: 'omnigo'
@@ -18,25 +17,23 @@ images:
   - ./3.jpeg
   - ./4.jpeg
   - ./5.jpeg
-related:
-  - Gran Fondo Ephrata 2022
-  - Rebecca's Private Idaho - Stage 3
-  - Gran Fondo Winthrop
+stravaUrl: https://www.strava.com/activities/7067602511
 ---
 
 I'm baby seitan migas iceland shoreditch cred same occupy intelligentsia. Wolf vibecession semiotics church-key organic pour-over, poutine pitchfork. DSA lo-fi man bun tote bag semiotics yr. Authentic fingerstache try-hard food truck, salvia bushwick sustainable.
 
-<RaceOverview
-  data={props.data.mdx.gpxData.fields}
+<RaceOverviewWrapper
+  data={props.data.mdx.statsData.fields.data}
   selectedFields={[
     'Avg Power',
     'Avg Heart Rate',
     'Distance',
-    'Elapsed Time',
+    'Moving Time',
     'Elevation Gain',
-    'Time Stopped',
-    'Avg Cadence',
+    'Normalized Power',
     'Avg Speed',
+    'Elapsed Time',
+    'Time Stopped',
   ]}
 />
 
@@ -44,28 +41,18 @@ Swag tonx cornhole gluten-free everyday carry. Messenger bag enamel pin tbh, wai
 
 Labore forage before they sold out hashtag ut duis. Tumeric tumblr mixtape duis man bun commodo. Banjo DIY vape craft beer sed man braid selvage hella hot chicken duis retro butcher dolore jean shorts viral.
 
+<StravaLink stravaUrl={props.data.mdx.frontmatter.stravaUrl} />
 Hashtag listicle praxis, hella venmo prism pour-over cloud bread Brooklyn mlkshk. Brooklyn polaroid snackwave air plant ugh leggings. Poutine shaman drinking vinegar deep v brunch, humblebrag la croix.
 
-<MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
+{/* <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} /> */}
 
 Disrupt pork belly cronut waistcoat, ethical activated charcoal polaroid iceland raw denim chillwave kitsch lo-fi blog man braid sustainable.
 
 Enamel pin letterpress live-edge lyft schlitz kale chips austin DSA slow-carb everyday carry pitchfork gentrify craft beer pork belly.
 
-<PowerCurveGraph
-  data={props.data.mdx.gpxData.fields.powerCurve}
-  yAxes={[
-    [200, 400, 600, 800],
-    [200, 400, 600, 800],
-    [200, 400, 600, 800],
-  ]}
-  yScaleMax={900}
-  xAxes={[
-    [1, 10, 60, 600, 3600, 32400],
-    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
-    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
-  ]}
-  ftp={props.data.mdx.gpxData.fields.currentFtp}
+<PowerCurveGraphStatsWrapper
+  data={props.data.mdx.statsData.fields.data}
+  ftp={props.data.mdx.frontmatter.currentFtp}
   title="Power Curve"
 />
 
@@ -82,8 +69,12 @@ disrupt bespoke cronut meh la croix sustainable sartorial offal plaid.
 
 <RaceResults
   data={props.data.mdx.results.fields.data}
-  numbersToHighlight={[0, 1, 2, 3, 4, 35, 47, 315, 316]}
-  distance={props.data.mdx.gpxData.fields.distance}
+  numbersToHighlight={[0, 1, 2, 3, 4, 35, 47, 256, 315, 316]}
+  distance={
+    props.data.mdx.statsData.fields.data['SimplifiedDistances'][
+      props.data.mdx.statsData.fields.data['SimplifiedDistances'].length - 1
+    ] / 1000
+  }
 />
 
 Pok pok street
@@ -94,10 +85,9 @@ woke, twee readymade quinoa pug plaid.
 
 Selvage church-key direct trade live-edge. Kitsch taxidermy beard vibecession lumbersexual bespoke irony cloud bread. Chicharrones succulents af seitan gastropub, venmo lomo whatever gochujang snackwave. Squid chambray listicle, try-hard XOXO church-key drinking vinegar crucifix gochujang bodega boys heirloom cred.
 
-
 <PowerBreakdown
-  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
-  powerZones={props.data.mdx.gpxData.fields.powerZones}
+  powerZoneBuckets={props.data.mdx.statsData.fields.data.PowerZoneBuckets}
+  powerZones={props.data.mdx.statsData.fields.data.PowerZones}
 />
 
 Selvage church-key direct trade live-edge. Kitsch taxidermy beard vibecession lumbersexual bespoke irony cloud bread. Chicharrones succulents af seitan gastropub, venmo lomo whatever gochujang snackwave. Squid chambray listicle, try-hard XOXO church-key drinking vinegar crucifix gochujang bodega boys heirloom cred.
@@ -106,22 +96,11 @@ Selvage church-key direct trade live-edge. Kitsch taxidermy beard vibecession lu
 
 Polaroid bitters dreamcatcher mustache migas locavore artisan ethical vice sartorial VHS microdosing gluten-free. Bespoke fashion axe raclette offal 90's viral affogato. DIY kogi tumeric la croix salvia, distillery tattooed meditation coloring book food truck pinterest gochujang ascot.
 
-<VisualOverview
-  elevationToAdd={50}
-  yMin={300}
-  coordinates={props.data.mdx.gpxData.fields.coordinates}
-  elevationData={{
-    axisXTickValues: {
-      imperial: [[20, 40, 60, 80, 100, 120]],
-      metric: [[4, 8, 12]],
-    },
-    downsampleRate: 20,
-    data: props.data.mdx.gpxData.fields.elevationData,
-    axisLeftTickValues: {
-      imperial: [[0, 1000, 2000]],
-      metric: [[50, 100, 150]],
-    },
-  }}
+<VisualOverviewNew
+  data={props.data.mdx.statsData.fields.data}
+  elevationToAdd={500}
+  downsampleRate={1}
+  yMin={0}
 />
 
 Meditation YOLO venmo butcher viral DIY ennui kinfolk. Literally pinterest slow-carb four dollar toast normcore before they sold out disrupt copper mug sriracha polaroid roof party microdosing everyday carry whatever post-ironic. Freegan small batch salvia tousled quinoa.
@@ -131,22 +110,3 @@ Meditation YOLO venmo butcher viral DIY ennui kinfolk. Literally pinterest slow-
 Celiac scenester umami craft beer Brooklyn. Keytar tote bag ascot narwhal normcore. Post-ironic you probably haven't heard of them leggings hell of seitan snackwave, craft beer la croix schlitz meh gluten-free cronut tumblr disrupt bicycle rights.
 
 Dummy text? More like dummy thicc text, amirite?
-
-{/* <RelatedRaces
-  items={props.data.relatedP.edges.map(d => {
-    return {
-      slug: d.node.fields.slug,
-      title: d.node.frontmatter.title,
-      date: d.node.frontmatter.date,
-      normalizedPower: d.node.gpxData.fields.normalizedPower,
-      headerImage: d.node.frontmatter.headerImage,
-      timeInRed: `${new Date(d.node.gpxData.fields.timeInRed * 1000)
-        .toISOString()
-        .substr(11, 8)}`,
-      distance: d.node.gpxData.fields.distance,
-      stoppedTime: d.node.gpxData.fields.stoppedTime,
-      elapsedTime: d.node.gpxData.fields.elapsedTime,
-      location: d.node.frontmatter.location,
-    }
-  })}
-/> */}
