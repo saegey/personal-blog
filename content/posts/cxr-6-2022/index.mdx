@@ -8,8 +8,7 @@ tags:
   - cyclocross
 type: Race Journal
 subType: Cyclocross Race
-gpxFile: 'CXR_6_SeaTac_SS'
-trainingPeaks: Adam_Saegebarth_2022_11_27_13_56
+statsFile: 'stats_cxr6_seatac'
 teaser: The final race in a six race series comes to end at the closest venue to Seattle.
 location: SeaTac, Washington
 stravaUrl: https://www.strava.com/activities/8178490682
@@ -29,16 +28,18 @@ SeaTac was a good place to close out my short, five cx race season. It's always 
 
 The course is pretty tight with quite a bit of single track and plenty of gravel with some pretty slippery transitions. I'm not quite comfortable with the bike sliding in a corner but I was trying to push the edge a bit with home much speed I could carry through the corners.
 
-<RaceOverview
-  data={props.data.mdx.gpxData.fields}
+<RaceOverviewWrapper
+  data={props.data.mdx.statsData.fields.data}
   selectedFields={[
     'Avg Power',
     'Avg Heart Rate',
     'Distance',
-    'Elapsed Time',
+    'Moving Time',
+    'Elevation Gain',
     'Normalized Power',
-    'Avg Cadence',
     'Avg Speed',
+    'Elapsed Time',
+    'Time Stopped',
   ]}
 />
 <StravaLink stravaUrl={props.data.mdx.frontmatter.stravaUrl} />
@@ -59,47 +60,43 @@ I rode clean and reasonably fast with only a few hiccups on some hairpin single 
 
 By lap three or so I had a group of four, breathing down my neck. I did everything I could to maintain the gap and even sprinted on the road sections to try to push out more since I could tell I was a bit slower on the tighter single track areas. I could tell after a while of trying to hold them off I was getting a bit careless and making small mistakes on a few corners.
 
-<VisualOverview
+<VisualOverviewNew
+  data={props.data.mdx.statsData.fields.data}
   elevationToAdd={50}
+  downsampleRate={1}
   yMin={300}
-  coordinates={props.data.mdx.gpxData.fields.coordinates}
-  elevationData={{
-    axisXTickValues: {
-      imperial: [[2, 4, 6, 8]],
-      metric: [[4, 8, 12]],
-    },
-    downsampleRate: 20,
-    data: props.data.mdx.gpxData.fields.elevationData,
-    axisLeftTickValues: {
-      imperial: [[200, 300, 400]],
-      metric: [[50, 100, 150]],
-    },
+  axisLeftTickValues={{
+    imperial: [
+      [300, 350, 400],
+      [300, 350, 400],
+      [300, 350, 400],
+    ],
+    metric: [
+      [250, 300, 350],
+      [250, 500, 750, 1000],
+      [250, 500, 750, 1000],
+    ],
+  }}
+  axisXTickValues={{
+    imperial: [[4, 8, 12]],
+    metric: [[5, 10, 15, 20]],
   }}
 />
-Eventually I was passed by 3 on the small barriers where I decided to run and they
-choose to jump over them. Jumping was much quicker here when in some other courses
-running wasn't much of a penalty. Next year, I will be ready to jump these but I
-wasn't ready this year.
+Eventually I was passed by 3 on the small barriers where I decided to run and
+they choose to jump over them. Jumping was much quicker here when in some other
+courses running wasn't much of a penalty. Next year, I will be ready to jump
+these but I wasn't ready this year.
 
-<PowerCurveGraph
-  data={props.data.mdx.gpxData.fields.powerCurve}
-  yAxes={[
-    [200, 400, 600, 800, 1000],
-    [200, 400, 600, 800, 1000],
-    [200, 400, 600, 800, 1000],
-  ]}
-  xAxes={[
-    [1, 5, 10, 60, 600, 2400],
-    [1, 5, 10, 30, 60, 300, 600, 1200, 2400],
-    [1, 5, 10, 30, 60, 300, 600, 1200, 2400],
-  ]}
-  ftp={props.data.mdx.gpxData.fields.currentFtp}
+<PowerCurveGraphStatsWrapper
+  data={props.data.mdx.statsData.fields.data}
+  ftp={props.data.mdx.frontmatter.currentFtp}
   title="Power Curve"
 />
 
 The two run-ups went pretty well and the larger barriers I didn't have the best lines coming into due to the mud and should have maybe done a couple reps in pre ride to a faster line. As I did last year, the sand from the run-up on the stairs and the dirt from the run-up on the front half clogged up the mountain bike cleats on my shoes.
 
-<MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
+{/* <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} /> */}
+
 It was a hassle to get clipped in after I sometimes would take 15 secs or so of shoe
 to pedal strikes and such to clean out the cleat. I'm sure this could be improved
 upon and would have saved a little time when considering 5 laps of this same thing
@@ -127,8 +124,8 @@ This course is overall pretty technical and the strong power helps less looking 
 My finish was probably the best all year and it was nice to finish the season on a positive. Next year, I am planning to finally to some XC mountain bike racing and this should bring some improved bike handling to next years cross season. Also, on the todo list is learn to wheelie and bunny hop so plenty to work on going into the new year. I am no switching my focus to a winter base block to prepare for the Festive 500 brevet that is happening at the end of the year.
 
 <PowerBreakdown
-  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
-  powerZones={props.data.mdx.gpxData.fields.powerZones}
+  powerZoneBuckets={props.data.mdx.statsData.fields.data.PowerZoneBuckets}
+  powerZones={props.data.mdx.statsData.fields.data.PowerZones}
 />
 
 ## What Went Well
@@ -145,7 +142,11 @@ My finish was probably the best all year and it was nice to finish the season on
 <RaceResults
   data={props.data.mdx.results.fields.data}
   numbersToHighlight={[0, 1, 2, 13, 16, 17]}
-  distance={props.data.mdx.gpxData.fields.distance}
+  distance={
+    props.data.mdx.statsData.fields.data['SimplifiedDistances'][
+      props.data.mdx.statsData.fields.data['SimplifiedDistances'].length - 1
+    ] / 1000
+  }
   racerName="ADAM SAEGEBARTH"
   showSpeed={false}
 />

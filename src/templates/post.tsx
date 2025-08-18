@@ -13,7 +13,7 @@ import {
   PostHeader,
   PortraitImage,
   LandscapeImage,
-  VisualOverviewWrapper as VisualOverview,
+  VisualOverviewWrapperNew as VisualOverviewNew,
   Map,
   RaceResults,
   MatchesBurned,
@@ -21,15 +21,20 @@ import {
   Carousel,
   VideoPlayer,
   PowerCurveGraph,
+  PowerCurveGraphStatsWrapper,
   RaceOverview,
+  RaceOverviewWrapper,
+  VisualOverviewWrapper as VisualOverview,
 } from '../components/posts'
 
 const shortcodes = {
   PortraitImage,
   RaceResults,
   RaceOverview,
+  RaceOverviewWrapper,
   LandscapeImage,
   PowerCurveGraph,
+  PowerCurveGraphStatsWrapper,
   Link,
   Text,
   MatchesBurned,
@@ -39,6 +44,7 @@ const shortcodes = {
   Map,
   StravaLink,
   VisualOverview,
+  VisualOverviewNew,
   Box,
 }
 
@@ -183,6 +189,9 @@ type DataProps = {
       type: string
       tags: ReadonlyArray<string>
       description: string
+      teaser?: string
+      headerImageCaption?: string
+      stravaUrl?: string
       currentFtp?: number
     }
     statsData?: {
@@ -195,45 +204,7 @@ type DataProps = {
 }
 
 export const query = graphql`
-  query Post($id: String!, $relatedPosts: [String]) {
-    relatedP: allMdx(
-      filter: { frontmatter: { title: { in: $relatedPosts } } }
-    ) {
-      edges {
-        node {
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            date(formatString: "MMM DD, YYYY")
-            publishedDate
-            title
-            location
-            headerImage {
-              childImageSharp {
-                gatsbyImageData(placeholder: BLURRED)
-              }
-            }
-          }
-          gpxData {
-            id
-            fields {
-              normalizedPower
-              timeInRed
-              distance
-              stoppedTime
-              elapsedTime {
-                days
-                hours
-                minutes
-                seconds
-              }
-            }
-          }
-        }
-      }
-    }
+  query Post($id: String!) {
     mdx: mdx(id: { eq: $id }) {
       id
       frontmatter {
@@ -265,77 +236,10 @@ export const query = graphql`
           data
         }
       }
-      segments {
-        fields {
-          segments {
-            beginningTime
-            segmentDistance
-            segmentDuration
-            segmentDurationStopped
-          }
-        }
-      }
       results {
         id
         fields {
           data
-        }
-      }
-      gpxData {
-        id
-        fields {
-          coordinates
-          powerZoneBuckets
-          powerZones {
-            zone
-            title
-            powerLow
-            powerHigh
-          }
-          currentFtp
-          normalizedPower
-          elevationGain
-          stoppedTime
-          timeInRed
-          distance
-          powerData
-          heartRateData
-          powerAnalysis {
-            entire
-          }
-          cadenceAnalysis {
-            entire
-          }
-          elapsedTime {
-            days
-            hours
-            minutes
-            seconds
-          }
-          elevationData {
-            x
-            y
-            distance
-            grade
-          }
-          heartAnalysis {
-            entire
-          }
-          matchesBurned {
-            averagePower
-            index
-            totalJoules
-            startTime
-            totalTime
-            vals
-          }
-          powerCurve {
-            x
-            y
-          }
-          tempAnalysis {
-            entire
-          }
         }
       }
     }

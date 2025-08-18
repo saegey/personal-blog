@@ -17,19 +17,23 @@ import ExpandableCard from '../common/ExpandableCard'
 import { formatSeconds, formatTime } from '../../../lib/formatters'
 
 interface PowerCurveGraphProps extends GraphProps {
-  yAxes: Array<Array<Number>>
-  xAxes: Array<Array<Number>>
-  yScaleMax: number
+  yAxes?: Array<Array<Number>>
+  xAxes?: Array<Array<Number>>
+  yScaleMax?: number
   ftp: number
   title: string
+  xTicks?: number[]
+  xScale?: 'log' | 'linear'
 }
 
 const PowerCurveGraph = ({
   data,
   ftp,
   isMaximized = false,
+  xTicks,
+  xScale = 'log',
 }: PowerCurveGraphProps) => {
-  const ticks = [1, 2, 3, 4, 5, 10, 60, 300, 600, 1200, 3600]
+  const ticks = xTicks ?? [1, 2, 3, 4, 5, 10, 60, 300, 600, 1200, 3600]
   const { theme } = useThemeUI()
 
   return (
@@ -58,7 +62,7 @@ const PowerCurveGraph = ({
           </YAxis>
           <XAxis
             dataKey="x"
-            scale={'log'}
+            scale={xScale}
             ticks={ticks}
             tickFormatter={formatSeconds}
             tick={{ fill: String(theme.colors?.accent), fontSize: '14px' }}

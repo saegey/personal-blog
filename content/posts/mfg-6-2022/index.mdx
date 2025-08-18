@@ -11,8 +11,8 @@ tags:
   - race
 type: Race Journal
 subType: Cyclocross Race
-gpxFile: 'MFG_6_Woodland_Park_Single_Speed'
-trainingPeaks: Adam_Saegebarth_2022_11_20_13_37
+statsFile: 'stats_woodland_park_ss'
+currentFtp: 285
 images:
   - ./1.jpeg
   - ./2.jpeg
@@ -29,16 +29,18 @@ results:
 
 It's been way too long since there has been a race in Woodland Park. It is always the biggest race of the year due to it's location in the city and has a huge field because of the massive turnout and some big crowds cheering. Because it's so big it can set a high expectation for a good result in the race since it's maybe one of the few races friends and family will see you race and your going against the largest field of the year.
 
-<RaceOverview
-  data={props.data.mdx.gpxData.fields}
+<RaceOverviewWrapper
+  data={props.data.mdx.statsData.fields.data}
   selectedFields={[
     'Avg Power',
     'Avg Heart Rate',
     'Distance',
+    'Moving Time',
     'Elevation Gain',
     'Normalized Power',
-    'Avg Cadence',
     'Avg Speed',
+    'Elapsed Time',
+    'Time Stopped',
   ]}
 />
 <StravaLink stravaUrl={props.data.mdx.frontmatter.stravaUrl} />
@@ -63,21 +65,26 @@ I have raced past years in Woodland Park but it has been a long time since I rac
 
 It was very dry and cold the week leading up to the race so the course conditions were very quick. The course was also modified a bit from previous iterations that made it every quicker. I had a good start at finished the first lap in 20th place.
 
-<VisualOverview
-  elevationToAdd={50}
-  yMin={300}
-  coordinates={props.data.mdx.gpxData.fields.coordinates}
-  elevationData={{
-    downsampleRate: 20,
-    data: props.data.mdx.gpxData.fields.elevationData,
-    axisXTickValues: {
-      imperial: [[2, 4, 6, 8]],
-      metric: [[4, 8, 12]],
-    },
-    axisLeftTickValues: {
-      imperial: [[200, 300, 400]],
-      metric: [[50, 100, 150]],
-    },
+<VisualOverviewNew
+  data={props.data.mdx.statsData.fields.data}
+  elevationToAdd={0}
+  downsampleRate={1}
+  yMin={200}
+  axisLeftTickValues={{
+    imperial: [
+      [100, 200, 300],
+      [100, 200, 300],
+      [100, 200, 300],
+    ],
+    metric: [
+      [250, 300, 350],
+      [250, 500, 750, 1000],
+      [250, 500, 750, 1000],
+    ],
+  }}
+  axisXTickValues={{
+    imperial: [[4, 8, 12]],
+    metric: [[5, 10, 15, 20]],
   }}
 />
 
@@ -103,27 +110,17 @@ There were a few crashes in this section. I had one issue on the barriers I thin
 
 In the later laps, traffic became a bigger issue than it usually was due to the bigger field. It wasn't that bad but maybe burned a few matches making passes getting through it all.
 
-<PowerCurveGraph
-  data={props.data.mdx.gpxData.fields.powerCurve}
-  yAxes={[
-    [200, 400, 600, 800, 1000],
-    [200, 400, 600, 800, 1000],
-    [200, 400, 600, 800, 1000],
-  ]}
-  xAxes={[
-    [1, 5, 10, 60, 600, 2400],
-    [1, 5, 10, 30, 60, 300, 600, 1200, 2400],
-    [1, 5, 10, 30, 60, 300, 600, 1200, 2400],
-  ]}
-  ftp={props.data.mdx.gpxData.fields.currentFtp}
-  title="Power Analysis"
+<PowerCurveGraphStatsWrapper
+  data={props.data.mdx.statsData.fields.data}
+  ftp={props.data.mdx.frontmatter.currentFtp}
+  title="Power Curve"
 />
 
 My friend Chris passed me about midway on the last lap and I did everything I could to stay close to him so I could maybe have a chance to pass on the final sprint.
 
 <PowerBreakdown
-  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
-  powerZones={props.data.mdx.gpxData.fields.powerZones}
+  powerZoneBuckets={props.data.mdx.statsData.fields.data.PowerZoneBuckets}
+  powerZones={props.data.mdx.statsData.fields.data.PowerZones}
 />
 
 I had a little bad luck and had a tandem get in the way on the last couple of corners that took me a little while to get by and another single speed racer pipped me at the line that I didn't see and lost another place.
@@ -143,7 +140,7 @@ Overall, with the field as large as it was I was happy with the result and felt 
   }
 />
 
-<MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
+{/* <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} /> */}
 
 ## What Went Well
 
@@ -163,6 +160,10 @@ Overall, with the field as large as it was I was happy with the result and felt 
 <RaceResults
   data={props.data.mdx.results.fields.data}
   numbersToHighlight={[0, 1, 2, 11, 16, 25, 27]}
-  distance={props.data.mdx.gpxData.fields.distance}
+  distance={
+    props.data.mdx.statsData.fields.data['SimplifiedDistances'][
+      props.data.mdx.statsData.fields.data['SimplifiedDistances'].length - 1
+    ] / 1000
+  }
   racerName="Adam Saegebarth"
 />

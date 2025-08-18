@@ -20,6 +20,7 @@ export interface DataPoint {
   distance: number
   color: string
   grade: number
+  i: number
 }
 
 interface NewLineGraphProps {

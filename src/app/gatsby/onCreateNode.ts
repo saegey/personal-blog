@@ -3,7 +3,6 @@ import { createFilePath } from 'gatsby-source-filesystem'
 import { slugify } from '../../lib/util'
 import { handleJsonNode } from './parsers/jsonParser'
 import { handleTextNode } from './parsers/textParser'
-import { handleGpxNode } from './parsers/gpxParser'
 
 type NodeType = {
   internal: {
@@ -42,12 +41,5 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
 
   if (node.internal.mediaType === 'text/plain') {
     await handleTextNode({ node, createNodeField, loadNodeContent });
-  }
-
-  if (
-    node.internal.mediaType === 'application/octet-stream' ||
-    node.internal.mediaType === 'application/gpx+xml'
-  ) {
-    await handleGpxNode({ node, createNodeField, loadNodeContent });
   }
 }

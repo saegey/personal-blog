@@ -8,13 +8,14 @@ import Map from './Route/Map'
 import RaceResults from './RaceResults/RaceResults'
 import MatchesBurned from './MatchesBurned'
 import StravaLink from './common/StravaLink'
-import RelatedRaces from './RelatedRaces/RelatedRaces'
 import CustomCarousel from './Images/Carousel'
 import VideoPlayer from './common/VideoPlayer'
 import PowerCurveGraphWrapper from './PowerCurveGraph/PowerCurveGraph'
+import PowerCurveGraphStatsWrapper from './PowerCurveGraph/PowerCurveGraphStatsWrapper'
 import RaceOverview from './RaceStats/RaceOverview'
+import RaceOverviewWrapper from './RaceStats/RaceOverviewWrapper'
 import VisualOverviewWrapper from './VisualOverviewWrapper'
-// import VisualOverview from '@saegey/posts.visual-overview'
+import VisualOverviewWrapperNew from './VisualOverviewWrapperNew'
 
 export {
   PowerBreakdown,
@@ -30,5 +31,8 @@ export {
   CustomCarousel as Carousel,
   VideoPlayer,
   PowerCurveGraphWrapper as PowerCurveGraph,
-  RaceOverview
+  PowerCurveGraphStatsWrapper,
+  RaceOverview,
+  RaceOverviewWrapper,
+  VisualOverviewWrapperNew
 }

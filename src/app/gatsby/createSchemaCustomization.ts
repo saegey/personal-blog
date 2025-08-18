@@ -26,10 +26,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     type Mdx implements Node {
       frontmatter: Frontmatter!
       fields: Fields
-      gpxData: File @link(by: "name", from: "frontmatter.gpxFile")
       results: File @link(by: "name", from: "frontmatter.results.file")
-      segments: File @link(by: "name", from: "frontmatter.trainingPeaks")
-  statsData: File @link(by: "name", from: "frontmatter.statsFile")
+      statsData: File @link(by: "name", from: "frontmatter.statsFile")
     }
 
     type Frontmatter {
@@ -44,8 +42,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       isActive: Boolean
       related: [String]
       subType: String
-  statsFile: String
-  currentFtp: Int
+      statsFile: String
+      currentFtp: Int
     }
 
     type Coordinate {

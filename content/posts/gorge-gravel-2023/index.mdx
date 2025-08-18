@@ -9,11 +9,7 @@ tags:
   - race journal
 type: Race Journal
 subType: Gravel Race
-related:
-  - 'Gran Fondo Ephrata 2023'
-  - 'Gran Fondo Winthrop'
 teaser: This is a race you can't miss. Luxury gravel and a fast course with lots of climbing.
-gpxFile: 'Gorge_Gravel_Grinder'
 currentFtp: 273
 statsFile: 'stats_gorge_gravel'
 location: Dufur, Oregon
@@ -33,44 +29,8 @@ This race has been on my list from since last year and is a great early season f
 
 From my memory, the gravel in this area is good with very little car traffic and can fit in the category of "luxury" gravel. I consider "luxury" gravel to be a smooth enough surface it can be ridden with wider road tires and is quite close to paved. It is also devoid of potholes and washboards that also can make a ride much less enjoyable.
 
-<Text>
-  {console.log(props.data.mdx.statsData.fields.data['PowerAnalysis'])}
-</Text>
-
-<RaceOverview
-  data={{
-    elevationGain: props.data.mdx.statsData.fields.data['ElevationGain'],
-    normalizedPower: props.data.mdx.statsData.fields.data['NormalizedPower'],
-    heartAnalysis: {
-      entire:
-        props.data.mdx.statsData.fields.data['HeartAnalysis'][
-          Math.max(
-            ...Object.keys(
-              props.data.mdx.statsData.fields.data['HeartAnalysis'],
-            ).map(Number),
-          )
-        ],
-    },
-    distance:
-      props.data.mdx.statsData.fields.data['SimplifiedDistances'][
-        props.data.mdx.statsData.fields.data['SimplifiedDistances'].length - 1
-      ] / 1000,
-    powerAnalysis: {
-      entire:
-        props.data.mdx.statsData.fields.data['PowerAnalysis'][
-          Math.max(
-            ...Object.keys(
-              props.data.mdx.statsData.fields.data['PowerAnalysis'],
-            ).map(Number),
-          )
-        ],
-    },
-    elapsedTime: {
-      seconds: props.data.mdx.statsData.fields.data['ElapsedTime'],
-    },
-    averageSpeed: props.data.mdx.statsData.fields.data['AverageSpeed'],
-    stoppedTime: props.data.mdx.statsData.fields.data['StoppedTime'],
-  }}
+<RaceOverviewWrapper
+  data={props.data.mdx.statsData.fields.data}
   selectedFields={[
     'Avg Power',
     'Avg Heart Rate',
@@ -109,85 +69,19 @@ But the bad was we missed packet pick up by an hour or so. We had to pick up our
 
 The first big effort of the day was a 200 foot kicker climb the whole feel smashed up. I averaged 377 watts for 2:10 seconds which felt good because the legs were fresh for the day. Up to that point, it was an easy 119 watt average for first 10 min of the neutral roll out. The race pretty much starts at this climb but they actually stopped everyone for 2 min at a start line. Then there is a short descent and the next longer climb begins. This climb breaks up the field into a lot of different groups. Ira and I were riding together from the start and following each other wheels but during this climb we linked up with our friend [Alec](https://www.strava.com/activities/8945730124) and [Vincente](https://www.strava.com/activities/8945965055).
 
-<VisualOverview
-  coordinates={props.data.mdx.statsData.fields.data['SimplifiedCoordinates']}
+<VisualOverviewNew
+  data={props.data.mdx.statsData.fields.data}
   elevationToAdd={500}
-  elevationData={{
-    downsampleRate: 1,
-    data: props.data.mdx.statsData.fields.data['SimplifiedElevations'].map(
-      (elevationFt, idx) => {
-        const x = idx
-        const y = elevationFt / 3.28084 // meters
-        const dist =
-          props.data.mdx.statsData.fields.data['SimplifiedDistances'][idx] // meters
-        const prevDist =
-          idx > 0
-            ? props.data.mdx.statsData.fields.data['SimplifiedDistances'][
-                idx - 1
-              ]
-            : dist
-        const prevY =
-          idx > 0
-            ? props.data.mdx.statsData.fields.data['SimplifiedElevations'][
-                idx - 1
-              ] / 3.28084
-            : y
-        const dx = Math.max(1, dist - prevDist) // avoid divide-by-zero
-        const dy = y - prevY
-        const grade = dx > 0 ? dy / dx : 0 // fractional grade
-        return { distance: dist, y, grade, x }
-      },
-    ),
-    yScaleMin: { imperial: 0, metric: 0 },
-    axisLeftTickValues: {
-      imperial: [
-        [1000, 2000, 3000],
-        [500, 1000, 1500, 2000, 2500],
-        [500, 1000, 1500, 2000, 2500],
-      ],
-      metric: [
-        [250, 500, 750, 1000],
-        [250, 500, 750, 1000],
-        [250, 500, 750, 1000],
-      ],
-    },
-    axisXTickValues: {
-      imperial: [
-        [20, 40, 60, 80],
-        [500, 1000, 1500, 2000, 2500],
-        [500, 1000, 1500, 2000, 2500],
-      ],
-      metric: [
-        [20, 40, 60, 80, 100, 120],
-        [250, 500, 750, 1000],
-        [250, 500, 750, 1000],
-      ],
-    },
-  }}
+  downsampleRate={1}
+  yMin={1}
 />
 
 I was feeling really good on the climb. The climb was around 1,300 feet and I had a normalized power of 276 watts for about 31 minutes. I did a lot of turns on the front trying to push the pace because the riders in front of us were gaining distance and you don't want to fall too far back. I find that getting in a strong group earlier and just trying to hang on gives you a better chance of a good finish versus a slower start and trying to gain places over the race.
 
 The riders you link up with in the pointier part of the field typically have better fitness so the groups hold a higher speed. It can be a little scary because you worry about going to hard and totally blowing up but some of this is remembering to eat and drink so you can sustain a hard pace.
 
-<PowerCurveGraph
-  data={Object.entries(
-    props.data.mdx.statsData.fields.data['PowerAnalysis'] || {},
-  )
-    .map(([k, v]) => ({ x: Number(k), y: Number(v) }))
-    .filter(p => Number.isFinite(p.x) && p.x > 0 && Number.isFinite(p.y))
-    .sort((a, b) => a.x - b.x)}
-  yAxes={[
-    [200, 400, 600, 800],
-    [200, 400, 600, 800],
-    [200, 400, 600, 800],
-  ]}
-  yScaleMax={900}
-  xAxes={[
-    [1, 10, 60, 600, 3600, 32400],
-    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
-    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
-  ]}
+<PowerCurveGraphStatsWrapper
+  data={props.data.mdx.statsData.fields.data}
   ftp={props.data.mdx.frontmatter.currentFtp}
   title="Power Curve"
 />
@@ -282,22 +176,3 @@ I rode the same tire at Ephrata which was similar conditions so I figured it wou
 1. Better tire choice
 2. Always pick up race packet the day before so the morning preparation isn't affected by waiting.
 3. Don't wear a winter jersey when it will warm up throughout the day. Wear layers that can be removed like a vest and arm warmers or carry a shakedry so you don't risk overheating. Overheating can really impact your power output.
-
-{/* <RelatedRaces
-  items={props.data.relatedP.edges.map(d => {
-    return {
-      slug: d.node.fields.slug,
-      title: d.node.frontmatter.title,
-      date: d.node.frontmatter.date,
-      normalizedPower: d.node.gpxData.fields.normalizedPower,
-      headerImage: d.node.frontmatter.headerImage,
-      timeInRed: `${new Date(d.node.gpxData.fields.timeInRed * 1000)
-        .toISOString()
-        .substr(11, 8)}`,
-      distance: d.node.gpxData.fields.distance,
-      stoppedTime: d.node.gpxData.fields.stoppedTime,
-      elapsedTime: d.node.gpxData.fields.elapsedTime,
-      location: d.node.frontmatter.location,
-    }
-  })}
-/> */}

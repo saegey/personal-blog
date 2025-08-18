@@ -15,26 +15,6 @@ export const formatTime = (value: number) => {
   return new Date(value * 1000).toISOString().substr(11, 8).replace(/^0+/, '')
 }
 
-type GenerateTickValueProps = {
-  data: Array<{ x: number; y: number }>
-  intervalSecs: number
-}
-
-export const generateTimeTickValues = ({
-  data,
-  intervalSecs,
-}: GenerateTickValueProps) => {
-  const max = Math.max(...data.map(o => o.x))
-  let currentTick = 0
-  const ticks = []
-
-  while (currentTick < max - 3600) {
-    currentTick += intervalSecs
-    ticks.push(currentTick)
-  }
-  return ticks
-}
-
 export const camelize = (str: string) => {
   return str
     .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {

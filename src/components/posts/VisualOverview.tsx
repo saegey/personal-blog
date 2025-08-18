@@ -23,7 +23,7 @@ const VisualOverview = ({
 }: Vizprops) => {
   const [marker, setMarker] = React.useState<DataPoint | undefined>(undefined)
   const units = useUnits()
-  
+
   const downSampledData = React.useMemo(
     () =>
       elevationData.data
@@ -47,7 +47,9 @@ const VisualOverview = ({
     <Box sx={{ marginY: ['20px', '40px', '100px'] }}>
       <Map
         coordinates={coordinates}
-        markerCoordinates={marker ? coordinates[marker.x] : null}
+        markerCoordinates={
+          marker ? coordinates[marker.i ? marker.i : marker.x] : null
+        }
         token={token}
       />
       <ElevationSlice marker={marker} />
