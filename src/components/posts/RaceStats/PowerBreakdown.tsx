@@ -54,10 +54,10 @@ const PowerBreakdown = ({
                   </Text>
                   <Text as="p" sx={{ fontFamily: 'body', fontSize: '13px' }}>
                     {z.powerLow !== 0 &&
-                      z.powerHigh !== 0 &&
+                      z.powerHigh !== null &&
                       `${z.powerLow} - ${z.powerHigh} watts`}
                     {z.powerLow !== 0 &&
-                      z.powerHigh === 0 &&
+                      z.powerHigh === null &&
                       `${z.powerLow}+ watts`}
                     {z.powerLow === 0 &&
                       z.powerHigh === 0 &&

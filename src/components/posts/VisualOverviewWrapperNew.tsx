@@ -51,20 +51,23 @@ const VisualOverviewWrapper = ({
   axisLeftTickValues = defaultAxisLeft,
   axisXTickValues = defaultAxisX,
 }: VisualOverviewWrapperProps) => {
-  const coords = data?.SimplifiedCoordinates || data?.simplifiedCoordinates || []
-  const elevations: number[] = data?.SimplifiedElevations || data?.simplifiedElevations || []
-  const distances: number[] = data?.SimplifiedDistances || data?.simplifiedDistances || []
- 
+  const coords =
+    data?.SimplifiedCoordinates || data?.simplifiedCoordinates || []
+  const elevations: number[] =
+    data?.SimplifiedElevations || data?.simplifiedElevations || []
+  const distances: number[] =
+    data?.SimplifiedDistances || data?.simplifiedDistances || []
+
   const shaped = elevations.map((elevationFt: number, idx: number) => {
-     console.log(coords[idx][2])
+    console.log(data?.MergedData[idx].t)
     const y = elevationFt / 3.28084 // meters
     const dist = Number(distances[idx] ?? 0) // meters
     const prevDist = idx > 0 ? Number(distances[idx - 1] ?? dist) : dist
-    const prevY = idx > 0 ? (Number(elevations[idx - 1]) / 3.28084) : y
+    const prevY = idx > 0 ? Number(elevations[idx - 1]) / 3.28084 : y
     const dx = Math.max(1, dist - prevDist)
     const dy = y - prevY
     const grade = dx > 0 ? dy / dx : 0
-    return { distance: dist, y, grade, x: idx }
+    return { distance: dist, y, grade, x: data?.MergedData[idx].t, i: idx }
   })
   console.log(shaped)
 

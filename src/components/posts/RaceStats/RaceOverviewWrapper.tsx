@@ -7,22 +7,28 @@ type WrapperProps = {
   selectedFields?: string[]
 }
 
-const getLatestValue = (obj: Record<string, any> | undefined): number | undefined => {
+// Returns the latest non-zero numeric value; skips trailing zeros
+const getLatestValue = (
+  obj: Record<string, any> | undefined,
+): number | undefined => {
   if (!obj || typeof obj !== 'object') return undefined
   const keys = Object.keys(obj)
     .map(k => Number(k))
     .filter(n => Number.isFinite(n))
     .sort((a, b) => b - a)
-  if (keys.length === 0) return undefined
-  const val = obj[String(keys[0])]
-  return typeof val === 'number' ? val : undefined
+  for (const k of keys) {
+    const raw = obj[String(k)]
+    const val = typeof raw === 'number' ? raw : Number(raw)
+    if (Number.isFinite(val) && val > 0) return val
+  }
+  return undefined
 }
 
 const RaceOverviewWrapper: React.FC<WrapperProps> = ({ data, selectedFields = [] }) => {
   // Distance: last simplified distance in meters -> km
   const distances: number[] = data?.SimplifiedDistances || data?.simplifiedDistances || []
   const distanceKm = distances.length > 0 ? Number(distances[distances.length - 1]) / 1000 : 0
-
+  console.log(data.PowerAnalysis)
   const shaped = {
     elevationGain: Number(data?.ElevationGain ?? data?.elevationGain ?? 0),
     distance: distanceKm,

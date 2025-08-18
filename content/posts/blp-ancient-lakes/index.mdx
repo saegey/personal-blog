@@ -8,7 +8,6 @@ tags:
   - XC Mountain Bike
 type: Race Journal
 subType: XC Mountain Bike Race
-gpxFile: 'Ancient_Lakes_XC'
 location: Quincy, WA
 stravaUrl: https://www.strava.com/activities/8737832469
 results:
@@ -52,8 +51,8 @@ an easy decision to head out early to race both days.
   }
 />
 
-<RaceOverview
-  data={props.data.mdx.gpxData.fields}
+<RaceOverviewWrapper
+  data={props.data.mdx.statsData.fields.data}
   selectedFields={[
     'Avg Power',
     'Avg Heart Rate',
@@ -62,6 +61,8 @@ an easy decision to head out early to race both days.
     'Elevation Gain',
     'Normalized Power',
     'Avg Speed',
+    'Elapsed Time',
+    'Time Stopped',
   ]}
 />
 <StravaLink stravaUrl={props.data.mdx.frontmatter.stravaUrl} />
@@ -105,8 +106,8 @@ of that lap) and I also started thinking about Ephrata and if this crash was goi
 to mess up my more important race so I decided to ride a little more cautiously.
 
 <PowerBreakdown
-  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
-  powerZones={props.data.mdx.gpxData.fields.powerZones}
+  powerZoneBuckets={props.data.mdx.statsData.fields.data.PowerZoneBuckets}
+  powerZones={props.data.mdx.statsData.fields.data.PowerZones}
 />
 
 My knee began to feel better and I started to settle in some with the field pretty strung out at this point. It started to become more fun and just tried to ride things fast but smooth. During the race, I had at least 4 or so hard pedal strikes on rocks. One of them took me off trail some and through some sage bushes but was able to stay upright.
@@ -127,7 +128,7 @@ My knee began to feel better and I started to settle in some with the field pret
 
 The course is pretty flat so you're pedalling the whole time but also twisting through the trails and rocks are everywhere so the pedal strikes were pretty scary to have happen. I didn't have this happen during my pre-ride because the speed was slower and I was pumping through thee trail versus pedaling.
 
-<MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
+{/* <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} /> */}
 
 All in all I had a good time and it was good experience racing on some trails that are completely different than I was used. As I already know, the start is so important and it was difficult to recover from a bad one when there is not many opportunities to pass.
 
@@ -172,7 +173,11 @@ I was only a few minutes away from 4th place so a good result was possible for m
 <RaceResults
   data={props.data.mdx.results.fields.data}
   numbersToHighlight={[...Array(12).keys()]}
-  distance={props.data.mdx.gpxData.fields.distance}
+  distance={
+    props.data.mdx.statsData.fields.data['SimplifiedDistances'][
+      props.data.mdx.statsData.fields.data['SimplifiedDistances'].length - 1
+    ] / 1000
+  }
   racerName="Adam Saegebarth"
   showSpeed={false}
 />

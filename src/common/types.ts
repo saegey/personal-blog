@@ -38,7 +38,6 @@ export interface GraphProps {
     | undefined
   lineWidth?: number
   colors?: string[]
-  segments?: Array<Segment>
   isMaximized: boolean
   title: string
 }

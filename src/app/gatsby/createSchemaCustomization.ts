@@ -28,7 +28,6 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       fields: Fields
       gpxData: File @link(by: "name", from: "frontmatter.gpxFile")
       results: File @link(by: "name", from: "frontmatter.results.file")
-      segments: File @link(by: "name", from: "frontmatter.trainingPeaks")
       statsData: File @link(by: "name", from: "frontmatter.statsFile")
     }
 

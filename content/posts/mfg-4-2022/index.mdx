@@ -9,8 +9,8 @@ tags:
   - CX
 type: Race Journal
 subType: Cyclocross Race
-gpxFile: 'MFG_Magnuson_Single_Speed'
-trainingPeaks: Adam_Saegebarth_2022_10_23_13_43
+statsFile: 'stats_mfg_magnuson_ss'
+currentFtp: 275
 images:
   - ./FB6A5023.jpg
   - ./FB6A4839-X5.jpg
@@ -23,14 +23,16 @@ results:
 
 This was my first race of the season and it was probably the first cylocross race in Seattle proper in over 3 years if you can believe it. The race venue for Sunday is [Magnuson Park](https://en.wikipedia.org/wiki/Magnuson_Park) in the Sand Point neighborhood. The [course](https://i0.wp.com/mfgcyclocross.bike/wp-content/uploads/2022/10/MAG_Course-Map.png?w=792&ssl=1) is described by most as a "roadie" course because it was not very technical and relatively flat.
 
-<RaceOverview
-  data={props.data.mdx.gpxData.fields}
+<RaceOverviewWrapper
+  data={props.data.mdx.statsData.fields.data}
   selectedFields={[
-    'Elevation Gain',
     'Avg Heart Rate',
     'Distance',
-    'Elapsed Time',
+    'Moving Time',
+    'Elevation Gain',
     'Avg Speed',
+    'Elapsed Time',
+    'Time Stopped',
   ]}
 />
 <StravaLink stravaUrl={props.data.mdx.frontmatter.stravaUrl} />
@@ -39,9 +41,33 @@ It can change quite a bit if it's muddy but that doesn't usually happen at Magnu
 
 For this years race, the course was reversed which changed it up a bit. The barriers were placed on a steeper uphill segment that results in the remainder of the hill becoming a running section because it was too difficult to get momentum to remount.
 
-<Map coordinates={props.data.mdx.gpxData.fields.coordinates} />
-
-The course was still prettty fast and the conditions pretty dry even with a few days of heavier rain leading up to race day. I have been postponing the start to my cross season partly because of the smoking and dry and dusty conditions. The condition were better today than they have been so the rain welcome this fall for once. I hope some muddy conditions are coming soon!
+<VisualOverviewNew
+  data={props.data.mdx.statsData.fields.data}
+  elevationToAdd={0}
+  downsampleRate={1}
+  yMin={0}
+  axisLeftTickValues={{
+    imperial: [
+      [0, 50, 100],
+      [0, 50, 100],
+      [0, 50, 100],
+    ],
+    metric: [
+      [250, 300, 350],
+      [250, 500, 750, 1000],
+      [250, 500, 750, 1000],
+    ],
+  }}
+  axisXTickValues={{
+    imperial: [[4, 8, 12]],
+    metric: [[5, 10, 15, 20]],
+  }}
+/>
+The course was still prettty fast and the conditions pretty dry even with a few
+days of heavier rain leading up to race day. I have been postponing the start to
+my cross season partly because of the smoking and dry and dusty conditions. The
+condition were better today than they have been so the rain welcome this fall
+for once. I hope some muddy conditions are coming soon!
 
 <LandscapeImage
   image={props.data.mdx.frontmatter.images[1]}
@@ -98,6 +124,10 @@ For this season, it is the go to single speed CX bike and recently was upgrade t
 <RaceResults
   data={props.data.mdx.results.fields.data}
   numbersToHighlight={[0, 1, 2, 26, 29, 31, 32]}
-  distance={props.data.mdx.gpxData.fields.distance}
+  distance={
+    props.data.mdx.statsData.fields.data['SimplifiedDistances'][
+      props.data.mdx.statsData.fields.data['SimplifiedDistances'].length - 1
+    ] / 1000
+  }
   racerName="Adam Saegebarth"
 />

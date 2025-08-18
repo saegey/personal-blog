@@ -9,7 +9,8 @@ tags:
 type: Race Journal
 subType: XC Mountain Bike Race
 teaser: A super technical up and down course with tight corners and loose, twisty descending makes for a great venue to race.
-gpxFile: 'Kettles_XC'
+statsFile: 'stats_kettles_xc'
+currentFtp: 277
 location: Coupeville, WA
 stravaUrl: https://www.strava.com/activities/8667153294
 results:
@@ -33,8 +34,8 @@ images:
 
 So I finally got out there and did a XC mountain bike race. At the start of this year, I had decided mountain biking was going to be the primary focus this year because I enjoy it so much and I am not going as nearly as often as I would like it. At the end of last year, I purchased a Specialized Chisel xc hardtail frame and had it built up early this year.
 
-<RaceOverview
-  data={props.data.mdx.gpxData.fields}
+<RaceOverviewWrapper
+  data={props.data.mdx.statsData.fields.data}
   selectedFields={[
     'Avg Power',
     'Avg Heart Rate',
@@ -43,6 +44,8 @@ So I finally got out there and did a XC mountain bike race. At the start of this
     'Elevation Gain',
     'Normalized Power',
     'Avg Speed',
+    'Elapsed Time',
+    'Time Stopped',
   ]}
 />
 
@@ -54,31 +57,29 @@ As probably most of us do, if we do not have the optimal tool for racing we can 
 
 I've gotten about 14 hours total on the Chisel and so far I have really enjoyed it and find it comfortable but very capable. I skipped the first three races of the Westside MTB Series because I felt I needed some more time practicing and my fitness level was lacking. I had to take some forced time off in the beginning of January after the Rapha Festive 500 brevet due to some knee pain.
 
-<VisualOverview
-  elevationToAdd={0}
-  coordinates={props.data.mdx.gpxData.fields.coordinates}
-  elevationData={{
-    downsampleRate: 15,
-    data: props.data.mdx.gpxData.fields.elevationData,
-    yScaleMin: { imperial: 0, metric: 0 },
-    axisLeftTickValues: {
-      imperial: [[100, 200, 300]],
-      metric: [[50, 75, 100]],
-    },
-    axisXTickValues: {
-      imperial: [
-        [4, 8, 12],
-        [500, 1000, 1500, 2000, 2500],
-        [500, 1000, 1500, 2000, 2500],
-      ],
-      metric: [
-        [5, 10, 15],
-        [250, 500, 750, 1000],
-        [250, 500, 750, 1000],
-      ],
-    },
+<VisualOverviewNew
+  data={props.data.mdx.statsData.fields.data}
+  elevationToAdd={100}
+  downsampleRate={1}
+  yMin={0}
+  axisLeftTickValues={{
+    imperial: [
+      [100, 200, 300],
+      [100, 200, 300],
+      [100, 200, 300],
+    ],
+    metric: [
+      [250, 300, 350],
+      [250, 500, 750, 1000],
+      [250, 500, 750, 1000],
+    ],
+  }}
+  axisXTickValues={{
+    imperial: [[4, 8, 12]],
+    metric: [[5, 10, 15, 20]],
   }}
 />
+
 I wasn't set on pre-riding the course the day before. We arrived to Fort Ebey park
 around 5pm on Saturday with about an hour of daylight left. It was raining too and
 it was easy to pass on the pre-ride and get to the hotel and dinner. The next morning
@@ -86,24 +87,13 @@ we arrive about an hour before the race and got things ready. I saw a few people
 there and they were getting in some pre-rides and mentioned the course was going
 to be hard.
 
-<MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
+{/* <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} /> */}
 
 So the races starts and there is about 900 feet gravel start until a right turn into the single track. My start was good and I think I may have ended up in fourth position before the single track. Once we dove in the pace was fast and I was just trying to hang on. I haven't ridden in technical terrain quite at that race pace so the first few minutes were pretty intense. There was section with some tight trees that I had a bar strike and was thrown off line. This threw off a couple people in behind and created a little gap ahead. It also reminded me to calm down a bit to avoid some stupid mistakes.
 
-<PowerCurveGraph
-  data={props.data.mdx.gpxData.fields.powerCurve}
-  yAxes={[
-    [200, 400, 600, 800],
-    [200, 400, 600, 800],
-    [200, 400, 600, 800],
-  ]}
-  yScaleMax={900}
-  xAxes={[
-    [1, 10, 60, 600, 3600, 32400],
-    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
-    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 32400],
-  ]}
-  ftp={props.data.mdx.gpxData.fields.currentFtp}
+<PowerCurveGraphStatsWrapper
+  data={props.data.mdx.statsData.fields.data}
+  ftp={props.data.mdx.frontmatter.currentFtp}
   title="Power Curve"
 />
 
@@ -124,8 +114,8 @@ motivation to keep on the gas so I don't drop any more positions.
 Toward the end of the 1st lap, I started moved up a position and caught some racers from earlier races. At this point, I was in full suffer mode and was thinking that first lap took a while. On the 2nd lap I was more careful and took way better lines since I had just been through there and knew what to expect. About a third of the way in a caught a group of 4 and I noticed one of them was in my category. I was in no rush to get by but also didn't want to wait to long to get caught by more racers.
 
 <PowerBreakdown
-  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
-  powerZones={props.data.mdx.gpxData.fields.powerZones}
+  powerZoneBuckets={props.data.mdx.statsData.fields.data.PowerZoneBuckets}
+  powerZones={props.data.mdx.statsData.fields.data.PowerZones}
 />
 
 Eventually, the one racer in my group passed the rest of the group and I knew it was time to go. The little break while stuck behind them gave me some time to recharge the legs and be ready to go hard when it was time to pass. I rode on the wheel of the other racer and was waiting till a good climbing section to get by him. I was learning that on the climbs I had a good advantage and in the technical I was a little slower. I got past him and just tried to go as hard as I could to build the gap. I would rather create distance to make it less likely that they will chase versus just staying a little ahead and providing motivation for them to chase.
@@ -135,7 +125,11 @@ I guess I did pretty well because I finished a minute and 20 seconds ahead and I
 <RaceResults
   data={props.data.mdx.results.fields.data}
   numbersToHighlight={[...Array(12).keys()]}
-  distance={props.data.mdx.gpxData.fields.distance}
+  distance={
+    props.data.mdx.statsData.fields.data['SimplifiedDistances'][
+      props.data.mdx.statsData.fields.data['SimplifiedDistances'].length - 1
+    ] / 1000
+  }
   racerName="Adam Saegebarth"
   showSpeed={false}
 />

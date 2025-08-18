@@ -8,7 +8,8 @@ tags:
   - gran-fondo
 type: Race Journal
 subType: Gravel Race
-gpxFile: 'Gran_Fondo_Winthrop'
+currentFtp: 273
+statsFile: 'stats_gran_fondo_winthrop'
 location: Winthrop, Washington
 results:
   file: 'gfw-2022-results'
@@ -30,17 +31,18 @@ related:
 
 As soon as I found out a friend of mine, [Chris Brooks](https://www.instagram.com/chrisobrooks/) was registered for this race back in August I decided I was going to register for it. I was hoping for some residual fitness since I finished RPI Stage race about two weeks before. I thought about doing this one last year but it was actually relocated from Winthrop to Soap Lake due to the fires last year.
 
-<RaceOverview
-  data={props.data.mdx.gpxData.fields}
+<RaceOverviewWrapper
+  data={props.data.mdx.statsData.fields.data}
   selectedFields={[
     'Avg Power',
     'Avg Heart Rate',
     'Distance',
-    'Elapsed Time',
+    'Moving Time',
     'Elevation Gain',
-    'Time Stopped',
-    'Avg Cadence',
+    'Normalized Power',
     'Avg Speed',
+    'Elapsed Time',
+    'Time Stopped',
   ]}
 />
 
@@ -74,34 +76,24 @@ The temperature at 8am was cold so I opted to start with a shake dry jacket and 
 
 Before this is when we ran into the cattle that were crossing the road. The gloves were a good choice though and left them on the entire ride. At higher altitudes on the climb the temperature was lower and the gloves helped keep my hands warm.
 
-<VisualOverview
+<VisualOverviewNew
+  data={props.data.mdx.statsData.fields.data}
   elevationToAdd={1000}
-  coordinates={props.data.mdx.gpxData.fields.coordinates}
-  elevationData={{
-    downsampleRate: 60,
-    data: props.data.mdx.gpxData.fields.elevationData,
-    axisXTickValues: {
-      imperial: [
-        [20, 40, 60, 80],
-      ],
-      metric: [
-        [20, 40, 60, 80, 100, 120],
-      ],
-    },
-    axisLeftTickValues: {
-      imperial: [
-        [1000, 2000, 3000],
-      ],
-      metric: [
-        [250, 500, 750, 1000],
-      ],
-    },
+  downsampleRate={1}
+  yMin={1000}
+  axisLeftTickValues={{
+    imperial: [[2000, 4000, 6000]],
+    metric: [[250, 500, 750, 1000]],
+  }}
+  axisXTickValues={{
+    imperial: [[20, 40, 60, 80]],
+    metric: [[20, 40, 60, 80, 100, 120]],
   }}
 />
 
 My strategy was to ride mostly in the tempo zone and try to stay consistent the whole race as far as power output. Because this route is basically two giant climbs riding with a group is not that important because the benefits of drafting are not big at slower speeds. I also was thinking the group with split apart quickly on the climbing which it did.
 
-<MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} />
+{/* <MatchesBurned data={props.data.mdx.gpxData.fields.matchesBurned} /> */}
 
 The groups broke apart and most people were riding solo to maybe 5 max halfway up the first climb. I was riding with Chris and was riding a more convervative pace than maybe I usually would but also I have never raced something with two giant climbs like this.
 
@@ -147,13 +139,14 @@ Chris and I were back together for the big descent and by now I was determined t
     </Text>
   }
 />
-Chris dropped a chain about half way down that we stopped for and some other riders
-ended up right on our wheel once we got rolling. At the bottom, the road turns back
-to pavement and we were flying at around 40mph in a huge group. This road randomly
-had large cracks and potholes in it and I hit a few that came up too quickly and
-was relieved to not have pinched flat or any other issue. There were multiple flats
-we wintessed coming down the gravel part of the descent and some sidewall rips and
-such so getting through this area unscathed was a milestone.
+Chris dropped a chain about half way down that we stopped for and some other
+riders ended up right on our wheel once we got rolling. At the bottom, the road
+turns back to pavement and we were flying at around 40mph in a huge group. This
+road randomly had large cracks and potholes in it and I hit a few that came up
+too quickly and was relieved to not have pinched flat or any other issue. There
+were multiple flats we wintessed coming down the gravel part of the descent and
+some sidewall rips and such so getting through this area unscathed was a
+milestone.
 
 <LandscapeImage
   image={props.data.mdx.frontmatter.images[5]}
@@ -197,28 +190,17 @@ In the second half of the climb, I passed Austin Foxley who looked to be dealing
 
 At this point in the race, I am so ready to be done and I don't want to give up and places so I am gonna rip this descent. Overall this one is better than the first since its less twisty and not as steep. I pass a Fount racer - Kevin Hodges, on the way down super quickly. If you are a good descender than you have a clear advantage in this race and can gain some valuable time on the way down. I classify myself as a moderate descender but was previously a slow descender. I have improved a lot over the past few years.
 
-<PowerCurveGraph
-  data={props.data.mdx.gpxData.fields.powerCurve}
-  yAxes={[
-    [200, 400, 600, 800],
-    [200, 400, 600, 800],
-    [200, 400, 600, 800],
-  ]}
-  xAxes={[
-    [1, 10, 60, 600, 3600, 21600],
-    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 21600],
-    [1, 5, 10, 30, 60, 300, 600, 1200, 3600, 7200, 14400, 21600],
-  ]}
-  yScaleMax={600}
-  ftp={props.data.mdx.gpxData.fields.currentFtp}
+<PowerCurveGraphStatsWrapper
+  data={props.data.mdx.statsData.fields.data}
+  ftp={props.data.mdx.frontmatter.currentFtp}
   title="Power Curve"
 />
 
 What this descent has is lots of washboard. I have learned the faster you take washboard the less noticeable it is and so I was trying to send it as much as possible. Austin blows past me so easily so I have a ways to go before because strong descender.
 
 <PowerBreakdown
-  powerZoneBuckets={props.data.mdx.gpxData.fields.powerZoneBuckets}
-  powerZones={props.data.mdx.gpxData.fields.powerZones}
+  powerZoneBuckets={props.data.mdx.statsData.fields.data.PowerZoneBuckets}
+  powerZones={props.data.mdx.statsData.fields.data.PowerZones}
 />
 
 The vibrations from the washboard were causing me hands to go numb and I could barely even feel the levers. This was a shitty feeling for sure and I need to find ways to avoid this in the futture. It also happened in Leavenworth this year. I dropped a chain from the bumpiness on the way down and the 30 seconds to fixed it got some blood moving in my hands and the feeling back.
@@ -250,6 +232,10 @@ This descent still required periods of hard pedaling to keep the speed up. I get
 <RaceResults
   data={props.data.mdx.results.fields.data}
   numbersToHighlight={[0, 1, 2, 8, 10, 11, 12, 14, 15, 31, 50]}
-  distance={props.data.mdx.gpxData.fields.distance}
+  distance={
+    props.data.mdx.statsData.fields.data['SimplifiedDistances'][
+      props.data.mdx.statsData.fields.data['SimplifiedDistances'].length - 1
+    ] / 1000
+  }
   racerName="Adam Saegebarth"
 />

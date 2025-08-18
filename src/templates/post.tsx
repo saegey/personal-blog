@@ -274,16 +274,6 @@ export const query = graphql`
           data
         }
       }
-      segments {
-        fields {
-          segments {
-            beginningTime
-            segmentDistance
-            segmentDuration
-            segmentDurationStopped
-          }
-        }
-      }
       results {
         id
         fields {

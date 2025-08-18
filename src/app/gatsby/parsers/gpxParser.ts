@@ -46,13 +46,13 @@ export async function handleGpxNode({
       // Skip empty or invalid files
       return
     }
-    const xmlDoc = new DOMParser().parseFromString(content, 'text/xml')
-    const segments = parseSegmentsFromXml(xmlDoc as unknown as XMLDocument)
-    createNodeField({
-      name: `segments`,
-      node,
-      value: segments,
-    })
+    // const xmlDoc = new DOMParser().parseFromString(content, 'text/xml')
+    // const segments = parseSegmentsFromXml(xmlDoc as unknown as XMLDocument)
+    // createNodeField({
+    //   name: `segments`,
+    //   node,
+    //   value: segments,
+    // })
     return
   }
 
