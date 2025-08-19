@@ -38,7 +38,7 @@ const HomePage: React.FC<PageProps<DataProps>> = ({ data }) => {
   }
 
   return (
-     <Container sx={{ paddingTop: '0'}}>
+    <Container sx={{ paddingTop: '0' }}>
       <Hero />
       <Divider sx={{ marginBottom: '20px', color: 'primaryMuted' }} />
       <Flex sx={{ gap: '20px', flexDirection: 'column', marginBottom: 5 }}>
@@ -110,7 +110,12 @@ export const pageQuery = graphql`
           teaser
           headerImage {
             childImageSharp {
-              gatsbyImageData(placeholder: BLURRED, width: 800, quality: 70, layout: CONSTRAINED)
+              gatsbyImageData(
+                placeholder: BLURRED
+                width: 800
+                quality: 70
+                layout: CONSTRAINED
+              )
             }
           }
           publishedDate

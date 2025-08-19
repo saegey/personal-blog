@@ -36,10 +36,10 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
   }
 
   if (node.internal.mediaType === 'application/json') {
-    await handleJsonNode({ node, createNodeField, loadNodeContent });
+    await handleJsonNode({ node, createNodeField, loadNodeContent })
   }
 
   if (node.internal.mediaType === 'text/plain') {
-    await handleTextNode({ node, createNodeField, loadNodeContent });
+    await handleTextNode({ node, createNodeField, loadNodeContent })
   }
 }

@@ -34,7 +34,7 @@ describe('Header', () => {
       .create(
         <ThemeUIProvider theme={theme}>
           <Header setMenuOpen={jest.fn()} />
-        </ThemeUIProvider>
+        </ThemeUIProvider>,
       )
       .toJSON()
     expect(json).toMatchSnapshot()
@@ -45,7 +45,7 @@ describe('Header', () => {
     render(
       <ThemeUIProvider theme={theme}>
         <Header setMenuOpen={openMenu} />
-      </ThemeUIProvider>
+      </ThemeUIProvider>,
     )
     const menuButton = await screen.queryByTitle('Toggle Menu')
     fireEvent.click(menuButton)
@@ -62,7 +62,7 @@ describe('Header', () => {
         render(
           <ThemeUIProvider theme={theme}>
             <ColorModeSelector />
-          </ThemeUIProvider>
+          </ThemeUIProvider>,
         )
         const themeButton = await screen.queryByTitle('Light Mode')!
         fireEvent.click(themeButton)
@@ -85,7 +85,7 @@ describe('Header', () => {
         render(
           <ThemeUIProvider theme={theme}>
             <ColorModeSelector />
-          </ThemeUIProvider>
+          </ThemeUIProvider>,
         )
         const themeButton = await screen.queryByTitle('Dark Mode')
         fireEvent.click(themeButton)

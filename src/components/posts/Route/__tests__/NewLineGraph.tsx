@@ -63,7 +63,7 @@ describe('NewLineGraph', () => {
         yMin={data.yMin}
         elevationToAdd={data.elevationToAdd}
         setMarker={data.setMarker}
-      />
+      />,
     )
     expect(screen.container).toMatchSnapshot()
   })
@@ -79,7 +79,7 @@ describe('NewLineGraph', () => {
         yMin={data.yMin}
         elevationToAdd={data.elevationToAdd}
         setMarker={data.setMarker}
-      />
+      />,
     )
     expect(screen.container).toMatchSnapshot()
   })

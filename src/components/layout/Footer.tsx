@@ -107,8 +107,7 @@ const Footer = () => {
           marginTop: 'auto',
           marginBottom: '10px',
         }}
-      >
-      </div>
+      ></div>
     </footer>
   )
 }

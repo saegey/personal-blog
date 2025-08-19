@@ -37,7 +37,7 @@ type: Race Journal
 subType: Gravel Race
 teaser: Short summary teaser
 currentFtp: 273
-statsFile: 'stats_gorge_gravel'  # links to a File node in content/stats
+statsFile: 'stats_gorge_gravel' # links to a File node in content/stats
 location: Dufur, Oregon
 stravaUrl: https://www.strava.com/activities/...
 ```
@@ -85,6 +85,7 @@ Wrappers hide data shaping so MDX stays clean.
   - `clean` → Gatsby clean
 
 Notes:
+
 - Images are constrained in GraphQL queries to reduce Sharp work (faster builds).
 - Some components expect metric/imperial conversions and may reference units via context providers.
 
@@ -146,6 +147,7 @@ src/app/gatsby/
 ## Open Questions
 
 To finalize this doc, a few quick confirmations would help:
+
 - Contact/feedback mechanism (serverless function or form) to mention?
 
 ## Environment Variables
@@ -156,4 +158,3 @@ To finalize this doc, a few quick confirmations would help:
 
 - License: MIT
 - Forks welcome if you want to build something similar.
-

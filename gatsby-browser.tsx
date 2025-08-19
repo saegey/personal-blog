@@ -4,7 +4,6 @@ import './src/carousel.css'
 // custom CSS styles
 import './src/styles/globals.css'
 
-
 import type { GatsbyBrowser } from 'gatsby'
 
 import rootWrapper from './rootWrapper'

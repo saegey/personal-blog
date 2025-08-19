@@ -88,7 +88,7 @@ const theme = {
       'li::marker': {
         color: 'textMuted',
       },
-      lineHeight: 1.3
+      lineHeight: 1.3,
     },
     blockquote: {
       backgroundColor: 'blockquoteBg',

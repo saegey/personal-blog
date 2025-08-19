@@ -3,7 +3,6 @@ import { Box } from 'theme-ui'
 import { useUnits } from '../../../context/UnitProvider'
 import RaceStats from './RaceStats'
 
-
 type Props = {
   data: {
     elevationGain: number
@@ -125,7 +124,7 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
     <Box variant="boxes.figure">
       <RaceStats
         items={items.filter(activity =>
-          selectedFields.includes(activity.title)
+          selectedFields.includes(activity.title),
         )}
       />
     </Box>

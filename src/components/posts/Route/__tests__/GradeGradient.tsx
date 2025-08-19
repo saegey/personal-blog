@@ -9,7 +9,7 @@ describe('GradGradient', () => {
   it('renders', () => {
     const json = renderer
       .create(
-        <GradeGradient data={[{ distance: 5, color: 'red' }]} xMax={20} />
+        <GradeGradient data={[{ distance: 5, color: 'red' }]} xMax={20} />,
       )
       .toJSON()
     expect(json).toMatchSnapshot()
@@ -26,7 +26,7 @@ describe('GradGradient', () => {
       .create(
         <>
           <GradeGradient data={data} xMax={20} />
-        </>
+        </>,
       )
       .toJSON()
     expect(json).toMatchSnapshot()

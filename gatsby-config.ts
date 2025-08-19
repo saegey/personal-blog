@@ -35,14 +35,6 @@ module.exports = {
     },
     `gatsby-plugin-sitemap`,
     {
-      resolve: `gatsby-plugin-gatsby-cloud`,
-      options: {
-        headers: {
-          '/*': ['Referrer-Policy: origin'],
-        },
-      },
-    },
-    {
       resolve: 'gatsby-plugin-theme-ui',
     },
     {

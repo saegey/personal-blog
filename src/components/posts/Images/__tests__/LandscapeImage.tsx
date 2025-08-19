@@ -53,7 +53,7 @@ describe('LandscapeImage', () => {
           }}
           caption="this is a caption"
           maximize={false}
-        />
+        />,
       )
       .toJSON()
     expect(json).toMatchSnapshot()

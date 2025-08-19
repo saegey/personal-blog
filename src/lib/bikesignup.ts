@@ -42,7 +42,7 @@ export const parseBikeSignup = (file: string) => {
     results.push({
       place,
       name: getName(l),
-      time: getTotalTime(l)
+      time: getTotalTime(l),
     })
   })
   return results

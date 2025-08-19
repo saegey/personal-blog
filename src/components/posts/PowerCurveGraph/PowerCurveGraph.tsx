@@ -54,11 +54,7 @@ const PowerCurveGraph = ({
             tickLine={{ stroke: String(theme.colors?.primary) }}
             axisLine={{ stroke: String(theme.colors?.primary) }}
           >
-            <Label
-              value="Power (watts)"
-              position="insideLeft"
-              angle={-90}
-            />
+            <Label value="Power (watts)" position="insideLeft" angle={-90} />
           </YAxis>
           <XAxis
             dataKey="x"

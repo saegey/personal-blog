@@ -14,11 +14,7 @@ interface RaceImageType {
   roundedEdges?: boolean
 }
 
-const LandscapeImage = ({
-  image,
-  caption,
-  invert = false
-}: RaceImageType) => {
+const LandscapeImage = ({ image, caption, invert = false }: RaceImageType) => {
   const [colorMode] = useColorMode()
   const { theme } = useThemeUI()
 

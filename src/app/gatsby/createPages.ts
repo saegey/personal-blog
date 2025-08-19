@@ -67,7 +67,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
     component: path.resolve('./src/pages/home.tsx'),
   })
 
-  function createPagesForDir(nodes: any[], dir: string, template: string, contextCb: (post: any) => object) {
+  function createPagesForDir(
+    nodes: any[],
+    dir: string,
+    template: string,
+    contextCb: (post: any) => object,
+  ) {
     return nodes
       .filter(post => post.internal.contentFilePath.includes(dir))
       .map(post => {
@@ -88,7 +93,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
       slug: post.fields.slug,
       id: post.id,
       relatedPosts: post.frontmatter.related ? post.frontmatter.related : [],
-    })
+    }),
   )
 
   const createBlogPromise = createPagesForDir(
@@ -98,7 +103,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
     post => ({
       slug: post.fields.slug,
       id: post.id,
-    })
+    }),
   )
 
   const createProjectPromise = createPagesForDir(
@@ -108,8 +113,12 @@ export const createPages: GatsbyNode['createPages'] = async ({
     post => ({
       slug: post.fields.slug,
       id: post.id,
-    })
+    }),
   )
 
-  await Promise.all([createPostPromise, createBlogPromise, createProjectPromise])
+  await Promise.all([
+    createPostPromise,
+    createBlogPromise,
+    createProjectPromise,
+  ])
 }

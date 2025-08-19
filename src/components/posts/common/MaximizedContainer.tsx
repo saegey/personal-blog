@@ -1,5 +1,5 @@
 import { Box, Flex, Text, Close } from 'theme-ui'
-import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react'
 
 type MaxProps = {
   children: ReactNode

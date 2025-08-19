@@ -15,13 +15,17 @@ const PortraitImage = ({
   image,
   widthPercentage,
   caption,
-  altText
+  altText,
 }: PortraitImageProps) => {
   const width = widthPercentage ? widthPercentage : '65%'
   const { theme } = useThemeUI()
 
   return (
-    <ImageWrapper image={image} caption={caption} altText={altText ? altText : ''}>
+    <ImageWrapper
+      image={image}
+      caption={caption}
+      altText={altText ? altText : ''}
+    >
       <Box sx={{ marginTop: '20px', borderRadius: '4px', overflow: 'hidden' }}>
         <Box
           sx={{

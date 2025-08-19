@@ -8,13 +8,23 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
 
 // Mock mapbox-gl for Jest
 jest.mock('mapbox-gl', () => ({
-  Map: function () { return {}; },
-  NavigationControl: function () { return {}; },
-  GeolocateControl: function () { return {}; },
-  Marker: function () { return {}; },
-  Popup: function () { return {}; },
+  Map: function () {
+    return {}
+  },
+  NavigationControl: function () {
+    return {}
+  },
+  GeolocateControl: function () {
+    return {}
+  },
+  Marker: function () {
+    return {}
+  },
+  Popup: function () {
+    return {}
+  },
   // Add any other Mapbox classes you use
-}));
+}))
 import { createSerializer } from '@emotion/jest'
 import * as emotion from '@emotion/react'
 
@@ -47,7 +57,6 @@ jest.mock('d3-scale', () => {
 })
 
 jest.mock('mapbox-gl/dist/mapbox-gl.css', () => jest.fn())
-
 
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
