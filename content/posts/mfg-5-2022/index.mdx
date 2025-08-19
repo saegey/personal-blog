@@ -9,6 +9,7 @@ tags:
   - cyclocross
   - race
 type: Race Journal
+teaser: Mud, steep gravel climbs, and tight battles all the way to the finish — North 40 brought classic November CX back to the PNW
 subType: Cyclocross Race
 statsFile: 'stats_mfg_north40'
 images:
@@ -71,35 +72,20 @@ I didn't have high expectations on my result and just wanted to ride a clean
 ride and go full gas and keep the heart rate high while keeping lap times
 consistent or improving. I think I can say that happened for me.
 
-<PortraitImage
-  image={props.data.mdx.frontmatter.images[0]}
-  widthPercentage="40%"
+<Box mb={4} mt={4}>
+<TwoPhotoWide
+  images={[
+    props.data.mdx.frontmatter.images[0],
+    props.data.mdx.frontmatter.images[5],
+  ]}
+  alts={['From lens to timeline 1', 'From lens to timeline 2']}
   caption={
-    <Text>
-      Full send through the steepest technical descent on the course. I liked
-      the descent but I was alway unsure how much speed I could carry through
-      the slippery left turrn after without losing the rear tire. Photo credit
-      to{' '}
-      <Link href="https://www.strava.com/athletes/41502563?oq=scarlett">
-        Scarlett S
-      </Link>
-    </Text>
+    'Cornering in one of the high speed grass turns in the infield of the course. Photo courtesy of Woodinville Bicycle.'
   }
 />
+</Box>
 
 My start was fine but its really hard to position to well because I'm probably five rows back and there is plenty of people to get around. I think this might be harder in single speed because you spin out pretty early on and the course narrowed in some twisty sections and the traffic was slowing things down some.
-
-<PortraitImage
-  image={props.data.mdx.frontmatter.images[5]}
-  widthPercentage={'40%'}
-  caption={
-    <Text>
-      Cornering in one of the high speed grass turns in the infield of the
-      course. Photo courtesy of{' '}
-      <Link href="http://woodinvillebicycle.com">Woodinville Bicycle</Link>
-    </Text>
-  }
-/>
 
 The course was reversed this year and had a short gravel climb that took some sharp, big efforts to get up. There was a stair run up and a nice short technical descent with a hard left turn at the bottom.
 
@@ -130,19 +116,6 @@ After that happened, there was a lot of lapped traffic that got in the way and n
     <Text>
       Spinning full gas on one of the long grass straights that leads to the big
       barriers. Photo credit to{' '}
-      <Link href="https://www.strava.com/athletes/41502563?oq=scarlett">
-        Scarlett S
-      </Link>
-    </Text>
-  }
-/>
-
-<LandscapeImage
-  image={props.data.mdx.frontmatter.images[4]}
-  caption={
-    <Text>
-      Remounting after the three small barriers. I ran them every lap since it
-      was faster than jumping them in the pre-ride. Photo credit to{' '}
       <Link href="https://www.strava.com/athletes/41502563?oq=scarlett">
         Scarlett S
       </Link>
