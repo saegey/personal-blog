@@ -132,7 +132,12 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
           '&.article>blockquote': {
             maxWidth: '690px',
             margin: '0 auto',
-            paddingLeft: [0, 0, '8px'],
+            paddingLeft: [0, 0, '12px'],
+            marginY: [0, 0, 4],
+            paddingY: 0
+          },
+          '&.article>blockquote>p': {
+            marginY: 0
           },
         }}
         className="article"
