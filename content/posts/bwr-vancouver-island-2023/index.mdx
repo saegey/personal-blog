@@ -128,15 +128,14 @@ I felt **better than last year's BWR** overall, with enough left to push the las
 - **Gels:** ~9 GU gels
 - **Carb target:** ~**82 g/hr** (kept me steady; would keep this ballpark for future BWRs)
 
-<PortraitImage
-  image={props.data.mdx.frontmatter.images[8]}
+<TwoPhotoWide
+  images={[
+    props.data.mdx.frontmatter.images[8],
+    props.data.mdx.frontmatter.images[7],
+  ]}
+  alts={['From lens to timeline 1', 'From lens to timeline 2']}
   caption={
-    <Text>
-      This was almost the crest of the first long climb of the day. My friend
-      Ira riding in front. It was probably the hardest effort all day. 245 watts
-      for 9:30 with ~400ft of gain. Not steep but some steeper ramps that are
-      included.
-    </Text>
+    'This was almost the crest of the first long climb of the day. My friend Ira riding in front. It was probably the hardest effort all day. 245 watts for 9:30 with ~400ft of gain. Not steep but some steeper ramps that are included.'
   }
 />
 
@@ -162,23 +161,9 @@ I felt **better than last year's BWR** overall, with enough left to push the las
   powerZones={props.data.mdx.statsData.fields.data.PowerZones}
 />
 
-<PowerCurveGraphStatsWrapper
-  data={props.data.mdx.statsData.fields.data}
-  ftp={props.data.mdx.frontmatter.currentFtp}
-  title="Power Curve"
-/>
-
 > Takeaway: pacing was controlled and durable—enough to keep the needle up late and still ride the steep ramp at ~80 miles and the 43-minute late climb without imploding.
 
-<PortraitImage
-  image={props.data.mdx.frontmatter.images[7]}
-  caption={
-    <Text>
-      About to cross through the finish line and feel the relief of a
-      hard-fought race.
-    </Text>
-  }
-/>
+
 
 ## What Went Well
 
@@ -194,6 +179,12 @@ I felt **better than last year's BWR** overall, with enough left to push the las
 - **Early positioning.** Be more assertive ahead of first singletrack to avoid traffic.
 - **Descent management.** Hands/brake fade late—consider pad/rotor check pre-race, hand conditioning, and line choice to carry speed with less braking.
 - **Pacing “free speed.”** There were sections I could have pressed a bit more without risking the endgame—especially mid-race tempo.
+
+<PowerCurveGraphStatsWrapper
+  data={props.data.mdx.statsData.fields.data}
+  ftp={props.data.mdx.frontmatter.currentFtp}
+  title="Power Curve"
+/>
 
 ## Results
 

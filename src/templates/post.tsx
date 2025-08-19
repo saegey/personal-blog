@@ -26,6 +26,7 @@ import {
   RaceOverviewWrapper,
   VisualOverviewWrapper as VisualOverview,
 } from '../components/posts'
+import TwoPhotoWide from '../components/TwoPhotoWide'
 
 const shortcodes = {
   PortraitImage,
@@ -46,6 +47,7 @@ const shortcodes = {
   VisualOverview,
   VisualOverviewNew,
   Box,
+  TwoPhotoWide
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
