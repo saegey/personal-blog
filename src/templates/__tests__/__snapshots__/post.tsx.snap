@@ -272,6 +272,14 @@ exports[`PostTemplate renders 1`] = `
   padding-top: 30px;
 }
 
+.emotion-0.article>h2+h3 {
+  padding-top: 20px;
+}
+
+.emotion-0.article>p+h3 {
+  padding-top: 20px;
+}
+
 .emotion-0.article>p {
   max-width: 100%;
   margin: 0 auto;
@@ -318,6 +326,19 @@ exports[`PostTemplate renders 1`] = `
 .emotion-0.article>ul {
   max-width: 690px;
   margin: auto;
+  padding-left: 20px;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-0.article>ul {
+    padding-left: 25px;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-0.article>ul {
+    padding-left: 25px;
+  }
 }
 
 .emotion-0.article>h2 {
@@ -334,6 +355,42 @@ exports[`PostTemplate renders 1`] = `
 
 @media screen and (min-width: 52em) {
   .emotion-0.article>h2 {
+    padding-left: 8px;
+  }
+}
+
+.emotion-0.article>h3 {
+  max-width: 690px;
+  margin: 0 auto;
+  padding-left: 0;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-0.article>h3 {
+    padding-left: 0;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-0.article>h3 {
+    padding-left: 8px;
+  }
+}
+
+.emotion-0.article>blockquote {
+  max-width: 690px;
+  margin: 0 auto;
+  padding-left: 0;
+}
+
+@media screen and (min-width: 40em) {
+  .emotion-0.article>blockquote {
+    padding-left: 0;
+  }
+}
+
+@media screen and (min-width: 52em) {
+  .emotion-0.article>blockquote {
     padding-left: 8px;
   }
 }

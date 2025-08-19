@@ -95,6 +95,12 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
           '&.article>p+h2': {
             paddingTop: '30px',
           },
+          '&.article>h2+h3': {
+            paddingTop: '20px',
+          },
+          '&.article>p+h3': {
+            paddingTop: '20px',
+          },
           '&.article>p': {
             maxWidth: ['100%', '100%', '690px'],
             margin: '0 auto',
@@ -109,8 +115,19 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
           '&.article>ul': {
             maxWidth: '690px',
             margin: 'auto',
+            paddingLeft: ['20px', '25px', '25px'],
           },
           '&.article>h2': {
+            maxWidth: '690px',
+            margin: '0 auto',
+            paddingLeft: [0, 0, '8px'],
+          },
+          '&.article>h3': {
+            maxWidth: '690px',
+            margin: '0 auto',
+            paddingLeft: [0, 0, '8px'],
+          },
+          '&.article>blockquote': {
             maxWidth: '690px',
             margin: '0 auto',
             paddingLeft: [0, 0, '8px'],
@@ -218,12 +235,12 @@ export const query = graphql`
         currentFtp
         images {
           childImageSharp {
-            gatsbyImageData(placeholder: BLURRED)
+            gatsbyImageData(placeholder: BLURRED, width: 1100, quality: 80, layout: CONSTRAINED)
           }
         }
         headerImage {
           childImageSharp {
-            gatsbyImageData(placeholder: BLURRED)
+            gatsbyImageData(placeholder: BLURRED, width: 1400, quality: 80, layout: CONSTRAINED)
           }
         }
         headerImageCaption
