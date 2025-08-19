@@ -54,9 +54,9 @@ mdx {
   statsData {
     fields { data }
   }
-}ååå
+}
 ```
-å
+
 ## MDX Shortcodes (Wrappers)
 
 Wrappers hide data shaping so MDX stays clean.
@@ -99,7 +99,7 @@ Local dev with Vercel:
 
 ```sh
 vercel dev
-```å
+```
 
 ## Generating Stats JSON
 
