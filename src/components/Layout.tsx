@@ -1,9 +1,10 @@
 import Helmet from 'react-helmet'
 import { Box, Divider, Flex, NavLink, Text } from 'theme-ui'
+import { Link } from 'gatsby'
+
 import BackToTop from './layout/BackToTop'
 import ViewportProvider from '../context/ViewportProvider'
 import UnitProvider from '../context/UnitProvider'
-import { Link } from 'gatsby'
 import { MyLinkProps } from '../common/types'
 
 type CardProps = {

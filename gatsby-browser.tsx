@@ -1,5 +1,3 @@
-// custom typefaces
-import '@fontsource-variable/public-sans'
 // normalize CSS across browsers
 import './src/normalize.css'
 import './src/carousel.css'
