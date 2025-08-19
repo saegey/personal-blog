@@ -381,18 +381,31 @@ exports[`PostTemplate renders 1`] = `
   max-width: 690px;
   margin: 0 auto;
   padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 @media screen and (min-width: 40em) {
   .emotion-0.article>blockquote {
     padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 
 @media screen and (min-width: 52em) {
   .emotion-0.article>blockquote {
-    padding-left: 8px;
+    padding-left: 12px;
+    margin-top: 32px;
+    margin-bottom: 32px;
   }
+}
+
+.emotion-0.article>blockquote>p {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .emotion-1 {
