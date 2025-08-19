@@ -24,20 +24,29 @@ const getLatestValue = (
   return undefined
 }
 
-const RaceOverviewWrapper: React.FC<WrapperProps> = ({ data, selectedFields = [] }) => {
+const RaceOverviewWrapper: React.FC<WrapperProps> = ({
+  data,
+  selectedFields = [],
+}) => {
   // Distance: last simplified distance in meters -> km
-  const distances: number[] = data?.SimplifiedDistances || data?.simplifiedDistances || []
-  const distanceKm = distances.length > 0 ? Number(distances[distances.length - 1]) / 1000 : 0
+  const distances: number[] =
+    data?.SimplifiedDistances || data?.simplifiedDistances || []
+  const distanceKm =
+    distances.length > 0 ? Number(distances[distances.length - 1]) / 1000 : 0
   console.log(data.PowerAnalysis)
   const shaped = {
     elevationGain: Number(data?.ElevationGain ?? data?.elevationGain ?? 0),
     distance: distanceKm,
-    normalizedPower: Number(data?.NormalizedPower ?? data?.normalizedPower ?? 0),
+    normalizedPower: Number(
+      data?.NormalizedPower ?? data?.normalizedPower ?? 0,
+    ),
     heartAnalysis: { entire: getLatestValue(data?.HeartAnalysis) ?? 0 },
     tempAnalysis: { entire: getLatestValue(data?.TempAnalysis) ?? 0 },
     powerAnalysis: { entire: getLatestValue(data?.PowerAnalysis) ?? 0 },
     cadenceAnalysis: { entire: getLatestValue(data?.CadenceAnalysis) ?? 0 },
-    elapsedTime: { seconds: Number(data?.ElapsedTime ?? data?.elapsedTime ?? 0) },
+    elapsedTime: {
+      seconds: Number(data?.ElapsedTime ?? data?.elapsedTime ?? 0),
+    },
     stoppedTime: Number(data?.StoppedTime ?? data?.stoppedTime ?? 0),
     timeInRed: Number(data?.TimeInRed ?? data?.timeInRed ?? 0),
   }

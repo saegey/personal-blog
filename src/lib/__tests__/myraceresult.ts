@@ -11,7 +11,7 @@ describe('myraceresult', () => {
         { name: 'Lewis Whiley', time: '4:13:07.6', place: '4' },
         { name: 'Kenneth Rizer', time: '4:18:06.5', place: '5' },
         { name: 'Zach Winter', time: '4:18:06.7', place: '6' },
-        { name: 'Ryan Malm', time: '4:19:09.8', place: '7' }
+        { name: 'Ryan Malm', time: '4:19:09.8', place: '7' },
       ])
     })
   })

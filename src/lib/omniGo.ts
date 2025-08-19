@@ -28,7 +28,7 @@ const tsvJSON = (tsv: string) => {
       if (data) {
         obj[camelize(headers[j]) as OnlyKeys] = data.replace(
           /(\r\n|\n|\r)/gm,
-          ''
+          '',
         )
       } else {
         obj[camelize(headers[j]) as OnlyKeys] = data
@@ -63,7 +63,7 @@ export const parseOmniTSV = (data: string) => {
         r.time === 'checkpoint missed'
           ? '00:00:00'
           : new Date(
-              timeExplosion.reduce((partialSum, a) => partialSum + a, 0) * 1000
+              timeExplosion.reduce((partialSum, a) => partialSum + a, 0) * 1000,
             )
               .toISOString()
               .substr(11, 8),

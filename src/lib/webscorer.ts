@@ -22,7 +22,7 @@ const tsvJSON = (tsv: string) => {
       if (data) {
         obj[camelize(headers[j]) as OnlyKeys] = data.replace(
           /(\r\n|\n|\r)/gm,
-          ''
+          '',
         )
       } else {
         obj[camelize(headers[j]) as OnlyKeys] = data

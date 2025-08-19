@@ -10,11 +10,7 @@ type MenuLinkProps = {
 
 const MyLink = Link as any as (props: MyLinkProps) => JSX.Element
 
-const MenuLink = ({
-  title,
-  location,
-  setMenuOpen,
-}: MenuLinkProps) => {
+const MenuLink = ({ title, location, setMenuOpen }: MenuLinkProps) => {
   return (
     <MyLink
       to={location}
@@ -66,17 +62,9 @@ const NavigationItems = ({ setMenuOpen }: NavItemsProps) => {
           },
         }}
       >
-        <MenuLink
-          location="/"
-          title="Home"
-          setMenuOpen={setMenuOpen}
-        />
+        <MenuLink location="/" title="Home" setMenuOpen={setMenuOpen} />
         <MenuLink location="/about" title="About" setMenuOpen={setMenuOpen} />
-        <MenuLink
-          location="/posts"
-          title="Posts"
-          setMenuOpen={setMenuOpen}
-        />
+        <MenuLink location="/posts" title="Posts" setMenuOpen={setMenuOpen} />
       </ul>
     </div>
   )

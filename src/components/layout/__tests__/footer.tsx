@@ -6,7 +6,6 @@ import * as Gatsby from 'gatsby'
 
 import Footer from '../Footer'
 
-
 const useStaticQuery = jest.spyOn(Gatsby, `useStaticQuery`)
 const mockUseStaticQuery = {
   site: {
@@ -16,7 +15,7 @@ const mockUseStaticQuery = {
         instagram: 'instagramusername',
         twitter: 'twitterusername',
         github: 'githubusername',
-        strava: 'stravausername'
+        strava: 'stravausername',
       },
     },
   },
@@ -32,11 +31,7 @@ describe('Footer', () => {
   })
 
   it('renders', () => {
-    const json = renderer
-      .create(
-          <Footer />
-      )
-      .toJSON()
+    const json = renderer.create(<Footer />).toJSON()
     expect(json).toMatchSnapshot()
   })
 })

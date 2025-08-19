@@ -47,7 +47,7 @@ const shortcodes = {
   VisualOverview,
   VisualOverviewNew,
   Box,
-  TwoPhotoWide
+  TwoPhotoWide,
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
@@ -132,7 +132,12 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
           '&.article>blockquote': {
             maxWidth: '690px',
             margin: '0 auto',
-            paddingLeft: [0, 0, '8px'],
+            paddingLeft: [0, 0, '12px'],
+            marginY: [0, 0, 4],
+            paddingY: 0,
+          },
+          '&.article>blockquote>p': {
+            marginY: 0,
           },
         }}
         className="article"
@@ -237,12 +242,22 @@ export const query = graphql`
         currentFtp
         images {
           childImageSharp {
-            gatsbyImageData(placeholder: BLURRED, width: 1100, quality: 80, layout: CONSTRAINED)
+            gatsbyImageData(
+              placeholder: BLURRED
+              width: 1100
+              quality: 80
+              layout: CONSTRAINED
+            )
           }
         }
         headerImage {
           childImageSharp {
-            gatsbyImageData(placeholder: BLURRED, width: 1400, quality: 80, layout: CONSTRAINED)
+            gatsbyImageData(
+              placeholder: BLURRED
+              width: 1400
+              quality: 80
+              layout: CONSTRAINED
+            )
           }
         }
         headerImageCaption

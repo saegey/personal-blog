@@ -34,5 +34,5 @@ export {
   PowerCurveGraphStatsWrapper,
   RaceOverview,
   RaceOverviewWrapper,
-  VisualOverviewWrapperNew
+  VisualOverviewWrapperNew,
 }

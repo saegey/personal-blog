@@ -15,10 +15,19 @@ export function handleJsonNode({
     // Determine type using multiple hints: sourceInstanceName, path, or internal.description
     const inferType = (): string | undefined => {
       try {
-        const source = node?.sourceInstanceName || node?.parent?.sourceInstanceName || node?.parent?.internal?.owner
-        const relDir = node?.relativeDirectory || node?.parent?.relativeDirectory || ''
+        const source =
+          node?.sourceInstanceName ||
+          node?.parent?.sourceInstanceName ||
+          node?.parent?.internal?.owner
+        const relDir =
+          node?.relativeDirectory || node?.parent?.relativeDirectory || ''
         const desc = node?.internal?.description || ''
-        if (source === 'stats' || /\bstats\b/.test(relDir) || /stats\//.test(desc)) return 'stats'
+        if (
+          source === 'stats' ||
+          /\bstats\b/.test(relDir) ||
+          /stats\//.test(desc)
+        )
+          return 'stats'
         // if (source === 'results' || /\bresults\b/.test(relDir)) return 'myraceresult'
         // Fallback to prior description parsing
         if (desc) {

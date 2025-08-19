@@ -16,7 +16,7 @@ describe('ElevationSlice', () => {
       .create(
         <ElevationSlice
           marker={{ grade: 0.04, distance: 100, y: 50.4, x: 1200 }}
-        />
+        />,
       )
       .toJSON()
     expect(json).toMatchSnapshot()

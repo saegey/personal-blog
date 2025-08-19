@@ -22,7 +22,10 @@ const PowerBreakdown = ({
   return (
     <>
       {isModalOpen && (
-        <MaximizedContainer title={'Time in Zones Detailed'} openModal={openModal}>
+        <MaximizedContainer
+          title={'Time in Zones Detailed'}
+          openModal={openModal}
+        >
           <>
             <Text as="h2" variant="resultsHeading">
               content here

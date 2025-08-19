@@ -79,9 +79,7 @@ const SocialLink: React.FC<{ href: string; label: string }> = ({
 
 const AboutPage: React.FC = () => {
   return (
-    <Container
-      sx={{ paddingTop: '0'}}
-    >
+    <Container sx={{ paddingTop: '0' }}>
       <Box sx={{ marginTop: [3], marginBottom: [5] }}>
         {/* Hero */}
         <Box as="header" sx={{ mb: [4, 5], marginTop: [3, 5, 5] }}>

@@ -1,4 +1,3 @@
-
 export const slugify = (str: string) => {
   if (!str) return 'notfound'
   return str

@@ -29,8 +29,8 @@ const Hero: React.FC = () => (
       >
         I’m Adam Saegebarth—Seattle‑based builder who ships end‑to‑end products,
         curates 100%‑vinyl global mixes, and turns training data into stories.
-        Recent work spans mobile app development using Expo/React Native, a vinyl
-        playlist optimizer using embeddings and genetic algorithms, and
+        Recent work spans mobile app development using Expo/React Native, a
+        vinyl playlist optimizer using embeddings and genetic algorithms, and
         data‑driven race analysis.
       </Text>
       <Flex sx={{ gap: 3, flexWrap: 'wrap' }}>

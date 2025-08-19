@@ -13,7 +13,7 @@ interface Props {
       speed: number
       timeBehind: number
       isMe: boolean
-    }
+    },
   ]
   showSpeed: boolean
 }

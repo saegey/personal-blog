@@ -20,7 +20,7 @@ module.exports = {
       React.createElement('a', {
         ...rest,
         href: to,
-      })
+      }),
   ),
   useStaticQuery: jest.fn(),
 }

@@ -24,7 +24,7 @@ export const themeTemplate = (theme: any) => {
       line: {
         stroke: theme.colors?.highlight,
         strokeWidth: 1,
-        strokeOpacity: 1
+        strokeOpacity: 1,
       },
     },
     axis: {

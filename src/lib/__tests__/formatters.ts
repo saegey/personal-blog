@@ -1,8 +1,4 @@
-import {
-  camelize,
-  formatSeconds,
-  formatTime,
-} from '../formatters'
+import { camelize, formatSeconds, formatTime } from '../formatters'
 
 describe('formatters', () => {
   describe('formatSeconds', () => {

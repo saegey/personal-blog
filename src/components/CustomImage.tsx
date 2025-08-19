@@ -38,14 +38,7 @@ const CustomImage = ({
   sx = {},
 }: CustomImageProps) => {
   if (publicUrl) {
-    return (
-      <Image
-        src={publicUrl}
-        alt={alt}
-        sx={sx}
-        className={variant}
-      />
-    )
+    return <Image src={publicUrl} alt={alt} sx={sx} className={variant} />
   }
   return (
     <ImageAlias

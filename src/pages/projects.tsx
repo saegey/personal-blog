@@ -10,7 +10,7 @@ const PostList: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data.allMdx.nodes
 
   return (
-    <Container sx={{ paddingTop: '0'}}>
+    <Container sx={{ paddingTop: '0' }}>
       <Box sx={{ marginBottom: [5] }}>
         <Flex sx={{ gap: 3, flexDirection: 'column' }}>
           {posts.map((post, idx: number) => {
