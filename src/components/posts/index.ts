@@ -4,7 +4,6 @@ import PostHeader from './common/PostHeader'
 import PortraitImage from './Images/PortraitImage'
 import LandscapeImage from './Images/LandscapeImage'
 // import VisualOverview from './Route/VisualOverview'
-import Map from './Route/Map'
 import RaceResults from './RaceResults/RaceResults'
 import MatchesBurned from './MatchesBurned'
 import StravaLink from './common/StravaLink'
@@ -24,7 +23,6 @@ export {
   PortraitImage,
   LandscapeImage,
   VisualOverviewWrapper,
-  Map,
   RaceResults,
   MatchesBurned,
   StravaLink,

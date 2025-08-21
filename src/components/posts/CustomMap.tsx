@@ -1,9 +1,7 @@
 import React from 'react'
 import { Box } from 'theme-ui'
 import mapboxgl from 'mapbox-gl'
-// import 'mapbox-gl/dist/mapbox-gl.css'
 
-// const MAPBOX_TOKEN = `${process.env.GATSBY_MAPBOX_TOKEN}`
 interface MapProps {
   coordinates: Array<[number, number]>
   markerCoordinates: [number, number] | null
@@ -52,7 +50,6 @@ const Map = ({
       container: mapContainerRef.current!,
       accessToken: process.env.MAPBOX_TOKEN ? process.env.MAPBOX_TOKEN : token,
       style: 'mapbox://styles/saegey/clkjy1fdl004x01oh25lhe0iz',
-      // Empire State Building [lng, lat]
       center: coordinates[0],
       zoom: 14,
       scrollZoom: false,

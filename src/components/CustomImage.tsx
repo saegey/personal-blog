@@ -25,6 +25,7 @@ interface CustomImageProps {
   theme?: ThemeUIStyleObject | undefined
   sx?: ThemeUIStyleObject | undefined
   layout?: string | undefined
+  publicUrl?: string | undefined
 }
 
 const CustomImage = ({
