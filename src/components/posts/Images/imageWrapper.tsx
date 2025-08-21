@@ -11,7 +11,12 @@ export interface RaceImageType {
   altText: string
 }
 
-const ImageWrapper = ({ image, caption, children, altText }: RaceImageType) => {
+const ImageWrapper = ({
+  image,
+  caption,
+  children,
+  altText = '',
+}: RaceImageType) => {
   const [menuOpen, setMenuOpen] = React.useState(false)
 
   return (
