@@ -23,9 +23,10 @@ export const camelize = (str: string) => {
     .replace(/\s+/g, '')
 }
 
-export const gradeToColor = (grade: number) => {
+export const gradeToColor = (grade: number): string => {
   if (grade > 0 && grade < 4) return 'green'
   if (grade >= 4 && grade < 7) return 'orange'
   if (grade <= 0) return '#D3D3D3'
   if (grade >= 7) return 'red'
+  return 'gray'
 }

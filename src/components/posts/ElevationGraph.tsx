@@ -70,7 +70,7 @@ const ElevationGraph = ({
       sx={{
         width: '100%',
         height: ['100px', '200px', '250px'],
-        borderColor: 'mutedAccent',
+        borderColor: 'primaryMuted',
         borderStyle: 'solid',
         borderWidth: '1px',
         paddingY: [0, '20px', '20px'],
