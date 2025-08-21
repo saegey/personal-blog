@@ -8,38 +8,26 @@ interface StravaLinkProps {
 
 const StravaLink = ({ stravaUrl }: StravaLinkProps) => {
   return (
-    <>
-      <Flex sx={{ marginY: '20px' }}>
-        <Box sx={{ marginLeft: 'auto' }}></Box>
-        <Box sx={{ width: '20px', marginRight: '5px', lineHeight: '10px' }}>
-          <StravaIcon color="text" />
+    <Flex sx={{ my: 3, justifyContent: 'center' }}>
+      <a
+        href={stravaUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        sx={{
+          variant: 'buttons.secondary',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 2,
+          textDecoration: 'none',
+        }}
+        aria-label="View activity on Strava (opens in a new tab)"
+      >
+        <Box as="span" sx={{ display: 'inline-flex', alignItems: 'center' }}>
+          <StravaIcon color="currentColor" />
         </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <a
-            href={stravaUrl}
-            sx={{
-              textDecoration: 'none',
-              fontFamily: 'body',
-              // textTransform: 'uppercase',
-              fontSize: '15px',
-              fontWeight: '600',
-              letterSpacing: '.2px',
-              color: 'text',
-            }}
-            target="_blank"
-          >
-            View Activity on Strava
-          </a>
-        </Box>
-        <Box sx={{ marginLeft: 'auto' }}></Box>
-      </Flex>
-    </>
+        <Box as="span">View activity on Strava</Box>
+      </a>
+    </Flex>
   )
 }
 

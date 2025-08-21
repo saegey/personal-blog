@@ -4,7 +4,7 @@ import { BoxSvgType } from '../../common/types'
 const SvgBox = Box as any as (props: BoxSvgType) => JSX.Element
 
 interface FullScreenIconProps {
-  color: string
+  color?: string
 }
 
 const FullScreenIcon = ({ color }: FullScreenIconProps) => {
@@ -14,12 +14,13 @@ const FullScreenIcon = ({ color }: FullScreenIconProps) => {
       viewBox="0 0 14 14"
       sx={{
         '.icon-solid': {
-          fill: color,
+          fill: color ?? 'currentColor',
         },
         width: '100%',
         height: '100%',
         padding: '2px',
       }}
+      aria-hidden="true"
     >
       <g
         fill="none"

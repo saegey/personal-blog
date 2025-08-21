@@ -1,78 +1,79 @@
-import { Box, Grid, Text } from 'theme-ui'
-import { useUnits } from './UnitProvider'
+import { memo, useMemo } from 'react'
+import { Box, Grid, Text, type ThemeUIStyleObject } from 'theme-ui'
+
 import { DataPoint } from './ElevationGraph'
+import { useUnits } from '../../context/UnitProvider'
+import { gradeToColor, formatTime } from '../../lib/formatters'
 
-export const gradeToColor = (grade: number): string => {
-  if (grade > 0 && grade < 4) return 'green'
-  if (grade >= 4 && grade < 7) return 'orange'
-  if (grade <= 0) return '#D3D3D3'
-  if (grade >= 7) return 'red'
-  return 'gray'
+const gridSx: ThemeUIStyleObject = {
+  padding: '10px',
+  borderLeftColor: 'primaryMuted',
+  borderLeftStyle: 'solid',
+  borderLeftWidth: '1px',
+  borderRightColor: 'primaryMuted',
+  borderRightStyle: 'solid',
+  borderRightWidth: '1px',
 }
 
-export const formatTime = (value: number) => {
-  if (value < 3600) {
-    return new Date(value * 1000).toISOString().substr(14, 5).replace(/^0+/, '')
-  }
-  return new Date(value * 1000).toISOString().substr(11, 8).replace(/^0+/, '')
-}
+type Props = { marker: DataPoint | undefined }
 
-const ElevationSlice = ({
-  marker,
-}: {
-  marker: DataPoint | undefined
-}): JSX.Element => {
-  const units = useUnits()
+const ElevationSlice = ({ marker }: Props): JSX.Element => {
+  const { distanceUnit, elevationUnit } = useUnits()
+
+  const items = useMemo(() => {
+    const gradePct = marker?.grade != null ? marker.grade * 100 : undefined
+    const distance = marker?.distance
+    const elevation = marker?.y
+    const time = marker?.x
+
+    return [
+      {
+        key: 'grade',
+        label: 'Grade',
+        value: gradePct != null ? `${gradePct.toFixed(1)}%` : '-',
+        color: gradePct != null ? gradeToColor(gradePct) : 'black',
+      },
+      {
+        key: 'distance',
+        label: 'Distance',
+        value:
+          distance != null ? `${distance.toFixed(2)} ${distanceUnit}` : '-',
+      },
+      {
+        key: 'elevation',
+        label: 'Elevation',
+        value:
+          elevation != null ? `${elevation.toFixed(0)} ${elevationUnit}` : '-',
+      },
+      {
+        key: 'time',
+        label: 'Time',
+        value: time != null ? formatTime(time) : '-',
+      },
+    ]
+  }, [
+    marker?.grade,
+    marker?.distance,
+    marker?.y,
+    marker?.x,
+    distanceUnit,
+    elevationUnit,
+  ])
 
   return (
-    <Grid
-      gap={2}
-      columns={[2, 4, 4]}
-      sx={{
-        padding: '10px',
-        borderLeftColor: 'mutedAccent',
-        borderLeftStyle: 'solid',
-        borderLeftWidth: '1px',
-        borderRightColor: 'mutedAccent',
-        borderRightStyle: 'solid',
-        borderRightWidth: '1px',
-      }}
-    >
-      <Box>
-        <Text as="p">Grade</Text>
-        <Text
-          sx={{
-            fontSize: '20px',
-            color: marker ? gradeToColor(marker.grade * 100) : 'black',
-          }}
-        >
-          {marker && marker.grade ? `${(marker.grade * 100).toFixed(1)}%` : '-'}
-        </Text>
-      </Box>
-      <Box>
-        <Text as="p">Distance</Text>
-        <Text sx={{ fontSize: '20px' }}>
-          {marker && marker.distance
-            ? `${marker.distance} ${units.distanceUnit}`
-            : '-'}
-        </Text>
-      </Box>
-      <Box>
-        <Text as="p">Elevation</Text>
-        <Text sx={{ fontSize: '20px' }}>
-          {marker && marker.y
-            ? `${marker.y.toFixed(0)} ${units.elevationUnit}`
-            : '-'}
-        </Text>
-      </Box>
-      <Box>
-        <Text as="p">Time</Text>
-        <Text sx={{ fontSize: '20px' }}>
-          {marker && marker.x ? `${formatTime(marker.x)}` : '-'}
-        </Text>
-      </Box>
+    <Grid gap={2} columns={[2, 4, 4]} sx={gridSx}>
+      {items.map(({ key, label, value, color }) => (
+        <Box key={key}>
+          <Text as="p" variant="text.statsLabel">
+            {label}
+          </Text>
+          <Text variant="text.statsValue" sx={{ ...(color ? { color } : {}) }}>
+            {value}
+          </Text>
+        </Box>
+      ))}
     </Grid>
   )
 }
 
-export default ElevationSlice
+export default memo(ElevationSlice)

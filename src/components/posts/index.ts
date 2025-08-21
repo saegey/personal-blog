@@ -1,10 +1,8 @@
 import PowerBreakdown from './RaceStats/PowerBreakdown'
-import PostAuthor from './common/PostAuthor'
 import PostHeader from './common/PostHeader'
 import PortraitImage from './Images/PortraitImage'
 import LandscapeImage from './Images/LandscapeImage'
 // import VisualOverview from './Route/VisualOverview'
-import Map from './Route/Map'
 import RaceResults from './RaceResults/RaceResults'
 import MatchesBurned from './MatchesBurned'
 import StravaLink from './common/StravaLink'
@@ -19,12 +17,10 @@ import VisualOverviewWrapperNew from './VisualOverviewWrapperNew'
 
 export {
   PowerBreakdown,
-  PostAuthor,
   PostHeader,
   PortraitImage,
   LandscapeImage,
   VisualOverviewWrapper,
-  Map,
   RaceResults,
   MatchesBurned,
   StravaLink,

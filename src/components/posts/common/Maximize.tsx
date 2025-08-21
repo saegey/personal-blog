@@ -1,4 +1,4 @@
-import { Box, useThemeUI } from 'theme-ui'
+import { Box } from 'theme-ui'
 
 import FullScreenIcon from '../../icons/FullScreenIcon'
 
@@ -7,31 +7,26 @@ interface MaxProps {
 }
 
 const Maximize = ({ onClick }: MaxProps) => {
-  const { theme } = useThemeUI()
   return (
     <Box
       as="button"
+      aria-label="Maximize"
+      title="Maximize"
       data-testid={'matches-burned-fullscreen'}
       sx={{
-        width: '32px',
-        height: '32px',
-        right: '0',
-        top: '0',
-        zIndex: 0,
-        border: 'none',
-        backgroundColor: 'mutedAccent',
-        borderRadius: '5px',
+        variant: 'buttons.ghost',
+        width: '24px',
+        height: '24px',
+        p: 0,
         display: 'inline-flex',
         alignItems: 'center',
-        ':hover': {
-          backgroundColor: 'mutedAccentMore',
-        },
+        justifyContent: 'center',
+        borderRadius: 'button',
+        color: 'text',
       }}
-      onClick={() => {
-        onClick(true)
-      }}
+      onClick={() => onClick(true)}
     >
-      <FullScreenIcon color={String(theme.colors?.background)} />
+      <FullScreenIcon />
     </Box>
   )
 }

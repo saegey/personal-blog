@@ -1,55 +1,31 @@
+import { memo } from 'react'
 import { Text, Box, Grid } from 'theme-ui'
 
 interface Item {
   title: string
-  value: string
+  value: string | number
 }
 
 type Props = {
-  items: Item[]
+  items: ReadonlyArray<Item>
 }
 
+
 const RaceStats = ({ items }: Props) => {
+  if (!items || items.length === 0) return null
+
   return (
-    <Grid
-      gap={2}
-      columns={[2, 2, 3]}
-      sx={{
-        borderRadius: '4px',
-        gap: ['30px', '5px 100px', '5px'],
-      }}
-    >
-      {items.map((item, index) => {
-        return (
-          <Box key={index}>
-            <>
-              <Text
-                sx={{
-                  fontWeight: '600',
-                  textTransform: 'uppercase',
-                  fontSize: ['12px', '14px', '14px'],
-                  color: 'accent',
-                }}
-              >
-                {item.title}
-              </Text>
-              <Text
-                as="p"
-                sx={{
-                  fontFamily: 'body',
-                  fontSize: ['20px', '30px', '30px'],
-                  fontWeight: ['600', '600', '600'],
-                  lineHeight: ['30px', '50px', '60px'],
-                }}
-              >
-                {item.value}
-              </Text>
-            </>
-          </Box>
-        )
-      })}
+    <Grid gap={2} columns={[2, 2, 3]}>
+      {items.map(item => (
+        <Box key={item.title}>
+          <Text variant="text.statsLabel">{item.title}</Text>
+          <Text as="p" variant="text.statsValue">
+            {item.value}
+          </Text>
+        </Box>
+      ))}
     </Grid>
   )
 }
 
-export default RaceStats
+export default memo(RaceStats)

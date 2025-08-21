@@ -3,11 +3,23 @@ import React from 'react'
 
 import Map from './CustomMap'
 import ElevationGraph, { DataPoint } from './ElevationGraph'
-import ElevationSlice, { gradeToColor } from './ElevationSlice'
-import { useUnits } from './UnitProvider'
+import ElevationSlice from './ElevationSlice'
+import { gradeToColor } from '../../lib/formatters'
+import { useUnits } from '../../context/UnitProvider'
 
 interface Vizprops {
-  elevationData: any
+  elevationData: {
+    data: Array<{
+      distance: number
+      y: number
+      grade: number
+      x: number
+      i: number
+    }>
+    axisLeftTickValues: Array<number>
+    axisXTickValues: Array<number>
+    downsampleRate: number
+  }
   coordinates: Array<[number, number]>
   elevationToAdd: number
   yMin: number
@@ -24,25 +36,38 @@ const VisualOverview = ({
   const [marker, setMarker] = React.useState<DataPoint | undefined>(undefined)
   const units = useUnits()
 
-  const downSampledData = React.useMemo(
+  const convertedData = React.useMemo(
     () =>
-      elevationData.data
-        .filter((_d: any, i: number) => i % elevationData.downsampleRate === 0)
-        .map((d: { distance: number; y: number; grade: number }) => {
-          return {
-            ...d,
-            distance:
-              units.unitOfMeasure === 'imperial'
-                ? (d.distance * 0.00062137121212121).toFixed(1)
-                : (d.distance / 1000).toFixed(1),
-            y: units.unitOfMeasure === 'imperial' ? d.y * 3.28084 : Number(d.y),
-            color: gradeToColor(d.grade * 100),
-          }
-        }),
+      elevationData.data.map(d => {
+        return {
+          ...d,
+          distance:
+            units.unitOfMeasure === 'imperial'
+              ? d.distance * 0.00062137121212121
+              : d.distance / 1000,
+          y: units.unitOfMeasure === 'imperial' ? d.y * 3.28084 : Number(d.y),
+          color: gradeToColor(d.grade * 100),
+        }
+      }),
     [elevationData.data, units.unitOfMeasure],
   )
 
-  const xMax = Number(downSampledData[downSampledData.length - 1].distance)
+  const xMax = Number(convertedData[convertedData.length - 1].distance)
+  // Adapt simple tick arrays to ElevationGraph's expected { imperial, metric } shape
+  // const axisLeftTickValuesObj = React.useMemo(
+  //   () => ({
+  //     imperial: [elevationData.axisLeftTickValues],
+  //     metric: [elevationData.axisLeftTickValues],
+  //   }),
+  //   [elevationData.axisLeftTickValues],
+  // )
+  // const axisXTickValuesObj = React.useMemo(
+  //   () => ({
+  //     imperial: [elevationData.axisXTickValues],
+  //     metric: [elevationData.axisXTickValues],
+  //   }),
+  //   [elevationData.axisXTickValues],
+  // )
   return (
     <Box sx={{ marginY: ['20px', '40px', '100px'] }}>
       <Map
@@ -54,7 +79,7 @@ const VisualOverview = ({
       />
       <ElevationSlice marker={marker} />
       <ElevationGraph
-        downSampledData={downSampledData}
+        downSampledData={convertedData}
         xMax={xMax}
         setMarker={setMarker}
         elevationToAdd={elevationToAdd}

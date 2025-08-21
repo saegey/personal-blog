@@ -4,7 +4,7 @@ const Hero: React.FC = () => (
   <Box
     // as="section"
     sx={{
-      paddingBottom: [3, 5, 6],
+      paddingBottom: [4, 5, 6],
       bg: 'background',
     }}
   >
@@ -14,7 +14,7 @@ const Hero: React.FC = () => (
         sx={{ fontSize: [5, 6], lineHeight: 1.1, mb: 3 }}
         variant="headline"
       >
-        Product designer, Software engineer, Vinyl selector, and Endurance
+        Software engineer, product designer, vinyl selector, and endurance
         athlete.
       </Heading>
       <Text
@@ -38,8 +38,7 @@ const Hero: React.FC = () => (
           as="a"
           href="/contact"
           sx={{ fontWeight: 700 }}
-          color="primaryText"
-          backgroundColor="primary"
+          variant="primary"
         >
           Hire me
         </Button>
@@ -47,9 +46,6 @@ const Hero: React.FC = () => (
           as="a"
           variant="secondary"
           onClick={() => window.open('https://publicvinylradio.com', '_blank')}
-          sx={{ fontWeight: 700 }}
-          color="primaryText"
-          backgroundColor="primary"
         >
           Listen to Public Vinyl Radio
         </Button>

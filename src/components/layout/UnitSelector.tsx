@@ -1,50 +1,90 @@
-import { Label, Radio, Box, Text } from 'theme-ui'
+import { Box, Text, ThemeUICSSObject } from 'theme-ui'
+import { useUnits } from '../../context/UnitProvider'
 
-type UnitContextProps = {
-  unitOfMeasure: {
-    unitOfMeasure: string
-    toggleUnit: () => void
+const UnitSelector = () => {
+  const { unitOfMeasure, toggleUnit } = useUnits()
+  const isImperial = unitOfMeasure === 'imperial'
+  const isMetric = unitOfMeasure === 'metric'
+
+  const handleSelectImperial = () => {
+    if (!isImperial) toggleUnit()
   }
-}
+  const handleSelectMetric = () => {
+    if (!isMetric) toggleUnit()
+  }
+  const optionBase: ThemeUICSSObject = {
+    variant: 'buttons.ghost',
+    px: 0,
+    py: 0,
+    borderRadius: 'none',
+    lineHeight: 'inherit',
+  }
 
-const UnitSelector = ({ unitOfMeasure }: UnitContextProps) => {
+  const Option = ({
+    label,
+    active,
+    onClick,
+    ariaLabel,
+  }: {
+    label: string
+    active: boolean
+    onClick: () => void
+    ariaLabel: string
+  }) => (
+    <Box
+      as="button"
+      role="radio"
+      aria-checked={active}
+      aria-label={ariaLabel}
+      onClick={onClick}
+      sx={{
+        ...optionBase,
+        cursor: active ? 'default' : 'pointer',
+        color: active ? 'text' : 'textMuted',
+        fontWeight: active ? 700 : 400,
+        textDecoration: active ? 'underline' : 'none',
+        textUnderlineOffset: 2,
+        '&:hover': {
+          color: active ? 'text' : 'primary',
+          textDecoration: 'underline',
+        },
+      }}
+    >
+      {label}
+    </Box>
+  )
+
   return (
     <Box
       sx={{
-        marginTop: '20px',
-        marginBottom: '20px',
-        marginLeft: '30px',
-        fontFamily: 'body',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 2,
       }}
+      role="radiogroup"
+      aria-label="Units"
     >
-      <Text
-        sx={{
-          fontWeight: 600,
-          fontSize: '18px',
-          marginBottom: '10px',
-          display: 'block',
-        }}
+      <Text sx={{ fontWeight: 'heading', fontSize: 2 }}>Units:</Text>
+      <Box
+        as="span"
+        sx={{ display: 'inline-flex', alignItems: 'center', gap: 2 }}
       >
-        Unit
-      </Text>
-      <Label sx={{ marginBottom: '5px' }}>
-        <Radio
-          name="unitOfMeasure"
-          value="imperial"
-          checked={unitOfMeasure.unitOfMeasure === 'imperial'}
-          onChange={unitOfMeasure.toggleUnit}
+        <Option
+          label="Imperial"
+          active={isImperial}
+          onClick={handleSelectImperial}
+          ariaLabel="Imperial units"
         />
-        <Text sx={{ marginY: 'auto' }}>Imperial</Text>
-      </Label>
-      <Label sx={{ marginBottom: '5px' }}>
-        <Radio
-          name="unitOfMeasure"
-          value="metric"
-          onChange={unitOfMeasure.toggleUnit}
-          checked={unitOfMeasure.unitOfMeasure === 'metric'}
+        <Text as="span" sx={{ color: 'textMuted' }}>
+          |
+        </Text>
+        <Option
+          label="Metric"
+          active={isMetric}
+          onClick={handleSelectMetric}
+          ariaLabel="Metric units"
         />
-        <Text sx={{ marginY: 'auto' }}>Metric</Text>
-      </Label>
+      </Box>
     </Box>
   )
 }

@@ -27,7 +27,6 @@ interface ProjectTemplateProps {
 
 const ProjectTemplate = ({ data, children }: ProjectTemplateProps) => {
   const { mdx } = data
-  console.log(data)
 
   return (
     <Container

@@ -1,132 +1,192 @@
+import { useMemo } from 'react'
 import { Box } from 'theme-ui'
 
 import { useUnits } from '../../../context/UnitProvider'
+import { formatHMS, toFeet, toMiles } from '../../../lib/util'
 import RaceStats from './RaceStats'
 
+type ShapedData = {
+  elevationGain: number
+  distance: number
+  normalizedPower: number
+  heartAnalysis: { entire: number }
+  tempAnalysis: { entire: number }
+  powerAnalysis: { entire: number }
+  cadenceAnalysis: { entire: number }
+  elapsedTime: { seconds: number }
+  stoppedTime: number
+  timeInRed: number
+}
+
 type Props = {
-  data: {
-    elevationGain: number
-    distance: number
-    normalizedPower: number
-    heartAnalysis: {
-      entire: number
-    }
-    tempAnalysis: {
-      entire: number
-    }
-    powerAnalysis: {
-      entire: number
-    }
-    cadenceAnalysis: {
-      entire: number
-    }
-    elapsedTime: {
-      seconds: number
-    }
-    stoppedTime: number
-    timeInRed: number
-  }
+  data: ShapedData | Record<string, any>
   selectedFields: string[]
 }
 
-const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
-  const {
-    normalizedPower,
-    elevationGain,
-    distance,
-    heartAnalysis,
-    elapsedTime,
-    tempAnalysis,
-    stoppedTime,
-    powerAnalysis,
-    cadenceAnalysis,
-    timeInRed,
-  } = data
-  const units = useUnits()
+// Returns the latest non-zero numeric value; skips trailing zeros
+const getLatestValue = (
+  obj: Record<string, any> | undefined,
+): number | undefined => {
+  if (!obj || typeof obj !== 'object') return undefined
+  const keys = Object.keys(obj)
+    .map(k => Number(k))
+    .filter(n => Number.isFinite(n))
+    .sort((a, b) => b - a)
+  for (const k of keys) {
+    const raw = obj[String(k)]
+    const val = typeof raw === 'number' ? raw : Number(raw)
+    if (Number.isFinite(val) && val > 0) return val
+  }
+  return undefined
+}
 
-  const items = [
-    {
-      title: 'Normalized Power',
-      value: `${normalizedPower ? normalizedPower.toFixed() : ''} watts`,
-    },
-    {
-      title: 'Elevation Gain',
-      value:
-        units.unitOfMeasure === 'metric'
-          ? `${elevationGain.toFixed(0)} meters`
-          : `${(elevationGain * 3.280839895).toLocaleString(undefined, {
-              minimumFractionDigits: 0,
-              maximumFractionDigits: 0,
-            })} ft`,
-    },
-    {
-      title: 'Avg Heart Rate',
-      value: `${heartAnalysis.entire} bpm`,
-    },
-    {
-      title: 'Distance',
-      value:
-        units.unitOfMeasure === 'metric'
-          ? `${distance.toFixed(2)} km`
-          : `${(distance * 0.621371).toFixed()} miles`,
-    },
-    {
-      title: 'Elapsed Time',
-      value: `${new Date(elapsedTime.seconds * 1000)
-        .toISOString()
-        .substr(11, 8)}`,
-    },
-    {
-      title: 'Moving Time',
-      value: `${new Date((elapsedTime.seconds - stoppedTime) * 1000)
-        .toISOString()
-        .substr(11, 8)}`,
-    },
-    // {
-    //   title: 'Avg Temperature',
-    //   value:
-    //     units.unitOfMeasure === 'metric'
-    //       ? `${tempAnalysis.entire.toFixed()} °C`
-    //       : `${(tempAnalysis.entire * (9 / 5) + 32).toFixed()} °F`,
-    // },
-    {
-      title: 'Avg Speed',
-      value:
-        units.unitOfMeasure === 'metric'
-          ? `${(
-              ((distance * 1000) / (elapsedTime.seconds - stoppedTime)) *
-              3.6
-            ).toFixed(2)} km/h`
-          : `${(
-              (distance / (elapsedTime.seconds - stoppedTime)) *
-              2236.9362920544
-            ).toFixed(2)} mph`,
-    },
-    {
-      title: 'Avg Power',
-      value: powerAnalysis ? `${powerAnalysis.entire} watts` : 'N/A',
-    },
-    {
-      title: 'Time Stopped',
-      value: new Date(stoppedTime * 1000).toISOString().substr(11, 8),
-    },
-    {
-      title: 'Avg Cadence',
-      value: cadenceAnalysis ? `${cadenceAnalysis.entire} rpm` : 'N/A',
-    },
-    // {
-    //   title: 'Time in Red',
-    //   value: `${new Date(timeInRed * 1000).toISOString().substr(11, 8)}`,
-    // },
-  ]
+const isShapedData = (d: any): d is ShapedData => {
+  return (
+    d &&
+    typeof d === 'object' &&
+    typeof d.elevationGain === 'number' &&
+    typeof d.distance === 'number' &&
+    d.elapsedTime &&
+    typeof d.elapsedTime.seconds === 'number'
+  )
+}
+
+const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
+  const { unitOfMeasure } = useUnits()
+
+  const shaped = useMemo<ShapedData>(() => {
+    if (isShapedData(data)) return data
+    const raw = data as Record<string, any>
+    const distances: number[] =
+      raw?.SimplifiedDistances || raw?.simplifiedDistances || []
+    const distanceKm =
+      distances.length > 0 ? Number(distances[distances.length - 1]) / 1000 : 0
+    return {
+      elevationGain: Number(raw?.ElevationGain ?? raw?.elevationGain ?? 0),
+      distance: distanceKm,
+      normalizedPower: Number(
+        raw?.NormalizedPower ?? raw?.normalizedPower ?? 0,
+      ),
+      heartAnalysis: { entire: getLatestValue(raw?.HeartAnalysis) ?? 0 },
+      tempAnalysis: { entire: getLatestValue(raw?.TempAnalysis) ?? 0 },
+      powerAnalysis: { entire: getLatestValue(raw?.PowerAnalysis) ?? 0 },
+      cadenceAnalysis: { entire: getLatestValue(raw?.CadenceAnalysis) ?? 0 },
+      elapsedTime: {
+        seconds: Number(raw?.ElapsedTime ?? raw?.elapsedTime ?? 0),
+      },
+      stoppedTime: Number(raw?.StoppedTime ?? raw?.stoppedTime ?? 0),
+      timeInRed: Number(raw?.TimeInRed ?? raw?.timeInRed ?? 0),
+    }
+  }, [data])
+
+  const items = useMemo(() => {
+    const {
+      normalizedPower,
+      elevationGain,
+      distance,
+      heartAnalysis,
+      elapsedTime,
+      stoppedTime,
+      powerAnalysis,
+      cadenceAnalysis,
+    } = shaped
+
+    const movingSeconds = Math.max(
+      0,
+      (elapsedTime?.seconds ?? 0) - (stoppedTime ?? 0),
+    )
+    const distanceKm = distance ?? 0
+    const elevationMeters = elevationGain ?? 0
+
+    const avgSpeed = (() => {
+      if (movingSeconds <= 0 || distanceKm <= 0) return 'N/A'
+      const mps = (distanceKm * 1000) / movingSeconds
+      return unitOfMeasure === 'metric'
+        ? `${(mps * 3.6).toFixed(2)} km/h`
+        : `${(mps * 2.2369362920544).toFixed(2)} mph`
+    })()
+
+    return [
+      {
+        title: 'Normalized Power',
+        value:
+          normalizedPower != null
+            ? `${normalizedPower.toFixed()} watts`
+            : 'N/A',
+      },
+      {
+        title: 'Elevation Gain',
+        value:
+          unitOfMeasure === 'metric'
+            ? `${elevationMeters.toFixed(0)} meters`
+            : `${toFeet(elevationMeters).toLocaleString(undefined, {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
+              })} ft`,
+      },
+      {
+        title: 'Avg Heart Rate',
+        value:
+          heartAnalysis?.entire != null ? `${heartAnalysis.entire} bpm` : 'N/A',
+      },
+      {
+        title: 'Distance',
+        value:
+          unitOfMeasure === 'metric'
+            ? `${distanceKm.toFixed(2)} km`
+            : `${toMiles(distanceKm).toFixed(2)} miles`,
+      },
+      {
+        title: 'Elapsed Time',
+        value: formatHMS(elapsedTime?.seconds ?? 0),
+      },
+      {
+        title: 'Moving Time',
+        value: formatHMS(movingSeconds),
+      },
+      // {
+      //   title: 'Avg Temperature',
+      //   value:
+      //     unitOfMeasure === 'metric'
+      //       ? `${tempAnalysis.entire.toFixed()} °C`
+      //       : `${(tempAnalysis.entire * (9 / 5) + 32).toFixed()} °F`,
+      // },
+      {
+        title: 'Avg Speed',
+        value: avgSpeed,
+      },
+      {
+        title: 'Avg Power',
+        value:
+          powerAnalysis?.entire != null
+            ? `${powerAnalysis.entire} watts`
+            : 'N/A',
+      },
+      {
+        title: 'Time Stopped',
+        value: formatHMS(stoppedTime ?? 0),
+      },
+      {
+        title: 'Avg Cadence',
+        value:
+          cadenceAnalysis?.entire != null
+            ? `${cadenceAnalysis.entire} rpm`
+            : 'N/A',
+      },
+      // {
+      //   title: 'Time in Red',
+      //   value: formatHMS(timeInRed ?? 0),
+      // },
+    ]
+  }, [unitOfMeasure, shaped])
+
+  const filteredItems = selectedFields?.length
+    ? items.filter(activity => selectedFields.includes(activity.title))
+    : items
 
   return (
     <Box variant="boxes.figure">
-      <RaceStats
-        items={items.filter(activity =>
-          selectedFields.includes(activity.title),
-        )}
-      />
+      <RaceStats items={filteredItems} />
     </Box>
   )
 }

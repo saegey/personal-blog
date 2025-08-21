@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 import * as React from 'react'
-import { Link as GatsbyLink } from 'gatsby'
+import { Link as GatsbyLink, graphql, useStaticQuery } from 'gatsby'
 import {
   Box,
   Grid,
@@ -9,7 +9,6 @@ import {
   Heading,
   Text,
   Link as TLink,
-  Button,
   Container,
 } from 'theme-ui'
 
@@ -77,7 +76,39 @@ const SocialLink: React.FC<{ href: string; label: string }> = ({
   </TLink>
 )
 
+// Wrapper to apply Theme UI variants to GatsbyLink without TS friction
+const LinkButton: React.FC<any> = props => <TLink {...props} />
+
 const AboutPage: React.FC = () => {
+  const data = useStaticQuery(graphql`
+    query AboutPageQuery {
+      site {
+        siteMetadata {
+          about {
+            kicker
+            headline
+            intro
+            stats {
+              label
+              value
+            }
+          }
+          social {
+            instagram
+            twitter
+            github
+            strava
+            linkedin
+          }
+        }
+      }
+    }
+  `)
+
+  const meta = data.site.siteMetadata
+  const about = meta.about
+  const social = meta.social
+
   return (
     <Container sx={{ paddingTop: '0' }}>
       <Box sx={{ marginTop: [3], marginBottom: [5] }}>
@@ -91,38 +122,27 @@ const AboutPage: React.FC = () => {
               letterSpacing: '0.08em',
               fontSize: 0,
               mb: 2,
-              fontFamily: 'body',
             }}
           >
-            About Me
+            {about?.kicker}
           </Text>
           <Heading
             as="h1"
             sx={{ fontSize: [5, 6], lineHeight: 1.1, fontFamily: 'body' }}
           >
-            I’m Adam Saegebarth — senior software engineer, endurance athlete,
-            and vinyl DJ.
+            {about?.headline}
           </Heading>
           <Text
             as="p"
-            sx={{
-              mt: 3,
-              fontSize: [2, 3],
-              color: 'text',
-              fontFamily: 'body',
-              lineHeight: 1.3,
-            }}
+            sx={{ mt: 3, fontSize: [2, 3], color: 'text', lineHeight: 1.3 }}
           >
-            I build products end‑to‑end, document training and race data, and
-            spin global sounds on 100% vinyl. I’ve spent years across startups
-            and established teams in Seattle and Miami, pairing engineering
-            craft with culture, community, and curiosity.
+            {about?.intro}
           </Text>
 
           <Grid gap={3} columns={[1, 3]} sx={{ mt: 4 }}>
-            <Stat label="Home Base" value="Seattle, WA" />
-            <Stat label="Day Job" value="Senior Full‑Stack Engineer" />
-            <Stat label="Community" value="Rapha Cycling Club - Ride Leader" />
+            {about?.stats?.map((s: { label: string; value: string }) => (
+              <Stat key={s.label} label={s.label} value={s.value} />
+            ))}
           </Grid>
         </Box>
 
@@ -326,34 +346,34 @@ const AboutPage: React.FC = () => {
             out—I'd love to talk.
           </Text>
           <Flex sx={{ alignItems: 'center', flexWrap: 'wrap', gap: 3, mb: 3 }}>
-            <Button
-              as="a"
-              href="https://linkedin.com/in/saegey"
+            <TLink
+              href={`https://linkedin.com/in/${social?.linkedin ?? 'saegey'}`}
               target="_blank"
               rel="noopener noreferrer"
+              sx={{ variant: 'buttons.primary', textDecoration: 'none' }}
             >
-              <Text sx={{ color: 'primaryMuted', fontWeight: 500 }}>
-                Connect on LinkedIn
-              </Text>
-            </Button>
-            <Button as={GatsbyLink} to="/contact" variant="secondary">
-              <Text sx={{ color: 'primaryMuted', fontWeight: 500 }}>
-                Send a message
-              </Text>
-            </Button>
+              Connect on LinkedIn
+            </TLink>
+            <LinkButton
+              as={GatsbyLink}
+              to="/contact"
+              sx={{ variant: 'buttons.secondary', textDecoration: 'none' }}
+            >
+              Send a message
+            </LinkButton>
           </Flex>
           <Box sx={{ mt: 2 }}>
             <SocialLink
-              href="https://github.com/saegey"
-              label="GitHub @saegey"
+              href={`https://github.com/${social?.github}`}
+              label={`GitHub @${social?.github}`}
             />
             <SocialLink
-              href="https://instagram.com/saegey"
-              label="Instagram @saegey"
+              href={`https://instagram.com/${social?.instagram}`}
+              label={`Instagram @${social?.instagram}`}
             />
             <SocialLink
-              href="https://strava.com/athletes/saegey"
-              label="Strava @saegey"
+              href={`https://strava.com/athletes/${social?.strava}`}
+              label={`Strava @${social?.strava}`}
             />
             <SocialLink
               href="https://youtube.com/@publicvinylradio"

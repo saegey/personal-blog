@@ -8,12 +8,12 @@ interface PostHeaderProps {
       gatsbyImageData: IGatsbyImageData
     }
   }
-  type: String
-  title: String
-  date: String
-  location: String
-  teaser?: String | undefined
-  headerImageCaption?: String | undefined
+  type: string
+  title: string
+  date: string
+  location: string
+  teaser?: string
+  headerImageCaption?: string
 }
 
 const PostHeader = ({
@@ -25,75 +25,72 @@ const PostHeader = ({
   teaser,
   headerImageCaption,
 }: PostHeaderProps) => {
+  const imageData = getImage(headerImage)
+
   return (
     <Flex
       sx={{
-        // marginTop: '10px',
-        flexDirection: ['column', 'row', 'row'],
+        flexDirection: ['column', 'row'],
         justifyContent: 'space-between',
+        gap: 3,
       }}
     >
-      <Box
-        sx={{
-          width: ['100%', '65%', '65%'],
-        }}
-      >
-        <CustomImage
-          image={getImage(headerImage)}
-          objectFit="fill"
-          alt={`Photo`}
-          theme={{ height: '100%' }}
-        />
+      <Box sx={{ width: ['100%', '65%'] }}>
+        {imageData && (
+          <CustomImage
+            image={imageData}
+            objectFit="cover"
+            alt={`${title} header image`}
+            theme={{
+              width: '100%',
+              height: ['200px', '400px', '400px'],
+              borderRadius: 'lg',
+            }}
+          />
+        )}
       </Box>
       <Flex
         sx={{
-          width: ['calc(100% - 40px)', '35%', '35%'],
-          marginX: ['20px', '0', '0'],
-          bg: ['', 'primaryMuted', 'primaryMuted'],
-          paddingY: ['10px', '20px', '20px'],
-          paddingX: [0, '20px', '20px'],
-          gap: '10px',
+          width: ['100%', '35%'],
+          bg: ['transparent', 'primaryMuted'],
+          py: [2, 3],
+          px: [0, 3],
+          gap: 2,
           flexDirection: 'column',
           justifyContent: 'center',
           position: 'relative',
-          borderBottomColor: 'muted',
-          borderBottomWidth: ['1px', 0, 0],
-          borderBottomStyle: 'solid',
+          borderBottom: ['1px solid', '0'],
+          borderColor: 'muted',
+          borderRadius: ['none', 'card'],
         }}
       >
-        <Text variant="postType" sx={{ marginTop: 'auto' }}>
+        <Text variant="postType" sx={{ mt: 'auto' }}>
           {type}
         </Text>
         <Text as="h1" variant="postTitle" sx={{ color: 'text' }}>
           {title}
         </Text>
-        <Text sx={{ fontSize: '14px', fontWeight: '300' }}>
+        <Text variant="postSubtitle" sx={{ color: 'textMuted' }}>
           {date} — {location}
         </Text>
-        <Text
-          as="p"
-          sx={{
-            color: 'text',
-            fontWeight: '500',
-            fontSize: '16px',
-            lineHeight: '22px',
-          }}
-        >
-          {teaser}
-        </Text>
-        <Text
-          sx={{
-            color: 'text',
-            marginTop: 'auto',
-            fontSize: '12px',
-            lineHeight: '15px',
-            fontWeight: '500',
-            order: [-1, 0, 0],
-            marginBottom: ['10px', '0', '0'],
-          }}
-        >
-          {headerImageCaption}
-        </Text>
+        {teaser && (
+          <Text as="p" variant="postSubtitle" sx={{ color: 'text', fontWeight: 500 }}>
+            {teaser}
+          </Text>
+        )}
+        {headerImageCaption && (
+          <Text
+            variant="caption"
+            sx={{
+              color: 'text',
+              mt: 'auto',
+              order: [-1, 0],
+              mb: [2, 0],
+            }}
+          >
+            {headerImageCaption}
+          </Text>
+        )}
       </Flex>
     </Flex>
   )
