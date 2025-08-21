@@ -65,25 +65,6 @@ const FeaturedPost: React.FC<FeaturePostProps> = ({
         columns={[1, '1fr']}
         sx={{ alignItems: 'stretch' }}
       >
-        {/* Media
-        {img && (
-          <Box
-            sx={{
-              position: 'relative',
-              borderRadius: 'md',
-              overflow: 'hidden',
-              aspectRatio: ['16 / 9', '4 / 3'],
-            }}
-          >
-            <CustomImage
-              image={img}
-              objectFit="cover"
-              alt=""
-              variant="homePageImage"
-              theme={{ borderRadius: 'md' }}
-            />
-          </Box>
-        )} */}
 
         {/* Content */}
         <Box sx={{ minWidth: 0, display: 'flex', flexDirection: 'column' }}>
