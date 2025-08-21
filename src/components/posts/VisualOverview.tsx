@@ -7,7 +7,18 @@ import ElevationSlice, { gradeToColor } from './ElevationSlice'
 import { useUnits } from '../../context/UnitProvider'
 
 interface Vizprops {
-  elevationData: any
+  elevationData: {
+    data: Array<{
+      distance: number
+      y: number
+      grade: number
+      x: number
+      i: number
+    }>
+    axisLeftTickValues: Array<number>
+    axisXTickValues: Array<number>
+    downsampleRate: number
+  }
   coordinates: Array<[number, number]>
   elevationToAdd: number
   yMin: number
@@ -26,19 +37,17 @@ const VisualOverview = ({
 
   const downSampledData = React.useMemo(
     () =>
-      elevationData.data
-        .filter((_d: any, i: number) => i % elevationData.downsampleRate === 0)
-        .map((d: { distance: number; y: number; grade: number }) => {
-          return {
-            ...d,
-            distance:
-              units.unitOfMeasure === 'imperial'
-                ? (d.distance * 0.00062137121212121).toFixed(1)
-                : (d.distance / 1000).toFixed(1),
-            y: units.unitOfMeasure === 'imperial' ? d.y * 3.28084 : Number(d.y),
-            color: gradeToColor(d.grade * 100),
-          }
-        }),
+      elevationData.data.map(d => {
+        return {
+          ...d,
+          distance:
+            units.unitOfMeasure === 'imperial'
+              ? (d.distance * 0.00062137121212121)
+              : (d.distance / 1000),
+          y: units.unitOfMeasure === 'imperial' ? d.y * 3.28084 : Number(d.y),
+          color: gradeToColor(d.grade * 100),
+        }
+      }),
     [elevationData.data, units.unitOfMeasure],
   )
 

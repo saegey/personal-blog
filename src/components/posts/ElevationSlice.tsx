@@ -53,7 +53,7 @@ const ElevationSlice = ({
         <Text as="p">Distance</Text>
         <Text sx={{ fontSize: '20px' }}>
           {marker && marker.distance
-            ? `${marker.distance} ${units.distanceUnit}`
+            ? `${marker.distance.toFixed(2)} ${units.distanceUnit}`
             : '-'}
         </Text>
       </Box>
