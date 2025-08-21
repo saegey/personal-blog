@@ -4,7 +4,7 @@ import React from 'react'
 import Map from './CustomMap'
 import ElevationGraph, { DataPoint } from './ElevationGraph'
 import ElevationSlice, { gradeToColor } from './ElevationSlice'
-import { useUnits } from './UnitProvider'
+import { useUnits } from '../../context/UnitProvider'
 
 interface Vizprops {
   elevationData: any

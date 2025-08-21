@@ -59,7 +59,6 @@ const VisualOverviewWrapper = ({
     data?.SimplifiedDistances || data?.simplifiedDistances || []
 
   const shaped = elevations.map((elevationFt: number, idx: number) => {
-    console.log(data?.MergedData[idx].t)
     const y = elevationFt / 3.28084 // meters
     const dist = Number(distances[idx] ?? 0) // meters
     const prevDist = idx > 0 ? Number(distances[idx - 1] ?? dist) : dist
