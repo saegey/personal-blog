@@ -1,5 +1,4 @@
 import PowerBreakdown from './RaceStats/PowerBreakdown'
-import PostAuthor from './common/PostAuthor'
 import PostHeader from './common/PostHeader'
 import PortraitImage from './Images/PortraitImage'
 import LandscapeImage from './Images/LandscapeImage'
@@ -18,7 +17,6 @@ import VisualOverviewWrapperNew from './VisualOverviewWrapperNew'
 
 export {
   PowerBreakdown,
-  PostAuthor,
   PostHeader,
   PortraitImage,
   LandscapeImage,

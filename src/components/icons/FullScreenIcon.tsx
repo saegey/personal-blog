@@ -20,7 +20,7 @@ const FullScreenIcon = ({ color }: FullScreenIconProps) => {
         height: '100%',
         padding: '2px',
       }}
-  aria-hidden="true"
+      aria-hidden="true"
     >
       <g
         fill="none"

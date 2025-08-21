@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { Text, Box, Grid, type ThemeUIStyleObject } from 'theme-ui'
+import { Text, Box, Grid } from 'theme-ui'
 
 interface Item {
   title: string
@@ -10,15 +10,12 @@ type Props = {
   items: ReadonlyArray<Item>
 }
 
-const gridSx: ThemeUIStyleObject = {
-  borderRadius: '4px',
-}
 
 const RaceStats = ({ items }: Props) => {
   if (!items || items.length === 0) return null
 
   return (
-    <Grid gap={2} columns={[2, 2, 3]} sx={gridSx}>
+    <Grid gap={2} columns={[2, 2, 3]}>
       {items.map(item => (
         <Box key={item.title}>
           <Text variant="text.statsLabel">{item.title}</Text>

@@ -94,7 +94,6 @@ const RaceResults = ({
       <ExpandableCard
         title={'Race Results'}
         openModal={openModal}
-        expandableOnMobile={false}
       >
         <RaceResultsList data={highlights} showSpeed={showSpeed} />
       </ExpandableCard>

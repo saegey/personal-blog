@@ -6,13 +6,15 @@ import {
   Tooltip,
   CartesianGrid,
   ResponsiveContainer,
+  Label,
 } from 'recharts'
 import { Box, useThemeUI } from 'theme-ui'
 import React from 'react'
 
 import { useViewport } from './ViewportProvider'
-import GradeGradient from './GradeGradient'
+// import GradeGradient from './GradeGradient'
 import { useUnits } from '../../context/UnitProvider'
+import { buildChartTheme } from './common/chartTheme'
 
 export interface DataPoint {
   x: number
@@ -26,7 +28,6 @@ export interface DataPoint {
 interface NewLineGraphProps {
   xMax: number
   downSampledData: Array<DataPoint>
-  // setMarker: (arg: { x: string }) => {};
   setMarker: React.Dispatch<React.SetStateAction<DataPoint | undefined>>
   elevationToAdd: number
   axisLeftTickValues: {
@@ -51,7 +52,7 @@ const ElevationGraph = ({
 }: NewLineGraphProps) => {
   const themeContext = useThemeUI()
   const units = useUnits()
-
+  const chartTheme = buildChartTheme(themeContext.theme)
   const yTicks =
     units.unitOfMeasure === 'imperial'
       ? axisLeftTickValues.imperial[0]
@@ -63,7 +64,7 @@ const ElevationGraph = ({
       : axisXTickValues.metric[0]
 
   const { width } = useViewport()
-  const hideAxes = width > 640
+  const hideAxes = width <= 640
 
   return (
     <Box
@@ -75,6 +76,8 @@ const ElevationGraph = ({
         borderWidth: '1px',
         paddingY: [0, '20px', '20px'],
         paddingRight: [0, '20px', '20px'],
+        borderBottomRightRadius: 'lg',
+        borderBottomLeftRadius: 'lg',
       }}
     >
       <ResponsiveContainer width="100%" height="100%">
@@ -88,25 +91,36 @@ const ElevationGraph = ({
 
             setMarker(downSampledData[Number(e.activeTooltipIndex)])
           }}
-          margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+          margin={{ top: 0, right: 0, left: hideAxes ? 0 : 10, bottom: 0 }}
         >
-          {!hideAxes && (
-            <CartesianGrid stroke={String(themeContext.theme.colors?.muted)} />
-          )}
 
           <Tooltip content={<></>} />
-          <defs>
+          {/* <defs>
             <linearGradient id="splitColor" x1="0" y1="0" x2="1" y2="0">
               <GradeGradient data={downSampledData} xMax={xMax} />
             </linearGradient>
-          </defs>
+          </defs> */}
           <XAxis
             dataKey="distance"
             type="number"
             ticks={xTicks}
             domain={[0, xMax]}
             hide={hideAxes}
-          />
+            tick={chartTheme.tick}
+            axisLine={{ stroke: chartTheme.axisLine.stroke }}
+          >
+            {width > 640 && (
+              <Label
+                value={
+                  units.distanceUnit.charAt(0).toUpperCase() +
+                  units.distanceUnit.slice(1)
+                }
+                offset={0}
+                position="insideBottom"
+                {...chartTheme.axisLabel}
+              />
+            )}
+          </XAxis>
           <YAxis
             type="number"
             domain={[
@@ -119,13 +133,24 @@ const ElevationGraph = ({
             ]}
             ticks={yTicks}
             hide={hideAxes}
-          />
+            tick={chartTheme.tick}
+            axisLine={{ stroke: chartTheme.axisLine.stroke }}
+          >
+            {width > 640 && (
+              <Label
+                value={'Elevation'}
+                angle={-90}
+                position={'insideLeft'}
+                {...chartTheme.axisLabel}
+              />
+            )}
+          </YAxis>
           <Area
-            type="basisOpen"
+            type="linear"
             dataKey="y"
-            stroke="url(#splitColor)"
-            strokeWidth={3}
-            fill="gray"
+            stroke={chartTheme.series.line}
+            strokeWidth={hideAxes ? 2 : 2}
+            fill={themeContext.theme.colors?.primaryMuted as string}
             fillOpacity={0.1}
             dot={false}
           />

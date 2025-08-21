@@ -1,4 +1,4 @@
-import { useState, createContext, useEffect, useContext } from 'react'
+import { useState, createContext, useEffect, useContext, type ReactNode } from 'react'
 
 type ViewportContextType = {
   width: number
@@ -10,9 +10,9 @@ const viewportContext = createContext<ViewportContextType>({
   height: 0,
 })
 
-const ViewportProvider = ({ children }: { children: JSX.Element }) => {
+const ViewportProvider = ({ children }: { children: ReactNode }) => {
   const isBrowser = typeof window !== 'undefined'
-  if (!isBrowser) return
+  if (!isBrowser) return null
   const [width, setWidth] = useState(window.innerWidth)
   const [height, setHeight] = useState(window.innerHeight)
 
