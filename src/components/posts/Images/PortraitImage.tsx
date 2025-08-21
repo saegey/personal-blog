@@ -1,8 +1,9 @@
-import { Box, Image, useThemeUI } from 'theme-ui'
-import { getImage, GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
+import { Box, useThemeUI } from 'theme-ui'
+import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
 import ImageWrapper from './imageWrapper'
 import FullScreenIcon from '../../icons/FullScreenIcon'
+import CustomImage from '../../CustomImage'
 
 interface PortraitImageProps {
   image: IGatsbyImageData
@@ -39,11 +40,10 @@ const PortraitImage = ({
               display: 'block',
             }}
           >
-            <Image
+            <CustomImage
               image={getImage(image)}
-              alt={'blah'}
-              as={GatsbyImage}
-              sx={{
+              alt={altText}
+              theme={{
                 width: ['100%', '100%', '100%'],
                 borderRadius: [0, 0, 0],
                 backdropFilter: 'blur(10px)',

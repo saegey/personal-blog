@@ -1,9 +1,7 @@
-/** @jsxImportSource theme-ui */
 import * as React from 'react'
 import { Box, Card, Grid, Text } from 'theme-ui'
 import { Link as GatsbyLink } from 'gatsby'
-import { getImage, ImageDataLike } from 'gatsby-plugin-image'
-// import CustomImage from '../CustomImage'
+import { ImageDataLike } from 'gatsby-plugin-image'
 
 type FeaturePostProps = {
   headerImage?: ImageDataLike
@@ -29,56 +27,23 @@ const clamp = (lines: number) => ({
 })
 
 const FeaturedPost: React.FC<FeaturePostProps> = ({
-  // headerImage,
   title,
   slug,
   teaser,
   subType,
   updatedAt,
 }) => {
-  // const img = headerImage ? getImage(headerImage) : null
-
   return (
-    <Card
-      as={GatsbyLink}
+    <GatsbyLink
       to={`/${slug.replace(/^\/+/, '')}`}
       aria-label={`Open: ${title}`}
-      sx={{
-        textDecoration: 'none',
-        color: 'inherit',
-        paddingY: [2, 3],
-        borderRadius: 'lg',
-        transition: 'transform 120ms ease, box-shadow 120ms ease',
-        boxShadow: 'card',
-        '&:hover, &:focus': {
-          transform: 'translateY(-2px)',
-          boxShadow: 'elevated',
-        },
-        '&:focus': {
-          outline: 'none',
-        },
-      }}
+      style={{ textDecoration: 'none', color: 'inherit' }}
     >
-      <Grid
-        gap={[3, 4]}
-        // columns={[1, img ? 'minmax(260px, 36%) 1fr' : '1fr']}
-        columns={[1, '1fr']}
-        sx={{ alignItems: 'stretch' }}
-      >
-
+      <Card sx={{ variant: 'cards.featured' }}>
+      <Grid gap={[3, 4]} columns={[1, '1fr']} sx={{ alignItems: 'stretch' }}>
         {/* Content */}
         <Box sx={{ minWidth: 0, display: 'flex', flexDirection: 'column' }}>
-          <Text
-            as="p"
-            sx={{
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              fontSize: 0,
-              color: 'textMuted',
-              mb: 1,
-              fontFamily: 'body',
-            }}
-          >
+          <Text as="p" variant="postSubType">
             {subType}
           </Text>
 
@@ -108,17 +73,18 @@ const FeaturedPost: React.FC<FeaturePostProps> = ({
           </Text>
 
           <Box sx={{ mt: 'auto' }}>
-            <Text
+            <Box
               as="time"
-              dateTime={new Date(updatedAt).toISOString()}
+              {...({ dateTime: new Date(updatedAt).toISOString() } as any)}
               sx={{ fontSize: 0, color: 'textMuted', letterSpacing: '.03em' }}
             >
               {formatDate(updatedAt)}
-            </Text>
+            </Box>
           </Box>
         </Box>
       </Grid>
-    </Card>
+      </Card>
+    </GatsbyLink>
   )
 }
 

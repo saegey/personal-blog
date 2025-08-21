@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box } from 'theme-ui'
+import { Box, Flex } from 'theme-ui'
 import mapboxgl from 'mapbox-gl'
 
 interface MapProps {
@@ -108,13 +108,7 @@ const Map = ({
       })
     })
 
-    // Create a 'LngLatBounds' with both corners at the first coordinate.
     const bounds = new mapboxgl.LngLatBounds(coordinates[0], coordinates[0])
-
-    // Extend the 'LngLatBounds' to include every coordinate in the bounds result.
-    // for (const coord of coordinates) {
-    // 	bounds.extend(coord);
-    // }
 
     coordinates.map(coord => bounds.extend(coord))
 
@@ -122,14 +116,16 @@ const Map = ({
       padding: 50,
     })
     map.current.resize()
-
-    // return () => map.current.remove();
   }, [])
 
   return (
-    <Box
+    <Flex
       ref={mapContainerRef}
-      sx={{ width: '100%', height: ['300px', '450px', '450px'] }}
+      sx={{
+        height: ['300px', '450px', '450px'],
+        borderTopLeftRadius: '8px',
+        borderTopRightRadius: '8px',
+      }}
     />
   )
 }

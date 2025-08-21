@@ -1,10 +1,54 @@
 import { Box } from 'theme-ui'
+import { useEffect, useRef, useState } from 'react'
 
 import { BoxSvgType } from '../../common/types'
 
 const SvgBox = Box as any as (props: BoxSvgType) => JSX.Element
 
 const BackToTop = () => {
+  const [visible, setVisible] = useState(false)
+  const hideTimerRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const handleScroll = () => {
+      const y = window.scrollY || 0
+      const isAtTop = y <= 0
+
+      // Always hide at the very top
+      if (isAtTop) {
+        setVisible(false)
+        if (hideTimerRef.current) {
+          window.clearTimeout(hideTimerRef.current)
+          hideTimerRef.current = null
+        }
+        return
+      }
+
+      // Show on any scroll when not at top
+      setVisible(true)
+
+      // Reset the auto-hide timer (3s of inactivity)
+      if (hideTimerRef.current) {
+        window.clearTimeout(hideTimerRef.current)
+        hideTimerRef.current = null
+      }
+      hideTimerRef.current = window.setTimeout(() => {
+        setVisible(false)
+      }, 3000)
+    }
+
+    // Initialize based on current scroll position
+    handleScroll()
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (hideTimerRef.current) window.clearTimeout(hideTimerRef.current)
+    }
+  }, [])
+
   return (
     <Box
       sx={{
@@ -21,16 +65,24 @@ const BackToTop = () => {
         href="#"
         sx={{
           position: 'sticky',
-          pointerEvents: 'all',
+          pointerEvents: visible ? 'all' : 'none',
           top: 'calc(100vh - 4rem)',
           display: 'inline-block',
+          opacity: visible ? 1 : 0,
+          transform: visible ? 'translateY(0)' : 'translateY(8px)',
+          transition: 'opacity .25s ease, transform .25s ease',
           ':hover': {
             transform: 'scale(1.1)',
           },
           background: 'text',
           borderRadius: '50%',
           padding: '9px',
+          boxShadow: visible ? 'card' : 'none',
+          outlineOffset: '2px',
+          outline: 'none',
         }}
+        aria-hidden={!visible}
+        tabIndex={visible ? 0 : -1}
       >
         <SvgBox
           as="svg"

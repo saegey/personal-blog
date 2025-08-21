@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby'
-import { Container, Box, Divider, Flex, Button, Text } from 'theme-ui'
+import { Container, Box, Flex, Button, Text } from 'theme-ui'
 import { PageProps } from 'gatsby'
 import { ImageDataLike } from 'gatsby-plugin-image'
 
@@ -31,7 +31,7 @@ import React, { useState } from 'react'
 
 const HomePage: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data?.allMdx?.nodes ?? []
-  const [visibleCount, setVisibleCount] = useState(3)
+  const [visibleCount, setVisibleCount] = useState(6)
 
   const handleLoadMore = () => {
     setVisibleCount(prev => Math.min(prev + 3, posts.length))
@@ -40,13 +40,11 @@ const HomePage: React.FC<PageProps<DataProps>> = ({ data }) => {
   return (
     <Container sx={{ paddingTop: '0' }}>
       <Hero />
-      <Divider sx={{ marginBottom: '20px', color: 'primaryMuted' }} />
       <Flex sx={{ gap: '20px', flexDirection: 'column', marginBottom: 5 }}>
         {posts.length === 0 ? (
           <div>No posts found.</div>
         ) : (
-          posts.slice(0, visibleCount).map((node, idx, arr) => (
-            <>
+          posts.slice(0, visibleCount).map((node) => (
               <FeaturedPost
                 key={node.fields.slug}
                 headerImage={node.frontmatter.headerImage}
@@ -56,8 +54,6 @@ const HomePage: React.FC<PageProps<DataProps>> = ({ data }) => {
                 subType={node.frontmatter.subType}
                 updatedAt={node.frontmatter.publishedDate}
               />
-              {idx < arr.length - 1 && <Divider color="primaryMuted" />}
-            </>
           ))
         )}
         {visibleCount < posts.length && (

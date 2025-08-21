@@ -1,4 +1,4 @@
-import { Text, Link, Container, Box, Styled } from 'theme-ui'
+import { Text, Link, Container, Box } from 'theme-ui'
 import { graphql, PageProps } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
@@ -13,7 +13,6 @@ import {
   PortraitImage,
   LandscapeImage,
   VisualOverviewWrapperNew as VisualOverviewNew,
-  Map,
   RaceResults,
   MatchesBurned,
   StravaLink,

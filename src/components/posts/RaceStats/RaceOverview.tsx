@@ -46,7 +46,8 @@ const isShapedData = (d: any): d is ShapedData => {
     typeof d === 'object' &&
     typeof d.elevationGain === 'number' &&
     typeof d.distance === 'number' &&
-    d.elapsedTime && typeof d.elapsedTime.seconds === 'number'
+    d.elapsedTime &&
+    typeof d.elapsedTime.seconds === 'number'
   )
 }
 
@@ -56,17 +57,23 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
   const shaped = useMemo<ShapedData>(() => {
     if (isShapedData(data)) return data
     const raw = data as Record<string, any>
-    const distances: number[] = raw?.SimplifiedDistances || raw?.simplifiedDistances || []
-    const distanceKm = distances.length > 0 ? Number(distances[distances.length - 1]) / 1000 : 0
+    const distances: number[] =
+      raw?.SimplifiedDistances || raw?.simplifiedDistances || []
+    const distanceKm =
+      distances.length > 0 ? Number(distances[distances.length - 1]) / 1000 : 0
     return {
       elevationGain: Number(raw?.ElevationGain ?? raw?.elevationGain ?? 0),
       distance: distanceKm,
-      normalizedPower: Number(raw?.NormalizedPower ?? raw?.normalizedPower ?? 0),
+      normalizedPower: Number(
+        raw?.NormalizedPower ?? raw?.normalizedPower ?? 0,
+      ),
       heartAnalysis: { entire: getLatestValue(raw?.HeartAnalysis) ?? 0 },
       tempAnalysis: { entire: getLatestValue(raw?.TempAnalysis) ?? 0 },
       powerAnalysis: { entire: getLatestValue(raw?.PowerAnalysis) ?? 0 },
       cadenceAnalysis: { entire: getLatestValue(raw?.CadenceAnalysis) ?? 0 },
-      elapsedTime: { seconds: Number(raw?.ElapsedTime ?? raw?.elapsedTime ?? 0) },
+      elapsedTime: {
+        seconds: Number(raw?.ElapsedTime ?? raw?.elapsedTime ?? 0),
+      },
       stoppedTime: Number(raw?.StoppedTime ?? raw?.stoppedTime ?? 0),
       timeInRed: Number(raw?.TimeInRed ?? raw?.timeInRed ?? 0),
     }
@@ -84,7 +91,10 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
       cadenceAnalysis,
     } = shaped
 
-    const movingSeconds = Math.max(0, (elapsedTime?.seconds ?? 0) - (stoppedTime ?? 0))
+    const movingSeconds = Math.max(
+      0,
+      (elapsedTime?.seconds ?? 0) - (stoppedTime ?? 0),
+    )
     const distanceKm = distance ?? 0
     const elevationMeters = elevationGain ?? 0
 
@@ -99,7 +109,10 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
     return [
       {
         title: 'Normalized Power',
-        value: normalizedPower != null ? `${normalizedPower.toFixed()} watts` : 'N/A',
+        value:
+          normalizedPower != null
+            ? `${normalizedPower.toFixed()} watts`
+            : 'N/A',
       },
       {
         title: 'Elevation Gain',
@@ -113,13 +126,14 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
       },
       {
         title: 'Avg Heart Rate',
-        value: heartAnalysis?.entire != null ? `${heartAnalysis.entire} bpm` : 'N/A',
+        value:
+          heartAnalysis?.entire != null ? `${heartAnalysis.entire} bpm` : 'N/A',
       },
       {
         title: 'Distance',
         value:
           unitOfMeasure === 'metric'
-            ? `${(distanceKm).toFixed(2)} km`
+            ? `${distanceKm.toFixed(2)} km`
             : `${toMiles(distanceKm).toFixed(2)} miles`,
       },
       {
@@ -143,7 +157,10 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
       },
       {
         title: 'Avg Power',
-        value: powerAnalysis?.entire != null ? `${powerAnalysis.entire} watts` : 'N/A',
+        value:
+          powerAnalysis?.entire != null
+            ? `${powerAnalysis.entire} watts`
+            : 'N/A',
       },
       {
         title: 'Time Stopped',
@@ -151,7 +168,10 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
       },
       {
         title: 'Avg Cadence',
-        value: cadenceAnalysis?.entire != null ? `${cadenceAnalysis.entire} rpm` : 'N/A',
+        value:
+          cadenceAnalysis?.entire != null
+            ? `${cadenceAnalysis.entire} rpm`
+            : 'N/A',
       },
       // {
       //   title: 'Time in Red',
@@ -161,12 +181,12 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
   }, [unitOfMeasure, shaped])
 
   const filteredItems = selectedFields?.length
-    ? items.filter((activity) => selectedFields.includes(activity.title))
+    ? items.filter(activity => selectedFields.includes(activity.title))
     : items
 
   return (
     <Box variant="boxes.figure">
-  <RaceStats items={filteredItems} />
+      <RaceStats items={filteredItems} />
     </Box>
   )
 }

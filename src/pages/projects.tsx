@@ -29,7 +29,6 @@ const PostList: React.FC<PageProps<DataProps>> = ({ data }) => {
                     publishedDate ? new Date(publishedDate) : new Date(0)
                   }
                 />
-                {idx < posts.length - 1 && <Divider color="primaryMuted" />}
               </>
             )
           })}
