@@ -33,7 +33,6 @@ const RaceOverviewWrapper: React.FC<WrapperProps> = ({
     data?.SimplifiedDistances || data?.simplifiedDistances || []
   const distanceKm =
     distances.length > 0 ? Number(distances[distances.length - 1]) / 1000 : 0
-  console.log(data.PowerAnalysis)
   const shaped = {
     elevationGain: Number(data?.ElevationGain ?? data?.elevationGain ?? 0),
     distance: distanceKm,
