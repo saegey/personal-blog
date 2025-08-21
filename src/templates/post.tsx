@@ -1,4 +1,4 @@
-import { Text, Link, Container, Box } from 'theme-ui'
+import { Text, Link, Container, Box, Styled } from 'theme-ui'
 import { graphql, PageProps } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
@@ -9,7 +9,6 @@ import { useSiteMetadata } from '../hooks/use-site-metadata'
 
 import {
   PowerBreakdown,
-  PostAuthor,
   PostHeader,
   PortraitImage,
   LandscapeImage,
@@ -58,7 +57,6 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
     type,
     headerImage,
     teaser,
-    publishedDate,
     headerImageCaption,
   } = data.mdx.frontmatter
 
@@ -73,77 +71,7 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
         teaser={teaser}
         headerImageCaption={headerImageCaption}
       />
-      <Container
-        sx={{
-          maxWidth: '1045px',
-          position: 'relative',
-          width: 'calc(100% - 40px)',
-          margin: ['20px auto', '120px auto', '120px auto'],
-          '&.article>p+p': {
-            paddingTop: '30px',
-          },
-          '&.article>h2+ul': {
-            paddingTop: '30px',
-          },
-          '&.article>ul+h2': {
-            paddingTop: '30px',
-          },
-          '&.article>ol+h2': {
-            paddingTop: '30px',
-          },
-          '&.article>h2+ol': {
-            paddingTop: '0px',
-          },
-          '&.article>p+h2': {
-            paddingTop: '30px',
-          },
-          '&.article>h2+h3': {
-            paddingTop: '20px',
-          },
-          '&.article>p+h3': {
-            paddingTop: '20px',
-          },
-          '&.article>p': {
-            maxWidth: ['100%', '100%', '690px'],
-            margin: '0 auto',
-            paddingLeft: [0, 0, '8px'],
-          },
-          '&.article>ol': {
-            maxWidth: ['100%', '100%', '690px'],
-            margin: '0 auto',
-            paddingLeft: [0, 0, '8px'],
-            paddingTop: [0, 0, 0],
-          },
-          '&.article>ul': {
-            maxWidth: '690px',
-            margin: 'auto',
-            paddingLeft: ['20px', '25px', '25px'],
-          },
-          '&.article>h2': {
-            maxWidth: '690px',
-            margin: '0 auto',
-            paddingLeft: [0, 0, '8px'],
-          },
-          '&.article>h3': {
-            maxWidth: '690px',
-            margin: '0 auto',
-            paddingLeft: [0, 0, '8px'],
-          },
-          '&.article>blockquote': {
-            maxWidth: '690px',
-            margin: '0 auto',
-            paddingLeft: [0, 0, '12px'],
-            marginY: [0, 0, 4],
-            paddingY: 0,
-          },
-          '&.article>blockquote>p': {
-            marginY: 0,
-          },
-        }}
-        className="article"
-        as="article"
-      >
-        <PostAuthor publishedDate={publishedDate} />
+      <Container variant="layouts.post">
         <MDXProvider components={shortcodes}>{children}</MDXProvider>
       </Container>
     </>

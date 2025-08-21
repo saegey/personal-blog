@@ -47,8 +47,7 @@ const PostHeader = ({
       </Box>
       <Flex
         sx={{
-          width: ['calc(100% - 40px)', '35%', '35%'],
-          marginX: ['20px', '0', '0'],
+          width: ['100%', '35%', '35%'],
           bg: ['', 'primaryMuted', 'primaryMuted'],
           paddingY: ['10px', '20px', '20px'],
           paddingX: [0, '20px', '20px'],

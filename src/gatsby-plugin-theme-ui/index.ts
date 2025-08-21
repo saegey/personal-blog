@@ -65,7 +65,7 @@ const theme = {
       fontFamily: 'body',
       fontWeight: 'heading',
       lineHeight: 'heading',
-      fontSize: 5,
+      // fontSize: 5,
     },
     h2: {
       fontFamily: 'body',
@@ -77,14 +77,14 @@ const theme = {
     ol: {
       // listStylePosition: 'inside',
       listStylePosition: 'outside',
-      fontSize: 18,
+      fontSize: [16, 18, 18],
     },
     ul: {
       paddingLeft: [3, 3, 3],
 
       listStyle: 'disc',
       listStylePosition: 'outside',
-      fontSize: 18,
+      fontSize: [16, 18, 18],
       'li::marker': {
         color: 'textMuted',
       },
@@ -106,7 +106,7 @@ const theme = {
     p: {
       fontFamily: 'body',
       lineHeight: '30px',
-      fontSize: 18,
+      fontSize: [16, 18, 18],
       fontWeight: '400',
       color: 'text',
     },
@@ -119,7 +119,7 @@ const theme = {
     },
     li: {
       fontFamily: 'body',
-      fontSize: 18,
+      fontSize: [16, 18, 18],
       marginBottom: '20px',
       paddingLeft: 2, // or adjust as needed
     },
@@ -193,13 +193,16 @@ const theme = {
   boxes: {
     figure: {
       maxWidth: [null, null, '690px'],
-      backgroundColor: 'primaryMuted',
-      padding: '30px',
-      borderRadius: '5px',
+      backgroundColor: ['', 'primaryMuted'],
+      paddingX: [0, '30px'],
+      paddingY: [2, '30px'],
+      borderRadius: [0, '5px'],
       marginLeft: 'auto',
       marginRight: 'auto',
-      marginTop: '60px',
-      marginBottom: '60px',
+      marginY: [3, 5],
+      borderTop: ['1px solid', ''],
+      borderBottom: ['1px solid', ''],
+      borderColor: 'primaryMuted',
     },
   },
   images: {

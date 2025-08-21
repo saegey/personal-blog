@@ -1,55 +1,49 @@
-import { Text, Box, Grid } from 'theme-ui'
+import { memo } from 'react'
+import { Text, Box, Grid, type ThemeUIStyleObject } from 'theme-ui'
 
 interface Item {
   title: string
-  value: string
+  value: string | number
 }
 
 type Props = {
-  items: Item[]
+  items: ReadonlyArray<Item>
+}
+
+const gridSx: ThemeUIStyleObject = {
+  borderRadius: '4px',
+}
+
+const titleSx: ThemeUIStyleObject = {
+  fontWeight: '600',
+  textTransform: 'uppercase',
+  fontSize: ['12px', '14px', '14px'],
+  color: 'textMuted',
+}
+
+const valueSx: ThemeUIStyleObject = {
+  fontFamily: 'body',
+  fontSize: ['18px', '24px', '24px'],
+  fontWeight: [600, 600, 600],
+  marginTop: 1,
+  marginBottom: [2, 3, 3],
 }
 
 const RaceStats = ({ items }: Props) => {
+  if (!items || items.length === 0) return null
+
   return (
-    <Grid
-      gap={2}
-      columns={[2, 2, 3]}
-      sx={{
-        borderRadius: '4px',
-        gap: ['30px', '5px 100px', '5px'],
-      }}
-    >
-      {items.map((item, index) => {
-        return (
-          <Box key={index}>
-            <>
-              <Text
-                sx={{
-                  fontWeight: '600',
-                  textTransform: 'uppercase',
-                  fontSize: ['12px', '14px', '14px'],
-                  color: 'accent',
-                }}
-              >
-                {item.title}
-              </Text>
-              <Text
-                as="p"
-                sx={{
-                  fontFamily: 'body',
-                  fontSize: ['20px', '30px', '30px'],
-                  fontWeight: ['600', '600', '600'],
-                  lineHeight: ['30px', '50px', '60px'],
-                }}
-              >
-                {item.value}
-              </Text>
-            </>
-          </Box>
-        )
-      })}
+    <Grid gap={2} columns={[2, 2, 3]} sx={gridSx}>
+      {items.map((item) => (
+        <Box key={item.title}>
+          <Text sx={titleSx}>{item.title}</Text>
+          <Text as="p" sx={valueSx}>
+            {item.value}
+          </Text>
+        </Box>
+      ))}
     </Grid>
   )
 }
 
-export default RaceStats
+export default memo(RaceStats)
