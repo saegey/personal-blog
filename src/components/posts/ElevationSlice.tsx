@@ -1,6 +1,6 @@
 import { Box, Grid, Text } from 'theme-ui'
-import { useUnits } from './UnitProvider'
 import { DataPoint } from './ElevationGraph'
+import { useUnits } from '../../context/UnitProvider'
 
 export const gradeToColor = (grade: number): string => {
   if (grade > 0 && grade < 4) return 'green'

@@ -6,6 +6,7 @@ import BackToTop from './layout/BackToTop'
 import ViewportProvider from '../context/ViewportProvider'
 import UnitProvider from '../context/UnitProvider'
 import { MyLinkProps } from '../common/types'
+import UnitSelector from './layout/UnitSelector'
 
 type CardProps = {
   children: JSX.Element
@@ -55,6 +56,11 @@ const Layout = ({ children }: CardProps) => {
                     {label}
                   </NavLink>
                 ))}
+                <Flex sx={{ flexGrow: 1, justifyContent: 'flex-end' }}>
+                  <Box sx={{ display: ['none', 'block'] }}>
+                    <UnitSelector />
+                  </Box>
+                </Flex>
               </Flex>
             </Flex>
             <Divider

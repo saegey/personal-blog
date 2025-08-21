@@ -12,7 +12,7 @@ import React from 'react'
 
 import { useViewport } from './ViewportProvider'
 import GradeGradient from './GradeGradient'
-import { useUnits } from './UnitProvider'
+import { useUnits } from '../../context/UnitProvider'
 
 export interface DataPoint {
   x: number
