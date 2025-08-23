@@ -75,7 +75,7 @@ const Seo = ({
   }
   // Fallback to a site-wide default image if none supplied
   if (!imageUrl) {
-    const fallbackPath = '/public/DSC_0851.jpeg'
+    const fallbackPath = '/DSC_0851.jpeg'
     imageUrl = `${base}${fallbackPath}`
   }
 
