@@ -27,10 +27,8 @@ module.exports = {
     },
     about: {
       kicker: `About Me`,
-      headline:
-        `I’m Adam Saegebarth — senior software engineer, endurance athlete, and vinyl DJ.`,
-      intro:
-        `I build products end‑to‑end, document training and race data, and spin global sounds on 100% vinyl. I’ve spent years across startups and established teams in Seattle and Miami, pairing engineering craft with culture, community, and curiosity.`,
+      headline: `I’m Adam Saegebarth — senior software engineer, endurance athlete, and vinyl DJ.`,
+      intro: `I build products end‑to‑end, document training and race data, and spin global sounds on 100% vinyl. I’ve spent years across startups and established teams in Seattle and Miami, pairing engineering craft with culture, community, and curiosity.`,
       stats: [
         { label: `Home Base`, value: `Seattle, WA` },
         { label: `Day Job`, value: `Senior Full‑Stack Engineer` },
@@ -57,7 +55,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: { maxWidth: 900 },
-          },
+          }
         ],
       },
     },
