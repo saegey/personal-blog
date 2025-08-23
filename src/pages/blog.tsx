@@ -1,6 +1,6 @@
 import type { PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
-import { Container, Box, Flex, Divider } from 'theme-ui'
+import { Container, Box, Flex } from 'theme-ui'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 import Seo from '../components/seo'

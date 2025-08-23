@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 import { useMemo, useState } from 'react'
-import { Box, Flex, Select, Heading, Text } from 'theme-ui'
+import { Box, Flex, Select, Heading, Text, useThemeUI } from 'theme-ui'
 import {
   BarChart,
   Bar,
@@ -23,6 +23,15 @@ const RAW = [
     p95: 18.1,
     min: 16.1,
     max: 21.7,
+  },
+  {
+    env: 'Go 1.25.0 - muktihari/fit',
+    format: 'FIT',
+    mean: 25.53,
+    p50: 25.31,
+    p95: 26.95,
+    min: 22.61,
+    max: 27.24,
   },
   {
     env: 'Go 1.25.0 — tkrajina/gpxgo',
@@ -94,6 +103,7 @@ const ms = (v: number) => `${v.toFixed(2)} ms`
 
 export default function BenchBarChartThemeUI() {
   const [metric, setMetric] = useState<MetricKey>('mean')
+  const theme = useThemeUI()
 
   const data = useMemo(
     () => RAW.map(d => ({ ...d, value: d[metric] })),
@@ -139,7 +149,7 @@ export default function BenchBarChartThemeUI() {
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={data}
-            margin={{ top: 20, right: 20, bottom: 20, left: 12 }}
+            margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
@@ -158,7 +168,11 @@ export default function BenchBarChartThemeUI() {
               ]}
             />
             <Legend verticalAlign="top" height={36} />
-            <Bar dataKey="value" name={`${metric.toUpperCase()} (ms)`}>
+            <Bar
+              dataKey="value"
+              name={`${metric.toUpperCase()} (ms)`}
+              fill={theme?.theme?.colors?.text as string}
+            >
               <LabelList
                 dataKey={(d: any) => ms(d.value)}
                 position="top"

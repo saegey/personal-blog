@@ -10,6 +10,7 @@ import BenchBarChartThemeUI from '../components/BenchmarkBarChart'
 import TwoPhotoWide from '../components/TwoPhotoWide'
 import Prism from '@theme-ui/prism'
 import { useThemedStylesWithMdx } from '@theme-ui/mdx'
+import Seo from '../components/seo'
 
 interface ProjectTemplateProps {
   data: {
@@ -110,3 +111,23 @@ export const pageQuery = graphql`
 `
 
 export default ProjectTemplate
+
+export const Head = ({ data }: { data: any }) => {
+  const title = data?.mdx?.frontmatter?.title
+  const description = `Blog: ${title}`
+  const headerImage = data?.mdx?.frontmatter?.images?.[0]
+  const image = headerImage?.childImageSharp?.gatsbyImageData
+  const width = headerImage?.childImageSharp?.gatsbyImageData?.width?.toString()
+  const height = headerImage?.childImageSharp?.gatsbyImageData?.height?.toString()
+  const pathname = data?.mdx?.fields?.slug || ''
+  return (
+    <Seo
+      title={title}
+      description={description}
+      image={image}
+      width={width}
+      height={height}
+      pathname={pathname}
+    />
+  )
+}

@@ -129,8 +129,8 @@ const Layout = ({ children }: CardProps) => {
                   {[
                     { href: '/', label: 'Home' },
                     { href: '/about', label: 'About' },
-                    { href: '/races', label: 'Races' },
-                    { href: '/projects', label: 'Projects', paddingY: 2 },
+                    { href: '/races', label: 'Race Journal' },
+                    { href: '/blog', label: 'Blog', paddingY: 2 },
                   ].map(({ href, label, paddingY }) => (
                     <NavLink
                       key={href}

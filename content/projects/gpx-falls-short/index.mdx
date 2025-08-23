@@ -14,6 +14,7 @@ subType: Engineering
 teaser: GPX works—until it doesn’t. Why FIT wins on speed, size, and real-world performance.
 images:
   - ./Scan233222.jpeg
+headerImage: ./Scan233222.jpeg
 ---
 
 <LandscapeImage image={props.data.mdx.frontmatter.images[0]} maximize={true} />
@@ -73,19 +74,9 @@ Human-readable isn't always human-usable at scale.
 
 ## Benchmarks: FIT vs GPX
 
-To make this concrete, I benchmarked parsing the same activity (BWR San Diego Waffle Ride) exported in both formats.
-
-### Benchmark Setup
-
-- **Language**: Go 1.22
-- **Libraries**:
-  - [tormoder/fit](https://github.com/tormoder/fit) for FIT parsing
-  - [tkrajina/gpxgo](https://github.com/tkrajina/gpxgo) for GPX parsing
-- **Method**: Read file into memory, parse 50 times, measure mean, p50, p95.
+To make this concrete, I benchmarked parsing the same activity (BWR San Diego Waffle Ride) exported in both formats. The methods was to read file into memory, parse 50 times, measure mean, p50, p95.
 
 👉 All code samples are available in this repo: [saegey/gpx-vs-fit-benchmarks](https://github.com/saegey/gpx-vs-fit-benchmarks)
-
-### Results
 
 <BenchBarChartThemeUI />
 <Table>
@@ -113,6 +104,19 @@ To make this concrete, I benchmarked parsing the same activity (BWR San Diego Wa
       <td>18.1&nbsp;ms</td>
       <td>16.1&nbsp;ms</td>
       <td>21.7&nbsp;ms</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Go 1.25.0 — muktihari/fit</strong>
+      </td>
+      <td>
+        <strong>FIT</strong>
+      </td>
+      <td>25.53&nbsp;ms</td>
+      <td>25.31&nbsp;ms</td>
+      <td>26.95&nbsp;ms</td>
+      <td>22.61&nbsp;ms</td>
+      <td>27.24&nbsp;ms</td>
     </tr>
     <tr>
       <td>
@@ -194,9 +198,6 @@ To make this concrete, I benchmarked parsing the same activity (BWR San Diego Wa
     </tr>
   </tbody>
 </Table>
-
-- **File Size**: GPX was **7.3× larger**.
-- **Parse Speed**: FIT was **15× faster**.
 
 ### Raw Go Benchmark Output
 
@@ -456,7 +457,7 @@ Now my Gatsby blog just consumes JSON, while Lambdas and experiments reuse the s
 ### Example
 
 ```bash
-$ fit-analysis stats BWR_San_Diego_Waffle_Ride_.fit
+$ processFitFile --ftp 280 --fit ../gpx-fit-benchmark-mono/testdata/BWR_San_Diego_Waffle_Ride_.fit
 {
   "HeartAnalysis": {
     "1": 255,

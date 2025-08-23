@@ -69,12 +69,13 @@ const theme = {
     cardBorderColor: '#949494ff',
     cardBackgroundColor: '#f8f8f8',
     showCardBackground: '#f5f5f5',
-    backgroundSubtle: '#e6efffff',
-    featuredCardBorder: '#3b82f6',
+    backgroundSubtle: '#ffffffff',
+    featuredCardBorder: '#383838ff',
     modes: {
       dark: {
         text: '#ffffff',
         textInvert: '#000000',
+        textSubtle: '#b8b8b8ff',
         background: '#000000',
         primary: '#ffffff',
         secondary: '#30c',
@@ -313,7 +314,7 @@ const theme = {
     primary: {
       // bg: 'cardBackgroundColor',
       border: '3px solid',
-      borderColor: 'black',
+      borderColor: 'text',
       borderRadius: 'lg',
       // boxShadow: 'card',
       p: 3,
@@ -325,7 +326,7 @@ const theme = {
       borderRadius: 'lg',
       // transition: 'transform 120ms ease, box-shadow 120ms ease',
       // boxShadow: 'card',
-      border: '3px solid',
+      border: '2px solid',
       borderColor: 'featuredCardBorder',
       background: 'backgroundSubtle',
       boxShadow: 'unset',
@@ -341,9 +342,9 @@ const theme = {
   links: {
     nav: {
       textDecoration: 'underline',
-      color: 'blue',
+      color: 'text',
       '&:hover': {
-        color: 'blue',
+        color: 'textSubtle',
         textDecorationThickness: '2px',
       },
       fontWeight: 600,
@@ -439,7 +440,7 @@ const theme = {
       fontFamily: 'body',
       fontWeight: 600,
       fontStyle: 'normal',
-      fontSize: ['22px', '32px', '32px'],
+      fontSize: ['22px', '26px', '28px'],
       color: 'textInvert',
     },
     postSubType: {

@@ -19,8 +19,7 @@ const Section: React.FC<
     as="section"
     id={id}
     sx={{
-      py: [4, 5],
-      borderTop: t => `1px solid ${t.colors?.primaryMuted}`,
+      py: [3, 4],
     }}
   >
     <Text
@@ -165,7 +164,6 @@ const AboutPage: React.FC = () => {
           <Grid gap={3} columns={[1, 2, 3]}>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Full‑stack Delivery
@@ -176,7 +174,6 @@ const AboutPage: React.FC = () => {
             </Card>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Data & Infra
@@ -188,7 +185,6 @@ const AboutPage: React.FC = () => {
             </Card>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Product Mindset
@@ -220,7 +216,6 @@ const AboutPage: React.FC = () => {
           <Grid gap={3} columns={[1, 2]}>
             <Card
               sx={{ p: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Training Meets Data
@@ -231,7 +226,6 @@ const AboutPage: React.FC = () => {
             </Card>
             <Card
               sx={{ p: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Community
@@ -261,7 +255,6 @@ const AboutPage: React.FC = () => {
           <Grid gap={3} columns={[1, 2, 3]}>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Curation
@@ -272,7 +265,6 @@ const AboutPage: React.FC = () => {
             </Card>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Production
@@ -283,7 +275,6 @@ const AboutPage: React.FC = () => {
             </Card>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Tooling
@@ -306,7 +297,6 @@ const AboutPage: React.FC = () => {
           <Grid gap={3} columns={[1, 3]}>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Engineering Mastery
@@ -317,7 +307,6 @@ const AboutPage: React.FC = () => {
             </Card>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Endurance Mindset
@@ -326,7 +315,6 @@ const AboutPage: React.FC = () => {
             </Card>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Creative Fusion
