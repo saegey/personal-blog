@@ -93,6 +93,7 @@ const Layout = ({ children }: CardProps) => {
               bg: 'background',
               borderBottom: '2px solid',
               borderColor: 'primaryMuted',
+              paddingBottom: [1],
               transition: 'transform .25s ease',
               transform: navVisible ? 'translateY(0)' : 'translateY(-100%)',
             }}
@@ -117,9 +118,10 @@ const Layout = ({ children }: CardProps) => {
                   <Text
                     as="h1"
                     sx={{
-                      fontSize: [3, 4, '28px'],
+                      fontSize: [3, 4, '24px'],
                       mt: 3,
-                      fontFamily: 'mono'
+                      fontFamily: 'mono',
+                      letterSpacing: '-1px'
                     }}
                   >
                     Adam Saegebarth
@@ -129,8 +131,8 @@ const Layout = ({ children }: CardProps) => {
                   {[
                     { href: '/', label: 'Home' },
                     { href: '/about', label: 'About' },
-                    { href: '/races', label: 'Races' },
-                    { href: '/projects', label: 'Projects', paddingY: 2 },
+                    { href: '/races', label: 'Race Journal' },
+                    { href: '/blog', label: 'Blog', paddingY: 2 },
                   ].map(({ href, label, paddingY }) => (
                     <NavLink
                       key={href}

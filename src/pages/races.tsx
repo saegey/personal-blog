@@ -1,9 +1,10 @@
 import type { PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
-import { Container, Box, Flex, Divider } from 'theme-ui'
+import { Container, Box, Flex } from 'theme-ui'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 import Seo from '../components/seo'
+import { useSiteMetadata } from '../hooks/use-site-metadata'
 import FeaturedPost from '../components/home/FeaturedPost'
 
 const PostList: React.FC<PageProps<DataProps>> = ({ data }) => {
@@ -70,9 +71,53 @@ type DataProps = {
  *
  * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
  */
-export const Head = () => (
-  <Seo title="List of all posts" description={''} pathname={''} />
-)
+export const Head = ({ data }: PageProps<DataProps>) => {
+  const site = useSiteMetadata()
+  const title = 'Race Journal'
+  const description =
+    'All race reports and ride journals with analysis, gear, and stories.'
+  const pathname = '/races'
+  const items = data.allMdx.nodes || []
+
+  const itemList = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: items.map((n, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `${site.siteUrl}/${n.fields.slug}`,
+      name: n.frontmatter.title,
+    })),
+  }
+
+  const breadcrumbs = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: site.siteUrl },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Race Journal',
+        item: `${site.siteUrl}${pathname}`,
+      },
+    ],
+  }
+
+  return (
+    <>
+      <Seo title={title} description={description} pathname={pathname} />
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title={`${site.title} RSS`}
+        href={`${site.siteUrl}/rss.xml`}
+      />
+      <script type="application/ld+json">{JSON.stringify(itemList)}</script>
+      <script type="application/ld+json">{JSON.stringify(breadcrumbs)}</script>
+    </>
+  )
+}
 
 export const pageQuery = graphql`
   query postPageQuery {

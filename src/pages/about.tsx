@@ -11,6 +11,8 @@ import {
   Link as TLink,
   Container,
 } from 'theme-ui'
+import Seo from '../components/seo'
+import { useSiteMetadata } from '../hooks/use-site-metadata'
 
 const Section: React.FC<
   React.PropsWithChildren<{ id?: string; heading: string; kicker?: string }>
@@ -19,8 +21,7 @@ const Section: React.FC<
     as="section"
     id={id}
     sx={{
-      py: [4, 5],
-      borderTop: t => `1px solid ${t.colors?.primaryMuted}`,
+      py: [3, 4],
     }}
   >
     <Text
@@ -77,7 +78,7 @@ const SocialLink: React.FC<{ href: string; label: string }> = ({
 )
 
 // Wrapper to apply Theme UI variants to GatsbyLink without TS friction
-const LinkButton: React.FC<any> = props => <TLink {...props} />
+export const LinkButton: React.FC<any> = props => <TLink {...props} />
 
 const AboutPage: React.FC = () => {
   const data = useStaticQuery(graphql`
@@ -165,7 +166,6 @@ const AboutPage: React.FC = () => {
           <Grid gap={3} columns={[1, 2, 3]}>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Full‑stack Delivery
@@ -176,7 +176,6 @@ const AboutPage: React.FC = () => {
             </Card>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Data & Infra
@@ -188,7 +187,6 @@ const AboutPage: React.FC = () => {
             </Card>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Product Mindset
@@ -220,7 +218,6 @@ const AboutPage: React.FC = () => {
           <Grid gap={3} columns={[1, 2]}>
             <Card
               sx={{ p: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Training Meets Data
@@ -231,7 +228,6 @@ const AboutPage: React.FC = () => {
             </Card>
             <Card
               sx={{ p: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Community
@@ -261,7 +257,6 @@ const AboutPage: React.FC = () => {
           <Grid gap={3} columns={[1, 2, 3]}>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Curation
@@ -272,7 +267,6 @@ const AboutPage: React.FC = () => {
             </Card>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Production
@@ -283,7 +277,6 @@ const AboutPage: React.FC = () => {
             </Card>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Tooling
@@ -306,7 +299,6 @@ const AboutPage: React.FC = () => {
           <Grid gap={3} columns={[1, 3]}>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Engineering Mastery
@@ -317,7 +309,6 @@ const AboutPage: React.FC = () => {
             </Card>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Endurance Mindset
@@ -326,7 +317,6 @@ const AboutPage: React.FC = () => {
             </Card>
             <Card
               sx={{ padding: 3, borderRadius: 10 }}
-              backgroundColor="primaryMuted"
             >
               <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
                 Creative Fusion
@@ -388,13 +378,47 @@ const AboutPage: React.FC = () => {
 
 export default AboutPage
 
-// Optional: Gatsby Head for basic SEO
-export const Head = () => (
-  <>
-    <title>About — Adam Saegebarth (Saegey)</title>
-    <meta
-      name="description"
-      content="Senior software engineer, endurance athlete, and vinyl DJ. Engineering mastery, endurance mindset, and creative technical fusion."
-    />
-  </>
-)
+// SEO: About page with canonical, description, and JSON-LD
+export const Head = () => {
+  const site = useSiteMetadata()
+  const title = 'About'
+  const description =
+    'Senior software engineer, endurance athlete, and vinyl DJ. Engineering mastery, endurance mindset, and creative technical fusion.'
+  const pathname = '/about'
+
+  const aboutPageJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: `${site.title} — About`,
+    url: `${site.siteUrl}${pathname}`,
+    description,
+  }
+
+  const breadcrumbs = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: site.siteUrl },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'About',
+        item: `${site.siteUrl}${pathname}`,
+      },
+    ],
+  }
+
+  return (
+    <>
+      <Seo title={title} description={description} pathname={pathname} />
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title={`${site.title} RSS`}
+        href={`${site.siteUrl}/rss.xml`}
+      />
+      <script type="application/ld+json">{JSON.stringify(aboutPageJsonLd)}</script>
+      <script type="application/ld+json">{JSON.stringify(breadcrumbs)}</script>
+    </>
+  )
+}

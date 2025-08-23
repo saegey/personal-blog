@@ -6,6 +6,7 @@ import { ImageDataLike } from 'gatsby-plugin-image'
 import Seo from '../components/seo'
 import FeaturedPost from '../components/home/FeaturedPost'
 import Hero from '../components/home/Hero'
+import { useSiteMetadata } from '../hooks/use-site-metadata'
 
 type PostProps = {
   frontmatter: {
@@ -44,7 +45,9 @@ const HomePage: React.FC<PageProps<DataProps>> = ({ data }) => {
         {posts.length === 0 ? (
           <div>No posts found.</div>
         ) : (
-          posts.slice(0, visibleCount).map((node) => (
+          posts
+            .slice(0, visibleCount)
+            .map(node => (
               <FeaturedPost
                 key={node.fields.slug}
                 headerImage={node.frontmatter.headerImage}
@@ -54,7 +57,7 @@ const HomePage: React.FC<PageProps<DataProps>> = ({ data }) => {
                 subType={node.frontmatter.subType}
                 updatedAt={node.frontmatter.publishedDate}
               />
-          ))
+            ))
         )}
         {visibleCount < posts.length && (
           <Flex sx={{ justifyContent: 'center', marginTop: '20px' }}>
@@ -73,13 +76,47 @@ const HomePage: React.FC<PageProps<DataProps>> = ({ data }) => {
 }
 
 export const Head: React.FC<PageProps<DataProps>> = ({ data }) => {
+  const site = useSiteMetadata()
+  const title = site.title
+  const description = site.description
+  const pathname = '/'
+
+  // Build WebSite & Organization JSON-LD
+  const websiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    url: site.siteUrl,
+    name: site.title,
+    description: site.description,
+  }
+  const orgJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: site.title,
+    url: site.siteUrl,
+    sameAs: site.social?.twitter
+      ? [`https://twitter.com/${site.social.twitter}`]
+      : undefined,
+  }
+
   return (
-    <Seo
-      title="Home"
-      description="Home page about races and detailed breakdown of how they went down"
-      pathname="/"
-      image={data.allMdx.nodes[0].frontmatter.headerImage}
-    />
+    <>
+      <Seo
+        title={title}
+        description={description}
+        pathname={pathname}
+      />
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title={`${site.title} RSS`}
+        href={`${site.siteUrl}/rss.xml`}
+      />
+      <script type="application/ld+json">
+        {JSON.stringify(websiteJsonLd)}
+      </script>
+      <script type="application/ld+json">{JSON.stringify(orgJsonLd)}</script>
+    </>
   )
 }
 
