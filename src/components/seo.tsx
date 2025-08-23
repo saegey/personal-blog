@@ -48,10 +48,18 @@ const Seo = ({
   // TODO: Refactor based on the link below
   // https://www.wpeform.io/blog/add-open-graph-site-url-to-gatsbyjs/
 
+  // Build canonical URL safely (avoid double slashes)
+  const base = (siteUrl || '').replace(/\/+$/, '')
+  const path = pathname
+    ? pathname.startsWith('/')
+      ? pathname
+      : `/${pathname}`
+    : ''
+
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    url: `${siteUrl}/${pathname || ``}`,
+    url: `${base}${path}`,
     author: author || defaultAuthor,
     twitterUsername: twitterUsername || defaultSocial.twitter,
     publishedDate,
@@ -64,6 +72,11 @@ const Seo = ({
   } else if (image) {
     const src = getSrc(image as ImageDataLike)
     if (src) imageUrl = src.startsWith('http') ? src : `${siteUrl}${src}`
+  }
+  // Fallback to a site-wide default image if none supplied
+  if (!imageUrl) {
+    const fallbackPath = '/public/DSC_0851.jpeg'
+    imageUrl = `${base}${fallbackPath}`
   }
 
   const imageWidth = width || undefined
@@ -118,8 +131,8 @@ const Seo = ({
           {imageHeight && (
             <meta property="og:image:height" name="og:image:height" content={imageHeight} />
           )}
-          {imageAlt && (
-            <meta property="og:image:alt" name="og:image:alt" content={imageAlt} />
+          {(imageAlt || defaultTitle) && (
+            <meta property="og:image:alt" name="og:image:alt" content={imageAlt || `${defaultTitle} cover image`} />
           )}
         </>
       )}
@@ -130,8 +143,8 @@ const Seo = ({
       <meta name="twitter:url" content={seo.url} />
       <meta name="twitter:creator" content={`@${seo.twitterUsername}`} />
       <meta name="twitter:site" content={`@${seo.twitterUsername}`} />
-      {imageUrl && <meta name="twitter:image" content={imageUrl} />}
-  {imageAlt && <meta name="twitter:image:alt" content={imageAlt} />}
+    {imageUrl && <meta name="twitter:image" content={imageUrl} />}
+  {(imageAlt || defaultTitle) && <meta name="twitter:image:alt" content={imageAlt || `${defaultTitle} cover image`} />}
       {/* Article tags */}
       {publishedDate &&
         Array.isArray(tags) &&

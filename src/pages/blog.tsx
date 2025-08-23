@@ -106,7 +106,12 @@ export const Head = ({ data }: PageProps<DataProps>) => {
 
   return (
     <>
-      <Seo title={title} description={description} pathname={pathname} />
+      <Seo
+        title={title}
+        description={description}
+        pathname={pathname}
+        image={items[0]?.frontmatter?.headerImage}
+      />
       <link
         rel="alternate"
         type="application/rss+xml"

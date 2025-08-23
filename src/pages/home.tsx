@@ -80,11 +80,6 @@ export const Head: React.FC<PageProps<DataProps>> = ({ data }) => {
   const title = site.title
   const description = site.description
   const pathname = '/'
-  const first = data.allMdx.nodes?.[0]
-  const gimg =
-    first?.frontmatter?.headerImage &&
-    // @ts-ignore
-    first.frontmatter.headerImage.childImageSharp?.gatsbyImageData
 
   // Build WebSite & Organization JSON-LD
   const websiteJsonLd = {
@@ -110,7 +105,6 @@ export const Head: React.FC<PageProps<DataProps>> = ({ data }) => {
         title={title}
         description={description}
         pathname={pathname}
-        image={gimg}
       />
       <link
         rel="alternate"
