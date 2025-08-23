@@ -12,11 +12,14 @@ type SeoPayload = {
     name: string
   }
   publishedDate?: string
+  modifiedDate?: string
   twitterUsername?: string
   width?: string
   height?: string
   type?: 'article' | 'website'
   imageAlt?: string
+  locale?: string
+  tags?: string[]
 }
 const Seo = ({
   title,
@@ -26,9 +29,13 @@ const Seo = ({
   image,
   author,
   publishedDate,
+  modifiedDate,
   twitterUsername,
   width,
   height,
+  locale,
+  imageAlt,
+  tags = [],
 }: SeoPayload) => {
   const {
     title: defaultTitle,
@@ -44,7 +51,7 @@ const Seo = ({
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    url: `${siteUrl}${pathname || ``}`,
+    url: `${siteUrl}/${pathname || ``}`,
     author: author || defaultAuthor,
     twitterUsername: twitterUsername || defaultSocial.twitter,
     publishedDate,
@@ -61,6 +68,7 @@ const Seo = ({
 
   const imageWidth = width || undefined
   const imageHeight = height || undefined
+  const ogLocale = locale || 'en_US'
 
   const publishedTimeTag = publishedDate ? (
     <meta
@@ -68,6 +76,19 @@ const Seo = ({
       name="article:published_time"
       content={publishedDate}
     />
+  ) : (
+    ''
+  )
+
+  const modifiedTimeTag = modifiedDate ? (
+    <>
+      <meta
+        property="article:modified_time"
+        name="article:modified_time"
+        content={modifiedDate}
+      />
+      <meta property="og:updated_time" content={modifiedDate} />
+    </>
   ) : (
     ''
   )
@@ -82,6 +103,7 @@ const Seo = ({
         property="og:description"
         content={seo.description}
       />
+  <meta property="og:locale" content={ogLocale} />
       {/* Open Graph */}
       <meta property="og:title" name="og:title" content={seo.title} />
       <meta property="og:url" name="og:url" content={seo.url} />
@@ -96,6 +118,9 @@ const Seo = ({
           {imageHeight && (
             <meta property="og:image:height" name="og:image:height" content={imageHeight} />
           )}
+          {imageAlt && (
+            <meta property="og:image:alt" name="og:image:alt" content={imageAlt} />
+          )}
         </>
       )}
       {/* Twitter */}
@@ -106,12 +131,20 @@ const Seo = ({
       <meta name="twitter:creator" content={`@${seo.twitterUsername}`} />
       <meta name="twitter:site" content={`@${seo.twitterUsername}`} />
       {imageUrl && <meta name="twitter:image" content={imageUrl} />}
+  {imageAlt && <meta name="twitter:image:alt" content={imageAlt} />}
+      {/* Article tags */}
+      {publishedDate &&
+        Array.isArray(tags) &&
+        tags.map((t, i) => (
+          <meta key={`article:tag:${i}`} property="article:tag" content={t} />
+        ))}
       <link
         rel="icon"
         href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>👤</text></svg>"
       />
       <meta name="author" content={seo.author.name} />
       {publishedTimeTag}
+  {modifiedTimeTag}
       {children}
     </>
   )

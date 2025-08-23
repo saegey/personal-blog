@@ -11,6 +11,9 @@ import TwoPhotoWide from '../components/TwoPhotoWide'
 import Prism from '@theme-ui/prism'
 import { useThemedStylesWithMdx } from '@theme-ui/mdx'
 import Seo from '../components/seo'
+import { useSiteMetadata } from '../hooks/use-site-metadata'
+import { getSrc } from 'gatsby-plugin-image'
+import { buildBlogPostingSchema } from '../lib/seo'
 
 interface ProjectTemplateProps {
   data: {
@@ -90,9 +93,17 @@ const ProjectTemplate = ({ data, children }: ProjectTemplateProps) => {
 export const pageQuery = graphql`
   query ProjectBySlug($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
+      fields {
+        slug
+      }
       frontmatter {
         title
+        description
+        tags
         publishedDate(formatString: "MMMM DD, YYYY")
+        publishedDateIso: publishedDate(formatString: "YYYY-MM-DD")
+        modifiedDate(formatString: "MMMM DD, YYYY")
+        modifiedDateIso: modifiedDate(formatString: "YYYY-MM-DD")
         images {
           publicURL
           childImageSharp {
@@ -113,21 +124,59 @@ export const pageQuery = graphql`
 export default ProjectTemplate
 
 export const Head = ({ data }: { data: any }) => {
+  const site = useSiteMetadata()
   const title = data?.mdx?.frontmatter?.title
-  const description = `Blog: ${title}`
+  const description = data?.mdx?.frontmatter?.description || `Project: ${title}`
+  const tags = data?.mdx?.frontmatter?.tags || []
   const headerImage = data?.mdx?.frontmatter?.images?.[0]
   const image = headerImage?.childImageSharp?.gatsbyImageData
   const width = headerImage?.childImageSharp?.gatsbyImageData?.width?.toString()
-  const height = headerImage?.childImageSharp?.gatsbyImageData?.height?.toString()
+  const height =
+    headerImage?.childImageSharp?.gatsbyImageData?.height?.toString()
   const pathname = data?.mdx?.fields?.slug || ''
+
+  // Compute absolute image URL for JSON-LD
+  let imageUrl: string | undefined
+  if (image) {
+    const src = getSrc(image)
+    imageUrl = src
+      ? src.startsWith('http')
+        ? src
+        : `${site.siteUrl}${src}`
+      : undefined
+  } else if (headerImage?.publicURL) {
+    imageUrl = headerImage.publicURL.startsWith('http')
+      ? headerImage.publicURL
+      : `${site.siteUrl}${headerImage.publicURL}`
+  }
+
+  const publishedIso = data?.mdx?.frontmatter?.publishedDateIso
+  const modifiedIso = data?.mdx?.frontmatter?.modifiedDateIso
+
+  const schema = buildBlogPostingSchema({
+    siteUrl: site.siteUrl,
+    siteTitle: site.title,
+    authorName: site.author?.name,
+    title,
+    description,
+    pathname,
+    imageUrl,
+    publishedIso,
+    modifiedIso,
+  })
   return (
-    <Seo
-      title={title}
-      description={description}
-      image={image}
-      width={width}
-      height={height}
-      pathname={pathname}
-    />
+    <>
+      <Seo
+        title={title}
+        description={description}
+        image={image}
+        width={width}
+        height={height}
+        pathname={pathname}
+        tags={tags}
+        modifiedDate={modifiedIso}
+      />
+      <script type="application/ld+json">{JSON.stringify(schema)}</script>
+    </>
   )
 }

@@ -8,6 +8,8 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import Seo from '../components/seo'
 import { useSiteMetadata } from '../hooks/use-site-metadata'
 import Map from '../components/posts/CustomMap'
+import { getSrc } from 'gatsby-plugin-image'
+import { buildBlogPostingSchema } from '../lib/seo'
 
 import {
   PowerBreakdown,
@@ -84,48 +86,60 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
 export default PostTemplate
 
 export const Head: React.FC<PageProps<DataProps>> = ({ data }) => {
-  const siteMetadata = useSiteMetadata()
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: data.mdx.frontmatter.title,
-    image: [
-      `${siteMetadata.siteUrl}${data.mdx.frontmatter.headerImage?.childImageSharp?.gatsbyImageData?.images?.fallback?.src}`,
-    ],
-    datePublished: data.mdx.frontmatter.publishedDate,
-    author: [
-      {
-        '@type': 'Person',
-        name: siteMetadata.author.name,
-        sameAs: `https://twitter.com/${siteMetadata.social.twitter}`,
-      },
-    ],
-    description: data.mdx.frontmatter.description,
+  const site = useSiteMetadata()
+  const title = data.mdx.frontmatter.title
+  const description = data.mdx.frontmatter.description
+  const tags = data.mdx.frontmatter.tags || []
+  const headerImage = data.mdx.frontmatter.headerImage
+  const image = headerImage?.childImageSharp?.gatsbyImageData
+  const width = image?.width?.toString()
+  const height = image?.height?.toString()
+  const pathname = data.mdx.fields?.slug || ''
+  const publishedIso = data.mdx.frontmatter.publishedDate
+  const modifiedIso = data.mdx.frontmatter.modifiedDateIso
+
+  // Absolute image URL for JSON‑LD
+  let imageUrl: string | undefined
+  if (image) {
+    const src = getSrc(image)
+    imageUrl = src ? (src.startsWith('http') ? src : `${site.siteUrl}${src}`) : undefined
   }
 
-  // 2️⃣ Stringify the schema object (adding the "null, 2" gives you readable json)
-  const schemaAsString = JSON.stringify(schema, null, 2)
+  const schema = buildBlogPostingSchema({
+    siteUrl: site.siteUrl,
+    siteTitle: site.title,
+    authorName: site.author?.name,
+    title,
+    description,
+    pathname,
+    imageUrl,
+    publishedIso,
+    modifiedIso,
+  })
 
   return (
     <>
       <Seo
-        title={data.mdx.frontmatter.title}
-        description={data.mdx.frontmatter.description}
-        image={
-          data.mdx.frontmatter.headerImage?.childImageSharp?.gatsbyImageData
-        }
-        width={data.mdx.frontmatter.headerImage?.childImageSharp?.gatsbyImageData?.width?.toString()}
-        height={data.mdx.frontmatter.headerImage?.childImageSharp?.gatsbyImageData?.height?.toString()}
-        publishedDate={data.mdx.frontmatter.publishedDate}
-        pathname={''}
+        title={title}
+        description={description}
+        image={image}
+        width={width}
+        height={height}
+        publishedDate={publishedIso}
+        modifiedDate={modifiedIso}
+        pathname={pathname}
+        tags={tags as string[]}
       />
-      <script type="application/ld+json">{schemaAsString}</script>
+      <script type="application/ld+json">{JSON.stringify(schema)}</script>
     </>
   )
 }
 
 type DataProps = {
   mdx: {
+    fields?: {
+      slug: string
+    }
     frontmatter: {
       images: {
         childImageSharp: {
@@ -140,6 +154,7 @@ type DataProps = {
       title: string
       date: string
       publishedDate: string
+      modifiedDateIso?: string
       location: string
       type: string
       tags: ReadonlyArray<string>
@@ -162,8 +177,10 @@ export const query = graphql`
   query Post($id: String!) {
     mdx: mdx(id: { eq: $id }) {
       id
+      fields { slug }
       frontmatter {
         publishedDate(formatString: "YYYY-MM-DD")
+        modifiedDateIso: modifiedDate(formatString: "YYYY-MM-DD")
         date(formatString: "MMM DD, YYYY")
         location
         title

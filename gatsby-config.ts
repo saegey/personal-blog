@@ -14,9 +14,9 @@ module.exports = {
     title: `Saegey`,
     author: {
       name: `Adam Saegebarth`,
-      summary: `who lives in Seattle and likes to ride his bike.`,
+      summary: `a senior software engineer, endurance athlete, and creative technologist based in Seattle — building at the intersection of code, culture, and community.`,
     },
-    description: `A blog about software, art, bike rides, etc.`,
+    description: `The personal site of Adam Saegebarth — stories and projects spanning software engineering, data-driven creativity, vinyl DJ culture, and endurance cycling.`,
     siteUrl: `https://saegey.com`,
     social: {
       instagram: `saegey`,
@@ -55,7 +55,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: { maxWidth: 900 },
-          }
+          },
         ],
       },
     },
