@@ -13,6 +13,8 @@ import {
   Card,
   Link as TLink,
 } from 'theme-ui'
+import Seo from '../components/seo'
+import { useSiteMetadata } from '../hooks/use-site-metadata'
 
 const MAX_MSG = 1200
 
@@ -131,7 +133,7 @@ const ContactPage: React.FC = () => {
               Thanks! Your message is on its way.
             </Text>
             <Text sx={{ color: 'textMuted' }}>
-              I’ll get back to you soon. In the meantime, feel free to connect
+              I'll get back to you soon. In the meantime, feel free to connect
               on{' '}
               <TLink
                 href="https://linkedin.com/in/saegey"
@@ -290,7 +292,7 @@ const ContactPage: React.FC = () => {
                 Prefer DMs?
               </Text>
               <Text sx={{ color: 'textMuted', mb: 3 }}>
-                I’m also reachable on these platforms. Quick pings are
+                I'm also reachable on these platforms. Quick pings are
                 welcome—share a link or your idea.
               </Text>
               <Box
@@ -359,7 +361,7 @@ const ContactPage: React.FC = () => {
                 </Text>
                 <Text sx={{ color: 'textMuted', fontSize: 1 }}>
                   For project inquiries, include timeline, scope, and any links.
-                  I’m based in Seattle (PST).
+                  I'm based in Seattle (PST).
                 </Text>
               </Box>
             </Card>
@@ -367,6 +369,74 @@ const ContactPage: React.FC = () => {
         )}
       </Container>
     </Box>
+  )
+}
+
+export const Head = () => {
+  const site = useSiteMetadata()
+  const title = 'Contact'
+  const description =
+    'Collaborations, consulting, or just a good idea—my inbox is open. I typically reply within a couple days.'
+  const pathname = '/contact'
+
+  const contactPageJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: title,
+    url: `${site.siteUrl}${pathname}`,
+    description,
+  }
+
+  const breadcrumbs = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: site.siteUrl },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Contact',
+        item: `${site.siteUrl}${pathname}`,
+      },
+    ],
+  }
+
+  const orgJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: site.title,
+    url: site.siteUrl,
+    sameAs: [
+      'https://linkedin.com/in/saegey',
+      'https://github.com/saegey',
+      'https://instagram.com/saegey',
+      'https://strava.com/athletes/saegey',
+    ],
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        contactType: 'inquiries',
+        availableLanguage: ['en'],
+        url: `${site.siteUrl}${pathname}`,
+      },
+    ],
+  }
+
+  return (
+    <>
+      <Seo title={title} description={description} pathname={pathname} />
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title={`${site.title} RSS`}
+        href={`${site.siteUrl}/rss.xml`}
+      />
+      <script type="application/ld+json">
+        {JSON.stringify(contactPageJsonLd)}
+      </script>
+      <script type="application/ld+json">{JSON.stringify(breadcrumbs)}</script>
+      <script type="application/ld+json">{JSON.stringify(orgJsonLd)}</script>
+    </>
   )
 }
 

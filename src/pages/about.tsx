@@ -11,6 +11,8 @@ import {
   Link as TLink,
   Container,
 } from 'theme-ui'
+import Seo from '../components/seo'
+import { useSiteMetadata } from '../hooks/use-site-metadata'
 
 const Section: React.FC<
   React.PropsWithChildren<{ id?: string; heading: string; kicker?: string }>
@@ -76,7 +78,7 @@ const SocialLink: React.FC<{ href: string; label: string }> = ({
 )
 
 // Wrapper to apply Theme UI variants to GatsbyLink without TS friction
-const LinkButton: React.FC<any> = props => <TLink {...props} />
+export const LinkButton: React.FC<any> = props => <TLink {...props} />
 
 const AboutPage: React.FC = () => {
   const data = useStaticQuery(graphql`
@@ -376,13 +378,47 @@ const AboutPage: React.FC = () => {
 
 export default AboutPage
 
-// Optional: Gatsby Head for basic SEO
-export const Head = () => (
-  <>
-    <title>About — Adam Saegebarth (Saegey)</title>
-    <meta
-      name="description"
-      content="Senior software engineer, endurance athlete, and vinyl DJ. Engineering mastery, endurance mindset, and creative technical fusion."
-    />
-  </>
-)
+// SEO: About page with canonical, description, and JSON-LD
+export const Head = () => {
+  const site = useSiteMetadata()
+  const title = 'About'
+  const description =
+    'Senior software engineer, endurance athlete, and vinyl DJ. Engineering mastery, endurance mindset, and creative technical fusion.'
+  const pathname = '/about'
+
+  const aboutPageJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    name: `${site.title} — About`,
+    url: `${site.siteUrl}${pathname}`,
+    description,
+  }
+
+  const breadcrumbs = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: site.siteUrl },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'About',
+        item: `${site.siteUrl}${pathname}`,
+      },
+    ],
+  }
+
+  return (
+    <>
+      <Seo title={title} description={description} pathname={pathname} />
+      <link
+        rel="alternate"
+        type="application/rss+xml"
+        title={`${site.title} RSS`}
+        href={`${site.siteUrl}/rss.xml`}
+      />
+      <script type="application/ld+json">{JSON.stringify(aboutPageJsonLd)}</script>
+      <script type="application/ld+json">{JSON.stringify(breadcrumbs)}</script>
+    </>
+  )
+}

@@ -313,7 +313,7 @@ const theme = {
   cards: {
     primary: {
       // bg: 'cardBackgroundColor',
-      border: '3px solid',
+      border: '2px solid',
       borderColor: 'text',
       borderRadius: 'lg',
       // boxShadow: 'card',

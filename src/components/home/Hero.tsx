@@ -1,9 +1,10 @@
-import { Box, Flex, Heading, Text, Button } from 'theme-ui'
+import { Box, Flex, Heading, Text, Button, Link as GatsbyLink } from 'theme-ui'
 
 const Hero: React.FC = () => (
   <Box
     // as="section"
     sx={{
+      paddingTop: [3],
       paddingBottom: [4, 5, 6],
       bg: 'background',
     }}
@@ -35,7 +36,7 @@ const Hero: React.FC = () => (
       </Text>
       <Flex sx={{ gap: 3, flexWrap: 'wrap' }}>
         <Button
-          as="a"
+          as={GatsbyLink}
           href="/contact"
           sx={{ fontWeight: 700 }}
           variant="primary"
@@ -43,9 +44,10 @@ const Hero: React.FC = () => (
           Hire me
         </Button>
         <Button
-          as="a"
+          as={GatsbyLink}
+          href="https://publicvinylradio.com"
           variant="secondary"
-          onClick={() => window.open('https://publicvinylradio.com', '_blank')}
+          target="_blank"
         >
           Listen to Public Vinyl Radio
         </Button>
