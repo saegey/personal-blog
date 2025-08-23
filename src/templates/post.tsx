@@ -1,11 +1,13 @@
 import { Text, Link, Container, Box } from 'theme-ui'
 import { graphql, PageProps } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
+import Table from '../components/common/Table'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 import Seo from '../components/seo'
 import { useSiteMetadata } from '../hooks/use-site-metadata'
+import Map from '../components/posts/CustomMap'
 
 import {
   PowerBreakdown,
@@ -46,6 +48,8 @@ const shortcodes = {
   VisualOverviewNew,
   Box,
   TwoPhotoWide,
+  // Map native table to our themed Table
+  table: (props: any) => <Table {...props} />,
 }
 
 const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {

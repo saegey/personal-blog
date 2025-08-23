@@ -23,6 +23,7 @@
     "@theme-ui/color": "^0.17.2",
     "@theme-ui/mdx": "^0.17.2",
     "@theme-ui/presets": "^0.17.2",
+    "@theme-ui/prism": "^0.17.2",
     "@vercel/node": "^5.3.13",
     "d3-scale": "^4.0.2",
     "gatsby": "^5.14.6",

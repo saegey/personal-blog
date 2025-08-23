@@ -1,4 +1,16 @@
 import { base } from '@theme-ui/presets'
+import nightOwl from '@theme-ui/prism/presets/night-owl.json'
+
+// Helper to map night-owl prism preset tokens to theme tokens
+const _night = (nightOwl as any) || {}
+const nightPlain = _night.plain || { background: '#011627', color: '#d6deeb' }
+const findNightColor = (types: string[], fallback = nightPlain.color) => {
+  if (!Array.isArray(_night.styles)) return fallback
+  const entry = _night.styles.find(
+    (s: any) => Array.isArray(s.types) && types.some(t => s.types.includes(t)),
+  )
+  return (entry && entry.style && entry.style.color) || fallback
+}
 
 const grays = [
   '#ffffff',
@@ -40,6 +52,15 @@ const theme = {
     yellow: '#fbff00ff',
     blue: '#3b82f6',
     orange: '#f97316',
+    // Prism / code token colors (light)
+    prismBackground: '#e3e3e3ff',
+    prismText: '#24292e',
+    prismComment: '#6a737d',
+    prismString: '#032f62',
+    prismKeyword: '#d73a49',
+    prismFunction: '#6f42c1',
+    prismPunctuation: '#24292e',
+    prismNumber: '#005cc5',
     // Components
     badgeSecondaryBg: '#000000',
     badgeSecondaryText: '#ffffff',
@@ -73,6 +94,24 @@ const theme = {
         blue: '#60a5fa',
         orange: '#fb923c',
         backgroundSubtle: '#1f1f1fff',
+        // Prism / code token colors (dark/night-owl-ish) from night-owl preset
+        prismBackground: '#252525ff',
+        prismText: nightPlain.color,
+        prismComment: findNightColor(
+          ['comment', 'prolog', 'doctype', 'cdata'],
+          '#5c6a72',
+        ),
+        prismString: findNightColor(
+          ['string', 'char', 'attr-value', 'builtin'],
+          '#ecc48d',
+        ),
+        prismKeyword: findNightColor(
+          ['keyword', 'selector', 'important'],
+          '#c792ea',
+        ),
+        prismFunction: findNightColor(['function', 'class-name'], '#82aaff'),
+        prismPunctuation: findNightColor(['punctuation'], '#c3e88d'),
+        prismNumber: findNightColor(['number'], '#ff5874'),
         featuredCardBorder: '#4f4f4fff',
       },
     },
@@ -103,7 +142,7 @@ const theme = {
       'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     serif:
       'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-    mono: '"Space Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+    mono: '"SF Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
   },
   fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 72],
   fontWeights: {
@@ -119,6 +158,45 @@ const theme = {
     root: {
       fontFamily: 'body',
       fontWeight: 'body',
+      bg: 'background',
+    },
+    pre: {
+      fontFamily: 'mono',
+      fontSize: 1,
+      lineHeight: 1.6,
+      bg: 'prismBackground',
+      color: 'prismText',
+      mt: 3,
+      mb: 3,
+      borderRadius: 'md',
+      overflowX: 'auto',
+      // border: '1px solid',
+      // borderColor: 'cardBorderColor',
+    },
+    code: {
+      fontFamily: 'mono',
+      padding: 3,
+      borderRadius: 'xl',
+      bg: 'prismBackground',
+      color: 'prismText',
+      // token colors
+      '.token.comment, .token.prolog, .token.doctype, .token.cdata': {
+        color: 'prismComment',
+      },
+      '.token.punctuation': { color: 'prismPunctuation' },
+      '.token.property, .token.tag, .token.boolean, .token.number, .token.constant, .token.symbol, .token.deleted':
+        {
+          color: 'prismNumber',
+        },
+      '.token.selector, .token.attr-name, .token.string, .token.char, .token.builtin, .token.inserted':
+        {
+          color: 'prismString',
+        },
+      '.token.operator, .token.entity, .token.url': {
+        color: 'prismPunctuation',
+      },
+      '.token.atrule, .token.keyword': { color: 'prismKeyword' },
+      '.token.function, .token.class-name': { color: 'prismFunction' },
     },
     h1: {
       fontFamily: 'body',

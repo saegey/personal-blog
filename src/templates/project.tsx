@@ -1,11 +1,15 @@
 import { graphql } from 'gatsby'
 import { Box, Container, Text, Flex } from 'theme-ui'
-import { MDXProvider } from '@mdx-js/react'
+import { MDXProvider, useMDXComponents } from '@mdx-js/react'
+import Table from '../components/common/Table'
 import { IGatsbyImageData, StaticImage } from 'gatsby-plugin-image'
 import CustomImage from '../components/CustomImage'
 import Carousel from '../components/Carousel'
 import { LandscapeImage } from '../components/posts'
+import BenchBarChartThemeUI from '../components/BenchmarkBarChart'
 import TwoPhotoWide from '../components/TwoPhotoWide'
+import Prism from '@theme-ui/prism'
+import { useThemedStylesWithMdx } from '@theme-ui/mdx'
 
 interface ProjectTemplateProps {
   data: {
@@ -25,8 +29,17 @@ interface ProjectTemplateProps {
   children: React.ReactNode
 }
 
+const components = {
+  pre: (props: any) => <div {...props} />,
+  // Cast Prism to align with MDXComponents typing for code blocks
+  code: Prism as any,
+} as any
+
 const ProjectTemplate = ({ data, children }: ProjectTemplateProps) => {
   const { mdx } = data
+  const componentsWithStyles = useThemedStylesWithMdx(
+    useMDXComponents(components as any) as any,
+  )
 
   return (
     <Container
@@ -51,6 +64,7 @@ const ProjectTemplate = ({ data, children }: ProjectTemplateProps) => {
         <div className="blog-content">
           <MDXProvider
             components={{
+              BenchBarChartThemeUI,
               StaticImage,
               Box,
               Flex,
@@ -59,6 +73,9 @@ const ProjectTemplate = ({ data, children }: ProjectTemplateProps) => {
               Carousel,
               LandscapeImage,
               TwoPhotoWide,
+              Table,
+              table: (props: any) => <Table {...props} />,
+              ...componentsWithStyles,
             }}
           >
             {children}
@@ -78,7 +95,12 @@ export const pageQuery = graphql`
         images {
           publicURL
           childImageSharp {
-            gatsbyImageData(placeholder: BLURRED)
+            gatsbyImageData(
+              placeholder: BLURRED
+              width: 1100
+              quality: 80
+              layout: CONSTRAINED
+            )
           }
         }
       }

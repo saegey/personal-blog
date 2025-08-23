@@ -122,7 +122,7 @@ const Layout = ({ children }: CardProps) => {
                       fontFamily: 'mono'
                     }}
                   >
-                    adam saegebarth
+                    Adam Saegebarth
                   </Text>
                 </Box>
                 <Flex as="nav">
