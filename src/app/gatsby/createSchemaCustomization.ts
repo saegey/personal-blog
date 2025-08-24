@@ -21,6 +21,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       github: String
       strava: String
       instagram: String
+      linkedin: String
     }
 
     type Mdx implements Node {
@@ -44,6 +45,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       subType: String
       statsFile: String
       currentFtp: Int
+      featuredOnLinks: Boolean
     }
 
     type Coordinate {
