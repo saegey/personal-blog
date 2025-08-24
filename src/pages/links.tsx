@@ -3,7 +3,7 @@ import * as React from 'react'
 import { graphql, Link as GatsbyLink } from 'gatsby'
 import { Box, Container, Card, Flex, Text, Link as TLink } from 'theme-ui'
 import type { PageProps } from 'gatsby'
-import { IGatsbyImageData } from 'gatsby-plugin-image'
+import { IGatsbyImageData, getSrc } from 'gatsby-plugin-image'
 
 import Seo from '../components/seo'
 import { useSiteMetadata } from '../hooks/use-site-metadata'
@@ -183,22 +183,6 @@ const LinksPage: React.FC<PageProps<Data>> = ({ data }) => {
           </Box>
         )}
 
-        {/* Primary actions */}
-        <Flex sx={{ flexDirection: 'column', gap: 2, mb: 3 }}>
-          <TLink
-            href="/about"
-            sx={{ variant: 'buttons.secondary', textAlign: 'center' }}
-          >
-            About
-          </TLink>
-          <TLink
-            href="/blog"
-            sx={{ variant: 'buttons.primary', textAlign: 'center' }}
-          >
-            Latest Posts
-          </TLink>
-        </Flex>
-
         {/* Featured posts */}
         {posts.length > 0 && (
           <Box sx={{ mt: 3 }}>
@@ -238,21 +222,25 @@ const LinksPage: React.FC<PageProps<Data>> = ({ data }) => {
                       >
                         {/* simple thumb via plain <img> using gatsby output src if present */}
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        {n.frontmatter.headerImage?.childImageSharp
-                          ?.gatsbyImageData?.images?.fallback?.src && (
-                          <img
-                            src={
-                              n.frontmatter.headerImage.childImageSharp
-                                .gatsbyImageData.images.fallback!.src
-                            }
-                            alt={n.frontmatter.title}
-                            style={{
-                              width: '100%',
-                              height: '100%',
-                              objectFit: 'cover',
-                            }}
-                          />
-                        )}
+                        {(() => {
+                          const g =
+                            n.frontmatter.headerImage?.childImageSharp
+                              ?.gatsbyImageData
+                          const src = g ? getSrc(g as any) : undefined
+                          const thumb = src || '/DSC_0851.jpeg'
+                          return (
+                            <img
+                              src={thumb}
+                              alt={n.frontmatter.title}
+                              style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                              }}
+                              loading="lazy"
+                            />
+                          )
+                        })()}
                       </Box>
                       <Box sx={{ minWidth: 0 }}>
                         <Text
@@ -283,6 +271,22 @@ const LinksPage: React.FC<PageProps<Data>> = ({ data }) => {
             </Flex>
           </Box>
         )}
+
+        {/* Primary actions */}
+        <Flex sx={{ flexDirection: 'column', gap: 2, mb: 3, mt: 3 }}>
+          <TLink
+            href="/about"
+            sx={{ variant: 'buttons.secondary', textAlign: 'center' }}
+          >
+            About
+          </TLink>
+          <TLink
+            href="/blog"
+            sx={{ variant: 'buttons.primary', textAlign: 'center' }}
+          >
+            Latest Posts
+          </TLink>
+        </Flex>
 
         {/* Social grid */}
         <Flex
@@ -380,6 +384,7 @@ export const pageQuery = graphql`
         frontmatter {
           title
           teaser
+          featuredOnLinks
           headerImage {
             childImageSharp {
               gatsbyImageData(
