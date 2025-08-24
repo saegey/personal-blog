@@ -27,7 +27,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
   actions,
   reporter,
 }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
 
   const result: MdxData = await graphql(`
     {
@@ -65,6 +65,14 @@ export const createPages: GatsbyNode['createPages'] = async ({
   createPage({
     path: `/`,
     component: path.resolve('./src/pages/home.tsx'),
+  })
+
+  // Convenience redirect for Instagram bio
+  createRedirect({
+    fromPath: '/link-in-bio',
+    toPath: '/links',
+    isPermanent: true,
+    redirectInBrowser: true,
   })
 
   function createPagesForDir(
