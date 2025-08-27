@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby'
-import { Box, Container, Text, Flex } from 'theme-ui'
+import { Box, Container, Text, Flex, Card } from 'theme-ui'
 import { MDXProvider, useMDXComponents } from '@mdx-js/react'
 import Table from '../components/common/Table'
 import { IGatsbyImageData, StaticImage } from 'gatsby-plugin-image'
@@ -7,6 +7,7 @@ import CustomImage from '../components/CustomImage'
 import Carousel from '../components/Carousel'
 import { LandscapeImage } from '../components/posts'
 import BenchBarChartThemeUI from '../components/BenchmarkBarChart'
+import { BenchmarkTable } from '../components/BenchmarkTable'
 import TwoPhotoWide from '../components/TwoPhotoWide'
 import Prism from '@theme-ui/prism'
 import { useThemedStylesWithMdx } from '@theme-ui/mdx'
@@ -78,6 +79,8 @@ const ProjectTemplate = ({ data, children }: ProjectTemplateProps) => {
               LandscapeImage,
               TwoPhotoWide,
               Table,
+              Card,
+              BenchmarkTable,
               table: (props: any) => <Table {...props} />,
               ...componentsWithStyles,
             }}
