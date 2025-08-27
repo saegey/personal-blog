@@ -1,8 +1,8 @@
 ---
-title: 'Why GPX Falls Short: The Technical Limitations Compared to FIT Files'
+title: 'From GPX to FIT: Lessons in Scaling Fitness Data'
 date: 2025-08-22
 publishedDate: 2025-08-22
-description: "A deep dive into why GPX's openness isn't enough when scaling to modern fitness platforms — and how FIT solves the problem with speed, efficiency, and richer data."
+description: "GPX's openness isn't enough when scaling to modern fitness platforms. FIT wins with speed, efficiency, and richer data — here's what I learned building Monopad.app."
 tags:
   - engineering
   - fitness data
@@ -11,18 +11,23 @@ tags:
   - benchmarks
 type: Project
 subType: Engineering
-teaser: GPX works—until it doesn’t. Why FIT wins on speed, size, and real-world performance.
+teaser: GPX works—until it doesn't. Why FIT wins on speed, size, and real-world performance.
 images:
   - ./Scan233222.jpeg
 headerImage: ./Scan233222.jpeg
 ---
 
 <LandscapeImage image={props.data.mdx.frontmatter.images[0]} maximize={true} />
-When I first built my race journal site in Gatsby, GPX felt like the obvious
-choice. It was open, human-readable XML, and popularized by platforms like
-Mapbox and Strava. FIT, on the other hand, seemed like Garmin's walled garden —
-binary blobs without much open-source tooling. GPX looked friendly, FIT looked
-“off-limits.”
+
+When I first built [Monopad.app](https://monopad.app) — a race journal platform where athletes could upload activity files and generate rich posts — GPX felt like the obvious choice. It was open, human-readable XML, and popularized by platforms like Mapbox and Strava. FIT, by contrast, looked like Garmin's walled garden: binary blobs with little open-source tooling.
+
+GPX looked friendly. FIT looked “off-limits.”
+
+But as Monopad scaled, I ran into the limits of GPX the hard way. Long races (100+ miles) pushed file sizes into the tens of megabytes. Processing them in AWS Lambda was crushingly slow — ballooning uploads, sluggish XML parsing, and painful cold starts.
+
+Switching to Go and FIT was like swapping SOAP for Protobuf: leaner, faster, purpose-built.
+
+This post is part history lesson, part engineering case study — and a glimpse into where I'm going next.
 
 A few years later, scaling my platform forced me to rethink everything. Processing GPX files for long races (100+ miles) through AWS Lambda and Node.js was crushingly slow — ballooning file sizes, sluggish parsing, and painful cold starts. The pivot to Go and FIT was like swapping SOAP for Protobuf: leaner, faster, purpose-built.
 
@@ -32,53 +37,139 @@ This post is both a history lesson and an engineering case study. Let's start at
 
 ### GPX (GPS Exchange Format)
 
-- **Origin**: Created in **2002** by [TopoGrafix](https://www.topografix.com/gpx.asp), GPX was designed as an open XML schema for exchanging GPS waypoints, routes, and tracks across platforms.
-- **Adoption**: By the mid-2000s, GPX became the _de facto_ lightweight standard for route sharing, embraced by mapping platforms, OpenStreetMap, Strava, and others.
-- **Strengths**: Open, human-readable, easy to hack or hand-edit.
-- **Weaknesses**: Verbose, large file sizes, no unified schema for advanced fitness data. Vendors tack on custom “extensions,” leading to fragmentation.
+- **Origin**: Created in 2002 by [TopoGrafix](https://www.topografix.com/gpx.asp) as an open XML schema for GPS waypoints, routes, and tracks.
+- **Adoption**: Became the _de facto_ standard for route sharing, embraced by OpenStreetMap, Strava, Mapbox.
+- **Strengths**: Open, human-readable, easy to hack.
+- **Weaknesses**: Verbose, large, no unified schema for fitness metrics. Extensions abound, but they fragment the ecosystem.
 
 ### FIT (Flexible & Interoperable Data Transfer)
 
-- **Origin**: Developed by **Garmin in 2007** as a compact binary format for fitness devices.
-- **Adoption**: FIT is now the backbone of Garmin Connect and supported by TrainingPeaks, Zwift, Wahoo, and countless others. Documentation and SDKs are published on [Garmin's developer site](https://developer.garmin.com/fit/protocol/).
-- **Strengths**: Small, fast to parse, extensible, designed for time-series activity data (power, HR, cadence, laps, device info).
-- **Weaknesses**: Binary (harder to hand-edit), historically seen as proprietary (though tooling has improved).
+- **Origin**: Developed by Garmin in 2007 as a compact binary format for fitness devices.
+- **Adoption**: Backbone of Garmin Connect, TrainingPeaks, Zwift, Wahoo, and more. Docs and SDKs live at [Garmin's developer site](https://developer.garmin.com/fit/protocol/).
+- **Strengths**: Small, fast, extensible, designed for time-series activity data (power, HR, cadence, device info).
+- **Weaknesses**: Binary (harder to hand-edit), historically seen as proprietary.
 
-## The Engineering Journey: Learning the Hard Way
+## Engineering Lessons from Monopad.app
 
-When I extended my blog into a platform, users could upload activity files and generate rich race/ride posts. The stack looked like this:
+The original pipeline looked like this:
 
-- **Frontend**: Notion-style post editor (Gatsby → React).
-- **Backend**: AWS Amplify, DynamoDB, S3, and Lambda functions triggered on file upload.
-- **Pipeline**: Upload → S3 → Lambda → parse GPX → aggregate metrics → write to DB.
+- **Frontend**: Notion-style editor (Gatsby → React).
+- **Backend**: AWS Amplify + DynamoDB + S3 + Lambdas triggered on file upload.
+- **Flow**: Upload GPX → parse → aggregate → store metrics.
 
-### The Problems
+### Where GPX Broke Down
 
-1. **File Size**: Long races produced GPX files >10MB. FIT equivalents were ~1.5MB. Upload + download to Lambda containers was 7× heavier.
-2. **Parsing Overhead**: XML parsing in Node.js was slow. Processing could take hundreds of ms just to load.
-3. **Cold Starts**: Node.js Lambdas were sluggish (hundreds of ms). Combined with GPX size, this killed responsiveness.
-4. **Scaling Pain**: Processing GPX felt like trying to run a marathon in hiking boots.
+1. **File Size**: A 10MB GPX vs ~1.5MB FIT for the same ride. Uploads were 7× heavier.
+2. **Parsing Overhead**: XML parsing in Node.js added hundreds of milliseconds before any real work.
+3. **Cold Starts**: Lambda + Node.js + GPX = marathon in hiking boots.
 
-### The Pivot
+### The Pivot to Go + FIT
 
-I rewrote the parser in **Go**, switched to **FIT** files, and suddenly everything clicked:
+Rewriting the parser in Go and switching to FIT flipped the experience:
 
-- Cold starts dropped to near-instant.
-- Parsing went from **~257ms → ~17ms**.
-- File size shrank by 7×.
-- Uploads finished quickly, even for 100+ mile rides.
+- Cold starts became negligible.
+- Parsing time dropped from ~257ms (GPX) to ~17ms (FIT).
+- File size shrank 7×, making uploads painless.
 
-The analogy is clear:  
-**GPX is SOAP. FIT is Protobuf.**  
-Human-readable isn't always human-usable at scale.
+The analogy holds:
+
+- GPX is like XML — human-readable, verbose, text-based.
+- FIT is like Protobuf — compact, binary, schema-based.
+
+Readable isn't always usable at scale.
 
 ## Benchmarks: FIT vs GPX
 
-To make this concrete, I benchmarked parsing the same activity (BWR San Diego Waffle Ride) exported in both formats. The methods was to read file into memory, parse 50 times, measure mean, p50, p95.
+I benchmarked parsing the same event (BWR San Diego Waffle Ride) exported in both formats. Method: load file into memory, parse 50×, measure mean, p50, p95.
 
-👉 All code samples are available in this repo: [saegey/gpx-vs-fit-benchmarks](https://github.com/saegey/gpx-vs-fit-benchmarks)
+👉 Code: [saegey/gpx-vs-fit-benchmarks](https://github.com/saegey/gpx-vs-fit-benchmarks)
 
-<BenchBarChartThemeUI />
+<BenchBarChartThemeUI
+  title={'Apple M4 Pro Mini — Parse Time Benchmarks'}
+  rows={[
+    {
+      env: 'Go 1.25.0 — tormoder/fit',
+      format: 'FIT',
+      mean: 17.0,
+      p50: 16.8,
+      p95: 18.1,
+      min: 16.1,
+      max: 21.7,
+    },
+    {
+      env: 'Go 1.25.0 - muktihari/fit',
+      format: 'FIT',
+      mean: 25.53,
+      p50: 25.31,
+      p95: 26.95,
+      min: 22.61,
+      max: 27.24,
+    },
+    {
+      env: 'Go 1.25.0 — tkrajina/gpxgo',
+      format: 'GPX',
+      mean: 257.5,
+      p50: 257.6,
+      p95: 261.2,
+      min: 252.3,
+      max: 264.4,
+    },
+    {
+      env: 'Node.js — fit-file-parser',
+      format: 'FIT',
+      mean: 147.68,
+      p50: 147.86,
+      p95: 153.48,
+      min: 135.27,
+      max: 168.58,
+    },
+    {
+      env: 'Node.js — fast-xml-parser',
+      format: 'GPX',
+      mean: 336.05,
+      p50: 335.64,
+      p95: 340.34,
+      min: 329.63,
+      max: 350.04,
+    },
+    {
+      env: 'Ruby — rubyfit',
+      format: 'FIT',
+      mean: 43.33,
+      p50: 43.25,
+      p95: 44.4,
+      min: 42.2,
+      max: 44.55,
+    },
+    {
+      env: 'Python — fitdecode',
+      format: 'FIT',
+      mean: 1313.39,
+      p50: 1313.08,
+      p95: 1331.19,
+      min: 1286.05,
+      max: 1340.09,
+    },
+    {
+      env: 'Python — fitparse',
+      format: 'FIT',
+      mean: 3267.73,
+      p50: 3263.11,
+      p95: 3303.35,
+      min: 3242.8,
+      max: 3307.37,
+    },
+    {
+      env: 'Python — gpxpy (points)',
+      format: 'GPX',
+      mean: 987.3,
+      p50: 983.28,
+      p95: 1081.28,
+      min: 911.15,
+      max: 1089.71,
+    },
+  ]}
+/>
 <Table>
   <thead>
     <tr>
@@ -196,406 +287,231 @@ To make this concrete, I benchmarked parsing the same activity (BWR San Diego Wa
       <td>911.15&nbsp;ms</td>
       <td>1089.71&nbsp;ms</td>
     </tr>
+    <tr>
+      <td>
+        <strong>Ruby — rubyfit</strong>
+      </td>
+      <td>
+        <strong>FIT</strong>
+      </td>
+      <td>43.33&nbsp;ms</td>
+      <td>43.25&nbsp;ms</td>
+      <td>44.40&nbsp;ms</td>
+      <td>42.20&nbsp;ms</td>
+      <td>44.55&nbsp;ms</td>
+    </tr>
   </tbody>
 </Table>
 
-### Raw Go Benchmark Output
+## Benchmarks on AWS Lambda
 
-```txt
-❯ go test -bench=. -benchmem
-goos: darwin
-goarch: arm64
-pkg: gpxfitspeedcli
-cpu: Apple M4 Pro
-BenchmarkParseFIT-12                  69          17045471 ns/op          91.41 MB/s    28945970 B/op     261620 allocs/op
-BenchmarkParseGPX-12                   4         259831448 ns/op          43.70 MB/s    189066432 B/op   4038988 allocs/op
-PASS
-ok      gpxfitspeedcli  4.176s
-```
+One thing I noticed early: local benchmarks can be misleading. My dev box (an M4 Pro Mac mini) made GPX parsing look tolerable. But in production, everything runs on AWS Lambda — and Lambda cores are slower, memory-bound, and often cold-started. To make the benchmarks realistic, I reran them directly in Lambda with 1024MB of memory provisioned.
 
-- **ns/op** → average nanoseconds per operation.
-- **MB/s** → throughput (higher is better).
-- **B/op** → average bytes allocated per operation.
-- **allocs/op** → number of allocations per operation.
+I used the Serverless Framework to deploy a simple function that: 1. Loaded either a GPX or FIT file from S3. 2. Parsed it 50 times in memory. 3. Logged timing metrics for mean, p50, and p95 latencies.
 
-This shows how FIT dominates on speed and memory efficiency.
+The results were clear:
 
-## Code Examples
+- FIT remained compact and fast even in the constrained Lambda environment.
+- GPX ballooned in size and parse time, amplifying the cold-start penalty.
+- The performance gap that looked big on my desktop was even larger in the cloud.
 
-### Go Microbenchmark <code>go test</code>
+This reinforced a painful but valuable lesson:
 
-```go
-func BenchmarkParseFIT(b *testing.B) {
-    b.ReportAllocs()
-    b.SetBytes(int64(len(fitBytes)))
-    for i := 0; i < b.N; i++ {
-        _, err := fit.Decode(bytes.NewReader(fitBytes))
-        if err != nil { b.Fatal(err) }
-    }
-}
+- Your local machine ≠ production hardware.
+- On Lambda, GPX parsing felt like riding a loaded touring bike uphill.
+- FIT parsing felt like a race bike — efficient, tuned for the task.
 
-func BenchmarkParseGPX(b *testing.B) {
-    b.ReportAllocs()
-    b.SetBytes(int64(len(gpxBytes)))
-    for i := 0; i < b.N; i++ {
-        _, err := gpx.Parse(bytes.NewReader(gpxBytes))
-        if err != nil { b.Fatal(err) }
-    }
-}
-```
+It also underlined the economics: unless you’re willing to pay for bigger Lambda configs (and higher bills), you need a leaner format. FIT saves both milliseconds and dollars.
 
-### Go CLI Benchmark
-
-Run without <code>go test</code>, for a quick summary:
-
-```bash
-go run . -fit testdata/activity.fit -gpx testdata/activity.gpx -n 50
-```
-
-Output:
-
-```txt
-FIT  : size=1558095B  n=50  mean=17.01ms  p50=16.76ms  p95=18.05ms
-GPX  : size=11353470B n=50  mean=257.47ms p50=257.59ms p95=261.20ms
-
-Speedup (GPX/FIT mean): 15.14x
-File size ratio (GPX/FIT): 7.29x
-```
-
-### Python Cross-Check
-
-```python
-import time, io, statistics, fitdecode, gpxpy
-
-def parse_fit(data):
-    with fitdecode.FitReader(io.BytesIO(data)) as fr:
-        for _ in fr: pass
-
-def parse_gpx(data):
-    gpx = gpxpy.parse(io.BytesIO(data))
-    for t in gpx.tracks:
-        for s in t.segments:
-            for _ in s.points: pass
-
-def bench(label, func, data, n=25):
-    times = []
-    for _ in range(n):
-        t0 = time.perf_counter()
-        func(data)
-        times.append((time.perf_counter() - t0) * 1000)
-    print(f"{label}: mean={statistics.mean(times):.2f}ms p50={statistics.median(times):.2f}ms")
-
-fit_bytes = open("testdata/activity.fit","rb").read()
-gpx_bytes = open("testdata/activity.gpx","rb").read()
-
-bench("FIT", parse_fit, fit_bytes)
-bench("GPX", parse_gpx, gpx_bytes)
-```
-
-Run:
-
-```bash
-python3 gpx_fit_bench.py --fit testdata/activity.fit --gpx testdata/activity.gpx
-```
-
-### Cross‑Check (Node.js)
-
-I also ran the same parity benchmark in **Node.js**, using <code>fit-file-parser</code> for FIT and <code>fast-xml-parser</code> for GPX. The script does equivalent work (counts the same number of records/points and touches comparable fields) over **25 iterations**.
-
-**Command**
-
-```bash
-node bench.js ../testdata/BWR_San_Diego_Waffle_Ride_.fit ../testdata/BWR_San_Diego_Waffle_Ride_.gpx 25
-```
-
-**Output**
-
-```txt
-Sizes: FIT=1,558,095 B  GPX=11,353,470 B
-Record/point counts: fit_records=32412  gpx_points=32412
-FIT (fit-file-parser): n=25 mean=147.68ms p50=147.86ms p95=153.48ms min=135.27ms max=168.58ms
-GPX (fast-xml-parser): n=25 mean=336.05ms p50=335.64ms p95=340.34ms min=329.63ms max=350.04ms
-
-Speedup (GPX/FIT mean): 2.28x
-File size ratio (GPX/FIT): 7.29x
-```
-
-**Takeaway:** In Node, FIT parsing was **~2.3× faster** despite being the smaller binary format. This aligns with the **Go results** (FIT ~15× faster) and reinforces that the **format advantage** persists across runtimes; the magnitude depends on library + runtime overhead. (The **Python** cross‑check is a counter‑example driven by library implementation costs, not the underlying formats.)
-
-**Node benchmark code (bench.js)**
-
-```js
-const fs = require('fs')
-const { performance } = require('perf_hooks')
-const FitParser =
-  require('fit-file-parser').default || require('fit-file-parser')
-const { XMLParser } = require('fast-xml-parser')
-
-function stats(times) {
-  const a = times.slice().sort((x, y) => x - y)
-  const mean = a.reduce((s, x) => s + x, 0) / a.length
-  const p50 = a[Math.floor(a.length * 0.5)]
-  const p95 = a[Math.max(0, Math.floor(a.length * 0.95) - 1)]
-  return { mean, p50, p95, min: a[0], max: a[a.length - 1], n: a.length }
-}
-
-function flatFindTrkpts(node, hits) {
-  if (!node || typeof node !== 'object') return
-  if (node.trkpt) {
-    const pts = Array.isArray(node.trkpt) ? node.trkpt : [node.trkpt]
-    for (const p of pts) hits.push(p)
+<BenchBarChartThemeUI
+  title={'AWS Lambda — Parse Time Benchmarks'}
+  subtitle={
+    'Comparing mean/p50/p95/min/max parse times across Go, Node.js, Ruby, and Python for the same activity.'
   }
-  for (const k of Object.keys(node)) {
-    const v = node[k]
-    if (Array.isArray(v)) v.forEach(x => flatFindTrkpts(x, hits))
-    else if (typeof v === 'object') flatFindTrkpts(v, hits)
-  }
-}
+  rows={[
+    {
+      env: 'Go — tormoder/fit',
+      format: 'FIT',
+      mean: 136.02,
+      p50: 135.76,
+      p95: 142.08,
+      min: 120.12,
+      max: 194.95,
+    },
+    {
+      env: 'Go — tkrajina/gpxgo',
+      format: 'GPX',
+      mean: 1962.96,
+      p50: 1961.75,
+      p95: 2019.11,
+      min: 1846.94,
+      max: 2121.39,
+    },
+    {
+      env: 'Node.js — fit-file-parser',
+      format: 'FIT',
+      mean: 1496.82,
+      p50: 1481.84,
+      p95: 1594.48,
+      min: 1397.7,
+      max: 1660.9,
+    },
+    {
+      env: 'Node.js — fast-xml-parser',
+      format: 'GPX',
+      mean: 2787.06,
+      p50: 2773.96,
+      p95: 2834.38,
+      min: 2743.54,
+      max: 3053.08,
+    },
+    {
+      env: 'Python — fitdecode',
+      format: 'FIT',
+      mean: 11871.14,
+      p50: 11874.0,
+      p95: 11918.42,
+      min: 11773.01,
+      max: 11982.02,
+    },
+    {
+      env: 'Ruby — rubyfit',
+      format: 'FIT',
+      mean: 274.77,
+      p50: 275.79,
+      p95: 279.68,
+      min: 265.95,
+      max: 280.03,
+    },
+  ]}
+/>
 
-function parseGpxCountPoints(xmlBuf) {
-  const parser = new XMLParser({
-    ignoreAttributes: false,
-    attributeNamePrefix: '@_',
-    trimValues: true,
-  })
-  const doc = parser.parse(xmlBuf.toString('utf8'))
-  const hits = []
-  flatFindTrkpts(doc, hits)
-  let c = 0
-  for (const pt of hits) {
-    const _lat = pt['@_lat']
-    const _lon = pt['@_lon']
-    const _ele = pt.ele
-    const _time = pt.time
-    void _lat
-    void _lon
-    void _ele
-    void _time
-    c++
-  }
-  return c
-}
-
-function parseFitCountRecords(fitBuf, { force = true, speed = 'fast' } = {}) {
-  return new Promise((resolve, reject) => {
-    const parser = new (
-      FitParser.constructor === Function ? FitParser : FitParser.default
-    )({ force, speed })
-    parser.parse(fitBuf, (err, data) => {
-      if (err) return reject(err)
-      const recs = Array.isArray(data.records) ? data.records : []
-      let c = 0
-      for (const r of recs) {
-        const _lat = r.position_lat
-        const _lon = r.position_long
-        const _ele = r.altitude
-        const _ts = r.timestamp
-        void _lat
-        void _lon
-        void _ele
-        void _ts
-        c++
-      }
-      resolve(c)
-    })
-  })
-}
-
-async function bench(label, n, fn) {
-  const times = []
-  for (let i = 0; i < n; i++) {
-    const t0 = performance.now()
-    await fn()
-    times.push(performance.now() - t0)
-  }
-  const s = stats(times)
-  console.log(
-    `${label}: n=${s.n} mean=${s.mean.toFixed(2)}ms p50=${s.p50.toFixed(2)}ms p95=${s.p95.toFixed(2)}ms min=${s.min.toFixed(2)}ms max=${s.max.toFixed(2)}ms`,
-  )
-  return s
-}
-
-async function main() {
-  const fitPath = process.argv[2] || 'testdata/activity.fit'
-  const gpxPath = process.argv[3] || 'testdata/activity.gpx'
-  const N = Number(process.argv[4] || 25)
-  const fitBuf = fs.readFileSync(fitPath)
-  const gpxBuf = fs.readFileSync(gpxPath)
-  console.log(
-    `Sizes: FIT=${fitBuf.length.toLocaleString()} B  GPX=${gpxBuf.length.toLocaleString()} B`,
-  )
-  const gpxCount = parseGpxCountPoints(gpxBuf)
-  const fitCount = await parseFitCountRecords(fitBuf)
-  console.log(
-    `Record/point counts: fit_records=${fitCount}  gpx_points=${gpxCount}`,
-  )
-  const fitStats = await bench('FIT (fit-file-parser)', N, async () => {
-    await parseFitCountRecords(fitBuf)
-  })
-  const gpxStats = await bench('GPX (fast-xml-parser)', N, async () => {
-    parseGpxCountPoints(gpxBuf)
-  })
-  console.log(
-    `\nSpeedup (GPX/FIT mean): ${(gpxStats.mean / fitStats.mean).toFixed(2)}x`,
-  )
-  console.log(
-    `File size ratio (GPX/FIT): ${(gpxBuf.length / fitBuf.length).toFixed(2)}x`,
-  )
-}
-
-main().catch(e => {
-  console.error(e)
-  process.exit(1)
-})
-```
+<Table>
+  <thead>
+    <tr>
+      <th>Environment</th>
+      <th>Format</th>
+      <th>Mean</th>
+      <th>p50</th>
+      <th>p95</th>
+      <th>Min</th>
+      <th>Max</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong>Go — tormoder/fit</strong>
+      </td>
+      <td>
+        <strong>FIT</strong>
+      </td>
+      <td>136.02&nbsp;ms</td>
+      <td>135.76&nbsp;ms</td>
+      <td>142.08&nbsp;ms</td>
+      <td>120.12&nbsp;ms</td>
+      <td>194.95&nbsp;ms</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Go — tkrajina/gpxgo</strong>
+      </td>
+      <td>
+        <strong>GPX</strong>
+      </td>
+      <td>1962.96&nbsp;ms</td>
+      <td>1961.75&nbsp;ms</td>
+      <td>2019.11&nbsp;ms</td>
+      <td>1846.94&nbsp;ms</td>
+      <td>2121.39&nbsp;ms</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Node.js — fit-file-parser</strong>
+      </td>
+      <td>
+        <strong>FIT</strong>
+      </td>
+      <td>1496.82&nbsp;ms</td>
+      <td>1481.84&nbsp;ms</td>
+      <td>1594.48&nbsp;ms</td>
+      <td>1397.70&nbsp;ms</td>
+      <td>1660.90&nbsp;ms</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Node.js — fast-xml-parser</strong>
+      </td>
+      <td>
+        <strong>GPX</strong>
+      </td>
+      <td>2787.06&nbsp;ms</td>
+      <td>2773.96&nbsp;ms</td>
+      <td>2834.38&nbsp;ms</td>
+      <td>2743.54&nbsp;ms</td>
+      <td>3053.08&nbsp;ms</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Python — fitdecode</strong>
+      </td>
+      <td>
+        <strong>FIT</strong>
+      </td>
+      <td>11871.14&nbsp;ms</td>
+      <td>11874.00&nbsp;ms</td>
+      <td>11918.42&nbsp;ms</td>
+      <td>11773.01&nbsp;ms</td>
+      <td>11982.02&nbsp;ms</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Ruby — rubyfit</strong>
+      </td>
+      <td>
+        <strong>FIT</strong>
+      </td>
+      <td>274.77&nbsp;ms</td>
+      <td>275.79&nbsp;ms</td>
+      <td>279.68&nbsp;ms</td>
+      <td>265.95&nbsp;ms</td>
+      <td>280.03&nbsp;ms</td>
+    </tr>
+  </tbody>
+</Table>
 
 ## The fit-analysis CLI
 
-To make parsing reusable across projects, I split it into a CLI tool: fit-analysis.  
-Now my Gatsby blog just consumes JSON, while Lambdas and experiments reuse the same binary.
+To make parsing reusable, I built a CLI: **fit-analysis**.  
+Monopad consumed JSON, while other projects (like this blog) reuse the same binary.
 
-### Example
+Example output (simplified for brevity):
 
 ```bash
-$ processFitFile --ftp 280 --fit ../gpx-fit-benchmark-mono/testdata/BWR_San_Diego_Waffle_Ride_.fit
+$ processFitFile --ftp 280 --fit ./BWR_San_Diego.fit
 {
-  "HeartAnalysis": {
-    "1": 255,
-    "10": 255,
-    "100": 185
-  },
-  "ElevationGain": 3512.701,
-  "StoppedTime": 4725,
-  "ElapsedTime": 36605,
-  "NormalizedPower": 188.70325,
-  "PowerAnalysis": {
-    "1": 829,
-    "10": 542,
-    "100": 304
-  },
-  "SimplifiedCoordinates": [
-    [-117.15724079869688, 33.135885363444686, 3441],
-    [-117.15707693248987, 33.135501220822334, 3442],
-    [-117.15690828859806, 33.134969640523195, 3447]
-  ],
-  "SimplifiedDistances": [
-    0, 18.81, 79.81, 133.73, 145.78, 155.83, 165.43, 170.98
-  ],
-  "SimplifiedElevations": [
-    617.45, 618.11, 621.39, 621.39, 620.73, 620.73, 620.73, 620.73, 634.51
-  ],
-  "MergedData": [
-    {
-      "p": 0,
-      "d": 0,
-      "t": 0,
-      "e": 617.45,
-      "h": 75,
-      "g": 0
-    },
-    {
-      "p": 31,
-      "d": 18.809999465942383,
-      "t": 477,
-      "e": 618.11,
-      "h": 90,
-      "g": 0.03508772029446212
-    },
-    {
-      "p": 135,
-      "d": 79.80999755859375,
-      "t": 496,
-      "e": 621.39,
-      "h": 90,
-      "g": 0.05377049180327824
-    },
-    {
-      "p": 0,
-      "d": 133.72999572753906,
-      "t": 506,
-      "e": 621.39,
-      "h": 93,
-      "g": 0
-    }
-  ],
-  "PowerZoneBuckets": [
-    10032,
-    8497,
-    7817,
-    4680,
-    2737,
-    1294,
-    1548
-  ],
-  "PowerZones": [
-    {
-      "zone": 0,
-      "title": "Not pedaling",
-      "powerLow": 0,
-      "powerHigh": 0
-    },
-    {
-      "zone": 1,
-      "title": "Active Recovery",
-      "powerLow": 2,
-      "powerHigh": 156
-    },
-    {
-      "zone": 2,
-      "title": "Endurance",
-      "powerLow": 156,
-      "powerHigh": 212
-    },
-    {
-      "zone": 3,
-      "title": "Tempo",
-      "powerLow": 212,
-      "powerHigh": 254
-    },
-    {
-      "zone": 4,
-      "title": "Threshold",
-      "powerLow": 254,
-      "powerHigh": 296
-    },
-    {
-      "zone": 5,
-      "title": "VO2max",
-      "powerLow": 296,
-      "powerHigh": 338
-    },
-    {
-      "zone": 6,
-      "title": "Anaerobic Capacity",
-      "powerLow": 338,
-      "powerHigh": null
-    }
-  ]
+  "ElevationGain": 3512.7,
+  "NormalizedPower": 188.7,
+  "PowerZones": [...],
+  "SimplifiedCoordinates": [...]
 }
 ```
 
 This decoupling makes it easy to plug FIT analysis into blogs, APIs, or future products.
 
-## Lessons Learned
+## Looking Forward
 
-- GPX is great for routes but a poor choice for activity tracking at scale.
-- FIT is smaller, faster, richer, and extensible.
-- Due diligence matters: I could've saved months if I'd researched FIT tooling earlier.
-
-## What's Next
-
-This work isn't just a postmortem. I'm working toward a new product direction:
+Monopad.app is still online, but I've started sunsetting it in favor of something simpler:
 
 - Drag-and-drop FIT upload → instant metrics + summaries.
-- Public API → share and query your activities.
-- AI Assistant → ask questions like “What was my average power in the final climb?” or auto-generate a race recap.
-- Eventually: an MCP server for fitness data, so developers can plug it into their own apps.
+- Public API → share and query activity data.
+- AI Assistant → ask questions like “What was my average power on the final climb?”.
+- Smarter compression → using algorithms like _Ramer–Douglas–Peucker_ to simplify GPS traces without losing fidelity.
 
-GPX helped me start. FIT will help me scale.
+The JSON output is still big (every second adds up with multiple sensors), but these experiments point toward a leaner product that could support both my blog and other developers.
 
 ## Conclusion
 
-GPX isn't “bad” — it's just not built for what modern fitness platforms demand.  
-It shines as a simple, open way to share tracks. But for data-rich, performance-sensitive applications, FIT is the clear winner.
+GPX isn't “bad.” It shines for sharing routes and staying human-readable. But for data-rich, performance-sensitive applications, FIT is the clear winner.
 
-I learned this the hard way. Hopefully, you won't have to.
+Building Monopad taught me that lesson the hard way. Hopefully, this post saves you the detour.
