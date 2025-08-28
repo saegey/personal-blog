@@ -51,11 +51,15 @@ This post is part history, part engineering case study — and a glimpse of wher
 
 ## Engineering Lessons from Monopad
 
+## Engineering Lessons from Monopad
+
 The first version of Monopad's pipeline was straightforward: a Next.js frontend with a Notion-style editor, backed by AWS Amplify, DynamoDB, and S3. Every time an athlete uploaded a GPX file, a Lambda would parse it, aggregate the data, and store the metrics. Simple enough on paper.
 
 In practice, GPX started showing cracks. File sizes quickly ballooned — a century ride that produced a ~1.5MB FIT file could bloat into 10MB as GPX. Uploads were heavy, parsing XML in Node.js added hundreds of milliseconds before any useful work began, and cold starts on Lambda made the whole process feel like running a marathon in hiking boots.
 
-The pivot to Go and FIT transformed that experience. File sizes shrank seven-fold, uploads became painless, and parsing times for a 120-mile ride dropped from nearly a full minute with GPX to about a second with FIT. Cold starts, once a constant frustration, essentially disappeared.
+The pivot to Go and FIT transformed that experience. File sizes shrank seven-fold, uploads became painless, and parsing times for a 120-mile ride dropped from nearly a full minute with GPX to about a second with FIT. Cold starts, once a constant frustration, essentially disappeared.  
+
+This was also my **first real project in Go**. Before LLMs, a migration like this would have taken me much longer, but ChatGPT-4o helped translate my JavaScript parser into Go while keeping the same data shapes — the rewrite took less than a day. Go proved to be a perfect fit for Lambda: all dependencies compile into a single static binary, so deployment is clean and fast. By contrast, languages like Ruby, JavaScript, and Python require vendoring every package into the deployment bundle, which bloats container sizes by 10× or more and slows everything down. With Go, the functions stayed lean and easy to ship.  
 
 The contrast was stark: GPX behaved like XML — verbose, text-heavy, human-readable but inefficient at scale. FIT, by comparison, was closer to Protobuf — compact, binary, and schema-driven. Readable isn't always usable when performance matters.
 
