@@ -48,18 +48,28 @@ export default function BenchBarChartThemeUI({ rows, title, subtitle }: Props) {
   const theme = useThemeUI()
 
   const data = useMemo(
-    () => (rows ?? []).map(d => ({ ...d, value: (d as any)[metric] as number })),
+    () =>
+      (rows ?? []).map(d => ({ ...d, value: (d as any)[metric] as number })),
     [metric, rows],
   )
 
-  const headingText =
-    title ?? 'GPX vs FIT — Parse Time Benchmarks'
+  const headingText = title ?? 'GPX vs FIT — Parse Time Benchmarks'
   const subtitleText =
     subtitle ??
     'Comparing mean/p50/p95/min/max parse times across Go, Node.js, Ruby, and Python for the same activity.'
 
   return (
-    <Box sx={{ width: '100%', maxWidth: 1200, mx: 'auto', pt: 2 }}>
+    <Box
+      sx={{
+        width: '100%',
+        maxWidth: 1200,
+        mx: 'auto',
+        p: [0, 3],
+        borderRadius: 4,
+        border: ['', '2px solid'],
+        borderColor: 'border',
+      }}
+    >
       <Flex
         sx={{
           alignItems: 'flex-end',

@@ -1,0 +1,65 @@
+[
+  {
+    "env": "Node.js — fit-file-parser",
+    "format": "FIT",
+    "mean": 1492.64,
+    "p50": 1486.65,
+    "p95": 1555.72,
+    "min": 1400.01,
+    "max": 1642.33
+  },
+  {
+    "env": "Node.js — fast-xml-parser",
+    "format": "GPX",
+    "mean": 2792.86,
+    "p50": 2744.61,
+    "p95": 2800.40,
+    "min": 2714.52,
+    "max": 3620.49
+  },
+  {
+    "env": "Python — fitdecode",
+    "format": "FIT",
+    "mean": 11025.13,
+    "p50": 11003.74,
+    "p95": 11107.64,
+    "min": 10925.41,
+    "max": 11244.33
+  },
+  {
+    "env": "Python — gpxpy",
+    "format": "GPX",
+    "mean": 4778.06,
+    "p50": 4763.09,
+    "p95": 4835.35,
+    "min": 4620.31,
+    "max": 5197.91
+  },
+  {
+    "env": "Go — tormoder/fit",
+    "format": "FIT",
+    "mean": 129.36,
+    "p50": 123.21,
+    "p95": 138.71,
+    "min": 119.51,
+    "max": 172.54
+  },
+  {
+    "env": "Go — tkrajina/gpxgo",
+    "format": "GPX",
+    "mean": 1898.39,
+    "p50": 1895.05,
+    "p95": 1940.14,
+    "min": 1842.20,
+    "max": 2061.58
+  },
+  {
+    "env": "Ruby — rubyfit",
+    "format": "FIT",
+    "mean": 273.52,
+    "p50": 274.57,
+    "p95": 278.21,
+    "min": 264.88,
+    "max": 297.72
+  }
+]

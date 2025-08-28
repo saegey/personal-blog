@@ -1,0 +1,194 @@
+---
+title: 'From GPX to FIT: Lessons in Scaling Fitness Data'
+date: 2025-08-22
+publishedDate: 2025-08-22
+description: "GPX's openness isn't enough when scaling to modern fitness platforms. FIT wins with speed, efficiency, and richer data — here's what I learned building Monopad.app."
+tags:
+  - engineering
+  - fitness data
+  - gpx
+  - fit
+  - benchmarks
+type: Project
+subType: Engineering
+teaser: GPX works—until it doesn't. Why FIT wins on speed, size, and real-world performance.
+images:
+  - ./Scan233222.jpeg
+headerImage: ./Scan233222.jpeg
+---
+
+import appleM4ProRows from './appleM4Benchmarks.json'
+import awsLambdaBenchmarks from './awsLambdaBenchmarks.json'
+
+<LandscapeImage image={props.data.mdx.frontmatter.images[0]} maximize={true} />
+
+I started out with a personal Gatsby blog. Using some open-source GPX libraries, I could export my race files from Strava in GPX, generate charts, and reflect on how each event went. Here is an <a href="https://saegey.com/race-journal/gfe-2023/" target="_blank" rel="noopener noreferrer">example</a> of one of the first posts I put together. Those posts became part training log, part storytelling — a way to avoid repeating mistakes, track progress, and share the journey with friends, family, and maybe a coach.
+
+But as the races got longer, the limitations piled up. Large GPX files made Gatsby builds painfully slow, and parsing them in JavaScript often took minutes. That was tolerable for my own blog, but not for the bigger idea I had in mind: a platform where any athlete could quickly create a one-off post to document a race or workout, even complex multi-sport events like triathlons.
+
+That idea became <a href="https://monopad.app" target="_blank" rel="noopener noreferrer">Monopad</a> — built with Next.js, DynamoDB, and S3. At first, I carried over the GPX approach from my Gatsby prototype. But in production, it fell apart: GPX files ballooned to tens of megabytes, and Lambda cold starts made uploads sluggish. So I rebuilt the pipeline in Go and switched to FIT. The results were dramatic: minutes dropped to 1–2 seconds, even for 100-mile FIT files with multiple sensors. It was like moving from SOAP to Protobuf — leaner, faster, purpose-built.
+
+This post is part history, part engineering case study — and a glimpse of where I’m taking Monopad next.
+
+<Card>
+## A Brief History: GPX and FIT
+
+### GPX (GPS Exchange Format)
+
+- **Origin**: Created in 2002 by [TopoGrafix](https://www.topografix.com/gpx.asp) as an open XML schema for GPS waypoints, routes, and tracks.
+- **Adoption**: Became the _de facto_ standard for route sharing, embraced by OpenStreetMap, Strava, Mapbox.
+- **Strengths**: Open, human-readable, easy to hack.
+- **Weaknesses**: Verbose, large, no unified schema for fitness metrics. Extensions abound, but they fragment the ecosystem.
+
+### FIT (Flexible & Interoperable Data Transfer)
+
+- **Origin**: Developed by Garmin in 2007 as a compact binary format for fitness devices.
+- **Adoption**: Backbone of Garmin Connect, TrainingPeaks, Zwift, Wahoo, and more. Docs and SDKs live at [Garmin's developer site](https://developer.garmin.com/fit/protocol/).
+- **Strengths**: Small, fast, extensible, designed for time-series activity data (power, HR, cadence, device info).
+- **Weaknesses**: Binary (harder to hand-edit), historically seen as proprietary.
+
+</Card>
+
+## Engineering Lessons from Monopad
+
+## Engineering Lessons from Monopad
+
+The first version of Monopad's pipeline was straightforward: a Next.js frontend with a Notion-style editor, backed by AWS Amplify, DynamoDB, and S3. Every time an athlete uploaded a GPX file, a Lambda would parse it, aggregate the data, and store the metrics. Simple enough on paper.
+
+In practice, GPX started showing cracks. File sizes quickly ballooned — a century ride that produced a ~1.5MB FIT file could bloat into 10MB as GPX. Uploads were heavy, parsing XML in Node.js added hundreds of milliseconds before any useful work began, and cold starts on Lambda made the whole process feel like running a marathon in hiking boots.
+
+The pivot to Go and FIT transformed that experience. File sizes shrank seven-fold, uploads became painless, and parsing times for a 120-mile ride dropped from nearly a full minute with GPX to about a second with FIT. Cold starts, once a constant frustration, essentially disappeared.  
+
+This was also my **first real project in Go**. Before LLMs, a migration like this would have taken me much longer, but ChatGPT-4o helped translate my JavaScript parser into Go while keeping the same data shapes — the rewrite took less than a day. Go proved to be a perfect fit for Lambda: all dependencies compile into a single static binary, so deployment is clean and fast. By contrast, languages like Ruby, JavaScript, and Python require vendoring every package into the deployment bundle, which bloats container sizes by 10× or more and slows everything down. With Go, the functions stayed lean and easy to ship.  
+
+The contrast was stark: GPX behaved like XML — verbose, text-heavy, human-readable but inefficient at scale. FIT, by comparison, was closer to Protobuf — compact, binary, and schema-driven. Readable isn't always usable when performance matters.
+
+## Monopad Data Flow — Before vs After
+
+```
+BEFORE: GPX + Node.js (Lambda)
+────────────────────────────────────────────────────────────────────────
+[Client: Next.js editor]
+       │
+       ▼
+[Upload GPX to S3  (≈10 MB for a long ride)]
+       │  S3 PutObject event
+       ▼
+[Lambda (Node.js)]
+  - Parse XML (GPX)
+  - Compute aggregates
+  - Generate time-series (full res)
+       │
+       ├──► [DynamoDB]  (aggregates, metadata)
+       └──► [S3]        (processed JSON time-series, full resolution)
+              │
+              └──► [API /app/activity/:id] → Heavy payloads, slow cold starts
+
+
+AFTER: FIT + Go (Lambda)
+────────────────────────────────────────────────────────────────────────
+[Client: Next.js editor]
+       │
+       ▼
+[Upload FIT to S3  (≈1.5 MB same ride)]
+       │  S3 PutObject event
+       ▼
+[Lambda (Go)]
+  - Decode FIT (fast)
+  - Compute aggregates
+  - Simplify series w/ Ramer–Douglas–Peucker (coords/elev/power/HR)
+  - Prepare multi-resolution series (overview, detail)
+       │
+       ├──► [DynamoDB]  (aggregates, metadata, chart descriptors)
+       ├──► [S3]        (ORIGINAL FIT for raw endpoint / zoom-ins)
+       └──► [S3]        (SIMPLIFIED JSON series for fast UI)
+              │
+              ├──► [API /app/activity/:id] → Lightweight aggregates
+              ├──► [API /app/activity/:id/series?level=overview|detail]
+              └──► [API /app/activity/:id/raw] → Stream original FIT segment
+```
+
+Why this works
+
+- Smaller uploads: FIT is ~5–7× smaller → quicker S3 writes and less time on slow networks.
+- Faster compute: Go + FIT decoding minimizes cold-start + parse overhead.
+- Two-tier data access:
+  - Simplified series for instant charts/tiles.
+  - Raw FIT for surgical zooms (e.g., “where I lost the group”).
+  - Cheap, scalable reads: Aggregates in DynamoDB; series in S3 (CDN-cacheable).
+
+## Benchmarks: FIT vs GPX
+
+I benchmarked parsing the same event (BWR San Diego Waffle Ride) exported in both formats. The method was load file into memory, parse 25×, measure mean, p50, p95. Below is a repo that I used to implement the benchmarking both locally and on AWS to simulate real-world performance.
+
+👉 Code: [saegey/gpx-vs-fit-benchmarks](https://github.com/saegey/gpx-vs-fit-benchmarks)
+
+<BenchBarChartThemeUI
+  title="Apple M4 Pro Mini — Parse Time Benchmarks"
+  rows={appleM4ProRows.sort((a, b) => a.mean - b.mean)}
+/>
+<BenchmarkTable rows={appleM4ProRows.sort((a, b) => a.mean - b.mean)} />
+
+### Benchmarking in the Real World
+
+Local benchmarks can be deceiving. On my M4 Pro Mac mini, GPX parsing looked tolerable. On AWS Lambda—slower cores, memory limits, and cold starts—it wasn’t.
+
+To measure realistically, I deployed a Serverless function with **1024 MB** memory that:
+
+- Embedded a FIT and GPX in the function. A future improvement would be to pull the file from S3 like a lamdba function has to with a trigger.
+- Parsed it in memory (**25×** runs; **10×** for Python since it was so slow and I didn't want at 20 min timeout on the lambda)
+- Logged **mean**, **p50**, and **p95** latencies
+
+**Results**
+
+- **FIT** stayed compact and fast, even on Lambda
+- **GPX** ballooned in size and parse time, magnifying cold-start costs
+- The performance gap was **wider in production** than on desktop
+
+**Takeaway**  
+Your laptop ≠ production hardware.
+
+<BenchBarChartThemeUI
+  title="AWS Lambda — Parse Time Benchmarks"
+  rows={awsLambdaBenchmarks.sort((a, b) => a.mean - b.mean)}
+/>
+
+<BenchmarkTable rows={awsLambdaBenchmarks.sort((a, b) => a.mean - b.mean)} />
+
+## The fit-analysis CLI
+
+To make parsing reusable, I built a CLI: **fit-analysis**.
+
+👉 Code: [saegey/fit-analysis](https://github.com/saegey/fit-analysis)
+
+I am also able to use the same library in Monopad while other projects (like this blog) reuse the same binary.
+
+Example output (simplified for brevity):
+
+```bash
+$ processFitFile --ftp 280 --fit ./BWR_San_Diego.fit
+{
+  "ElevationGain": 3512.7,
+  "NormalizedPower": 188.7,
+  "PowerZones": [...],
+  "SimplifiedCoordinates": [...]
+}
+```
+
+This decoupling makes it easy to plug FIT analysis into blogs, APIs, or future products.
+
+## Looking Forward
+
+Monopad is still online, but I've started sunsetting it in favor of something simpler:
+
+- Drag-and-drop FIT upload → instant metrics + summaries.
+- Public API → share and query activity data.
+- AI Assistant → ask questions like “What was my average power on the final climb?”.
+
+The JSON output is still big (every second adds up with multiple sensors), but these experiments point toward a leaner product that could support both my blog and other developers.
+
+## Conclusion
+
+GPX isn't “bad.” It shines for sharing routes and staying human-readable. But for data-rich, performance-sensitive applications, FIT is the clear winner.
+
+Building Monopad taught me that lesson the hard way. Hopefully, this post saves you the detour.

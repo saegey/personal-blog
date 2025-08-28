@@ -111,40 +111,68 @@ const Seo = ({
       <title>{seo.title}</title>
       {/* Canonical */}
       <link rel="canonical" href={seo.url} />
+      <meta property="og:locale" content={ogLocale} />
+      {/* Open Graph */}
       <meta
         name="description"
         property="og:description"
         content={seo.description}
       />
-  <meta property="og:locale" content={ogLocale} />
-      {/* Open Graph */}
       <meta property="og:title" name="og:title" content={seo.title} />
       <meta property="og:url" name="og:url" content={seo.url} />
-      <meta property="og:site_name" name="og:site_name" content={defaultTitle} />
-      <meta property="og:type" name="og:type" content={publishedDate ? 'article' : 'website'} />
+      <meta
+        property="og:site_name"
+        name="og:site_name"
+        content={defaultTitle}
+      />
+      <meta
+        property="og:type"
+        name="og:type"
+        content={publishedDate ? 'article' : 'website'}
+      />
       {imageUrl && (
         <>
           <meta property="og:image" name="og:image" content={imageUrl} />
           {imageWidth && (
-            <meta property="og:image:width" name="og:image:width" content={imageWidth} />
+            <meta
+              property="og:image:width"
+              name="og:image:width"
+              content={imageWidth}
+            />
           )}
           {imageHeight && (
-            <meta property="og:image:height" name="og:image:height" content={imageHeight} />
+            <meta
+              property="og:image:height"
+              name="og:image:height"
+              content={imageHeight}
+            />
           )}
           {(imageAlt || defaultTitle) && (
-            <meta property="og:image:alt" name="og:image:alt" content={imageAlt || `${defaultTitle} cover image`} />
+            <meta
+              property="og:image:alt"
+              name="og:image:alt"
+              content={imageAlt || `${defaultTitle} cover image`}
+            />
           )}
         </>
       )}
       {/* Twitter */}
-      <meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'} />
+      <meta
+        name="twitter:card"
+        content={imageUrl ? 'summary_large_image' : 'summary'}
+      />
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:url" content={seo.url} />
       <meta name="twitter:creator" content={`@${seo.twitterUsername}`} />
       <meta name="twitter:site" content={`@${seo.twitterUsername}`} />
-    {imageUrl && <meta name="twitter:image" content={imageUrl} />}
-  {(imageAlt || defaultTitle) && <meta name="twitter:image:alt" content={imageAlt || `${defaultTitle} cover image`} />}
+      {imageUrl && <meta name="twitter:image" content={imageUrl} />}
+      {(imageAlt || defaultTitle) && (
+        <meta
+          name="twitter:image:alt"
+          content={imageAlt || `${defaultTitle} cover image`}
+        />
+      )}
       {/* Article tags */}
       {publishedDate &&
         Array.isArray(tags) &&
@@ -157,7 +185,7 @@ const Seo = ({
       />
       <meta name="author" content={seo.author.name} />
       {publishedTimeTag}
-  {modifiedTimeTag}
+      {modifiedTimeTag}
       {children}
     </>
   )
