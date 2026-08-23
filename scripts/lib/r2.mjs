@@ -6,7 +6,15 @@ const config = () => {
   const missing = required.filter(key => !process.env[key])
   if (missing.length) throw new Error(`Missing R2 env var(s): ${missing.join(', ')}. Run through 1Password or export them first.`)
   const publicBaseUrl = process.env.R2_PUBLIC_BASE_URL.replace(/\/$/, '')
-  if (publicBaseUrl.includes('r2.cloudflarestorage.com')) throw new Error('R2_PUBLIC_BASE_URL must be a public bucket URL, not the private S3 API endpoint.')
+  let publicBaseHost
+  try {
+    publicBaseHost = new URL(publicBaseUrl).hostname
+  } catch {
+    throw new Error('R2_PUBLIC_BASE_URL must be a valid absolute URL.')
+  }
+  if (publicBaseHost === 'r2.cloudflarestorage.com' || publicBaseHost.endsWith('.r2.cloudflarestorage.com')) {
+    throw new Error('R2_PUBLIC_BASE_URL must be a public bucket URL, not the private S3 API endpoint.')
+  }
   return {
     accountId: process.env.R2_ACCOUNT_ID,
     accessKeyId: process.env.R2_ACCESS_KEY_ID,
