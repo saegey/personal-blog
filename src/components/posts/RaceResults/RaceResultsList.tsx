@@ -1,74 +1,48 @@
-import { Text, Flex, Box } from 'theme-ui'
-
-import RaceResultItemSmall from './RaceResultItemSmall'
 import { useUnits } from '../../../context/UnitProvider'
 
-interface Props {
-  data: [
-    {
-      name: string
-      time: string
-      place: string
-      speedMetric: number
-      speed: number
-      timeBehind: number
-      isMe: boolean
-    },
-  ]
-  showSpeed: boolean
+export type RaceResult = {
+  name: string
+  time: string
+  place: string
+  speedMetric: string
+  speed: string
+  timeBehind: string
+  isMe: boolean
 }
 
-const RaceResultsList = ({ data, showSpeed }: Props) => {
-  const units = useUnits()
+type Props = {
+  data: RaceResult[]
+  showSpeed?: boolean
+}
+
+const RaceResultsList = ({ data, showSpeed = true }: Props) => {
+  const { unitOfMeasure } = useUnits()
 
   return (
-    <>
-      {data.map((item, index) => {
-        if (item === undefined) return ''
-
-        return (
-          <Box key={index}>
-            <RaceResultItemSmall item={item} theme={units} key={index} />
-            <Flex
-              sx={{
-                height: ['25px', '25px', '25px'],
-                display: ['none', 'flex', 'flex'],
-                fontFamily: 'body',
-              }}
-            >
-              <Box sx={{ width: '5%' }}>
-                <Text variant="resultsItem">
-                  <strong>{item.place}</strong>
-                </Text>
-              </Box>
-              <Box sx={{ width: showSpeed ? '30%' : '50%' }}>
-                {item.isMe ? (
-                  <Text variant="highlightedItem">{item.name}</Text>
-                ) : (
-                  <Text variant="resultsItem">{item.name}</Text>
-                )}
-              </Box>
-              <Box sx={{ width: '30%', textAlign: 'right' }}>
-                <Text variant="resultsItem">{item.time}</Text>
-              </Box>
-              {showSpeed && (
-                <Box sx={{ width: '20%', textAlign: 'right' }}>
-                  <Text variant="resultsItem">
-                    {units.unitOfMeasure === 'metric'
-                      ? item.speedMetric
-                      : item.speed}
-                  </Text>
-                </Box>
-              )}
-
-              <Box sx={{ width: '15%', textAlign: 'right' }}>
-                <Text variant="resultsItem">{item.timeBehind}</Text>
-              </Box>
-            </Flex>
-          </Box>
-        )
-      })}
-    </>
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[34rem] border-collapse text-left">
+        <thead className="border-b border-line font-condensed text-xs font-medium uppercase tracking-label text-muted">
+          <tr>
+            <th className="py-3 pr-3 font-medium">Place</th>
+            <th className="py-3 pr-3 font-medium">Rider</th>
+            <th className="py-3 text-right font-medium">Time</th>
+            {showSpeed && <th className="py-3 pl-5 text-right font-medium">Speed</th>}
+            <th className="py-3 pl-5 text-right font-medium">Behind</th>
+          </tr>
+        </thead>
+        <tbody className="text-base sm:text-lg">
+          {data.map(item => (
+            <tr key={`${item.place}-${item.name}`} className={`border-b border-line ${item.isMe ? 'font-semibold' : ''}`}>
+              <td className="py-3 pr-3 font-condensed text-sm text-muted">{item.place}</td>
+              <td className="py-3 pr-3">{item.name}</td>
+              <td className="py-3 text-right tabular-nums">{item.time}</td>
+              {showSpeed && <td className="py-3 pl-5 text-right font-condensed text-sm tabular-nums text-muted">{unitOfMeasure === 'metric' ? item.speedMetric : item.speed}</td>}
+              <td className="py-3 pl-5 text-right font-condensed text-sm tabular-nums text-muted">{item.timeBehind}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
 

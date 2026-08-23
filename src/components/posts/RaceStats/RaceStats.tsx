@@ -1,5 +1,4 @@
 import { memo } from 'react'
-import { Text, Box, Grid } from 'theme-ui'
 
 interface Item {
   title: string
@@ -10,21 +9,18 @@ type Props = {
   items: ReadonlyArray<Item>
 }
 
-
 const RaceStats = ({ items }: Props) => {
-  if (!items || items.length === 0) return null
+  if (!items?.length) return null
 
   return (
-    <Grid gap={2} columns={[2, 2, 3]}>
+    <div className="grid grid-cols-2 border-l border-t border-line sm:grid-cols-3">
       {items.map(item => (
-        <Box key={item.title}>
-          <Text variant="text.statsLabel">{item.title}</Text>
-          <Text as="p" variant="text.statsValue">
-            {item.value}
-          </Text>
-        </Box>
+        <div key={item.title} className="border-b border-r border-line px-4 py-5 sm:px-5 sm:py-6">
+          <p className="font-condensed text-xs font-medium uppercase tracking-label text-muted">{item.title}</p>
+          <p className="mt-3 font-serif text-2xl leading-none tracking-[-0.025em] sm:text-3xl">{item.value}</p>
+        </div>
       ))}
-    </Grid>
+    </div>
   )
 }
 

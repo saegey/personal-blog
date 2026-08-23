@@ -1,24 +1,10 @@
-import { Flex, Box, Text } from 'theme-ui'
-
 const MatchesHeading = () => {
   return (
-    <Flex sx={{ height: ['35px', '35px', '35px'], marginTop: '20px' }}>
-      <Box sx={{ width: '34%' }}>
-        <Text as="p" variant="resultsItem">
-          <strong>Average Power</strong>
-        </Text>
-      </Box>
-      <Box sx={{ width: '33%', textAlign: 'center' }}>
-        <Text as="p" variant="resultsItem">
-          <strong>Total Joules</strong>
-        </Text>
-      </Box>
-      <Box sx={{ width: '33%', textAlign: 'right' }}>
-        <Text as="p" variant="resultsItem">
-          <strong>Total time</strong>
-        </Text>
-      </Box>
-    </Flex>
+    <div className="mt-5 grid grid-cols-3 border-b border-line pb-2 font-condensed text-xs font-semibold uppercase tracking-label text-muted">
+      <p>Average power</p>
+      <p className="text-center">Total joules</p>
+      <p className="text-right">Total time</p>
+    </div>
   )
 }
 

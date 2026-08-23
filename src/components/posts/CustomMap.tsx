@@ -1,5 +1,4 @@
 import React from 'react'
-import { Box, Flex } from 'theme-ui'
 import mapboxgl from 'mapbox-gl'
 
 interface MapProps {
@@ -17,38 +16,32 @@ const Map = ({
   const map = React.useRef<mapboxgl.Map | null>(null)
 
   React.useEffect(() => {
-    if (!map || !map.current) {
+    if (!map.current) {
       return
     }
-    if (map.current !== undefined) {
-      const geojsonSource = map.current.getSource('currentPosition') as
-        | mapboxgl.GeoJSONSource
-        | undefined
-      if (!geojsonSource) {
-        return
-      }
+    const geojsonSource = map.current.getSource('currentPosition') as mapboxgl.GeoJSONSource | undefined
+    if (!geojsonSource) return
 
-      geojsonSource.setData({
-        type: 'FeatureCollection',
-        features: [
-          {
-            type: 'Feature',
-            properties: { name: 'Null Island' },
-            geometry: {
-              type: 'Point',
-              coordinates: markerCoordinates || [0, 0],
-            },
+    geojsonSource.setData({
+      type: 'FeatureCollection',
+      features: markerCoordinates ? [
+        {
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'Point',
+            coordinates: markerCoordinates,
           },
-        ],
-      })
-    }
-  })
+        },
+      ] : [],
+    })
+  }, [markerCoordinates])
 
-  React.useEffect((): void => {
-    if (map && map.current) return
+  React.useEffect(() => {
+    if (map.current || !coordinates.length) return
     map.current = new mapboxgl.Map({
       container: mapContainerRef.current!,
-      accessToken: process.env.MAPBOX_TOKEN ? process.env.MAPBOX_TOKEN : token,
+      accessToken: token,
       style: 'mapbox://styles/saegey/clkjy1fdl004x01oh25lhe0iz',
       center: coordinates[0],
       zoom: 14,
@@ -88,7 +81,7 @@ const Map = ({
           'line-cap': 'round',
         },
         paint: {
-          'line-color': 'red',
+          'line-color': '#141414',
           'line-width': 2,
         },
       })
@@ -110,24 +103,20 @@ const Map = ({
 
     const bounds = new mapboxgl.LngLatBounds(coordinates[0], coordinates[0])
 
-    coordinates.map(coord => bounds.extend(coord))
+    coordinates.forEach(coord => bounds.extend(coord))
 
     map.current.fitBounds(bounds, {
       padding: 50,
     })
     map.current.resize()
-  }, [])
 
-  return (
-    <Flex
-      ref={mapContainerRef}
-      sx={{
-        height: ['300px', '450px', '450px'],
-        borderTopLeftRadius: '8px',
-        borderTopRightRadius: '8px',
-      }}
-    />
-  )
+    return () => {
+      map.current?.remove()
+      map.current = null
+    }
+  }, [coordinates, token])
+
+  return <div ref={mapContainerRef} className="h-72 border border-line sm:h-[28rem]" />
 }
 
 export default Map

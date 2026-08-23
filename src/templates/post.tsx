@@ -1,6 +1,6 @@
-import { Text, Link, Container, Box } from 'theme-ui'
 import { graphql, PageProps } from 'gatsby'
 import { MDXProvider } from '@mdx-js/react'
+import type { AnchorHTMLAttributes, ReactNode } from 'react'
 import Table from '../components/common/Table'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import 'mapbox-gl/dist/mapbox-gl.css'
@@ -30,6 +30,12 @@ import {
 } from '../components/posts'
 import TwoPhotoWide from '../components/TwoPhotoWide'
 
+const MdxText = ({ children }: { children?: ReactNode }) => <p>{children}</p>
+const MdxLink = ({ children, href, ...props }: AnchorHTMLAttributes<HTMLAnchorElement>) => (
+  <a href={href} {...props}>{children}</a>
+)
+const MdxBox = ({ children }: { children?: ReactNode }) => <div className="my-8">{children}</div>
+
 const shortcodes = {
   PortraitImage,
   RaceResults,
@@ -38,8 +44,8 @@ const shortcodes = {
   LandscapeImage,
   PowerCurveGraph,
   PowerCurveGraphStatsWrapper,
-  Link,
-  Text,
+  Link: MdxLink,
+  Text: MdxText,
   MatchesBurned,
   PowerBreakdown,
   VideoPlayer,
@@ -48,7 +54,7 @@ const shortcodes = {
   StravaLink,
   VisualOverview,
   VisualOverviewNew,
-  Box,
+  Box: MdxBox,
   TwoPhotoWide,
   // Map native table to our themed Table
   table: (props: any) => <Table {...props} />,
@@ -60,6 +66,7 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
     date,
     location,
     type,
+    subType,
     headerImage,
     teaser,
     headerImageCaption,
@@ -70,15 +77,16 @@ const PostTemplate: React.FC<PageProps<DataProps>> = ({ data, children }) => {
       <PostHeader
         headerImage={headerImage}
         type={type}
+        subType={subType}
         title={title}
         date={date}
         location={location}
         teaser={teaser}
         headerImageCaption={headerImageCaption}
       />
-      <Container variant="layouts.post">
+      <article className="race-story mx-auto max-w-3xl py-10 sm:py-14">
         <MDXProvider components={shortcodes}>{children}</MDXProvider>
-      </Container>
+      </article>
     </>
   )
 }
@@ -157,6 +165,7 @@ type DataProps = {
       modifiedDateIso?: string
       location: string
       type: string
+      subType?: string
       tags: ReadonlyArray<string>
       description: string
       teaser?: string
@@ -187,6 +196,7 @@ export const query = graphql`
         teaser
         tags
         type
+        subType
         currentFtp
         images {
           childImageSharp {

@@ -1,308 +1,66 @@
-/** @jsxImportSource theme-ui */
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Box, IconButton, AspectRatio, Flex } from 'theme-ui'
+import React, { useEffect, useState } from 'react'
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
-type Slide =
-  | { src?: string; alt?: string; caption?: string; image?: IGatsbyImageData }
-  | React.ReactNode // allows custom children if you prefer
+type ImageSlide = { src?: string; alt?: string; caption?: string; image?: IGatsbyImageData }
+type Slide = ImageSlide | React.ReactNode
 
 type CarouselProps = {
-  /** Array of image objects or custom nodes */
   slides: Slide[]
-  /** Default: 16/9. You can pass a number (ratio) or 'auto' to let content size itself */
   ratio?: number | 'auto'
-  /** Show dots under the carousel */
   showDots?: boolean
-  /** Show prev/next arrow buttons */
   showArrows?: boolean
-  /** Auto-advance in ms (e.g., 5000). Omit or set 0 to disable */
   autoplayMs?: number
-  /** Rounded corners (Theme UI scale key or raw value). Default: 'lg' feel */
   radius?: number | string
-  /** Optional sx overrides */
-  sx?: any
+  sx?: unknown
 }
 
-const srOnly = {
-  position: 'absolute',
-  width: '1px',
-  height: '1px',
-  padding: 0,
-  margin: '-1px',
-  overflow: 'hidden',
-  clip: 'rect(0,0,0,0)',
-  whiteSpace: 'nowrap',
-  border: 0,
-} as const
+const isImageSlide = (slide: Slide): slide is ImageSlide =>
+  typeof slide === 'object' && slide !== null && !React.isValidElement(slide)
 
-export default function Carousel({
-  slides,
-  ratio = 16 / 9,
-  showDots = true,
-  showArrows = true,
-  autoplayMs = 0,
-  radius = 12,
-  sx,
-}: CarouselProps) {
-  const listRef = useRef<HTMLDivElement>(null)
+const twoDigits = (number: number) => String(number).padStart(2, '0')
+
+export default function Carousel({ slides, ratio = 16 / 9, showDots = false, showArrows = true, autoplayMs = 0 }: CarouselProps) {
   const [index, setIndex] = useState(0)
-  const isAuto = autoplayMs && autoplayMs > 0
-
   const count = slides.length
 
-  const goTo = useCallback(
-    (i: number) => {
-      const clamped = Math.max(0, Math.min(i, count - 1))
-      const el = listRef.current
-      if (!el) return
-      const slide = el.children[clamped] as HTMLElement | undefined
-      slide?.scrollIntoView({ inline: 'center', behavior: 'smooth' })
-      setIndex(clamped)
-    },
-    [count],
-  )
-
-  const next = useCallback(() => goTo(index + 1), [goTo, index])
-  const prev = useCallback(() => goTo(index - 1), [goTo, index])
-
-  // Update index on scroll (so dots/arrows reflect position)
   useEffect(() => {
-    const el = listRef.current
-    if (!el) return
+    if (!autoplayMs || count < 2) return
+    const timer = window.setInterval(() => setIndex(current => (current + 1) % count), autoplayMs)
+    return () => window.clearInterval(timer)
+  }, [autoplayMs, count])
 
-    let ticking = false
-    const onScroll = () => {
-      if (ticking) return
-      ticking = true
-      requestAnimationFrame(() => {
-        ticking = false
-        const children = Array.from(el.children) as HTMLElement[]
-        // Find the child closest to the left edge
-        const distances = children.map(c =>
-          Math.abs(
-            c.getBoundingClientRect().left - el.getBoundingClientRect().left,
-          ),
-        )
-        const newIndex = distances.indexOf(Math.min(...distances))
-        if (newIndex !== index) setIndex(newIndex)
-      })
-    }
-
-    el.addEventListener('scroll', onScroll, { passive: true })
-    return () => el.removeEventListener('scroll', onScroll)
-  }, [index])
-
-  // Keyboard nav
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight') next()
-      if (e.key === 'ArrowLeft') prev()
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [next, prev])
-
-  // Autoplay
-  useEffect(() => {
-    if (!isAuto) return
-    const id = setInterval(() => {
-      if (index >= count - 1) {
-        goTo(0)
-      } else {
-        next()
-      }
-    }, autoplayMs)
-    return () => clearInterval(id)
-  }, [isAuto, autoplayMs, index, count, next, goTo])
-
-  const renderSlide = useCallback(
-    (slide: Slide, i: number) => {
-      let content: React.ReactNode
-      if (
-        typeof slide === 'object' &&
-        slide !== null &&
-        'image' in slide &&
-        slide.image
-      ) {
-        // GatsbyImage
-        content = (
-          <GatsbyImage
-            image={slide.image}
-            alt={slide.alt ?? ''}
-            style={{ width: '100%', height: '100%', borderRadius: radius }}
-            imgStyle={{ objectFit: 'cover', borderRadius: radius }}
-          />
-        )
-      } else if (
-        typeof slide === 'object' &&
-        slide !== null &&
-        'src' in slide &&
-        slide.src
-      ) {
-        // Fallback to <img>
-        content = (
-          <img
-            src={slide.src}
-            alt={slide.alt ?? ''}
-            loading="lazy"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              borderRadius: radius,
-            }}
-          />
-        )
-      } else {
-        // Custom node
-        content = slide
-      }
-
-      return (
-        <Box
-          key={i}
-          role="group"
-          aria-roledescription="slide"
-          aria-label={`Slide ${i + 1} of ${count}`}
-          sx={{
-            scrollSnapAlign: 'center',
-            flex: '0 0 100%',
-            px: 0,
-          }}
-        >
-          {ratio === 'auto' ? (
-            <Box sx={{ borderRadius: radius, overflow: 'hidden' }}>
-              {content}
-            </Box>
-          ) : (
-            <AspectRatio
-              ratio={ratio}
-              sx={{ borderRadius: radius, overflow: 'hidden' }}
-            >
-              {content}
-            </AspectRatio>
-          )}
-
-          {'caption' in (slide as any) && (slide as any).caption ? (
-            <Box
-              as="figcaption"
-              sx={{
-                fontSize: 1,
-                color: 'muted',
-                mt: 2,
-                textAlign: 'center',
-              }}
-            >
-              {(slide as any).caption}
-            </Box>
-          ) : null}
-        </Box>
-      )
-    },
-    [count, ratio, radius],
-  )
-
-  const dots = useMemo(
-    () =>
-      Array.from({ length: count }).map((_, i) => (
-        <button
-          key={i}
-          onClick={() => goTo(i)}
-          aria-label={`Go to slide ${i + 1}`}
-          aria-current={i === index ? 'true' : 'false'}
-          sx={{
-            appearance: 'none',
-            border: 0,
-            width: 8,
-            height: 8,
-            borderRadius: 9999,
-            mx: 1,
-            bg: i === index ? 'primary' : 'primaryMuted',
-            cursor: 'pointer',
-          }}
-        />
-      )),
-    [count, goTo, index],
-  )
+  if (!count) return null
+  const slide = slides[index]
+  const imageSlide = isImageSlide(slide) ? slide : undefined
 
   return (
-    <Box sx={{ position: 'relative', ...sx }}>
-      {/* Visually-hidden accessible label for the region */}
-      <Box as="h2" sx={srOnly} id="carousel-label">
-        Carousel
-      </Box>
+    <figure className="my-10" aria-roledescription="carousel" aria-label="Image sequence">
+      <div className="relative overflow-hidden bg-neutral-100" style={ratio === 'auto' ? undefined : { aspectRatio: String(ratio) }}>
+        {imageSlide?.image ? <GatsbyImage image={imageSlide.image} alt={imageSlide.alt ?? ''} className="h-full w-full" imgClassName="object-cover" /> : null}
+        {imageSlide?.src ? <img src={imageSlide.src} alt={imageSlide.alt ?? ''} className="h-full w-full object-cover" /> : null}
+        {!imageSlide ? (slide as React.ReactNode) : null}
+      </div>
 
-      {/* Slides */}
-      <Box
-        ref={listRef}
-        role="region"
-        aria-labelledby="carousel-label"
-        sx={{
-          display: 'flex',
-          overflowX: 'auto',
-          scrollSnapType: 'x mandatory',
-          scrollBehavior: 'smooth',
-          WebkitOverflowScrolling: 'touch',
-          gap: 3,
-          mx: 'auto',
-          px: 0,
-          // hide scrollbar
-          '::-webkit-scrollbar': { display: 'none' } as any,
-          scrollbarWidth: 'none',
-        }}
-      >
-        {slides.map(renderSlide)}
-      </Box>
+      <figcaption className="mt-3 flex items-center justify-between gap-4 font-condensed text-sm text-muted">
+        <span className="max-w-[70%] leading-relaxed">{imageSlide?.caption ?? ''}</span>
+        <span className="shrink-0 tabular-nums">{twoDigits(index + 1)} / {twoDigits(count)}</span>
+      </figcaption>
 
-      {/* Arrows */}
-      {showArrows && count > 1 && (
-        <>
-          <IconButton
-            aria-label="Previous slide"
-            onClick={prev}
-            sx={{
-              position: 'absolute',
-              top: '50%',
-              left: 2,
-              transform: 'translateY(-50%)',
-              bg: 'background',
-              boxShadow: '0 2px 10px rgba(0,0,0,0.15)',
-              borderRadius: 9999,
-              '&:hover': { bg: 'elevated' },
-            }}
-          >
-            ‹
-          </IconButton>
-          <IconButton
-            aria-label="Next slide"
-            onClick={next}
-            sx={{
-              position: 'absolute',
-              top: '50%',
-              right: 2,
-              transform: 'translateY(-50%)',
-              bg: 'background',
-              boxShadow: '0 2px 10px rgba(0,0,0,0.15)',
-              borderRadius: 9999,
-              '&:hover': { bg: 'elevated' },
-            }}
-          >
-            ›
-          </IconButton>
-        </>
+      {count > 1 && (
+        <nav className="mt-3 flex items-center justify-between border-t border-line pt-3" aria-label="Image sequence controls">
+          {showArrows ? (
+            <div className="flex gap-2">
+              <button type="button" onClick={() => setIndex(current => (current - 1 + count) % count)} className="border border-ink px-3 py-1 font-condensed text-sm uppercase tracking-label transition-colors hover:bg-ink hover:text-white" aria-label="Previous image">←</button>
+              <button type="button" onClick={() => setIndex(current => (current + 1) % count)} className="border border-ink px-3 py-1 font-condensed text-sm uppercase tracking-label transition-colors hover:bg-ink hover:text-white" aria-label="Next image">→</button>
+            </div>
+          ) : <span />}
+          {showDots && (
+            <div className="flex gap-1" aria-label="Choose image">
+              {slides.map((_, slideIndex) => <button key={slideIndex} type="button" onClick={() => setIndex(slideIndex)} aria-label={`View image ${slideIndex + 1}`} aria-current={slideIndex === index ? 'true' : undefined} className={`h-1.5 w-5 transition-colors ${slideIndex === index ? 'bg-ink' : 'bg-line hover:bg-muted'}`} />)}
+            </div>
+          )}
+        </nav>
       )}
-
-      {/* Dots */}
-      {showDots && count > 1 && (
-        <Flex
-          as="nav"
-          aria-label="Carousel pagination"
-          sx={{ justifyContent: 'center', mt: 3 }}
-        >
-          {dots}
-        </Flex>
-      )}
-    </Box>
+    </figure>
   )
 }

@@ -1,103 +1,52 @@
-import React from 'react'
+import { useMemo } from 'react'
 
 import { formatTime } from '../../../lib/formatters'
-import RaceResultsList from './RaceResultsList'
-import MaximizedContainer from '../common/MaximizedContainer'
-import ExpandableCard from '../common/ExpandableCard'
+import RaceResultsList, { RaceResult } from './RaceResultsList'
 
-type Props = {
-  data: [
-    {
-      name: string
-      time: string
-      speedMetric: string
-      speed: string
-      timeBehind: string
-      place: string
-      isMe: boolean
-    },
-  ]
-  numbersToHighlight: [number]
-  distance: number
-  racerName: string
-  showSpeed: boolean
-}
-
-type HighlightsType = {
+type SourceResult = {
   name: string
   time: string
-  speedMetric: string
-  speed: string
-  timeBehind?: string
+  place: string
 }
 
-const RaceResults = ({
-  data,
-  numbersToHighlight,
-  distance,
-  racerName,
-  showSpeed = true,
-}: Props) => {
-  const [isModalOpen, openModal] = React.useState(false)
+type Props = {
+  data: SourceResult[]
+  numbersToHighlight?: number[]
+  distance: number
+  racerName: string
+  showSpeed?: boolean
+}
 
-  const firstPlaceTime = data
-    ? data[0].time
-        .split(':')
-        .map(d => Number(d))
-        .reduce((acc, time) => 60 * acc + +time)
-    : 0
+const secondsFromTime = (time: string) => time.split(':').map(Number).reduce((total, part) => total * 60 + part, 0)
 
-  const results = React.useMemo(() => {
-    return data.map(d => {
-      if (d.place === '') return
-
-      const timeSeconds = d.time
-        .split(':')
-        .map(d => Number(d))
-        .reduce((acc, time) => 60 * acc + +time)
-
-      if (timeSeconds > 0) {
-        d.speedMetric = `${(((distance * 1000) / timeSeconds) * 3.6).toFixed(
-          2,
-        )} km/h`
-        d.speed = `${((distance / timeSeconds) * 2236.9362920544).toFixed(2)} mph`
-      } else {
-        d.speed = ''
+const RaceResults = ({ data, distance, racerName, showSpeed = true }: Props) => {
+  const results = useMemo<RaceResult[]>(() => {
+    const firstPlaceTime = data?.[0] ? secondsFromTime(data[0].time) : 0
+    return data.filter(result => result.place !== '').map(result => {
+      const seconds = secondsFromTime(result.time)
+      const hasTime = Number.isFinite(seconds) && seconds > 0
+      return {
+        ...result,
+        speedMetric: hasTime ? `${(((distance * 1000) / seconds) * 3.6).toFixed(2)} km/h` : '',
+        speed: hasTime ? `${((distance / seconds) * 2236.9362920544).toFixed(2)} mph` : '',
+        timeBehind: hasTime ? formatTime(seconds - firstPlaceTime) : '',
+        isMe: result.name === racerName,
       }
-
-      if (!isNaN(timeSeconds) && timeSeconds !== 0) {
-        // console.log(timeSeconds, firstPlaceTime)
-        d.timeBehind = formatTime((timeSeconds - firstPlaceTime).toFixed(2))
-      } else {
-        d.timeBehind = ''
-      }
-      if (d.name === racerName) {
-        d.isMe = true
-      } else {
-        d.isMe = false
-      }
-      return d
     })
-  }, [data])
+  }, [data, distance, racerName])
 
-  const highlights: HighlightsType[] = []
-  numbersToHighlight.forEach(n => highlights.push(results[n]))
+  if (!results.length) return null
 
   return (
-    <>
-      {isModalOpen && (
-        <MaximizedContainer title={'Race Results'} openModal={openModal}>
-          <RaceResultsList data={results} />
-        </MaximizedContainer>
-      )}
-
-      <ExpandableCard
-        title={'Race Results'}
-        openModal={openModal}
-      >
-        <RaceResultsList data={highlights} showSpeed={showSpeed} />
-      </ExpandableCard>
-    </>
+    <details className="my-10 border-y border-line" data-race-notebook>
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-condensed text-sm font-medium uppercase tracking-label text-ink [&::-webkit-details-marker]:hidden">
+        <span>Race results</span>
+        <span className="text-muted"><span className="data-race-closed">View {results.length} results</span><span className="data-race-open">Close</span> <span aria-hidden="true">↓</span></span>
+      </summary>
+      <div className="pb-5">
+        <RaceResultsList data={results} showSpeed={showSpeed} />
+      </div>
+    </details>
   )
 }
 

@@ -1,8 +1,5 @@
-/** @jsxImportSource theme-ui */
 import * as React from 'react'
-import { graphql, Link as GatsbyLink } from 'gatsby'
-import { Box, Container, Card, Flex, Text, Link as TLink } from 'theme-ui'
-import type { PageProps } from 'gatsby'
+import { graphql, Link as GatsbyLink, type PageProps } from 'gatsby'
 import { IGatsbyImageData, getSrc } from 'gatsby-plugin-image'
 
 import Seo from '../components/seo'
@@ -14,322 +11,77 @@ type Node = {
   frontmatter: {
     title: string
     teaser?: string
-    type?: string
-    subType?: string
-    tags?: string[]
     headerImage?: { childImageSharp?: { gatsbyImageData: IGatsbyImageData } }
     featuredOnLinks?: boolean
   }
 }
+type Data = { allMdx: { nodes: Node[] } }
 
-type Data = {
-  allMdx: { nodes: Node[] }
-}
-
-// Helpers: extract YouTube video ID and build a thumbnail URL
-const getYouTubeId = (url: string): string | null => {
+const getYouTubeId = (url: string) => {
   try {
-    const u = new URL(url)
-    const host = u.hostname.replace(/^www\./, '')
-    if (host === 'youtu.be') {
-      return u.pathname.split('/').filter(Boolean)[0] || null
+    const parsed = new URL(url)
+    const host = parsed.hostname.replace(/^www\./, '')
+    if (host === 'youtu.be') return parsed.pathname.split('/').filter(Boolean)[0] ?? null
+    if (host.includes('youtube')) {
+      const parts = parsed.pathname.split('/').filter(Boolean)
+      return parsed.searchParams.get('v') ?? parts[parts.length - 1] ?? null
     }
-    if (
-      host === 'youtube.com' ||
-      host === 'm.youtube.com' ||
-      host === 'youtube-nocookie.com'
-    ) {
-      // Standard watch URL
-      const v = u.searchParams.get('v')
-      if (v) return v
-      // Shorts: /shorts/{id}
-      const parts = u.pathname.split('/').filter(Boolean)
-      if (parts[0] === 'shorts' && parts[1]) return parts[1]
-      // Live or embed formats
-      if (parts[0] === 'live' && parts[1]) return parts[1]
-      if (parts[0] === 'embed' && parts[1]) return parts[1]
-    }
-    // Fallback regex
-    const match = url.match(/[?&]v=([^&#]+)/)
-    return match ? match[1] : null
-  } catch {
-    return null
-  }
+  } catch { /* malformed external URL */ }
+  return null
 }
 
-const getYouTubeThumb = (id: string) =>
-  `https://img.youtube.com/vi/${id}/hqdefault.jpg`
+const Card = ({ children }: { children: React.ReactNode }) => <li className="border-y border-line transition-colors hover:bg-neutral-100">{children}</li>
+const Thumb = ({ src, alt }: { src: string; alt: string }) => <img src={src} alt={alt} className="h-14 w-20 shrink-0 object-cover sm:h-16 sm:w-24" loading="lazy" />
 
 const LinksPage: React.FC<PageProps<Data>> = ({ data }) => {
   const site = useSiteMetadata()
-  const posts = (data.allMdx.nodes || []).filter(
-    n => n.frontmatter?.featuredOnLinks,
-  )
+  const posts = data.allMdx.nodes.filter(node => node.frontmatter.featuredOnLinks)
 
   return (
-    <Box as="main" sx={{ bg: 'background', minHeight: '100vh' }}>
-      <Container sx={{ px: 3, py: 4, maxWidth: 600 }}>
-        {/* Profile / Hero */}
-        <Flex sx={{ flexDirection: 'column', alignItems: 'center', mb: 3 }}>
-          <Box
-            sx={{
-              width: 88,
-              height: 88,
-              borderRadius: '50%',
-              mb: 2,
-              border: t => `2px solid ${t.colors?.muted}`,
-              overflow: 'hidden',
-            }}
-          >
-            {/* eslint-disable-next-line jsx-a11y/alt-text */}
-            <img
-              src="/DSC_0851.jpeg"
-              alt={`${site.title} profile`}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-          </Box>
-          <Text as="h1" sx={{ fontSize: 3, fontWeight: 800, mb: 1 }}>
-            {site.title}
-          </Text>
-          <Text
-            as="p"
-            sx={{ fontSize: 1, color: 'textMuted', textAlign: 'center' }}
-          >
-            Engineer • Endurance Cyclist • Vinyl Selector
-          </Text>
-          <Text
-            as="p"
-            sx={{ fontSize: 1, color: 'textMuted', textAlign: 'center', mt: 2 }}
-          >
-            {' '}
-            Building products, chasing miles, curating grooves
-          </Text>
-        </Flex>
+    <main className="mx-auto max-w-xl py-12 sm:py-16">
+      <header className="border-y border-line py-8 text-center">
+        <img src="/DSC_0851.jpeg" alt={`${site.title} profile`} className="mx-auto h-20 w-20 rounded-full object-cover grayscale" />
+        <h1 className="mt-4 font-serif text-4xl font-medium">{site.title}</h1>
+        <p className="mt-3 font-condensed text-sm uppercase tracking-label text-muted">Artist · Product designer · Creative technologist</p>
+      </header>
 
-        {/* PVR Episodes */}
-        {pvrEpisodes.length > 0 && (
-          <Box sx={{ mt: 3, mb: 3 }}>
-            <Text as="h2" sx={{ fontSize: 2, fontWeight: 700, mb: 2 }}>
-              Public Vinyl Radio
-            </Text>
-            <Flex
-              as="ul"
-              sx={{
-                listStyle: 'none',
-                p: 0,
-                m: 0,
-                flexDirection: 'column',
-                gap: 2,
-              }}
-            >
-              {pvrEpisodes.map(ep => {
-                const id = getYouTubeId(ep.url)
-                const thumb = id ? getYouTubeThumb(id) : null
-                return (
-                  <Card key={ep.url} as="li" sx={{ p: 0, overflow: 'hidden' }}>
-                    <TLink
-                      href={ep.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      sx={{ display: 'block' }}
-                    >
-                      <Flex sx={{ alignItems: 'center', p: 3, gap: 3 }}>
-                        {thumb && (
-                          <Box
-                            sx={{
-                              width: 96,
-                              height: 54,
-                              bg: 'muted',
-                              borderRadius: 8,
-                              overflow: 'hidden',
-                              flex: '0 0 auto',
-                            }}
-                          >
-                            {/* eslint-disable-next-line jsx-a11y/alt-text */}
-                            <img
-                              src={thumb}
-                              alt={`${ep.title} thumbnail`}
-                              style={{
-                                width: '100%',
-                                height: '100%',
-                                objectFit: 'cover',
-                              }}
-                              loading="lazy"
-                            />
-                          </Box>
-                        )}
-                        <Box sx={{ minWidth: 0 }}>
-                          <Text
-                            as="p"
-                            sx={{ fontWeight: 700, mb: 1, fontSize: 2 }}
-                          >
-                            {ep.title}
-                          </Text>
-                          {ep.date && (
-                            <Text
-                              as="p"
-                              sx={{ color: 'textMuted', fontSize: 0 }}
-                            >
-                              {new Date(ep.date).toLocaleDateString()}
-                            </Text>
-                          )}
-                        </Box>
-                      </Flex>
-                    </TLink>
-                  </Card>
-                )
-              })}
-            </Flex>
-          </Box>
-        )}
+      {pvrEpisodes.length > 0 && <section className="mt-10">
+        <h2 className="font-serif text-2xl font-medium">Public Vinyl Radio</h2>
+        <ul className="mt-4 grid gap-3">
+          {pvrEpisodes.map(episode => {
+            const id = getYouTubeId(episode.url)
+            return <Card key={episode.url}><a href={episode.url} target="_blank" rel="noreferrer" className="flex items-center gap-4 px-3 py-3">
+              {id && <Thumb src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`} alt={`${episode.title} thumbnail`} />}
+              <span><strong className="font-serif text-lg font-medium">{episode.title}</strong>{episode.date && <span className="mt-1 block font-condensed text-xs uppercase tracking-label text-muted">{new Date(episode.date).toLocaleDateString()}</span>}</span>
+            </a></Card>
+          })}
+        </ul>
+      </section>}
 
-        {/* Featured posts */}
-        {posts.length > 0 && (
-          <Box sx={{ mt: 3 }}>
-            <Text as="h2" sx={{ fontSize: 2, fontWeight: 700, mb: 2 }}>
-              Featured
-            </Text>
-            <Flex
-              as="ul"
-              sx={{
-                listStyle: 'none',
-                p: 0,
-                m: 0,
-                flexDirection: 'column',
-                gap: 2,
-              }}
-            >
-              {posts.map(n => (
-                <Card
-                  key={n.fields.slug}
-                  as="li"
-                  sx={{ p: 0, overflow: 'hidden' }}
-                >
-                  <GatsbyLink
-                    to={`/${n.fields.slug}`}
-                    style={{ textDecoration: 'none', color: 'inherit' }}
-                  >
-                    <Flex sx={{ alignItems: 'center', p: 3, gap: 3 }}>
-                      <Box
-                        sx={{
-                          width: 64,
-                          height: 64,
-                          bg: 'muted',
-                          borderRadius: 8,
-                          overflow: 'hidden',
-                          flex: '0 0 auto',
-                        }}
-                      >
-                        {/* simple thumb via plain <img> using gatsby output src if present */}
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        {(() => {
-                          const g =
-                            n.frontmatter.headerImage?.childImageSharp
-                              ?.gatsbyImageData
-                          const src = g ? getSrc(g as any) : undefined
-                          const thumb = src || '/DSC_0851.jpeg'
-                          return (
-                            <img
-                              src={thumb}
-                              alt={n.frontmatter.title}
-                              style={{
-                                width: '100%',
-                                height: '100%',
-                                objectFit: 'cover',
-                              }}
-                              loading="lazy"
-                            />
-                          )
-                        })()}
-                      </Box>
-                      <Box sx={{ minWidth: 0 }}>
-                        <Text
-                          as="p"
-                          sx={{ fontWeight: 700, mb: 1, fontSize: 2 }}
-                        >
-                          {n.frontmatter.title}
-                        </Text>
-                        {n.frontmatter.teaser && (
-                          <Text
-                            as="p"
-                            sx={{
-                              color: 'textMuted',
-                              fontSize: 1,
-                              whiteSpace: 'nowrap',
-                              overflow: 'hidden',
-                              textOverflow: 'ellipsis',
-                            }}
-                          >
-                            {n.frontmatter.teaser}
-                          </Text>
-                        )}
-                      </Box>
-                    </Flex>
-                  </GatsbyLink>
-                </Card>
-              ))}
-            </Flex>
-          </Box>
-        )}
+      {posts.length > 0 && <section className="mt-10">
+        <h2 className="font-serif text-2xl font-medium">Selected notes</h2>
+        <ul className="mt-4 grid gap-3">
+          {posts.map(post => {
+            const image = post.frontmatter.headerImage?.childImageSharp?.gatsbyImageData
+            return <Card key={post.fields.slug}><GatsbyLink to={`/${post.fields.slug}`} className="flex items-center gap-4 px-3 py-3">
+              <Thumb src={image ? getSrc(image) ?? '/DSC_0851.jpeg' : '/DSC_0851.jpeg'} alt={post.frontmatter.title} />
+              <span className="min-w-0"><strong className="font-serif text-lg font-medium">{post.frontmatter.title}</strong>{post.frontmatter.teaser && <span className="mt-1 block truncate font-serif text-sm text-muted">{post.frontmatter.teaser}</span>}</span>
+            </GatsbyLink></Card>
+          })}
+        </ul>
+      </section>}
 
-        {/* Primary actions */}
-        <Flex sx={{ flexDirection: 'column', gap: 2, mb: 3, mt: 3 }}>
-          <TLink
-            href="/about"
-            sx={{ variant: 'buttons.secondary', textAlign: 'center' }}
-          >
-            About
-          </TLink>
-          <TLink
-            href="/blog"
-            sx={{ variant: 'buttons.primary', textAlign: 'center' }}
-          >
-            Latest Posts
-          </TLink>
-        </Flex>
-
-        {/* Social grid */}
-        <Flex
-          sx={{ gap: 2, mt: 4, flexWrap: 'wrap', justifyContent: 'center' }}
-        >
-          <TLink
-            href={`https://linkedin.com/in/${site.social?.linkedin ?? 'saegey'}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </TLink>
-          <TLink
-            href={`https://github.com/${site.social?.github ?? 'saegey'}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </TLink>
-          <TLink
-            href={`https://instagram.com/${site.social?.instagram ?? 'saegey'}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Instagram
-          </TLink>
-          <TLink
-            href={`https://strava.com/athletes/${site.social?.strava ?? 'saegey'}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Strava
-          </TLink>
-          <TLink
-            href="https://youtube.com/@publicvinylradio"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            YouTube
-          </TLink>
-        </Flex>
-      </Container>
-    </Box>
+      <nav className="mt-10 grid gap-2 sm:grid-cols-2">
+        <GatsbyLink to="/about" className="border border-line px-4 py-3 text-center font-condensed text-sm font-semibold uppercase tracking-label hover:border-ink">About</GatsbyLink>
+        <GatsbyLink to="/work" className="bg-ink px-4 py-3 text-center font-condensed text-sm font-semibold uppercase tracking-label text-white hover:bg-neutral-800">Work</GatsbyLink>
+      </nav>
+      <nav className="mt-8 flex flex-wrap justify-center gap-x-5 gap-y-2 font-condensed text-sm uppercase tracking-label text-muted">
+        <a href={`https://linkedin.com/in/${site.social?.linkedin ?? 'saegey'}`} target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href={`https://github.com/${site.social?.github ?? 'saegey'}`} target="_blank" rel="noreferrer">GitHub</a>
+        <a href={`https://instagram.com/${site.social?.instagram ?? 'saegey'}`} target="_blank" rel="noreferrer">Instagram</a>
+        <a href="https://youtube.com/@publicvinylradio" target="_blank" rel="noreferrer">YouTube</a>
+      </nav>
+    </main>
   )
 }
 
@@ -337,66 +89,15 @@ export default LinksPage
 
 export const Head: React.FC<PageProps<Data>> = ({ data }) => {
   const site = useSiteMetadata()
-  const title = 'Links'
-  const description =
-    'Quick links: contact, featured posts, and Public Vinyl Radio episodes.'
-  const pathname = '/links'
-
-  const items = (data.allMdx.nodes || []).filter(
-    n => n.frontmatter?.featuredOnLinks,
-  )
-  const itemList = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    itemListElement: items.map((n, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      url: `${site.siteUrl}/${n.fields.slug}`,
-      name: n.frontmatter.title,
-    })),
-  }
-
-  return (
-    <>
-      <Seo title={title} description={description} pathname={pathname} />
-      <link
-        rel="alternate"
-        type="application/rss+xml"
-        title={`${site.title} RSS`}
-        href={`${site.siteUrl}/rss.xml`}
-      />
-      <script type="application/ld+json">{JSON.stringify(itemList)}</script>
-    </>
-  )
+  const items = data.allMdx.nodes.filter(node => node.frontmatter.featuredOnLinks)
+  const itemList = { '@context': 'https://schema.org', '@type': 'ItemList', itemListElement: items.map((node, index) => ({ '@type': 'ListItem', position: index + 1, url: `${site.siteUrl}/${node.fields.slug}`, name: node.frontmatter.title })) }
+  return <><Seo title="Links" description="Quick links, selected work, and Public Vinyl Radio episodes." pathname="/links" /><script type="application/ld+json">{JSON.stringify(itemList)}</script></>
 }
 
 export const pageQuery = graphql`
   query LinksPageQuery {
-    allMdx(
-      sort: { frontmatter: { publishedDate: DESC } }
-      filter: { frontmatter: { isActive: { ne: false } } }
-      limit: 12
-    ) {
-      nodes {
-        fields {
-          slug
-        }
-        frontmatter {
-          title
-          teaser
-          featuredOnLinks
-          headerImage {
-            childImageSharp {
-              gatsbyImageData(
-                placeholder: BLURRED
-                width: 256
-                height: 256
-                layout: CONSTRAINED
-              )
-            }
-          }
-        }
-      }
+    allMdx(sort: { frontmatter: { publishedDate: DESC } }, filter: { frontmatter: { isActive: { ne: false } } }, limit: 12) {
+      nodes { fields { slug } frontmatter { title teaser featuredOnLinks headerImage { childImageSharp { gatsbyImageData(placeholder: BLURRED, width: 256, height: 256, layout: CONSTRAINED) } } } }
     }
   }
 `

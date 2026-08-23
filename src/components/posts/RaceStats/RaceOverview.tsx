@@ -1,5 +1,4 @@
 import { useMemo } from 'react'
-import { Box } from 'theme-ui'
 
 import { useUnits } from '../../../context/UnitProvider'
 import { formatHMS, toFeet, toMiles } from '../../../lib/util'
@@ -185,9 +184,15 @@ const RaceOverview: React.FC<Props> = ({ data, selectedFields = [] }) => {
     : items
 
   return (
-    <Box variant="boxes.figure">
-      <RaceStats items={filteredItems} />
-    </Box>
+    <details className="my-10 border-y border-line" data-race-notebook>
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-condensed text-sm font-medium uppercase tracking-label text-ink [&::-webkit-details-marker]:hidden">
+        <span>Race notebook</span>
+        <span className="text-muted"><span className="data-race-closed">View data</span><span className="data-race-open">Close</span> <span aria-hidden="true">↓</span></span>
+      </summary>
+      <div className="pb-6">
+        <RaceStats items={filteredItems} />
+      </div>
+    </details>
   )
 }
 

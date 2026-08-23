@@ -1,424 +1,116 @@
-/** @jsxImportSource theme-ui */
 import * as React from 'react'
-import { Link as GatsbyLink, graphql, useStaticQuery } from 'gatsby'
-import {
-  Box,
-  Grid,
-  Flex,
-  Card,
-  Heading,
-  Text,
-  Link as TLink,
-  Container,
-} from 'theme-ui'
+import { Link } from 'gatsby'
+
 import Seo from '../components/seo'
-import { useSiteMetadata } from '../hooks/use-site-metadata'
 
-const Section: React.FC<
-  React.PropsWithChildren<{ id?: string; heading: string; kicker?: string }>
-> = ({ id, heading, kicker, children }) => (
-  <Box
-    as="section"
-    id={id}
-    sx={{
-      py: [3, 4],
-    }}
-  >
-    <Text
-      as="p"
-      sx={{
-        textTransform: 'uppercase',
-        letterSpacing: '0.08em',
-        fontSize: 0,
-        color: 'primary',
-        mb: 2,
-        fontFamily: 'body',
-      }}
-    >
-      {kicker}
-    </Text>
-    <Heading as="h2" sx={{ fontSize: [4, 5], mb: 3, fontFamily: 'body' }}>
-      {heading}
-    </Heading>
-    <Box sx={{ lineHeight: 1.3 }}>{children}</Box>
-  </Box>
+const practices = [
+  {
+    number: '01',
+    title: 'Visual art',
+    text: 'Printmaking, photography, digital design, sewing, embroidery, video, and visual experiments that move between the tactile and the screen.',
+  },
+  {
+    number: '02',
+    title: 'Objects & product',
+    text: 'Speakers, 3D-printed pieces, electronics, clothing, and other functional objects made through research, iteration, and material play.',
+  },
+  {
+    number: '03',
+    title: 'Code & systems',
+    text: 'Digital tools and product experiences built with the same attention to utility, form, and the people who will use them.',
+  },
+]
+
+const AboutPage: React.FC = () => (
+  <>
+    <header className="grid gap-10 border-b border-line pb-12 sm:pb-16 lg:grid-cols-12 lg:items-end">
+      <div className="lg:col-span-8">
+        <p className="eyebrow text-ink">About</p>
+        <h1 className="mt-3 font-serif text-5xl leading-[0.95] tracking-[-0.045em] sm:text-7xl">
+          Artist, product designer, and creative technologist.
+        </h1>
+      </div>
+      <p className="max-w-sm border-l-2 border-ink pl-5 text-xl leading-relaxed text-muted lg:col-span-4">
+        Based in Seattle, I make visual work, objects, and digital experiences—often where those practices overlap.
+      </p>
+    </header>
+
+    <section className="grid gap-10 py-12 sm:py-16 lg:grid-cols-12">
+      <div className="lg:col-span-4">
+        <p className="eyebrow text-ink">Practice</p>
+      </div>
+      <div className="max-w-3xl lg:col-span-8">
+        <p className="font-serif text-3xl leading-tight tracking-[-0.025em] sm:text-4xl">
+          I’m interested in work that has a point of view and a real place in the world: an image, a garment, a speaker, a printed object, a piece of software, or a room full of music.
+        </p>
+        <p className="mt-6 text-xl leading-relaxed text-muted">
+          My process moves easily between handwork, physical prototyping, visual systems, and engineering. The medium changes; the impulse stays the same: make something considered, useful, and alive.
+        </p>
+      </div>
+    </section>
+
+    <section className="border-t border-line py-12 sm:py-16">
+      <p className="eyebrow mb-8 text-ink">Areas of focus</p>
+      <div className="grid border-t border-line md:grid-cols-3">
+        {practices.map(practice => (
+          <article key={practice.number} className="border-b border-line py-7 md:border-b-0 md:border-r md:px-7 md:first:pl-0 md:last:border-r-0 md:last:pr-0">
+            <p className="font-condensed text-sm font-medium tracking-label text-muted">{practice.number}</p>
+            <h2 className="mt-8 font-serif text-3xl tracking-[-0.025em]">{practice.title}</h2>
+            <p className="mt-3 text-lg leading-relaxed text-muted">{practice.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section className="grid gap-10 border-t border-line py-12 sm:py-16 lg:grid-cols-12">
+      <div className="lg:col-span-4">
+        <p className="eyebrow text-ink">Public Vinyl Radio</p>
+      </div>
+      <div className="max-w-3xl lg:col-span-8">
+        <h2 className="font-serif text-4xl leading-tight tracking-[-0.03em] sm:text-5xl">Music as research, curation, and shared space.</h2>
+        <p className="mt-5 text-xl leading-relaxed text-muted">
+          Through Public Vinyl Radio, I curate and document 100% vinyl sets spanning global sounds, Latin jazz, soul, cumbia, Afrobeat, and beyond. It is a continuing practice in listening, sequencing, and building connection through music.
+        </p>
+        <a href="https://publicvinylradio.com" target="_blank" rel="noreferrer" className="editorial-link mt-6 inline-block font-condensed text-sm font-medium uppercase tracking-label">
+          Visit Public Vinyl Radio ↗
+        </a>
+      </div>
+    </section>
+
+    <section className="grid gap-10 border-t border-line py-12 sm:py-16 lg:grid-cols-12">
+      <div className="lg:col-span-4">
+        <p className="eyebrow text-ink">An earlier chapter</p>
+      </div>
+      <div className="max-w-3xl lg:col-span-8">
+        <h2 className="font-serif text-4xl leading-tight tracking-[-0.03em] sm:text-5xl">The long way through.</h2>
+        <p className="mt-5 text-xl leading-relaxed text-muted">
+          Competitive mountain-bike and gravel racing once shaped a major part of my life. These days I ride more casually, but that period of endurance training, racing, and close attention to data remains part of the story—and a practice I may return to.
+        </p>
+        <Link to="/races" className="editorial-link mt-6 inline-block font-condensed text-sm font-medium uppercase tracking-label">
+          Explore the race archive
+        </Link>
+      </div>
+    </section>
+
+    <section className="border-t border-line py-12 sm:py-16">
+      <p className="eyebrow text-ink">Collaboration</p>
+      <h2 className="mt-3 max-w-4xl font-serif text-4xl leading-tight tracking-[-0.03em] sm:text-6xl">
+        Interested in bringing distinct practices together.
+      </h2>
+      <p className="mt-6 max-w-2xl text-xl leading-relaxed text-muted">
+        I’m not seeking a new role. I am open to thoughtful collaborations, creative partnerships, and projects where combining disciplines can produce something neither side would make alone.
+      </p>
+      <Link to="/contact" className="editorial-link mt-6 inline-block font-condensed text-sm font-medium uppercase tracking-label">
+        Start a conversation
+      </Link>
+    </section>
+  </>
 )
-
-const Stat: React.FC<{ label: string; value: string }> = ({ label, value }) => (
-  <Card>
-    <Text
-      sx={{
-        fontSize: 0,
-        color: 'textMuted',
-        textTransform: 'uppercase',
-        letterSpacing: '0.06em',
-        fontFamily: 'body',
-      }}
-    >
-      {label}
-    </Text>
-    <Heading as="p" sx={{ mt: 2, fontSize: [3, 4], fontFamily: 'body' }}>
-      {value}
-    </Heading>
-  </Card>
-)
-
-const SocialLink: React.FC<{ href: string; label: string }> = ({
-  href,
-  label,
-}) => (
-  <TLink
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    sx={{ display: 'inline-block', mr: 3, mb: 2 }}
-  >
-    {label} ↗
-  </TLink>
-)
-
-// Wrapper to apply Theme UI variants to GatsbyLink without TS friction
-export const LinkButton: React.FC<any> = props => <TLink {...props} />
-
-const AboutPage: React.FC = () => {
-  const data = useStaticQuery(graphql`
-    query AboutPageQuery {
-      site {
-        siteMetadata {
-          about {
-            kicker
-            headline
-            intro
-            stats {
-              label
-              value
-            }
-          }
-          social {
-            instagram
-            twitter
-            github
-            strava
-            linkedin
-          }
-        }
-      }
-    }
-  `)
-
-  const meta = data.site.siteMetadata
-  const about = meta.about
-  const social = meta.social
-
-  return (
-    <Container sx={{ paddingTop: '0' }}>
-      <Box sx={{ marginTop: [3], marginBottom: [5] }}>
-        {/* Hero */}
-        <Box as="header" sx={{ mb: [4, 5], marginTop: [3, 5, 5] }}>
-          <Text
-            as="p"
-            sx={{
-              textTransform: 'uppercase',
-              color: 'primary',
-              letterSpacing: '0.08em',
-              fontSize: 0,
-              mb: 2,
-            }}
-          >
-            {about?.kicker}
-          </Text>
-          <Heading
-            as="h1"
-            sx={{ fontSize: [5, 6], lineHeight: 1.1, fontFamily: 'body' }}
-          >
-            {about?.headline}
-          </Heading>
-          <Text
-            as="p"
-            sx={{ mt: 3, fontSize: [2, 3], color: 'text', lineHeight: 1.3 }}
-          >
-            {about?.intro}
-          </Text>
-
-          <Grid gap={3} columns={[1, 3]} sx={{ mt: 4 }}>
-            {about?.stats?.map((s: { label: string; value: string }) => (
-              <Stat key={s.label} label={s.label} value={s.value} />
-            ))}
-          </Grid>
-        </Box>
-
-        {/* Engineering */}
-        <Section
-          id="engineering"
-          heading="Engineering Mastery"
-          kicker="Software"
-        >
-          <Text as="p" sx={{ mb: 3 }}>
-            I’m a full‑stack engineer comfortable across web, mobile, backend
-            systems, and infrastructure. Recently I led development on a
-            consumer parenting app using <strong>Expo/React Native</strong>, a{' '}
-            <strong>Rails 7 API on Heroku</strong>, and integrations with{' '}
-            <strong>Stream Chat</strong>, <strong>SendGrid</strong>, and{' '}
-            <strong>Twilio</strong>. I thrive on turning ambiguous problems into
-            shipped products: performance tuning, clean APIs, DX‑friendly
-            tooling, and UI that respects real users.
-          </Text>
-          <Grid gap={3} columns={[1, 2, 3]}>
-            <Card
-              sx={{ padding: 3, borderRadius: 10 }}
-            >
-              <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
-                Full‑stack Delivery
-              </Heading>
-              <Text>
-                React/Next.js, Expo/React Native, Rails/Node, Postgres, CI/CD.
-              </Text>
-            </Card>
-            <Card
-              sx={{ padding: 3, borderRadius: 10 }}
-            >
-              <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
-                Data & Infra
-              </Heading>
-              <Text>
-                ETL pipelines, analytics, search, caching, containerized
-                deploys.
-              </Text>
-            </Card>
-            <Card
-              sx={{ padding: 3, borderRadius: 10 }}
-            >
-              <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
-                Product Mindset
-              </Heading>
-              <Text>
-                Rapid iteration, thoughtful UX, and teamwork over lone‑wolf
-                heroics.
-              </Text>
-            </Card>
-          </Grid>
-        </Section>
-
-        {/* Endurance */}
-        <Section
-          id="endurance"
-          heading="Endurance Athlete & Data Storyteller"
-          kicker="Sport"
-        >
-          <Text as="p" sx={{ mb: 3 }}>
-            I took a sabbatical during the pandemic to train like a pro off‑road
-            cyclist—diving into <strong>coaching theory</strong>,{' '}
-            <strong>nutrition</strong>, and{' '}
-            <strong>performance analytics</strong>. I bring that same endurance
-            mindset to engineering: consistent volume, deliberate practice, and
-            testing what the data actually says. I also serve as a{' '}
-            <strong>Ride Leader with Rapha Cycling Club Seattle</strong>,
-            helping riders grow skills and community.
-          </Text>
-          <Grid gap={3} columns={[1, 2]}>
-            <Card
-              sx={{ p: 3, borderRadius: 10 }}
-            >
-              <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
-                Training Meets Data
-              </Heading>
-              <Text>
-                Structured plans, telemetry, charts, and narrative race reports.
-              </Text>
-            </Card>
-            <Card
-              sx={{ p: 3, borderRadius: 10 }}
-            >
-              <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
-                Community
-              </Heading>
-              <Text>
-                Three years leading RCC Seattle rides—welcoming, safe, and fun.
-              </Text>
-            </Card>
-          </Grid>
-        </Section>
-
-        {/* Music */}
-        <Section
-          id="music"
-          heading="Public Vinyl Radio & Creative Tech"
-          kicker="Music"
-        >
-          <Text as="p" sx={{ mb: 3 }}>
-            I founded <strong>Public Vinyl Radio</strong>, a YouTube channel
-            dedicated to <strong>100% vinyl DJ sets</strong>—cumbia, Afrobeat,
-            Latin jazz, soul, and beyond. I produce and edit high‑quality
-            audio/video and build tools that connect crates to code, like a{' '}
-            <strong>vinyl playlist optimizer</strong> that uses Discogs,
-            Spotify, Apple Music APIs and audio analysis to sequence sets
-            intelligently.
-          </Text>
-          <Grid gap={3} columns={[1, 2, 3]}>
-            <Card
-              sx={{ padding: 3, borderRadius: 10 }}
-            >
-              <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
-                Curation
-              </Heading>
-              <Text>
-                Global sounds, storytelling intros, and dance‑floor flow.
-              </Text>
-            </Card>
-            <Card
-              sx={{ padding: 3, borderRadius: 10 }}
-            >
-              <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
-                Production
-              </Heading>
-              <Text>
-                Multi‑cam edits, clean audio capture, and tasteful grading.
-              </Text>
-            </Card>
-            <Card
-              sx={{ padding: 3, borderRadius: 10 }}
-            >
-              <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
-                Tooling
-              </Heading>
-              <Text>
-                Semantic search, audio features, and smart ordering algorithms.
-              </Text>
-            </Card>
-          </Grid>
-        </Section>
-
-        {/* Values */}
-        <Section id="values" heading="What Drives Me" kicker="Principles">
-          <Text as="p" sx={{ mb: 3 }}>
-            Across code, sport, and music, I’m guided by curiosity,
-            collaboration, and craft. I’m happiest where{' '}
-            <strong>engineering meets creativity</strong> and where{' '}
-            <strong>community impact</strong> matters.
-          </Text>
-          <Grid gap={3} columns={[1, 3]}>
-            <Card
-              sx={{ padding: 3, borderRadius: 10 }}
-            >
-              <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
-                Engineering Mastery
-              </Heading>
-              <Text>
-                Ship reliable systems with clear code and measurable outcomes.
-              </Text>
-            </Card>
-            <Card
-              sx={{ padding: 3, borderRadius: 10 }}
-            >
-              <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
-                Endurance Mindset
-              </Heading>
-              <Text>Consistency, resilience, and honest feedback loops.</Text>
-            </Card>
-            <Card
-              sx={{ padding: 3, borderRadius: 10 }}
-            >
-              <Heading as="h3" sx={{ fontSize: 2, mb: 2, fontFamily: 'body' }}>
-                Creative Fusion
-              </Heading>
-              <Text>
-                Blend analysis with taste to make useful, human‑centered work.
-              </Text>
-            </Card>
-          </Grid>
-        </Section>
-
-        {/* CTA */}
-        <Section id="connect" heading="Let's Connect" kicker="Collaboration">
-          <Text as="p" sx={{ mb: 3 }}>
-            Open to collaboration, advisory, and roles that value hands‑on
-            engineering with creative range. If something here resonates, reach
-            out—I'd love to talk.
-          </Text>
-          <Flex sx={{ alignItems: 'center', flexWrap: 'wrap', gap: 3, mb: 3 }}>
-            <TLink
-              href={`https://linkedin.com/in/${social?.linkedin ?? 'saegey'}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{ variant: 'buttons.primary', textDecoration: 'none' }}
-            >
-              Connect on LinkedIn
-            </TLink>
-            <LinkButton
-              as={GatsbyLink}
-              to="/contact"
-              sx={{ variant: 'buttons.secondary', textDecoration: 'none' }}
-            >
-              Send a message
-            </LinkButton>
-          </Flex>
-          <Box sx={{ mt: 2 }}>
-            <SocialLink
-              href={`https://github.com/${social?.github}`}
-              label={`GitHub @${social?.github}`}
-            />
-            <SocialLink
-              href={`https://instagram.com/${social?.instagram}`}
-              label={`Instagram @${social?.instagram}`}
-            />
-            <SocialLink
-              href={`https://strava.com/athletes/${social?.strava}`}
-              label={`Strava @${social?.strava}`}
-            />
-            <SocialLink
-              href="https://youtube.com/@publicvinylradio"
-              label="YouTube: Public Vinyl Radio"
-            />
-          </Box>
-        </Section>
-      </Box>
-    </Container>
-  )
-}
 
 export default AboutPage
 
-// SEO: About page with canonical, description, and JSON-LD
 export const Head = () => {
-  const site = useSiteMetadata()
-  const title = 'About'
-  const description =
-    'Senior software engineer, endurance athlete, and vinyl DJ. Engineering mastery, endurance mindset, and creative technical fusion.'
-  const pathname = '/about'
+  const description = 'Artist, product designer, and creative technologist based in Seattle. Visual art, objects, digital experiences, and Public Vinyl Radio.'
 
-  const aboutPageJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'AboutPage',
-    name: `${site.title} — About`,
-    url: `${site.siteUrl}${pathname}`,
-    description,
-  }
-
-  const breadcrumbs = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: site.siteUrl },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'About',
-        item: `${site.siteUrl}${pathname}`,
-      },
-    ],
-  }
-
-  return (
-    <>
-      <Seo title={title} description={description} pathname={pathname} />
-      <link
-        rel="alternate"
-        type="application/rss+xml"
-        title={`${site.title} RSS`}
-        href={`${site.siteUrl}/rss.xml`}
-      />
-      <script type="application/ld+json">{JSON.stringify(aboutPageJsonLd)}</script>
-      <script type="application/ld+json">{JSON.stringify(breadcrumbs)}</script>
-    </>
-  )
+  return <Seo title="About" description={description} pathname="/about" />
 }

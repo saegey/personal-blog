@@ -1,5 +1,3 @@
-import { Box } from 'theme-ui'
-
 import FullScreenIcon from '../../icons/FullScreenIcon'
 
 interface MaxProps {
@@ -8,26 +6,15 @@ interface MaxProps {
 
 const Maximize = ({ onClick }: MaxProps) => {
   return (
-    <Box
-      as="button"
+    <button
       aria-label="Maximize"
       title="Maximize"
       data-testid={'matches-burned-fullscreen'}
-      sx={{
-        variant: 'buttons.ghost',
-        width: '24px',
-        height: '24px',
-        p: 0,
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 'button',
-        color: 'text',
-      }}
+      className="inline-flex h-8 w-8 items-center justify-center border border-line text-ink transition-colors hover:border-ink"
       onClick={() => onClick(true)}
     >
       <FullScreenIcon />
-    </Box>
+    </button>
   )
 }
 

@@ -4,11 +4,9 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  CartesianGrid,
   ResponsiveContainer,
   Label,
 } from 'recharts'
-import { Box, useThemeUI } from 'theme-ui'
 import React from 'react'
 
 import { useViewport } from './ViewportProvider'
@@ -50,9 +48,8 @@ const ElevationGraph = ({
   axisXTickValues,
   yMin,
 }: NewLineGraphProps) => {
-  const themeContext = useThemeUI()
   const units = useUnits()
-  const chartTheme = buildChartTheme(themeContext.theme)
+  const chartTheme = buildChartTheme()
   const yTicks =
     units.unitOfMeasure === 'imperial'
       ? axisLeftTickValues.imperial[0]
@@ -67,19 +64,7 @@ const ElevationGraph = ({
   const hideAxes = width <= 640
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        height: ['100px', '200px', '250px'],
-        borderColor: 'primaryMuted',
-        borderStyle: 'solid',
-        borderWidth: '1px',
-        paddingY: [0, '20px', '20px'],
-        paddingRight: [0, '20px', '20px'],
-        borderBottomRightRadius: 'lg',
-        borderBottomLeftRadius: 'lg',
-      }}
-    >
+    <div className="h-48 w-full border-x border-b border-line px-0 pt-4 sm:h-72 sm:px-4 sm:pt-5">
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           data={downSampledData}
@@ -150,13 +135,13 @@ const ElevationGraph = ({
             dataKey="y"
             stroke={chartTheme.series.line}
             strokeWidth={hideAxes ? 2 : 2}
-            fill={themeContext.theme.colors?.primaryMuted as string}
-            fillOpacity={0.1}
+            fill="#141414"
+            fillOpacity={0.08}
             dot={false}
           />
         </AreaChart>
       </ResponsiveContainer>
-    </Box>
+    </div>
   )
 }
 

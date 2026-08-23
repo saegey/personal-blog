@@ -1,59 +1,23 @@
-import { Box, Flex, Heading, Text, Button, Link as GatsbyLink } from 'theme-ui'
+import { Link } from 'gatsby'
 
 const Hero: React.FC = () => (
-  <Box
-    // as="section"
-    sx={{
-      paddingTop: [3],
-      paddingBottom: [4, 5, 6],
-      bg: 'background',
-    }}
-  >
-    <Box>
-      <Heading
-        as="h1"
-        sx={{ fontSize: [5, 6], lineHeight: 1.1, mb: 3 }}
-        variant="headline"
-      >
-        Software engineer, product designer, vinyl selector, and endurance
-        athlete.
-      </Heading>
-      <Text
-        as="p"
-        sx={{
-          fontSize: [2, 3],
-          color: 'text',
-          maxWidth: 800,
-          mb: 4,
-          lineHeight: [1.5, 1.6],
-        }}
-      >
-        I’m Adam Saegebarth—Seattle‑based builder who ships end‑to‑end products,
-        curates 100%‑vinyl global mixes, and turns training data into stories.
-        Recent work spans mobile app development using Expo/React Native, a
-        vinyl playlist optimizer using embeddings and genetic algorithms, and
-        data‑driven race analysis.
-      </Text>
-      <Flex sx={{ gap: 3, flexWrap: 'wrap' }}>
-        <Button
-          as={GatsbyLink}
-          href="/contact"
-          sx={{ fontWeight: 700 }}
-          variant="primary"
-        >
-          Hire me
-        </Button>
-        <Button
-          as={GatsbyLink}
-          href="https://publicvinylradio.com"
-          variant="secondary"
-          target="_blank"
-        >
-          Listen to Public Vinyl Radio
-        </Button>
-      </Flex>
-    </Box>
-  </Box>
+  <section className="grid gap-10 border-b border-line pb-12 pt-2 sm:pb-16 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
+    <div>
+      <p className="eyebrow mb-5 text-brand">Artist · engineer · selector</p>
+      <h1 className="max-w-4xl font-serif text-5xl leading-[0.95] tracking-[-0.035em] sm:text-6xl lg:text-8xl">
+        Sound, images, and things in motion.
+      </h1>
+    </div>
+    <div className="border-l-2 border-brand pl-5">
+      <p className="text-lg leading-relaxed text-ink sm:text-xl">
+        Adam Saegebarth is a Seattle-based creative technologist making things
+        at the intersection of code, culture, and community.
+      </p>
+      <Link to="/about" className="editorial-link mt-5 inline-block font-condensed text-sm font-medium uppercase tracking-label">
+        More about Adam
+      </Link>
+    </div>
+  </section>
 )
 
 export default Hero

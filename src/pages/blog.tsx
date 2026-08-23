@@ -1,6 +1,5 @@
 import type { PageProps } from 'gatsby'
 import { graphql } from 'gatsby'
-import { Container, Box, Flex } from 'theme-ui'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 
 import Seo from '../components/seo'
@@ -11,31 +10,21 @@ const PostList: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data.allMdx.nodes
 
   return (
-    <Container sx={{ paddingTop: '0' }}>
-      <Box sx={{ marginBottom: [5] }}>
-        <Flex sx={{ gap: 3, flexDirection: 'column' }}>
-          {posts.map((post, idx: number) => {
+    <>
+      <header className="max-w-3xl border-b border-line pb-10 sm:pb-14">
+        <p className="eyebrow text-brand">Project archive</p>
+        <h1 className="mt-3 font-serif text-5xl leading-none tracking-[-0.04em] sm:text-7xl">Earlier experiments and digital work.</h1>
+      </header>
+      <section className="py-10 sm:py-16">
+        {posts.map((post, idx: number) => {
             const { title, teaser, subType, publishedDate, headerImage } =
               post.frontmatter
             return (
-              <>
-                <FeaturedPost
-                  key={idx}
-                  headerImage={headerImage}
-                  title={title}
-                  slug={`/${post.fields.slug}`}
-                  teaser={teaser}
-                  subType={subType ?? ''}
-                  updatedAt={
-                    publishedDate ? new Date(publishedDate) : new Date(0)
-                  }
-                />
-              </>
+              <FeaturedPost key={idx} headerImage={headerImage} title={title} slug={`/${post.fields.slug}`} teaser={teaser} subType={subType ?? ''} updatedAt={publishedDate ? new Date(publishedDate) : new Date(0)} />
             )
           })}
-        </Flex>
-      </Box>
-    </Container>
+      </section>
+    </>
   )
 }
 
