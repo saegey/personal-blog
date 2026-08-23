@@ -1,19 +1,8 @@
 import { memo, useMemo } from 'react'
-import { Box, Grid, Text, type ThemeUIStyleObject } from 'theme-ui'
 
 import { DataPoint } from './ElevationGraph'
 import { useUnits } from '../../context/UnitProvider'
 import { gradeToColor, formatTime } from '../../lib/formatters'
-
-const gridSx: ThemeUIStyleObject = {
-  padding: '10px',
-  borderLeftColor: 'primaryMuted',
-  borderLeftStyle: 'solid',
-  borderLeftWidth: '1px',
-  borderRightColor: 'primaryMuted',
-  borderRightStyle: 'solid',
-  borderRightWidth: '1px',
-}
 
 type Props = { marker: DataPoint | undefined }
 
@@ -61,18 +50,14 @@ const ElevationSlice = ({ marker }: Props): JSX.Element => {
   ])
 
   return (
-    <Grid gap={2} columns={[2, 4, 4]} sx={gridSx}>
+    <div className="grid grid-cols-2 border-x border-line sm:grid-cols-4">
       {items.map(({ key, label, value, color }) => (
-        <Box key={key}>
-          <Text as="p" variant="text.statsLabel">
-            {label}
-          </Text>
-          <Text variant="text.statsValue" sx={{ ...(color ? { color } : {}) }}>
-            {value}
-          </Text>
-        </Box>
+        <div key={key} className="border-b border-r border-line px-4 py-3 last:border-r-0 sm:border-b-0">
+          <p className="font-condensed text-xs font-semibold uppercase tracking-label text-muted">{label}</p>
+          <p className="mt-1 font-serif text-xl" style={color ? { color } : undefined}>{value}</p>
+        </div>
       ))}
-    </Grid>
+    </div>
   )
 }
 

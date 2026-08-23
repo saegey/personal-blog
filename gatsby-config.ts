@@ -46,9 +46,6 @@ module.exports = {
     },
     `gatsby-plugin-sitemap`,
     {
-      resolve: 'gatsby-plugin-theme-ui',
-    },
-    {
       resolve: `gatsby-plugin-mdx`,
       options: {
         gatsbyRemarkPlugins: [
@@ -92,6 +89,13 @@ module.exports = {
       options: {
         name: `stats`,
         path: `${__dirname}/content/stats`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `galleries`,
+        path: `${__dirname}/content/galleries`,
       },
     },
     `gatsby-plugin-image`,

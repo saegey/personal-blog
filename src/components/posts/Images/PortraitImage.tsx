@@ -1,69 +1,28 @@
-import { Box, useThemeUI } from 'theme-ui'
 import { getImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
 import ImageWrapper from './imageWrapper'
-import FullScreenIcon from '../../icons/FullScreenIcon'
 import CustomImage from '../../CustomImage'
 
 interface PortraitImageProps {
   image: IGatsbyImageData
-  widthPercentage: string
-  caption: string
-  altText: string
+  widthPercentage?: string
+  caption?: string
+  altText?: string
 }
 
 const PortraitImage = ({
   image,
-  widthPercentage,
+  widthPercentage = '65%',
   caption,
-  altText,
-}: PortraitImageProps) => {
-  const width = widthPercentage ? widthPercentage : '65%'
-  const { theme } = useThemeUI()
-
-  return (
-    <ImageWrapper
-      image={image}
-      caption={caption}
-      altText={altText ? altText : ''}
-    >
-      <Box sx={{ marginTop: '20px', borderRadius: '4px', overflow: 'hidden' }}>
-        <Box
-          sx={{
-            backgroundColor: 'backgroundAccent',
-          }}
-        >
-          <Box
-            sx={{
-              width: ['100%', width, width],
-              margin: 'auto',
-              display: 'block',
-            }}
-          >
-            <CustomImage
-              image={getImage(image)}
-              alt={altText}
-              theme={{
-                width: ['100%', '100%', '100%'],
-                borderRadius: [0, 0, 0],
-                backdropFilter: 'blur(10px)',
-              }}
-            />
-          </Box>
-        </Box>
-        <Box
-          sx={{
-            width: '40px',
-            position: 'absolute',
-            right: '0',
-            top: '0',
-          }}
-        >
-          <FullScreenIcon color={String(theme.colors?.background)} />
-        </Box>
-      </Box>
-    </ImageWrapper>
-  )
-}
+  altText = '',
+}: PortraitImageProps) => (
+  <ImageWrapper image={image} caption={caption} altText={altText}>
+    <div className="mt-5 bg-neutral-100 py-3 sm:py-5">
+      <div className="mx-auto w-full px-3 sm:px-5" style={{ maxWidth: widthPercentage }}>
+        <CustomImage image={getImage(image) ?? image} alt={altText} className="w-full" />
+      </div>
+    </div>
+  </ImageWrapper>
+)
 
 export default PortraitImage

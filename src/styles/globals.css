@@ -1,7 +1,215 @@
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    background: #fafafa;
+    color: #141414;
+    font-family: 'Source Serif 4 Variable', Iowan Old Style, Baskerville, Georgia, serif;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #fafafa;
+    color: #141414;
+  }
+
+  ::selection {
+    background: #141414;
+    color: #fff;
+  }
+
+  a {
+    text-underline-offset: 0.18em;
+  }
+
+  :focus-visible {
+    outline: 2px solid #141414;
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-condensed text-xs font-medium uppercase tracking-label text-muted;
+  }
+
+  .editorial-link {
+    @apply underline decoration-line underline-offset-4 transition-colors hover:text-ink hover:decoration-ink;
+  }
+
+  .race-story > p,
+  .race-story > ul,
+  .race-story > ol {
+    @apply mb-7 text-base leading-relaxed text-ink sm:text-lg;
+  }
+
+  .race-story > h2 {
+    @apply mt-14 border-t border-line pt-5 font-serif text-3xl leading-tight tracking-[-0.025em];
+    border-left: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .race-story > h3 {
+    @apply mt-8 font-serif text-2xl leading-tight tracking-[-0.02em];
+    border-left: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .race-story > ul,
+  .race-story > ol {
+    @apply mb-8 mt-5 list-none p-0;
+  }
+
+  .race-story > ul li,
+  .race-story > ol li {
+    position: relative;
+    margin-bottom: 1rem !important;
+    padding-left: 1.5rem !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+
+  .race-story > ul li::before {
+    position: absolute;
+    left: 0;
+    color: #666666;
+    content: '—';
+  }
+
+  .race-story > ol {
+    counter-reset: race-list;
+  }
+
+  .race-story > ol li {
+    counter-increment: race-list;
+  }
+
+  .race-story > ol li::before {
+    position: absolute;
+    left: 0;
+    color: #666666;
+    content: counter(race-list, decimal-leading-zero);
+    font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+  }
+
+  .race-story > figure,
+  .race-story > div {
+    @apply my-10;
+  }
+
+  .project-story > p,
+  .project-story > ul,
+  .project-story > ol {
+    @apply mb-7 text-base leading-relaxed text-ink sm:text-lg;
+  }
+
+  .project-story h2 {
+    margin-top: 3.5rem !important;
+    margin-bottom: 1rem !important;
+    border: 0 !important;
+    padding: 0 !important;
+    font-family: 'Source Serif 4 Variable', 'Iowan Old Style', Baskerville, Georgia, serif !important;
+    font-size: 2rem !important;
+    font-weight: 500 !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.025em !important;
+  }
+
+  .project-story h3 {
+    margin-top: 2.25rem !important;
+    margin-bottom: 0.75rem !important;
+    border: 0 !important;
+    padding: 0 !important;
+    font-family: 'Source Serif 4 Variable', 'Iowan Old Style', Baskerville, Georgia, serif !important;
+    font-size: 1.5rem !important;
+    font-weight: 500 !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .project-story ul,
+  .project-story ol {
+    @apply mb-7 mt-4 list-none p-0;
+  }
+
+  .project-story ul li,
+  .project-story ol li {
+    position: relative;
+    margin-bottom: 0.75rem !important;
+    padding-left: 1.5rem !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+
+  .project-story ul li::before {
+    position: absolute;
+    left: 0;
+    color: #666666;
+    content: '—';
+  }
+
+  .project-story ol { counter-reset: project-list; }
+  .project-story ol li { counter-increment: project-list; }
+  .project-story ol li::before {
+    position: absolute;
+    left: 0;
+    color: #666666;
+    content: counter(project-list, decimal-leading-zero);
+    font-family: 'IBM Plex Sans Condensed', 'Arial Narrow', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+  }
+
+  .project-story > figure,
+  .project-story > div { @apply my-10; }
+
+  .race-story blockquote,
+  .project-story blockquote {
+    margin: 2.5rem 0 !important;
+    border: 0 !important;
+    border-left: 2px solid #141414 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    padding: 0.25rem 0 0.25rem 1.5rem !important;
+    color: #141414 !important;
+    font-family: 'Source Serif 4 Variable', 'Iowan Old Style', Baskerville, Georgia, serif !important;
+    font-size: 1.5rem !important;
+    font-style: italic;
+    line-height: 1.35 !important;
+  }
+
+  .race-story blockquote p,
+  .project-story blockquote p {
+    margin: 0 !important;
+    color: inherit !important;
+    font: inherit !important;
+    line-height: inherit !important;
+  }
+
+  [data-race-notebook] .data-race-open {
+    display: none;
+  }
+
+  [data-race-notebook][open] .data-race-closed {
+    display: none;
+  }
+
+  [data-race-notebook][open] .data-race-open {
+    display: inline;
+  }
+
+  [data-race-notebook][open] summary span:last-child span[aria-hidden='true'] {
+    display: inline-block;
+    transform: rotate(180deg);
+  }
 }
 
 html,

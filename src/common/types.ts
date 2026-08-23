@@ -1,6 +1,4 @@
 import { IGatsbyImageData } from 'gatsby-plugin-image'
-import { LinkProps, BoxProps } from 'theme-ui'
-import { GatsbyLinkProps } from 'gatsby'
 
 export interface Coordinate {
   x: number
@@ -40,18 +38,6 @@ export interface GraphProps {
   colors?: string[]
   isMaximized: boolean
   title: string
-}
-
-type CustomGatsbyLinkProps = Omit<GatsbyLinkProps<{}>, 'ref'>
-
-export interface MyLinkProps extends LinkProps, CustomGatsbyLinkProps {
-  // as: typeof CustomGatsbyLinkProps // this is now required
-}
-
-export interface BoxSvgType extends BoxProps {
-  viewBox: string
-  height?: string
-  width?: string
 }
 
 export interface PostNode {

@@ -1,4 +1,3 @@
-import { Box, Flex, Text, Close } from 'theme-ui'
 import {
   Dispatch,
   ReactNode,
@@ -94,80 +93,34 @@ const MaximizedContainer = ({ children, openModal, title }: MaxProps) => {
   }
 
   return (
-    <Box
-      ref={overlayRef as any}
-      variant="styles.faded"
+    <div
+      ref={overlayRef}
       onMouseDown={onOverlayMouseDown}
-      sx={{
-        justifyContent: 'center',
-        alignItems: 'center',
-        p: [3, 4],
-        // Fade the overlay in/out
-        opacity: visible && !closing ? 1 : 0,
-        transition: 'opacity .2s ease',
-      }}
+      className={`fixed inset-0 z-[1000] grid place-items-center bg-black/80 p-4 transition-opacity duration-200 sm:p-8 ${visible && !closing ? 'opacity-100' : 'opacity-0'}`}
       aria-hidden={false}
     >
-      <Box
-        ref={dialogRef as any}
+      <div
+        ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"
         tabIndex={-1}
-        sx={{
-          backgroundColor: 'background',
-          width: '100%',
-          maxWidth: ['100%', '720px'],
-          maxHeight: '90vh',
-          // Use a column layout so header stays fixed and only content scrolls
-          display: 'flex',
-          flexDirection: 'column',
-          borderRadius: 'card',
-          border: '1px solid',
-          borderColor: 'cardBorderColor',
-          boxShadow: 'card',
-          transform: visible && !closing ? 'translateY(0)' : 'translateY(8px)',
-          opacity: visible && !closing ? 1 : 0,
-          transition: 'opacity .2s ease, transform .2s ease',
-        }}
+        className={`flex max-h-[90vh] w-full max-w-3xl flex-col border border-line bg-paper transition duration-200 ${visible && !closing ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}
       >
-        <Flex
-          sx={{
-            alignItems: 'center',
-            p: 3,
-            borderBottom: '1px solid',
-            borderColor: 'cardBorderColor',
-          }}
-        >
-          <Box>
-            <Text id="modal-title" as="h2" variant="resultsHeading">
-              {title}
-            </Text>
-          </Box>
-          <Box sx={{ marginLeft: 'auto' }}>
-            <Close
+        <div className="flex items-center justify-between border-b border-line px-5 py-4">
+          <h2 id="modal-title" className="font-serif text-2xl font-medium">{title}</h2>
+          <div>
+            <button
               ref={closeBtnRef as any}
               onClick={handleRequestClose}
-              ml="auto"
-              mr={-2}
-              sx={{ color: 'text', cursor: 'pointer' }}
               aria-label="Close modal"
-            />
-          </Box>
-        </Flex>
-        <Box
-          sx={{
-            p: 3,
-            // Make the content the scrollable region
-            flex: '1 1 auto',
-            minHeight: 0,
-            overflowY: 'auto',
-          }}
-        >
-          {children}
-        </Box>
-      </Box>
-    </Box>
+              className="inline-flex h-8 w-8 items-center justify-center border border-line font-sans text-xl hover:border-ink"
+            >×</button>
+          </div>
+        </div>
+        <div className="min-h-0 flex-1 overflow-y-auto p-5">{children}</div>
+      </div>
+    </div>
   )
 }
 

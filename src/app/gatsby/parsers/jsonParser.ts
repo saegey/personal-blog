@@ -41,6 +41,15 @@ export function handleJsonNode({
     const type = inferType()
     console.log(`Handling JSON node ${node.id} of type ${type}`)
 
+    if (node.sourceInstanceName === 'galleries') {
+      try {
+        createNodeField({ name: `data`, node, value: JSON.parse(content) })
+      } catch {
+        // Ignore incomplete gallery manifests while they are being written.
+      }
+      return
+    }
+
     if (type === 'bikesignupjson') {
       try {
         const parsed: any = JSON.parse(content)

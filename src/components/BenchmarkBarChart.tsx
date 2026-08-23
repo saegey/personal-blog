@@ -1,19 +1,5 @@
-/** @jsxImportSource theme-ui */
-import { useMemo, useState } from 'react'
-import { Box, Flex, Select, Heading, Text, useThemeUI } from 'theme-ui'
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  CartesianGrid,
-  LabelList,
-} from 'recharts'
-
-// Default dataset (times in milliseconds); can be overridden via props
+import { type ReactNode, useMemo, useState } from 'react'
+import { Bar, BarChart, CartesianGrid, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 
 const METRICS = [
   { key: 'mean', label: 'Mean' },
@@ -35,116 +21,42 @@ export type BenchDatum = {
   max: number
 }
 
-type Props = {
-  rows?: BenchDatum[]
-  title?: string
-  subtitle?: string
-}
-
-const ms = (v: number) => `${v.toFixed(2)} ms`
+type Props = { rows?: BenchDatum[]; title?: string; subtitle?: string }
+const milliseconds = (value: number) => `${value.toFixed(2)} ms`
 
 export default function BenchBarChartThemeUI({ rows, title, subtitle }: Props) {
   const [metric, setMetric] = useState<MetricKey>('mean')
-  const theme = useThemeUI()
-
-  const data = useMemo(
-    () =>
-      (rows ?? []).map(d => ({ ...d, value: (d as any)[metric] as number })),
-    [metric, rows],
-  )
-
-  const headingText = title ?? 'GPX vs FIT — Parse Time Benchmarks'
-  const subtitleText =
-    subtitle ??
-    'Comparing mean/p50/p95/min/max parse times across Go, Node.js, Ruby, and Python for the same activity.'
+  const data = useMemo(() => (rows ?? []).map(row => ({ ...row, value: row[metric] })), [metric, rows])
 
   return (
-    <Box
-      sx={{
-        width: '100%',
-        maxWidth: 1200,
-        mx: 'auto',
-        p: [0, 3],
-        borderRadius: 4,
-        border: ['', '2px solid'],
-        borderColor: 'border',
-      }}
-    >
-      <Flex
-        sx={{
-          alignItems: 'flex-end',
-          justifyContent: 'space-between',
-          gap: 3,
-          flexWrap: 'wrap',
-        }}
-      >
-        <Box>
-          <Heading as="h2" sx={{ fontSize: 3, mb: 1, fontFamily: 'body' }}>
-            {headingText}
-          </Heading>
-          <Text sx={{ color: 'textSubtle', fontSize: 1, fontFamily: 'body' }}>
-            {subtitleText}
-          </Text>
-        </Box>
-        <Flex sx={{ alignItems: 'center', gap: 2 }}>
-          <Text sx={{ fontSize: 1, fontWeight: 600 }}>Metric:</Text>
-          <Select
-            value={metric}
-            onChange={e => setMetric(e.target.value as MetricKey)}
-            sx={{ fontSize: 1 }}
-          >
-            {METRICS.map(m => (
-              <option key={m.key} value={m.key}>
-                {m.label}
-              </option>
-            ))}
-          </Select>
-        </Flex>
-      </Flex>
-
-      <Box sx={{ height: 480, width: '100%', mt: 3 }}>
+    <section className="my-10 border-y border-line py-6 sm:py-8">
+      <div className="flex flex-wrap items-end justify-between gap-5">
+        <div>
+          <p className="eyebrow text-ink">Benchmark</p>
+          <h2 className="mt-2 font-serif text-3xl leading-tight tracking-[-0.025em]">{title ?? 'GPX vs FIT — Parse Time Benchmarks'}</h2>
+          {subtitle && <p className="mt-2 max-w-2xl text-base leading-relaxed text-muted">{subtitle}</p>}
+        </div>
+        <label className="font-condensed text-sm font-medium uppercase tracking-label">
+          Metric
+          <select value={metric} onChange={event => setMetric(event.target.value as MetricKey)} className="ml-3 border-b border-ink bg-transparent px-1 py-1 font-serif text-base normal-case tracking-normal outline-none">
+            {METRICS.map(option => <option key={option.key} value={option.key}>{option.label}</option>)}
+          </select>
+        </label>
+      </div>
+      <div className="mt-6 h-72 w-full sm:h-96">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            data={data}
-            margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis
-              dataKey="env"
-              interval={0}
-              angle={-18}
-              textAnchor="end"
-              height={70}
-              tick={{ fontSize: 12 }}
-            />
-            <YAxis tickFormatter={v => `${v} ms`} tick={{ fontSize: 12 }} />
-            <Tooltip
-              formatter={(value: any, _name, payload) => [
-                ms(value as number),
-                payload?.payload?.format,
-              ]}
-            />
-            <Legend verticalAlign="top" height={36} />
-            <Bar
-              dataKey="value"
-              name={`${metric.toUpperCase()} (ms)`}
-              fill={theme?.theme?.colors?.text as string}
-            >
-              <LabelList
-                dataKey={(d: any) => ms(d.value)}
-                position="top"
-                style={{ fontSize: 10 }}
-              />
+          <BarChart data={data} margin={{ top: 24, right: 8, bottom: 20, left: -16 }}>
+            <CartesianGrid vertical={false} stroke="#dedede" />
+            <XAxis dataKey="env" interval={0} angle={-18} textAnchor="end" height={70} tick={{ fontSize: 12, fill: '#666666' }} axisLine={{ stroke: '#dedede' }} tickLine={false} />
+            <YAxis tickFormatter={value => `${value} ms`} tick={{ fontSize: 12, fill: '#666666' }} axisLine={false} tickLine={false} />
+            <Tooltip formatter={(value: number) => milliseconds(value)} contentStyle={{ border: '1px solid #dedede', background: '#fafafa', borderRadius: 0, fontFamily: 'IBM Plex Sans Condensed, sans-serif' }} />
+            <Bar dataKey="value" name={`${metric.toUpperCase()} (ms)`} fill="#141414">
+              <LabelList dataKey="value" formatter={(value: ReactNode) => milliseconds(Number(value))} position="top" style={{ fontSize: 10, fill: '#666666' }} />
             </Bar>
           </BarChart>
         </ResponsiveContainer>
-      </Box>
-
-      <Text sx={{ mt: 2, color: 'textSubtle', fontSize: 0 }}>
-        Note: Values are in milliseconds. The same activity file was used across
-        all environments. Differences reflect both format efficiency (FIT vs
-        GPX) and library/runtime overhead.
-      </Text>
-    </Box>
+      </div>
+      <p className="mt-4 font-condensed text-sm leading-relaxed text-muted">Values are milliseconds. The same activity file was used across each environment.</p>
+    </section>
   )
 }

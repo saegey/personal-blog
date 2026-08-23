@@ -1,15 +1,14 @@
 import { IKVideo, IKContext } from 'imagekitio-react'
-import { Box } from 'theme-ui'
 
 const VideoPlayer = ({
   fileName,
-  borderRadius = '4px',
+  borderRadius: _borderRadius = '0px',
 }: {
   fileName: string
   borderRadius: string
 }) => {
   return (
-    <Box sx={{ width: '100%', video: { borderRadius }, marginY: '60px' }}>
+    <div className="my-12 w-full overflow-hidden border-y border-line">
       <IKContext
         publicKey="public_0yo2SuC0X+YKHkXDmLUU4S18vcA="
         urlEndpoint="https://ik.imagekit.io/hcbw4dyr5"
@@ -17,7 +16,7 @@ const VideoPlayer = ({
       >
         <IKVideo path={`/${fileName}`} width="100%" controls={true} />
       </IKContext>
-    </Box>
+    </div>
   )
 }
 

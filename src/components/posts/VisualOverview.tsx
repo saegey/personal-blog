@@ -1,4 +1,3 @@
-import { Box } from 'theme-ui'
 import React from 'react'
 
 import Map from './CustomMap'
@@ -16,8 +15,14 @@ interface Vizprops {
       x: number
       i: number
     }>
-    axisLeftTickValues: Array<number>
-    axisXTickValues: Array<number>
+    axisLeftTickValues: {
+      imperial: Array<Array<number>>
+      metric: Array<Array<number>>
+    }
+    axisXTickValues: {
+      imperial: Array<Array<number>>
+      metric: Array<Array<number>>
+    }
     downsampleRate: number
   }
   coordinates: Array<[number, number]>
@@ -52,7 +57,7 @@ const VisualOverview = ({
     [elevationData.data, units.unitOfMeasure],
   )
 
-  const xMax = Number(convertedData[convertedData.length - 1].distance)
+  const xMax = Number(convertedData[convertedData.length - 1]?.distance ?? 0)
   // Adapt simple tick arrays to ElevationGraph's expected { imperial, metric } shape
   // const axisLeftTickValuesObj = React.useMemo(
   //   () => ({
@@ -69,7 +74,12 @@ const VisualOverview = ({
   //   [elevationData.axisXTickValues],
   // )
   return (
-    <Box sx={{ marginY: ['20px', '40px', '100px'] }}>
+    <details className="my-10 border-y border-line" data-race-notebook>
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-4 font-condensed text-sm font-semibold uppercase tracking-label">
+        Route & elevation
+        <span aria-hidden="true" className="text-xl leading-none">+</span>
+      </summary>
+      <div className="border-t border-line pb-5 pt-5 sm:pb-7">
       <Map
         coordinates={coordinates}
         markerCoordinates={
@@ -87,7 +97,8 @@ const VisualOverview = ({
         axisXTickValues={elevationData.axisXTickValues}
         yMin={yMin}
       />
-    </Box>
+      </div>
+    </details>
   )
 }
 

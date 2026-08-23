@@ -1,11 +1,12 @@
-import { Box, Flex, Text } from 'theme-ui'
+import type { ReactNode } from 'react'
 
 import Maximize from './Maximize'
 
 type Props = {
-  children: JSX.Element
+  children: ReactNode
   title: string
   openModal: (arg: boolean) => void
+  expandableOnMobile?: boolean
 }
 const ExpandableCard = ({ children, title, openModal }: Props) => {
   const handleClick: React.MouseEventHandler = e => {
@@ -26,28 +27,22 @@ const ExpandableCard = ({ children, title, openModal }: Props) => {
   }
 
   return (
-    <Box
-      as="figure"
-      variant="boxes.figure"
+    <figure
       role="button"
       tabIndex={0}
       aria-label={`Expand ${title}`}
-      sx={{ cursor: 'pointer' }}
+      className="my-10 border-y border-line py-4"
       onClick={handleClick}
       onKeyDown={handleKeyDown}
     >
-      <Flex sx={{ flexDirection: 'row' }}>
-        <Box sx={{ marginBottom: ['10px', '0px', '0px'] }}>
-          <Text as="h2" variant="resultsHeading">
-            {title}
-          </Text>
-        </Box>
-        <Box sx={{ marginLeft: 'auto', height: ['16px', '24px'] }}>
+      <div className="mb-4 flex items-center justify-between gap-4">
+        <h2 className="font-serif text-2xl font-medium">{title}</h2>
+        <div>
           <Maximize onClick={openModal} />
-        </Box>
-      </Flex>
+        </div>
+      </div>
       {children}
-    </Box>
+    </figure>
   )
 }
 

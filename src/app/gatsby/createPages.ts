@@ -22,6 +22,15 @@ type MdxData = {
   errors?: any
 }
 
+type GalleryData = {
+  data?: {
+    allFile: {
+      nodes: { id: string; fields?: { data?: { slug?: string } } }[]
+    }
+  }
+  errors?: any
+}
+
 export const createPages: GatsbyNode['createPages'] = async ({
   graphql,
   actions,
@@ -123,6 +132,20 @@ export const createPages: GatsbyNode['createPages'] = async ({
       id: post.id,
     }),
   )
+
+  const galleries: GalleryData = await graphql(`
+    { allFile(filter: {sourceInstanceName: {eq: "galleries"}}) { nodes { id fields { data } } } }
+  `)
+  if (galleries.errors) reporter.panic(`Error loading galleries`, galleries.errors)
+  galleries.data?.allFile.nodes.forEach(gallery => {
+    const slug = gallery.fields?.data?.slug
+    if (!slug) return
+    createPage({
+      path: `/gallery/${slug}/`,
+      component: path.resolve('./src/templates/gallery.tsx'),
+      context: { id: gallery.id },
+    })
+  })
 
   await Promise.all([
     createPostPromise,

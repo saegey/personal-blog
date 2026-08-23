@@ -5,32 +5,6 @@ import renderer from 'react-test-renderer'
 
 import LandscapeImage from '../LandscapeImage'
 
-jest.mock('theme-ui', () => {
-  return {
-    Text: ({ children }: { children: JSX.Element }) => {
-      return <p>{children}</p>
-    },
-    Box: ({ children }: { children: JSX.Element }) => {
-      return <div>{children}</div>
-    },
-    Image: ({ children }: { children: JSX.Element }) => {
-      return <img>{children}</img>
-    },
-    useColorMode: () => {
-      return ['dark']
-    },
-    useThemeUI: () => {
-      return {
-        theme: {
-          colors: {
-            background: 'blue',
-          },
-        },
-      }
-    },
-  }
-})
-
 describe('LandscapeImage', () => {
   it('renders', () => {
     const json = renderer

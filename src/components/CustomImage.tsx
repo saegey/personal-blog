@@ -1,55 +1,42 @@
-import { ImageProps, ThemeUIStyleObject, Image } from 'theme-ui'
-import {
-  IGatsbyImageData,
-  GatsbyImage,
-  GatsbyImageProps,
-} from 'gatsby-plugin-image'
-import { FunctionComponent } from 'react'
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
+import type { CSSProperties } from 'react'
 
-interface AliasImageProps extends ImageProps {
-  image: IGatsbyImageData | undefined
-  objectFit?: string
-  layout?: string
-  alt?: string
-  as: FunctionComponent<GatsbyImageProps>
-  variant?: string
+type StyleLike = Record<string, unknown> | undefined
+
+const value = (input: unknown) => Array.isArray(input) ? input[input.length - 1] : input
+const stylesFrom = (theme?: StyleLike): CSSProperties => {
+  if (!theme) return {}
+  return {
+    width: value(theme.width) as CSSProperties['width'],
+    height: value(theme.height) as CSSProperties['height'],
+    maxWidth: value(theme.maxWidth) as CSSProperties['maxWidth'],
+    maxHeight: value(theme.maxHeight) as CSSProperties['maxHeight'],
+    borderRadius: value(theme.borderRadius) as CSSProperties['borderRadius'],
+    filter: value(theme.filter) as CSSProperties['filter'],
+    objectFit: value(theme.objectFit) as CSSProperties['objectFit'],
+    WebkitMaskImage: value(theme.WebkitMaskImage) as CSSProperties['WebkitMaskImage'],
+  }
 }
-
-const ImageAlias = Image as any as (props: AliasImageProps) => JSX.Element
 
 interface CustomImageProps {
-  image: IGatsbyImageData | undefined
-  objectFit?: string
-  alt: string
-  variant?: string | undefined
-  theme?: ThemeUIStyleObject | undefined
-  layout?: string | undefined
-  publicUrl?: string | undefined
+  image?: IGatsbyImageData
+  objectFit?: CSSProperties['objectFit']
+  alt?: string
+  variant?: string
+  theme?: StyleLike
+  sx?: StyleLike
+  layout?: string
+  publicUrl?: string
+  className?: string
 }
 
-const CustomImage = ({
-  image,
-  publicUrl,
-  objectFit,
-  alt,
-  variant,
-  theme,
-  layout,
-}: CustomImageProps) => {
-  if (publicUrl) {
-    return <Image src={publicUrl} alt={alt} sx={theme} className={variant} />
-  }
-  return (
-    <ImageAlias
-      image={image}
-      objectFit={objectFit}
-      layout={layout}
-      alt={alt}
-      as={GatsbyImage}
-      variant={variant}
-      sx={theme}
-    />
-  )
+const CustomImage = ({ image, publicUrl, objectFit, alt = '', variant, theme, sx, className }: CustomImageProps) => {
+  const style = { ...stylesFrom(theme), ...stylesFrom(sx), objectFit }
+  const classes = `${className ?? ''} ${variant === 'fullScreen' ? 'max-h-[90vh] max-w-[90vw]' : ''}`.trim()
+
+  if (publicUrl) return <img src={publicUrl} alt={alt} className={classes} style={style} />
+  if (!image) return null
+  return <GatsbyImage image={image} alt={alt} className={classes} style={style} objectFit={objectFit} />
 }
 
 export default CustomImage

@@ -1,441 +1,124 @@
-/** @jsxImportSource theme-ui */
 import React, { useMemo, useState } from 'react'
-import {
-  Box,
-  Button,
-  Input,
-  Label,
-  Textarea,
-  Text,
-  Container,
-  Grid,
-  Flex,
-  Card,
-  Link as TLink,
-} from 'theme-ui'
+
 import Seo from '../components/seo'
 import { useSiteMetadata } from '../hooks/use-site-metadata'
 
 const MAX_MSG = 1200
+const inputClassName = 'mt-2 w-full border border-line bg-transparent px-3 py-3 text-lg outline-none transition-colors placeholder:text-muted focus:border-ink'
 
 const ContactPage: React.FC = () => {
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    message: '',
-    honey: '',
-  })
-  const [status, setStatus] = useState<
-    'idle' | 'success' | 'error' | 'loading'
-  >('idle')
+  const [form, setForm] = useState({ name: '', email: '', message: '', honey: '' })
+  const [status, setStatus] = useState<'idle' | 'success' | 'error' | 'loading'>('idle')
   const [touched, setTouched] = useState<Record<string, boolean>>({})
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    const { name, value } = e.target
-    setForm(prev => ({ ...prev, [name]: value }))
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = event.target
+    setForm(previous => ({ ...previous, [name]: value }))
   }
-  const handleBlur = (
-    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => setTouched(prev => ({ ...prev, [e.target.name]: true }))
 
-  const emailValid = useMemo(
-    () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email),
-    [form.email],
-  )
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setTouched(previous => ({ ...previous, [event.target.name]: true }))
+  }
+
+  const emailValid = useMemo(() => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email), [form.email])
   const msgCount = form.message.length
   const msgOver = msgCount > MAX_MSG
+  const canSubmit = emailValid && Boolean(form.name) && Boolean(form.message) && !msgOver && status !== 'loading'
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (form.honey) return // bot trap: silently drop
-    if (!emailValid || !form.name || !form.message || msgOver) return
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault()
+    if (form.honey || !canSubmit) return
+
     setStatus('loading')
     try {
-      const res = await fetch('/api/contact', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          message: form.message,
-        }),
+        body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
       })
-      if (res.ok) {
-        setStatus('success')
-        setForm({ name: '', email: '', message: '', honey: '' })
-        setTouched({})
-      } else {
-        setStatus('error')
-      }
+      if (!response.ok) throw new Error('Contact request failed')
+      setStatus('success')
+      setForm({ name: '', email: '', message: '', honey: '' })
+      setTouched({})
     } catch {
       setStatus('error')
     }
   }
 
   return (
-    <Box as="main" sx={{ bg: 'background', minHeight: '70vh' }}>
-      {/* Hero */}
-      <Box
-        sx={{
-          py: [4, 5],
-        }}
-      >
-        <Container>
-          <Text
-            as="p"
-            sx={{
-              textTransform: 'uppercase',
-              letterSpacing: '0.08em',
-              fontSize: 0,
-              color: 'primary',
-              mb: 2,
-            }}
-          >
-            Get in touch
-          </Text>
-          <Text
-            as="h1"
-            sx={{ fontSize: [5, 6], fontWeight: 800, lineHeight: 1.1, mb: 2 }}
-          >
-            Contact Me
-          </Text>
-          <Text as="p" sx={{ fontSize: [2, 3], color: 'text' }}>
-            Collaborations, consulting, or just a good idea—my inbox is open. I
-            typically reply within a couple days.
-          </Text>
-        </Container>
-      </Box>
+    <>
+      <header className="max-w-3xl border-b border-line pb-10 sm:pb-14">
+        <p className="eyebrow text-ink">Contact</p>
+        <h1 className="mt-3 font-serif text-5xl leading-[0.95] tracking-[-0.045em] sm:text-7xl">Start a conversation.</h1>
+        <p className="mt-6 max-w-2xl text-xl leading-relaxed text-muted">Open to thoughtful collaborations, shared experiments, and ideas where different practices can combine into something new.</p>
+      </header>
 
-      {/* Content */}
-      <Container sx={{ py: [4, 5] }}>
-        {/* Status banner */}
-        {status === 'error' && (
-          <Card
-            role="alert"
-            sx={{
-              mb: 3,
-              p: 3,
-              borderLeft: t => `4px solid ${t.colors?.danger || '#e63946'}`,
-              bg: 'background',
-            }}
-          >
-            <Text sx={{ color: 'danger' }}>
-              Something went wrong. Please try again.
-            </Text>
-          </Card>
-        )}
+      <section className="grid gap-12 py-12 sm:py-16 lg:grid-cols-[minmax(0,1fr)_18rem]">
+        <div>
+          {status === 'error' && <p role="alert" className="mb-6 border-l-2 border-ink pl-4 text-lg">Something went wrong. Please try again.</p>}
+          {status === 'success' ? (
+            <div className="border-y border-line py-8">
+              <h2 className="font-serif text-4xl tracking-[-0.03em]">Thank you.</h2>
+              <p className="mt-3 max-w-xl text-xl leading-relaxed text-muted">Your message is on its way. I’ll get back to you when I can.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} aria-labelledby="contact-form-title" noValidate>
+              <h2 id="contact-form-title" className="sr-only">Contact form</h2>
+              <div className="absolute h-0 w-0 overflow-hidden opacity-0" aria-hidden="true">
+                <label htmlFor="honey">Leave this empty</label>
+                <input id="honey" name="honey" value={form.honey} onChange={handleChange} tabIndex={-1} autoComplete="off" />
+              </div>
+              <div className="border-t border-line py-5">
+                <label htmlFor="name" className="font-condensed text-sm font-medium uppercase tracking-label">Name</label>
+                <input id="name" name="name" value={form.name} onChange={handleChange} onBlur={handleBlur} required className={inputClassName} aria-invalid={touched.name && !form.name ? 'true' : undefined} />
+                {touched.name && !form.name && <p className="mt-2 font-condensed text-sm text-muted">Please enter your name.</p>}
+              </div>
+              <div className="border-t border-line py-5">
+                <label htmlFor="email" className="font-condensed text-sm font-medium uppercase tracking-label">Email</label>
+                <input id="email" name="email" type="email" value={form.email} onChange={handleChange} onBlur={handleBlur} required className={inputClassName} aria-invalid={touched.email && !emailValid ? 'true' : undefined} />
+                {touched.email && !emailValid && <p className="mt-2 font-condensed text-sm text-muted">Please enter a valid email address.</p>}
+              </div>
+              <div className="border-y border-line py-5">
+                <label htmlFor="message" className="font-condensed text-sm font-medium uppercase tracking-label">Message</label>
+                <textarea id="message" name="message" value={form.message} onChange={handleChange} onBlur={handleBlur} required rows={8} className={inputClassName} aria-invalid={touched.message && (!form.message || msgOver) ? 'true' : undefined} />
+                <div className="mt-2 flex justify-between font-condensed text-sm text-muted">
+                  <span>{touched.message && !form.message ? 'Please include a message.' : ''}</span>
+                  <span>{msgCount}/{MAX_MSG}</span>
+                </div>
+              </div>
+              <button type="submit" disabled={!canSubmit} className="mt-7 border border-ink px-5 py-3 font-condensed text-sm font-medium uppercase tracking-label transition-colors enabled:hover:bg-ink enabled:hover:text-white disabled:cursor-not-allowed disabled:opacity-40">
+                {status === 'loading' ? 'Sending…' : 'Send message'}
+              </button>
+            </form>
+          )}
+        </div>
 
-        {status === 'success' ? (
-          <Card sx={{ p: [3, 4], textAlign: 'center' }}>
-            <Text as="h2" sx={{ fontSize: [3, 4], fontWeight: 700, mb: 2 }}>
-              Thanks! Your message is on its way.
-            </Text>
-            <Text sx={{ color: 'textMuted' }}>
-              I'll get back to you soon. In the meantime, feel free to connect
-              on{' '}
-              <TLink
-                href="https://linkedin.com/in/saegey"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                LinkedIn
-              </TLink>
-              ,{' '}
-              <TLink
-                href="https://github.com/saegey"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub
-              </TLink>
-              , or{' '}
-              <TLink
-                href="https://instagram.com/saegey"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Instagram
-              </TLink>
-              .
-            </Text>
-          </Card>
-        ) : (
-          <Grid gap={[4, 5]} columns={[1, null, '2fr 1fr']}>
-            {/* Form */}
-            <Card
-              as="form"
-              onSubmit={handleSubmit}
-              sx={{ paddingY: [3, 4] }}
-              aria-labelledby="contactFormTitle"
-            >
-              {/* Honeypot (hidden) */}
-              <Box
-                sx={{
-                  position: 'absolute',
-                  opacity: 0,
-                  height: 0,
-                  width: 0,
-                  overflow: 'hidden',
-                }}
-                aria-hidden
-              >
-                <Label htmlFor="honey">Leave this empty</Label>
-                <Input
-                  id="honey"
-                  name="honey"
-                  value={form.honey}
-                  onChange={handleChange}
-                  tabIndex={-1}
-                />
-              </Box>
-
-              <Box sx={{ mb: 3 }}>
-                <Label htmlFor="name">Name</Label>
-                <Input
-                  id="name"
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  required
-                  aria-invalid={touched.name && !form.name ? 'true' : 'false'}
-                  sx={{ mt: 2 }}
-                />
-                {touched.name && !form.name && (
-                  <Text sx={{ color: 'danger', fontSize: 0, mt: 1 }}>
-                    Please enter your name.
-                  </Text>
-                )}
-              </Box>
-
-              <Box sx={{ mb: 3 }}>
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  required
-                  aria-invalid={touched.email && !emailValid ? 'true' : 'false'}
-                  sx={{ mt: 2 }}
-                />
-                {touched.email && !emailValid && (
-                  <Text sx={{ color: 'danger', fontSize: 0, mt: 1 }}>
-                    Please enter a valid email address.
-                  </Text>
-                )}
-              </Box>
-
-              <Box sx={{ mb: 3 }}>
-                <Label htmlFor="message">Message</Label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  required
-                  rows={7}
-                  aria-invalid={
-                    touched.message && (!form.message || msgOver)
-                      ? 'true'
-                      : 'false'
-                  }
-                  sx={{ mt: 2, resize: 'vertical' }}
-                />
-                <Flex sx={{ justifyContent: 'space-between', mt: 1 }}>
-                  {touched.message && !form.message ? (
-                    <Text sx={{ color: 'danger', fontSize: 0 }}>
-                      Please include a message.
-                    </Text>
-                  ) : (
-                    <span />
-                  )}
-                  <Text
-                    sx={{
-                      fontSize: 0,
-                      color: msgOver ? 'danger' : 'textMuted',
-                    }}
-                  >
-                    {msgCount}/{MAX_MSG}
-                  </Text>
-                </Flex>
-              </Box>
-
-              <Button
-                type="submit"
-                disabled={
-                  status === 'loading' ||
-                  !emailValid ||
-                  !form.name ||
-                  !form.message ||
-                  msgOver
-                }
-                sx={{
-                  width: ['100%', 'auto'],
-                  cursor: status === 'loading' ? 'wait' : 'pointer',
-                }}
-              >
-                <Text sx={{ color: 'primaryMuted', fontWeight: 500 }}>
-                  {status === 'loading' ? 'Sending…' : 'Send Message'}
-                </Text>
-              </Button>
-            </Card>
-
-            {/* Sidebar */}
-            <Card sx={{ paddingY: [3, 4] }}>
-              <Text as="h3" sx={{ fontSize: [2, 3], fontWeight: 700, mb: 2 }}>
-                Prefer DMs?
-              </Text>
-              <Text sx={{ color: 'textMuted', mb: 3 }}>
-                I'm also reachable on these platforms. Quick pings are
-                welcome—share a link or your idea.
-              </Text>
-              <Box
-                as="ul"
-                sx={{
-                  listStyle: 'none',
-                  pl: 0,
-                  m: 0,
-                }}
-              >
-                <Box as="li" sx={{ marginY: 1 }}>
-                  <TLink
-                    href="https://linkedin.com/in/saegey"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    LinkedIn @saegey ↗
-                  </TLink>
-                </Box>
-                <Box as="li" sx={{ marginY: 1 }}>
-                  <TLink
-                    href="https://github.com/saegey"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GitHub @saegey ↗
-                  </TLink>
-                </Box>
-                <Box as="li" sx={{ marginY: 1 }}>
-                  <TLink
-                    href="https://instagram.com/saegey"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Instagram @saegey ↗
-                  </TLink>
-                </Box>
-                <Box as="li" sx={{ marginY: 1 }}>
-                  <TLink
-                    href="https://strava.com/athletes/saegey"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Strava @saegey ↗
-                  </TLink>
-                </Box>
-              </Box>
-
-              <Box
-                sx={{
-                  mt: 4,
-                  pt: 3,
-                  borderTop: t => `1px solid ${t.colors?.muted}`,
-                }}
-              >
-                <Text
-                  as="h4"
-                  sx={{
-                    fontSize: 1,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.08em',
-                    mb: 2,
-                  }}
-                >
-                  Notes
-                </Text>
-                <Text sx={{ color: 'textMuted', fontSize: 1 }}>
-                  For project inquiries, include timeline, scope, and any links.
-                  I'm based in Seattle (PST).
-                </Text>
-              </Box>
-            </Card>
-          </Grid>
-        )}
-      </Container>
-    </Box>
+        <aside className="border-t border-line pt-5 lg:border-t-0 lg:border-l lg:pl-8 lg:pt-0">
+          <p className="eyebrow text-ink">Elsewhere</p>
+          <ul className="mt-4 space-y-3 text-lg">
+            <li><a className="editorial-link" href="https://instagram.com/saegey" target="_blank" rel="noreferrer">Instagram ↗</a></li>
+            <li><a className="editorial-link" href="https://github.com/saegey" target="_blank" rel="noreferrer">GitHub ↗</a></li>
+            <li><a className="editorial-link" href="https://linkedin.com/in/saegey" target="_blank" rel="noreferrer">LinkedIn ↗</a></li>
+            <li><a className="editorial-link" href="https://publicvinylradio.com" target="_blank" rel="noreferrer">Public Vinyl Radio ↗</a></li>
+          </ul>
+          <p className="mt-10 text-lg leading-relaxed text-muted">Seattle, Washington. Please include a little context and any useful links.</p>
+        </aside>
+      </section>
+    </>
   )
 }
 
 export const Head = () => {
   const site = useSiteMetadata()
   const title = 'Contact'
-  const description =
-    'Collaborations, consulting, or just a good idea—my inbox is open. I typically reply within a couple days.'
+  const description = 'Open to thoughtful collaborations, shared experiments, and ideas where different practices combine.'
   const pathname = '/contact'
-
-  const contactPageJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'ContactPage',
-    name: title,
-    url: `${site.siteUrl}${pathname}`,
-    description,
-  }
-
-  const breadcrumbs = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: site.siteUrl },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Contact',
-        item: `${site.siteUrl}${pathname}`,
-      },
-    ],
-  }
-
-  const orgJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: site.title,
-    url: site.siteUrl,
-    sameAs: [
-      'https://linkedin.com/in/saegey',
-      'https://github.com/saegey',
-      'https://instagram.com/saegey',
-      'https://strava.com/athletes/saegey',
-    ],
-    contactPoint: [
-      {
-        '@type': 'ContactPoint',
-        contactType: 'inquiries',
-        availableLanguage: ['en'],
-        url: `${site.siteUrl}${pathname}`,
-      },
-    ],
-  }
+  const contactPageJsonLd = { '@context': 'https://schema.org', '@type': 'ContactPage', name: title, url: `${site.siteUrl}${pathname}`, description }
 
   return (
     <>
       <Seo title={title} description={description} pathname={pathname} />
-      <link
-        rel="alternate"
-        type="application/rss+xml"
-        title={`${site.title} RSS`}
-        href={`${site.siteUrl}/rss.xml`}
-      />
-      <script type="application/ld+json">
-        {JSON.stringify(contactPageJsonLd)}
-      </script>
-      <script type="application/ld+json">{JSON.stringify(breadcrumbs)}</script>
-      <script type="application/ld+json">{JSON.stringify(orgJsonLd)}</script>
+      <script type="application/ld+json">{JSON.stringify(contactPageJsonLd)}</script>
     </>
   )
 }

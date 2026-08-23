@@ -1,67 +1,28 @@
 import { IGatsbyImageData, getImage } from 'gatsby-plugin-image'
-import { Box, Text } from 'theme-ui'
-import React from 'react'
+import { type ReactNode, useState } from 'react'
 
 import CustomImage from '../../CustomImage'
 
 export interface RaceImageType {
   image: IGatsbyImageData
-  caption: string
-  children: JSX.Element
-  altText: string
+  caption?: ReactNode
+  children: ReactNode
+  altText?: string
 }
 
-const ImageWrapper = ({
-  image,
-  caption,
-  children,
-  altText = '',
-}: RaceImageType) => {
-  const [menuOpen, setMenuOpen] = React.useState(false)
+const ImageWrapper = ({ image, caption, children, altText = '' }: RaceImageType) => {
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <>
-      <Box sx={{ marginY: 3 }}>
-        <Box
-          sx={{ cursor: 'pointer' }}
-          onClick={() => {
-            setMenuOpen(true)
-          }}
-        >
-          {children}
-        </Box>
-        <Text as="em" variant="caption">
-          {caption}
-        </Text>
-      </Box>
-      {menuOpen && (
-        <Box variant="styles.faded">
-          <Box
-            sx={{
-              marginX: 'auto',
-              marginY: 'auto',
-            }}
-          >
-            <Box
-              sx={{ p: '0px' }}
-              onClick={() => {
-                setMenuOpen(false)
-              }}
-            >
-              <CustomImage
-                objectFit="contain"
-                image={getImage(image)}
-                alt={altText || ''}
-                variant="fullScreen"
-              />
-            </Box>
-            <Text as="em" variant="caption">
-              {caption}
-            </Text>
-          </Box>
-        </Box>
+    <figure className="my-10">
+      <div className="cursor-zoom-in" onClick={() => setIsOpen(true)}>{children}</div>
+      {caption && <figcaption className="mt-3 font-condensed text-sm leading-relaxed text-muted">{caption}</figcaption>}
+      {isOpen && (
+        <div role="dialog" aria-modal="true" aria-label="Full-size image" className="fixed inset-0 z-[1000] grid cursor-zoom-out place-items-center bg-black/90 p-6" onClick={() => setIsOpen(false)}>
+          <CustomImage objectFit="contain" image={getImage(image) ?? image} alt={altText} variant="fullScreen" />
+        </div>
       )}
-    </>
+    </figure>
   )
 }
 
