@@ -4,6 +4,7 @@
  * are derived here.
  */
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs'
+import { execFileSync } from 'node:child_process'
 import { basename, extname, join, resolve } from 'node:path'
 import sharp from 'sharp'
 
@@ -29,13 +30,34 @@ const theme = requireValue('--theme')
 const date = requireValue('--date')
 const location = requireValue('--location')
 const description = valueFor('--description')
+const rawDir = valueFor('--raw-dir') ? resolve(valueFor('--raw-dir')) : undefined
 
 if (!existsSync(source)) throw new Error(`Source folder does not exist: ${source}`)
+if (rawDir && !existsSync(rawDir)) throw new Error(`RAW folder does not exist: ${rawDir}`)
 if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error('--date must be YYYY-MM-DD.')
 const files = readdirSync(source).filter(file => !file.startsWith('.') && imageExtensions.has(extname(file).toLowerCase())).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
 if (!files.length) throw new Error(`No supported images found in ${source}.`)
 const keyStem = file => basename(file, extname(file)).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 const contentType = file => extname(file).toLowerCase() === '.webp' ? 'image/webp' : extname(file).toLowerCase() === '.png' ? 'image/png' : 'image/jpeg'
+const rawExtensions = new Set(['.arw', '.cr2', '.cr3', '.dng', '.nef', '.raf', '.orf', '.rw2'])
+const rawFiles = rawDir ? readdirSync(rawDir) : []
+const metadataFor = file => {
+  if (!rawDir) return undefined
+  const raw = rawFiles.find(candidate => basename(candidate, extname(candidate)).toLowerCase() === basename(file, extname(file)).toLowerCase() && rawExtensions.has(extname(candidate).toLowerCase()))
+  if (!raw) return undefined
+  const output = execFileSync('exiftool', ['-j', '-DateTimeOriginal', '-CreateDate', '-Model', '-LensModel', '-FocalLength', '-FNumber', '-ExposureTime', '-ISO', join(rawDir, raw)], { encoding: 'utf8' })
+  const data = JSON.parse(output)[0]
+  return {
+    source: raw,
+    takenAt: data.DateTimeOriginal ?? data.CreateDate,
+    camera: data.Model,
+    lens: data.LensModel,
+    focalLength: data.FocalLength,
+    aperture: data.FNumber,
+    exposureTime: data.ExposureTime,
+    iso: data.ISO,
+  }
+}
 
 const main = async () => {
   console.log(`${dryRun ? 'Previewing' : 'Uploading'} ${files.length} photo(s) for ${slug}.`)
@@ -54,7 +76,8 @@ const main = async () => {
       await Promise.all([uploadBuffer(fullKey, original, contentType(file)), uploadBuffer(thumbKey, thumbnail, 'image/webp')])
       console.log('✓')
     }
-    photos.push({ id, full: publicUrlFor(fullKey), thumbnail: publicUrlFor(thumbKey), width: metadata.width, height: metadata.height, alt: `${title}, photograph ${index + 1}` })
+    const exif = metadataFor(file)
+    photos.push({ id, full: publicUrlFor(fullKey), thumbnail: publicUrlFor(thumbKey), width: metadata.width, height: metadata.height, alt: `${title}, photograph ${index + 1}`, ...(exif ? { exif } : {}) })
   }
   const manifest = { slug, title, theme, date, location, ...(description ? { description } : {}), cover: photos[0].thumbnail, photos }
   const manifestPath = join(process.cwd(), 'content', 'galleries', `${slug}.json`)

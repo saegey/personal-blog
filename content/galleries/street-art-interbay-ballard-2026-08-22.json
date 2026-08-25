@@ -12,7 +12,17 @@
       "thumbnail": "https://pub-67071468b10c4a7dac3df5cf90c980a8.r2.dev/galleries/street-art-interbay-ballard-2026-08-22/thumbs/dsc02269.webp",
       "width": 2560,
       "height": 1707,
-      "alt": "Street Art, photograph 1"
+      "alt": "Street Art, photograph 1",
+      "exif": {
+        "source": "DSC02269.ARW",
+        "takenAt": "2026:08:22 17:22:06",
+        "camera": "ILCE-7M3",
+        "lens": "FE 50mm F1.8",
+        "focalLength": "50.0 mm",
+        "aperture": 16,
+        "exposureTime": "1/60",
+        "iso": 200
+      }
     },
     {
       "id": "dsc02270",
@@ -20,7 +30,17 @@
       "thumbnail": "https://pub-67071468b10c4a7dac3df5cf90c980a8.r2.dev/galleries/street-art-interbay-ballard-2026-08-22/thumbs/dsc02270.webp",
       "width": 2560,
       "height": 1707,
-      "alt": "Street Art, photograph 2"
+      "alt": "Street Art, photograph 2",
+      "exif": {
+        "source": "DSC02270.ARW",
+        "takenAt": "2026:08:22 17:37:56",
+        "camera": "ILCE-7M3",
+        "lens": "FE 50mm F1.8",
+        "focalLength": "50.0 mm",
+        "aperture": 14,
+        "exposureTime": "1/60",
+        "iso": 200
+      }
     },
     {
       "id": "dsc02271",
@@ -28,7 +48,17 @@
       "thumbnail": "https://pub-67071468b10c4a7dac3df5cf90c980a8.r2.dev/galleries/street-art-interbay-ballard-2026-08-22/thumbs/dsc02271.webp",
       "width": 2560,
       "height": 1707,
-      "alt": "Street Art, photograph 3"
+      "alt": "Street Art, photograph 3",
+      "exif": {
+        "source": "DSC02271.ARW",
+        "takenAt": "2026:08:22 17:38:02",
+        "camera": "ILCE-7M3",
+        "lens": "FE 50mm F1.8",
+        "focalLength": "50.0 mm",
+        "aperture": 18,
+        "exposureTime": "1/60",
+        "iso": 200
+      }
     },
     {
       "id": "dsc02275",
@@ -36,7 +66,17 @@
       "thumbnail": "https://pub-67071468b10c4a7dac3df5cf90c980a8.r2.dev/galleries/street-art-interbay-ballard-2026-08-22/thumbs/dsc02275.webp",
       "width": 2560,
       "height": 1707,
-      "alt": "Street Art, photograph 4"
+      "alt": "Street Art, photograph 4",
+      "exif": {
+        "source": "DSC02275.ARW",
+        "takenAt": "2026:08:22 17:38:27",
+        "camera": "ILCE-7M3",
+        "lens": "FE 50mm F1.8",
+        "focalLength": "50.0 mm",
+        "aperture": 11,
+        "exposureTime": "1/60",
+        "iso": 200
+      }
     },
     {
       "id": "dsc02277",
@@ -44,7 +84,17 @@
       "thumbnail": "https://pub-67071468b10c4a7dac3df5cf90c980a8.r2.dev/galleries/street-art-interbay-ballard-2026-08-22/thumbs/dsc02277.webp",
       "width": 2560,
       "height": 1707,
-      "alt": "Street Art, photograph 5"
+      "alt": "Street Art, photograph 5",
+      "exif": {
+        "source": "DSC02277.ARW",
+        "takenAt": "2026:08:22 17:45:25",
+        "camera": "ILCE-7M3",
+        "lens": "FE 50mm F1.8",
+        "focalLength": "50.0 mm",
+        "aperture": 9,
+        "exposureTime": "1/60",
+        "iso": 200
+      }
     },
     {
       "id": "dsc02280",
@@ -52,7 +102,17 @@
       "thumbnail": "https://pub-67071468b10c4a7dac3df5cf90c980a8.r2.dev/galleries/street-art-interbay-ballard-2026-08-22/thumbs/dsc02280.webp",
       "width": 2560,
       "height": 1707,
-      "alt": "Street Art, photograph 6"
+      "alt": "Street Art, photograph 6",
+      "exif": {
+        "source": "DSC02280.ARW",
+        "takenAt": "2026:08:22 17:45:46",
+        "camera": "ILCE-7M3",
+        "lens": "FE 50mm F1.8",
+        "focalLength": "50.0 mm",
+        "aperture": 8,
+        "exposureTime": "1/60",
+        "iso": 200
+      }
     },
     {
       "id": "dsc02282",
@@ -60,7 +120,17 @@
       "thumbnail": "https://pub-67071468b10c4a7dac3df5cf90c980a8.r2.dev/galleries/street-art-interbay-ballard-2026-08-22/thumbs/dsc02282.webp",
       "width": 2560,
       "height": 1707,
-      "alt": "Street Art, photograph 7"
+      "alt": "Street Art, photograph 7",
+      "exif": {
+        "source": "DSC02282.ARW",
+        "takenAt": "2026:08:22 17:46:08",
+        "camera": "ILCE-7M3",
+        "lens": "FE 50mm F1.8",
+        "focalLength": "50.0 mm",
+        "aperture": 5.6,
+        "exposureTime": "1/60",
+        "iso": 200
+      }
     },
     {
       "id": "dsc02284",
@@ -68,7 +138,17 @@
       "thumbnail": "https://pub-67071468b10c4a7dac3df5cf90c980a8.r2.dev/galleries/street-art-interbay-ballard-2026-08-22/thumbs/dsc02284.webp",
       "width": 2560,
       "height": 1707,
-      "alt": "Street Art, photograph 8"
+      "alt": "Street Art, photograph 8",
+      "exif": {
+        "source": "DSC02284.ARW",
+        "takenAt": "2026:08:22 17:46:21",
+        "camera": "ILCE-7M3",
+        "lens": "FE 50mm F1.8",
+        "focalLength": "50.0 mm",
+        "aperture": 8,
+        "exposureTime": "1/60",
+        "iso": 200
+      }
     },
     {
       "id": "dsc02289",
@@ -76,7 +156,17 @@
       "thumbnail": "https://pub-67071468b10c4a7dac3df5cf90c980a8.r2.dev/galleries/street-art-interbay-ballard-2026-08-22/thumbs/dsc02289.webp",
       "width": 2560,
       "height": 1707,
-      "alt": "Street Art, photograph 9"
+      "alt": "Street Art, photograph 9",
+      "exif": {
+        "source": "DSC02289.ARW",
+        "takenAt": "2026:08:22 17:47:20",
+        "camera": "ILCE-7M3",
+        "lens": "FE 50mm F1.8",
+        "focalLength": "50.0 mm",
+        "aperture": 9,
+        "exposureTime": "1/60",
+        "iso": 200
+      }
     },
     {
       "id": "dsc02290",
@@ -84,7 +174,17 @@
       "thumbnail": "https://pub-67071468b10c4a7dac3df5cf90c980a8.r2.dev/galleries/street-art-interbay-ballard-2026-08-22/thumbs/dsc02290.webp",
       "width": 2560,
       "height": 1707,
-      "alt": "Street Art, photograph 10"
+      "alt": "Street Art, photograph 10",
+      "exif": {
+        "source": "DSC02290.ARW",
+        "takenAt": "2026:08:22 17:47:28",
+        "camera": "ILCE-7M3",
+        "lens": "FE 50mm F1.8",
+        "focalLength": "50.0 mm",
+        "aperture": 9,
+        "exposureTime": "1/60",
+        "iso": 200
+      }
     },
     {
       "id": "dsc02292",
@@ -92,7 +192,17 @@
       "thumbnail": "https://pub-67071468b10c4a7dac3df5cf90c980a8.r2.dev/galleries/street-art-interbay-ballard-2026-08-22/thumbs/dsc02292.webp",
       "width": 2560,
       "height": 1707,
-      "alt": "Street Art, photograph 11"
+      "alt": "Street Art, photograph 11",
+      "exif": {
+        "source": "DSC02292.ARW",
+        "takenAt": "2026:08:22 17:47:36",
+        "camera": "ILCE-7M3",
+        "lens": "FE 50mm F1.8",
+        "focalLength": "50.0 mm",
+        "aperture": 9,
+        "exposureTime": "1/60",
+        "iso": 200
+      }
     },
     {
       "id": "dsc02295",
@@ -100,7 +210,17 @@
       "thumbnail": "https://pub-67071468b10c4a7dac3df5cf90c980a8.r2.dev/galleries/street-art-interbay-ballard-2026-08-22/thumbs/dsc02295.webp",
       "width": 2560,
       "height": 1707,
-      "alt": "Street Art, photograph 12"
+      "alt": "Street Art, photograph 12",
+      "exif": {
+        "source": "DSC02295.ARW",
+        "takenAt": "2026:08:22 17:56:28",
+        "camera": "ILCE-7M3",
+        "lens": "FE 50mm F1.8",
+        "focalLength": "50.0 mm",
+        "aperture": 11,
+        "exposureTime": "1/60",
+        "iso": 200
+      }
     },
     {
       "id": "dsc02296",
@@ -108,7 +228,17 @@
       "thumbnail": "https://pub-67071468b10c4a7dac3df5cf90c980a8.r2.dev/galleries/street-art-interbay-ballard-2026-08-22/thumbs/dsc02296.webp",
       "width": 2560,
       "height": 1707,
-      "alt": "Street Art, photograph 13"
+      "alt": "Street Art, photograph 13",
+      "exif": {
+        "source": "DSC02296.ARW",
+        "takenAt": "2026:08:22 17:56:46",
+        "camera": "ILCE-7M3",
+        "lens": "FE 50mm F1.8",
+        "focalLength": "50.0 mm",
+        "aperture": 22,
+        "exposureTime": "1/60",
+        "iso": 200
+      }
     },
     {
       "id": "dsc02299",
@@ -116,7 +246,17 @@
       "thumbnail": "https://pub-67071468b10c4a7dac3df5cf90c980a8.r2.dev/galleries/street-art-interbay-ballard-2026-08-22/thumbs/dsc02299.webp",
       "width": 2560,
       "height": 1707,
-      "alt": "Street Art, photograph 14"
+      "alt": "Street Art, photograph 14",
+      "exif": {
+        "source": "DSC02299.ARW",
+        "takenAt": "2026:08:22 17:57:08",
+        "camera": "ILCE-7M3",
+        "lens": "FE 50mm F1.8",
+        "focalLength": "50.0 mm",
+        "aperture": 22,
+        "exposureTime": "1/60",
+        "iso": 200
+      }
     },
     {
       "id": "dsc02302",
@@ -124,7 +264,17 @@
       "thumbnail": "https://pub-67071468b10c4a7dac3df5cf90c980a8.r2.dev/galleries/street-art-interbay-ballard-2026-08-22/thumbs/dsc02302.webp",
       "width": 2560,
       "height": 1707,
-      "alt": "Street Art, photograph 15"
+      "alt": "Street Art, photograph 15",
+      "exif": {
+        "source": "DSC02302.ARW",
+        "takenAt": "2026:08:22 17:57:35",
+        "camera": "ILCE-7M3",
+        "lens": "FE 50mm F1.8",
+        "focalLength": "50.0 mm",
+        "aperture": 11,
+        "exposureTime": "1/60",
+        "iso": 200
+      }
     },
     {
       "id": "dsc02305",
@@ -132,7 +282,17 @@
       "thumbnail": "https://pub-67071468b10c4a7dac3df5cf90c980a8.r2.dev/galleries/street-art-interbay-ballard-2026-08-22/thumbs/dsc02305.webp",
       "width": 2560,
       "height": 1707,
-      "alt": "Street Art, photograph 16"
+      "alt": "Street Art, photograph 16",
+      "exif": {
+        "source": "DSC02305.ARW",
+        "takenAt": "2026:08:22 19:03:41",
+        "camera": "ILCE-7M3",
+        "lens": "FE 50mm F1.8",
+        "focalLength": "50.0 mm",
+        "aperture": 8,
+        "exposureTime": "1/60",
+        "iso": 200
+      }
     },
     {
       "id": "dsc02306",
@@ -140,7 +300,17 @@
       "thumbnail": "https://pub-67071468b10c4a7dac3df5cf90c980a8.r2.dev/galleries/street-art-interbay-ballard-2026-08-22/thumbs/dsc02306.webp",
       "width": 2560,
       "height": 1707,
-      "alt": "Street Art, photograph 17"
+      "alt": "Street Art, photograph 17",
+      "exif": {
+        "source": "DSC02306.ARW",
+        "takenAt": "2026:08:22 19:03:47",
+        "camera": "ILCE-7M3",
+        "lens": "FE 50mm F1.8",
+        "focalLength": "50.0 mm",
+        "aperture": 6.3,
+        "exposureTime": "1/60",
+        "iso": 200
+      }
     }
   ]
 }
