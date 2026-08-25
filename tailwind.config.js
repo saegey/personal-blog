@@ -4,11 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        paper: '#fafafa',
-        ink: '#141414',
-        muted: '#666666',
-        line: '#dedede',
-        brand: '#141414',
+        paper: 'rgb(var(--paper) / <alpha-value>)',
+        ink: 'rgb(var(--ink) / <alpha-value>)',
+        muted: 'rgb(var(--muted) / <alpha-value>)',
+        line: 'rgb(var(--line) / <alpha-value>)',
+        brand: 'rgb(var(--brand) / <alpha-value>)',
       },
       fontFamily: {
         serif: ['Source Serif 4 Variable', 'Iowan Old Style', 'Baskerville', 'Georgia', 'serif'],

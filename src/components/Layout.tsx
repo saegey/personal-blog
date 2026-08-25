@@ -3,6 +3,7 @@ import { useLocation } from '@reach/router'
 import { useState, type ReactNode } from 'react'
 
 import BackToTop from './layout/BackToTop'
+import ThemeControl from './layout/ThemeControl'
 import ViewportProvider from '../context/ViewportProvider'
 import UnitProvider from '../context/UnitProvider'
 
@@ -33,7 +34,7 @@ const Layout = ({ children }: LayoutProps) => {
           <header className="border-b border-line bg-paper/95 backdrop-blur-sm">
             <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 sm:px-8 md:py-4">
               <Link to="/" className="w-fit" aria-label="Saegey home">
-                <img src="/saegey-badge.png" alt="Saegey" className="h-10 w-auto sm:h-11" />
+                <img src="/logo_saegey.svg" alt="Saegey" className="h-10 w-auto sm:h-11" />
               </Link>
               <button type="button" className="border border-line px-3 py-2 font-condensed text-sm font-medium uppercase tracking-label md:hidden" onClick={() => setIsMenuOpen(open => !open)} aria-expanded={isMenuOpen} aria-controls="mobile-navigation">
                 {isMenuOpen ? 'Close' : 'Menu'}
@@ -67,9 +68,9 @@ const Layout = ({ children }: LayoutProps) => {
           </main>
 
           <footer className="border-t border-line">
-            <div className="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-6 font-condensed text-xs uppercase tracking-label text-muted sm:flex-row sm:items-center sm:justify-between sm:px-8">
-              <img src="/saegey-badge.png" alt="Saegey" className="h-6 w-auto shrink-0 self-start sm:self-auto" />
-              <span>Seattle, Washington</span>
+            <div className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-6 font-condensed text-xs uppercase tracking-label text-muted sm:flex-row sm:items-center sm:justify-between sm:px-8">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5"><img src="/logo_saegey.svg" alt="Saegey" className="h-6 w-auto shrink-0 self-start sm:self-auto" /><span>Seattle, Washington</span></div>
+              <ThemeControl />
             </div>
           </footer>
         </div>
