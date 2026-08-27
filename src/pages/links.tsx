@@ -41,11 +41,11 @@ const LinksPage: React.FC<PageProps<Data>> = ({ data }) => {
   return (
     <main className="min-h-screen bg-paper px-5 py-8 text-ink sm:px-8 sm:py-12">
       <div className="mx-auto max-w-xl">
-      <header className="border-b border-line pb-8">
-        <img src="/logo_saegey.svg" alt="Saegey" className="h-11 w-auto" />
-        <h1 className="mt-6 font-serif text-4xl font-medium tracking-[-0.03em]">Adam Saegebarth</h1>
+      <header className="border-b border-line pb-8 text-center">
+        <img src="/logo_saegey.svg" alt="Saegey" className="site-logo mx-auto h-11 w-auto" />
+        <h1 className="mt-6 font-heading text-4xl font-medium tracking-[-0.03em]">Adam Saegebarth</h1>
         <p className="mt-3 font-condensed text-sm font-medium uppercase tracking-label text-muted">Artist · Product designer · Creative technologist</p>
-        <p className="mt-5 max-w-md text-lg leading-relaxed text-muted">Making images, objects, sound, and systems. Based in Seattle, Washington.</p>
+        <p className="mx-auto mt-5 max-w-md text-lg leading-relaxed text-muted">Making images, objects, sound, and systems. Based in Seattle, Washington.</p>
       </header>
 
       <nav className="mt-8 grid gap-2" aria-label="Primary links">
@@ -56,7 +56,7 @@ const LinksPage: React.FC<PageProps<Data>> = ({ data }) => {
 
       {pvrEpisodes.length > 0 && <section className="mt-10">
         <p className="eyebrow">Listen</p>
-        <h2 className="mt-2 font-serif text-3xl font-medium">Public Vinyl Radio</h2>
+        <h2 className="mt-2 font-heading text-3xl font-medium">Public Vinyl Radio</h2>
         <ul className="mt-5">
           {pvrEpisodes.map(episode => {
             const id = getYouTubeId(episode.url)
@@ -70,7 +70,7 @@ const LinksPage: React.FC<PageProps<Data>> = ({ data }) => {
 
       {posts.length > 0 && <section className="mt-10">
         <p className="eyebrow">Notebook</p>
-        <h2 className="mt-2 font-serif text-3xl font-medium">Selected notes</h2>
+        <h2 className="mt-2 font-heading text-3xl font-medium">Selected notes</h2>
         <ul className="mt-5">
           {posts.map(post => {
             const image = post.frontmatter.headerImage?.childImageSharp?.gatsbyImageData

@@ -11,7 +11,8 @@ module.exports = {
         brand: 'rgb(var(--brand) / <alpha-value>)',
       },
       fontFamily: {
-        serif: ['Source Serif 4 Variable', 'Iowan Old Style', 'Baskerville', 'Georgia', 'serif'],
+        heading: ['ITC Souvenir Local', 'Iowan Old Style', 'Baskerville', 'Georgia', 'serif'],
+        serif: ['Literata Variable', 'Iowan Old Style', 'Baskerville', 'Georgia', 'serif'],
         condensed: ['IBM Plex Sans Condensed', 'Arial Narrow', 'sans-serif'],
       },
       letterSpacing: {

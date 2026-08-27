@@ -13,7 +13,7 @@ const PostList: React.FC<PageProps<DataProps>> = ({ data }) => {
     <>
       <header className="max-w-3xl border-b border-line pb-10 sm:pb-14">
         <p className="eyebrow text-brand">Project archive</p>
-        <h1 className="mt-3 font-serif text-5xl leading-none tracking-[-0.04em] sm:text-7xl">Earlier experiments and digital work.</h1>
+        <h1 className="mt-3 font-heading text-5xl leading-none tracking-[-0.04em] sm:text-7xl">Earlier experiments and digital work.</h1>
       </header>
       <section className="py-10 sm:py-16">
         {posts.map((post, idx: number) => {

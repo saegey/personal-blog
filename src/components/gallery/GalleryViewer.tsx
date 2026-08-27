@@ -38,11 +38,12 @@ const GalleryViewer = ({ photos }: { photos: GalleryPhoto[] }) => {
   }, [active, photos.length])
 
   return <>
-    <section className="grid grid-cols-2 gap-3 sm:grid-cols-12 sm:gap-5">
+    <section className="mx-auto flex max-w-5xl flex-col gap-20 sm:gap-32">
       {photos.map((photo, index) => {
-        const shape = index % 7 === 0 ? 'sm:col-span-8' : index % 5 === 0 ? 'sm:col-span-5 sm:mt-16' : index % 3 === 0 ? 'sm:col-span-7' : 'sm:col-span-5'
-        return <button key={photo.id} type="button" onClick={() => setActive(index)} className={`group block overflow-hidden bg-neutral-100 text-left ${shape}`}>
-          <img src={photo.thumbnail} alt={photo.alt} width={photo.width} height={photo.height} loading={index > 2 ? 'lazy' : 'eager'} className="h-auto w-full transition duration-500 group-hover:scale-[1.015]" />
+        const ratio = photo.width / photo.height
+        const measure = ratio < 0.85 ? 'max-w-2xl' : ratio < 1.2 ? 'max-w-3xl' : 'max-w-5xl'
+        return <button key={photo.id} type="button" onClick={() => setActive(index)} className={`group block w-full self-center overflow-hidden bg-neutral-100 text-left ${measure}`}>
+          <img src={photo.full} alt={photo.alt} width={photo.width} height={photo.height} loading={index > 0 ? 'lazy' : 'eager'} className="h-auto w-full transition duration-500 group-hover:scale-[1.01]" />
         </button>
       })}
     </section>
@@ -50,7 +51,11 @@ const GalleryViewer = ({ photos }: { photos: GalleryPhoto[] }) => {
       <img src={current.full} alt={current.alt} className="max-h-[88vh] max-w-full object-contain" onClick={event => event.stopPropagation()} />
       <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-5 font-condensed text-sm uppercase tracking-label text-white sm:inset-x-10 sm:bottom-8">
         <div><span>{String((active ?? 0) + 1).padStart(2, '0')} / {String(photos.length).padStart(2, '0')}</span>{exposure && <span className="mt-1 block max-w-[min(70vw,42rem)] text-xs leading-relaxed text-white/70 sm:text-sm">{exposure}</span>}</div>
-        <button type="button" onClick={() => setActive(null)} className="border border-white/70 px-3 py-1 hover:bg-white hover:text-black">Close</button>
+        <div className="flex items-center gap-2">
+          <button type="button" aria-label="Previous photo" onClick={event => { event.stopPropagation(); setActive(index => index === null ? null : (index - 1 + photos.length) % photos.length) }} className="grid h-9 w-9 place-items-center border border-white/70 text-xl transition hover:bg-white hover:text-black">←</button>
+          <button type="button" aria-label="Next photo" onClick={event => { event.stopPropagation(); setActive(index => index === null ? null : (index + 1) % photos.length) }} className="grid h-9 w-9 place-items-center border border-white/70 text-xl transition hover:bg-white hover:text-black">→</button>
+          <button type="button" onClick={event => { event.stopPropagation(); setActive(null) }} className="border border-white/70 px-3 py-2 hover:bg-white hover:text-black">Close</button>
+        </div>
       </div>
     </div>}
   </>

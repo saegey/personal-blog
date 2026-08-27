@@ -49,7 +49,7 @@ const ContactPage: React.FC = () => {
     <>
       <header className="max-w-3xl border-b border-line pb-10 sm:pb-14">
         <p className="eyebrow text-ink">Contact</p>
-        <h1 className="mt-3 font-serif text-5xl leading-[0.95] tracking-[-0.045em] sm:text-7xl">Start a conversation.</h1>
+        <h1 className="mt-3 font-heading text-5xl leading-[0.95] tracking-[-0.045em] sm:text-7xl">Start a conversation.</h1>
         <p className="mt-6 max-w-2xl text-xl leading-relaxed text-muted">Open to thoughtful collaborations, shared experiments, and ideas where different practices can combine into something new.</p>
       </header>
 
@@ -58,7 +58,7 @@ const ContactPage: React.FC = () => {
           {status === 'error' && <p role="alert" className="mb-6 border-l-2 border-ink pl-4 text-lg">Something went wrong. Please try again.</p>}
           {status === 'success' ? (
             <div className="border-y border-line py-8">
-              <h2 className="font-serif text-4xl tracking-[-0.03em]">Thank you.</h2>
+              <h2 className="font-heading text-4xl tracking-[-0.03em]">Thank you.</h2>
               <p className="mt-3 max-w-xl text-xl leading-relaxed text-muted">Your message is on its way. I’ll get back to you when I can.</p>
             </div>
           ) : (

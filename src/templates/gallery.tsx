@@ -12,7 +12,7 @@ const GalleryTemplate = ({ data }: PageProps<Data>) => {
   return <>
     <header className="mx-auto max-w-3xl border-b border-line pb-10 sm:pb-14">
       <p className="eyebrow">{gallery.theme}</p>
-      <h1 className="mt-3 font-serif text-5xl leading-none tracking-[-0.04em] sm:text-7xl">{gallery.title}</h1>
+      <h1 className="mt-3 font-heading text-5xl leading-none tracking-[-0.04em] sm:text-7xl">{gallery.title}</h1>
       <div className="mt-6 flex flex-wrap gap-x-5 gap-y-1 font-condensed text-sm uppercase tracking-label text-muted"><span>{date}</span><span>{gallery.location}</span><span>{gallery.photos.length} photographs</span></div>
       {gallery.description && <p className="mt-6 max-w-xl text-xl leading-relaxed text-muted">{gallery.description}</p>}
     </header>

@@ -31,7 +31,7 @@ const WorkPage: React.FC = () => (
     <header className="grid gap-10 border-b border-line pb-12 sm:pb-16 lg:grid-cols-12 lg:items-end">
       <div className="lg:col-span-8">
         <p className="eyebrow text-ink">Selected work</p>
-        <h1 className="mt-3 font-serif text-5xl leading-[0.95] tracking-[-0.045em] sm:text-7xl">Things in motion, made with care.</h1>
+        <h1 className="mt-3 font-heading text-5xl leading-[0.95] tracking-[-0.045em] sm:text-7xl">Things in motion, made with care.</h1>
       </div>
       <p className="max-w-sm border-l-2 border-ink pl-5 text-xl leading-relaxed text-muted lg:col-span-4">
         Current projects across music, objects, systems, and visual practice.
@@ -44,7 +44,7 @@ const WorkPage: React.FC = () => (
           <p className="font-condensed text-sm font-medium tracking-label text-muted">{work.number}</p>
           <div>
             <p className="eyebrow text-ink">{work.discipline}</p>
-            <h2 className="mt-2 font-serif text-4xl leading-none tracking-[-0.03em] sm:text-5xl">{work.title}</h2>
+            <h2 className="mt-2 font-heading text-4xl leading-none tracking-[-0.03em] sm:text-5xl">{work.title}</h2>
           </div>
           <div className="sm:pt-6">
             <p className="text-lg leading-relaxed text-muted">{work.text}</p>
@@ -63,7 +63,7 @@ const WorkPage: React.FC = () => (
     <section className="border-b border-line py-12 sm:py-16">
       <p className="eyebrow text-ink">Archive</p>
       <div className="mt-3 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-        <h2 className="max-w-2xl font-serif text-4xl leading-tight tracking-[-0.03em] sm:text-5xl">Earlier software, product, and creative experiments remain available here.</h2>
+        <h2 className="max-w-2xl font-heading text-4xl leading-tight tracking-[-0.03em] sm:text-5xl">Earlier software, product, and creative experiments remain available here.</h2>
         <Link to="/blog" className="editorial-link shrink-0 font-condensed text-sm font-medium uppercase tracking-label">View project archive</Link>
       </div>
     </section>

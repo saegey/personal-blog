@@ -1,5 +1,5 @@
 // Site type system
-import '@fontsource-variable/source-serif-4'
+import '@fontsource-variable/literata'
 import '@fontsource/ibm-plex-sans-condensed/400.css'
 import '@fontsource/ibm-plex-sans-condensed/500.css'
 import '@fontsource/ibm-plex-sans-condensed/600.css'

@@ -108,7 +108,7 @@ const MaximizedContainer = ({ children, openModal, title }: MaxProps) => {
         className={`flex max-h-[90vh] w-full max-w-3xl flex-col border border-line bg-paper transition duration-200 ${visible && !closing ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}
       >
         <div className="flex items-center justify-between border-b border-line px-5 py-4">
-          <h2 id="modal-title" className="font-serif text-2xl font-medium">{title}</h2>
+          <h2 id="modal-title" className="font-heading text-2xl font-medium">{title}</h2>
           <div>
             <button
               ref={closeBtnRef as any}
