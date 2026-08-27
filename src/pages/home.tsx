@@ -39,7 +39,13 @@ type Gallery = {
   photos: Array<unknown>
 }
 
-import React, { useState } from 'react'
+import React from 'react'
+
+const practices = [
+  { title: 'Visual art', text: 'Photography, printmaking, and image-making.', href: '/gallery', link: 'Explore gallery' },
+  { title: 'Objects & sound', text: 'Listening objects, spaces, and musical research.', href: '/work', link: 'See selected work' },
+  { title: 'Code & systems', text: 'Digital tools and product experiments.', href: '/notes', link: 'Read notes' },
+]
 
 const HomePage: React.FC<PageProps<DataProps>> = ({ data }) => {
   const posts = data?.allMdx?.nodes ?? []
@@ -47,12 +53,6 @@ const HomePage: React.FC<PageProps<DataProps>> = ({ data }) => {
     .map(node => node.fields.data)
     .filter(Boolean)
     .sort((a, b) => b.date.localeCompare(a.date))[0]
-  const [visibleCount, setVisibleCount] = useState(6)
-
-  const handleLoadMore = () => {
-    setVisibleCount(prev => Math.min(prev + 3, posts.length))
-  }
-
   return (
     <>
       <Hero />
@@ -61,32 +61,46 @@ const HomePage: React.FC<PageProps<DataProps>> = ({ data }) => {
         <div className="mb-6 flex items-end justify-between gap-6">
           <div>
             <p className="eyebrow">Latest photographs</p>
-            <h2 className="mt-2 font-serif text-4xl tracking-[-0.03em] sm:text-5xl">{latestGallery.title}</h2>
+            <h2 className="mt-2 font-heading text-4xl tracking-[-0.03em] sm:text-5xl">{latestGallery.title}</h2>
           </div>
           <Link to="/gallery" className="editorial-link hidden font-condensed text-sm font-medium uppercase tracking-label sm:block">All galleries</Link>
         </div>
-        <Link to={`/gallery/${latestGallery.slug}/`} className="group grid gap-5 sm:grid-cols-[minmax(0,1fr)_15rem] sm:items-end">
+        <Link to={`/gallery/${latestGallery.slug}/`} className="group block">
           <figure className="overflow-hidden bg-neutral-100"><img src={latestGallery.cover} alt="" className="aspect-[3/2] w-full object-cover transition duration-700 group-hover:scale-[1.02]" /></figure>
-          <div className="border-t border-line pt-4 sm:mb-3"><p className="font-condensed text-sm uppercase tracking-label text-muted">{new Date(`${latestGallery.date}T12:00:00`).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p><p className="mt-2 text-lg leading-relaxed text-muted">{latestGallery.location} · {latestGallery.photos.length} photographs</p><span className="editorial-link mt-5 inline-block font-condensed text-sm font-medium uppercase tracking-label">View session</span></div>
+          <div className="mt-5 grid gap-4 border-t border-line pt-4 sm:grid-cols-[12rem_minmax(0,1fr)_auto] sm:items-start sm:gap-6">
+            <p className="font-condensed text-sm uppercase tracking-label text-muted">{new Date(`${latestGallery.date}T12:00:00`).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
+            <p className="text-lg leading-relaxed text-muted">{latestGallery.location} · {latestGallery.photos.length} photographs</p>
+            <span className="editorial-link shrink-0 font-condensed text-sm font-medium uppercase tracking-label">View session</span>
+          </div>
         </Link>
         <Link to="/gallery" className="editorial-link mt-5 inline-block font-condensed text-sm font-medium uppercase tracking-label sm:hidden">All galleries</Link>
       </section>}
 
       <section className="border-t border-line py-12 sm:py-16">
-        <div className="mb-8">
-          <p className="eyebrow">Notebook</p>
-          <h2 className="mt-2 font-serif text-4xl tracking-[-0.03em]">Recent entries</h2>
+        <p className="eyebrow">Current practice</p>
+        <div className="mt-7 grid border-t border-line md:grid-cols-3">
+          {practices.map(practice => <Link key={practice.title} to={practice.href} className="group border-b border-line py-7 md:border-b-0 md:border-r md:px-7 md:first:pl-0 md:last:border-r-0 md:last:pr-0">
+            <h2 className="font-heading text-3xl">{practice.title}</h2>
+            <p className="mt-3 max-w-xs text-lg leading-relaxed text-muted">{practice.text}</p>
+            <span className="editorial-link mt-5 inline-block font-condensed text-sm font-medium uppercase tracking-label">{practice.link} →</span>
+          </Link>)}
+        </div>
+      </section>
+
+      <section className="border-t border-line py-12 sm:py-16">
+        <div className="mb-8 flex items-end justify-between gap-5">
+          <div>
+            <p className="eyebrow">Notes</p>
+            <h2 className="mt-2 font-heading text-4xl">Recent entries</h2>
+          </div>
+          <Link to="/notes" className="editorial-link hidden shrink-0 font-condensed text-sm font-medium uppercase tracking-label sm:inline-block">View all notes</Link>
         </div>
         <div>
-          {posts.length === 0 ? <p className="text-muted">No entries published yet.</p> : posts.slice(0, visibleCount).map((node, index) => (
+          {posts.length === 0 ? <p className="text-muted">No entries published yet.</p> : posts.slice(0, 3).map((node, index) => (
             <FeaturedPost key={node.fields.slug} headerImage={node.frontmatter.headerImage} title={node.frontmatter.title} slug={node.fields.slug} teaser={node.frontmatter.teaser} subType={node.frontmatter.subType} updatedAt={node.frontmatter.publishedDate} featured={index === 0} />
           ))}
         </div>
-        {visibleCount < posts.length && (
-          <button type="button" onClick={handleLoadMore} className="mt-8 border border-ink px-5 py-3 font-condensed text-sm font-medium uppercase tracking-label transition-colors hover:border-brand hover:bg-brand hover:text-white">
-            Load more entries
-          </button>
-        )}
+        <Link to="/notes" className="editorial-link mt-8 inline-block font-condensed text-sm font-medium uppercase tracking-label sm:hidden">View all notes</Link>
       </section>
     </>
   )
@@ -146,7 +160,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMdx(sort: { frontmatter: { date: DESC } }) {
+    allMdx(sort: { frontmatter: { date: DESC } }, filter: { frontmatter: { isActive: { ne: false }, type: { ne: "Race Journal" } } }) {
       nodes {
         id
         fields {

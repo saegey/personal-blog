@@ -56,9 +56,9 @@ const ProjectTemplate = ({ data, children }: ProjectTemplateProps) => {
   const { frontmatter } = data.mdx
   return (
     <>
-      <header className="max-w-4xl border-b border-line pb-10 sm:pb-14">
+      <header className="mx-auto max-w-3xl border-b border-line pb-10 sm:pb-14">
         <p className="eyebrow text-ink">Project{frontmatter.subType ? ` · ${frontmatter.subType}` : ''}</p>
-        <h1 className="mt-3 font-serif text-5xl leading-[0.95] tracking-[-0.045em] sm:text-7xl">{frontmatter.title}</h1>
+        <h1 className="mt-3 font-heading text-5xl leading-[0.95] tracking-[-0.045em] sm:text-7xl">{frontmatter.title}</h1>
         <p className="mt-6 font-condensed text-sm font-medium uppercase tracking-label text-muted">{frontmatter.publishedDate}</p>
         {frontmatter.teaser && <p className="mt-5 max-w-3xl text-xl leading-relaxed text-ink sm:text-2xl">{frontmatter.teaser}</p>}
       </header>

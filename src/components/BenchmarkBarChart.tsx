@@ -33,7 +33,7 @@ export default function BenchBarChartThemeUI({ rows, title, subtitle }: Props) {
       <div className="flex flex-wrap items-end justify-between gap-5">
         <div>
           <p className="eyebrow text-ink">Benchmark</p>
-          <h2 className="mt-2 font-serif text-3xl leading-tight tracking-[-0.025em]">{title ?? 'GPX vs FIT — Parse Time Benchmarks'}</h2>
+          <h2 className="mt-2 font-heading text-3xl leading-tight tracking-[-0.025em]">{title ?? 'GPX vs FIT — Parse Time Benchmarks'}</h2>
           {subtitle && <p className="mt-2 max-w-2xl text-base leading-relaxed text-muted">{subtitle}</p>}
         </div>
         <label className="font-condensed text-sm font-medium uppercase tracking-label">

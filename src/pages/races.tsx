@@ -11,9 +11,9 @@ const PostList: React.FC<PageProps<DataProps>> = ({ data }) => {
 
   return (
     <>
-      <header className="max-w-3xl border-b border-line pb-10 sm:pb-14">
+      <header className="border-b border-line pb-10 sm:pb-14">
         <p className="eyebrow text-brand">Archive</p>
-        <h1 className="mt-3 font-serif text-5xl leading-none tracking-[-0.04em] sm:text-7xl">Race journals and field data.</h1>
+        <h1 className="mt-3 font-heading text-5xl leading-none tracking-[-0.04em] sm:text-7xl">Race journals and field data.</h1>
         <p className="mt-6 max-w-2xl text-xl leading-relaxed text-muted">A record of rides, races, training blocks, and the analysis behind them.</p>
       </header>
       <section className="py-10 sm:py-16">

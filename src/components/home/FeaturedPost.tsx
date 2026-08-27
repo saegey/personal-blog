@@ -24,7 +24,7 @@ const FeaturedPost: React.FC<FeaturePostProps> = ({ title, slug, teaser, subType
   <article className={`group ${showTopRule ? 'border-t border-line' : ''} ${featured ? 'py-8 sm:py-10' : 'py-7 sm:py-8'}`}>
     <div className="max-w-4xl">
       <p className="font-condensed text-sm font-medium uppercase tracking-label text-muted">{subType || 'Writing'} <span aria-hidden="true" className="mx-2 text-line">/</span> <time dateTime={new Date(updatedAt).toISOString()}>{formatDate(updatedAt)}</time></p>
-      <h2 className={`mt-3 font-serif leading-[1.06] tracking-[-0.025em] ${featured ? 'text-3xl sm:text-4xl' : 'text-3xl sm:text-4xl'}`}>
+      <h2 className={`mt-3 font-heading leading-[1.06] tracking-[-0.025em] ${featured ? 'text-3xl sm:text-4xl' : 'text-3xl sm:text-4xl'}`}>
         <GatsbyLink to={`/${slug.replace(/^\/+/, '')}`} className="transition-colors group-hover:text-muted">
           {title}
         </GatsbyLink>

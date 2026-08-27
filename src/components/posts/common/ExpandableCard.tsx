@@ -36,7 +36,7 @@ const ExpandableCard = ({ children, title, openModal }: Props) => {
       onKeyDown={handleKeyDown}
     >
       <div className="mb-4 flex items-center justify-between gap-4">
-        <h2 className="font-serif text-2xl font-medium">{title}</h2>
+        <h2 className="font-heading text-2xl font-medium">{title}</h2>
         <div>
           <Maximize onClick={openModal} />
         </div>

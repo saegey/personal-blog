@@ -26,7 +26,7 @@ const AboutPage: React.FC = () => (
     <header className="grid gap-10 border-b border-line pb-12 sm:pb-16 lg:grid-cols-12 lg:items-end">
       <div className="lg:col-span-8">
         <p className="eyebrow text-ink">About</p>
-        <h1 className="mt-3 font-serif text-5xl leading-[0.95] tracking-[-0.045em] sm:text-7xl">
+        <h1 className="mt-3 font-heading text-5xl leading-[0.95] tracking-[-0.045em] sm:text-7xl">
           Artist, product designer, and creative technologist.
         </h1>
       </div>
@@ -55,7 +55,7 @@ const AboutPage: React.FC = () => (
         {practices.map(practice => (
           <article key={practice.number} className="border-b border-line py-7 md:border-b-0 md:border-r md:px-7 md:first:pl-0 md:last:border-r-0 md:last:pr-0">
             <p className="font-condensed text-sm font-medium tracking-label text-muted">{practice.number}</p>
-            <h2 className="mt-8 font-serif text-3xl tracking-[-0.025em]">{practice.title}</h2>
+            <h2 className="mt-8 font-heading text-3xl tracking-[-0.025em]">{practice.title}</h2>
             <p className="mt-3 text-lg leading-relaxed text-muted">{practice.text}</p>
           </article>
         ))}
@@ -67,7 +67,7 @@ const AboutPage: React.FC = () => (
         <p className="eyebrow text-ink">Public Vinyl Radio</p>
       </div>
       <div className="max-w-3xl lg:col-span-8">
-        <h2 className="font-serif text-4xl leading-tight tracking-[-0.03em] sm:text-5xl">Music as research, curation, and shared space.</h2>
+        <h2 className="font-heading text-4xl leading-tight tracking-[-0.03em] sm:text-5xl">Music as research, curation, and shared space.</h2>
         <p className="mt-5 text-xl leading-relaxed text-muted">
           Through Public Vinyl Radio, I curate and document 100% vinyl sets spanning global sounds, Latin jazz, soul, cumbia, Afrobeat, and beyond. It is a continuing practice in listening, sequencing, and building connection through music.
         </p>
@@ -82,7 +82,7 @@ const AboutPage: React.FC = () => (
         <p className="eyebrow text-ink">An earlier chapter</p>
       </div>
       <div className="max-w-3xl lg:col-span-8">
-        <h2 className="font-serif text-4xl leading-tight tracking-[-0.03em] sm:text-5xl">The long way through.</h2>
+        <h2 className="font-heading text-4xl leading-tight tracking-[-0.03em] sm:text-5xl">The long way through.</h2>
         <p className="mt-5 text-xl leading-relaxed text-muted">
           Competitive mountain-bike and gravel racing once shaped a major part of my life. These days I ride more casually, but that period of endurance training, racing, and close attention to data remains part of the story—and a practice I may return to.
         </p>
@@ -94,7 +94,7 @@ const AboutPage: React.FC = () => (
 
     <section className="border-t border-line py-12 sm:py-16">
       <p className="eyebrow text-ink">Collaboration</p>
-      <h2 className="mt-3 max-w-4xl font-serif text-4xl leading-tight tracking-[-0.03em] sm:text-6xl">
+      <h2 className="mt-3 max-w-4xl font-heading text-4xl leading-tight tracking-[-0.03em] sm:text-6xl">
         Interested in bringing distinct practices together.
       </h2>
       <p className="mt-6 max-w-2xl text-xl leading-relaxed text-muted">
