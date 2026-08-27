@@ -70,7 +70,5 @@ yarn-error.log
 .yarn-integrity
 .vercel
 
-# Locally licensed font files used only for visual development previews.
-static/fonts/
 
 .vscode/
